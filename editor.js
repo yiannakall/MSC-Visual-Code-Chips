@@ -2,100 +2,69 @@ class Line {
     lineNo = 0;
     elems = [];
 
-    constructor(elems){
+    constructor(elems) {
         if (elems)
             this.elems = elems;
     }
 
-    Render($container){
+    Render($container) {
         let $line = $('<div class="line"></div>');
         let $lineNo = $(`<div class="line-number"> ${this.lineNo} </div>`);
         let $lineElems = $('<div class="line-elems"></div>');
-        
-        this.elems.forEach( elem => elem.Render($lineElems) );
-        
+
+        this.elems.forEach(elem => elem.Render($lineElems));
+
         $line.append($lineNo);
         $line.append($lineElems);
         $container.append($line);
     }
 }
 
-class Editor{
+class Editor {
     lines = [];
     id;
     static count = 0;
 
-    constructor(){
+    constructor() {
         this.id = "editor" + Editor.count++;
     }
 
-    PushLine(line){
+    PushLine(line) {
         line.lineNo = this.lines.length + 1;
         this.lines.push(line);
     }
 
-    Render($container){
+    Render($container) {
         $container.empty();
         let $lines = $('<div class = "lines"></div>');
         $container.append($lines);
 
-        this.lines.forEach( line => line.Render($lines) );
+        this.lines.forEach(line => line.Render($lines));
     }
 }
 
-class LineElem{
+class LineElem {
     textContent = "";
+    extraCssClasses = [];
+    id;
+
     typeId;
     userData;
-    id;
 
     static count = 0;
 
-    constructor(textContent){
+    constructor(textContent) {
         this.textContent = textContent;
-        this.id = "elem"  + LineElem.count++;
+        this.id = "elem" + LineElem.count++;
     }
 
-    Render($container){
-        $container.append(`<div class = "line-elem identifier"> ${this.textContent} </div>`);
+    Render($container) {
+        let $lineElem = $(`<div class = "line-elem"> ${this.textContent} </div>`);
+        $lineElem.addClass(this.extraCssClasses.join(' '));
+        $container.append($lineElem);
     }
 
+    SetExtraCssClasses(extraCssClasses) {
+        this.extraCssClasses = extraCssClasses;
+    }
 }
-
-$( document ).ready(function() {
-    let editor = new Editor;
-    
-    // editor.PushLine(new Line([
-    //     new LineElem('count'),
-    //     new LineElem('='),
-    //     new LineElem('1')
-    // ]));
-    
-    // editor.PushLine(new Line([
-    //     new LineElem('While'),
-    //     new LineElem('count'),
-    //     new LineElem('<'),
-    //     new LineElem('3')
-    // ]));
-
-    // editor.PushLine(new Line([
-    //     new LineElem(''),
-    //     new LineElem('Print'),
-    //     new LineElem('"Hello World"'),
-    // ]));
-    
-    // editor.PushLine(new Line([
-    //     new LineElem(''),
-    //     new LineElem('count'),
-    //     new LineElem('='),
-    //     new LineElem('count'),
-    //     new LineElem('+'),
-    //     new LineElem('1'),
-    // ]));
-
-    // editor.PushLine(new Line([
-    //     new LineElem('End While')
-    // ]));
-
-    // editor.Render($('#injection-div'));
-});

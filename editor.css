@@ -30,37 +30,3 @@
     line-height: 27px;
     color: #FFFFFF;
 }
-
-/*
-    line elem styles
-*/
-
-.tab{
-    background-color: transparent;
-    width: 30px;
-}
-
-.keyword{
-    background-color: #4B69C6;
-}
-
-.identifier{
-    background-color: #7A3E9D;
-}
-
-.string{
-    background-color: #448C27;
-}
-
-.number{
-    background-color: #B35D27;
-}
-
-.operator{
-    background-color: #777777;
-    border: 2px solid black;
-}
-
-.libfunc{
-    background-color: #AA3731;
-}
