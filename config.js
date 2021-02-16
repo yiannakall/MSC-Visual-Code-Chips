@@ -44,76 +44,88 @@ let config = {
     },
     code : [
         [
-            {
-                text: 'count',
-                type: 'identifier'
-            },
-            {
-                text: '=',
-                type: 'operator'
-            },
-            {
-                text: '1',
-                type: 'number'
-            }
+            [
+                {
+                    text: 'count',
+                    type: 'identifier'
+                },
+                {
+                    text: '=',
+                    type: 'operator'
+                },
+                {
+                    text: '1',
+                    type: 'number'
+                }
+            ]
         ],
         [
-            {
-                text: 'while',
-                type: 'keyword'
-            },
-            {
-                text: 'count',
-                type: 'identifier'
-            },
-            {
-                text: '<',
-                type: 'operator'
-            },
-            {
-                text: '3',
-                type: 'number'
-            }
-        ],
-        [
-            {
-                text: '',
-                type: 'tab'
-            },
-            {
-                text: 'Print',
-                type: 'libfunc'
-            },
-            {
-                text: '"hello world"',
-                type: 'string'
-            },
+            [
+                {
+                    text: 'while',
+                    type: 'keyword'
+                },
+                [
+                    {
+                        text: 'count',
+                        type: 'identifier'
+                    },
+                    {
+                        text: '<',
+                        type: 'operator'
+                    },
+                    {
+                        text: '3',
+                        type: 'number'
+                    }
+                ]
+            ]
         ],
         [
             {
                 text: '',
                 type: 'tab'
             },
+            [
+                {
+                    text: 'Print',
+                    type: 'libfunc'
+                },
+                {
+                    text: '"hello world"',
+                    type: 'string'
+                },
+            ]
+        ],
+        [
             {
-                text: 'count',
-                type: 'identifier'
+                text: '',
+                type: 'tab'
             },
-            {
-                text: '=',
-                type: 'operator'
-            },
-            {
-                text: 'count',
-                type: 'identifier'
-            },
-            {
-                text: '+',
-                type: 'operator'
-            },
-            {
-                text: '1',
-                type: 'number'
-            },
+            [
+                {
+                    text: 'count',
+                    type: 'identifier'
+                },
+                {
+                    text: '=',
+                    type: 'operator'
+                },
+                [
+                    {
+                        text: 'count',
+                        type: 'identifier'
+                    },
+                    {
+                        text: '+',
+                        type: 'operator'
+                    },
+                    {
+                        text: '1',
+                        type: 'number'
+                    },
+                ]
+            ]
         ],
         [
             {

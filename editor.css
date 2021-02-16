@@ -16,10 +16,23 @@
     gap: 2px;
 }
 
-.line-elem{
+.group{
+    display: flex;
+    gap: 2px;
     padding: 10px 15px;
+    border-radius: 10px;
+    
+    background-color: #E7D46F;
+    border: solid 2px #B9AA59;
+}
+
+.block{
+    padding: 5px 10px;
     box-sizing: border-box;
     border-radius: 10px;
+    
+    display: flex;
+    align-items: center;
 }
 
 .lines{

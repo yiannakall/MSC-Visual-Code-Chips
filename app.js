@@ -12,6 +12,24 @@ function LoadStyles(styles){
     }
 }
 
+/**
+ * Load a LineElem including nested grouping
+ * @param {Object | Array} obj {text: 'text', type: 'type} or [{text: 'text', type: 'type}, [...], ...]
+ */
+function LoadLineElem(obj){
+    if (!Array.isArray(obj)){
+        let lineElem = new Block(obj.text);
+        lineElem.SetExtraCssClasses(config.type2styles[obj.type]);
+        return lineElem;
+    }
+
+    let elems = [];
+    for (let elem of obj){
+        elems.push(LoadLineElem(elem));
+    }
+    return new Group(elems);
+}
+
 $(document).ready(function () {
     let code = config.code;
     let type2styles = config.type2styles;
@@ -20,11 +38,10 @@ $(document).ready(function () {
     let editor = new Editor;
 
     for (let line of code){
-        let lineElems = line.map( (elem) => {
-            let lineElem = new LineElem(elem.text);
-            lineElem.SetExtraCssClasses(type2styles[elem.type]);
-            return lineElem;
-        });
+        let lineElems = [];
+        for (let obj of line){
+            lineElems.push( LoadLineElem(obj) );
+        }
         editor.PushLine(new Line(lineElems));
     }
 

@@ -1,10 +1,10 @@
 class Line {
     lineNo = 0;
-    elems = [];
+    lineElems = [];
 
     constructor(elems) {
         if (elems)
-            this.elems = elems;
+            this.lineElems = elems;
     }
 
     Render($container) {
@@ -12,7 +12,7 @@ class Line {
         let $lineNo = $(`<div class="line-number"> ${this.lineNo} </div>`);
         let $lineElems = $('<div class="line-elems"></div>');
 
-        this.elems.forEach(elem => elem.Render($lineElems));
+        this.lineElems.forEach(elem => elem.Render($lineElems));
 
         $line.append($lineNo);
         $line.append($lineElems);
@@ -43,7 +43,23 @@ class Editor {
     }
 }
 
-class LineElem {
+class Group{
+    elems = [];
+
+    constructor(elems){
+        if (elems)
+            this.elems = elems;
+    }
+
+    Render($container) {
+        let $group = $('<div class = "group"></div>');
+        this.elems.forEach(elem => elem.Render($group));
+        
+        $container.append($group);
+    }
+}
+
+class Block {
     textContent = "";
     extraCssClasses = [];
     id;
@@ -55,11 +71,11 @@ class LineElem {
 
     constructor(textContent) {
         this.textContent = textContent;
-        this.id = "elem" + LineElem.count++;
+        this.id = "elem" + Block.count++;
     }
 
     Render($container) {
-        let $lineElem = $(`<div class = "line-elem"> ${this.textContent} </div>`);
+        let $lineElem = $(`<div class = "block"> ${this.textContent} </div>`);
         $lineElem.addClass(this.extraCssClasses.join(' '));
         $container.append($lineElem);
     }
