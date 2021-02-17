@@ -1,29 +1,20 @@
-.line{
-    display: flex;
-    gap: 30px;
-    margin-bottom: 2px;
-}
-
-.line-number{
-    padding: 10px 15px;
-    background-color: #B35D27;
-    min-width: 2em;
-    text-align: right;
-}
-
-.line-elems{
-    display: flex;
-    gap: 2px;
-}
-
 .group{
-    display: flex;
-    gap: 2px;
-    padding: 10px 15px;
-    border-radius: 10px;
-    
     background-color: #E7D46F;
     border: solid 2px #B9AA59;
+    border-radius: 10px;
+
+    width: fit-content;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+
+.editor{
+    outline: none;
+}
+
+.editor > .group {
+    background-color: transparent;
+    border: none;
 }
 
 .block{
@@ -33,13 +24,29 @@
     
     display: flex;
     align-items: center;
-}
+    justify-content: center;
 
-.lines{
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 23px;
     line-height: 27px;
     color: #FFFFFF;
+}
+
+.inline-elems{
+    display: flex;
+    align-items: flex-start;
+    gap: 2px;
+    min-height: 27px;
+}
+
+.different-line-elems{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.selected{
+    border: 5px solid #FFE34D !important;
 }

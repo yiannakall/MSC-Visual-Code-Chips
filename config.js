@@ -44,63 +44,57 @@ let config = {
     },
     code : [
         [
+            {
+                text: 'count',
+                type: 'identifier'
+            },
+            {
+                text: '=',
+                type: 'operator'
+            },
+            {
+                text: '1',
+                type: 'number'
+            }
+        ],
+        [
+            {
+                text: 'while',
+                type: 'keyword'
+            },
             [
                 {
                     text: 'count',
                     type: 'identifier'
                 },
                 {
-                    text: '=',
+                    text: '<',
                     type: 'operator'
                 },
                 {
-                    text: '1',
+                    text: '3',
                     type: 'number'
                 }
             ]
         ],
         [
-            [
-                {
-                    text: 'while',
-                    type: 'keyword'
-                },
-                [
-                    {
-                        text: 'count',
-                        type: 'identifier'
-                    },
-                    {
-                        text: '<',
-                        type: 'operator'
-                    },
-                    {
-                        text: '3',
-                        type: 'number'
-                    }
-                ]
-            ]
-        ],
-        [
             {
-                text: '',
-                type: 'tab'
+                text: 'Print',
+                type: 'libfunc'
             },
-            [
-                {
-                    text: 'Print',
-                    type: 'libfunc'
-                },
-                {
-                    text: '"hello world"',
-                    type: 'string'
-                },
-            ]
+            {
+                text: '"hello world"',
+                type: 'string'
+            },
         ],
         [
             {
-                text: '',
-                type: 'tab'
+                text: 'count',
+                type: 'identifier'
+            },
+            {
+                text: '=',
+                type: 'operator'
             },
             [
                 {
@@ -108,23 +102,13 @@ let config = {
                     type: 'identifier'
                 },
                 {
-                    text: '=',
+                    text: '+',
                     type: 'operator'
                 },
-                [
-                    {
-                        text: 'count',
-                        type: 'identifier'
-                    },
-                    {
-                        text: '+',
-                        type: 'operator'
-                    },
-                    {
-                        text: '1',
-                        type: 'number'
-                    },
-                ]
+                {
+                    text: '1',
+                    type: 'number'
+                },
             ]
         ],
         [

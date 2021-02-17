@@ -16,34 +16,23 @@ function LoadStyles(styles){
  * Load a LineElem including nested grouping
  * @param {Object | Array} obj {text: 'text', type: 'type} or [{text: 'text', type: 'type}, [...], ...]
  */
-function LoadLineElem(obj){
+function LoadElem(obj){
     if (!Array.isArray(obj)){
-        let lineElem = new Block(obj.text);
-        lineElem.SetExtraCssClasses(config.type2styles[obj.type]);
-        return lineElem;
+        let elem = new Block(obj.text);
+        elem.SetExtraCssClasses(config.type2styles[obj.type]);
+        return elem;
     }
 
     let elems = [];
     for (let elem of obj){
-        elems.push(LoadLineElem(elem));
+        elems.push(LoadElem(elem));
     }
     return new Group(elems);
 }
 
-$(document).ready(function () {
-    let code = config.code;
-    let type2styles = config.type2styles;
-    
+$(document).ready(function () {    
     LoadStyles(config.styles);
-    let editor = new Editor;
-
-    for (let line of code){
-        let lineElems = [];
-        for (let obj of line){
-            lineElems.push( LoadLineElem(obj) );
-        }
-        editor.PushLine(new Line(lineElems));
-    }
-
-    editor.Render($('#injection-div'));
+    
+    Editor.root = LoadElem(config.code);
+    Editor.Init($('#injection-div'));
 });
