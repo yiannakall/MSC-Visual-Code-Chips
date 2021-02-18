@@ -12,6 +12,7 @@ let config = {
         tab: {
             'background-color': 'transparent',
             'width': '30px',
+            'align-self': 'stretch',
         },
         keyword: {
             'background-color': '#4B69C6',

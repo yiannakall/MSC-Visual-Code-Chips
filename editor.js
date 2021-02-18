@@ -1,52 +1,3 @@
-const NEW_LINE = {};
-const TAB = {};
-
-const Editor = {
-    root: undefined,
-    $container: undefined,
-    $editor: undefined,
-    selected: undefined,
-    Init: ($container) => {
-        Block.OnClick = Group.OnClick = (event, elem) => {
-            Editor.Select(elem);
-            event.stopPropagation();
-        }
-
-        $container.empty();
-        Editor.$editor = $('<div class = "editor" tabIndex = "0"></div>');
-        Editor.root.Render(Editor.$editor);
-        $container.append(Editor.$editor);
-    
-        Editor.$editor.on('keydown', (e) => {
-            let charCode = e.char || e.charCode || e.which;
-            switch (charCode){
-                case 13: /* Enter Key */
-                    let elem = Editor.selected;
-                    if (elem){
-                        let parent = elem.parent;
-                        if (parent){
-                            parent.elems.splice(parent.elems.indexOf(elem), 0, NEW_LINE)
-                        }
-                        Editor.Refresh();
-                        break;
-                    }
-            }
-        });
-    },
-    Refresh: () => {
-        Editor.$editor.empty();
-        Editor.root.Render(Editor.$editor);
-        Editor.Select(Editor.selected);
-    },
-    Select: (elem) => {
-        if (Editor.selected){
-            Editor.selected.$view.removeClass('selected');
-        }
-        Editor.selected = elem;
-        Editor.selected.$view.addClass('selected');
-    }
-}
-
 class Block {
     static count = 0;
     static OnClick = () => {};
@@ -130,4 +81,72 @@ class Group{
         this.parent = parent;
     }
 
+}
+
+
+const NEW_LINE = {};
+
+class Tab extends Block {
+    constructor(){
+        super('');
+        this.typeId = 'tab';
+        this.SetExtraCssClasses(['tab']);
+    }
+}
+
+const Editor = {
+    root: undefined,
+    $container: undefined,
+    $editor: undefined,
+    selected: undefined,
+    Init: ($container) => {
+        Block.OnClick = Group.OnClick = (event, elem) => {
+            Editor.Select(elem);
+            event.stopPropagation();
+        }
+
+        $container.empty();
+        Editor.$editor = $('<div class = "editor" tabIndex = "0"></div>');
+        Editor.root.Render(Editor.$editor);
+        $container.append(Editor.$editor);
+
+        Editor.$editor.on('keydown', (e) => {
+            let charCode = e.char || e.charCode || e.which;
+            switch (charCode){
+                case 13: /* Enter Key */ {
+                    if (Editor.selected)
+                        Editor.InsertBefore(Editor.selected, NEW_LINE);
+                    break;
+                }
+                case 9: /* Tab */ {
+                    if (Editor.selected)
+                        Editor.InsertBefore(Editor.selected, new Tab());
+                    e.preventDefault();
+                    e.stopPropagation();
+                    break;
+                }
+            }
+        });
+    },
+    Refresh: () => {
+        Editor.$editor.empty();
+        Editor.root.Render(Editor.$editor);
+        Editor.Select(Editor.selected);
+    },
+    Select: (elem) => {
+        if (Editor.selected){
+            Editor.selected.$view.removeClass('selected');
+        }
+        Editor.selected = elem;
+        Editor.selected.$view.addClass('selected');
+    },
+    InsertBefore: (elem, newElem) => {
+        let parent = elem.parent;
+        if (parent){
+            if (newElem !== NEW_LINE) 
+                newElem.SetParent(parent);
+            parent.elems.splice(parent.elems.indexOf(elem), 0, newElem);
+            Editor.Refresh();
+        }
+    }
 }
