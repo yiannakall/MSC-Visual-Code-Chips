@@ -1,0 +1,369 @@
+{
+    "non_terminals": [
+        {
+            "name": "program",
+            "operation_type": "all_of",
+            "content": [
+                {
+                    "type": "non_terminal",
+                    "name": "stmts"
+                }
+            ]
+        },
+        {
+            "name": "stmts",
+            "operation_type": "list_of",
+            "content": [
+                {
+                    "type": "non_terminal",
+                    "name": "stmt"
+                }
+            ]
+        },
+        {
+            "name": "stmt",
+            "operation_type": "any_of",
+            "content": [
+                {
+                    "type": "non_terminal",
+                    "name": "if_stmt"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "if_else_stmt"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "while_stmt"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "for_stmt"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "assign_stmt"
+                }
+            ]
+        },
+        {
+            "name": "expr",
+            "operation_type": "any_of",
+            "content": [
+                {
+                    "type": "non_terminal",
+                    "name": "arith_expr"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "bool_expr"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr"
+                }
+            ]
+        },
+        {
+            "name": "arith_expr",
+            "operation_type": "all_of",
+            "content": [
+                {
+                    "type": "non_terminal",
+                    "name": "expr"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "arith_op"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr"
+                }
+            ]
+        },
+        {
+            "name": "arith_op",
+            "operation_type": "any_of",
+            "content": [
+                {
+                    "type": "terminal",
+                    "name": "+"
+                },
+                {
+                    "type": "terminal",
+                    "name": "-"
+                },
+                {
+                    "type": "terminal",
+                    "name": "*"
+                },
+                {
+                    "type": "terminal",
+                    "name": "/"
+                }
+            ]
+        },
+        {
+            "name": "bool_expr",
+            "operation_type": "any_of",
+            "content": [
+                {
+                    "type": "non_terminal",
+                    "name": "binary_bool_expr"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "unary_bool_expr"
+                }
+            ]
+        },
+        {
+            "name": "binary_bool_expr",
+            "operation_type": "all_of",
+            "content": [
+                {
+                    "type": "non_terminal",
+                    "name": "expr"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "bool_bin_op"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr"
+                }
+            ]
+        },
+        {
+            "name": "bool_bin_op",
+            "operation_type": "any_of",
+            "content": [
+                {
+                    "type": "keyword",
+                    "name": "AND"
+                },
+                {
+                    "type": "keyword",
+                    "name": "OR"
+                }
+            ]
+        },
+        {
+            "name": "unary_bool_expr",
+            "operation_type": "all_of",
+            "content": [
+                {
+                    "type": "keyword",
+                    "name": "NOT"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr"
+                }
+            ]
+        },
+        {
+            "name": "primary_expr",
+            "operation_type": "any_of",
+            "content": [
+                {
+                    "type": "terminal",
+                    "name": "IDENT"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST"
+                },
+                {
+                    "type": "terminal",
+                    "name": "FLOAT_CONST"
+                },
+                {
+                    "type": "terminal",
+                    "name": "CHAR_CONST"
+                },
+                {
+                    "type": "terminal",
+                    "name": "STRING_CONST"
+                },
+                {
+                    "type": "terminal",
+                    "name": "BOOL_CONST"
+                }
+            ]
+        },
+        {
+            "name": "assign_stmt",
+            "operation_type": "all_of",
+            "content": [
+                {
+                    "type": "terminal",
+                    "name": "IDENT"
+                },
+                {
+                    "type": "terminal",
+                    "name": "="
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr"
+                }
+            ]
+        },
+        {
+            "name": "if_stmt",
+            "operation_type": "all_of",
+            "content": [
+                {
+                    "type": "keyword",
+                    "name": "IF"
+                },
+                {
+                    "type": "non_terminal",
+                    "alias": "condition",
+                    "name": "expr"
+                },
+                {
+                    "type": "non_terminal",
+                    "alias": "if_part",
+                    "name": "stmts"
+                }
+            ]
+        },
+        {
+            "name": "if_else_stmt",
+            "operation_type": "all_of",
+            "content": [
+                {
+                    "type": "keyword",
+                    "name": "IF"
+                },
+                {
+                    "type": "non_terminal",
+                    "alias": "condition",
+                    "name": "expr"
+                },
+                {
+                    "type": "non_terminal",
+                    "alias": "if_part",
+                    "name": "stmts"
+                },
+                {
+                    "type": "keyword",
+                    "name": "ELSE"
+                },
+                {
+                    "type": "non_terminal",
+                    "alias": "else_part",
+                    "name": "stmts"
+                }
+            ]
+        },
+        {
+            "name": "while_stmt",
+            "operation_type": "all_of",
+            "content": [
+                {
+                    "type": "keyword",
+                    "name": "WHILE"
+                },
+                {
+                    "type": "non_terminal",
+                    "alias": "condition",
+                    "name": "expr"
+                },
+                {
+                    "type": "non_terminal",
+                    "alias": "while_part",
+                    "name": "stmts"
+                }
+            ]
+        },
+        {
+            "name": "for_stmt",
+            "operation_type": "all_of",
+            "content": [
+                {
+                    "type": "keyword",
+                    "name": "FOR"
+                },
+                {
+                    "type": "non_terminal",
+                    "alias": "initialization",
+                    "name": "assign_stmt"
+                },
+                {
+                    "type": "non_terminal",
+                    "alias": "condition",
+                    "name": "expr"
+                },
+                {
+                    "type": "non_terminal",
+                    "alias": "step",
+                    "name": "assign_stmt"
+                },
+                {
+                    "type": "non_terminal",
+                    "alias": "for_part",
+                    "name": "stmts"
+                }
+            ]
+        }
+    ],
+    "keywords": [
+        "NOT", "AND", "OR", "IF", "ELSE", "WHILE", "FOR"
+    ],
+    "terminals": [
+        {
+            "name": "+",
+            "type": "string",
+            "value": "+"
+        },
+        {
+            "name": "-",
+            "type": "string",
+            "value": "-"
+        },
+        {
+            "name": "*",
+            "type": "string",
+            "value": "*"
+        },
+        {
+            "name": "/",
+            "type": "string",
+            "value": "/"
+        },
+        {
+            "name": "INT_CONST",
+            "type": "const",
+            "value": "int"
+        },
+        {
+            "name": "FLOAT_CONST",
+            "type": "const",
+            "value": "float"
+        },
+        {
+            "name": "CHAR_CONST",
+            "type": "const",
+            "value": "char"
+        },
+        {
+            "name": "STRING_CONST",
+            "type": "const",
+            "value": "string"
+        },
+        {
+            "name": "BOOL_CONST",
+            "type": "const",
+            "value": "bool"
+        },
+        {
+            "name": "IDENT",
+            "type": "identifier"
+        }
+    ]
+}
