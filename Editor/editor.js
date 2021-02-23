@@ -1,100 +1,7 @@
-class Block {
-    static count = 0;
-    static OnClick = () => {};
+import { Block } from "./block.js";
+import { Group } from "./group.js";
 
-    textContent = "";
-    extraCssClasses = [];
-    id;
-    parent;
-    typeId;
-    userData;
-
-    $view;
-
-    constructor(textContent) {
-        this.textContent = textContent;
-        this.id = "elem" + Block.count++;
-    }
-
-    Render($container) {
-        let $elem = $(`<div class = "block"> ${this.textContent} </div>`);
-        $elem.addClass(this.extraCssClasses.join(' '));
-        
-        $elem.on('click', (event) => Block.OnClick(event, this));
-        $container.append($elem);
-
-        this.$view = $elem;
-    }
-
-    SetExtraCssClasses(extraCssClasses) {
-        this.extraCssClasses = extraCssClasses;
-    }
-
-    SetParent(parent){
-        this.parent = parent;
-    }
-}
-
-class Group{
-
-    elems = [];
-    parent;
-
-    $view;
-
-    constructor(elems){
-        if (elems){
-            elems.forEach( (elem) => elem.SetParent(this) );
-            this.elems = elems;
-        }
-    }
-
-    PushElem(){
-        elem.SetParent(this);
-        this.elems.push(elem);
-    }
-
-    Render($container) {
-        let $group = $('<div class = "group"></div>');
-        let $differentLines = $('<div class = "different-line-elems"></div>');
-        let $inline = $('<div class = "inline-elems"></div>');
-
-        $differentLines.append($inline);
-        $group.append($differentLines);
-
-        for (let elem of this.elems){
-            if (elem === NEW_LINE){
-                $inline = $('<div class = "inline-elems"></div>');
-                $differentLines.append($inline);
-            }else{
-                elem.Render($inline);
-            }
-        }
-        
-        $group.on('click', (event) => Group.OnClick(event, this));
-        $container.append($group);
-
-        this.$view = $group;
-    }
-
-    SetParent(parent){
-        this.parent = parent;
-    }
-
-}
-
-
-const NEW_LINE = {};
-
-class Tab extends Block {
-    constructor(){
-        super('');
-        this.typeId = 'tab';
-        this.SetExtraCssClasses(['tab']);
-    }
-}
-
-const Editor = {
+export const Editor = {
     root: undefined,
     $container: undefined,
     $editor: undefined,
@@ -159,7 +66,7 @@ const Editor = {
             switch (key){
                 case 'enter': {
                     if (Editor.selected)
-                        Editor.InsertBefore(Editor.selected, NEW_LINE);
+                        Editor.InsertBefore(Editor.selected, Block.CreateNewLine());
                     break;
                 }
                 case 'tab': {
@@ -167,7 +74,7 @@ const Editor = {
                         if (keyModifiers.pressed['shift']){ /* delete previous if it's a tab */
                             Editor.DeleteBefore(Editor.selected, (elem) => elem.typeId === 'tab');
                         }else{
-                            Editor.InsertBefore(Editor.selected, new Tab());
+                            Editor.InsertBefore(Editor.selected, Block.CreateTab());
                         }
                     }
                     break;
@@ -215,7 +122,7 @@ const Editor = {
     InsertBefore: (elem, newElem) => {
         let parent = elem.parent;
         if (parent){
-            if (newElem !== NEW_LINE) 
+            if (newElem.typeId !== 'new_line') 
                 newElem.SetParent(parent);
             parent.elems.splice(parent.elems.indexOf(elem), 0, newElem);
             Editor.Refresh();
@@ -248,7 +155,7 @@ const Editor = {
             let elems = Editor.selected.parent.elems;
             let i = elems.indexOf(Editor.selected) - 1;
             while (i >= 0){
-                if (elems[i] !== NEW_LINE){
+                if (elems[i].typeId !== 'new_line'){
                     Editor.Select(elems[i]);
                     break;
                 }
@@ -261,7 +168,7 @@ const Editor = {
             let elems = Editor.selected.parent.elems;
             let i = elems.indexOf(Editor.selected) + 1;
             while (i < elems.length){
-                if (elems[i] !== NEW_LINE){
+                if (elems[i].typeId !== 'new_line'){
                     Editor.Select(elems[i]);
                     break;
                 }
@@ -274,7 +181,7 @@ const Editor = {
             let elems = Editor.selected.parent.elems;
             let i = elems.indexOf(Editor.selected);
             while (i > 0){
-                if (elems[i] === NEW_LINE && elems[i - 1] !== NEW_LINE){
+                if (elems[i].typeId === 'new_line' && elems[i - 1].typeId !== 'new_line'){
                     Editor.Select(elems[i - 1]);
                     break;
                 }
@@ -287,12 +194,25 @@ const Editor = {
             let elems = Editor.selected.parent.elems;
             let i = elems.indexOf(Editor.selected);
             while (i < elems.length - 1){
-                if (elems[i] === NEW_LINE && elems[i + 1] !== NEW_LINE){
+                if (elems[i].typeId === 'new_line' && elems[i + 1].typeId !== 'new_line'){
                     Editor.Select(elems[i + 1]);
                     break;
                 }
                 i++;
             }
+        }
+    },
+    LoadStyles: (styles) => {
+        let viewClasses = Object.keys(styles);
+        for (let viewClass of viewClasses){
+            let props = Object.keys(styles[viewClass]);
+            let css =   '\n.' + viewClass + '{\n' 
+                        + props.map(prop => '\t' + prop + ': ' + styles[viewClass][prop] + ';').join('\n')
+                        + '\n}\n';
+            
+            let $style = $(`<style id = "${viewClass + '-style'}" type="text/css"></style>`);
+            $style.append(css);
+            $('head').append($style);
         }
     }
 }

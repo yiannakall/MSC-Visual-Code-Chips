@@ -1,16 +1,7 @@
-function LoadStyles(styles){
-    let viewClasses = Object.keys(styles);
-    for (viewClass of viewClasses){
-        let props = Object.keys(styles[viewClass]);
-        let css =   '\n.' + viewClass + '{\n' 
-                    + props.map( prop => '\t' + prop + ': ' + styles[viewClass][prop] + ';').join('\n')
-                    + '\n}\n';
-        
-        let $style = $(`<style id = "${viewClass + '-style'}" type="text/css"></style>`);
-        $style.append(css);
-        $('head').append($style);
-    }
-}
+import { Editor } from './Editor/editor.js'
+import { config, code } from './config.js'
+import { Block } from './Editor/block.js'
+import { Group } from './Editor/group.js'
 
 /**
  * Load a LineElem including nested grouping
@@ -30,9 +21,8 @@ function LoadElem(obj){
     return new Group(elems);
 }
 
-$(document).ready(function () {    
-    LoadStyles(config.styles);
-    
-    Editor.root = LoadElem(config.code);
+$(document).ready(function () {
+    Editor.LoadStyles(config.styles);
+    Editor.root = LoadElem(code);
     Editor.Init($('#injection-div'));
 });
