@@ -2,24 +2,24 @@ import { Block } from "./block.js";
 import { Group } from "./group.js";
 
 export const Editor = {
-    root: undefined,
-    $container: undefined,
-    $editor: undefined,
-    selected: undefined,
+    code_priv: undefined,
+    $container_priv: undefined,
+    $editor_priv: undefined,
+    selected_priv: undefined,
     Init: ($container) => {
         Block.OnClick = Group.OnClick = (event, elem) => {
-            Editor.Select(elem);
+            Editor.Select_priv(elem);
             event.stopPropagation();
         }
 
         $container.empty();
-        Editor.$editor = $('<div class = "editor" tabIndex = "0"></div>');
-        Editor.root.Render(Editor.$editor);
-        $container.append(Editor.$editor);
+        Editor.$editor_priv = $('<div class = "editor" tabIndex = "0"></div>');
+        Editor.code_priv.Render(Editor.$editor_priv);
+        $container.append(Editor.$editor_priv);
 
-        Editor.InitKeyboardEvents();
+        Editor.InitKeyboardEvents_priv();
     },
-    InitKeyboardEvents: () => {
+    InitKeyboardEvents_priv: () => {
         let charCode2key = {
             16: 'shift',
             17: 'ctrl',
@@ -49,12 +49,12 @@ export const Editor = {
             }
         };
 
-        Editor.$editor.on('keyup', (e) => {
+        Editor.$editor_priv.on('keyup', (e) => {
             let key = charCode2key[e.char || e.charCode || e.which];
             keyModifiers.UpdateUp(key);
         });
 
-        Editor.$editor.on('keydown', (e) => {
+        Editor.$editor_priv.on('keydown', (e) => {
             let key = charCode2key[e.char || e.charCode || e.which];
             keyModifiers.UpdateDown(key);
 
@@ -65,23 +65,23 @@ export const Editor = {
 
             switch (key){
                 case 'enter': {
-                    if (Editor.selected)
-                        Editor.InsertBefore(Editor.selected, Block.CreateNewLine());
+                    if (Editor.selected_priv)
+                        Editor.InsertBefore_priv(Editor.selected_priv, Block.CreateNewLine());
                     break;
                 }
                 case 'tab': {
-                    if (Editor.selected){
+                    if (Editor.selected_priv){
                         if (keyModifiers.pressed['shift']){ /* delete previous if it's a tab */
-                            Editor.DeleteBefore(Editor.selected, (elem) => elem.typeId === 'tab');
+                            Editor.DeleteBefore_priv(Editor.selected_priv, (elem) => elem.typeId === 'tab');
                         }else{
-                            Editor.InsertBefore(Editor.selected, Block.CreateTab());
+                            Editor.InsertBefore_priv(Editor.selected_priv, Block.CreateTab());
                         }
                     }
                     break;
                 }
                 case 'backspace': {
-                    if (Editor.selected){
-                        Editor.DeleteBefore(Editor.selected);
+                    if (Editor.selected_priv){
+                        Editor.DeleteBefore_priv(Editor.selected_priv);
                     }
                     break;
                 }
@@ -108,18 +108,18 @@ export const Editor = {
         });
     },
     Refresh: () => {
-        Editor.$editor.empty();
-        Editor.root.Render(Editor.$editor);
-        Editor.Select(Editor.selected);
+        Editor.$editor_priv.empty();
+        Editor.code_priv.Render(Editor.$editor_priv);
+        Editor.Select_priv(Editor.selected_priv);
     },
-    Select: (elem) => {
-        if (Editor.selected){
-            Editor.selected.$view.removeClass('selected');
+    Select_priv: (elem) => {
+        if (Editor.selected_priv){
+            Editor.selected_priv.GetView().removeClass('selected');
         }
-        Editor.selected = elem;
-        Editor.selected.$view.addClass('selected');
+        Editor.selected_priv = elem;
+        Editor.selected_priv.GetView().addClass('selected');
     },
-    InsertBefore: (elem, newElem) => {
+    InsertBefore_priv: (elem, newElem) => {
         let parent = elem.parent;
         if (parent){
             if (newElem.typeId !== 'new_line') 
@@ -128,7 +128,7 @@ export const Editor = {
             Editor.Refresh();
         }
     },
-    DeleteBefore: (elem, condition) => {
+    DeleteBefore_priv: (elem, condition) => {
         let parent = elem.parent;
         if (parent){
             let prev = parent.elems.indexOf(elem) - 1;
@@ -141,22 +141,22 @@ export const Editor = {
         }
     },
     StepIn: () => {
-        if (Editor.selected && Editor.selected.elems){
-            Editor.Select(Editor.selected.elems[0]);
+        if (Editor.selected_priv && Editor.selected_priv.elems){
+            Editor.Select_priv(Editor.selected_priv.elems[0]);
         }
     },
     StepOut: () => {
-        if (Editor.selected && Editor.selected.parent){
-            Editor.Select(Editor.selected.parent);
+        if (Editor.selected_priv && Editor.selected_priv.parent){
+            Editor.Select_priv(Editor.selected_priv.parent);
         }
     },
     StepLeft: () => {
-        if (Editor.selected && Editor.selected.parent){
-            let elems = Editor.selected.parent.elems;
-            let i = elems.indexOf(Editor.selected) - 1;
+        if (Editor.selected_priv && Editor.selected_priv.parent){
+            let elems = Editor.selected_priv.parent.elems;
+            let i = elems.indexOf(Editor.selected_priv) - 1;
             while (i >= 0){
                 if (elems[i].typeId !== 'new_line'){
-                    Editor.Select(elems[i]);
+                    Editor.Select_priv(elems[i]);
                     break;
                 }
                 i--;
@@ -164,12 +164,12 @@ export const Editor = {
         }
     },
     StepRight: () => {
-        if (Editor.selected && Editor.selected.parent){
-            let elems = Editor.selected.parent.elems;
-            let i = elems.indexOf(Editor.selected) + 1;
+        if (Editor.selected_priv && Editor.selected_priv.parent){
+            let elems = Editor.selected_priv.parent.elems;
+            let i = elems.indexOf(Editor.selected_priv) + 1;
             while (i < elems.length){
                 if (elems[i].typeId !== 'new_line'){
-                    Editor.Select(elems[i]);
+                    Editor.Select_priv(elems[i]);
                     break;
                 }
                 i++;
@@ -177,12 +177,12 @@ export const Editor = {
         }
     },
     StepUp: () => {
-        if (Editor.selected && Editor.selected.parent){
-            let elems = Editor.selected.parent.elems;
-            let i = elems.indexOf(Editor.selected);
+        if (Editor.selected_priv && Editor.selected_priv.parent){
+            let elems = Editor.selected_priv.parent.elems;
+            let i = elems.indexOf(Editor.selected_priv);
             while (i > 0){
                 if (elems[i].typeId === 'new_line' && elems[i - 1].typeId !== 'new_line'){
-                    Editor.Select(elems[i - 1]);
+                    Editor.Select_priv(elems[i - 1]);
                     break;
                 }
                 i--;
@@ -190,12 +190,12 @@ export const Editor = {
         }
     },
     StepDown: () => {
-        if (Editor.selected && Editor.selected.parent){
-            let elems = Editor.selected.parent.elems;
-            let i = elems.indexOf(Editor.selected);
+        if (Editor.selected_priv && Editor.selected_priv.parent){
+            let elems = Editor.selected_priv.parent.elems;
+            let i = elems.indexOf(Editor.selected_priv);
             while (i < elems.length - 1){
                 if (elems[i].typeId === 'new_line' && elems[i + 1].typeId !== 'new_line'){
-                    Editor.Select(elems[i + 1]);
+                    Editor.Select_priv(elems[i + 1]);
                     break;
                 }
                 i++;

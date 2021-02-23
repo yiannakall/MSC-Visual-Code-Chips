@@ -3,7 +3,7 @@ export class Group{
     elems = [];
     parent;
 
-    $view;
+    $view_priv;
 
     constructor(elems){
         if (elems){
@@ -37,11 +37,15 @@ export class Group{
         $group.on('click', (event) => Group.OnClick(event, this));
         $container.append($group);
 
-        this.$view = $group;
+        this.$view_priv = $group;
     }
 
     SetParent(parent){
         this.parent = parent;
+    }
+
+    GetView(){
+        return this.$view_priv;
     }
 
 }

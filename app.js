@@ -23,6 +23,6 @@ function LoadElem(obj){
 
 $(document).ready(function () {
     Editor.LoadStyles(config.styles);
-    Editor.root = LoadElem(code);
+    Editor.code_priv = LoadElem(code);
     Editor.Init($('#injection-div'));
 });

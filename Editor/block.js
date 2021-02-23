@@ -1,19 +1,18 @@
 export class Block {
-    static count = 0;
+    static count_priv = 0;
+    extraCssClasses_priv = [];
+    id_priv;
+    $view_priv;
+
     static OnClick = () => {};
-
     textContent = "";
-    extraCssClasses = [];
-    id;
-    parent;
     typeId;
+    parent;
     userData;
-
-    $view;
 
     constructor(textContent) {
         this.textContent = textContent;
-        this.id = "elem" + Block.count++;
+        this.id_priv = "elem" + Block.count_priv++;
     }
 
     static CreateTab() {
@@ -31,19 +30,23 @@ export class Block {
 
     Render($container) {
         let $elem = $(`<div class = "block"> ${this.textContent} </div>`);
-        $elem.addClass(this.extraCssClasses.join(' '));
+        $elem.addClass(this.extraCssClasses_priv.join(' '));
         
         $elem.on('click', (event) => Block.OnClick(event, this));
         $container.append($elem);
 
-        this.$view = $elem;
+        this.$view_priv = $elem;
     }
 
     SetExtraCssClasses(extraCssClasses) {
-        this.extraCssClasses = extraCssClasses;
+        this.extraCssClasses_priv = extraCssClasses;
     }
 
     SetParent(parent){
         this.parent = parent;
+    }
+
+    GetView(){
+        return this.$view_priv;
     }
 }
