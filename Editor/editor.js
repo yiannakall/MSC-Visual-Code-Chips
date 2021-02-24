@@ -1,8 +1,10 @@
 import { Block } from "./block.js";
 import { Group } from "./group.js";
+import { GrammarSymbol, AliasedGrammarSymbol, GrammarRuleRhs, GrammarProduction, Language} from '../language.js'
 
 export const Editor = {
     code_priv: undefined,
+    language_priv: undefined,
     $container_priv: undefined,
     $editor_priv: undefined,
     selected_priv: undefined,
@@ -213,6 +215,24 @@ export const Editor = {
             let $style = $(`<style id = "${viewClass + '-style'}" type="text/css"></style>`);
             $style.append(css);
             $('head').append($style);
+        }
+    },
+    LoadLanguage: (language) => {
+        Editor.language_priv = new Language;
+    
+        for (let nt of language.non_terminals) {
+            let lhs = Editor.language_priv.GetOrAddSymbol(nt.name, false);
+            for (let rule of nt.alternate_rules) {
+                let syms = [];
+                for (let symObj of rule.symbols) {
+                    let sym = new AliasedGrammarSymbol(
+                        Editor.language_priv.GetOrAddSymbol(symObj.name, symObj.type === 'terminal'), 
+                        symObj.alias
+                    );
+                    syms.push(sym);
+                }
+                Editor.language_priv.AddProduction(lhs, new GrammarRuleRhs(syms, !!rule.infinite_repetitions));
+            }
         }
     }
 }

@@ -25,4 +25,5 @@ $(document).ready(function () {
     Editor.LoadStyles(config.styles);
     Editor.code_priv = LoadElem(code);
     Editor.Init($('#injection-div'));
+    Editor.LoadLanguage(config.language);
 });
