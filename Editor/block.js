@@ -12,6 +12,7 @@ export class Block {
 
     symbol;
     alternateSymbols;
+    canRepeat;
 
     constructor(symbol, alternateSymbols) {
         this.symbol = symbol;
@@ -42,6 +43,9 @@ export class Block {
             </div>`);
         }else{
             $elem = $(`<select class ="block"> </div>`);
+            if (this.canRepeat){
+                $elem.addClass('block-can-repeat')
+            }
 
             let value = 0;
             // the symbol's name (for example stmt)
@@ -81,5 +85,13 @@ export class Block {
 
     GetView(){
         return this.$view_priv;
+    }
+
+    SetCanRepeat(canRepeat){
+        this.canRepeat = canRepeat;
+    }
+
+    Clone(){
+        return new Block(this.symbol, this.alternateSymbols);
     }
 }

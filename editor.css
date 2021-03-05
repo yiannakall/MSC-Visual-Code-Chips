@@ -52,3 +52,7 @@
 .selected{
     border: 5px solid #FFE34D !important;
 }
+
+.block-can-repeat{
+    opacity: 0.5;
+}

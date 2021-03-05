@@ -17,7 +17,12 @@ export const Editor = {
         Block.OnChange = (block, selectedAliasedSymbol) => {
             let vc = Editor.CreateVisualCode(selectedAliasedSymbol);
             Editor.InsertBefore_priv(block, vc);
-            Editor.DeleteWithOffset_priv(block, 0);
+
+            if (!block.canRepeat){
+                Editor.DeleteWithOffset_priv(block, 0);
+            }else{
+                Editor.InsertBefore_priv(block, Block.CreateNewLine());
+            }
         }
 
         $container.empty();
@@ -41,12 +46,14 @@ export const Editor = {
         let productions = Editor.language_priv.GetProductions(symbol);
         
         let code;
-        if (!productions){
-            
-            /* if the symbol is a terminal then create a block for it */
+
+        /* if the symbol is a terminal then create a block for it */
+        if (!productions){    
             code = new Block(aliasedSymbol, [])
+            return code;
+        }
         
-        }else if (productions.length == 1 /* TODO && no repetitions */){
+        if (productions.length == 1){
         
             /* 
                 if the symbol has only one production then skip it and create 
@@ -62,7 +69,7 @@ export const Editor = {
         
         }else{
 
-             /*
+            /*
                 if the symbol has more than 1 productions create a block for it
                 with its production right hand side symbols as alternative choices
             */
@@ -74,6 +81,16 @@ export const Editor = {
                 alternateSymbols.push(productionSymbols[0]);
             }
             code = new Block(aliasedSymbol, alternateSymbols);
+        }
+
+        if (productions.some(production => production.GetRhs().CanRepeat())){
+            if (productions.length !== 1)
+                alert('Repeating groups are not supported yet');
+            
+            let repeatedBlock = code.Clone();
+            repeatedBlock.SetCanRepeat(true);
+
+            code = new Group([code, Block.CreateNewLine(), repeatedBlock]);
         }
 
         return code;
