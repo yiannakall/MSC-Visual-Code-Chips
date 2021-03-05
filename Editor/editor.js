@@ -1,6 +1,6 @@
 import { Block } from "./block.js";
 import { Group } from "./group.js";
-import { GrammarSymbol, AliasedGrammarSymbol, GrammarRuleRhs, GrammarProduction, Language} from '../language.js'
+import { AliasedGrammarSymbol, GrammarRuleRhs, GrammarProduction, Language} from '../language.js'
 
 export const Editor = {
     code_priv: undefined,
@@ -14,12 +14,69 @@ export const Editor = {
             event.stopPropagation();
         }
 
+        Block.OnChange = (block, selectedAliasedSymbol) => {
+            let vc = Editor.CreateVisualCode(selectedAliasedSymbol);
+            Editor.InsertBefore_priv(block, vc);
+            Editor.DeleteWithOffset_priv(block, 0);
+        }
+
         $container.empty();
         Editor.$editor_priv = $('<div class = "editor" tabIndex = "0"></div>');
+        
+        Editor.code_priv = new Group(
+            [
+                Editor.CreateVisualCode(
+                    new AliasedGrammarSymbol(Editor.language_priv.GetSymbol('program', false))
+                )
+            ]
+        );
+        
         Editor.code_priv.Render(Editor.$editor_priv);
         $container.append(Editor.$editor_priv);
 
         Editor.InitKeyboardEvents_priv();
+    },
+    CreateVisualCode(aliasedSymbol){
+        let symbol = aliasedSymbol.symbol;
+        let productions = Editor.language_priv.GetProductions(symbol);
+        
+        let code;
+        if (!productions){
+            
+            /* if the symbol is a terminal then create a block for it */
+            code = new Block(aliasedSymbol, [])
+        
+        }else if (productions.length == 1 /* TODO && no repetitions */){
+        
+            /* 
+                if the symbol has only one production then skip it and create 
+                code for its production's right hand side symbols
+            */
+            let production = productions[0];
+            let aliasedSymbols = production.GetRhs().GetSymbols();
+            let elems = [];
+            for (let aliasedSymbol of aliasedSymbols){
+                elems.push(Editor.CreateVisualCode(aliasedSymbol));
+            }
+            code = elems.length === 1 ? elems[0] : new Group(elems);
+        
+        }else{
+
+             /*
+                if the symbol has more than 1 productions create a block for it
+                with its production right hand side symbols as alternative choices
+            */
+            let alternateSymbols = [];
+            for (let production of productions){
+                let productionSymbols = production.GetRhs().GetSymbols();
+                if (productionSymbols.length > 1)
+                    console.log('Error: block with an alternative selection of more than 1 symbols');
+                alternateSymbols.push(productionSymbols[0]);
+            }
+            code = new Block(aliasedSymbol, alternateSymbols);
+        }
+
+        return code;
     },
     InitKeyboardEvents_priv: () => {
         let charCode2key = {
@@ -74,7 +131,7 @@ export const Editor = {
                 case 'tab': {
                     if (Editor.selected_priv){
                         if (keyModifiers.pressed['shift']){ /* delete previous if it's a tab */
-                            Editor.DeleteBefore_priv(Editor.selected_priv, (elem) => elem.typeId === 'tab');
+                            Editor.DeleteWithOffset_priv(Editor.selected_priv, -1, (elem) => elem.typeId === 'tab');
                         }else{
                             Editor.InsertBefore_priv(Editor.selected_priv, Block.CreateTab());
                         }
@@ -83,7 +140,7 @@ export const Editor = {
                 }
                 case 'backspace': {
                     if (Editor.selected_priv){
-                        Editor.DeleteBefore_priv(Editor.selected_priv);
+                        Editor.DeleteWithOffset_priv(Editor.selected_priv, -1);
                     }
                     break;
                 }
@@ -130,10 +187,10 @@ export const Editor = {
             Editor.Refresh();
         }
     },
-    DeleteBefore_priv: (elem, condition) => {
+    DeleteWithOffset_priv: (elem, offset, condition) => {
         let parent = elem.parent;
         if (parent){
-            let prev = parent.elems.indexOf(elem) - 1;
+            let prev = parent.elems.indexOf(elem) + offset;
             if (prev >= 0){
                 if ( condition === undefined || condition(parent.elems[prev]) ){
                     parent.elems.splice(prev, 1);

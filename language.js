@@ -23,6 +23,14 @@ export class GrammarRuleRhs {
     constructor(rhs, canRepeatInfinitely){
         this.rhs = rhs, this.canRepeatInfinitely = canRepeatInfinitely;
     }
+
+    CanRepeat(){
+        return this.canRepeatInfinitely;
+    }
+
+    GetSymbols(){
+        return this.rhs;
+    }
 }
 
 export class GrammarProduction {
@@ -31,6 +39,14 @@ export class GrammarProduction {
 
     constructor(lhs, rhs){
         this.lhs = lhs, this.rhs = rhs;
+    }
+
+    GetRhs(){
+        return this.rhs;
+    }
+
+    GetLhs(){
+        return this.lhs;
     }
 }
 
@@ -69,5 +85,9 @@ export class Language {
             symProductions = this.productions.get(symbol);
         }
         symProductions.push(new GrammarProduction(symbol, rhs));
+    }
+
+    GetProductions(symbol) {
+        return this.productions.get(symbol);
     }
 }
