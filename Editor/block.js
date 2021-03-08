@@ -14,6 +14,8 @@ export class Block {
     alternateSymbols;
     canRepeat;
 
+    generatedBy;
+
     constructor(symbol, alternateSymbols) {
         this.symbol = symbol;
         this.alternateSymbols = alternateSymbols;
@@ -37,10 +39,8 @@ export class Block {
         let $elem;
 
         if (!this.alternateSymbols || this.alternateSymbols.length === 0){
-            $elem = 
-            $(`<div class ="block"> 
-                ${this.symbol.alias !== undefined ? this.symbol.alias : this.symbol.symbol.name} 
-            </div>`);
+            let text = (this.typeId == 'tab') ? '' : (this.symbol.alias || this.symbol.symbol.name)
+            $elem = $(`<div class ="block"> ${text} </div>`);
         }else{
             $elem = $(`<select class ="block"> </div>`);
             if (this.canRepeat){
@@ -67,6 +67,9 @@ export class Block {
                     symbols[parseInt(this.value)]
                 );
             });
+            $elem.on('keydown', (e) => { e.preventDefault(); });
+            $elem.on('keypress', (e) => { e.preventDefault(); });
+            $elem.on('keyup', (e) => { e.preventDefault(); });
         }
             
         $elem.on('click', (event) => Block.OnClick(event, this));

@@ -5,6 +5,8 @@ export class Group{
 
     $view_priv;
 
+    generatedBy;
+
     constructor(elems){
         if (elems){
             elems.forEach( (elem) => elem.SetParent(this) );

@@ -16,6 +16,8 @@ export const Editor = {
 
         Block.OnChange = (block, selectedAliasedSymbol) => {
             let vc = Editor.CreateVisualCode(selectedAliasedSymbol);
+            vc.generatedBy = block;
+
             Editor.InsertBefore_priv(block, vc);
 
             if (!block.canRepeat){
@@ -23,6 +25,8 @@ export const Editor = {
             }else{
                 Editor.InsertBefore_priv(block, Block.CreateNewLine());
             }
+
+            Editor.Select_priv(vc);
         }
 
         $container.empty();
@@ -102,6 +106,7 @@ export const Editor = {
             13: 'enter',
             9:  'tab',
             8:  'backspace',
+            46: 'delete',
             38: 'up',
             40: 'down',
             37: 'left',
@@ -156,8 +161,33 @@ export const Editor = {
                     break;
                 }
                 case 'backspace': {
-                    if (Editor.selected_priv){
-                        Editor.DeleteWithOffset_priv(Editor.selected_priv, -1);
+                    let selected = Editor.selected_priv;
+                    let generatedBy;
+
+                    if (selected){
+                        Editor.DeleteWithOffset_priv(selected, -1, (prev) => {
+                            generatedBy = prev.generatedBy;
+                            return generatedBy || prev.typeId === 'tab' || prev.typeId === 'new_line';
+                        });
+                        
+                        if (generatedBy && !generatedBy.canRepeat){
+                            Editor.InsertBefore_priv(selected, generatedBy);
+                        }
+                    }
+                    break;
+                }
+                case 'delete': {
+                    let selected = Editor.selected_priv;
+                    let generatedBy = selected.generatedBy;
+
+                    if (selected && (generatedBy || selected.typeId == 'tab' || selected.typeId === 'new_line')){
+                        if (generatedBy && !generatedBy.canRepeat){
+                            Editor.InsertBefore_priv(selected, generatedBy);
+                            Editor.Select_priv(generatedBy);
+                        }else
+                            Editor.StepRight();
+
+                        Editor.DeleteWithOffset_priv(selected, 0);
                     }
                     break;
                 }
