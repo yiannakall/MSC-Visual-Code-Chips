@@ -3,6 +3,7 @@ export class Block {
     extraCssClasses_priv = [];
     id_priv;
     $view_priv;
+    $block_priv;
 
     static OnClick = () => {};
     static OnChange = (block, aliasedSymbol) => {console.log(block, aliasedSymbol)};
@@ -41,41 +42,55 @@ export class Block {
         if (!this.alternateSymbols || this.alternateSymbols.length === 0){
             let text = (this.typeId == 'tab') ? '' : (this.symbol.alias || this.symbol.symbol.name)
             $elem = $(`<div class ="block"> ${text} </div>`);
+            $elem.on('click', (event) => Block.OnClick(event, this));
+            $elem.addClass(this.extraCssClasses_priv.join(' '));
+            this.$block_priv = $elem;
         }else{
-            $elem = $(`<select class ="block"> </div>`);
-            if (this.canRepeat){
-                $elem.addClass('block-can-repeat')
-            }
+            $elem = $('<div></div>').addClass('block-with-selections');
+            let $block = $('<div></div>').addClass('block');
+            let $blockWithArrow = $('<div></div>').addClass('block-with-arrow').append(
+                $block,
+                $('<div></div>').addClass('arrow')
+            );
+            let $blockAlternateSelections = $('<div></div>').addClass('block-alternate-selections').hide();
+            $elem.append($blockWithArrow, $blockAlternateSelections);
 
-            let value = 0;
-            // the symbol's name (for example stmt)
             let text = this.symbol.alias !== undefined ? this.symbol.alias : this.symbol.symbol.name;
-            $elem.append(`<option value = "${value++}"> ${text} </option>`)
-
-            // the symbol's rhs in its alternate productions (for example while_stmt, if_stmt, ...)
-            for (let choice of this.alternateSymbols) {
-                let text = choice.alias !== undefined ? choice.alias : choice.symbol.name;
-                $elem.append(`<option value = "${value++}"> ${text} </option>`)
+            $block.html(text);
+                
+            if (this.canRepeat){
+                $blockWithArrow.addClass('block-can-repeat')
             }
 
-            
-            let symbols = [this.symbol, ...this.alternateSymbols];
-            let self = this;
-            $elem.on('change', function() {
-                Block.OnChange(
-                    self,
-                    symbols[parseInt(this.value)]
-                );
+            $blockWithArrow.on('click', (e) => {
+                Block.OnClick(e, this);
+                $('.block-alternate-selections').not($blockAlternateSelections).hide();
+                $blockAlternateSelections.toggle();
             });
-            $elem.on('keydown', (e) => { e.preventDefault(); });
-            $elem.on('keypress', (e) => { e.preventDefault(); });
-            $elem.on('keyup', (e) => { e.preventDefault(); });
-        }
+
+            for (let choice of this.alternateSymbols){
+                let text = choice.alias !== undefined ? choice.alias : choice.symbol.name;
+                let $choice = $('<div></div>').addClass('block-alternate-selection').html(text);
+                $choice.on('click', () => {
+                    Block.OnChange(this, choice);
+                });
+                $blockAlternateSelections.append($choice);
+            }
             
-        $elem.on('click', (event) => Block.OnClick(event, this));
-        $elem.addClass(this.extraCssClasses_priv.join(' '));
+            $blockWithArrow.addClass(this.extraCssClasses_priv.join(' '));
+            this.$block_priv = $blockWithArrow;
+        }
+
         $container.append($elem);
         this.$view_priv = $elem;
+    }
+
+    AddSelectionHighlight(){
+        this.$block_priv.addClass('selected');
+    }
+
+    RemoveSelectionHighlight(){
+        this.$block_priv.removeClass('selected');
     }
 
     SetExtraCssClasses(extraCssClasses) {

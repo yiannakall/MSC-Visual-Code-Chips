@@ -220,10 +220,10 @@ export const Editor = {
     },
     Select_priv: (elem) => {
         if (Editor.selected_priv){
-            Editor.selected_priv.GetView().removeClass('selected');
+            Editor.selected_priv.RemoveSelectionHighlight();
         }
         Editor.selected_priv = elem;
-        Editor.selected_priv.GetView().addClass('selected');
+        Editor.selected_priv.AddSelectionHighlight();
     },
     InsertBefore_priv: (elem, newElem) => {
         let parent = elem.parent;

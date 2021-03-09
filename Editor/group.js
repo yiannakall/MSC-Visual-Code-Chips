@@ -50,4 +50,11 @@ export class Group{
         return this.$view_priv;
     }
 
+    AddSelectionHighlight(){
+        this.$view_priv.addClass('selected');
+    }
+
+    RemoveSelectionHighlight(){
+        this.$view_priv.removeClass('selected');
+    }
 }

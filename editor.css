@@ -17,15 +17,16 @@
     border: none;
 }
 
-.block{
+.block, .block-with-arrow{
     padding: 5px 10px;
     box-sizing: border-box;
     border-radius: 10px;
     min-height: 27px;
-    
+    width: fit-content;
+
     display: flex;
+    gap: 20px;
     align-items: center;
-    justify-content: center;
 
     font-family: Roboto;
     font-style: normal;
@@ -55,4 +56,40 @@
 
 .block-can-repeat{
     opacity: 0.5;
+}
+
+.block-with-selections{
+    position: relative;
+}
+
+.block-alternate-selections{
+    position: absolute;
+    min-width: 100%;
+    z-index: 1;
+
+    background-color: orange;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.block-alternate-selection{
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.block-alternate-selection:hover{
+    background-color: orangered;
+}
+
+.arrow{
+    width: 8px;
+    height: 8px;
+
+    background: white;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url(/Images/arrow.svg);
+    mask-image: url(/Images/arrow.svg);
 }
