@@ -378,60 +378,37 @@ export let config = {
                 ]
             }
         ],
-        keywords: [
-            "NOT", "AND", "OR", "IF", "ELSE", "WHILE", "FOR"
-        ],
-        terminals: [
-            {
-                name: "+",
-                type: "string",
-                value: "+"
-            },
-            {
-                name: "-",
-                type: "string",
-                value: "-"
-            },
-            {
-                name: "*",
-                type: "string",
-                value: "*"
-            },
-            {
-                name: "/",
-                type: "string",
-                value: "/"
-            },
-            {
-                name: "INT_CONST",
-                type: "const",
-                value: "int"
-            },
-            {
-                name: "FLOAT_CONST",
-                type: "const",
-                value: "float"
-            },
-            {
-                name: "CHAR_CONST",
-                type: "const",
-                value: "char"
-            },
-            {
-                name: "STRING_CONST",
-                type: "const",
-                value: "string"
-            },
-            {
-                name: "BOOL_CONST",
-                type: "const",
-                value: "bool"
-            },
-            {
-                name: "IDENT",
-                type: "identifier"
-            }
-        ]
+        terminals: {
+            staticText: [
+                "+", "-", "*", "/", "AND", "OR", "NOT", "=", "IF", "ELSE", "WHILE", "FOR"
+            ],
+            dynamicText: [
+                {
+                    name: "INT_CONST",
+                    type: "int",
+                },
+                {
+                    name: "FLOAT_CONST",
+                    type: "float",
+                },
+                {
+                    name: "CHAR_CONST",
+                    type: "char",
+                },
+                {
+                    name: "STRING_CONST",
+                    type: "string",
+                },
+                {
+                    name: "BOOL_CONST",
+                    type: "bool",
+                },
+                {
+                    name: "IDENT",
+                    type: "identifier"
+                }
+            ]
+        },
     },
     types: [
         'tab',

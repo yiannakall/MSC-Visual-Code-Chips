@@ -8,6 +8,27 @@ export const Editor = {
     $container_priv: undefined,
     $editor_priv: undefined,
     selected_priv: undefined,
+    dynamicTerminalTypes_priv: undefined,
+    terminalValidationPredicates: {
+        int : (text) => {
+            //todo
+        },
+        float: (text) => {
+            //todo
+        },
+        char: (text) => {
+            //todo
+        },
+        string: (text) => {
+            //todo
+        },
+        bool: (text) => {
+            //todo
+        },
+        identifier: (text) => {
+            //todo
+        }
+    },
     Init: ($container) => {
         Block.OnClick = Group.OnClick = (event, elem) => {
             Editor.Select_priv(elem);
@@ -52,8 +73,12 @@ export const Editor = {
         let code;
 
         /* if the symbol is a terminal then create a block for it */
-        if (!productions){    
-            code = new Block(aliasedSymbol, [])
+        if (symbol.isTerminal){    
+            code = new Block(aliasedSymbol, []);
+            let type = Editor.dynamicTerminalTypes_priv.get(symbol);
+            if (type){
+                code.MakeEditable(Editor.terminalValidationPredicates[type]);
+            }
             return code;
         }
         
@@ -323,7 +348,7 @@ export const Editor = {
     },
     LoadLanguage: (language) => {
         Editor.language_priv = new Language;
-    
+        
         for (let nt of language.non_terminals) {
             let lhs = Editor.language_priv.GetOrAddSymbol(nt.name, false);
             for (let rule of nt.alternate_rules) {
@@ -338,5 +363,19 @@ export const Editor = {
                 Editor.language_priv.AddProduction(lhs, new GrammarRuleRhs(syms, !!rule.infinite_repetitions));
             }
         }
+
+        Editor.dynamicTerminalTypes_priv = new Map();
+
+        for (let t of language.terminals.dynamicText){
+            let symbol = Editor.language_priv.GetSymbol(t.name, true);
+            if (!symbol)
+                alert('Error: Problem with the dynamic terminals from config file');
+            if (!Object.keys(Editor.terminalValidationPredicates).includes(t.type)){
+                alert('Error: Problem with the terminals type: ' + t.type);
+            }
+            Editor.dynamicTerminalTypes_priv.set(symbol, t.type);
+        }
+
+        console.log(Editor.dynamicTerminalTypes_priv);
     }
 }

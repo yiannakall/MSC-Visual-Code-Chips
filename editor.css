@@ -19,7 +19,6 @@
 
 .block, .block-with-arrow{
     padding: 5px 10px;
-    box-sizing: border-box;
     border-radius: 10px;
     min-height: 27px;
     width: fit-content;
@@ -35,6 +34,7 @@
     line-height: 27px;
     color: #FFFFFF;
     background-color: chocolate;
+    cursor: pointer;
 }
 
 .inline-elems{
@@ -92,4 +92,19 @@
     mask-size: cover;
     -webkit-mask-image: url(/Images/arrow.svg);
     mask-image: url(/Images/arrow.svg);
+}
+
+.block-input{
+    border: none;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    display: block;
+    box-sizing: border-box;
+
+    font: inherit;
+    background: inherit;
+    color: inherit;
 }

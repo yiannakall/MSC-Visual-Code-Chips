@@ -13,7 +13,10 @@ export class Block {
 
     symbol;
     alternateSymbols;
-    canRepeat;
+    canRepeat = false;
+
+    isEditable = false;
+    validationPredicate = (txt) => {return true};
 
     generatedBy;
 
@@ -40,23 +43,40 @@ export class Block {
         let $elem;
 
         if (!this.alternateSymbols || this.alternateSymbols.length === 0){
-            let text = (this.typeId == 'tab') ? '' : (this.symbol.alias || this.symbol.symbol.name)
-            $elem = $(`<div class ="block"> ${text} </div>`);
+            if (!this.isEditable){
+                $elem = $('<div/>').addClass('block').html(this.symbol ? (this.symbol.alias || this.symbol.symbol.name) : '');
+                $elem.addClass(this.extraCssClasses_priv.join(' '));
+            }else{
+                $elem = $('<div/>').addClass('block');
+                let $input = $('<input>').addClass('block-input').val(this.symbol.alias || this.symbol.symbol.name);
+
+                $input.on('keypress', e => e.stopPropagation() );
+                $input.on('keyup', e => e.stopPropagation() );
+                $input.on('keydown', e => e.stopPropagation() );
+
+                $input.on('input', (e) => {
+                    $elem.css('width', $input.textWidth() + 20 + 'px');
+                    e.stopPropagation();
+                });
+
+                $elem.addClass(this.extraCssClasses_priv.join(' '));
+                $elem.append($input);
+                $elem.css('width', $input.textWidth() + 20 + 'px');
+            }
+
             $elem.on('click', (event) => Block.OnClick(event, this));
-            $elem.addClass(this.extraCssClasses_priv.join(' '));
             this.$block_priv = $elem;
         }else{
-            $elem = $('<div></div>').addClass('block-with-selections');
-            let $block = $('<div></div>').addClass('block');
-            let $blockWithArrow = $('<div></div>').addClass('block-with-arrow').append(
+            $elem = $('<div/>').addClass('block-with-selections');
+            let $block = $('<div/>').addClass('block');
+            let $blockWithArrow = $('<div/>').addClass('block-with-arrow').append(
                 $block,
-                $('<div></div>').addClass('arrow')
+                $('<div/>').addClass('arrow')
             );
-            let $blockAlternateSelections = $('<div></div>').addClass('block-alternate-selections').hide();
+            let $blockAlternateSelections = $('<div/>').addClass('block-alternate-selections').hide();
             $elem.append($blockWithArrow, $blockAlternateSelections);
 
-            let text = this.symbol.alias !== undefined ? this.symbol.alias : this.symbol.symbol.name;
-            $block.html(text);
+            $block.html(this.symbol.alias || this.symbol.symbol.name);
                 
             if (this.canRepeat){
                 $blockWithArrow.addClass('block-can-repeat')
@@ -69,8 +89,8 @@ export class Block {
             });
 
             for (let choice of this.alternateSymbols){
-                let text = choice.alias !== undefined ? choice.alias : choice.symbol.name;
-                let $choice = $('<div></div>').addClass('block-alternate-selection').html(text);
+                let text = choice.alias || choice.symbol.name;
+                let $choice = $('<div/>').addClass('block-alternate-selection').html(text);
                 $choice.on('click', () => {
                     Block.OnChange(this, choice);
                 });
@@ -111,5 +131,11 @@ export class Block {
 
     Clone(){
         return new Block(this.symbol, this.alternateSymbols);
+    }
+
+    MakeEditable(validationPredicate){
+        this.isEditable = true;
+        if(validationPredicate)
+            this.validationPredicate = validationPredicate;
     }
 }
