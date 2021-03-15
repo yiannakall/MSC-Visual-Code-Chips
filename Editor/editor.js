@@ -11,22 +11,23 @@ export const Editor = {
     dynamicTerminalTypes_priv: undefined,
     terminalValidationPredicates: {
         int : (text) => {
-            //todo
+            return Number.isInteger(Number(text));
         },
         float: (text) => {
-            //todo
+            return Number.isFinite(Number(text));
         },
         char: (text) => {
-            //todo
+            return text.length === 1;
         },
         string: (text) => {
-            //todo
+            return true;
         },
         bool: (text) => {
-            //todo
+            return test === 'true' || text === ' false';
         },
         identifier: (text) => {
-            //todo
+            let matched = /[_A-Za-z]+[_A-Za-z0-9]*/g.exec(text);
+            return matched && matched[0] === text;
         }
     },
     Init: ($container) => {
@@ -47,6 +48,7 @@ export const Editor = {
                 Editor.InsertBefore_priv(block, Block.CreateNewLine());
             }
 
+            Editor.Refresh();
             Editor.Select_priv(vc);
         }
 
@@ -171,8 +173,10 @@ export const Editor = {
 
             switch (key){
                 case 'enter': {
-                    if (Editor.selected_priv)
+                    if (Editor.selected_priv){
                         Editor.InsertBefore_priv(Editor.selected_priv, Block.CreateNewLine());
+                        Editor.Refresh();
+                    }
                     break;
                 }
                 case 'tab': {
@@ -182,6 +186,7 @@ export const Editor = {
                         }else{
                             Editor.InsertBefore_priv(Editor.selected_priv, Block.CreateTab());
                         }
+                        Editor.Refresh();
                     }
                     break;
                 }
@@ -198,6 +203,8 @@ export const Editor = {
                         if (generatedBy && !generatedBy.canRepeat){
                             Editor.InsertBefore_priv(selected, generatedBy);
                         }
+
+                        Editor.Refresh();
                     }
                     break;
                 }
@@ -213,6 +220,7 @@ export const Editor = {
                             Editor.StepRight();
 
                         Editor.DeleteWithOffset_priv(selected, 0);
+                        Editor.Refresh();
                     }
                     break;
                 }
@@ -256,7 +264,6 @@ export const Editor = {
             if (newElem.typeId !== 'new_line') 
                 newElem.SetParent(parent);
             parent.elems.splice(parent.elems.indexOf(elem), 0, newElem);
-            Editor.Refresh();
         }
     },
     DeleteWithOffset_priv: (elem, offset, condition) => {
@@ -268,7 +275,6 @@ export const Editor = {
                     parent.elems.splice(prev, 1);
                 }
             }
-            Editor.Refresh();
         }
     },
     StepIn: () => {

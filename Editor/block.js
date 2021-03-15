@@ -16,6 +16,7 @@ export class Block {
     canRepeat = false;
 
     isEditable = false;
+    userInput;
     validationPredicate = (txt) => {return true};
 
     generatedBy;
@@ -46,22 +47,51 @@ export class Block {
             if (!this.isEditable){
                 $elem = $('<div/>').addClass('block').html(this.symbol ? (this.symbol.alias || this.symbol.symbol.name) : '');
                 $elem.addClass(this.extraCssClasses_priv.join(' '));
+                $container.append($elem);
+                this.$view_priv = $elem;
             }else{
                 $elem = $('<div/>').addClass('block');
-                let $input = $('<input>').addClass('block-input').val(this.symbol.alias || this.symbol.symbol.name);
 
+                let $input = $('<input>').addClass('block-input');
+
+                $elem.addClass(this.extraCssClasses_priv.join(' '));
+                $elem.append($input);
+                $container.append($elem);
+                
                 $input.on('keypress', e => e.stopPropagation() );
                 $input.on('keyup', e => e.stopPropagation() );
                 $input.on('keydown', e => e.stopPropagation() );
 
+                let validateInput = ($input) => {
+                    let isValid = $input.val() !== '' ? this.validationPredicate($input.val()) : true;
+                    isValid ? $input.removeClass('invalid-input') : $input.addClass('invalid-input');
+                };
+
+                if (this.userInput !== undefined && this.userInput !== ''){
+                    $input.val(this.userInput);
+                    validateInput($input);
+                }else{
+                    $input.attr('placeholder', this.symbol.alias || this.symbol.symbol.name);
+                }
+
+                $elem.css('width', $input.textWidth($input.val() || $input.attr('placeholder')) + 20 + 'px');
+                
+                let lightenedColors = $elem.css('background-color')
+                    .substring(4, $elem.css('background-color').length - 1)
+                    .replace(/\s/g, '')
+                    .split(',')
+                    .map(color => { return Number(color) + 0.1 * (255 - Number(color)) });
+
+                $input.css('background-color', 'rgb(' + lightenedColors.join(', ') + ')');
+
                 $input.on('input', (e) => {
-                    $elem.css('width', $input.textWidth() + 20 + 'px');
+                    this.userInput = $input.val();
+                    validateInput($input);
+                    $elem.css('width', $input.textWidth($input.val() || $input.attr('placeholder')) + 20 + 'px');
                     e.stopPropagation();
                 });
 
-                $elem.addClass(this.extraCssClasses_priv.join(' '));
-                $elem.append($input);
-                $elem.css('width', $input.textWidth() + 20 + 'px');
+                this.$view_priv = $elem;
             }
 
             $elem.on('click', (event) => Block.OnClick(event, this));
@@ -99,10 +129,11 @@ export class Block {
             
             $blockWithArrow.addClass(this.extraCssClasses_priv.join(' '));
             this.$block_priv = $blockWithArrow;
+            
+            $container.append($elem);
+            this.$view_priv = $elem;
         }
 
-        $container.append($elem);
-        this.$view_priv = $elem;
     }
 
     AddSelectionHighlight(){

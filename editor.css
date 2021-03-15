@@ -96,6 +96,7 @@
 
 .block-input{
     border: none;
+    border-radius: 10px;
     margin: 0;
     outline: none;
     padding: 0;
@@ -107,4 +108,14 @@
     font: inherit;
     background: inherit;
     color: inherit;
+}
+
+.block-input::placeholder{
+    color: inherit;
+    opacity: 0.6;
+}
+
+.invalid-input{
+    background-color: red !important;
+    color: white !important;
 }

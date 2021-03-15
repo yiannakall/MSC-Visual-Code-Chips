@@ -26,6 +26,10 @@ export class Group{
 
         $differentLines.append($inline);
         $group.append($differentLines);
+        $container.append($group);
+
+        this.$view_priv = $group;
+        $group.on('click', (event) => Group.OnClick(event, this));
 
         for (let elem of this.elems){
             if (elem.typeId === 'new_line'){
@@ -35,11 +39,6 @@ export class Group{
                 elem.Render($inline);
             }
         }
-        
-        $group.on('click', (event) => Group.OnClick(event, this));
-        $container.append($group);
-
-        this.$view_priv = $group;
     }
 
     SetParent(parent){
