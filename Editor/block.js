@@ -7,6 +7,7 @@ export class Block {
 
     static OnClick = () => {};
     static OnChange = (block, aliasedSymbol) => {console.log(block, aliasedSymbol)};
+    static GetCssClassesToApply = (block) => { return []; };
 
     typeId;
     parent;
@@ -30,7 +31,6 @@ export class Block {
     static CreateTab() {
         let elem = new Block('');
         elem.typeId = 'tab';
-        elem.SetExtraCssClasses(['tab']);
         return elem;
     }
 
@@ -46,7 +46,7 @@ export class Block {
         if (!this.alternateSymbols || this.alternateSymbols.length === 0){
             if (!this.isEditable){
                 $elem = $('<div/>').addClass('block').html(this.symbol ? (this.symbol.alias || this.symbol.symbol.name) : '');
-                $elem.addClass(this.extraCssClasses_priv.join(' '));
+                $elem.addClass(Block.GetCssClassesToApply(this).join(' '));
                 $container.append($elem);
                 this.$view_priv = $elem;
             }else{
@@ -54,7 +54,7 @@ export class Block {
 
                 let $input = $('<input>').addClass('block-input');
 
-                $elem.addClass(this.extraCssClasses_priv.join(' '));
+                $elem.addClass(Block.GetCssClassesToApply(this).join(' '));
                 $elem.append($input);
                 $container.append($elem);
                 
@@ -127,13 +127,12 @@ export class Block {
                 $blockAlternateSelections.append($choice);
             }
             
-            $blockWithArrow.addClass(this.extraCssClasses_priv.join(' '));
+            $blockWithArrow.addClass(Block.GetCssClassesToApply(this).join(' '));
             this.$block_priv = $blockWithArrow;
             
             $container.append($elem);
             this.$view_priv = $elem;
         }
-
     }
 
     AddSelectionHighlight(){
@@ -142,10 +141,6 @@ export class Block {
 
     RemoveSelectionHighlight(){
         this.$block_priv.removeClass('selected');
-    }
-
-    SetExtraCssClasses(extraCssClasses) {
-        this.extraCssClasses_priv = extraCssClasses;
     }
 
     SetParent(parent){

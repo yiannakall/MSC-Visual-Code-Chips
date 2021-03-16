@@ -109,25 +109,29 @@ export let config = {
                     {
                         symbols: [{
                             type: "terminal",
-                            name: "+"
+                            name: "PLUS",
+                            alias: "+"
                         }]
                     },
                     {
                         symbols: [{
                             type: "terminal",
-                            name: "-"
+                            name: "MINUS",
+                            alias: "-"
                         }]
                     },
                     {
                         symbols: [{
                             type: "terminal",
-                            name: "*"
+                            name: "TIMES",
+                            alias: "*"
                         }]
                     },
                     {
                         symbols: [{
                             type: "terminal",
-                            name: "/"
+                            name: "BY",
+                            alias: "/"
                         }]
                     },
                 ]
@@ -256,7 +260,8 @@ export let config = {
                             },
                             {
                                 type: "terminal",
-                                name: "="
+                                name: "EQUALS",
+                                alias: "="
                             },
                             {
                                 type: "non_terminal",
@@ -410,48 +415,159 @@ export let config = {
             ]
         },
     },
-    types: [
-        'tab',
-        'identifier',
-        'keyword',
-        'string',
-        'number',
-        'operator',
-        'libfunc'
-    ],
     styles: {
-        tab: {
+        "program" : {
+            /* not rendered since it has only one child which is a non-terminal */
+        },
+        "stmts" : {
+
+        },
+        "stmt" : {
+            
+        },
+        "if_stmt" : {
+
+        },
+        "if_else_stmt" : {
+
+        },
+        "while_stmt" : {
+
+        },
+        "for_stmt" : {
+
+        },
+        "assign_stmt" : {
+
+        },
+        "expr" : {
+
+        },
+        "arith_expr" : {
+
+        },
+        "bool_expr" : {
+
+        },
+        "primary_expr" : {
+
+        },
+        "arith_op" : {
+
+        },
+        "binary_bool_expr" : {
+
+        },
+        "unary_bool_expr" : {
+
+        },
+        "bool_bin_op" : {
+
+        },
+        "PLUS" : {
+            'background-color': 'transparent',
+            'font-size': '25px',
+            'font-weight': '900',
+            'color': '#DCB962'
+        },
+        "MINUS" : {
+            'background-color': 'transparent',
+            'font-size': '25px',
+            'font-weight': '900',
+            'color': '#DCB962'
+        },
+        "TIMES" : {
+            'background-color': 'transparent',
+            'font-size': '25px',
+            'font-weight': '900',
+            'color': '#DCB962'
+        },
+        "BY" : {
+            'background-color': 'transparent',
+            'font-size': '25px',
+            'color': '#DCB962',
+        },
+        "AND" : {
+            'background-color': 'transparent',
+            'font-size': '25px',
+            'font-weight': '900',
+            'color': '#DCB962',
+            'text-decoration': 'underline'
+        },
+        "OR" : {
+            'background-color': 'transparent',
+            'font-size': '25px',
+            'font-weight': '900',
+            'color': '#DCB962',
+            'text-decoration': 'underline'
+        },
+        "NOT" : {
+            'background-color': 'transparent',
+            'font-size': '25px',
+            'font-weight': '900',
+            'color': '#DCB962',
+            'text-decoration': 'underline'
+        },
+        "IDENT" : {
+            'background-color': 'transparent',
+            'color': '#4A9CD6',
+            'font-weight': '700'
+        },
+        "INT_CONST" : {
+            'background-color': 'transparent',
+            'color': '#44C9B0',
+            'font-weight': '700'
+        },
+        "FLOAT_CONST" : {
+            'background-color': 'transparent',
+            'color': '#44C9B0',
+            'font-weight': '700'
+        },
+        "CHAR_CONST" : {
+            'background-color': 'transparent',
+            'color': '#CE9178',
+            'font-weight': '700'
+        },
+        "STRING_CONST" : {
+            'background-color': 'transparent',
+            'color': '#CE9178',
+            'font-weight': '700'
+        },
+        "BOOL_CONST" : {
+            'background-color': 'transparent',
+            'color': '#8CDCFE',
+            'font-weight': '700'
+        },
+        "EQUALS" : {
+            'background-color': 'transparent',
+            'font-size': '25px',
+            'font-weight': '900',
+            'color': '#DCB962',
+        },
+        "IF" : {
+            'background-color': 'transparent',
+            'color': '#C57991',
+            'font-weight': '900',
+        },
+        "ELSE" : {
+            'background-color': 'transparent',
+            'color': '#C57991',
+            'font-weight': '900',
+        },
+        "WHILE" : {
+            'background-color': 'transparent',
+            'color': '#C57991',
+            'font-weight': '900',
+        },
+        "FOR" : {
+            'background-color': 'transparent',
+            'color': '#C57991',
+            'font-weight': '900',
+        },
+        "tab": {
             'background-color': 'transparent',
             'width': '30px',
-            'align-self': 'stretch',
-        },
-        keyword: {
-            'background-color': '#4B69C6',
-        },
-        identifier: {
-            'background-color': '#7A3E9D',
-        },
-        string: {
-            'background-color': '#448C27',
-        },
-        number: {
-            'background-color': '#B35D27',
-        },
-        operator: {
-            'background-color': '#777777',
-            'border': '2px solid black',
-        },
-        libfunc: {
-            'background-color': '#AA3731',
+            'align-self': 'stretch'
         }
-    },
-    type2styles : {
-        tab: ['tab'],
-        keyword: ['keyword'],
-        identifier: ['identifier'],
-        string: ['string'],
-        number: ['number'],
-        operator: ['operator'],
-        libfunc: ['libfunc']
     },
 };

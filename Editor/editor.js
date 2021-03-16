@@ -23,7 +23,7 @@ export const Editor = {
             return true;
         },
         bool: (text) => {
-            return test === 'true' || text === ' false';
+            return text === 'true' || text === ' false';
         },
         identifier: (text) => {
             let matched = /[_A-Za-z]+[_A-Za-z0-9]*/g.exec(text);
@@ -52,15 +52,19 @@ export const Editor = {
             Editor.Select_priv(vc);
         }
 
+        Block.GetCssClassesToApply = Group.GetCssClassesToApply = (elem) => {
+            if (elem.symbol){
+                return [elem.symbol.symbol.name];
+            }else{
+                return [elem.typeId];
+            }
+        }
+
         $container.empty();
         Editor.$editor_priv = $('<div class = "editor" tabIndex = "0"></div>');
         
-        Editor.code_priv = new Group(
-            [
-                Editor.CreateVisualCode(
-                    new AliasedGrammarSymbol(Editor.language_priv.GetSymbol('program', false))
-                )
-            ]
+        Editor.code_priv = Editor.CreateVisualCode(
+            new AliasedGrammarSymbol(Editor.language_priv.GetSymbol('program', false))
         );
         
         Editor.code_priv.Render(Editor.$editor_priv);
@@ -96,7 +100,7 @@ export const Editor = {
             for (let aliasedSymbol of aliasedSymbols){
                 elems.push(Editor.CreateVisualCode(aliasedSymbol));
             }
-            code = elems.length === 1 ? elems[0] : new Group(elems);
+            code = elems.length === 1 ? elems[0] : new Group(aliasedSymbol, elems);
         
         }else{
 
@@ -121,7 +125,7 @@ export const Editor = {
             let repeatedBlock = code.Clone();
             repeatedBlock.SetCanRepeat(true);
 
-            code = new Group([code, Block.CreateNewLine(), repeatedBlock]);
+            code = new Group(aliasedSymbol, [code, Block.CreateNewLine(), repeatedBlock]);
         }
 
         return code;
@@ -381,7 +385,6 @@ export const Editor = {
             }
             Editor.dynamicTerminalTypes_priv.set(symbol, t.type);
         }
-
-        console.log(Editor.dynamicTerminalTypes_priv);
+        console.log(Editor.language_priv);
     }
 }

@@ -1,5 +1,9 @@
 export class Group{
+    
+    static OnClick = (event, elem) => {};
+    static GetCssClassesToApply = (group) => { return []; };
 
+    symbol;
     elems = [];
     parent;
 
@@ -7,7 +11,8 @@ export class Group{
 
     generatedBy;
 
-    constructor(elems){
+    constructor(symbol, elems){
+        this.symbol = symbol;
         if (elems){
             elems.forEach( (elem) => elem.SetParent(this) );
             this.elems = elems;
@@ -23,6 +28,8 @@ export class Group{
         let $group = $('<div class = "group"></div>');
         let $differentLines = $('<div class = "different-line-elems"></div>');
         let $inline = $('<div class = "inline-elems"></div>');
+
+        $group.addClass(Group.GetCssClassesToApply(this).join(' '));
 
         $differentLines.append($inline);
         $group.append($differentLines);
