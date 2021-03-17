@@ -7,17 +7,23 @@ body{
     border-radius: 10px;
 
     width: fit-content;
-    padding: 5px 10px;
+    padding: 2px 5px;
     box-sizing: border-box;
     background-color: #1e1e1e;
+    cursor: pointer;
 }
 
 .editor{
     outline: none;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
 }
 
 .editor > .group {
     border: none;
+    cursor: unset;
 }
 
 .block, .block-with-arrow{
@@ -29,10 +35,6 @@ body{
     gap: 20px;
     align-items: center;
 
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 23px;
     line-height: 27px;
     color: #E5ECF0;
     background-color: #37373D;
@@ -40,8 +42,12 @@ body{
     border: 2px solid transparent;
 }
 
-.block {
-    padding: 5px 10px;
+.block:not(.block-with-arrow>.block){
+    padding: 2px 5px;
+}
+
+.block-with-arrow{
+    padding: 2px 5px;
 }
 
 .inline-elems{
@@ -54,7 +60,7 @@ body{
 .different-line-elems{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
 .selected{

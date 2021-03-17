@@ -466,81 +466,79 @@ export let config = {
         },
         "PLUS" : {
             'background-color': 'transparent',
-            'font-size': '25px',
             'font-weight': '900',
             'color': '#DCB962'
         },
         "MINUS" : {
             'background-color': 'transparent',
-            'font-size': '25px',
             'font-weight': '900',
             'color': '#DCB962'
         },
         "TIMES" : {
             'background-color': 'transparent',
-            'font-size': '25px',
             'font-weight': '900',
             'color': '#DCB962'
         },
         "BY" : {
             'background-color': 'transparent',
-            'font-size': '25px',
             'color': '#DCB962',
         },
         "AND" : {
             'background-color': 'transparent',
-            'font-size': '25px',
             'font-weight': '900',
             'color': '#DCB962',
             'text-decoration': 'underline'
         },
         "OR" : {
             'background-color': 'transparent',
-            'font-size': '25px',
             'font-weight': '900',
             'color': '#DCB962',
             'text-decoration': 'underline'
         },
         "NOT" : {
             'background-color': 'transparent',
-            'font-size': '25px',
             'font-weight': '900',
             'color': '#DCB962',
             'text-decoration': 'underline'
         },
         "IDENT" : {
             'background-color': 'transparent',
+            'border': 'solid 2px #37373D',
             'color': '#4A9CD6',
             'font-weight': '700'
         },
         "INT_CONST" : {
             'background-color': 'transparent',
+            'border': 'solid 2px #37373D',
             'color': '#44C9B0',
             'font-weight': '700'
         },
         "FLOAT_CONST" : {
             'background-color': 'transparent',
+            'border': 'solid 2px #37373D',
             'color': '#44C9B0',
             'font-weight': '700'
         },
         "CHAR_CONST" : {
             'background-color': 'transparent',
+            'border': 'solid 2px #37373D',
             'color': '#CE9178',
             'font-weight': '700'
         },
         "STRING_CONST" : {
             'background-color': 'transparent',
+            'border': 'solid 2px #37373D',
             'color': '#CE9178',
             'font-weight': '700'
         },
         "BOOL_CONST" : {
             'background-color': 'transparent',
+            'border': 'solid 2px #37373D',
             'color': '#8CDCFE',
             'font-weight': '700'
         },
         "EQUALS" : {
             'background-color': 'transparent',
-            'font-size': '25px',
             'font-weight': '900',
             'color': '#DCB962',
         },
@@ -566,7 +564,7 @@ export let config = {
         },
         "tab": {
             'background-color': 'transparent',
-            'width': '30px',
+            'width': '15px',
             'align-self': 'stretch'
         }
     },
