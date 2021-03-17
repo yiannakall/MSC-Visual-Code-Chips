@@ -56,6 +56,12 @@ export let config = {
                             type: "non_terminal",
                             name: "assign_stmt"
                         }]
+                    },
+                    {
+                        symbols: [{
+                            type: "non_terminal",
+                            name: "funcdef_stmt"
+                        }]
                     }
                 ]
             },
@@ -272,6 +278,36 @@ export let config = {
                 ]
             },
             {
+                name: "funcdef_stmt",
+                alternate_rules: [
+                    {
+                        symbols: [
+                            {
+                                type: "terminal",
+                                name: "FUNCTION",
+                            },
+                            {
+                                type: "terminal",
+                                name: "IDENT",
+                                alias: "NAME"
+                            },
+                            {
+                                type: "terminal",
+                                name: "OF",
+                            },
+                            {
+                                type: "non_terminal",
+                                name: "ident_list"
+                            },
+                            {
+                                type: "non_terminal",
+                                name: "stmts"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
                 name: "if_stmt",
                 alternate_rules: [
                     {
@@ -379,6 +415,20 @@ export let config = {
                                 name: "stmts"
                             }
                         ]
+                    }
+                ]
+            },
+            {
+                name: "ident_list",
+                alternate_rules: [
+                    {
+                        symbols: [
+                            {
+                                type: "terminal",
+                                name: "IDENT"
+                            },
+                        ],
+                        infinite_repetitions: true
                     }
                 ]
             }
@@ -558,6 +608,16 @@ export let config = {
             'font-weight': '900',
         },
         "FOR" : {
+            'background-color': 'transparent',
+            'color': '#C57991',
+            'font-weight': '900',
+        },
+        "FUNCTION" : {
+            'background-color': 'transparent',
+            'color': '#C57991',
+            'font-weight': '900',
+        },
+        "OF" : {
             'background-color': 'transparent',
             'color': '#C57991',
             'font-weight': '900',

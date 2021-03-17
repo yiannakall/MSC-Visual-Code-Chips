@@ -36,16 +36,42 @@ export const Editor = {
             event.stopPropagation();
         }
 
+        Block.OnInput = (block, $input) => {
+            let type = Editor.dynamicTerminalTypes_priv.get(block.symbol.symbol);
+            let isValid = Editor.terminalValidationPredicates[type]
+            
+            let text = $input.val();
+            if ($input.val() === '' || isValid(text)){
+                $input.removeClass('invalid-input');
+            }else{
+                $input.addClass('invalid-input');
+            }
+
+            if (block.canRepeat){
+                let vc = Editor.CreateVisualCode(block.symbol);
+                vc.generatedBy = block;
+                vc.userInput = $input.val();
+                block.userInput = undefined;
+
+                Editor.InsertBeforeWithOffset_priv(block, 0, vc);
+
+                Editor.Refresh();
+                /* focus on the newly created block */
+                Editor.Select_priv(vc);
+                vc.GetInput().focus();
+            }
+        }
+
         Block.OnChange = (block, selectedAliasedSymbol) => {
             let vc = Editor.CreateVisualCode(selectedAliasedSymbol);
             vc.generatedBy = block;
 
-            Editor.InsertBefore_priv(block, vc);
+            Editor.InsertBeforeWithOffset_priv(block, 0, vc);
 
             if (!block.canRepeat){
                 Editor.DeleteWithOffset_priv(block, 0);
             }else{
-                Editor.InsertBefore_priv(block, Block.CreateNewLine());
+                Editor.InsertBeforeWithOffset_priv(block, 0, Block.CreateNewLine());
             }
 
             Editor.Refresh();
@@ -81,9 +107,8 @@ export const Editor = {
         /* if the symbol is a terminal then create a block for it */
         if (symbol.isTerminal){    
             code = new Block(aliasedSymbol, []);
-            let type = Editor.dynamicTerminalTypes_priv.get(symbol);
-            if (type){
-                code.MakeEditable(Editor.terminalValidationPredicates[type]);
+            if (Editor.dynamicTerminalTypes_priv.get(symbol)){
+                code.SetEditable(true);
             }
             return code;
         }
@@ -178,7 +203,7 @@ export const Editor = {
             switch (key){
                 case 'enter': {
                     if (Editor.selected_priv){
-                        Editor.InsertBefore_priv(Editor.selected_priv, Block.CreateNewLine());
+                        Editor.InsertBeforeWithOffset_priv(Editor.selected_priv, 0, Block.CreateNewLine());
                         Editor.Refresh();
                     }
                     break;
@@ -188,7 +213,7 @@ export const Editor = {
                         if (keyModifiers.pressed['shift']){ /* delete previous if it's a tab */
                             Editor.DeleteWithOffset_priv(Editor.selected_priv, -1, (elem) => elem.typeId === 'tab');
                         }else{
-                            Editor.InsertBefore_priv(Editor.selected_priv, Block.CreateTab());
+                            Editor.InsertBeforeWithOffset_priv(Editor.selected_priv, 0, Block.CreateTab());
                         }
                         Editor.Refresh();
                     }
@@ -205,7 +230,7 @@ export const Editor = {
                         });
                         
                         if (generatedBy && !generatedBy.canRepeat){
-                            Editor.InsertBefore_priv(selected, generatedBy);
+                            Editor.InsertBeforeWithOffset_priv(selected, 0, generatedBy);
                         }
 
                         Editor.Refresh();
@@ -218,7 +243,7 @@ export const Editor = {
 
                     if (selected && (generatedBy || selected.typeId == 'tab' || selected.typeId === 'new_line')){
                         if (generatedBy && !generatedBy.canRepeat){
-                            Editor.InsertBefore_priv(selected, generatedBy);
+                            Editor.InsertBeforeWithOffset_priv(selected, 0, generatedBy);
                             Editor.Select_priv(generatedBy);
                         }else
                             Editor.StepRight();
@@ -262,12 +287,12 @@ export const Editor = {
         Editor.selected_priv = elem;
         Editor.selected_priv.AddSelectionHighlight();
     },
-    InsertBefore_priv: (elem, newElem) => {
+    InsertBeforeWithOffset_priv: (elem, offset, newElem) => {
         let parent = elem.parent;
         if (parent){
             if (newElem.typeId !== 'new_line') 
                 newElem.SetParent(parent);
-            parent.elems.splice(parent.elems.indexOf(elem), 0, newElem);
+            parent.elems.splice(parent.elems.indexOf(elem) + offset, 0, newElem);
         }
     },
     DeleteWithOffset_priv: (elem, offset, condition) => {
@@ -385,6 +410,5 @@ export const Editor = {
             }
             Editor.dynamicTerminalTypes_priv.set(symbol, t.type);
         }
-        console.log(Editor.language_priv);
     }
 }

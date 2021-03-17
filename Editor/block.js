@@ -4,9 +4,11 @@ export class Block {
     id_priv;
     $view_priv;
     $block_priv;
+    $input_priv;
 
     static OnClick = () => {};
     static OnChange = (block, aliasedSymbol) => {console.log(block, aliasedSymbol)};
+    static OnInput = (block, $input) => {};
     static GetCssClassesToApply = (block) => { return []; };
 
     typeId;
@@ -18,7 +20,6 @@ export class Block {
 
     isEditable = false;
     userInput;
-    validationPredicate = (txt) => {return true};
 
     generatedBy;
 
@@ -62,16 +63,11 @@ export class Block {
                 $input.on('keyup', e => e.stopPropagation() );
                 $input.on('keydown', e => e.stopPropagation() );
 
-                let validateInput = ($input) => {
-                    let isValid = $input.val() !== '' ? this.validationPredicate($input.val()) : true;
-                    isValid ? $input.removeClass('invalid-input') : $input.addClass('invalid-input');
-                };
+                $input.attr('placeholder', this.symbol.alias || this.symbol.symbol.name);
 
                 if (this.userInput !== undefined && this.userInput !== ''){
                     $input.val(this.userInput);
-                    validateInput($input);
-                }else{
-                    $input.attr('placeholder', this.symbol.alias || this.symbol.symbol.name);
+                    Block.OnInput(this, $input);
                 }
 
                 $elem.css('width', $input.textWidth($input.val() || $input.attr('placeholder')) + 20 + 'px');
@@ -83,14 +79,18 @@ export class Block {
                     .map(color => { return Number(color) + 0.1 * (255 - Number(color)) });
 
                 $input.css('background-color', 'rgb(' + lightenedColors.join(', ') + ')');
+                if (this.canRepeat){
+                    $input.addClass('block-can-repeat')
+                }
 
                 $input.on('input', (e) => {
                     this.userInput = $input.val();
-                    validateInput($input);
+                    Block.OnInput(this, $input);
                     $elem.css('width', $input.textWidth($input.val() || $input.attr('placeholder')) + 20 + 'px');
                     e.stopPropagation();
                 });
 
+                this.$input_priv = $input;
                 this.$view_priv = $elem;
             }
 
@@ -151,17 +151,22 @@ export class Block {
         return this.$view_priv;
     }
 
+    GetInput(){
+        return this.$input_priv;
+    }
+
     SetCanRepeat(canRepeat){
         this.canRepeat = canRepeat;
     }
 
-    Clone(){
-        return new Block(this.symbol, this.alternateSymbols);
+    SetEditable(isEditable){
+        this.isEditable = isEditable;
     }
 
-    MakeEditable(validationPredicate){
-        this.isEditable = true;
-        if(validationPredicate)
-            this.validationPredicate = validationPredicate;
+    Clone(){
+        let block = new Block(this.symbol, this.alternateSymbols);
+        block.isEditable = this.isEditable;
+        return block;
     }
+
 }

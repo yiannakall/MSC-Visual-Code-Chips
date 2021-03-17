@@ -69,6 +69,11 @@ body{
 
 .block-can-repeat{
     opacity: 0.5;
+    text-decoration: line-through;
+}
+
+.block-can-repeat::placeholder{
+    text-decoration: line-through;
 }
 
 .block-with-selections{
