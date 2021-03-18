@@ -60,7 +60,13 @@ export let config = {
                     {
                         symbols: [{
                             type: "non_terminal",
-                            name: "funcdef_stmt"
+                            name: "func_def_stmt"
+                        }]
+                    },
+                    {
+                        symbols: [{
+                            type: "non_terminal",
+                            name: "func_call_stmt"
                         }]
                     }
                 ]
@@ -72,6 +78,12 @@ export let config = {
                         symbols: [{
                             type: "non_terminal",
                             name: "arith_expr"
+                        }]
+                    },
+                    {
+                        symbols: [{
+                            type: "non_terminal",
+                            name: "rel_expr"
                         }]
                     },
                     {
@@ -95,6 +107,27 @@ export let config = {
                         symbols: [
                             {
                                 type: "non_terminal",
+                                name: "binary_arith_expr"
+                            }
+                        ]
+                    },
+                    {
+                        symbols:[
+                            {
+                                type: "non_terminal",
+                                name: "unary_minus"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                name: "binary_arith_expr",
+                alternate_rules: [
+                    {
+                        symbols: [
+                            {
+                                type: "non_terminal",
                                 name: "expr"
                             },
                             {
@@ -105,6 +138,24 @@ export let config = {
                                 type: "non_terminal",
                                 name: "expr"
                             }
+                        ]
+                    }
+                ]
+            },
+            {
+                name: "unary_minus",
+                alternate_rules: [
+                    {
+                        symbols: [
+                            {
+                                type: "terminal",
+                                name: "MINUS",
+                                alias: "-"
+                            },
+                            {
+                                type: "non_terminal",
+                                name: "expr"
+                            },
                         ]
                     }
                 ]
@@ -143,6 +194,74 @@ export let config = {
                 ]
             },
             {
+                name: "rel_expr",
+                alternate_rules: [
+                    {
+                        symbols: [
+                            {
+                                type: "non_terminal",
+                                name: "expr"
+                            },
+                            {
+                                type: "non_terminal",
+                                name: "rel_op"
+                            },
+                            {
+                                type: "non_terminal",
+                                name: "expr"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                name: "rel_op",
+                alternate_rules: [
+                    {
+                        symbols: [{
+                            type: "terminal",
+                            name: "GREATER",
+                            alias: ">"
+                        }]
+                    },
+                    {
+                        symbols: [{
+                            type: "terminal",
+                            name: "LESS",
+                            alias: "<"
+                        }]
+                    },
+                    {
+                        symbols: [{
+                            type: "terminal",
+                            name: "EQUAL_TO",
+                            alias: "=="
+                        }]
+                    },
+                    {
+                        symbols: [{
+                            type: "terminal",
+                            name: "NOT_EQUAL_TO",
+                            alias: "!="
+                        }]
+                    },
+                    {
+                        symbols: [{
+                            type: "terminal",
+                            name: "GREATER_EQUAL",
+                            alias: ">="
+                        }]
+                    },
+                    {
+                        symbols: [{
+                            type: "terminal",
+                            name: "LESS_EQUAL",
+                            alias: "<="
+                        }]
+                    },
+                ]
+            },
+            {
                 name: "bool_expr",
                 alternate_rules: [
                     {
@@ -154,7 +273,7 @@ export let config = {
                     {
                         symbols: [{
                             type: "non_terminal",
-                            name: "unary_bool_expr"
+                            name: "not_expr"
                         }]
                     }
                 ]
@@ -198,7 +317,7 @@ export let config = {
                 ]
             },
             {
-                name: "unary_bool_expr",
+                name: "not_expr",
                 alternate_rules: [
                     {
                         symbols: [
@@ -278,7 +397,7 @@ export let config = {
                 ]
             },
             {
-                name: "funcdef_stmt",
+                name: "func_def_stmt",
                 alternate_rules: [
                     {
                         symbols: [
@@ -303,6 +422,32 @@ export let config = {
                                 type: "non_terminal",
                                 name: "stmts"
                             }
+                        ]
+                    }
+                ]
+            },
+            {
+                name: "func_call_stmt",
+                alternate_rules: [
+                    {
+                        symbols: [
+                            {
+                                type: "terminal",
+                                name: "CALL",
+                            },
+                            {
+                                type: "terminal",
+                                name: "IDENT",
+                                alias: "FUNCTION NAME"
+                            },
+                            {
+                                type: "terminal",
+                                name: "WITH",
+                            },
+                            {
+                                type: "non_terminal",
+                                name: "expr_list"
+                            },
                         ]
                     }
                 ]
@@ -431,6 +576,21 @@ export let config = {
                         infinite_repetitions: true
                     }
                 ]
+            },
+            {
+                name: "expr_list",
+                alternate_rules: [
+                    {
+                        symbols: [
+                            {
+                                type: "non_terminal",
+                                name: "expr",
+                                alias: 'ARG'
+                            },
+                        ],
+                        infinite_repetitions: true
+                    }
+                ]
             }
         ],
         terminals: {
@@ -496,6 +656,12 @@ export let config = {
         "arith_expr" : {
 
         },
+        "binary_arith_expr" : {
+
+        },
+        "unary_minus" : {
+
+        },
         "bool_expr" : {
 
         },
@@ -508,7 +674,7 @@ export let config = {
         "binary_bool_expr" : {
 
         },
-        "unary_bool_expr" : {
+        "not_expr" : {
 
         },
         "bool_bin_op" : {
@@ -531,6 +697,37 @@ export let config = {
         },
         "BY" : {
             'background-color': 'transparent',
+            'font-weight': '900',
+            'color': '#DCB962',
+        },
+        "EQUAL_TO" : {
+            'background-color': 'transparent',
+            'font-weight': '900',
+            'color': '#DCB962',
+        },
+        "NOT_EQUAL_TO" : {
+            'background-color': 'transparent',
+            'font-weight': '900',
+            'color': '#DCB962',
+        },
+        "GREATER" : {
+            'background-color': 'transparent',
+            'font-weight': '900',
+            'color': '#DCB962',
+        },
+        "LESS" : {
+            'background-color': 'transparent',
+            'font-weight': '900',
+            'color': '#DCB962',
+        },
+        "GREATER_EQUAL" : {
+            'background-color': 'transparent',
+            'font-weight': '900',
+            'color': '#DCB962',
+        },
+        "LESS_EQUAL" : {
+            'background-color': 'transparent',
+            'font-weight': '900',
             'color': '#DCB962',
         },
         "AND" : {
@@ -618,6 +815,16 @@ export let config = {
             'font-weight': '900',
         },
         "OF" : {
+            'background-color': 'transparent',
+            'color': '#C57991',
+            'font-weight': '900',
+        },
+        "CALL" : {
+            'background-color': 'transparent',
+            'color': '#C57991',
+            'font-weight': '900',
+        },
+        "WITH" : {
             'background-color': 'transparent',
             'color': '#C57991',
             'font-weight': '900',
