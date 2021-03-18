@@ -10,22 +10,21 @@ export class GrammarSymbol {
 export class AliasedGrammarSymbol {
     symbol; // GrammarSymbol
     alias;  // string
+    repeatable; // bool
+    optional; // bool
 
-    constructor(symbol, alias){
-        this.symbol = symbol, this.alias = alias; 
+    constructor(symbol, alias, repeatable, optional){
+        this.symbol = symbol, this.alias = alias;
+        this.repeatable = !!repeatable;
+        this.optional = !!optional; 
     }
 }
 
 export class GrammarRuleRhs {
     rhs = [];               // AliasedGrammarSymbol[]
-    canRepeatInfinitely;    // to allow a form of non-recursive repetitions
 
-    constructor(rhs, canRepeatInfinitely){
-        this.rhs = rhs, this.canRepeatInfinitely = canRepeatInfinitely;
-    }
-
-    CanRepeat(){
-        return this.canRepeatInfinitely;
+    constructor(rhs){
+        this.rhs = rhs;
     }
 
     GetSymbols(){

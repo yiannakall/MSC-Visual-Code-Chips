@@ -143,10 +143,7 @@ export const Editor = {
             code = new Block(aliasedSymbol, alternateSymbols);
         }
 
-        if (productions.some(production => production.GetRhs().CanRepeat())){
-            if (productions.length !== 1)
-                alert('Repeating groups are not supported yet');
-            
+        if (aliasedSymbol.repeatable){
             let repeatedBlock = code.Clone();
             repeatedBlock.SetCanRepeat(true);
 
@@ -388,14 +385,16 @@ export const Editor = {
             let lhs = Editor.language_priv.GetOrAddSymbol(nt.name, false);
             for (let rule of nt.alternate_rules) {
                 let syms = [];
-                for (let symObj of rule.symbols) {
+                for (let symObj of rule) {
                     let sym = new AliasedGrammarSymbol(
                         Editor.language_priv.GetOrAddSymbol(symObj.name, symObj.type === 'terminal'), 
-                        symObj.alias
+                        symObj.alias,
+                        symObj.repeatable,
+                        symObj.optional
                     );
                     syms.push(sym);
                 }
-                Editor.language_priv.AddProduction(lhs, new GrammarRuleRhs(syms, !!rule.infinite_repetitions));
+                Editor.language_priv.AddProduction(lhs, new GrammarRuleRhs(syms));
             }
         }
 
