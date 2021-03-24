@@ -38,7 +38,7 @@ export const Editor = {
 
         Block.OnInput = (block, $input) => {
             let type = Editor.dynamicTerminalTypes_priv.get(block.symbol.symbol);
-            let isValid = Editor.terminalValidationPredicates[type]
+            let isValid = Editor.terminalValidationPredicates[type];
             
             let text = $input.val();
             if ($input.val() === '' || isValid(text)){
@@ -47,16 +47,20 @@ export const Editor = {
                 $input.addClass('invalid-input');
             }
 
-            if (block.canRepeat){
-                let vc = Editor.CreateVisualCode(block.symbol);
+            if (block.symbol.repeatable){
+                /* create code for a non repeating version of the GrammarSymbol */
+                let vc = Editor.CreateVisualCode(
+                    new AliasedGrammarSymbol(block.symbol.symbol, block.symbol.alias, false)
+                );
                 vc.generatedBy = block;
+
+                /* simulate typing on the generated block and not on the repeatable block */
                 vc.userInput = $input.val();
                 block.userInput = undefined;
 
                 Editor.InsertBeforeWithOffset_priv(block, 0, vc);
 
                 Editor.Refresh();
-                /* focus on the newly created block */
                 Editor.Select_priv(vc);
                 vc.GetInput().focus();
             }
@@ -68,7 +72,7 @@ export const Editor = {
 
             Editor.InsertBeforeWithOffset_priv(block, 0, vc);
 
-            if (!block.canRepeat){
+            if (!block.symbol.repeatable){
                 Editor.DeleteWithOffset_priv(block, 0);
             }else{
                 Editor.InsertBeforeWithOffset_priv(block, 0, Block.CreateNewLine());
@@ -89,8 +93,11 @@ export const Editor = {
         $container.empty();
         Editor.$editor_priv = $('<div class = "editor" tabIndex = "0"></div>');
         
-        Editor.code_priv = Editor.CreateVisualCode(
-            new AliasedGrammarSymbol(Editor.language_priv.GetSymbol('program', false))
+        Editor.code_priv = new Group(
+            new AliasedGrammarSymbol(Editor.language_priv.GetSymbol('program', false)),
+            [
+                Editor.CreateVisualCode(new AliasedGrammarSymbol(Editor.language_priv.GetSymbol('program', false)))
+            ]
         );
         
         Editor.code_priv.Render(Editor.$editor_priv);
@@ -104,50 +111,54 @@ export const Editor = {
         
         let code;
 
-        /* if the symbol is a terminal then create a block for it */
-        if (symbol.isTerminal){    
+        if (symbol.isTerminal){
+
+            /* if the symbol is a terminal then create a block for it */
+            
             code = new Block(aliasedSymbol, []);
             if (Editor.dynamicTerminalTypes_priv.get(symbol)){
                 code.SetEditable(true);
             }
-            return code;
-        }
-        
-        if (productions.length == 1){
-        
-            /* 
-                if the symbol has only one production then skip it and create 
-                code for its production's right hand side symbols
-            */
-            let production = productions[0];
-            let aliasedSymbols = production.GetRhs().GetSymbols();
-            let elems = [];
-            for (let aliasedSymbol of aliasedSymbols){
-                elems.push(Editor.CreateVisualCode(aliasedSymbol));
-            }
-            code = elems.length === 1 ? elems[0] : new Group(aliasedSymbol, elems);
-        
+            
         }else{
+            if (productions.length == 1){
+        
+                /* 
+            /* 
+                /* 
+            /* 
+                /* 
+                    if the symbol has only one production then skip it and create 
+                if the symbol has only one production then skip it and create 
+                    if the symbol has only one production then skip it and create 
+                if the symbol has only one production then skip it and create 
+                    if the symbol has only one production then skip it and create 
+                    code for its production's right hand side symbols
+                */
+                let production = productions[0];
+                let aliasedSymbols = production.GetRhs().GetSymbols();
+                let elems = [];
+                for (let aliasedSymbol of aliasedSymbols){
+                    elems.push(Editor.CreateVisualCode(aliasedSymbol));
+                }
+                code = elems.length === 1 ? elems[0] : new Group(aliasedSymbol, elems);
+            
+            }else{
+    
+                /*
+                    if the symbol has more than 1 productions create a block for it
+                    with its production right hand side symbols as alternative choices
+                */
+                let alternateSymbols = [];
+                for (let production of productions){
+                    let productionSymbols = production.GetRhs().GetSymbols();
+                    if (productionSymbols.length > 1)
+                        console.log('Error: block with an alternative selection of more than 1 symbols');
+                    alternateSymbols.push(productionSymbols[0]);
+                }
+                code = new Block(aliasedSymbol, alternateSymbols);
 
-            /*
-                if the symbol has more than 1 productions create a block for it
-                with its production right hand side symbols as alternative choices
-            */
-            let alternateSymbols = [];
-            for (let production of productions){
-                let productionSymbols = production.GetRhs().GetSymbols();
-                if (productionSymbols.length > 1)
-                    console.log('Error: block with an alternative selection of more than 1 symbols');
-                alternateSymbols.push(productionSymbols[0]);
             }
-            code = new Block(aliasedSymbol, alternateSymbols);
-        }
-
-        if (aliasedSymbol.repeatable){
-            let repeatedBlock = code.Clone();
-            repeatedBlock.SetCanRepeat(true);
-
-            code = new Group(aliasedSymbol, [code, Block.CreateNewLine(), repeatedBlock]);
         }
 
         return code;
@@ -226,7 +237,7 @@ export const Editor = {
                             return generatedBy || prev.typeId === 'tab' || prev.typeId === 'new_line';
                         });
                         
-                        if (generatedBy && !generatedBy.canRepeat){
+                        if (generatedBy && !generatedBy.symbol.repeatable){
                             Editor.InsertBeforeWithOffset_priv(selected, 0, generatedBy);
                         }
 
@@ -239,7 +250,7 @@ export const Editor = {
                     let generatedBy = selected.generatedBy;
 
                     if (selected && (generatedBy || selected.typeId == 'tab' || selected.typeId === 'new_line')){
-                        if (generatedBy && !generatedBy.canRepeat){
+                        if (generatedBy && !generatedBy.symbol.repeatable){
                             Editor.InsertBeforeWithOffset_priv(selected, 0, generatedBy);
                             Editor.Select_priv(generatedBy);
                         }else

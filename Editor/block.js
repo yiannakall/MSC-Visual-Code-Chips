@@ -16,7 +16,6 @@ export class Block {
 
     symbol;
     alternateSymbols;
-    canRepeat = false;
 
     isEditable = false;
     userInput;
@@ -79,7 +78,7 @@ export class Block {
                     .map(color => { return Number(color) + 0.1 * (255 - Number(color)) });
 
                 $input.css('background-color', 'rgb(' + lightenedColors.join(', ') + ')');
-                if (this.canRepeat){
+                if (this.symbol.repeatable){
                     $input.addClass('block-can-repeat')
                 }
 
@@ -108,7 +107,7 @@ export class Block {
 
             $block.html(this.symbol.alias || this.symbol.symbol.name);
                 
-            if (this.canRepeat){
+            if (this.symbol.repeatable){
                 $blockWithArrow.addClass('block-can-repeat')
             }
 
@@ -153,10 +152,6 @@ export class Block {
 
     GetInput(){
         return this.$input_priv;
-    }
-
-    SetCanRepeat(canRepeat){
-        this.canRepeat = canRepeat;
     }
 
     SetEditable(isEditable){
