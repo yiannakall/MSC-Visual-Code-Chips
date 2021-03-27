@@ -1,3 +1,5 @@
+import { AliasedGrammarSymbol } from "../language.js";
+
 export class Block {
     static count_priv = 0;
     extraCssClasses_priv = [];
@@ -135,11 +137,15 @@ export class Block {
     }
 
     AddSelectionHighlight(){
-        this.$block_priv.addClass('selected');
+        if (this.$block_priv){
+            this.$block_priv.addClass('selected');
+        }
     }
 
     RemoveSelectionHighlight(){
-        this.$block_priv.removeClass('selected');
+        if (this.$block_priv){
+            this.$block_priv.removeClass('selected');
+        }
     }
 
     SetParent(parent){
@@ -159,8 +165,20 @@ export class Block {
     }
 
     Clone(){
-        let block = new Block(this.symbol, this.alternateSymbols);
+        let block = new Block(
+            this.symbol.Clone(),
+            this.alternateSymbols
+        );
         block.isEditable = this.isEditable;
+        block.userInput = this.userInput;
+        return block;
+    }
+
+    CloneRec(){
+        let block = this.Clone();
+        if (this.generatedBy){
+            block.generatedBy = this.generatedBy.CloneRec();
+        }
         return block;
     }
 

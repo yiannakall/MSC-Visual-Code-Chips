@@ -18,6 +18,15 @@ export class AliasedGrammarSymbol {
         this.repeatable = !!repeatable;
         this.optional = !!optional; 
     }
+
+    Clone(){
+        return new AliasedGrammarSymbol(
+            this.symbol,
+            this.alias,
+            this.repeatable,
+            this.optional
+        );
+    }
 }
 
 export class GrammarRuleRhs {

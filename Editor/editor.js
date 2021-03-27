@@ -9,6 +9,7 @@ export const Editor = {
     $editor_priv: undefined,
     selected_priv: undefined,
     dynamicTerminalTypes_priv: undefined,
+    clipboard: undefined,
     terminalValidationPredicates: {
         int : (text) => {
             return Number.isInteger(Number(text));
@@ -123,15 +124,7 @@ export const Editor = {
         }else{
             if (productions.length == 1){
         
-                /* 
-            /* 
-                /* 
-            /* 
-                /* 
-                    if the symbol has only one production then skip it and create 
-                if the symbol has only one production then skip it and create 
-                    if the symbol has only one production then skip it and create 
-                if the symbol has only one production then skip it and create 
+                /*
                     if the symbol has only one production then skip it and create 
                     code for its production's right hand side symbols
                 */
@@ -174,12 +167,17 @@ export const Editor = {
             38: 'up',
             40: 'down',
             37: 'left',
-            39: 'right'
+            39: 'right',
+            67: 'c',
+            86: 'v',
+            49: '1',
+            50: '2'
         };
 
         let keyModifiers = {
             pressed: {
                 shift: false,
+                ctrl: false
             },
             UpdateUp: (key) => {
                 keyModifiers.Update(key,false);
@@ -252,12 +250,14 @@ export const Editor = {
                     if (selected && (generatedBy || selected.typeId == 'tab' || selected.typeId === 'new_line')){
                         if (generatedBy && !generatedBy.symbol.repeatable){
                             Editor.InsertBeforeWithOffset_priv(selected, 0, generatedBy);
+                            Editor.DeleteWithOffset_priv(selected, 0);
+                            Editor.Refresh();
                             Editor.Select_priv(generatedBy);
-                        }else
-                            Editor.StepRight();
-
-                        Editor.DeleteWithOffset_priv(selected, 0);
-                        Editor.Refresh();
+                        }else{
+                            Editor.StepRight(); // select the next block
+                            Editor.DeleteWithOffset_priv(selected, 0);
+                            Editor.Refresh();
+                        }
                     }
                     break;
                 }
@@ -277,8 +277,27 @@ export const Editor = {
                     Editor.StepRight();
                     break;
                 }
-                case 'ctrl': {
-                    keyModifiers.pressed['shift'] ? Editor.StepOut() : Editor.StepIn()
+                case '1': {
+                    Editor.StepOut(); 
+                    break;
+                }
+                case '2': {
+                    Editor.StepIn();
+                }
+                case 'c': {
+                    if (keyModifiers.pressed['ctrl']){
+                        Editor.CopyToClipboard(Editor.selected_priv);
+                    }
+                    break;
+                }
+                case 'v': {
+                    if (keyModifiers.pressed['ctrl'] && Editor.clipboard){
+                        let toPaste = Editor.clipboard.CloneRec();
+                        if (Editor.Paste(Editor.selected_priv, toPaste)){
+                            Editor.Select_priv(toPaste);
+                            Editor.Refresh();
+                        }
+                    }
                 }
             }
         });
@@ -375,6 +394,31 @@ export const Editor = {
                 i++;
             }
         }
+    },
+    CopyToClipboard(elem){
+        Editor.clipboard = elem.CloneRec();
+    },
+    Paste(placeholder, elem){
+        for (let source = elem; source; source = source.generatedBy){
+            for (let dest = placeholder; dest; dest = dest.generatedBy){
+                if (dest.symbol.symbol == source.symbol.symbol){
+                    let destRoot = dest;
+                    while(dest.generatedBy) 
+                        destRoot = dest.generatedBy;
+
+                    if (destRoot.symbol.repeatable){
+                        this.InsertBeforeWithOffset_priv(placeholder, 1, placeholder.CloneRec());
+                    }
+
+                    delete dest.generatedBy;
+                    source.generatedBy = dest.generatedBy;
+                    this.InsertBeforeWithOffset_priv(placeholder, 0, elem);
+                    this.DeleteWithOffset_priv(placeholder, 0);
+                    return true;
+                }
+            }
+        }
+        return false;
     },
     LoadStyles: (styles) => {
         let viewClasses = Object.keys(styles);

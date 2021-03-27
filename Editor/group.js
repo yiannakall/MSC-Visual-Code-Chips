@@ -57,10 +57,27 @@ export class Group{
     }
 
     AddSelectionHighlight(){
-        this.$view_priv.addClass('selected');
+        if (this.$view_priv){
+            this.$view_priv.addClass('selected');
+        }
     }
 
     RemoveSelectionHighlight(){
-        this.$view_priv.removeClass('selected');
+        if (this.$view_priv){
+            this.$view_priv.removeClass('selected');
+        }
+    }
+
+    Clone(){
+        let clonedElems = this.elems.map((elem) => elem.Clone());
+        return new Group(this.symbol.Clone(), clonedElems);
+    }
+
+    CloneRec(){
+        let group = this.Clone();
+        if (this.generatedBy){
+            group.generatedBy = this.generatedBy.CloneRec();
+        }
+        return group;
     }
 }
