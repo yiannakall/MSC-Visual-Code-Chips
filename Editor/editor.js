@@ -1,6 +1,7 @@
 import { Block } from "./block.js";
 import { Group } from "./group.js";
 import { AliasedGrammarSymbol, GrammarRuleRhs, GrammarProduction, Language} from '../language.js'
+import { assert } from "../utils.js";
 
 export const Editor = {
     code_priv: undefined,
@@ -145,8 +146,7 @@ export const Editor = {
                 let alternateSymbols = [];
                 for (let production of productions){
                     let productionSymbols = production.GetRhs().GetSymbols();
-                    if (productionSymbols.length > 1)
-                        console.log('Error: block with an alternative selection of more than 1 symbols');
+                    assert(productionSymbols.length <= 1, 'Block with an alternative selection of more than 1 symbols');
                     alternateSymbols.push(productionSymbols[0]);
                 }
                 code = new Block(aliasedSymbol, alternateSymbols);
@@ -396,22 +396,34 @@ export const Editor = {
         }
     },
     CopyToClipboard(elem){
-        Editor.clipboard = elem.CloneRec();
+        if (!elem.symbol.repeatable)
+            Editor.clipboard = elem.CloneRec();
     },
     Paste(placeholder, elem){
         for (let source = elem; source; source = source.generatedBy){
             for (let dest = placeholder; dest; dest = dest.generatedBy){
-                if (dest.symbol.symbol == source.symbol.symbol){
+                if (dest.symbol.symbol === source.symbol.symbol){
                     let destRoot = dest;
-                    while(dest.generatedBy) 
-                        destRoot = dest.generatedBy;
+                    while(destRoot.generatedBy)
+                        destRoot = destRoot.generatedBy;
 
-                    if (destRoot.symbol.repeatable){
+                    if (dest.symbol.repeatable){
+                        /* 1. the repeatable block gets created again to allow further repetitions */
                         this.InsertBeforeWithOffset_priv(placeholder, 1, placeholder.CloneRec());
-                    }
-
-                    delete dest.generatedBy;
-                    source.generatedBy = dest.generatedBy;
+                        if (!dest.symbol.symbol.isTerminal){
+                            this.InsertBeforeWithOffset_priv(placeholder, 1, Block.CreateNewLine());
+                        }
+                        
+                        /* 2. the pasted block (or descendants) has to maintain repeatability, so that it is deletable */
+                        if (dest.symbol.symbol.isTerminal) {
+                            assert(dest === destRoot && dest === placeholder);
+                            source.generatedBy = dest;
+                        }else
+                            source.symbol.repeatable = true;
+                    }else
+                        source.generatedBy = dest.generatedBy;
+                    
+                    source.symbol.alias = dest.symbol.alias;
                     this.InsertBeforeWithOffset_priv(placeholder, 0, elem);
                     this.DeleteWithOffset_priv(placeholder, 0);
                     return true;
@@ -457,11 +469,12 @@ export const Editor = {
 
         for (let t of language.terminals.dynamicText){
             let symbol = Editor.language_priv.GetSymbol(t.name, true);
-            if (!symbol)
-                alert('Error: Problem with the dynamic terminals from config file');
-            if (!Object.keys(Editor.terminalValidationPredicates).includes(t.type)){
-                alert('Error: Problem with the terminals type: ' + t.type);
-            }
+            assert(symbol, 'Problem with the dynamic terminals from config file');
+            assert(
+                Object.keys(Editor.terminalValidationPredicates).includes(t.type),
+                'Problem with the terminals type: ' + t.type
+            );
+            
             Editor.dynamicTerminalTypes_priv.set(symbol, t.type);
         }
     }
