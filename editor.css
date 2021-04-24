@@ -144,3 +144,9 @@ body{
     background-color: red !important;
     color: white !important;
 }
+
+.TAB_BLOCK {
+    background-color: transparent;
+    width: 15px;
+    align-self: stretch;
+}

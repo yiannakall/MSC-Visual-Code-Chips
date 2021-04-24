@@ -1,5 +1,5 @@
-import { Editor } from './Editor/editor.js'
-import { config } from './config.js'
+import { config } from './Config.js'
+import { CodeChips } from './CodeChips.js'
 
 $(document).ready(function () {
 
@@ -12,7 +12,12 @@ $(document).ready(function () {
         return $.fn.textWidth.fakeEl.width();
     };
 
-    Editor.LoadStyles(config.styles);
-    Editor.LoadLanguage(config.language);
-    Editor.Init($('#injection-div'));
+    CodeChips.Inject(
+        $('#injection-div'), 
+        {
+            languageJson: config.language,
+            stylesJson: config.styles
+        }
+    );
+
 });

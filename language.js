@@ -1,3 +1,5 @@
+import { assert } from "./Utils/utils.js";
+
 export class GrammarSymbol {
     name;
     isTerminal;
@@ -62,6 +64,21 @@ export class Language {
     terminals = [];                     // GrammarSymbol[]
     nonTerminals = [];                  // GrammarSymbol[]
     productions = new Map;              // Map<GrammarSymbol, GrammarProduction[]>
+    
+    static TerminalType = {
+        Static:         "STATIC",
+        Int:            "INT",
+        Bool:           "BOOL",
+        Char:           "CHAR",
+        String:         "STRING",
+        Float:          "FLOAT",
+        Identifier:     "IDENTIFIER",
+        Includes(type){
+            return typeof type === 'string' && Object.values(this).includes(type);
+        }
+    };
+
+    terminalTypes = new Map;
 
     GetSymbol(nameStr, isTerminal){
         if (isTerminal === undefined)
@@ -97,5 +114,16 @@ export class Language {
 
     GetProductions(symbol) {
         return this.productions.get(symbol);
+    }
+
+    SetTerminalType(symbol, type){
+        assert(symbol.isTerminal);
+        assert(Language.TerminalType.Includes(type));
+        this.terminalTypes.set(symbol, type);
+    }
+
+    GetTerminalType(symbol){
+        let type = this.terminalTypes.get(symbol);
+        return type || Language.TerminalType.Static;
     }
 }

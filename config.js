@@ -568,27 +568,27 @@ export let config = {
             dynamicText: [
                 {
                     name: "INT_CONST",
-                    type: "int",
+                    type: "INT",
                 },
                 {
                     name: "FLOAT_CONST",
-                    type: "float",
+                    type: "FLOAT",
                 },
                 {
                     name: "CHAR_CONST",
-                    type: "char",
+                    type: "CHAR",
                 },
                 {
                     name: "STRING_CONST",
-                    type: "string",
+                    type: "STRING",
                 },
                 {
                     name: "BOOL_CONST",
-                    type: "bool",
+                    type: "BOOL",
                 },
                 {
                     name: "IDENT",
-                    type: "identifier"
+                    type: "IDENTIFIER"
                 }
             ]
         },
@@ -797,10 +797,5 @@ export let config = {
             'color': '#C57991',
             'font-weight': '900',
         },
-        "tab": {
-            'background-color': 'transparent',
-            'width': '15px',
-            'align-self': 'stretch'
-        }
     },
 };
