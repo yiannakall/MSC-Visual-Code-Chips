@@ -798,4 +798,36 @@ export let config = {
             'font-weight': '900',
         },
     },
+    toolbox:[
+        {
+            name: 'Control', 
+            icon: './Images/Toolbox/control.svg', 
+            blocks: []
+        },
+        {
+            name: 'Primary', 
+            icon: './Images/Toolbox/primary.svg', 
+            blocks: []
+        },
+        {
+            name: 'Math', 
+            icon: './Images/Toolbox/math.svg', 
+            blocks: []
+        },
+        {
+            name: 'Comparison', 
+            icon: './Images/Toolbox/comparison.svg', 
+            blocks: []
+        },
+        {
+            name: 'Function', 
+            icon: './Images/Toolbox/function.svg', 
+            blocks: []
+        },
+        {
+            name: 'Snipets', 
+            icon: './Images/Toolbox/snipets.svg', 
+            blocks: []
+        }
+    ]
 };

@@ -1,5 +1,7 @@
 import { config } from './Config.js'
 import { CodeChips } from './CodeChips.js'
+import { MenuCategory } from './Editor/Toolbox/MenuCategory.js';
+import { Toolbox } from './Editor/Toolbox/Toolbox.js';
 
 $(document).ready(function () {
 
@@ -16,8 +18,8 @@ $(document).ready(function () {
         $('#injection-div'), 
         {
             languageJson: config.language,
-            stylesJson: config.styles
+            stylesJson: config.styles,
+            toolboxJson: config.toolbox
         }
     );
-
 });

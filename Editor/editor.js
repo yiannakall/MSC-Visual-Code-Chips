@@ -10,11 +10,14 @@ import { SelectionBlock } from './EditorElements/SelectionBlock.js'
 import { SimpleBlock } from './EditorElements/SimpleBlock.js'
 import { TabBlock } from './EditorElements/TabBlock.js'
 import { KeyboardEventManager } from '../Utils/KeyboardEventManager.js'
+import { Toolbox } from './Toolbox/Toolbox.js';
 
 export class Editor {
 
     $container;
     $editor;
+    $workspace;
+    $toolboxspace;
 
     language;
     code;
@@ -45,7 +48,7 @@ export class Editor {
 
     keyboardEventManager;
 
-    constructor($container, language){
+    constructor($container, language, toolboxInfo){
         this.$container = $container;
         this.language = language;
 
@@ -53,6 +56,8 @@ export class Editor {
         this.InitializeView_();
         this.InitializeEvents_();
 
+        this.toolbox = new Toolbox(this.$toolboxspace, toolboxInfo);
+        
         this.Render();
     }
 
@@ -65,7 +70,13 @@ export class Editor {
     }
 
     InitializeView_(){
+        
+        this.$workspace = $('<div/>').addClass('workspace');
+        this.$toolboxspace = $('<div/>').addClass('toolboxspace');
+        
         this.$editor = $('<div/>').addClass('editor');
+        this.$editor.append(this.$toolboxspace, this.$workspace);
+
         this.$container.empty();
         this.$container.append(this.$editor);
     }
@@ -73,7 +84,7 @@ export class Editor {
     InitializeEvents_(){
         const Keys = KeyboardEventManager.Keys;
         
-        this.keyboardEventManager = new KeyboardEventManager(this.$editor)
+        this.keyboardEventManager = new KeyboardEventManager(this.$workspace)
             .AddEventHandler( [Keys.UP],                () => this.EventHandler_NavigateUp_() )
             .AddEventHandler( [Keys.DOWN],              () => this.EventHandler_NavigateDown_() )
             .AddEventHandler( [Keys.LEFT],              () => this.EventHandler_NavigateLeft_() )
@@ -112,7 +123,7 @@ export class Editor {
             }
 
             group.RemoveElem(elem);
-            this.Render();
+            this.RenderWorkspace();
             return true;
         }
 
@@ -128,8 +139,13 @@ export class Editor {
     }
 
     Render(){
-        this.$editor.empty();
-        this.code.Render(this.$editor);
+        this.RenderWorkspace();
+        this.toolbox.Render();
+    }
+
+    RenderWorkspace(){
+        this.$workspace.empty();
+        this.code.Render(this.$workspace);
         if (this.selected){
             this.Select(this.selected);
         }
@@ -179,7 +195,7 @@ export class Editor {
                 selectionBlock.GetParent().InsertBeforeElem(selectionBlock, this.CreateNewLine());
             }
 
-            this.Render();
+            this.RenderWorkspace();
             this.Select(vc);
         });
     }
@@ -204,7 +220,7 @@ export class Editor {
 
                 inputBlock.GetParent().InsertBeforeElem(inputBlock, vc);
 
-                this.Render();
+                this.RenderWorkspace();
                 this.Select(vc);
 
                 vc.GetInput().focus();
@@ -438,7 +454,7 @@ export class Editor {
     EventHandler_Indent_(){
         if (this.selected && this.selected.GetParent()){
             this.selected.GetParent().InsertBeforeElem(this.selected, this.CreateTab());
-            this.Render();
+            this.RenderWorkspace();
         }
     }
 
@@ -447,7 +463,7 @@ export class Editor {
             let previous = this.selected.GetParent().GetPreviousElem(this.selected);
             if (previous.type === EditorElementTypes.Tab){
                 this.selected.GetParent().RemoveElem(previous);
-                this.Render();
+                this.RenderWorkspace();
             }
         }
     }
@@ -455,7 +471,7 @@ export class Editor {
     EventHandler_NewLine_(){
         if (this.selected && this.selected.GetParent()){
             this.selected.GetParent().InsertBeforeElem(this.selected, this.CreateNewLine());
-            this.Render();
+            this.RenderWorkspace();
         }
     }
 
@@ -469,7 +485,7 @@ export class Editor {
         if (this.selected){
             let source = this.clipboard.CloneRec(), dest = this.selected;
             if (this.Paste(source, dest)){
-                this.Render();
+                this.RenderWorkspace();
                 this.Select(source);
             }
         }

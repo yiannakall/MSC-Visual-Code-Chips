@@ -1,5 +1,15 @@
 body{
-    background-color: #1e1e1e;
+    background-color: #252526;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#injection-div {
+    height: 700px;
+    width: 900px;
 }
 
 .group{
@@ -7,21 +17,45 @@ body{
     border-radius: 10px;
 
     width: fit-content;
-    padding: 2px 5px;
+    padding: 5px 10px;
     box-sizing: border-box;
     background-color: #1e1e1e;
     cursor: pointer;
 }
 
-.editor{
-    outline: none;
+.editor {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
+
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
+
+    height: inherit;
+    display: flex;
 }
 
-.editor > .group {
+.workspace{
+    background-color: #1e1e1e;
+    outline: none;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
+    height: inherit;
+    overflow: auto;
+    padding: 20px 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.toolboxspace{
+    background-color: #333333;
+}
+
+.workspace > .group {
     border: none;
     cursor: unset;
 }
@@ -36,10 +70,14 @@ body{
     align-items: center;
 
     line-height: 27px;
-    color: #E5ECF0;
     background-color: #37373D;
     cursor: pointer;
     border: 2px solid transparent;
+    
+    font-family: Roboto;
+    font-size: 14px;
+    color: #E5ECF0;
+    user-select: none;
 }
 
 .block:not(.block-with-arrow>.block){
@@ -93,6 +131,9 @@ body{
     flex-direction: column;
     justify-content: stretch;
     color: #C2C2C2;
+    font-family: Roboto;
+    font-size: 14px;
+    user-select: none;
     background-color: #252526;
     padding: 5px 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -149,4 +190,61 @@ body{
     background-color: transparent;
     width: 15px;
     align-self: stretch;
+}
+
+/********************************* TOOLBOX *********************************/
+
+.menu-category {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+    width: max-content;
+}
+
+.menu-category .icon {
+    --webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+    mask-repeat: no-repeat;
+    mask-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 22px;
+    height: 22px;
+}
+
+.menu-category .text {
+    font-size: 14px;
+    user-select: none;
+}
+
+.toolbox-menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    width: 100%;
+    height: 100%;
+    padding: 20px 20px;
+    width: fit-content;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.toolbox-menu .selected-line {
+    position: absolute;
+    width: 4px;
+    height: 60px;
+    left: 0;
+    background-color: #007ACC;
+}
+
+.toolbox-menu .category-container {
+    display: flex;
+    align-items: center;
 }

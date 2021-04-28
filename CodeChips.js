@@ -9,10 +9,15 @@ export class CodeChips {
         {
             languageJson,
             stylesJson,
+            toolboxJson,
         }
     ){
         CodeChips.LoadStyles(stylesJson);
-        new Editor($container, CodeChips.ParseLanguageJson_(languageJson));
+        new Editor(
+            $container, 
+            CodeChips.ParseLanguageJson_(languageJson),
+            toolboxJson
+        );
     }
 
     static ParseLanguageJson_(languageJson){
