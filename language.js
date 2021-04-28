@@ -1,4 +1,4 @@
-import { assert } from "./Utils/utils.js";
+import { assert } from "./Utils/Utils.js";
 
 export class GrammarSymbol {
     name;

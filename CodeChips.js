@@ -1,6 +1,6 @@
 import { Editor } from './Editor/Editor.js'
 import { Language, AliasedGrammarSymbol, GrammarRuleRhs } from './Language.js'
-import { assert } from './Utils/utils.js'
+import { assert } from './Utils/Utils.js'
 
 export class CodeChips {
 

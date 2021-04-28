@@ -1,4 +1,4 @@
-import { assert } from '../../Utils/utils.js';
+import { assert } from '../../Utils/Utils.js';
 import { EditorElement, EditorElementTypes } from './EditorElement.js'
 
 export class Group extends EditorElement {
@@ -85,7 +85,7 @@ export class Group extends EditorElement {
     }
 
     Clone_(){
-        let clonedElems = this.elems.map(elem => elem.Clone());
+        let clonedElems = this.elems.map(elem => elem.CloneRec());
         return new Group(this.symbol.Clone(), clonedElems);
     }
 
