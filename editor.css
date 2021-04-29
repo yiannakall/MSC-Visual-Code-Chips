@@ -1,5 +1,5 @@
 body{
-    background-color: #252526;
+    background-color: #415F68;
     height: 100vh;
     margin: 0;
     display: flex;
@@ -8,8 +8,8 @@ body{
 }
 
 #injection-div {
-    height: 700px;
-    width: 900px;
+    height: 100vh;
+    width: 100vw;
 }
 
 .group{
@@ -51,21 +51,6 @@ body{
     box-sizing: border-box;
 }
 
-.workspace::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-}
-
-.workspace::-webkit-scrollbar-corner {
-    background-color: transparent;
-}
-
-.workspace::-webkit-scrollbar-thumb {
-    background-color: #424242;
-    border-radius: 4px;
-    height: 10px;
-}
-
 .workspace > .fill {
     width: inherit;
     height:inherit;
@@ -74,7 +59,7 @@ body{
 
 
 .toolboxspace{
-    background-color: #333333;
+    background-color: white;
 }
 
 .workspace > .group {
@@ -241,6 +226,11 @@ body{
     user-select: none;
 }
 
+.toolbox {
+    display: flex;
+    height: 100%;
+}
+
 .toolbox-menu {
     position: relative;
     display: flex;
@@ -252,6 +242,7 @@ body{
     height: 100%;
     padding: 20px 20px;
     width: fit-content;
+    background-color: #333333;
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -269,4 +260,49 @@ body{
 .toolbox-menu .category-container {
     display: flex;
     align-items: center;
+}
+
+.toolbox-blocks {
+    padding: 20px 20px;
+    background-color: #252526;
+    overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.toolbox-blocks .category-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #C7C7C7;
+}
+
+.toolbox-blocks .category {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.toolbox-blocks .category-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/********************************* SCROLLBARS *********************************/
+
+.workspace::-webkit-scrollbar, .toolbox-blocks::-webkit-scrollbar{
+    width: 12px;
+    height: 12px;
+}
+
+.workspace::-webkit-scrollbar-corner, .toolbox-blocks::-webkit-scrollbar-corner{
+    background-color: transparent;
+}
+
+.workspace::-webkit-scrollbar-thumb, .toolbox-blocks::-webkit-scrollbar-thumb{
+    background-color: #424242;
+    border-radius: 4px;
+    height: 10px;
 }

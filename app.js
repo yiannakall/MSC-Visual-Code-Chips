@@ -14,6 +14,30 @@ $(document).ready(function () {
         return $.fn.textWidth.fakeEl.width();
     };
 
+    {
+        // temporary code for simulating toolbox blocks until blocks can be written into and loaded from JSON form
+        let rect = {
+            RandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min) ) + min;
+            },
+            Render($continaer) {
+                let $div = $('<div/>').css({
+                    'background-color': 
+                        `rgb( ${this.RandomInt(0,255)}, ${this.RandomInt(0,255)}, ${this.RandomInt(0,255)} )`,
+                    'width': '200px',
+                    'height': '100px'
+                });
+                $continaer.append($div)
+            }
+        }
+    
+        for (let toolboxInfo of config.toolbox) {
+            let n = rect.RandomInt(5, 15);
+            for (let i = 0; i < n; i++)
+                toolboxInfo.blocks.push(rect);
+        }
+    }
+
     CodeChips.Inject(
         $('#injection-div'), 
         {
