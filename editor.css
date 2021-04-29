@@ -51,6 +51,28 @@ body{
     box-sizing: border-box;
 }
 
+.workspace::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.workspace::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+.workspace::-webkit-scrollbar-thumb {
+    background-color: #424242;
+    border-radius: 4px;
+    height: 10px;
+}
+
+.workspace > .fill {
+    width: inherit;
+    height:inherit;
+    background-color: transparent;
+}
+
+
 .toolboxspace{
     background-color: #333333;
 }

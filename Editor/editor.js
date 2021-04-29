@@ -144,8 +144,11 @@ export class Editor {
     }
 
     RenderWorkspace(){
+        let scrollTop = this.$workspace.scrollTop()
         this.$workspace.empty();
         this.code.Render(this.$workspace);
+        this.$workspace.append($('<div/>').addClass('fill'));
+        this.$workspace.scrollTop(scrollTop);
         if (this.selected){
             this.Select(this.selected);
         }
