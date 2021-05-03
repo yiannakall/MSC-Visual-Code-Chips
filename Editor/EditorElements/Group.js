@@ -89,6 +89,14 @@ export class Group extends EditorElement {
         return new Group(this.symbol.Clone(), clonedElems);
     }
 
+    ToJson_(){
+        let elems = this.elems.map(elem => elem.ToJsonRec());
+        return {
+            symbol: this.symbol,
+            elems
+        };
+    }
+
     Render_($container) {
         let $group = $('<div class = "group"></div>');
         let $differentLines = $('<div class = "different-line-elems"></div>');

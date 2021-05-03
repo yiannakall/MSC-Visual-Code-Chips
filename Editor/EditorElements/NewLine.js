@@ -10,6 +10,10 @@ export class NewLine extends EditorElement {
         return new NewLine();
     }
 
+    ToJson_(){
+        return {};
+    }
+
     Render_($container){
         assert(false, 'Should not be rendered, as it just changes the parent group\'s layout');
     }

@@ -3,6 +3,8 @@ import { EditorElement, EditorElementTypes } from './EditorElement.js'
 export class InputBlock extends EditorElement {
     symbol;
     userInput_;
+    isEditable_ = true;
+
     onInput = () => {};
 
     constructor(symbol){
@@ -15,6 +17,13 @@ export class InputBlock extends EditorElement {
         b.userInput_ =  this.userInput_;
         b.onInput = this.onInput.bind(b);
         return b;
+    }
+
+    ToJson_(){
+        return {
+            symbol: this.symbol,
+            userInput_: this.userInput_
+        };
     }
 
     Render_($container){
@@ -34,6 +43,8 @@ export class InputBlock extends EditorElement {
             this.$input.val(this.userInput_);
             this.onInput(this);
         }
+
+        this.$input?.prop("readonly", !this.isEditable);
 
         if (this.symbol.repeatable){
             this.$input.addClass('block-can-repeat');
@@ -77,5 +88,10 @@ export class InputBlock extends EditorElement {
 
     GetSymbol(){
         return this.symbol;
+    }
+
+    SetEditable(isEditable){
+        this.isEditable = !!isEditable;
+        this.$input?.prop("readonly", !this.isEditable);
     }
 }

@@ -17,6 +17,9 @@ export class EditorElement {
 
     onClick = () => {};
     theme = () => { return ''; }
+    
+    onDragStart = () => { };
+    onDragEnd = () => { };
 
     constructor(type){
         this.type = type;
@@ -25,6 +28,7 @@ export class EditorElement {
     /* subclass may override */
 
     Clone_()                            { assert(false, 'Non implemented by subclass'); }
+    ToJson_()                           { assert(false, 'Non implemented by subclass'); }
     Render_($container)                 { assert(false, 'Non implemented by subclass'); }
     PastStyling_()                      { }
 
@@ -39,11 +43,38 @@ export class EditorElement {
         return instance;
     }
 
+    CloneRec() {
+        let block = this.Clone();
+        if (this.generatedBy){
+            block.generatedBy = this.generatedBy.CloneRec();
+        }
+        return block;
+    }
+
+    ToString() {
+        return JSON.stringify( this.ToJsonRec() );
+    }
+
+    ToJson() {
+        let json = this.ToJson_();
+        json.type = this.type;
+        return json;
+    }
+
+    ToJsonRec() {
+        let json = this.ToJson();
+        if (this.generatedBy){
+            json.generatedBy = this.generatedBy.ToJsonRec();
+        }
+        return json;
+    }
+
     Render($container) {
         this.Render_($container);
         this.ApplyTheme_();
         this.PastStyling_();
         this.AddOnClick_();
+        this.MakeDraggable_();
     }
     
     ApplyTheme_(){
@@ -58,12 +89,19 @@ export class EditorElement {
         });
     }
 
-    CloneRec() {
-        let block = this.Clone();
-        if (this.generatedBy){
-            block.generatedBy = this.generatedBy.CloneRec();
-        }
-        return block;
+    MakeDraggable_() {
+        this.$customizableView.attr('draggable', 'true');
+
+        this.$customizableView.on('dragstart', (e) => {
+            e.stopPropagation();
+            e.originalEvent.dataTransfer.setData('block', this.ToString());
+            this.onDragStart(e);
+        });
+
+        this.$customizableView.on('dragend', (e) => {
+            e.stopPropagation();
+            this.onDragEnd(e);
+        });
     }
 
     GetWholeView()                  { return this.$wholeView; }
@@ -73,6 +111,8 @@ export class EditorElement {
     GetParent()                     { return this.parent; }
 
     SetOnClick(f)                   { this.onClick = f; }
+    SetOnDragStart(f)               { this.onDragStart = f; }
+    SetOnDragEnd(f)                 { this.onDragEnd = f; }
     SetGeneratedBy(generatedBy)     { this.generatedBy = generatedBy; }
     SetParent(p)                    { this.parent = p; }
     SetTheme(f)                     { this.theme = f; }

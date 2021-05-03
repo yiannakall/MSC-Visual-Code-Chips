@@ -9,6 +9,10 @@ export class TabBlock extends EditorElement {
         return new TabBlock();
     }
 
+    ToJson_(){
+        return {};
+    }
+
     Render_($container){
         let $elem = $('<div/>').addClass('block');
         $container.append($elem);

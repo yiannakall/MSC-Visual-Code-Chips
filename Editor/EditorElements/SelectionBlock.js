@@ -5,6 +5,7 @@ export class SelectionBlock extends EditorElement {
     symbol;
     alternateSymbols = [];
     selectedSymbol;
+    isEditable = true;
     onSelect = () => {};
 
     constructor(symbol, alternateSymbols){
@@ -17,6 +18,14 @@ export class SelectionBlock extends EditorElement {
         let b = new SelectionBlock( this.symbol.Clone(), this.alternateSymbols );
         b.onSelect = this.onSelect.bind(b);
         return b;
+    }
+
+    ToJson_(){
+        return {
+            symbol: this.symbol,
+            alternateSymbols: this.alternateSymbols,
+            selectedSymbol: this.selectedSymbol
+        };
     }
 
     Render_($container){        
@@ -40,14 +49,16 @@ export class SelectionBlock extends EditorElement {
             );
 
         $blockWithArrow.on('click', (e) => {
-            $('.block-alternate-selections').not($blockAlternateSelections).hide();
-            $blockAlternateSelections.toggle();
+            if (this.isEditable){
+                $('.block-alternate-selections').not($blockAlternateSelections).hide();
+                $blockAlternateSelections.toggle();
+            }
         });
 
         for (let symbol of this.alternateSymbols){
             $blockAlternateSelections.append(this.CreateChoiceView_(symbol));
         }
-                
+        
         $container.append(this.$wholeView);
     }
 
@@ -73,5 +84,9 @@ export class SelectionBlock extends EditorElement {
 
     GetSymbol(){
         return this.symbol;
+    }
+
+    SetEditable(editable){
+        this.isEditable = !!editable;
     }
 }

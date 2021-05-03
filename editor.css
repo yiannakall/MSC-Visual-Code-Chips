@@ -290,6 +290,13 @@ body{
     gap: 10px;
 }
 
+.toolbox-blocks .drop-indicator {
+    width: 100%;
+    height: 4px;
+    opacity: 0.2;
+    background: #ffffff;
+}
+
 /********************************* SCROLLBARS *********************************/
 
 .workspace::-webkit-scrollbar, .toolbox-blocks::-webkit-scrollbar{
