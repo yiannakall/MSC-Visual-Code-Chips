@@ -38,7 +38,7 @@ export class Editor {
             return true;
         },
         BOOL: (text) => {
-            return text === 'true' || text === ' false';
+            return text === 'true' || text === 'false';
         },
         IDENTIFIER: (text) => {
             let matched = /[_A-Za-z]+[_A-Za-z0-9]*/g.exec(text);

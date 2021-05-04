@@ -798,36 +798,5373 @@ export let config = {
             'font-weight': '900',
         },
     },
-    toolbox:[
+    toolbox: [
         {
-            name: 'Control', 
-            icon: './Images/Toolbox/control.svg', 
-            blocks: []
+            "name": "Control",
+            "icon": "./Images/Toolbox/control.svg",
+            "blocks": [
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "if_stmt",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IF",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "condition",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "type": "NEW_LINE"
+                        },
+                        {
+                            "type": "TAB_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": true,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "stmt",
+                                "isTerminal": false
+                            },
+                            "repeatable": true,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "if_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "if_else_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "while_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "for_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "assign_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_def_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_call_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK"
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "if_else_stmt",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IF",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "condition",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "type": "NEW_LINE"
+                        },
+                        {
+                            "type": "TAB_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": true,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "type": "NEW_LINE"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "ELSE",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK"
+                        },
+                        {
+                            "type": "NEW_LINE"
+                        },
+                        {
+                            "type": "TAB_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": true,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "stmt",
+                                "isTerminal": false
+                            },
+                            "repeatable": true,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "if_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "if_else_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "while_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "for_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "assign_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_def_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_call_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK"
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "while_stmt",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "WHILE",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "condition",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "type": "NEW_LINE"
+                        },
+                        {
+                            "type": "TAB_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": true,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "stmt",
+                                "isTerminal": false
+                            },
+                            "repeatable": true,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "if_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "if_else_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "while_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "for_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "assign_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_def_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_call_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK"
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "for_stmt",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "FOR",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "assign_stmt",
+                                    "isTerminal": false
+                                },
+                                "alias": "initialization",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "elems": [
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "IDENT",
+                                            "isTerminal": true
+                                        },
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    "type": "INPUT_BLOCK"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "EQUALS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    "type": "SIMPLE_BLOCK"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "arith_expr",
+                                                "isTerminal": false
+                                            },
+                                            "repeatable": false,
+                                            "optional": false
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "rel_expr",
+                                                "isTerminal": false
+                                            },
+                                            "repeatable": false,
+                                            "optional": false
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "bool_expr",
+                                                "isTerminal": false
+                                            },
+                                            "repeatable": false,
+                                            "optional": false
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "primary_expr",
+                                                "isTerminal": false
+                                            },
+                                            "repeatable": false,
+                                            "optional": false
+                                        }
+                                    ],
+                                    "type": "SELECTION_BLOCK"
+                                }
+                            ],
+                            "type": "GROUP"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "condition",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "assign_stmt",
+                                    "isTerminal": false
+                                },
+                                "alias": "step",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "elems": [
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "IDENT",
+                                            "isTerminal": true
+                                        },
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    "type": "INPUT_BLOCK"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "EQUALS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    "type": "SIMPLE_BLOCK"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "arith_expr",
+                                                "isTerminal": false
+                                            },
+                                            "repeatable": false,
+                                            "optional": false
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "rel_expr",
+                                                "isTerminal": false
+                                            },
+                                            "repeatable": false,
+                                            "optional": false
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "bool_expr",
+                                                "isTerminal": false
+                                            },
+                                            "repeatable": false,
+                                            "optional": false
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "primary_expr",
+                                                "isTerminal": false
+                                            },
+                                            "repeatable": false,
+                                            "optional": false
+                                        }
+                                    ],
+                                    "type": "SELECTION_BLOCK"
+                                }
+                            ],
+                            "type": "GROUP"
+                        },
+                        {
+                            "type": "NEW_LINE"
+                        },
+                        {
+                            "type": "TAB_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": true,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "stmt",
+                                "isTerminal": false
+                            },
+                            "repeatable": true,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "if_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "if_else_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "while_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "for_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "assign_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_def_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_call_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK"
+                    }
+                }
+            ]
         },
         {
-            name: 'Primary', 
-            icon: './Images/Toolbox/primary.svg', 
-            blocks: []
+            "name": "Primary",
+            "icon": "./Images/Toolbox/primary.svg",
+            "blocks": [
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "IDENT",
+                            "isTerminal": true
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "type": "INPUT_BLOCK",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "primary_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "INT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "FLOAT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "CHAR_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "STRING_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "BOOL_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "INT_CONST",
+                            "isTerminal": true
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "type": "INPUT_BLOCK",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "primary_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "INT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "FLOAT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "CHAR_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "STRING_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "BOOL_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "FLOAT_CONST",
+                            "isTerminal": true
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "type": "INPUT_BLOCK",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "primary_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "INT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "FLOAT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "CHAR_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "STRING_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "BOOL_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "CHAR_CONST",
+                            "isTerminal": true
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "type": "INPUT_BLOCK",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "primary_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "INT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "FLOAT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "CHAR_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "STRING_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "BOOL_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "STRING_CONST",
+                            "isTerminal": true
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "type": "INPUT_BLOCK",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "primary_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "INT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "FLOAT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "CHAR_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "STRING_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "BOOL_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "BOOL_CONST",
+                            "isTerminal": true
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "userInput_": "true",
+                    "type": "INPUT_BLOCK",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "primary_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "INT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "FLOAT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "CHAR_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "STRING_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "BOOL_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "BOOL_CONST",
+                            "isTerminal": true
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "userInput_": "false",
+                    "type": "INPUT_BLOCK",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "primary_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "INT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "FLOAT_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "CHAR_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "STRING_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "BOOL_CONST",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                }
+            ]
         },
         {
-            name: 'Math', 
-            icon: './Images/Toolbox/math.svg', 
-            blocks: []
+            "name": "Math",
+            "icon": "./Images/Toolbox/math.svg",
+            "blocks": [
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "binary_arith_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "PLUS",
+                                    "isTerminal": true
+                                },
+                                "alias": "+",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "arith_op",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "PLUS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "+",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "MINUS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "-",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "TIMES",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "*",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "BY",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "/",
+                                        "repeatable": false,
+                                        "optional": false
+                                    }
+                                ],
+                                "type": "SELECTION_BLOCK"
+                            }
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "arith_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "binary_arith_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "unary_minus",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "binary_arith_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "MINUS",
+                                    "isTerminal": true
+                                },
+                                "alias": "-",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "arith_op",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "PLUS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "+",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "MINUS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "-",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "TIMES",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "*",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "BY",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "/",
+                                        "repeatable": false,
+                                        "optional": false
+                                    }
+                                ],
+                                "type": "SELECTION_BLOCK"
+                            }
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "arith_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "binary_arith_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "unary_minus",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "binary_arith_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "TIMES",
+                                    "isTerminal": true
+                                },
+                                "alias": "*",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "arith_op",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "PLUS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "+",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "MINUS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "-",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "TIMES",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "*",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "BY",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "/",
+                                        "repeatable": false,
+                                        "optional": false
+                                    }
+                                ],
+                                "type": "SELECTION_BLOCK"
+                            }
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "arith_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "binary_arith_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "unary_minus",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "binary_arith_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "BY",
+                                    "isTerminal": true
+                                },
+                                "alias": "/",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "arith_op",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "PLUS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "+",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "MINUS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "-",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "TIMES",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "*",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "BY",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "/",
+                                        "repeatable": false,
+                                        "optional": false
+                                    }
+                                ],
+                                "type": "SELECTION_BLOCK"
+                            }
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "arith_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "binary_arith_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "unary_minus",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "unary_minus",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "MINUS",
+                                    "isTerminal": true
+                                },
+                                "alias": "-",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "arith_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "binary_arith_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "unary_minus",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                }
+            ]
         },
         {
-            name: 'Comparison', 
-            icon: './Images/Toolbox/comparison.svg', 
-            blocks: []
+            "name": "Boolean",
+            "icon": "./Images/Toolbox/comparison.svg",
+            "blocks": [
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "rel_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "GREATER",
+                                    "isTerminal": true
+                                },
+                                "alias": ">",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "rel_op",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "GREATER",
+                                            "isTerminal": true
+                                        },
+                                        "alias": ">",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "LESS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "<",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "EQUAL_TO",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "==",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "NOT_EQUAL_TO",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "!=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "GREATER_EQUAL",
+                                            "isTerminal": true
+                                        },
+                                        "alias": ">=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "LESS_EQUAL",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "<=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    }
+                                ],
+                                "type": "SELECTION_BLOCK"
+                            }
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "expr",
+                                "isTerminal": false
+                            },
+                            "alias": "condition",
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "arith_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "rel_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "bool_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK"
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "rel_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "LESS",
+                                    "isTerminal": true
+                                },
+                                "alias": "<",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "rel_op",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "GREATER",
+                                            "isTerminal": true
+                                        },
+                                        "alias": ">",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "LESS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "<",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "EQUAL_TO",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "==",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "NOT_EQUAL_TO",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "!=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "GREATER_EQUAL",
+                                            "isTerminal": true
+                                        },
+                                        "alias": ">=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "LESS_EQUAL",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "<=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    }
+                                ],
+                                "type": "SELECTION_BLOCK"
+                            }
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "expr",
+                                "isTerminal": false
+                            },
+                            "alias": "condition",
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "arith_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "rel_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "bool_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK"
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "rel_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "EQUAL_TO",
+                                    "isTerminal": true
+                                },
+                                "alias": "==",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "rel_op",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "GREATER",
+                                            "isTerminal": true
+                                        },
+                                        "alias": ">",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "LESS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "<",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "EQUAL_TO",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "==",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "NOT_EQUAL_TO",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "!=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "GREATER_EQUAL",
+                                            "isTerminal": true
+                                        },
+                                        "alias": ">=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "LESS_EQUAL",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "<=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    }
+                                ],
+                                "type": "SELECTION_BLOCK"
+                            }
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "expr",
+                                "isTerminal": false
+                            },
+                            "alias": "condition",
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "arith_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "rel_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "bool_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK"
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "rel_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "NOT_EQUAL_TO",
+                                    "isTerminal": true
+                                },
+                                "alias": "!=",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "rel_op",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "GREATER",
+                                            "isTerminal": true
+                                        },
+                                        "alias": ">",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "LESS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "<",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "EQUAL_TO",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "==",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "NOT_EQUAL_TO",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "!=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "GREATER_EQUAL",
+                                            "isTerminal": true
+                                        },
+                                        "alias": ">=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "LESS_EQUAL",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "<=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    }
+                                ],
+                                "type": "SELECTION_BLOCK"
+                            }
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "expr",
+                                "isTerminal": false
+                            },
+                            "alias": "condition",
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "arith_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "rel_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "bool_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK"
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "rel_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "GREATER_EQUAL",
+                                    "isTerminal": true
+                                },
+                                "alias": ">=",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "rel_op",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "GREATER",
+                                            "isTerminal": true
+                                        },
+                                        "alias": ">",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "LESS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "<",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "EQUAL_TO",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "==",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "NOT_EQUAL_TO",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "!=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "GREATER_EQUAL",
+                                            "isTerminal": true
+                                        },
+                                        "alias": ">=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "LESS_EQUAL",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "<=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    }
+                                ],
+                                "type": "SELECTION_BLOCK"
+                            }
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "expr",
+                                "isTerminal": false
+                            },
+                            "alias": "condition",
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "arith_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "rel_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "bool_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK"
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "rel_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "LESS_EQUAL",
+                                    "isTerminal": true
+                                },
+                                "alias": "<=",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "rel_op",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "GREATER",
+                                            "isTerminal": true
+                                        },
+                                        "alias": ">",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "LESS",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "<",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "EQUAL_TO",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "==",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "NOT_EQUAL_TO",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "!=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "GREATER_EQUAL",
+                                            "isTerminal": true
+                                        },
+                                        "alias": ">=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "LESS_EQUAL",
+                                            "isTerminal": true
+                                        },
+                                        "alias": "<=",
+                                        "repeatable": false,
+                                        "optional": false
+                                    }
+                                ],
+                                "type": "SELECTION_BLOCK"
+                            }
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "expr",
+                                "isTerminal": false
+                            },
+                            "alias": "condition",
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "arith_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "rel_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "bool_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK"
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "binary_bool_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "AND",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "bool_bin_op",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "AND",
+                                            "isTerminal": true
+                                        },
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "OR",
+                                            "isTerminal": true
+                                        },
+                                        "repeatable": false,
+                                        "optional": false
+                                    }
+                                ],
+                                "type": "SELECTION_BLOCK"
+                            }
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "bool_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "binary_bool_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "not_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "condition",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "binary_bool_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "OR",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "bool_bin_op",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "AND",
+                                            "isTerminal": true
+                                        },
+                                        "repeatable": false,
+                                        "optional": false
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "OR",
+                                            "isTerminal": true
+                                        },
+                                        "repeatable": false,
+                                        "optional": false
+                                    }
+                                ],
+                                "type": "SELECTION_BLOCK"
+                            }
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "bool_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "binary_bool_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "not_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "condition",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "not_expr",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "NOT",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "bool_expr",
+                                "isTerminal": false
+                            },
+                            "repeatable": false,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "binary_bool_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "not_expr",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "condition",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    }
+                }
+            ]
         },
         {
-            name: 'Function', 
-            icon: './Images/Toolbox/function.svg', 
-            blocks: []
+            "name": "Function",
+            "icon": "./Images/Toolbox/function.svg",
+            "blocks": [
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "func_def_stmt",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "FUNCTION",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "alias": "NAME",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "INPUT_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "OF",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "repeatable": true,
+                                "optional": false
+                            },
+                            "type": "INPUT_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": true,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "stmt",
+                                "isTerminal": false
+                            },
+                            "repeatable": true,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "if_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "if_else_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "while_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "for_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "assign_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_def_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_call_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK"
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "func_call_stmt",
+                            "isTerminal": false
+                        },
+                        "repeatable": false,
+                        "optional": false
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "CALL",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "alias": "FUNCTION NAME",
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "INPUT_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "WITH",
+                                    "isTerminal": true
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            "type": "SIMPLE_BLOCK"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "ARG",
+                                "repeatable": true,
+                                "optional": false
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "repeatable": false,
+                                    "optional": false
+                                }
+                            ],
+                            "type": "SELECTION_BLOCK"
+                        }
+                    ],
+                    "type": "GROUP",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "stmt",
+                                "isTerminal": false
+                            },
+                            "repeatable": true,
+                            "optional": false
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "if_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "if_else_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "while_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "for_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "assign_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_def_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_call_stmt",
+                                    "isTerminal": false
+                                },
+                                "repeatable": false,
+                                "optional": false
+                            }
+                        ],
+                        "type": "SELECTION_BLOCK"
+                    }
+                }
+            ]
         },
         {
-            name: 'Snipets', 
-            icon: './Images/Toolbox/snipets.svg', 
-            blocks: []
+            "name": "Snipets",
+            "icon": "./Images/Toolbox/snipets.svg",
+            "blocks": []
         }
     ]
 };

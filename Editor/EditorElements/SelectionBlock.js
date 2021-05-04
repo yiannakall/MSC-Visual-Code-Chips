@@ -5,7 +5,7 @@ export class SelectionBlock extends EditorElement {
     symbol;
     alternateSymbols = [];
     selectedSymbol;
-    isEditable = true;
+    isEditable_ = true;
     onSelect = () => {};
 
     constructor(symbol, alternateSymbols){
@@ -49,7 +49,7 @@ export class SelectionBlock extends EditorElement {
             );
 
         $blockWithArrow.on('click', (e) => {
-            if (this.isEditable){
+            if (this.isEditable_){
                 $('.block-alternate-selections').not($blockAlternateSelections).hide();
                 $blockAlternateSelections.toggle();
             }
@@ -87,6 +87,6 @@ export class SelectionBlock extends EditorElement {
     }
 
     SetEditable(editable){
-        this.isEditable = !!editable;
+        this.isEditable_ = !!editable;
     }
 }

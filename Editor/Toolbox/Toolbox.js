@@ -36,7 +36,16 @@ export class Toolbox {
         if (categories){
             for (let category of categories){
                 this.categories[category.name] = (new MenuCategory(category.name, category.icon, '#A5A5A5'));
-                this.blocks[category.name] = category.blocks;
+                this.blocks[category.name] = category.blocks.map(blockJson => {
+                    let b = EditorElementParser.FromJson(blockJson, 
+                        (block) => {
+                            this.SetBlockTheme(block) 
+                            block.SetDraggable(false);
+                        }
+                    );
+                    this.SetBlockDragEvents(category.name, b);
+                    return b;
+                });
             }
         }
 
@@ -44,6 +53,25 @@ export class Toolbox {
         this.InitializeView_();
     }
     
+    static FromJson($container, toolboxJson){
+        return new Toolbox($container, toolboxJson);
+    }
+
+    ToJson(){
+        let toolboxJson = [];
+
+        for (let categoryName in this.categories)
+            toolboxJson.push(
+                {
+                    name:   categoryName,
+                    icon:   this.categories[categoryName].GetIcon(),
+                    blocks: this.blocks[categoryName].map(block => block.ToJsonRec())
+                }
+            );
+
+        return toolboxJson;
+    }
+
     InitializeView_(){
         this.$toolbox = $('<div/>').addClass('toolbox');
         this.$toolboxMenu = $('<div/>').addClass('toolbox-menu');
@@ -112,6 +140,8 @@ export class Toolbox {
         for (let categoryName in this.blocks){
             this.RenderCategoryBlocks_(categoryName);
         }
+
+        this.$blockContainer.append($('<div/>').addClass('fill'));
 
         this.$blockContainer.scrollTop(scrollTop);
     }

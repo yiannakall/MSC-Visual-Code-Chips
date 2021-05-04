@@ -44,7 +44,7 @@ export class InputBlock extends EditorElement {
             this.onInput(this);
         }
 
-        this.$input?.prop("readonly", !this.isEditable);
+        this.$input?.prop("readonly", !this.isEditable_);
 
         if (this.symbol.repeatable){
             this.$input.addClass('block-can-repeat');
@@ -91,7 +91,7 @@ export class InputBlock extends EditorElement {
     }
 
     SetEditable(isEditable){
-        this.isEditable = !!isEditable;
-        this.$input?.prop("readonly", !this.isEditable);
+        this.isEditable_ = !!isEditable;
+        this.$input?.prop("readonly", !this.isEditable_);
     }
 }
