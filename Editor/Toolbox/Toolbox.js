@@ -23,6 +23,9 @@ export class Toolbox {
 
     autoScrolling = false;
 
+    draggedBlock;
+    draggedBlockCategoryName;
+
     /**
      * 
      * @param {[{name: string, icon: string, blocks: [EditorElement]}]} categories 
@@ -133,10 +136,10 @@ export class Toolbox {
 
         this.$scrollTargets[categoryName] = $scrollTarget;
         
-        this.SetUpDropEvents_($categoryBlocks, blocks);
+        this.SetUpDropEvents_(categoryName, blocks, $categoryBlocks);
     }
 
-    SetUpDropEvents_($blocks, blocks){
+    SetUpDropEvents_(categoryName, blocks, $blocks){
         let $dropIndicator = $('<div/>').addClass('drop-indicator');
 
         let counter = 0;
@@ -147,24 +150,26 @@ export class Toolbox {
         });
 
         $blocks.on('dragleave', (e) => {
-            if (--counter == 0)
+            if (--counter === 0)
                 $dropIndicator.remove();
         });
 
-        let blockBeforeInsertion;
+        let indexFromDrop;
 
         $blocks.on('dragover', (e) => {
             e.preventDefault();
 
-            blockBeforeInsertion = undefined;
+            indexFromDrop = blocks.length;
             let minOffset, $minOffsetBlockView;
 
-            for (let b of blocks){
+            for (let i = 0; i < blocks.length; i++){
+                let b = blocks[i];
+
                 let offset = b.GetWholeView().offset().top + b.GetWholeView().height() / 2 - e.clientY;
                 if ( (minOffset === undefined && offset >= 0) || (offset !== undefined && offset < minOffset && offset >= 0) ){
                     minOffset = offset;
                     $minOffsetBlockView = b.GetWholeView();
-                    blockBeforeInsertion = b;
+                    indexFromDrop = i;
                 }
             }
 
@@ -174,20 +179,28 @@ export class Toolbox {
         $blocks.on('drop', (e) => {
             let blockStr = e.originalEvent.dataTransfer.getData('block');
             if (!blockStr)  return;
+
+            let block = EditorElementParser.FromString( blockStr, block => { 
+                this.SetBlockTheme(block);
+                block.SetDraggable(false);
+            });
             
-            let block = EditorElementParser.FromString( blockStr, (block) => this.BindToToolbox(block) );
-            
-            if (blockBeforeInsertion){
-                blocks.splice(blocks.indexOf(blockBeforeInsertion), 0, block);    
-            }else{
-                blocks.push(block);
+            this.SetBlockDragEvents(categoryName, block); // only the root block is draggable from the toolbox
+
+            blocks.splice(indexFromDrop, 0, block);
+
+            if (this.draggedBlock){ // if the block was dragged from the toolbox remove it from its previous place
+                let i = this.blocks[this.draggedBlockCategoryName].indexOf(this.draggedBlock);
+                assert(i !== -1);
+                this.blocks[this.draggedBlockCategoryName].splice(i, 1);
+                this.draggedBlock = this.draggedBlockCategoryName = undefined;
             }
 
             this.RenderBlocks();
         });
     }
 
-    BindToToolbox(block){
+    SetBlockTheme(block){
         if (block.GetType() === EditorElementTypes.InputBlock || block.GetType() === EditorElementTypes.SelectionBlock){
             block.SetEditable(false);
         }
@@ -199,6 +212,20 @@ export class Toolbox {
                 styles += ` ${elem.GetSymbol().symbol.name}`;
             }
             return styles;
+        });
+    }
+
+    SetBlockDragEvents(categoryName, block){
+        block.SetDraggable(true);
+
+        block.SetOnDragStart((e) => {
+            assert(this.draggedBlock == undefined);
+            this.draggedBlock = block, this.draggedBlockCategoryName = categoryName;
+        });
+
+        block.SetOnDragEnd((e) => {
+            assert(this.draggedBlock);
+            this.draggedBlock = this.draggedBlockCategoryName = undefined;
         });
     }
 

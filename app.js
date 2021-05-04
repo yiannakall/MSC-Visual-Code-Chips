@@ -23,7 +23,7 @@ $(document).ready(function () {
             this.Render = ($continaer) => {
                 let $div = $('<div > </div>').css({
                     'background-color': 
-                        `rgb( ${this.RandomInt(0,255)}, ${this.RandomInt(0,255)}, ${this.RandomInt(0,255)} )`,
+                        `rgb( 150, 250 , 150 )`,
                     'width': '200px',
                     'height': '100px',
                 });

@@ -15,6 +15,8 @@ export class EditorElement {
     $wholeView;
     $customizableView;
 
+    isDraggable = true;
+
     onClick = () => {};
     theme = () => { return ''; }
     
@@ -74,7 +76,10 @@ export class EditorElement {
         this.ApplyTheme_();
         this.PastStyling_();
         this.AddOnClick_();
-        this.MakeDraggable_();
+
+        if (this.isDraggable){
+            this.MakeDraggable_();
+        }
     }
     
     ApplyTheme_(){
@@ -113,6 +118,7 @@ export class EditorElement {
     SetOnClick(f)                   { this.onClick = f; }
     SetOnDragStart(f)               { this.onDragStart = f; }
     SetOnDragEnd(f)                 { this.onDragEnd = f; }
+    SetDraggable(isDraggable)       { this.isDraggable = !!isDraggable; }
     SetGeneratedBy(generatedBy)     { this.generatedBy = generatedBy; }
     SetParent(p)                    { this.parent = p; }
     SetTheme(f)                     { this.theme = f; }
