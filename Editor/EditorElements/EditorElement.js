@@ -16,13 +16,17 @@ export class EditorElement {
     $customizableView;
 
     isDraggable = true;
+    isDroppable = true;
 
-    onClick = () => {};
-    theme = () => { return ''; }
+    onClick = (self) => {};
+    theme = (self) => { return ''; }
     
-    onDragStart = () => { };
-    onDragEnd = () => { };
-
+    onDragStart = (e, self) => { };
+    onDragEnd = (e, self) => { };
+    onDrop = (e, self) => { };
+    onDragEnter = (e, self) => { };
+    onDragLeave = (e, self) => { };
+    
     constructor(type){
         this.type = type;
     }
@@ -41,7 +45,15 @@ export class EditorElement {
 
         instance.onClick = this.onClick.bind(instance);
         instance.theme = this.theme.bind(instance);
-        
+        instance.onDragStart = this.onDragStart.bind(instance);
+        instance.onDragEnd = this.onDragEnd.bind(instance);
+        instance.onDrop = this.onDrop.bind(instance);
+        instance.onDragEnter = this.onDragEnter.bind(instance);
+        instance.onDragLeave = this.onDragLeave.bind(instance);
+
+        instance.isDraggable = this.isDraggable;
+        instance.isDroppable = this.isDroppable;
+
         return instance;
     }
 
@@ -80,6 +92,9 @@ export class EditorElement {
         if (this.isDraggable){
             this.MakeDraggable_();
         }
+        if (this.isDroppable){
+            this.MakeDroppable_();
+        }
     }
     
     ApplyTheme_(){
@@ -100,12 +115,34 @@ export class EditorElement {
         this.$customizableView.on('dragstart', (e) => {
             e.stopPropagation();
             e.originalEvent.dataTransfer.setData('block', this.ToString());
-            this.onDragStart(e);
+            this.onDragStart(e, this);
         });
 
         this.$customizableView.on('dragend', (e) => {
             e.stopPropagation();
-            this.onDragEnd(e);
+            this.onDragEnd(e, this);
+        });
+
+        this.$customizableView.on('dragover', (e) => {
+            e.preventDefault();
+        });
+    }
+
+    MakeDroppable_(){
+        this.$customizableView.on('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.onDrop(e, this);
+        });
+
+        this.$customizableView.on('dragenter', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.onDragEnter(e, this);
+        });
+
+        this.$customizableView.on('dragleave', (e) => {
+            this.onDragLeave(e, this);
         });
     }
 
@@ -118,7 +155,11 @@ export class EditorElement {
     SetOnClick(f)                   { this.onClick = f; }
     SetOnDragStart(f)               { this.onDragStart = f; }
     SetOnDragEnd(f)                 { this.onDragEnd = f; }
+    SetOnDrop(f)                    { this.onDrop = f; }
+    SetOnDragEnter(f)               { this.onDragEnter = f; }
+    SetOnDragLeave(f)               { this.onDragLeave = f; }
     SetDraggable(isDraggable)       { this.isDraggable = !!isDraggable; }
+    SetDroppable(isDroppable)       { this.isDroppable = !!isDroppable; }
     SetGeneratedBy(generatedBy)     { this.generatedBy = generatedBy; }
     SetParent(p)                    { this.parent = p; }
     SetTheme(f)                     { this.theme = f; }

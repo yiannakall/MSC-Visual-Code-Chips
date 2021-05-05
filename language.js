@@ -29,6 +29,18 @@ export class AliasedGrammarSymbol {
             this.optional
         );
     }
+
+    static FromJson(symbolJson){
+        return new AliasedGrammarSymbol(
+            new GrammarSymbol(
+                symbolJson.symbol.name,
+                symbolJson.symbol.isTerminal
+            ),
+            symbolJson.alias,
+            symbolJson.repeatable,
+            symbolJson.optional
+        );
+    }
 }
 
 export class GrammarRuleRhs {

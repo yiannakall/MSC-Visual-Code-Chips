@@ -11,6 +11,7 @@ import { SimpleBlock } from './EditorElements/SimpleBlock.js'
 import { TabBlock } from './EditorElements/TabBlock.js'
 import { KeyboardEventManager } from '../Utils/KeyboardEventManager.js'
 import { Toolbox } from './Toolbox/Toolbox.js';
+import { EditorElementParser } from './EditorElementParser.js';
 
 export class Editor {
 
@@ -63,10 +64,13 @@ export class Editor {
 
     InitializeCode_(){
         let startingSymbol = new AliasedGrammarSymbol(this.language.GetSymbol('program', false));
+
         this.code = new Group(
             startingSymbol,
             [this.CreateElem(startingSymbol)]
         );
+
+        this.code.SetDraggable(false);
     }
 
     InitializeView_(){
@@ -166,6 +170,7 @@ export class Editor {
 
         this.SetElem_OnClick_(elem);
         this.SetElem_Theme_(elem);
+        this.SetElem_OnDrop(elem);
     }
 
     SetElem_Theme_(elem){
@@ -182,6 +187,23 @@ export class Editor {
     SetElem_OnClick_(elem){
         elem.SetOnClick((elem) => {
             this.Select(elem);
+        });
+    }
+
+    SetElem_OnDrop(elem){
+        elem.SetOnDragEnter((e, elem) => {
+            this.Select(elem);
+        });
+
+        elem.SetOnDrop((e, elem) => {
+            let elemStr = e.originalEvent.dataTransfer.getData('block');
+            if (!elemStr)   return;
+            
+            let droppedBlock = EditorElementParser.FromString( elemStr, elem => this.BindElemToEditor_(elem) );
+            if (elem.GetType() !== EditorElementTypes.Tab && this.Paste(droppedBlock, elem)){
+                this.RenderWorkspace();
+                this.Select(droppedBlock);
+            }
         });
     }
 
@@ -205,7 +227,11 @@ export class Editor {
 
     SetInputBlock_OnInput_(inputBlock){
         inputBlock.SetOnInput((inputBlock) => {
-            let type = this.language.GetTerminalType(inputBlock.GetSymbol().symbol);
+            let symbol = this.language.GetSymbol(
+                inputBlock.GetSymbol().symbol.name, 
+                inputBlock.GetSymbol().symbol.isTerminal
+            );
+            let type = this.language.GetTerminalType(symbol);
             let isValid = this.typeValidators[type];
             
             let $input = inputBlock.GetInput(), text = $input.val();
@@ -232,7 +258,10 @@ export class Editor {
     }
 
     CreateElem(aliasedSymbol){
-        let symbol = aliasedSymbol.symbol;
+        let symbol = this.language.GetSymbol(
+            aliasedSymbol.symbol.name,
+            aliasedSymbol.symbol.isTerminal
+        );
         let productions = this.language.GetProductions(symbol);
         
         let elem;
@@ -300,7 +329,8 @@ export class Editor {
     FindCommonPredecessor(elem1, elem2){
         for (let iter1 = elem1; iter1; iter1 = iter1.GetGeneratedBy()){
             for (let iter2 = elem2; iter2; iter2 = iter2.GetGeneratedBy()){
-                if (iter2.GetSymbol().symbol === iter1.GetSymbol().symbol){
+                let symbol1 = iter1.GetSymbol().symbol, symbol2 = iter2.GetSymbol().symbol;
+                if (symbol1.name === symbol2.name && symbol1.isTerminal === symbol2.isTerminal){
                     return { elem1: iter1, elem2: iter2 };
                 }
             }
@@ -311,7 +341,7 @@ export class Editor {
     Paste(source, dest){
         let preds = this.FindCommonPredecessor(source, dest);
         if (!preds) return false;
-
+        
         let {elem1: sourcePoint, elem2: destPoint} = preds;
         
         for (var destRoot = destPoint; destRoot; destRoot = destRoot.generatedBy);
@@ -485,7 +515,7 @@ export class Editor {
     }
 
     EventHandler_Paste_(){
-        if (this.selected){
+        if (this.selected && this.selected.GetType() !== EditorElementTypes.Tab){
             let source = this.clipboard.CloneRec(), dest = this.selected;
             if (this.Paste(source, dest)){
                 this.RenderWorkspace();

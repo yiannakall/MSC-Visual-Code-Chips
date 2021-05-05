@@ -5,6 +5,7 @@ import { SelectionBlock } from './EditorElements/SelectionBlock.js'
 import { SimpleBlock } from './EditorElements/SimpleBlock.js'
 import { NewLine } from './EditorElements/NewLine.js'
 import { TabBlock } from './EditorElements/TabBlock.js'
+import { AliasedGrammarSymbol, GrammarSymbol } from '../Language.js';
 
 export class EditorElementParser {
 
@@ -21,21 +22,28 @@ export class EditorElementParser {
     }
 
     static FromJson(elemJson, bindElem){
-        let elem;
+        let elem, symbol;
 
         switch (elemJson.type) {
             case EditorElementTypes.Group:
-                elem = new Group(elemJson.symbol, elemJson.elems.map(elem => this.FromJson(elem, bindElem)));
+                symbol = AliasedGrammarSymbol.FromJson(elemJson.symbol);
+                elem = new Group(symbol, elemJson.elems.map(elem => this.FromJson(elem, bindElem)));
                 break;
             case EditorElementTypes.InputBlock:
-                elem = new InputBlock(elemJson.symbol);
+                symbol = AliasedGrammarSymbol.FromJson(elemJson.symbol);
+                elem = new InputBlock(symbol);
                 elem.SetText(elemJson.userInput_);
                 break;
             case EditorElementTypes.SelectionBlock:
-                elem = new SelectionBlock(elemJson.symbol, elemJson.alternateSymbols);
+                symbol = AliasedGrammarSymbol.FromJson(elemJson.symbol);
+                elem = new SelectionBlock(
+                    symbol,
+                    elemJson.alternateSymbols.map(symbol => AliasedGrammarSymbol.FromJson(symbol))
+                );
                 break;
             case EditorElementTypes.SimpleBlock:
-                elem = new SimpleBlock(elemJson.symbol);
+                symbol = AliasedGrammarSymbol.FromJson(elemJson.symbol);
+                elem = new SimpleBlock(symbol);
                 break;
             case EditorElementTypes.NewLine:
                 elem = new NewLine();

@@ -41,6 +41,7 @@ export class Toolbox {
                         (block) => {
                             this.SetBlockTheme(block) 
                             block.SetDraggable(false);
+                            block.SetDroppable(false);
                         }
                     );
                     this.SetBlockDragEvents(category.name, b);
@@ -213,6 +214,7 @@ export class Toolbox {
             let block = EditorElementParser.FromString( blockStr, block => { 
                 this.SetBlockTheme(block);
                 block.SetDraggable(false);
+                block.SetDroppable(false);
             });
             
             this.SetBlockDragEvents(categoryName, block); // only the root block is draggable from the toolbox
@@ -248,12 +250,12 @@ export class Toolbox {
     SetBlockDragEvents(categoryName, block){
         block.SetDraggable(true);
 
-        block.SetOnDragStart((e) => {
+        block.SetOnDragStart((e, block) => {
             assert(this.draggedBlock == undefined);
             this.draggedBlock = block, this.draggedBlockCategoryName = categoryName;
         });
 
-        block.SetOnDragEnd((e) => {
+        block.SetOnDragEnd((e, block) => {
             assert(this.draggedBlock);
             this.draggedBlock = this.draggedBlockCategoryName = undefined;
         });
