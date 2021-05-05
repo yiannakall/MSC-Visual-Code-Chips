@@ -122,13 +122,13 @@ export class EditorElement {
             e.stopPropagation();
             this.onDragEnd(e, this);
         });
-
-        this.$customizableView.on('dragover', (e) => {
-            e.preventDefault();
-        });
     }
 
     MakeDroppable_(){
+        this.$customizableView.on('dragover', (e) => {
+            e.preventDefault();
+        });
+
         this.$customizableView.on('drop', (e) => {
             e.preventDefault();
             e.stopPropagation();

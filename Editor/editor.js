@@ -74,7 +74,6 @@ export class Editor {
     }
 
     InitializeView_(){
-        
         this.$workspace = $('<div/>').addClass('workspace');
         this.$toolboxspace = $('<div/>').addClass('toolboxspace');
         
@@ -166,11 +165,19 @@ export class Editor {
             case EditorElementTypes.SelectionBlock:
                 this.SetSelectionBlock_OnSelect_(elem);
                 break;
+            case EditorElementTypes.Tab:
+                elem.SetDraggable(false);
+                elem.SetDroppable(false);
+                break;
         }
 
+        if (elem.GetSymbol && elem.GetSymbol().repeatable){
+            elem.SetDraggable(false);
+        }
+        
+        this.SetElem_OnDrop(elem);
         this.SetElem_OnClick_(elem);
         this.SetElem_Theme_(elem);
-        this.SetElem_OnDrop(elem);
     }
 
     SetElem_Theme_(elem){
@@ -321,12 +328,18 @@ export class Editor {
     }
 
     CopyToClipboard(elem){
-        if (elem.GetSymbol() && !elem.GetSymbol().repeatable){
+        if (
+            elem.GetSymbol && 
+            !elem.GetSymbol().repeatable
+        ){
             this.clipboard = elem.CloneRec();
         }
     }
 
     FindCommonPredecessor(elem1, elem2){
+        if (!elem1.GetSymbol || !elem2.GetSymbol)
+            return null;
+
         for (let iter1 = elem1; iter1; iter1 = iter1.GetGeneratedBy()){
             for (let iter2 = elem2; iter2; iter2 = iter2.GetGeneratedBy()){
                 let symbol1 = iter1.GetSymbol().symbol, symbol2 = iter2.GetSymbol().symbol;
@@ -341,24 +354,25 @@ export class Editor {
     Paste(source, dest){
         let preds = this.FindCommonPredecessor(source, dest);
         if (!preds) return false;
-        
+
         let {elem1: sourcePoint, elem2: destPoint} = preds;
         
         for (var destRoot = destPoint; destRoot; destRoot = destRoot.generatedBy);
-        
-        if (destPoint.GetSymbol().repeatable){
-            /* 1. the repeatable block gets created again to allow further repetitions */
-            /* 2. the pasted block (or descendants) has to maintain repeatability, so that it is deletable */
-            
-            dest.GetParent().InsertAfterElem(dest, dest.CloneRec());
-            if (!destPoint.GetSymbol().symbol.isTerminal){
-                dest.GetParent().InsertAfterElem(dest, this.CreateNewLine());
-                sourcePoint.symbol.repeatable = true;
-            }else{
-                assert(destPoint === destRoot && destPoint === dest);
-                sourcePoint.SetGeneratedBy(destPoint);
+
+        if (destPoint.GetSymbol().repeatable && !source.GetSymbol().repeatable){
+            /* The repeatable block gets created again to allow further repetitions */
+            if (destPoint === dest){
+                dest.GetParent().InsertAfterElem(dest, dest.CloneRec());
+    
+                if (!destPoint.GetSymbol().symbol.isTerminal)
+                    dest.GetParent().InsertAfterElem(dest, this.CreateNewLine());
             }
 
+            /* The pasted block (or descendants) has to maintain repeatability, so that it is deletable */
+            if (destPoint.GetSymbol().symbol.isTerminal) {
+                sourcePoint.SetGeneratedBy(destPoint);
+            }else
+                sourcePoint.GetSymbol().repeatable = true;
         }else
             sourcePoint.SetGeneratedBy(destPoint.GetGeneratedBy());
 
@@ -515,7 +529,10 @@ export class Editor {
     }
 
     EventHandler_Paste_(){
-        if (this.selected && this.selected.GetType() !== EditorElementTypes.Tab){
+        if (
+            this.clipboard 
+            && this.selected?.GetType() !== EditorElementTypes.Tab
+        ){
             let source = this.clipboard.CloneRec(), dest = this.selected;
             if (this.Paste(source, dest)){
                 this.RenderWorkspace();
