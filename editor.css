@@ -112,19 +112,15 @@ body{
 }
 
 .highlighted{
-    border-color: #0C7D9D;
+    border-color: #0C7D9D !important;
 }
 
-.opaque{
-    opacity: 0.5;
+.selected.highlighted{
+    border-color: #FFE34D !important;
 }
 
 .block-can-repeat{
     opacity: 0.5;
-}
-
-.opaque.block-can-repeat{
-    opacity: 0.25;
 }
 
 .block-can-repeat::placeholder{

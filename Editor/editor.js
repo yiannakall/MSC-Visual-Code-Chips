@@ -1,6 +1,6 @@
 
 import { AliasedGrammarSymbol, Language} from '../Language.js'
-import { assert } from "../Utils/Utils.js";
+import { assert } from "../Utils/Assert.js";
 
 import { EditorElementTypes } from './EditorElements/EditorElement.js'
 import { Group } from './EditorElements/Group.js'
@@ -59,6 +59,12 @@ export class Editor {
         this.InitializeEvents_();
 
         this.toolbox = new Toolbox(this.$toolboxspace, toolboxInfo);
+        this.toolbox.SetToolbox_MaxWidth(() => {
+            return 0.8 * this.$container.width();
+        });
+        this.toolbox.SetToolbox_MinWidth(() => {
+            return 0.2 * this.$container.width();
+        });
 
         this.SetWorkspace_DragAndDrop();
         this.Render();
@@ -145,7 +151,6 @@ export class Editor {
 
     Render(){
         this.RenderWorkspace();
-        this.toolbox.Render();
     }
 
     SetWorkspace_DragAndDrop() {
@@ -375,19 +380,16 @@ export class Editor {
     }
 
     HighlightValidPasteTargets(source){
+        this.Select(undefined);
+
         this.code.ForEachRec((elem) => {
-            if (this.FindCommonPredecessor(source, elem)){
+            if (this.FindCommonPredecessor(source, elem))
                 elem.GetCustomizableView().addClass('highlighted');
-            }else{
-                if (elem.GetType() !== EditorElementTypes.NewLine && elem.GetType() !== EditorElementTypes.Tab)
-                    elem.GetCustomizableView().addClass('opaque');
-            }
         });
     }
 
     RemoveHightlights(){
         this.$workspace.find('.highlighted').removeClass('highlighted');
-        this.$workspace.find('.opaque').removeClass('opaque');
     }
 
     FindCommonPredecessor(elem1, elem2){

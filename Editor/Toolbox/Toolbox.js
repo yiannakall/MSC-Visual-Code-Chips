@@ -1,13 +1,8 @@
-import { assert } from "../../Utils/Utils.js";
+import { assert } from "../../Utils/Assert.js";
 import { EditorElement, EditorElementTypes } from "../EditorElements/EditorElement.js";
-import { Group } from "../EditorElements/Group.js";
-import { InputBlock } from "../EditorElements/InputBlock.js";
-import { NewLine } from "../EditorElements/NewLine.js";
-import { SelectionBlock } from "../EditorElements/SelectionBlock.js";
-import { SimpleBlock } from "../EditorElements/SimpleBlock.js";
-import { TabBlock } from "../EditorElements/TabBlock.js";
 import { MenuCategory } from "./MenuCategory.js";
 import { EditorElementParser } from "../EditorElementParser.js"
+import { ContainerResizer } from"../../Utils/ContainerResizer.js"
 
 export class Toolbox {
     categories = {};
@@ -19,7 +14,7 @@ export class Toolbox {
     $container;
     $toolbox;
     $toolboxMenu;
-    $blockContainer;
+    $toolboxBlocks;
 
     autoScrolling = false;
 
@@ -29,6 +24,10 @@ export class Toolbox {
 
     draggedBlock;
     draggedBlockCategoryName;
+
+    containerResizer;
+    maxWidth;
+    minWidth;
 
     /**
      * 
@@ -56,6 +55,11 @@ export class Toolbox {
 
         this.$container = $container;
         this.InitializeView_();
+        this.Render();
+        
+        if (categories){
+            this.Select_(this.categories[categories[0].name]);
+        }
     }
     
     static FromJson($container, toolboxJson){
@@ -80,20 +84,45 @@ export class Toolbox {
     InitializeView_(){
         this.$toolbox = $('<div/>').addClass('toolbox');
         this.$toolboxMenu = $('<div/>').addClass('toolbox-menu');
-        this.$blockContainer = $('<div/>').addClass('toolbox-blocks');
+        
+        this.$toolboxBlocks = $('<div/>').addClass('toolbox-blocks');
+        this.$toolboxBlocksContainer = $('<div/>');
+        this.$toolboxBlocksContainer.append(this.$toolboxBlocks);
 
         this.$toolbox.append(this.$toolboxMenu);
-        this.$toolbox.append(this.$blockContainer);
+        this.$toolbox.append(this.$toolboxBlocksContainer);
         this.$container.append(this.$toolbox);
 
+        this.MakeBlockContainerResizable_();
         this.SetupMenuSelectionOnScroll();
     }
 
+    MakeBlockContainerResizable_(){
+        let containerResizer = new ContainerResizer(this.$toolboxBlocksContainer);
+        containerResizer.MakeResizable();
+        containerResizer.SetMaxWidth(() => {
+            if (this.maxWidth){
+                let max = this.maxWidth() - this.$toolboxMenu.width();
+                assert(max > 0);
+                return max;
+            }else
+                Number.POSITIVE_INFINITY;
+        });
+        containerResizer.SetMinWidth(() => {
+            if (this.minWidth){
+                let min = this.minWidth() - this.$toolboxMenu.width();
+                assert(min);
+                return min;
+            }else
+                Number.NEGATIVE_INFINITY;
+        });
+    }
+
     SetupMenuSelectionOnScroll() {
-        this.$blockContainer.on('scroll', () => {
+        this.$toolboxBlocks.on('scroll', () => {
             if (!this.autoScrolling){
-                let scrollTop = this.$blockContainer.scrollTop();
-                let offsetTop = this.$blockContainer.offset().top;
+                let scrollTop = this.$toolboxBlocks.scrollTop();
+                let offsetTop = this.$toolboxBlocks.offset().top;
                 
                 let closestCategory, min;
                 for (let category in this.$scrollTargets){
@@ -119,36 +148,42 @@ export class Toolbox {
             this.$toolboxMenu.append($categoryContainer);
 
             category.GetView().on('click', () => {
-                this.Select_(category);
-                this.autoScrolling = true;
-                this.$blockContainer.animate(
-                    {
-                        scrollTop: this.$scrollTargets[categoryName].offset().top 
-                                    + this.$blockContainer.scrollTop() 
-                                    - this.$blockContainer.offset().top
-                                    - 20
-                    }, 
-                    400, 
-                    () => {
-                        this.autoScrolling = false;
-                    }
-                )
+                if (this.selected === category){
+                    this.Select_(undefined);
+                    this.$toolboxBlocksContainer.hide();
+                }else{
+                    this.$toolboxBlocksContainer.show();
+                    this.Select_(category);
+                    this.autoScrolling = true;
+                    this.$toolboxBlocks.animate(
+                        {
+                            scrollTop: this.$scrollTargets[categoryName].offset().top 
+                                        + this.$toolboxBlocks.scrollTop() 
+                                        - this.$toolboxBlocks.offset().top
+                                        - 20
+                        }, 
+                        400, 
+                        () => {
+                            this.autoScrolling = false;
+                        }
+                    )
+                }
             });
         }
     }
 
     RenderBlocks(){
-        let scrollTop = this.$blockContainer.scrollTop();
+        let scrollTop = this.$toolboxBlocks.scrollTop();
 
-        this.$blockContainer.empty();
+        this.$toolboxBlocks.empty();
 
         for (let categoryName in this.blocks){
             this.RenderCategoryBlocks_(categoryName);
         }
 
-        this.$blockContainer.append($('<div/>').addClass('fill'));
+        this.$toolboxBlocks.append($('<div/>').addClass('fill'));
 
-        this.$blockContainer.scrollTop(scrollTop);
+        this.$toolboxBlocks.scrollTop(scrollTop);
     }
 
     Render() {
@@ -167,7 +202,7 @@ export class Toolbox {
         }
 
         $wholeCategory.append($scrollTarget, $categoryBlocks);
-        this.$blockContainer.append($wholeCategory);
+        this.$toolboxBlocks.append($wholeCategory);
 
         this.$scrollTargets[categoryName] = $scrollTarget;
         
@@ -289,6 +324,14 @@ export class Toolbox {
 
     SetToolbox_OnDrop(f){
         this.onDrop = f;
+    }
+
+    SetToolbox_MaxWidth(f){
+        this.maxWidth = f;
+    }
+
+    SetToolbox_MinWidth(f){
+        this.minWidth = f;
     }
 
 }

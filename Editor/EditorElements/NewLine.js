@@ -1,5 +1,5 @@
 import { EditorElement, EditorElementTypes } from './EditorElement.js'
-import { assert } from '../../Utils/Utils.js'
+import { assert } from '../../Utils/Assert.js'
 
 export class NewLine extends EditorElement {
     constructor(){
