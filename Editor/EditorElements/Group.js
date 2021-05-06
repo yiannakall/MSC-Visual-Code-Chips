@@ -84,6 +84,21 @@ export class Group extends EditorElement {
         return this.elems.length;
     }
 
+    ForEach(f){
+        for (let elem of this.elems){
+            f(elem);
+        }
+    }
+
+    ForEachRec(f){
+        for (let elem of this.elems){
+            if (elem.GetType() === EditorElementTypes.Group){
+                elem.ForEachRec(f);
+            }
+            f(elem);
+        }
+    }
+
     Clone_(){
         let clonedElems = this.elems.map(elem => elem.CloneRec());
         return new Group(this.symbol.Clone(), clonedElems);

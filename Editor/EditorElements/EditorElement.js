@@ -130,8 +130,6 @@ export class EditorElement {
         });
 
         this.$customizableView.on('drop', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
             this.onDrop(e, this);
         });
 

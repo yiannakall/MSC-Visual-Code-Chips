@@ -24,7 +24,10 @@ export class Editor {
     code;
     clipboard;
     selected;
-    
+
+    keyboardEventManager;
+    elemForDropping;
+
     typeValidators = {
         INT : (text) => {
             return Number.isInteger(Number(text));
@@ -47,8 +50,6 @@ export class Editor {
         }
     };
 
-    keyboardEventManager;
-
     constructor($container, language, toolboxInfo){
         this.$container = $container;
         this.language = language;
@@ -58,7 +59,8 @@ export class Editor {
         this.InitializeEvents_();
 
         this.toolbox = new Toolbox(this.$toolboxspace, toolboxInfo);
-        
+
+        this.SetWorkspace_DragAndDrop();
         this.Render();
     }
 
@@ -137,13 +139,32 @@ export class Editor {
         if (this.selected) {
             this.selected.GetCustomizableView()?.removeClass('selected');
         }
-        elem.GetCustomizableView()?.addClass('selected');
+        elem?.GetCustomizableView()?.addClass('selected');
         this.selected = elem;
     }
 
     Render(){
         this.RenderWorkspace();
         this.toolbox.Render();
+    }
+
+    SetWorkspace_DragAndDrop() {
+        this.toolbox.SetElem_OnDragStart((e, elem) => {
+            this.elemForDropping = elem;
+            this.HighlightValidPasteTargets(this.elemForDropping);
+        });
+
+        this.toolbox.SetElem_OnDragEnd((e, elem) => {
+            this.RemoveHightlights();
+        });
+
+        this.toolbox.SetToolbox_OnDrop((e, elem) => {
+            this.RemoveHightlights();
+        });
+
+        this.$workspace.on('dragover', (e) => {
+            e.preventDefault();
+        });
     }
 
     RenderWorkspace(){
@@ -198,18 +219,35 @@ export class Editor {
     }
 
     SetElem_OnDrop(elem){
+        let pasteOn;
+
+        elem.SetOnDragStart((e, elem) => {
+            this.elemForDropping = elem;
+            this.HighlightValidPasteTargets(this.elemForDropping);
+        });
+
+        elem.SetOnDragEnd((e, elem) => {
+            this.RemoveHightlights();
+        });
+
         elem.SetOnDragEnter((e, elem) => {
-            this.Select(elem);
+            if (this.FindCommonPredecessor(this.elemForDropping, elem)){
+                this.Select(elem);
+                pasteOn = elem;
+            }
         });
 
         elem.SetOnDrop((e, elem) => {
-            let elemStr = e.originalEvent.dataTransfer.getData('block');
-            if (!elemStr)   return;
-            
-            let droppedBlock = EditorElementParser.FromString( elemStr, elem => this.BindElemToEditor_(elem) );
-            if (elem.GetType() !== EditorElementTypes.Tab && this.Paste(droppedBlock, elem)){
-                this.RenderWorkspace();
-                this.Select(droppedBlock);
+            if (elem === pasteOn){
+                let elemStr = e.originalEvent.dataTransfer.getData('block');
+                if (!elemStr)   return;
+                
+                let droppedBlock = EditorElementParser.FromString( elemStr, elem => this.BindElemToEditor_(elem) );
+                if (elem.GetType() !== EditorElementTypes.Tab && this.Paste(droppedBlock, elem)){
+                    this.RenderWorkspace();
+                    this.Select(droppedBlock);
+                }
+                e.stopPropagation();
             }
         });
     }
@@ -334,6 +372,22 @@ export class Editor {
         ){
             this.clipboard = elem.CloneRec();
         }
+    }
+
+    HighlightValidPasteTargets(source){
+        this.code.ForEachRec((elem) => {
+            if (this.FindCommonPredecessor(source, elem)){
+                elem.GetCustomizableView().addClass('highlighted');
+            }else{
+                if (elem.GetType() !== EditorElementTypes.NewLine && elem.GetType() !== EditorElementTypes.Tab)
+                    elem.GetCustomizableView().addClass('opaque');
+            }
+        });
+    }
+
+    RemoveHightlights(){
+        this.$workspace.find('.highlighted').removeClass('highlighted');
+        this.$workspace.find('.opaque').removeClass('opaque');
     }
 
     FindCommonPredecessor(elem1, elem2){

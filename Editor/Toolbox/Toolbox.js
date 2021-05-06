@@ -23,6 +23,10 @@ export class Toolbox {
 
     autoScrolling = false;
 
+    onDragStart = (e, block) => {};
+    onDragEnd = (e, block) => {};
+    onDrop = (e, block) => {};
+
     draggedBlock;
     draggedBlockCategoryName;
 
@@ -228,6 +232,8 @@ export class Toolbox {
                 this.draggedBlock = this.draggedBlockCategoryName = undefined;
             }
 
+            this.onDrop(e, block);
+
             this.RenderBlocks();
         });
     }
@@ -253,11 +259,13 @@ export class Toolbox {
         block.SetOnDragStart((e, block) => {
             assert(this.draggedBlock == undefined);
             this.draggedBlock = block, this.draggedBlockCategoryName = categoryName;
+            this.onDragStart(e, block);
         });
 
         block.SetOnDragEnd((e, block) => {
             assert(this.draggedBlock);
             this.draggedBlock = this.draggedBlockCategoryName = undefined;
+            this.onDragEnd(e, block);
         });
     }
 
@@ -269,6 +277,18 @@ export class Toolbox {
         category?.GetView()?.parent().append($('<div/>').addClass('selected-line'));
 
         this.selected = category;
+    }
+
+    SetElem_OnDragStart(f){
+        this.onDragStart = f;
+    }
+
+    SetElem_OnDragEnd(f){
+        this.onDragEnd = f;
+    }
+
+    SetToolbox_OnDrop(f){
+        this.onDrop = f;
     }
 
 }

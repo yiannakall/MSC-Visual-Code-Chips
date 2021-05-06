@@ -111,13 +111,24 @@ body{
     border-color: #FFE34D !important;
 }
 
+.highlighted{
+    border-color: #0C7D9D;
+}
+
+.opaque{
+    opacity: 0.5;
+}
+
 .block-can-repeat{
     opacity: 0.5;
-    text-decoration: line-through;
+}
+
+.opaque.block-can-repeat{
+    opacity: 0.25;
 }
 
 .block-can-repeat::placeholder{
-    text-decoration: line-through;
+
 }
 
 .block-with-selections{

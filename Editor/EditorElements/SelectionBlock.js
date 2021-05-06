@@ -28,7 +28,7 @@ export class SelectionBlock extends EditorElement {
         };
     }
 
-    Render_($container){        
+    Render_($container){
         let $blockWithArrow = 
             $('<div/>').addClass('block-with-arrow').append(
                 $('<div/>').addClass('block').html(this.symbol.alias || this.symbol.symbol.name),
@@ -36,7 +36,7 @@ export class SelectionBlock extends EditorElement {
             );
 
         if (this.symbol.repeatable){
-            $blockWithArrow.addClass('block-can-repeat')
+            $blockWithArrow.addClass('block-can-repeat');
         }
         this.$customizableView = $blockWithArrow;
 
