@@ -12,12 +12,17 @@ import { TabBlock } from './EditorElements/TabBlock.js'
 import { KeyboardEventManager } from '../Utils/KeyboardEventManager.js'
 import { Toolbox } from './Toolbox/Toolbox.js';
 import { EditorElementParser } from './EditorElementParser.js';
+import { ContextMenu } from './ContextMenu.js';
 
 export class Editor {
 
     $container;
     $editor;
+
     $workspace;
+    $code;
+    $rightClickContainer;
+
     $toolboxspace;
 
     language;
@@ -57,6 +62,7 @@ export class Editor {
         this.InitializeCode_();
         this.InitializeView_();
         this.InitializeEvents_();
+        this.SetUpContextMenu_();
 
         this.toolbox = new Toolbox(this.$toolboxspace, toolboxInfo);
         this.toolbox.SetToolbox_MaxWidth(() => {
@@ -83,6 +89,11 @@ export class Editor {
 
     InitializeView_(){
         this.$workspace = $('<div/>').addClass('workspace');
+
+        this.$code = $('<div/>').addClass('code');
+        this.$contextMenuContainer = $('<div/>').addClass('context-menu-container');
+        this.$workspace.append(this.$code, this.$contextMenuContainer);
+
         this.$toolboxspace = $('<div/>').addClass('toolboxspace');
         
         this.$editor = $('<div/>').addClass('editor');
@@ -110,6 +121,48 @@ export class Editor {
             .AddEventHandler( [Keys.CTRL, Keys.C],      () => this.EventHandler_Copy_() )
             .AddEventHandler( [Keys.CTRL, Keys.V],      () => this.EventHandler_Paste_() )
         ;
+    }
+
+    SetUpContextMenu_(){
+        this.$contextMenuContainer.empty();
+
+        this.$workspace.on('contextmenu', (e) => {
+            e.preventDefault();
+
+            this.Select(undefined);
+
+            let contextMenu = new ContextMenu(this.$contextMenuContainer, [
+                [
+                    { name: 'Undo', shortcut: 'Ctrl+Z', handler: () => {} },
+                    { name: 'Redo', shortcut: 'Ctrl+U', handler: () => {} },
+                ],
+                [
+                    { name: 'DeleteAll', shortcut: 'Ctrl+A+Del', handler: () => {} }
+                ]
+            ]);
+
+
+            contextMenu.Render();
+
+            this.FitContextMenu_(e);
+        });
+    }
+
+    FitContextMenu_(e){
+        let clickOffsetX = e.pageX - this.$workspace.offset().left, clickOffsetY = e.pageY - this.$workspace.offset().top;
+            
+        let positionX = 
+            clickOffsetX + this.$contextMenuContainer.width() < this.$workspace.width() ? clickOffsetX :
+            clickOffsetX - this.$contextMenuContainer.width() >= 0 ? clickOffsetX - this.$contextMenuContainer.width() :
+            clickOffsetX; // will be unavoidably outside the container...
+
+        let positionY =
+            clickOffsetY + this.$contextMenuContainer.height() < this.$workspace.height() ? clickOffsetY :
+            clickOffsetY - this.$contextMenuContainer.height() >= 0 ? clickOffsetY - this.$contextMenuContainer.height() :
+            clickOffsetY; // will be unavoidably outside the container...
+            
+        this.$contextMenuContainer.css('left', positionX);
+        this.$contextMenuContainer.css('top', positionY);
     }
 
     RemoveElem_WithChecks(elem){
@@ -173,11 +226,11 @@ export class Editor {
     }
 
     RenderWorkspace(){
-        let scrollTop = this.$workspace.scrollTop()
-        this.$workspace.empty();
-        this.code.Render(this.$workspace);
-        this.$workspace.append($('<div/>').addClass('fill'));
-        this.$workspace.scrollTop(scrollTop);
+        let scrollTop = this.$code.scrollTop();
+        this.$code.empty();
+        this.code.Render(this.$code);
+        this.$code.append($('<div/>').addClass('fill'));
+        this.$code.scrollTop(scrollTop);
         if (this.selected){
             this.Select(this.selected);
         }
@@ -195,6 +248,12 @@ export class Editor {
                 elem.SetDraggable(false);
                 elem.SetDroppable(false);
                 break;
+            case EditorElementTypes.SimpleBlock:
+                if (!elem.GetGeneratedBy()){
+                    elem.SetDraggable(false);
+                    elem.SetDroppable(false);
+                }
+                break;
         }
 
         if (elem.GetSymbol && elem.GetSymbol().repeatable){
@@ -203,6 +262,7 @@ export class Editor {
         
         this.SetElem_OnDrop(elem);
         this.SetElem_OnClick_(elem);
+        this.SetElem_OnContextMenu_(elem);
         this.SetElem_Theme_(elem);
     }
 
@@ -220,6 +280,42 @@ export class Editor {
     SetElem_OnClick_(elem){
         elem.SetOnClick((elem) => {
             this.Select(elem);
+        });
+    }
+
+    SetElem_OnContextMenu_(elem){
+        elem.SetOnContextMenu((e, elem) => {
+            e.stopPropagation();
+            e.preventDefault();
+
+            this.$contextMenuContainer.empty();
+
+            this.Select(elem);
+
+            let contextMenu = new ContextMenu(this.$contextMenuContainer, [
+                [
+                    { name: 'Cut', shortcut: 'Ctrl+X', handler: () => {} },
+                    { name: 'Copy', shortcut: 'Ctrl+C', handler: () => {} },
+                    { name: 'Paste', shortcut: 'Ctrl+V', handler: () => {} }
+                ],
+                [
+                    { name: 'Show Generation Path', shortcut: 'Ctrl+G', handler: () => {} },
+                ],
+                [
+                    { name: 'Delete', shortcut: 'Del', handler: () => {} },
+                    { name: 'Delete Until Possible', shortcut: 'Ctrl+Delete', handler: () => {} },
+                ],
+                [
+                    { name: 'Indent', shortcut: 'Tab', handler: () => {} },
+                    { name: 'Outdent', shortcut: 'Shift+Tab', handler: () => {} },
+                    { name: 'Place In New Line', shortcut: 'Enter', handler: () => {} },
+                    { name: 'Place In Previous Line', shortcut: 'Backspace', handler: () => {} }
+                ],
+            ]);
+
+            contextMenu.Render();
+
+            this.FitContextMenu_(e);
         });
     }
 
@@ -389,7 +485,7 @@ export class Editor {
     }
 
     RemoveHightlights(){
-        this.$workspace.find('.highlighted').removeClass('highlighted');
+        this.$code.find('.highlighted').removeClass('highlighted');
     }
 
     FindCommonPredecessor(elem1, elem2){

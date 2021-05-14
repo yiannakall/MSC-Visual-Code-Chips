@@ -19,7 +19,8 @@ export class EditorElement {
     isDroppable = true;
 
     onClick = (self) => {};
-    theme = (self) => { return ''; }
+    onContextMenu = (e, self) => {};
+    theme = (self) => { return ''; };
     
     onDragStart = (e, self) => { };
     onDragEnd = (e, self) => { };
@@ -44,6 +45,7 @@ export class EditorElement {
         let instance = this.Clone_();
 
         instance.onClick = this.onClick.bind(instance);
+        instance.onContextMenu = this.onContextMenu.bind(instance);
         instance.theme = this.theme.bind(instance);
         instance.onDragStart = this.onDragStart.bind(instance);
         instance.onDragEnd = this.onDragEnd.bind(instance);
@@ -88,6 +90,7 @@ export class EditorElement {
         this.ApplyTheme_();
         this.PastStyling_();
         this.AddOnClick_();
+        this.AddOnContextMenu_();
 
         if (this.isDraggable){
             this.MakeDraggable_();
@@ -106,6 +109,12 @@ export class EditorElement {
         this.$wholeView.on('click', (e) => {
             this.onClick(this);
             e.stopPropagation();
+        });
+    }
+
+    AddOnContextMenu_(){
+        this.$wholeView.on('contextmenu', (e) => {
+            this.onContextMenu(e, this);
         });
     }
 
@@ -151,6 +160,7 @@ export class EditorElement {
     GetParent()                     { return this.parent; }
 
     SetOnClick(f)                   { this.onClick = f; }
+    SetOnContextMenu(f)             { this.onContextMenu = f; }
     SetOnDragStart(f)               { this.onDragStart = f; }
     SetOnDragEnd(f)                 { this.onDragEnd = f; }
     SetOnDrop(f)                    { this.onDrop = f; }

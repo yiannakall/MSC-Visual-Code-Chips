@@ -38,32 +38,47 @@ body{
 }
 
 .workspace{
+    position: relative;
     background-color: #1e1e1e;
     outline: none;
     width: -moz-available;
     width: -webkit-fill-available;
     width: fill-available;
     height: inherit;
-    overflow: auto;
-    padding: 20px 20px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-.workspace > .fill {
+.workspace .code {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px 20px;
+    overflow: auto;
+}
+
+.code > .fill {
     width: inherit;
     height:inherit;
     background-color: transparent;
 }
 
-.toolboxspace{
-    background-color: white;
-}
-
-.workspace > .group {
+.code > .group {
     border: none;
     cursor: unset;
+}
+
+.context-menu-container {
+    position: absolute;
+    width: fit-content;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.toolboxspace{
+    background-color: white;
 }
 
 .block, .block-with-arrow{
@@ -306,7 +321,11 @@ body{
     min-height: 100px;
 }
 
-.toolbox-blocks .drop-indicator {
+.category-blocks.droparea{
+    background-color: #383B3D;
+}
+
+.category-blocks .drop-indicator {
     width: 100%;
     height: 4px;
     opacity: 0.2;
@@ -315,17 +334,96 @@ body{
 
 /********************************* SCROLLBARS *********************************/
 
-.workspace::-webkit-scrollbar, .toolbox-blocks::-webkit-scrollbar{
+.code::-webkit-scrollbar, .toolbox-blocks::-webkit-scrollbar{
     width: 12px;
     height: 12px;
 }
 
-.workspace::-webkit-scrollbar-corner, .toolbox-blocks::-webkit-scrollbar-corner{
+.code::-webkit-scrollbar-corner, .toolbox-blocks::-webkit-scrollbar-corner{
     background-color: transparent;
 }
 
-.workspace::-webkit-scrollbar-thumb, .toolbox-blocks::-webkit-scrollbar-thumb{
+.code::-webkit-scrollbar-thumb, .toolbox-blocks::-webkit-scrollbar-thumb{
     background-color: #424242;
     border-radius: 4px;
     height: 10px;
+}
+
+/********************************* CONTEXT MENU *********************************/
+
+.context-menu {
+    background-color: #252526;
+    padding: 10px 0px;
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), -4px 0px 4px rgba(0, 0, 0, 0.25), 4px 0px 4px rgba(0, 0, 0, 0.25);
+
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+
+    width: fit-content;
+    outline: 0;
+}
+
+.context-menu .category {
+    
+}
+
+.context-menu .option {
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+
+    font-size: 14px;
+    padding: 5px 40px;
+
+    cursor: pointer;
+}
+
+.context-menu .shortcut {
+    color: #a1a1a1;
+    font-family: 'Roboto';
+}
+
+.context-menu .label {
+    width: max-content;
+    color: #d1d1d1;
+    font-family: 'Roboto';
+}
+
+.context-menu .option:hover {
+    background-color: #094771;
+}
+
+.context-menu .separator {
+    height: 1px;
+    background-color: #303031;
+}
+
+.context-menu .arrow {
+    width: 12px;
+    height: 12px;
+
+    background: #d1d1d1;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url(/Images/arrow.svg);
+    mask-image: url(/Images/arrow.svg);
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+}
+
+.context-menu .option-with-arrow {
+    position: relative;
+}
+
+.context-menu.inner {
+    right: 0;
+    top: -10px;
+    transform: translate(100%, 0);
+    position: absolute;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 4px 0px 4px rgba(0, 0, 0, 0.25);
 }

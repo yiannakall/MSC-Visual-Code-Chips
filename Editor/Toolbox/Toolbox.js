@@ -216,12 +216,15 @@ export class Toolbox {
 
         $blocks.on('dragenter', (e) => {
             e.preventDefault();
+            $blocks.addClass('droparea');
             counter++;
         });
 
         $blocks.on('dragleave', (e) => {
-            if (--counter === 0)
+            if (--counter === 0){
                 $dropIndicator.remove();
+                $blocks.removeClass('droparea');
+            }
         });
 
         let indexFromDrop;
@@ -235,7 +238,7 @@ export class Toolbox {
             for (let i = 0; i < blocks.length; i++){
                 let b = blocks[i];
 
-                let offset = b.GetWholeView().offset().top + b.GetWholeView().height() / 2 - e.clientY;
+                let offset = b.GetWholeView().offset().top + b.GetWholeView().height() / 2 - e.pageY;
                 if ( (minOffset === undefined && offset >= 0) || (offset !== undefined && offset < minOffset && offset >= 0) ){
                     minOffset = offset;
                     $minOffsetBlockView = b.GetWholeView();
