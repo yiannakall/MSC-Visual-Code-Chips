@@ -107,19 +107,22 @@ export class Editor {
         const Keys = KeyboardEventManager.Keys;
         
         this.keyboardEventManager = new KeyboardEventManager(this.$workspace)
-            .AddEventHandler( [Keys.UP],                () => this.EventHandler_NavigateUp_() )
-            .AddEventHandler( [Keys.DOWN],              () => this.EventHandler_NavigateDown_() )
-            .AddEventHandler( [Keys.LEFT],              () => this.EventHandler_NavigateLeft_() )
-            .AddEventHandler( [Keys.RIGHT],             () => this.EventHandler_NavigateRight_() )
-            .AddEventHandler( [Keys.ONE],               () => this.EventHandler_NavigateIn_() )
-            .AddEventHandler( [Keys.TWO],               () => this.EventHandler_NavigateOut_() )
-            .AddEventHandler( [Keys.BACKSPACE],         () => this.EventHandler_Backspace_() )
-            .AddEventHandler( [Keys.DELETE],            () => this.EventHandler_Delete_() )
-            .AddEventHandler( [Keys.ENTER],             () => this.EventHandler_NewLine_() )
-            .AddEventHandler( [Keys.SHIFT, Keys.TAB],   () => this.EventHandler_Outdent_() )
-            .AddEventHandler( [Keys.TAB],               () => this.EventHandler_Indent_() )
-            .AddEventHandler( [Keys.CTRL, Keys.C],      () => this.EventHandler_Copy_() )
-            .AddEventHandler( [Keys.CTRL, Keys.V],      () => this.EventHandler_Paste_() )
+            .AddEventHandler( [Keys.UP],                            () => this.EventHandler_NavigateUp_() )
+            .AddEventHandler( [Keys.DOWN],                          () => this.EventHandler_NavigateDown_() )
+            .AddEventHandler( [Keys.LEFT],                          () => this.EventHandler_NavigateLeft_() )
+            .AddEventHandler( [Keys.RIGHT],                         () => this.EventHandler_NavigateRight_() )
+            .AddEventHandler( [Keys.ONE],                           () => this.EventHandler_NavigateIn_() )
+            .AddEventHandler( [Keys.TWO],                           () => this.EventHandler_NavigateOut_() )
+            .AddEventHandler( [Keys.BACKSPACE],                     () => this.EventHandler_Backspace_() )
+            .AddEventHandler( [Keys.CTRL, Keys.A, Keys.DELETE],     () => this.EventHandler_DeleteAll_() )
+            .AddEventHandler( [Keys.ALT, Keys.DELETE],              () => this.EventHandler_DeleteUntilPossible_() )
+            .AddEventHandler( [Keys.DELETE],                        () => this.EventHandler_Delete_() )
+            .AddEventHandler( [Keys.ENTER],                         () => this.EventHandler_NewLine_() )
+            .AddEventHandler( [Keys.SHIFT, Keys.TAB],               () => this.EventHandler_Outdent_() )
+            .AddEventHandler( [Keys.TAB],                           () => this.EventHandler_Indent_() )
+            .AddEventHandler( [Keys.CTRL, Keys.X],                  () => this.EventHandler_Cut_() )
+            .AddEventHandler( [Keys.CTRL, Keys.C],                  () => this.EventHandler_Copy_() )
+            .AddEventHandler( [Keys.CTRL, Keys.V],                  () => this.EventHandler_Paste_() )
         ;
     }
 
@@ -137,7 +140,7 @@ export class Editor {
                     { name: 'Redo', shortcut: 'Ctrl+U', handler: () => {} },
                 ],
                 [
-                    { name: 'DeleteAll', shortcut: 'Ctrl+A+Del', handler: () => {} }
+                    { name: 'Delete All', shortcut: 'Ctrl+A+Del', handler: () => this.EventHandler_DeleteAll_() }
                 ]
             ]);
 
@@ -165,33 +168,47 @@ export class Editor {
         this.$contextMenuContainer.css('top', positionY);
     }
 
-    RemoveElem_WithChecks(elem){
-        let group = elem?.GetParent();
-        
-        if (!group) return false;
+    CanRemoveElem(elem){
+        return  elem?.GetParent() && 
+                (
+                    elem.GetGeneratedBy() ||
+                    elem.GetType() === EditorElementTypes.Tab || 
+                    elem.GetType() === EditorElementTypes.NewLine
+                );
+    }
 
-        let generatedBy = elem.GetGeneratedBy();
+    RemoveElem_WithChecks(elem){
+        if (!this.CanRemoveElem(elem)) return false;
+
+        let parent = elem.GetParent(), generatedBy = elem.GetGeneratedBy();
 
         if (generatedBy && !generatedBy.GetSymbol().repeatable){
-            group.InsertAfterElem(elem, generatedBy);
+            parent.InsertAfterElem(elem, generatedBy);
             this.Select(generatedBy);
         }
 
-        if (
-            generatedBy || 
-            elem.GetType() === EditorElementTypes.Tab || 
-            elem.GetType() === EditorElementTypes.NewLine
-        ){
-            if (elem === this.selected){
-                this.NavigateRight() || this.NavigateOut() || (this.selected = undefined);
-            }
-
-            group.RemoveElem(elem);
-            this.RenderWorkspace();
-            return true;
+        if (elem === this.selected){
+            this.NavigateRight() || this.NavigateOut() || (this.selected = undefined);
         }
 
-        return false;
+        parent.RemoveElem(elem);
+        this.RenderWorkspace();
+        return true;
+    }
+
+    RemoveElemUntilPossible_WithChecks(elem){
+        if (!this.CanRemoveElem(elem)) return false;
+
+        const wasSelected = elem === this.selected;
+
+        for (; this.RemoveElem_WithChecks(elem); elem = elem.GetGeneratedBy()){
+            if (wasSelected && this.selected !== elem.GetGeneratedBy()){
+                /* if the selected block changed to a block that is not the immediate descendant (e.g. a sibling) */
+                break;
+            }
+        }
+
+        return true;
     }
 
     Select(elem) {
@@ -294,22 +311,21 @@ export class Editor {
 
             let contextMenu = new ContextMenu(this.$contextMenuContainer, [
                 [
-                    { name: 'Cut', shortcut: 'Ctrl+X', handler: () => {} },
-                    { name: 'Copy', shortcut: 'Ctrl+C', handler: () => {} },
-                    { name: 'Paste', shortcut: 'Ctrl+V', handler: () => {} }
+                    { name: 'Cut', shortcut: 'Ctrl+X', handler: () => this.EventHandler_Cut_() },
+                    { name: 'Copy', shortcut: 'Ctrl+C', handler: () => this.EventHandler_Copy_() },
+                    { name: 'Paste', shortcut: 'Ctrl+V', handler: () => this.EventHandler_Paste_() }
                 ],
                 [
                     { name: 'Show Generation Path', shortcut: 'Ctrl+G', handler: () => {} },
                 ],
                 [
-                    { name: 'Delete', shortcut: 'Del', handler: () => {} },
-                    { name: 'Delete Until Possible', shortcut: 'Ctrl+Delete', handler: () => {} },
+                    { name: 'Delete', shortcut: 'Del', handler: () => this.EventHandler_Delete_() },
+                    { name: 'Delete Until Possible', shortcut: 'Alt+Del', handler: () => this.EventHandler_DeleteUntilPossible_() },
                 ],
                 [
-                    { name: 'Indent', shortcut: 'Tab', handler: () => {} },
-                    { name: 'Outdent', shortcut: 'Shift+Tab', handler: () => {} },
-                    { name: 'Place In New Line', shortcut: 'Enter', handler: () => {} },
-                    { name: 'Place In Previous Line', shortcut: 'Backspace', handler: () => {} }
+                    { name: 'Indent', shortcut: 'Tab', handler: () => this.EventHandler_Indent_() },
+                    { name: 'Outdent', shortcut: 'Shift+Tab', handler: () => this.EventHandler_Outdent_() },
+                    { name: 'Place In New Line', shortcut: 'Enter', handler: () => this.EventHandler_NewLine_() },
                 ],
             ]);
 
@@ -466,13 +482,14 @@ export class Editor {
         return tab;
     }
 
+    CanCopy(elem){
+        return elem && elem.GetSymbol && !elem.GetSymbol().repeatable;
+    }
+
     CopyToClipboard(elem){
-        if (
-            elem.GetSymbol && 
-            !elem.GetSymbol().repeatable
-        ){
-            this.clipboard = elem.CloneRec();
-        }
+        if (!this.CanCopy(elem)) return false;
+        this.clipboard = elem.CloneRec();
+        return true;
     }
 
     HighlightValidPasteTargets(source){
@@ -501,6 +518,10 @@ export class Editor {
             }
         }
         return null;
+    }
+
+    CanPaste(source, dest){
+        return !!this.FindCommonPredecessor(source, dest);
     }
 
     Paste(source, dest){
@@ -646,6 +667,15 @@ export class Editor {
         this.RemoveElem_WithChecks(this.selected);
     }
 
+    EventHandler_DeleteUntilPossible_(){
+        this.RemoveElemUntilPossible_WithChecks(this.selected)
+    }
+
+    EventHandler_DeleteAll_(){
+        this.InitializeCode_();
+        this.RenderWorkspace();
+    }
+
     EventHandler_Backspace_(){
         this.RemoveElem_WithChecks(this.selected.GetParent().GetPreviousElem(this.selected));
     }
@@ -674,10 +704,15 @@ export class Editor {
         }
     }
 
-    EventHandler_Copy_(){
-        if (this.selected){
+    EventHandler_Cut_(){
+        if (this.CanCopy(this.selected) && this.CanRemoveElem(this.selected)){
             this.CopyToClipboard(this.selected);
+            this.RemoveElemUntilPossible_WithChecks(this.selected);
         }
+    }
+
+    EventHandler_Copy_(){
+        this.CopyToClipboard(this.selected);
     }
 
     EventHandler_Paste_(){
