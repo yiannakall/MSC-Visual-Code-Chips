@@ -376,23 +376,33 @@ body{
 
     font-size: 14px;
     padding: 5px 40px;
+}
 
+.context-menu .option:not(.disabled):hover {
+    background-color: #094771;
+}
+
+.context-menu .option:not(.disabled) {
     cursor: pointer;
 }
 
-.context-menu .shortcut {
+.context-menu .option .shortcut {
     color: #a1a1a1;
     font-family: 'Roboto';
 }
 
-.context-menu .label {
+.context-menu .option .label {
     width: max-content;
     color: #d1d1d1;
     font-family: 'Roboto';
 }
 
-.context-menu .option:hover {
-    background-color: #094771;
+.context-menu .option.disabled .label {
+    opacity: 0.4;
+}
+
+.context-menu .option.disabled .shortcut {
+    opacity: 0.4;
 }
 
 .context-menu .separator {

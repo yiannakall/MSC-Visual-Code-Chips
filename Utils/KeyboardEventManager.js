@@ -49,6 +49,10 @@ export class KeyboardEventManager {
                 e.stopPropagation();
             }
         });
+
+        this.$element.on('focusout', () => {
+            this.keysDown = [];
+        });
     }
 
     /* 

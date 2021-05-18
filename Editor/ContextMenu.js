@@ -58,7 +58,7 @@ export class ContextMenu {
      * @param {{name, shortcut, handler} | {name, options}} option 
      */
     CreateOption_(option){
-        let {name, shortcut, handler, options} = option;
+        let {name, shortcut, handler, options, disabled} = option;
         assert(name && handler || name && options && !handler && !shortcut);
 
         let $option = $('<div/>').addClass('option');
@@ -68,7 +68,10 @@ export class ContextMenu {
         if (shortcut)
             $option.append( $('<div/>').addClass('shortcut').text(shortcut) );
         
-        if (handler)
+        if (disabled)
+            $option.addClass('disabled');
+
+        if (handler && !disabled)
             $option.on('click', () => {
                 handler();
                 this.$previouslyFocused.focus();

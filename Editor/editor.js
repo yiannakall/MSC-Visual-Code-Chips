@@ -2,7 +2,7 @@
 import { AliasedGrammarSymbol, Language} from '../Language.js'
 import { assert } from "../Utils/Assert.js";
 
-import { EditorElementTypes } from './EditorElements/EditorElement.js'
+import { EditorElement, EditorElementTypes } from './EditorElements/EditorElement.js'
 import { Group } from './EditorElements/Group.js'
 import { InputBlock } from './EditorElements/InputBlock.js'
 import { NewLine } from './EditorElements/NewLine.js'
@@ -311,21 +311,63 @@ export class Editor {
 
             let contextMenu = new ContextMenu(this.$contextMenuContainer, [
                 [
-                    { name: 'Cut', shortcut: 'Ctrl+X', handler: () => this.EventHandler_Cut_() },
-                    { name: 'Copy', shortcut: 'Ctrl+C', handler: () => this.EventHandler_Copy_() },
-                    { name: 'Paste', shortcut: 'Ctrl+V', handler: () => this.EventHandler_Paste_() }
+                    {
+                        name: 'Cut',
+                        shortcut: 'Ctrl+X',
+                        disabled: !this.CanCut(this.selected),
+                        handler: () => this.EventHandler_Cut_()
+                    },
+                    {
+                        name: 'Copy',
+                        shortcut: 'Ctrl+C',
+                        disabled: !this.CanCopy(this.selected),
+                        handler: () => this.EventHandler_Copy_()
+                    },
+                    {
+                        name: 'Paste',
+                        shortcut: 'Ctrl+V',
+                        disabled: !this.CanPaste(this.clipboard, this.selected),
+                        handler: () => this.EventHandler_Paste_()
+                    }
                 ],
                 [
-                    { name: 'Show Generation Path', shortcut: 'Ctrl+G', handler: () => {} },
+                    {
+                        name: 'Show Generation Path',
+                        shortcut: 'Ctrl+G',
+                        handler: () => {}
+                    },
                 ],
                 [
-                    { name: 'Delete', shortcut: 'Del', handler: () => this.EventHandler_Delete_() },
-                    { name: 'Delete Until Possible', shortcut: 'Alt+Del', handler: () => this.EventHandler_DeleteUntilPossible_() },
+                    {
+                        name: 'Delete',
+                        shortcut: 'Del',
+                        disabled: !this.CanRemoveElem(this.selected),
+                        handler: () => this.EventHandler_Delete_()
+                    },
+                    { 
+                        name: 'Delete Until Possible',
+                        shortcut: 'Alt+Del',
+                        disabled: !this.CanRemoveElem(this.selected),
+                        handler: () => this.EventHandler_DeleteUntilPossible_()
+                    },
                 ],
                 [
-                    { name: 'Indent', shortcut: 'Tab', handler: () => this.EventHandler_Indent_() },
-                    { name: 'Outdent', shortcut: 'Shift+Tab', handler: () => this.EventHandler_Outdent_() },
-                    { name: 'Place In New Line', shortcut: 'Enter', handler: () => this.EventHandler_NewLine_() },
+                    { 
+                        name: 'Indent',
+                        shortcut: 'Tab',
+                        handler: () => this.EventHandler_Indent_()
+                    },
+                    {
+                        name: 'Outdent',
+                        shortcut: 'Shift+Tab',
+                        disabled: !this.CanOutdent(this.selected),
+                        handler: () => this.EventHandler_Outdent_()
+                    },
+                    {
+                        name: 'Place In New Line',
+                        shortcut: 'Enter',
+                        handler: () => this.EventHandler_NewLine_()
+                    },
                 ],
             ]);
 
@@ -506,7 +548,7 @@ export class Editor {
     }
 
     FindCommonPredecessor(elem1, elem2){
-        if (!elem1.GetSymbol || !elem2.GetSymbol)
+        if (!elem1?.GetSymbol || !elem2?.GetSymbol)
             return null;
 
         for (let iter1 = elem1; iter1; iter1 = iter1.GetGeneratedBy()){
@@ -687,10 +729,18 @@ export class Editor {
         }
     }
 
+    CanOutdent(elem){
+        let previous = elem?.GetParent()?.GetPreviousElem(elem);
+        if (previous && previous.GetType() === EditorElementTypes.Tab){
+            return true;
+        }
+        return false;
+    }
+
     EventHandler_Outdent_(){
         if (this.selected && this.selected.GetParent()){
             let previous = this.selected.GetParent().GetPreviousElem(this.selected);
-            if (previous.type === EditorElementTypes.Tab){
+            if (previous && previous.GetType() === EditorElementTypes.Tab){
                 this.selected.GetParent().RemoveElem(previous);
                 this.RenderWorkspace();
             }
@@ -704,8 +754,12 @@ export class Editor {
         }
     }
 
+    CanCut(elem){
+        return this.CanCopy(elem) && this.CanRemoveElem(elem);
+    }
+
     EventHandler_Cut_(){
-        if (this.CanCopy(this.selected) && this.CanRemoveElem(this.selected)){
+        if (this.CanCut(this.selected)){
             this.CopyToClipboard(this.selected);
             this.RemoveElemUntilPossible_WithChecks(this.selected);
         }
@@ -716,15 +770,10 @@ export class Editor {
     }
 
     EventHandler_Paste_(){
-        if (
-            this.clipboard 
-            && this.selected?.GetType() !== EditorElementTypes.Tab
-        ){
-            let source = this.clipboard.CloneRec(), dest = this.selected;
-            if (this.Paste(source, dest)){
-                this.RenderWorkspace();
-                this.Select(source);
-            }
+        let source = this.clipboard?.CloneRec(), dest = this.selected;
+        if (this.Paste(source, dest)){
+            this.RenderWorkspace();
+            this.Select(source);
         }
     }
 }
