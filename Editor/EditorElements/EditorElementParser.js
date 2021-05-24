@@ -1,11 +1,11 @@
-import { EditorElementTypes } from './EditorElements/EditorElement.js';
-import { Group } from './EditorElements/Group.js'
-import { InputBlock } from './EditorElements/InputBlock.js'
-import { SelectionBlock } from './EditorElements/SelectionBlock.js'
-import { SimpleBlock } from './EditorElements/SimpleBlock.js'
-import { NewLine } from './EditorElements/NewLine.js'
-import { TabBlock } from './EditorElements/TabBlock.js'
-import { AliasedGrammarSymbol, GrammarSymbol } from '../Language.js';
+import { EditorElementTypes } from './EditorElement.js';
+import { Group } from './Group.js'
+import { InputBlock } from './InputBlock.js'
+import { SelectionBlock } from './SelectionBlock.js'
+import { SimpleBlock } from './SimpleBlock.js'
+import { NewLine } from './NewLine.js'
+import { TabBlock } from './TabBlock.js'
+import { AliasedGrammarSymbol, GrammarSymbol } from '../../Language.js';
 
 export class EditorElementParser {
 
@@ -40,6 +40,7 @@ export class EditorElementParser {
                     symbol,
                     elemJson.alternateSymbols.map(symbol => AliasedGrammarSymbol.FromJson(symbol))
                 );
+                if (elemJson.selectedSymbol !== undefined) elem.SetSelectedSymbol(elemJson.selectedSymbol)
                 break;
             case EditorElementTypes.SimpleBlock:
                 symbol = AliasedGrammarSymbol.FromJson(elemJson.symbol);

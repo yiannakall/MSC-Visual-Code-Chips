@@ -1,7 +1,7 @@
 import { assert } from "../../Utils/Assert.js";
 import { EditorElement, EditorElementTypes } from "../EditorElements/EditorElement.js";
 import { MenuCategory } from "./MenuCategory.js";
-import { EditorElementParser } from "../EditorElementParser.js"
+import { EditorElementParser } from "../EditorElements/EditorElementParser.js"
 import { ContainerResizer } from"../../Utils/ContainerResizer.js"
 
 export class Toolbox {

@@ -45,6 +45,7 @@ body{
     width: -webkit-fill-available;
     width: fill-available;
     height: inherit;
+    overflow: auto;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -144,11 +145,11 @@ body{
 
 .block-with-selections{
     position: relative;
+    width: fit-content;
 }
 
 .block-alternate-selections{
     position: absolute;
-    min-width: 100%;
     z-index: 1;
 
     font: inherit;
@@ -177,7 +178,7 @@ body{
     color: #E5ECF0;
 }
 
-.arrow{
+.block-with-arrow .arrow{
     width: 8px;
     height: 8px;
 
@@ -436,4 +437,139 @@ body{
     transform: translate(100%, 0);
     position: absolute;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 4px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+/********************************* EDITOR POPUP WINDOW *********************************/
+
+.workspace .popup-window{
+    background-color: #04141E;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: calc(100% - 40px);
+    transform: translateX(-50%);
+    border-bottom: 1px solid #007ACC;
+    box-sizing: border-box;
+
+    height: -moz-available;
+    height: -webkit-fill-available;
+    height: fill-available;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.workspace .popup-window .header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #007ACC;
+    border-top: 1px solid #007ACC;
+
+    flex: 0 1 auto;
+}
+
+.workspace .popup-window .title {
+    margin-left: 10px;
+    font: 14px 'Roboto';
+    color: #C4C4C4;
+}
+
+.workspace .popup-window .buttons {
+    display: flex;
+}
+
+.workspace .popup-window .button {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.workspace .popup-window .button-icon {
+    width: 14px; 
+    height: 14px;
+    background: #C4C4C4;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url(/Images/arrow.svg);
+    mask-image: url(/Images/arrow.svg);
+}
+
+.workspace .popup-window .close {
+    -webkit-mask-image: url(/Images/PopupWindow/close.svg);
+    mask-image: url(/Images/PopupWindow/close.svg);
+}
+
+.workspace .popup-window .maximize {
+    -webkit-mask-image: url(/Images/PopupWindow/maximize.svg);
+    mask-image: url(/Images/PopupWindow/maximize.svg);
+}
+
+.workspace .popup-window .button:hover {
+    background-color: #007ACC;
+}
+
+.workspace .popup-window .content {
+    flex: 1 1 auto;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/********************************* GENERATION PATH *********************************/
+
+.generation-path {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.generation-path > .group {
+    border: unset;
+    border-radius: unset;
+    padding: unset;
+    background-color: unset;
+}
+
+.generation-path::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.generation-path::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+.generation-path::-webkit-scrollbar-thumb {
+    background-color: #003556;
+    border-radius: 4px;
+    height: 10px;
+}
+
+.generation-path > .arrow{
+    width: 14px;
+    height: 14px;
+    flex: none;
+
+    transform: rotateZ(90deg);
+    margin-left: 20px;
+
+    background: white;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url(/Images/arrow.svg);
+    mask-image: url(/Images/arrow.svg);
+}
+
+.generation-path .block-alternate-selection:hover{
+    background-color: unset;
+    color: unset;
+}
+
+.generation-path .block-alternate-selection.selected-symbol {
+    background-color: #094771;
+    color: #E5ECF0;
 }

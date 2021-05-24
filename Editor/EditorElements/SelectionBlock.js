@@ -5,6 +5,9 @@ export class SelectionBlock extends EditorElement {
     alternateSymbols = [];
     selectedSymbol;
     isEditable_ = true;
+
+    $blockAlternateSelections;
+
     onSelect = () => {};
 
     constructor(symbol, alternateSymbols){
@@ -16,6 +19,10 @@ export class SelectionBlock extends EditorElement {
     Clone_() {
         let b = new SelectionBlock( this.symbol.Clone(), this.alternateSymbols );
         b.onSelect = this.onSelect.bind(b);
+        b.isEditable_ = this.isEditable_;
+        if (this.selectedSymbol){
+            b.SetSelectedSymbol(this.alternateSymbols.indexOf(this.selectedSymbol));
+        }
         return b;
     }
 
@@ -23,7 +30,7 @@ export class SelectionBlock extends EditorElement {
         return {
             symbol: this.symbol,
             alternateSymbols: this.alternateSymbols,
-            selectedSymbol: this.selectedSymbol
+            selectedSymbol: this.selectedSymbol && this.alternateSymbols.indexOf(this.selectedSymbol)
         };
     }
 
@@ -39,23 +46,23 @@ export class SelectionBlock extends EditorElement {
         }
         this.$customizableView = $blockWithArrow;
 
-        let $blockAlternateSelections = $('<div/>').addClass('block-alternate-selections').hide();
+        this.$blockAlternateSelections = $('<div/>').addClass('block-alternate-selections').hide();
         
         this.$wholeView = 
             $('<div/>').addClass('block-with-selections').append(
                 $blockWithArrow,
-                $blockAlternateSelections
+                this.$blockAlternateSelections
             );
 
         $blockWithArrow.on('click', (e) => {
             if (this.isEditable_){
-                $('.block-alternate-selections').not($blockAlternateSelections).hide();
-                $blockAlternateSelections.toggle();
+                $('.block-alternate-selections').not(this.$blockAlternateSelections).hide();
+                this.$blockAlternateSelections.toggle();
             }
         });
 
         for (let symbol of this.alternateSymbols){
-            $blockAlternateSelections.append(this.CreateChoiceView_(symbol));
+            this.$blockAlternateSelections.append(this.CreateChoiceView_(symbol));
         }
         
         $container.append(this.$wholeView);
@@ -70,11 +77,19 @@ export class SelectionBlock extends EditorElement {
             this.onSelect(this);
         });
     
+        if (symbol === this.selectedSymbol){
+            $choice.addClass('selected-symbol');
+        }
+
         return $choice;
     }
 
     GetSelectedSymbol(){
         return this.selectedSymbol;
+    }
+
+    SetSelectedSymbol(index){
+        this.selectedSymbol = this.alternateSymbols[index];
     }
 
     SetOnSelect(f){

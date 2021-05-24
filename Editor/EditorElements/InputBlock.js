@@ -16,6 +16,7 @@ export class InputBlock extends EditorElement {
         let b = new InputBlock(this.symbol.Clone());
         b.userInput_ =  this.userInput_;
         b.onInput = this.onInput.bind(b);
+        b.isEditable_ = this.isEditable_;
         return b;
     }
 

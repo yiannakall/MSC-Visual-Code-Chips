@@ -56,6 +56,11 @@ export class Group extends EditorElement {
         elem.SetParent(null);
     }
 
+    ReplaceElem(elem, newElem) {
+        this.InsertAfterElem(elem, newElem);
+        this.RemoveElem(elem);
+    }
+
     GetElem_WithOffset(elem, offset){
         assert(elem.GetParent() === this, `${this} is not the parent of ${elem}`);
         let index = this.elems.indexOf(elem);
@@ -85,18 +90,28 @@ export class Group extends EditorElement {
     }
 
     ForEach(f){
-        for (let elem of this.elems){
+        for (let i = 0; i < this.elems.length; ++i){
+            let elem = this.elems[i];
+            
             f(elem);
         }
     }
 
-    ForEachRec(f){
-        for (let elem of this.elems){
+    ForEachRec(fPre, fPost){
+        if (fPre) fPre(this);
+
+        for (let i = 0; i < this.elems.length; ++i){
+            let elem = this.elems[i];
+
             if (elem.GetType() === EditorElementTypes.Group){
-                elem.ForEachRec(f);
+                elem.ForEachRec(fPre, fPost);
+            }else{
+                if (fPre)   fPre(elem);
+                if (fPost)  fPost(elem);
             }
-            f(elem);
         }
+
+        if (fPost) fPost(this);
     }
 
     Clone_(){

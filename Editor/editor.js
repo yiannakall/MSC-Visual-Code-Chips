@@ -11,8 +11,9 @@ import { SimpleBlock } from './EditorElements/SimpleBlock.js'
 import { TabBlock } from './EditorElements/TabBlock.js'
 import { KeyboardEventManager } from '../Utils/KeyboardEventManager.js'
 import { Toolbox } from './Toolbox/Toolbox.js';
-import { EditorElementParser } from './EditorElementParser.js';
+import { EditorElementParser } from './EditorElements/EditorElementParser.js';
 import { ContextMenu } from './ContextMenu.js';
+import { GenerationPathPopup } from './EditorPopups/GenerationPathPopup.js';
 
 export class Editor {
 
@@ -32,6 +33,8 @@ export class Editor {
 
     keyboardEventManager;
     elemForDropping;
+
+    generationPathPopup;
 
     typeValidators = {
         INT : (text) => {
@@ -334,7 +337,11 @@ export class Editor {
                     {
                         name: 'Show Generation Path',
                         shortcut: 'Ctrl+G',
-                        handler: () => {}
+                        handler: () => {
+                            this.generationPathPopup?.Destroy();
+                            this.generationPathPopup = new GenerationPathPopup(this.$workspace, this.selected);
+                            this.generationPathPopup.Render();
+                        }
                     },
                 ],
                 [
