@@ -73,9 +73,7 @@ export class ContainerResizer {
 
         let onMouseMove = (e) => {
             let mousePointX = e.pageX;
-            let containerEndX = this.$container.offset().left + this.$container.width();
-
-            let newWidth = restrictWidth(this.$container.width() + (mousePointX - containerEndX));
+            let newWidth = restrictWidth(mousePointX - this.$container.offset().left);
             this.$container.css('width', newWidth + 'px');
         }
 
@@ -95,6 +93,10 @@ export class ContainerResizer {
             let newWidth = restrictWidth(this.$container.width());
             this.$container.css('width', newWidth + 'px');
         });
+    }
+
+    InitializeToFixedWidth(){
+        this.$container.css('width', this.$container.width() + 'px');
     }
 
     SetMaxWidth(f){

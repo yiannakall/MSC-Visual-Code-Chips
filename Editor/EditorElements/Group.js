@@ -17,6 +17,10 @@ export class Group extends EditorElement {
         return this.symbol;
     }
 
+    GetElems(){
+        return this.elems;
+    }
+
     PushElem(elem){
         elem.SetParent(this);
         this.elems.push(elem);

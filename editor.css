@@ -442,11 +442,11 @@ body{
 /********************************* EDITOR POPUP WINDOW *********************************/
 
 .workspace .popup-window{
-    background-color: #04141E;
+    background-color: #001F33;
     position: absolute;
     top: 0;
     left: 50%;
-    width: calc(100% - 40px);
+    width: 100%;
     transform: translateX(-50%);
     border-bottom: 1px solid #007ACC;
     box-sizing: border-box;
@@ -466,8 +466,7 @@ body{
 
     border-bottom: 1px solid #007ACC;
     border-top: 1px solid #007ACC;
-
-    flex: 0 1 auto;
+    background-color: #1e1e1e;
 }
 
 .workspace .popup-window .title {
@@ -510,21 +509,35 @@ body{
 }
 
 .workspace .popup-window .content {
-    flex: 1 1 auto;
     overflow: auto;
-    display: flex;
-    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
 /********************************* GENERATION PATH *********************************/
+
+.generation-content-container {
+    width: 100%;
+    height:100%;
+    overflow: hidden;
+    display: flex;
+}
+
+.generation-content-container .generation-path-container {
+    width: 100%;
+    height:100%;
+    overflow: auto;
+}
 
 .generation-path {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    overflow: auto;
     box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
 }
 
 .generation-path > .group {
@@ -532,6 +545,31 @@ body{
     border-radius: unset;
     padding: unset;
     background-color: unset;
+}
+
+.generation-path > .next{
+    width: 16px;
+    height: 16px;
+    flex: none;
+
+    transform: rotateZ(90deg);
+    margin-left: 20px;
+
+    background: white;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url(/Images/GenerationPathPopup/next.svg);
+    mask-image: url(/Images/GenerationPathPopup/next.svg);
+}
+
+.generation-path .block-alternate-selection:hover{
+    background-color: unset;
+    color: unset;
+}
+
+.generation-path .block-alternate-selection.selected-symbol {
+    background-color: #094771;
+    color: #E5ECF0;
 }
 
 .generation-path::-webkit-scrollbar {
@@ -544,32 +582,113 @@ body{
 }
 
 .generation-path::-webkit-scrollbar-thumb {
-    background-color: #003556;
+    background-color: #0E3954;
     border-radius: 4px;
     height: 10px;
 }
 
-.generation-path > .arrow{
-    width: 14px;
-    height: 14px;
+/********************************* GENERATION PATH TREE-VIEW *********************************/
+
+.generation-content-container .tree-view-container {
+    display: flex;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.generation-content-container .tree-view {
+    background-color: #1e1e1e;
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+
+    width: 100%;
+    height: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.generation-content-container .tree-view .node {
+    color: #C2C2C2;
+}
+
+.generation-content-container .tree-view .node .info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0px;
+
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.generation-content-container .tree-view .node .name {
+    font-size: 1em;
+
+    flex: none;
+}
+
+.generation-content-container .tree-view .node .icon {
+    width: 0.7em;
+    height: 0.7em;
     flex: none;
 
-    transform: rotateZ(90deg);
-    margin-left: 20px;
+    background: #eeeeee;
 
-    background: white;
     -webkit-mask-size: cover;
     mask-size: cover;
-    -webkit-mask-image: url(/Images/arrow.svg);
-    mask-image: url(/Images/arrow.svg);
 }
 
-.generation-path .block-alternate-selection:hover{
-    background-color: unset;
-    color: unset;
+.generation-content-container .tree-view .node .childno {
+    width: 1em;
+    height: 1em;
+
+    background-color: #004A78;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex: none;
 }
 
-.generation-path .block-alternate-selection.selected-symbol {
-    background-color: #094771;
-    color: #E5ECF0;
+.generation-content-container .tree-view .node .children {
+    margin-left: 10px;
+}
+
+.generation-content-container .tree-view .node .info>*:not(.whole-row) {
+    z-index: 1;
+}
+
+.generation-content-container .tree-view .node .whole-row {
+    position: absolute;
+    width: 100%;
+    height: calc(1em + 10px);
+    left: 0;
+    background-color: inherit;
+    cursor: pointer;
+}
+
+.generation-content-container .tree-view .node .info:hover {
+    background-color: #002942;
+    color: white;
+}
+
+.tree-view::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.tree-view::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+.tree-view::-webkit-scrollbar-thumb {
+    background-color: #424242;
+    border-radius: 4px;
+    height: 10px;
 }
