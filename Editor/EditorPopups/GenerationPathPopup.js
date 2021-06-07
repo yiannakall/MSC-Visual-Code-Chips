@@ -16,6 +16,8 @@ export class GenerationPathPopup extends PopupWindow {
     $treeView;
     $treeViewContainer;
 
+    $selectedElemViews = [];
+
     constructor($container, code) {
         super($container, 'Generation path');
         
@@ -49,14 +51,21 @@ export class GenerationPathPopup extends PopupWindow {
                 return styles;
             });
 
-            if (elem.GetType() === EditorElementTypes.InputBlock || elem.GetType() === EditorElementTypes.SelectionBlock){
+            if (elem.GetType() === EditorElementTypes.Group){
+                elem.SetOnRenderElem(elem =>
+                    elem.views ? elem.views.push(elem.GetCustomizableView()) : elem.views = [elem.GetCustomizableView()]
+                );
+            }
+            else if (elem.GetType() === EditorElementTypes.InputBlock || elem.GetType() === EditorElementTypes.SelectionBlock){
                 elem.SetEditable(false);
             }
         });
 
         let startingSymbol = new AliasedGrammarSymbol(new GrammarSymbol('Generation Path', false));
-
         this.code = new Group( startingSymbol, [this.code] );
+        this.code.SetOnRenderElem(elem =>
+            elem.views ? elem.views.push(elem.GetCustomizableView()) : elem.views = [elem.GetCustomizableView()]
+        );
 
         // link so that elem.GetGeneratedBy().next == elem
         this.code.ForEachRec( (elem) => this.LinkGeneratedBySequence(elem) );
@@ -93,6 +102,7 @@ export class GenerationPathPopup extends PopupWindow {
                     position: 'unset'
                 }
             );
+            elem.views.push(elemWithSelections.GetCustomizableView());
 
             parent.ReplaceElem(elemWithSelections, elem);
         }
@@ -155,7 +165,7 @@ export class GenerationPathPopup extends PopupWindow {
     CreateTreeNodeFromBlock(elem) {
         let numChildren = elem.GetType() === EditorElementTypes.Group && 
             elem.GetElems().reduce( 
-                sum => sum + !!(
+                (sum, elem) => sum + !!(
                     elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab
                 ),
                 0
@@ -168,7 +178,26 @@ export class GenerationPathPopup extends PopupWindow {
 
         let name = elem.GetSymbol().alias || elem.GetSymbol().symbol.name;
         
-        return this.CreateTreeNode(icon, name, numChildren);
+        let $node = this.CreateTreeNode(icon, name, numChildren);
+
+        $node.children('.info').on('click', () => {
+            this.$selectedElemViews.forEach($view => {
+                $view.removeClass('selected');
+            });
+
+            this.$selectedElemViews = [];
+
+            for (var generatedBy = elem; generatedBy.GetGeneratedBy(); generatedBy = generatedBy.GetGeneratedBy());
+
+            for (let elem = generatedBy; elem; elem = elem.next){
+                elem.views.forEach($view => {
+                    this.$selectedElemViews.push($view);
+                    $view.addClass('selected');
+                });
+            }
+        });
+
+        return $node;
     }
 
     CreateAllTreeNodesFromBlock(elem){        

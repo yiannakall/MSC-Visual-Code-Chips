@@ -5,6 +5,8 @@ export class Group extends EditorElement {
     elems = [];
     symbol;
     
+    onRenderElem;
+    
     constructor(symbol, elems){
         super(EditorElementTypes.Group);
         elems.forEach( (elem) => elem.SetParent(this) );
@@ -148,8 +150,17 @@ export class Group extends EditorElement {
                 $differentLines.append($inline);
             }else{
                 elem.Render($inline);
+                if (this.onRenderElem)
+                    this.onRenderElem(elem);
             }
         }
+
+        if (this.onRenderElem)
+            this.onRenderElem(this);
+    }
+
+    SetOnRenderElem(f){
+        this.onRenderElem = f;
     }
 
 }
