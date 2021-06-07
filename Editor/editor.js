@@ -14,6 +14,8 @@ import { Toolbox } from './Toolbox/Toolbox.js';
 import { EditorElementParser } from './EditorElements/EditorElementParser.js';
 import { ContextMenu } from './ContextMenu.js';
 import { GenerationPathPopup } from './EditorPopups/GenerationPathPopup.js';
+import { CommandHistory } from './EditorCommands/Command.js';
+import { ChooseCommand } from './EditorCommands/ChooseCommand.js';
 
 export class Editor {
 
@@ -32,7 +34,8 @@ export class Editor {
     selected;
 
     keyboardEventManager;
-    elemForDropping;
+    
+    elemForDropping; // needed because event.dataTransfer.getData is not available onDragEnter
 
     generationPathPopup;
 
@@ -57,6 +60,8 @@ export class Editor {
             return matched && matched[0] === text;
         }
     };
+
+    commands = new CommandHistory();
 
     constructor($container, language, toolboxInfo){
         this.$container = $container;
@@ -126,6 +131,8 @@ export class Editor {
             .AddEventHandler( [Keys.CTRL, Keys.X],                  () => this.EventHandler_Cut_() )
             .AddEventHandler( [Keys.CTRL, Keys.C],                  () => this.EventHandler_Copy_() )
             .AddEventHandler( [Keys.CTRL, Keys.V],                  () => this.EventHandler_Paste_() )
+            .AddEventHandler( [Keys.CTRL, Keys.Z],                  () => this.EventHandler_Undo_() )
+            .AddEventHandler( [Keys.CTRL, Keys.Y],                  () => this.EventHandler_Redo_() )
         ;
     }
 
@@ -139,8 +146,8 @@ export class Editor {
 
             let contextMenu = new ContextMenu(this.$contextMenuContainer, [
                 [
-                    { name: 'Undo', shortcut: 'Ctrl+Z', handler: () => {} },
-                    { name: 'Redo', shortcut: 'Ctrl+U', handler: () => {} },
+                    { name: 'Undo', shortcut: 'Ctrl+Z', handler: () => { this.EventHandler_Undo_(); } },
+                    { name: 'Redo', shortcut: 'Ctrl+Y', handler: () => { this.EventHandler_Redo_(); } },
                 ],
                 [
                     { name: 'Delete All', shortcut: 'Ctrl+A+Del', handler: () => this.EventHandler_DeleteAll_() }
@@ -420,19 +427,12 @@ export class Editor {
 
     SetSelectionBlock_OnSelect_(selectionBlock){
         selectionBlock.SetOnSelect((selectionBlock) => {
-            let vc = this.CreateElem(selectionBlock.GetSelectedSymbol());
-            vc.SetGeneratedBy(selectionBlock);
-
-            selectionBlock.GetParent().InsertBeforeElem(selectionBlock, vc);
-
-            if (!selectionBlock.GetSymbol().repeatable){
-                selectionBlock.GetParent().RemoveElem(selectionBlock);
-            }else{
-                selectionBlock.GetParent().InsertBeforeElem(selectionBlock, this.CreateNewLine());
-            }
-
-            this.RenderWorkspace();
-            this.Select(vc);
+            this.commands.ExecuteAndAppend(
+                new ChooseCommand(
+                    this, selectionBlock,
+                    selectionBlock.GetSelectedSymbol()
+                )
+            );
         });
     }
 
@@ -782,5 +782,13 @@ export class Editor {
             this.RenderWorkspace();
             this.Select(source);
         }
+    }
+
+    EventHandler_Undo_(){
+        this.commands.Undo();
+    }
+
+    EventHandler_Redo_(){
+        this.commands.Redo();
     }
 }
