@@ -16,6 +16,10 @@ import { ContextMenu } from './ContextMenu.js';
 import { GenerationPathPopup } from './EditorPopups/GenerationPathPopup.js';
 import { CommandHistory } from './EditorCommands/Command.js';
 import { ChooseCommand } from './EditorCommands/ChooseCommand.js';
+import { IndentCommand } from './EditorCommands/IndentCommand.js';
+import { OutdentCommand } from './EditorCommands/OutdentCommand.js';
+import { NewLineCommand } from './EditorCommands/NewLineCommand.js';
+import { PasteCommand } from './EditorCommands/PasteCommand.js';
 
 export class Editor {
 
@@ -416,9 +420,10 @@ export class Editor {
                 if (!elemStr)   return;
                 
                 let droppedBlock = EditorElementParser.FromString( elemStr, elem => this.BindElemToEditor_(elem) );
-                if (elem.GetType() !== EditorElementTypes.Tab && this.Paste(droppedBlock, elem)){
-                    this.RenderWorkspace();
-                    this.Select(droppedBlock);
+                if (elem.GetType() !== EditorElementTypes.Tab && this.CanPaste(droppedBlock, elem)){
+                    this.commands.ExecuteAndAppend(
+                        new PasteCommand(this, droppedBlock, elem)
+                    );
                 }
                 e.stopPropagation();
             }
@@ -573,38 +578,6 @@ export class Editor {
         return !!this.FindCommonPredecessor(source, dest);
     }
 
-    Paste(source, dest){
-        let preds = this.FindCommonPredecessor(source, dest);
-        if (!preds) return false;
-
-        let {elem1: sourcePoint, elem2: destPoint} = preds;
-        
-        for (var destRoot = destPoint; destRoot; destRoot = destRoot.generatedBy);
-
-        if (destPoint.GetSymbol().repeatable && !source.GetSymbol().repeatable){
-            /* The repeatable block gets created again to allow further repetitions */
-            if (destPoint === dest){
-                dest.GetParent().InsertAfterElem(dest, dest.CloneRec());
-    
-                if (!destPoint.GetSymbol().symbol.isTerminal)
-                    dest.GetParent().InsertAfterElem(dest, this.CreateNewLine());
-            }
-
-            /* The pasted block (or descendants) has to maintain repeatability, so that it is deletable */
-            if (destPoint.GetSymbol().symbol.isTerminal) {
-                sourcePoint.SetGeneratedBy(destPoint);
-            }else
-                sourcePoint.GetSymbol().repeatable = true;
-        }else
-            sourcePoint.SetGeneratedBy(destPoint.GetGeneratedBy());
-
-        sourcePoint.GetSymbol().alias = destPoint.GetSymbol().alias;
-        dest.GetParent().InsertBeforeElem(dest, source);
-        dest.GetParent().RemoveElem(dest);
-
-        return true;
-    }
-
     NavigateIn() {
         if (this.selected && this.selected.GetType() === EditorElementTypes.Group){
             this.Select(this.selected.GetElem(0));
@@ -731,33 +704,30 @@ export class Editor {
 
     EventHandler_Indent_(){
         if (this.selected && this.selected.GetParent()){
-            this.selected.GetParent().InsertBeforeElem(this.selected, this.CreateTab());
-            this.RenderWorkspace();
+            this.commands.ExecuteAndAppend(
+                new IndentCommand(this, this.selected)
+            );
         }
     }
 
     CanOutdent(elem){
         let previous = elem?.GetParent()?.GetPreviousElem(elem);
-        if (previous && previous.GetType() === EditorElementTypes.Tab){
-            return true;
-        }
-        return false;
+        return previous && previous.GetType() === EditorElementTypes.Tab;
     }
 
     EventHandler_Outdent_(){
-        if (this.selected && this.selected.GetParent()){
-            let previous = this.selected.GetParent().GetPreviousElem(this.selected);
-            if (previous && previous.GetType() === EditorElementTypes.Tab){
-                this.selected.GetParent().RemoveElem(previous);
-                this.RenderWorkspace();
-            }
+        if (this.CanOutdent(this.selected)){
+            this.commands.ExecuteAndAppend(
+                new OutdentCommand(this, this.selected)
+            );
         }
     }
 
     EventHandler_NewLine_(){
         if (this.selected && this.selected.GetParent()){
-            this.selected.GetParent().InsertBeforeElem(this.selected, this.CreateNewLine());
-            this.RenderWorkspace();
+            this.commands.ExecuteAndAppend(
+                new NewLineCommand(this, this.selected)
+            );
         }
     }
 
@@ -778,9 +748,10 @@ export class Editor {
 
     EventHandler_Paste_(){
         let source = this.clipboard?.CloneRec(), dest = this.selected;
-        if (this.Paste(source, dest)){
-            this.RenderWorkspace();
-            this.Select(source);
+        if (this.CanPaste(source, dest)){
+            this.commands.ExecuteAndAppend(
+                new PasteCommand(this, source, dest)
+            );
         }
     }
 
