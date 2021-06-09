@@ -20,6 +20,10 @@ import { IndentCommand } from './EditorCommands/IndentCommand.js';
 import { OutdentCommand } from './EditorCommands/OutdentCommand.js';
 import { NewLineCommand } from './EditorCommands/NewLineCommand.js';
 import { PasteCommand } from './EditorCommands/PasteCommand.js';
+import { DeleteCommand } from './EditorCommands/DeleteCommand.js';
+import { DeleteUntilPossibleCommand } from './EditorCommands/DeleteUntilPossibleCommand.js';
+import { GenerateInputBlockCommand } from './EditorCommands/GenerateInputBlockCommand.js';
+import { DeleteAllCommand } from './EditorCommands/DeleteAllCommand.js';
 
 export class Editor {
 
@@ -207,21 +211,6 @@ export class Editor {
 
         parent.RemoveElem(elem);
         this.RenderWorkspace();
-        return true;
-    }
-
-    RemoveElemUntilPossible_WithChecks(elem){
-        if (!this.CanRemoveElem(elem)) return false;
-
-        const wasSelected = elem === this.selected;
-
-        for (; this.RemoveElem_WithChecks(elem); elem = elem.GetGeneratedBy()){
-            if (wasSelected && this.selected !== elem.GetGeneratedBy()){
-                /* if the selected block changed to a block that is not the immediate descendant (e.g. a sibling) */
-                break;
-            }
-        }
-
         return true;
     }
 
@@ -454,21 +443,9 @@ export class Editor {
             text === '' || isValid(text) ? $input.removeClass('invalid-input') : $input.addClass('invalid-input');
 
             if (inputBlock.GetSymbol().repeatable){
-                /* create code for a non repeating version of the GrammarSymbol */
-                let vc = inputBlock.Clone();
-                vc.GetSymbol().repeatable = false;
-                vc.SetGeneratedBy(inputBlock);
-
-                /* simulate typing on the generated block and not on the repeatable block */
-                vc.SetText(text);
-                inputBlock.SetText(undefined);
-
-                inputBlock.GetParent().InsertBeforeElem(inputBlock, vc);
-
-                this.RenderWorkspace();
-                this.Select(vc);
-
-                vc.GetInput().focus();
+                this.commands.ExecuteAndAppend(
+                    new GenerateInputBlockCommand(this, inputBlock, text)
+                );
             }
         });
     }
@@ -686,20 +663,33 @@ export class Editor {
     }
 
     EventHandler_Delete_(){
-        this.RemoveElem_WithChecks(this.selected);
+        if (this.CanRemoveElem(this.selected)){
+            this.commands.ExecuteAndAppend(
+                new DeleteCommand(this, this.selected)
+            );
+        }
     }
 
     EventHandler_DeleteUntilPossible_(){
-        this.RemoveElemUntilPossible_WithChecks(this.selected)
+        if (this.CanRemoveElem(this.selected)){
+            this.commands.ExecuteAndAppend(
+                new DeleteUntilPossibleCommand(this, this.selected)
+            );
+        }
     }
 
     EventHandler_DeleteAll_(){
-        this.InitializeCode_();
-        this.RenderWorkspace();
+        this.commands.ExecuteAndAppend( new DeleteAllCommand(this) );
     }
 
     EventHandler_Backspace_(){
-        this.RemoveElem_WithChecks(this.selected.GetParent().GetPreviousElem(this.selected));
+        let prev = this.selected.GetParent().GetPreviousElem(this.selected);
+
+        if (this.CanRemoveElem(prev)){
+            this.commands.ExecuteAndAppend(
+                new DeleteCommand(this, prev)
+            );
+        }
     }
 
     EventHandler_Indent_(){
@@ -738,7 +728,9 @@ export class Editor {
     EventHandler_Cut_(){
         if (this.CanCut(this.selected)){
             this.CopyToClipboard(this.selected);
-            this.RemoveElemUntilPossible_WithChecks(this.selected);
+            this.commands.ExecuteAndAppend(
+                new DeleteUntilPossibleCommand(this, this.selected)
+            );
         }
     }
 

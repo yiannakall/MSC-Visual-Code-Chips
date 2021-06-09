@@ -34,6 +34,16 @@ export class Group extends EditorElement {
         return elem;
     }
 
+    InsertAtIndex(i, elem){
+        if (i < 0 && i > this.elems.length){
+            assert(false, `Index ${i} is out of bounds`);
+            return;
+        }
+
+        this.elems.splice(i, 0, elem);
+        elem.SetParent(this);
+    }
+
     InsertBeforeElem_WithOffset(elem, offset, newElem){
         assert(elem.GetParent() === this, `${this} is not the parent of ${elem}`);
         
