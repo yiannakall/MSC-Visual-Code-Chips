@@ -10,7 +10,7 @@ export class ChooseCommand extends EditorCommand {
     newLine;
 
     constructor(editor, selectionBlock, selectedSymbol){
-        super(editor, 'Selection Command');
+        super(editor, `Choose ${selectedSymbol.alias || selectedSymbol.symbol.name}`);
         this.selectionBlock = selectionBlock;
         this.selectedSymbol = selectedSymbol;
     }

@@ -13,9 +13,9 @@ export class Command {
 export class EditorCommand extends Command {
     editor;
 
-    Undo()      { console.log (`Undo ${this.description}`); };
-    Redo()      { console.log (`Redo ${this.description}`); };
-    Execute()   { console.log (`Execute ${this.description}`); };
+    Undo()      { assert(false, 'Not implemented by subclass'); };
+    Redo()      { assert(false, 'Not implemented by subclass'); };
+    Execute()   { assert(false, 'Not implemented by subclass'); };
 
     constructor(editor, description){
         super(description);
@@ -51,5 +51,21 @@ export class CommandHistory {
         this.history.push(command);
         command.Execute();
         ++this.i;
+    }
+
+    GetUndoSize() {
+       return this.i; 
+    }
+
+    GetRedoSize() {
+        return this.history.length - this.i;
+    }
+
+    GetCurrentUndo(){
+        return this.GetUndoSize() ? this.history[this.i - 1] : null;
+    }
+
+    GetCurrentRedo(){
+        return this.GetRedoSize() ? this.history[this.i] : null;
     }
 }

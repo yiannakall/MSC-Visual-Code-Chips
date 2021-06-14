@@ -24,6 +24,7 @@ import { DeleteCommand } from './EditorCommands/DeleteCommand.js';
 import { DeleteUntilPossibleCommand } from './EditorCommands/DeleteUntilPossibleCommand.js';
 import { GenerateInputBlockCommand } from './EditorCommands/GenerateInputBlockCommand.js';
 import { DeleteAllCommand } from './EditorCommands/DeleteAllCommand.js';
+import { UndoRedoToolbar } from './UndoRedoToolbar/UndoRedoToolbar.js';
 
 export class Editor {
 
@@ -33,6 +34,7 @@ export class Editor {
     $workspace;
     $code;
     $rightClickContainer;
+    $undoRedoToolbarContainer;
 
     $toolboxspace;
 
@@ -40,6 +42,7 @@ export class Editor {
     code;
     clipboard;
     selected;
+    undoToolbar;
 
     keyboardEventManager;
     
@@ -80,6 +83,10 @@ export class Editor {
         this.InitializeEvents_();
         this.SetUpContextMenu_();
 
+        this.undoToolbar = new UndoRedoToolbar(this.$undoRedoToolbarContainer);
+        this.undoToolbar.SetOnUndo( () => this.EventHandler_Undo_() );
+        this.undoToolbar.SetOnRedo( () => this.EventHandler_Redo_() );
+
         this.toolbox = new Toolbox(this.$toolboxspace, toolboxInfo);
         this.toolbox.SetToolbox_MaxWidth(() => {
             return 0.8 * this.$container.width();
@@ -108,10 +115,11 @@ export class Editor {
 
         this.$code = $('<div/>').addClass('code');
         this.$contextMenuContainer = $('<div/>').addClass('context-menu-container');
-        this.$workspace.append(this.$code, this.$contextMenuContainer);
+        this.$undoRedoToolbarContainer = $('<div/>').addClass('editor-undo-redo-toolbar-container');
+        this.$workspace.append(this.$code, this.$contextMenuContainer, this.$undoRedoToolbarContainer);
 
         this.$toolboxspace = $('<div/>').addClass('toolboxspace');
-        
+
         this.$editor = $('<div/>').addClass('editor');
         this.$editor.append(this.$toolboxspace, this.$workspace);
 
@@ -154,8 +162,8 @@ export class Editor {
 
             let contextMenu = new ContextMenu(this.$contextMenuContainer, [
                 [
-                    { name: 'Undo', shortcut: 'Ctrl+Z', handler: () => { this.EventHandler_Undo_(); } },
-                    { name: 'Redo', shortcut: 'Ctrl+Y', handler: () => { this.EventHandler_Redo_(); } },
+                    { name: 'Undo', shortcut: 'Ctrl+Z', disabled: !this.commands.GetUndoSize(), handler: () => { this.EventHandler_Undo_(); } },
+                    { name: 'Redo', shortcut: 'Ctrl+Y', disabled: !this.commands.GetRedoSize(), handler: () => { this.EventHandler_Redo_(); } },
                 ],
                 [
                     { name: 'Delete All', shortcut: 'Ctrl+A+Del', handler: () => this.EventHandler_DeleteAll_() }
@@ -410,9 +418,7 @@ export class Editor {
                 
                 let droppedBlock = EditorElementParser.FromString( elemStr, elem => this.BindElemToEditor_(elem) );
                 if (elem.GetType() !== EditorElementTypes.Tab && this.CanPaste(droppedBlock, elem)){
-                    this.commands.ExecuteAndAppend(
-                        new PasteCommand(this, droppedBlock, elem)
-                    );
+                    this.ExecuteCommand( new PasteCommand(this, droppedBlock, elem) );
                 }
                 e.stopPropagation();
             }
@@ -421,7 +427,7 @@ export class Editor {
 
     SetSelectionBlock_OnSelect_(selectionBlock){
         selectionBlock.SetOnSelect((selectionBlock) => {
-            this.commands.ExecuteAndAppend(
+            this.ExecuteCommand(
                 new ChooseCommand(
                     this, selectionBlock,
                     selectionBlock.GetSelectedSymbol()
@@ -443,7 +449,7 @@ export class Editor {
             text === '' || isValid(text) ? $input.removeClass('invalid-input') : $input.addClass('invalid-input');
 
             if (inputBlock.GetSymbol().repeatable){
-                this.commands.ExecuteAndAppend(
+                this.ExecuteCommand(
                     new GenerateInputBlockCommand(this, inputBlock, text)
                 );
             }
@@ -638,6 +644,22 @@ export class Editor {
         return false;
     }
 
+    ExecuteCommand(command){
+        this.commands.ExecuteAndAppend(command);
+        this.undoToolbar.Hide();
+    }
+
+    UpdateUndoToolbar(){
+        this.undoToolbar.SetUndoNumber(this.commands.GetUndoSize());
+        this.undoToolbar.SetRedoNumber(this.commands.GetRedoSize());
+        
+        let undoCommand = this.commands.GetCurrentUndo();
+        this.undoToolbar.SetUndoDescription( undoCommand ? `Undo "${undoCommand.description}"` : '-' );
+
+        let redoCommand = this.commands.GetCurrentRedo();
+        this.undoToolbar.SetRedoDescription( redoCommand ? `${redoCommand.description}` : '-' );
+    }
+
     EventHandler_NavigateUp_(){
         this.NavigateUp();
     }
@@ -664,39 +686,31 @@ export class Editor {
 
     EventHandler_Delete_(){
         if (this.CanRemoveElem(this.selected)){
-            this.commands.ExecuteAndAppend(
-                new DeleteCommand(this, this.selected)
-            );
+            this.ExecuteCommand( new DeleteCommand(this, this.selected) );
         }
     }
 
     EventHandler_DeleteUntilPossible_(){
         if (this.CanRemoveElem(this.selected)){
-            this.commands.ExecuteAndAppend(
-                new DeleteUntilPossibleCommand(this, this.selected)
-            );
+            this.ExecuteCommand( new DeleteUntilPossibleCommand(this, this.selected) );
         }
     }
 
     EventHandler_DeleteAll_(){
-        this.commands.ExecuteAndAppend( new DeleteAllCommand(this) );
+        this.ExecuteCommand( new DeleteAllCommand(this) );
     }
 
     EventHandler_Backspace_(){
         let prev = this.selected.GetParent().GetPreviousElem(this.selected);
 
         if (this.CanRemoveElem(prev)){
-            this.commands.ExecuteAndAppend(
-                new DeleteCommand(this, prev)
-            );
+            this.ExecuteCommand( new DeleteCommand(this, prev) );
         }
     }
 
     EventHandler_Indent_(){
         if (this.selected && this.selected.GetParent()){
-            this.commands.ExecuteAndAppend(
-                new IndentCommand(this, this.selected)
-            );
+            this.ExecuteCommand( new IndentCommand(this, this.selected) );
         }
     }
 
@@ -707,17 +721,13 @@ export class Editor {
 
     EventHandler_Outdent_(){
         if (this.CanOutdent(this.selected)){
-            this.commands.ExecuteAndAppend(
-                new OutdentCommand(this, this.selected)
-            );
+            this.ExecuteCommand( new OutdentCommand(this, this.selected) );
         }
     }
 
     EventHandler_NewLine_(){
         if (this.selected && this.selected.GetParent()){
-            this.commands.ExecuteAndAppend(
-                new NewLineCommand(this, this.selected)
-            );
+            this.ExecuteCommand( new NewLineCommand(this, this.selected) );
         }
     }
 
@@ -728,9 +738,7 @@ export class Editor {
     EventHandler_Cut_(){
         if (this.CanCut(this.selected)){
             this.CopyToClipboard(this.selected);
-            this.commands.ExecuteAndAppend(
-                new DeleteUntilPossibleCommand(this, this.selected)
-            );
+            this.ExecuteCommand( new DeleteUntilPossibleCommand(this, this.selected) );
         }
     }
 
@@ -741,17 +749,19 @@ export class Editor {
     EventHandler_Paste_(){
         let source = this.clipboard?.CloneRec(), dest = this.selected;
         if (this.CanPaste(source, dest)){
-            this.commands.ExecuteAndAppend(
-                new PasteCommand(this, source, dest)
-            );
+            this.ExecuteCommand( new PasteCommand(this, source, dest) );
         }
     }
 
     EventHandler_Undo_(){
+        this.undoToolbar.Show();
         this.commands.Undo();
+        this.UpdateUndoToolbar();
     }
 
     EventHandler_Redo_(){
+        this.undoToolbar.Show();
         this.commands.Redo();
+        this.UpdateUndoToolbar();
     }
 }

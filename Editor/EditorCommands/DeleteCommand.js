@@ -1,4 +1,5 @@
 import { assert } from "../../Utils/Assert.js";
+import { EditorElementTypes } from "../EditorElements/EditorElement.js";
 import { EditorCommand } from "./Command.js";
 
 export class DeleteCommand extends EditorCommand{
@@ -9,7 +10,11 @@ export class DeleteCommand extends EditorCommand{
     index;
 
     constructor(editor, block){
-        super(editor, 'Delete');
+        super(editor, `Delete ${
+            block.GetType() === EditorElementTypes.NewLine ? 'New Line' :
+            block.GetType() === EditorElementTypes.Tab ? 'Tab' :
+            block.GetSymbol().alias || block.GetSymbol().symbol.name
+        }`);
 
         this.block = block;
         this.parent = block.GetParent();

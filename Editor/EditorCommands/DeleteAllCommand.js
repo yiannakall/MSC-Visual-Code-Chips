@@ -5,7 +5,7 @@ export class DeleteAllCommand extends EditorCommand {
     code;
 
     constructor(editor){
-        super(editor, 'Selection Command');
+        super(editor, 'Delete All');
     }
 
     Execute(){

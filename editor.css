@@ -692,3 +692,148 @@ body{
     border-radius: 4px;
     height: 10px;
 }
+
+/********************************* UNDO-REDO TOOLBAR *********************************/
+
+.editor-undo-redo-toolbar-container {
+    width: 50%;
+    position: absolute;
+    
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.undo-redo-toolbar-container {
+    display: flex;
+    width: 100%;
+}
+
+.undo-redo-toolbar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position:relative;
+}
+
+.undo-redo-toolbar .undo-segment, .undo-redo-toolbar .redo-segment {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    padding: 10px 15px;
+
+    cursor: pointer;
+    color: #C4C4C4;
+    font-size: 14px;
+    background-color: #252526;
+    gap: 15px;
+}
+
+.undo-redo-toolbar .undo-segment:hover, .undo-redo-toolbar .redo-segment:hover {
+    color: #ffffff;
+    background-color: #333333;
+}
+
+.undo-redo-toolbar .redo-segment {
+    flex-direction: row-reverse;
+}
+
+.undo-redo-toolbar .separator {
+    position: absolute;
+    width: 2px;
+    background-color: #333333;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.undo-redo-toolbar .icon {
+    --webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+    mask-repeat: no-repeat;
+    mask-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 18px;
+
+    
+    background-color: #75BEFF;
+}
+
+.undo-redo-toolbar .undo-segment .icon {
+    -webkit-mask-image: url(/Images/UndoRedoToolbar/undo.svg);
+    mask-image: url(/Images/UndoRedoToolbar/undo.svg);
+}
+
+.undo-redo-toolbar .redo-segment .icon {
+    -webkit-mask-image: url(/Images/UndoRedoToolbar/redo.svg);
+    mask-image: url(/Images/UndoRedoToolbar/redo.svg);
+}
+
+.undo-redo-toolbar .icon-container {
+    position: relative;
+}
+
+.undo-redo-toolbar .actions-left {
+    background-color: #FA3E3E;
+    border-radius: 3px;
+    padding: 1px 3px;
+    font-size: 10px;
+    color: #FCFCFC;
+}
+
+.undo-redo-toolbar .undo-segment .actions-left {
+    position: absolute;
+    margin-top: -8px;
+    right: -7px;
+}
+
+.undo-redo-toolbar .redo-segment .actions-left {
+    position: absolute;
+    margin-top: -8px;
+    left: -7px;
+}
+
+.undo-redo-toolbar .action-text {
+    display: flex;
+    justify-content: center;
+ 
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
+
+    -webkit-user-select: none;        
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    color: inherit;
+}
+
+.undo-redo-toolbar-container .close-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    background-color: #094771;
+    cursor: pointer;
+}
+
+.undo-redo-toolbar-container .close-container:hover {
+    background-color: #0b5c92;
+}
+
+.undo-redo-toolbar-container .close {
+    --webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+    mask-repeat: no-repeat;
+    mask-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 14px;
+    background-color: #C4C4C4;
+    -webkit-mask-image: url(/Images/UndoRedoToolbar/close.svg);
+    mask-image: url(/Images/UndoRedoToolbar/close.svg);
+}

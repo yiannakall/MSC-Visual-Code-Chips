@@ -1,4 +1,5 @@
 import { assert } from "../../Utils/Assert.js";
+import { EditorElementTypes } from "../EditorElements/EditorElement.js";
 import { EditorCommand } from "./Command.js";
 import { DeleteCommand } from "./DeleteCommand.js";
 
@@ -7,7 +8,11 @@ export class DeleteUntilPossibleCommand extends EditorCommand {
     commands = [];
 
     constructor(editor, block){
-        super(editor, 'Delete Until Possible');
+        super(editor, `Delete ${
+            block.GetType() === EditorElementTypes.NewLine ? 'New Line' :
+            block.GetType() === EditorElementTypes.Tab ? 'Tab' :
+            block.GetSymbol().alias || block.GetSymbol().symbol.name
+        }`);
         this.block = block;
     }
 

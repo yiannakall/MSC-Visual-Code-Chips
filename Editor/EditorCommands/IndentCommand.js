@@ -6,7 +6,7 @@ export class IndentCommand extends EditorCommand{
     tab;
 
     constructor(editor, block){
-        super(editor, 'Indent');
+        super(editor, `Tab In`);
 
         this.block = block;
     }

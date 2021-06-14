@@ -1,4 +1,5 @@
 import { assert } from "../../Utils/Assert.js";
+import { EditorElementTypes } from "../EditorElements/EditorElement.js";
 import { EditorCommand } from "./Command.js";
 
 export class PasteCommand extends EditorCommand{
@@ -9,7 +10,11 @@ export class PasteCommand extends EditorCommand{
     newLine;
 
     constructor(editor, source, dest){
-        super(editor, 'Paste');
+        super(editor, `Paste ${
+            source.GetType() === EditorElementTypes.NewLine ? 'New Line' :
+            source.GetType() === EditorElementTypes.Tab ? 'Tab' :
+            source.GetSymbol().alias || source.GetSymbol().symbol.name
+        }`);
 
         this.source = source, this.dest = dest;
     }

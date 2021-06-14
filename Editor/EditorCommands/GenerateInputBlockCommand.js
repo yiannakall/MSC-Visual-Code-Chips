@@ -8,7 +8,7 @@ export class GenerateInputBlockCommand extends EditorCommand {
     newInputBlock;
 
     constructor(editor, inputBlock, text){
-        super(editor, 'Generate Input Block Command');
+        super(editor, `New ${inputBlock.GetSymbol().alias || inputBlock.GetSymbol().symbol.name}`);
         this.inputBlock = inputBlock;
         this.text = text;
         assert(

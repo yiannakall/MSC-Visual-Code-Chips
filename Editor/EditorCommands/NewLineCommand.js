@@ -6,7 +6,7 @@ export class NewLineCommand extends EditorCommand{
     newLine;
 
     constructor(editor, block){
-        super(editor, 'NewLine');
+        super(editor, 'New Line');
 
         this.block = block;
     }
