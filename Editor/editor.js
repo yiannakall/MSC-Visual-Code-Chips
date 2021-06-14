@@ -1,7 +1,5 @@
-
 import { AliasedGrammarSymbol, Language} from '../Language.js'
 import { assert } from "../Utils/Assert.js";
-
 import { EditorElement, EditorElementTypes } from './EditorElements/EditorElement.js'
 import { Group } from './EditorElements/Group.js'
 import { InputBlock } from './EditorElements/InputBlock.js'
@@ -14,7 +12,7 @@ import { Toolbox } from './Toolbox/Toolbox.js';
 import { EditorElementParser } from './EditorElements/EditorElementParser.js';
 import { ContextMenu } from './ContextMenu.js';
 import { GenerationPathPopup } from './EditorPopups/GenerationPathPopup.js';
-import { CommandHistory } from './EditorCommands/Command.js';
+import { CommandHistory } from '../Utils/Command.js';
 import { ChooseCommand } from './EditorCommands/ChooseCommand.js';
 import { IndentCommand } from './EditorCommands/IndentCommand.js';
 import { OutdentCommand } from './EditorCommands/OutdentCommand.js';

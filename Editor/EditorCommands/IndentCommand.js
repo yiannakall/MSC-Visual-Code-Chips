@@ -1,5 +1,5 @@
 import { assert } from "../../Utils/Assert.js";
-import { EditorCommand } from "./Command.js";
+import { EditorCommand } from "./EditorCommand.js";
 
 export class IndentCommand extends EditorCommand{
     block;

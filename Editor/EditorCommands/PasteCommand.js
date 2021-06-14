@@ -1,6 +1,6 @@
 import { assert } from "../../Utils/Assert.js";
 import { EditorElementTypes } from "../EditorElements/EditorElement.js";
-import { EditorCommand } from "./Command.js";
+import { EditorCommand } from "./EditorCommand.js";
 
 export class PasteCommand extends EditorCommand{
     source;

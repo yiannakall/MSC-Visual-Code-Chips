@@ -1,4 +1,4 @@
-import { assert } from "../../Utils/Assert.js";
+import { assert } from "./Assert.js";
 
 export class Command {
     description;
@@ -10,16 +10,14 @@ export class Command {
     }
 }
 
-export class EditorCommand extends Command {
-    editor;
+export class ReversibleCommand extends Command {
 
     Undo()      { assert(false, 'Not implemented by subclass'); };
     Redo()      { assert(false, 'Not implemented by subclass'); };
     Execute()   { assert(false, 'Not implemented by subclass'); };
 
-    constructor(editor, description){
+    constructor(description){
         super(description);
-        this.editor = editor;
     }
 }
 

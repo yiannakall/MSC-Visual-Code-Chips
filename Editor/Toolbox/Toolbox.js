@@ -3,6 +3,11 @@ import { EditorElement, EditorElementTypes } from "../EditorElements/EditorEleme
 import { MenuCategory } from "./MenuCategory.js";
 import { EditorElementParser } from "../EditorElements/EditorElementParser.js"
 import { ContainerResizer } from"../../Utils/ContainerResizer.js"
+import { KeyboardEventManager } from "../../Utils/KeyboardEventManager.js";
+import { CommandHistory } from "../../Utils/Command.js";
+import { DeleteCommand } from "./ToolboxCommands/DeleteCommand.js";
+import { InsertCommand } from "./ToolboxCommands/InsertCommand.js";
+import { MoveCommand } from "./ToolboxCommands/MoveCommand.js";
 
 export class Toolbox {
     categories = {};
@@ -25,6 +30,8 @@ export class Toolbox {
     draggedBlock;
     draggedBlockCategoryName;
 
+    keyboardEventManager;
+    history;
     containerResizer;
     maxWidth;
     minWidth;
@@ -57,13 +64,26 @@ export class Toolbox {
         this.InitializeView_();
         this.Render();
         
+        this.SetUpKeyboardEvents_();
+
         if (categories){
             this.Select_(this.categories[categories[0].name]);
         }
+
+        this.history = new CommandHistory();
     }
     
     static FromJson($container, toolboxJson){
         return new Toolbox($container, toolboxJson);
+    }
+
+    SetUpKeyboardEvents_(){
+        const Keys = KeyboardEventManager.Keys;
+        
+        this.keyboardEventManager = new KeyboardEventManager(this.$toolbox)
+            .AddEventHandler( [Keys.CTRL, Keys.Z],                  () => this.EventHandler_Undo_() )
+            .AddEventHandler( [Keys.CTRL, Keys.Y],                  () => this.EventHandler_Redo_() )
+        ;
     }
 
     ToJson(){
@@ -211,8 +231,7 @@ export class Toolbox {
         });
 
         $deleteButton.on('click', () => {
-            this.RemoveBlock(block, categoryName);
-            this.RenderAllBlocks();
+            this.history.ExecuteAndAppend( new DeleteCommand(this, block, categoryName) );
         });
     }
 
@@ -238,10 +257,11 @@ export class Toolbox {
 
         this.$scrollTargets[categoryName] = $scrollTarget;
         
-        this.SetUpDropEvents_(categoryName, blocks, $categoryBlocks);
+        this.SetUpDropEvents_(categoryName, $categoryBlocks);
     }
 
-    SetUpDropEvents_(categoryName, blocks, $blocks){
+    SetUpDropEvents_(categoryName, $blocks){
+        let blocks = this.blocks[categoryName];
         let $dropIndicator = $('<div/>').addClass('drop-indicator');
 
         let counter = 0;
@@ -285,24 +305,27 @@ export class Toolbox {
             let blockStr = e.originalEvent.dataTransfer.getData('block');
             if (!blockStr)  return;
 
-            let block = EditorElementParser.FromString( blockStr, block => { 
-                this.SetBlockTheme(block);
-                block.SetDraggable(false);
-                block.SetDroppable(false);
-            });
-            
-            this.SetBlockDragEvents(categoryName, block); // only the root block is draggable from the toolbox
+            let block = this.draggedBlock || EditorElementParser.FromString( blockStr, block => { 
+                                                this.SetBlockTheme(block);
+                                                block.SetDraggable(false);
+                                                block.SetDroppable(false);
+                                            });
 
-            blocks.splice(indexFromDrop, 0, block);
+            if (!this.draggedBlock)
+                this.history.ExecuteAndAppend( new InsertCommand(this, block, categoryName, indexFromDrop) );
+            else{
+                
+                if (this.draggedBlockCategoryName === categoryName && indexFromDrop > blocks.indexOf(block))
+                    indexFromDrop--;
 
-            if (this.draggedBlock){ // if the block was dragged from the toolbox remove it from its previous place
-                this.RemoveBlock(this.draggedBlock, this.draggedBlockCategoryName);
+                this.history.ExecuteAndAppend(
+                    new MoveCommand( this, block, this.draggedBlockCategoryName, categoryName, indexFromDrop)
+                );
+
                 this.draggedBlock = this.draggedBlockCategoryName = undefined;
             }
-
+            
             this.onDrop(e, block);
-
-            this.RenderAllBlocks();
         });
     }
 
@@ -369,6 +392,14 @@ export class Toolbox {
 
     SetToolbox_MinWidth(f){
         this.minWidth = f;
+    }
+
+    EventHandler_Undo_(){
+        this.history.Undo();
+    }
+    
+    EventHandler_Redo_(){
+        this.history.Redo();
     }
 
 }
