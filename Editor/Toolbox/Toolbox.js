@@ -172,7 +172,7 @@ export class Toolbox {
         }
     }
 
-    RenderBlocks(){
+    RenderAllBlocks(){
         let scrollTop = this.$toolboxBlocks.scrollTop();
 
         this.$toolboxBlocks.empty();
@@ -188,7 +188,39 @@ export class Toolbox {
 
     Render() {
         this.RenderToolboxMenu();
-        this.RenderBlocks();
+        this.RenderAllBlocks();
+    }
+
+    RenderBlock(block, $category, categoryName){
+        let $wrapper = $('<div/>').addClass('category-block');
+        
+        let $deleteButton = $('<div/>').addClass('delete-button')
+            .append( $('<div/>').addClass('icon') );
+
+        block.Render($wrapper);
+
+        $wrapper.append($deleteButton);
+        $category.append($wrapper);
+    
+        $wrapper.on('mouseenter', () => {
+            $deleteButton.css('visibility', 'visible');
+        });
+
+        $wrapper.on('mouseleave', () => {
+            $deleteButton.css('visibility', 'hidden');
+        });
+
+        $deleteButton.on('click', () => {
+            this.RemoveBlock(block, categoryName);
+            this.RenderAllBlocks();
+        });
+    }
+
+    RemoveBlock(block, categoryName){
+        let blocks = this.blocks[categoryName];
+        let index = blocks.indexOf(block);
+        assert(index !== -1);
+        blocks.splice(index, 1);
     }
 
     RenderCategoryBlocks_(categoryName){
@@ -198,7 +230,7 @@ export class Toolbox {
                     
         let blocks = this.blocks[categoryName];
         for (let b of blocks){
-            b.Render($categoryBlocks);
+            this.RenderBlock(b, $categoryBlocks, categoryName);
         }
 
         $wholeCategory.append($scrollTarget, $categoryBlocks);
@@ -264,15 +296,13 @@ export class Toolbox {
             blocks.splice(indexFromDrop, 0, block);
 
             if (this.draggedBlock){ // if the block was dragged from the toolbox remove it from its previous place
-                let i = this.blocks[this.draggedBlockCategoryName].indexOf(this.draggedBlock);
-                assert(i !== -1);
-                this.blocks[this.draggedBlockCategoryName].splice(i, 1);
+                this.RemoveBlock(this.draggedBlock, this.draggedBlockCategoryName);
                 this.draggedBlock = this.draggedBlockCategoryName = undefined;
             }
 
             this.onDrop(e, block);
 
-            this.RenderBlocks();
+            this.RenderAllBlocks();
         });
     }
 
@@ -297,12 +327,16 @@ export class Toolbox {
         block.SetOnDragStart((e, block) => {
             assert(this.draggedBlock == undefined);
             this.draggedBlock = block, this.draggedBlockCategoryName = categoryName;
+
+            this.$toolboxBlocks.find('.delete-button').css('visibility', 'hidden');
+            
             this.onDragStart(e, block);
         });
 
         block.SetOnDragEnd((e, block) => {
             assert(this.draggedBlock);
             this.draggedBlock = this.draggedBlockCategoryName = undefined;
+
             this.onDragEnd(e, block);
         });
     }
