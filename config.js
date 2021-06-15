@@ -30,43 +30,50 @@ export let config = {
                     [
                         {
                             type: "non_terminal",
-                            name: "if_stmt"
+                            name: "if_stmt",
+                            tooltip: "Do something if a condition is true"
                         }
                     ],
                     [
                         {
                             type: "non_terminal",
-                            name: "if_else_stmt"
+                            name: "if_else_stmt",
+                            tooltip: "Do something if a condition is true, else do something else"
                         }
                     ],
                     [
                         {
                             type: "non_terminal",
-                            name: "while_stmt"
+                            name: "while_stmt",
+                            tooltip: "Do something while a condition is true"
                         }
                     ],
                     [
                         {
                             type: "non_terminal",
-                            name: "for_stmt"
+                            name: "for_stmt",
+                            tooltip: "Do something while a condition is true. Commonly used with a known number of iterations."
                         }
                     ],
                     [
                         {
                             type: "non_terminal",
-                            name: "assign_stmt"
+                            name: "assign_stmt",
+                            tooltip: "Set a variable's value"
                         }
                     ],
                     [
                         {
                             type: "non_terminal",
-                            name: "func_def_stmt"
+                            name: "func_def_stmt",
+                            tooltip: "Define reusable code as a function"
                         }
                     ],
                     [
                         {
                             type: "non_terminal",
-                            name: "func_call_stmt"
+                            name: "func_call_stmt",
+                            tooltip: "Use a defined function"
                         }
                     ]
                 ]
@@ -77,25 +84,29 @@ export let config = {
                     [
                         {
                             type: "non_terminal",
-                            name: "arith_expr"
+                            name: "arith_expr",
+                            tooltip: "Perform a mathematic operation"
                         }
                     ],
                     [
                         {
                             type: "non_terminal",
-                            name: "rel_expr"
+                            name: "rel_expr",
+                            tooltip: "An operator that compares the 2 operands and returns true or false"
                         }
                     ],
                     [
                         {
                             type: "non_terminal",
-                            name: "bool_expr"
+                            name: "bool_expr",
+                            tooltip: "An expression that evaluates to true or false"
                         }
                     ],
                     [
                         {
                             type: "non_terminal",
-                            name: "primary_expr"
+                            name: "primary_expr",
+                            tooltip: "An identifier or a constant"
                         }
                     ]
                 ]
@@ -106,13 +117,15 @@ export let config = {
                     [
                         {
                             type: "non_terminal",
-                            name: "binary_arith_expr"
+                            name: "binary_arith_expr",
+                            tooltip: "An arithmetic expression with 2 operands"
                         }
                     ],
                     [
                         {
                             type: "non_terminal",
-                            name: "unary_minus"
+                            name: "unary_minus",
+                            tooltip: "Negates the value of its operand"
                         }
                     ]
                 ]
@@ -123,15 +136,18 @@ export let config = {
                     [
                         {
                             type: "non_terminal",
-                            name: "expr"
+                            name: "expr",
+                            tooltip: "The first operand"
                         },
                         {
                             type: "non_terminal",
-                            name: "arith_op"
+                            name: "arith_op",
+                            tooltip: "An arithmetic operator (e.g. +, -)"
                         },
                         {
                             type: "non_terminal",
-                            name: "expr"
+                            name: "expr",
+                            tooltip: "The second operand"
                         }
                     ]
                 ]
@@ -159,28 +175,32 @@ export let config = {
                         {
                             type: "terminal",
                             name: "PLUS",
-                            alias: "+"
+                            alias: "+",
+                            tooltip: "Performs addition"
                         }
                     ],
                     [
                         {
                             type: "terminal",
                             name: "MINUS",
-                            alias: "-"
+                            alias: "-",
+                            tooltip: "Performs subtraction"
                         }
                     ],
                     [
                         {
                             type: "terminal",
                             name: "TIMES",
-                            alias: "*"
+                            alias: "*",
+                            tooltip: "Performs multiplication"
                         }
                     ],
                     [
                         {
                             type: "terminal",
                             name: "BY",
-                            alias: "/"
+                            alias: "/",
+                            tooltip: "Performs division"
                         }
                     ],
                 ]
@@ -191,15 +211,18 @@ export let config = {
                     [
                         {
                             type: "non_terminal",
-                            name: "expr"
+                            name: "expr",
+                            tooltip: "The first operand"
                         },
                         {
                             type: "non_terminal",
-                            name: "rel_op"
+                            name: "rel_op",
+                            tooltip: "A comparison operator that returns true or false (e.g <, >)"
                         },
                         {
                             type: "non_terminal",
-                            name: "expr"
+                            name: "expr",
+                            tooltip: "The second operand"
                         }
                     ]
                 ]
@@ -211,42 +234,48 @@ export let config = {
                         {
                             type: "terminal",
                             name: "GREATER",
-                            alias: ">"
+                            alias: ">",
+                            tooltip: "Returns true if the first operand is greater than the second operand, else returns false"
                         }
                     ],
                     [
                         {
                             type: "terminal",
                             name: "LESS",
-                            alias: "<"
+                            alias: "<",
+                            tooltip: "Returns true if the first operand is less than the second operand, else returns false"
                         }
                     ],
                     [
                         {
                             type: "terminal",
                             name: "EQUAL_TO",
-                            alias: "=="
+                            alias: "==",
+                            tooltip: "Returns true if the first operand is equal to the second operand, else returns false"
                         }
                     ],
                     [
                         {
                             type: "terminal",
                             name: "NOT_EQUAL_TO",
-                            alias: "!="
+                            alias: "!=",
+                            tooltip: "Returns true if the first operand not equal to the second operand, else returns false"
                         }
                     ],
                     [
                         {
                             type: "terminal",
                             name: "GREATER_EQUAL",
-                            alias: ">="
+                            alias: ">=",
+                            tooltip: "Returns true if the first operand is greater than or equal to the second operand, else returns false"
                         }
                     ],
                     [
                         {
                             type: "terminal",
                             name: "LESS_EQUAL",
-                            alias: "<="
+                            alias: "<=",
+                            tooltip: "Returns true if the first operand is less than or equal to the second operand, else returns false"
                         }
                     ],
                 ]
@@ -257,13 +286,15 @@ export let config = {
                     [
                         {
                             type: "non_terminal",
-                            name: "binary_bool_expr"
+                            name: "binary_bool_expr",
+                            tooltip: "Performs a binary operation with 2 operands"
                         }
                     ],
                     [
                         {
                             type: "non_terminal",
-                            name: "not_expr"
+                            name: "not_expr",
+                            tooltip: "Performs logical negation. True becomes false and false becomes true"
                         }
                     ]
                 ]
@@ -274,15 +305,17 @@ export let config = {
                     [
                         {
                             type: "non_terminal",
-                            name: "expr"
+                            name: "expr",
+                            tooltip: "The first operand"
                         },
                         {
                             type: "non_terminal",
-                            name: "bool_bin_op"
+                            name: "bool_bin_op",
+                            tooltip: "Performs a binary operation with 2 operands"
                         },
                         {
                             type: "non_terminal",
-                            name: "expr"
+                            name: "The second operand"
                         }
                     ]
                 ]
@@ -293,13 +326,15 @@ export let config = {
                     [
                         {
                             type: "terminal",
-                            name: "AND"
+                            name: "AND",
+                            tooltip: "Returns true if both operands are true, else returns false"
                         }
                     ],
                     [
                         {
                             type: "terminal",
-                            name: "OR"
+                            name: "OR",
+                            tooltip: "Returns true if either operand is true, else returns false"
                         }
                     ]
                 ]
@@ -310,11 +345,13 @@ export let config = {
                     [
                         {
                             type: "terminal",
-                            name: "NOT"
+                            name: "NOT",
+                            tooltip: "Returns true if the operand is false, else returns false"
                         },
                         {
                             type: "non_terminal",
-                            name: "expr"
+                            name: "expr",
+                            tooltip: "The operand"
                         }
                     ]
                 ]
@@ -325,37 +362,43 @@ export let config = {
                     [
                         {
                             type: "terminal",
-                            name: "IDENT"
+                            name: "IDENT",
+                            tooltip: "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                         },
                     ],
                     [
                         {
                             type: "terminal",
-                            name: "INT_CONST"
+                            name: "INT_CONST",
+                            tooltip: "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
                         },
                     ],
                     [
                         {
                             type: "terminal",
-                            name: "FLOAT_CONST"
+                            name: "FLOAT_CONST",
+                            tooltip: "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
                         },
                     ],
                     [
                         {
                             type: "terminal",
-                            name: "CHAR_CONST"
+                            name: "CHAR_CONST",
+                            tooltip: "One single character"
                         },
                     ],
                     [
                         {
                             type: "terminal",
-                            name: "STRING_CONST"
+                            name: "STRING_CONST",
+                            tooltip: "Any sequence of characters or the empty sequence"
                         },
                     ],
                     [
                         {
                             type: "terminal",
-                            name: "BOOL_CONST"
+                            name: "BOOL_CONST",
+                            tooltip: "One of true or false"
                         }
                     ]
                 ]
@@ -366,7 +409,7 @@ export let config = {
                     [
                         {
                             type: "terminal",
-                            name: "IDENT"
+                            name: "IDENT",
                         },
                         {
                             type: "terminal",

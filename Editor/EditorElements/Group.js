@@ -151,7 +151,8 @@ export class Group extends EditorElement {
         $differentLines.append($inline);
         $group.append($differentLines);
         $container.append($group);
-
+        
+        $group.attr('title', this.symbol.tooltip || this.symbol.alias || this.symbol.symbol.name);
         this.$wholeView = this.$customizableView = $group;
 
         for (let elem of this.elems){

@@ -32,7 +32,8 @@ export class CodeChips {
                         lang.GetOrAddSymbol(symObj.name, symObj.type === 'terminal'), 
                         symObj.alias,
                         symObj.repeatable,
-                        symObj.optional
+                        symObj.optional,
+                        symObj.tooltip
                     );
                     syms.push(sym);
                 }

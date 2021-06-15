@@ -168,6 +168,10 @@ body{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.block-alternate-selection-container {
+    position: relative;
+}
+
 .block-alternate-selection{
     padding: 5px;
     cursor: pointer;
@@ -176,6 +180,54 @@ body{
 .block-alternate-selection:hover{
     background-color: #094771;
     color: #E5ECF0;
+}
+
+.tooltip-container {
+    position: relative;
+}
+
+.tooltip-container:before, .tooltip-container:after {
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
+}
+
+.tooltip-container:after {
+    border: 8px solid transparent;
+    border-right-color: #004A78;
+    width: 0px;
+    height: 0px;
+    box-sizing: border-box;
+    content: '';
+    
+    top: 50%;
+    transform: translateY(-50%);
+    right: -16px;
+}
+
+.tooltip-container:before {
+    background: #004A78;
+    border-radius: 2px;
+    color: #eeeeee;
+    content: attr(tooltip);
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 5px;
+
+    top: 0px;
+    right: -15px;
+    transform: translateX(100%);
+    
+    display: flex;
+    width: max-content;
+    max-width: 250px;
+}
+
+.tooltip-container:hover:after {
+    visibility: visible;
+}
+.tooltip-container:hover::before {
+    visibility: visible;
 }
 
 .block-with-arrow .arrow{

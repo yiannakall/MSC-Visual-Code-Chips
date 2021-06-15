@@ -44,6 +44,7 @@ export class SelectionBlock extends EditorElement {
         if (this.symbol.repeatable){
             $blockWithArrow.addClass('block-can-repeat');
         }
+        $blockWithArrow.attr('title', this.symbol.tooltip || this.symbol.alias || this.symbol.symbol.name);
         this.$customizableView = $blockWithArrow;
 
         this.$blockAlternateSelections = $('<div/>').addClass('block-alternate-selections').hide();
@@ -64,7 +65,8 @@ export class SelectionBlock extends EditorElement {
         for (let symbol of this.alternateSymbols){
             this.$blockAlternateSelections.append(this.CreateChoiceView_(symbol));
         }
-        
+        this.$blockAlternateSelections.attr('title', '');
+
         $container.append(this.$wholeView);
     }
 
@@ -77,6 +79,11 @@ export class SelectionBlock extends EditorElement {
             this.onSelect(this);
         });
     
+        if (symbol.tooltip){
+            $choice.attr('tooltip', symbol.tooltip);
+            $choice.addClass('tooltip-container');
+        }
+
         if (symbol === this.selectedSymbol){
             $choice.addClass('selected-symbol');
         }

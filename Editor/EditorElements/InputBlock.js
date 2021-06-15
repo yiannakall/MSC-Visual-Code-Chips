@@ -29,6 +29,7 @@ export class InputBlock extends EditorElement {
 
     Render_($container){
         this.$wholeView = this.$customizableView = $('<div/>').addClass('block');
+        this.$wholeView.attr('title', this.symbol.tooltip || this.symbol.alias || this.symbol.symbol.name);
 
         this.CreateInput_();
         this.$wholeView.append(this.$input);
