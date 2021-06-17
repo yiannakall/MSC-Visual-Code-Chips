@@ -7,8 +7,6 @@ export class ContextMenu {
     
     $openInnerMenu;
 
-    $previouslyFocused;
-
     constructor($container, options){
         this.options = options;
         this.$container = $container;
@@ -17,9 +15,6 @@ export class ContextMenu {
     Render(){
         this.$contextMenu = this.CreateContextMenu_(this.options);
         this.$container.append( this.$contextMenu );
-        
-        this.$previouslyFocused = $(document.activeElement);
-        this.$contextMenu.focus();
         
         return this.$contextMenu;
     }
@@ -38,8 +33,6 @@ export class ContextMenu {
             $contextMenu.append( this.CreateCategory_(category) );
         }
 
-        $contextMenu.on('focusout', () => this.Destroy());
-
         return $contextMenu;
     }
 
@@ -55,11 +48,11 @@ export class ContextMenu {
 
     /**
      * 
-     * @param {{name, shortcut, handler} | {name, options}} option 
+     * @param {{name, handler, shortcut?, disabled?, needsFile?} | {name, options, disabled?}} option 
      */
     CreateOption_(option){
-        let {name, shortcut, handler, options, disabled} = option;
-        assert(name && handler || name && options && !handler && !shortcut);
+        let {name, shortcut, handler, options, disabled, needsFile} = option;
+        assert(name && handler || name && options && !handler && !shortcut && !needsFile);
 
         let $option = $('<div/>').addClass('option');
         
@@ -68,30 +61,45 @@ export class ContextMenu {
         if (shortcut)
             $option.append( $('<div/>').addClass('shortcut').text(shortcut) );
         
+        $option.on('click', (e) => e.stopPropagation())
+
         if (disabled)
             $option.addClass('disabled');
+        else {
 
-        if (handler && !disabled)
-            $option.on('click', () => {
-                handler();
-                this.$previouslyFocused.focus();
-                this.Destroy();
-            });
-        
-        if (options){
-            $option = $('<div/>').addClass('option-with-arrow').append($option);
-            $option.append( $('<div/>').addClass('arrow') );
+            if (needsFile && handler){
+                let $input = $('<input>').attr('type', 'file'), $label = $('<label/>');
+                $option.append( $label.append($input) );
 
-            let $contextMenu = this.CreateContextMenu_(options);
+                $input.on('change', () => {
+                    handler($input[0].files);
+                    this.Destroy();
+                });
+            }
+            
+            if (!needsFile && handler){
+                $option.on('click', () => {
+                    handler();
+                    this.Destroy();
+                });
+            }
+            
+            if (options){
+                $option = $('<div/>').addClass('option-with-arrow').append($option);
+                $option.append( $('<div/>').addClass('arrow') );
+    
+                let $contextMenu = this.CreateContextMenu_(options);
+    
+                $contextMenu.addClass('inner');
+                $contextMenu.hide();
+    
+                $option.on('mouseover', () => this.ShowInnerMenu_($contextMenu) );
+    
+                $option.append($contextMenu);
+            }else
+                $option.on('mouseover', () => this.ClearInnerMenu_());
 
-            $contextMenu.addClass('inner');
-            $contextMenu.hide();
-
-            $option.on('mouseover', () => this.ShowInnerMenu_($contextMenu) );
-
-            $option.append($contextMenu);
-        }else
-            $option.on('mouseover', () => this.ClearInnerMenu_());
+        }
 
         return $option;
     }
@@ -109,7 +117,6 @@ export class ContextMenu {
 
     Destroy(){
         this.$contextMenu?.remove();
-        this.$previouslyFocused = undefined;
         this.$contextMenu = undefined;
         this.$openInnerMenu = undefined;
     }

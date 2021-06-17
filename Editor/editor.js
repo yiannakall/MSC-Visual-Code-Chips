@@ -23,6 +23,7 @@ import { DeleteUntilPossibleCommand } from './EditorCommands/DeleteUntilPossible
 import { GenerateInputBlockCommand } from './EditorCommands/GenerateInputBlockCommand.js';
 import { DeleteAllCommand } from './EditorCommands/DeleteAllCommand.js';
 import { UndoRedoToolbar } from './UndoRedoToolbar/UndoRedoToolbar.js';
+import { DownloadAsFile } from '../Utils/Download.js';
 
 export class Editor {
 
@@ -105,7 +106,7 @@ export class Editor {
             [this.CreateElem(startingSymbol)]
         );
 
-        this.code.SetDraggable(false);
+        this.BindRootElemToEditor_(this.code);
     }
 
     InitializeView_(){
@@ -120,6 +121,10 @@ export class Editor {
 
         this.$editor = $('<div/>').addClass('editor');
         this.$editor.append(this.$toolboxspace, this.$workspace);
+        
+        this.$editor.on('click', () => {
+            this.$contextMenuContainer.empty();
+        });
 
         this.$container.empty();
         this.$container.append(this.$editor);
@@ -151,23 +156,25 @@ export class Editor {
     }
 
     SetUpContextMenu_(){
-        this.$contextMenuContainer.empty();
-
         this.$workspace.on('contextmenu', (e) => {
             e.preventDefault();
-
             this.Select(undefined);
+            
+            this.$contextMenuContainer.empty();
 
             let contextMenu = new ContextMenu(this.$contextMenuContainer, [
                 [
-                    { name: 'Undo', shortcut: 'Ctrl+Z', disabled: !this.commands.GetUndoSize(), handler: () => { this.EventHandler_Undo_(); } },
-                    { name: 'Redo', shortcut: 'Ctrl+Y', disabled: !this.commands.GetRedoSize(), handler: () => { this.EventHandler_Redo_(); } },
+                    { name: 'Undo', shortcut: 'Ctrl+Z', disabled: !this.commands.GetUndoSize(), handler: () => this.EventHandler_Undo_() },
+                    { name: 'Redo', shortcut: 'Ctrl+Y', disabled: !this.commands.GetRedoSize(), handler: () => this.EventHandler_Redo_() },
+                ],
+                [
+                    { name: 'Import Visual Code', shortcut: 'Ctrl+L', needsFile: true, handler: (files) => this.EventHandler_LoadCode_(files) },
+                    { name: 'Download Visual Code', shortcut: 'Ctrl+S', handler: () => this.EventHandler_DownloadCode_() }
                 ],
                 [
                     { name: 'Delete All', shortcut: 'Ctrl+A+Del', handler: () => this.EventHandler_DeleteAll_() }
-                ]
+                ],
             ]);
-
 
             contextMenu.Render();
 
@@ -234,6 +241,7 @@ export class Editor {
 
     SetWorkspace_DragAndDrop() {
         this.toolbox.SetElem_OnDragStart((e, elem) => {
+            this.$contextMenuContainer.empty();
             this.elemForDropping = elem;
             this.HighlightValidPasteTargets(this.elemForDropping);
         });
@@ -260,6 +268,14 @@ export class Editor {
         if (this.selected){
             this.Select(this.selected);
         }
+    }
+
+    BindRootElemToEditor_(elem){
+        elem.SetDraggable(false);
+        elem.SetOnClick((elem) => {
+            this.$contextMenuContainer.empty();
+            this.Select(elem);
+        });
     }
 
     BindElemToEditor_(elem){
@@ -305,6 +321,7 @@ export class Editor {
 
     SetElem_OnClick_(elem){
         elem.SetOnClick((elem) => {
+            this.$contextMenuContainer.empty();
             this.Select(elem);
         });
     }
@@ -394,6 +411,7 @@ export class Editor {
         let pasteOn;
 
         elem.SetOnDragStart((e, elem) => {
+            this.$contextMenuContainer.empty();
             this.elemForDropping = elem;
             this.HighlightValidPasteTargets(this.elemForDropping);
         });
@@ -748,6 +766,30 @@ export class Editor {
         let source = this.clipboard?.CloneRec(), dest = this.selected;
         if (this.CanPaste(source, dest)){
             this.ExecuteCommand( new PasteCommand(this, source, dest) );
+        }
+    }
+
+    EventHandler_DownloadCode_(){
+        DownloadAsFile(this.code.ToJsonRec(), 'CodeChips_VCode.json');
+    }
+    
+    EventHandler_LoadCode_(files){
+        if (files && files.length === 1){
+            let reader = new FileReader();
+            reader.addEventListener('load', e => {
+                this.code = EditorElementParser.FromString(
+                    e.target.result,
+                    (elem) => {
+                        if (elem.GetSymbol && elem.GetSymbol().symbol.name === 'program') // don't set the root's on drop, on click etc
+                            this.BindRootElemToEditor_(elem);
+                        else
+                            this.BindElemToEditor_(elem);
+                    }
+                );
+                this.Select(undefined);
+                this.RenderWorkspace();
+            });
+            reader.readAsText(files[0]);
         }
     }
 
