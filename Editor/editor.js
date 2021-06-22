@@ -24,6 +24,7 @@ import { GenerateInputBlockCommand } from './EditorCommands/GenerateInputBlockCo
 import { DeleteAllCommand } from './EditorCommands/DeleteAllCommand.js';
 import { UndoRedoToolbar } from './UndoRedoToolbar/UndoRedoToolbar.js';
 import { DownloadAsFile } from '../Utils/Download.js';
+import { ToastMessage } from './EditorToastMessages/ToastMessage.js';
 
 export class Editor {
 
@@ -33,14 +34,20 @@ export class Editor {
     $workspace;
     $code;
     $rightClickContainer;
-    $undoRedoToolbarContainer;
-
+    $toastMessages;
+    
     $toolboxspace;
-
+    
     language;
     code;
     clipboard;
     selected;
+    
+    $undoRedoToolbarContainer;
+    undoToolbarVisible = false;
+    undoToastMessageVisible = false;
+    undoToastMessageDisabled = false;
+    undoToastMessage;
     undoToolbar;
 
     keyboardEventManager;
@@ -82,17 +89,8 @@ export class Editor {
         this.InitializeEvents_();
         this.SetUpContextMenu_();
 
-        this.undoToolbar = new UndoRedoToolbar(this.$undoRedoToolbarContainer);
-        this.undoToolbar.SetOnUndo( () => this.EventHandler_Undo_() );
-        this.undoToolbar.SetOnRedo( () => this.EventHandler_Redo_() );
-
-        this.toolbox = new Toolbox(this.$toolboxspace, toolboxInfo);
-        this.toolbox.SetToolbox_MaxWidth(() => {
-            return 0.8 * this.$container.width();
-        });
-        this.toolbox.SetToolbox_MinWidth(() => {
-            return 0.2 * this.$container.width();
-        });
+        this.SetUpToolbox_(toolboxInfo);
+        this.SetUpUndoToolbar_();
 
         this.SetWorkspace_DragAndDrop();
         this.Render();
@@ -115,7 +113,14 @@ export class Editor {
         this.$code = $('<div/>').addClass('code');
         this.$contextMenuContainer = $('<div/>').addClass('context-menu-container');
         this.$undoRedoToolbarContainer = $('<div/>').addClass('editor-undo-redo-toolbar-container');
-        this.$workspace.append(this.$code, this.$contextMenuContainer, this.$undoRedoToolbarContainer);
+        this.$toastMessages = $('<div/>').addClass('editor-toast-messages');
+
+        this.$workspace.append(
+            this.$undoRedoToolbarContainer,
+            this.$code,
+            this.$toastMessages,
+            this.$contextMenuContainer
+        );
 
         this.$toolboxspace = $('<div/>').addClass('toolboxspace');
 
@@ -153,6 +158,30 @@ export class Editor {
             .AddEventHandler( [Keys.CTRL, Keys.Z],                  () => this.EventHandler_Undo_() )
             .AddEventHandler( [Keys.CTRL, Keys.Y],                  () => this.EventHandler_Redo_() )
         ;
+    }
+
+    SetUpUndoToolbar_(){
+        this.undoToolbar = new UndoRedoToolbar(this.$undoRedoToolbarContainer);
+        this.undoToolbar.SetOnUndo( () => this.EventHandler_Undo_() );
+        this.undoToolbar.SetOnRedo( () => this.EventHandler_Redo_() );
+        
+        this.undoToolbar.SetOnShow(() => this.undoToolbarVisible = true );
+
+        this.undoToolbar.SetOnHide(() => { 
+            this.undoToolbarVisible = false;
+            this.undoToastMessage.Destroy();
+            this.undoToastMessageVisible = false;
+        });
+    }
+
+    SetUpToolbox_(toolboxInfo){
+        this.toolbox = new Toolbox(this.$toolboxspace, toolboxInfo);
+        this.toolbox.SetToolbox_MaxWidth(() => {
+            return 0.8 * this.$container.width();
+        });
+        this.toolbox.SetToolbox_MinWidth(() => {
+            return 0.2 * this.$container.width();
+        });
     }
 
     SetUpContextMenu_(){
@@ -661,8 +690,53 @@ export class Editor {
     }
 
     ExecuteCommand(command){
-        this.commands.ExecuteAndAppend(command);
-        this.undoToolbar.Hide();
+        if (!this.undoToastMessageDisabled && !this.undoToastMessageVisible && this.undoToolbarVisible){
+            this.AppendUndoToastMessage();
+            return;
+        }
+        
+        if (this.undoToastMessageDisabled && this.undoToolbarVisible)
+            this.undoToolbar.Hide();
+
+        if (!this.undoToastMessageVisible)
+            this.commands.ExecuteAndAppend(command);
+    }
+
+    AppendUndoToastMessage(){
+        this.undoToastMessageVisible = true;
+
+        this.undoToastMessage = new ToastMessage({
+            type: ToastMessage.Types.Information,
+            title: 'Leaving Undo/Redo mode',
+            explanation:    `To edit you have to leave Undo/Redo mode. After editting, redo won't be available for the actions that 
+                            are currently on your redo hsitory`,
+            buttons: [
+                {
+                    name: 'Ok',
+                    handler: (toastMessage) => {
+                        this.undoToolbar.Hide();
+                        this.undoToastMessageVisible = false;
+                        toastMessage.Destroy()
+                    }
+                },
+                {
+                    name: 'Ok and don\'t show this again',
+                    handler: (toastMessage) => { 
+                        this.undoToolbar.Hide();
+                        this.undoToastMessageVisible = false, this.undoToastMessageDisabled = true; 
+                        toastMessage.Destroy();
+                    }
+                },
+                {
+                    name: 'Cancel',
+                    handler: (toastMessage) => { this.undoToastMessageVisible = false, toastMessage.Destroy(); }
+                }
+            ]
+        });
+
+        this.undoToastMessage.SetOnClose( () => this.undoToastMessageVisible = false );
+
+        this.AppendToastMessage(this.undoToastMessage);
     }
 
     UpdateUndoToolbar(){
@@ -674,6 +748,19 @@ export class Editor {
 
         let redoCommand = this.commands.GetCurrentRedo();
         this.undoToolbar.SetRedoDescription( redoCommand ? `${redoCommand.description}` : '-' );
+    }
+    
+    AppendToastMessage(toastMessage, expirationTime, expirationCb){
+        toastMessage.Render(this.$toastMessages);
+
+        if (expirationTime)
+            setTimeout( 
+                () => {
+                    expirationCb();
+                    toastMessage.Destroy();
+                },
+                expirationTime 
+            );
     }
 
     EventHandler_NavigateUp_(){
@@ -794,14 +881,18 @@ export class Editor {
     }
 
     EventHandler_Undo_(){
-        this.undoToolbar.Show();
-        this.commands.Undo();
-        this.UpdateUndoToolbar();
+        if (this.commands.GetUndoSize()){
+            this.undoToolbar.Show();
+            this.commands.Undo();
+            this.UpdateUndoToolbar();
+        }
     }
 
     EventHandler_Redo_(){
-        this.undoToolbar.Show();
-        this.commands.Redo();
-        this.UpdateUndoToolbar();
+        if (this.commands.GetRedoSize()){
+            this.undoToolbar.Show();
+            this.commands.Redo();
+            this.UpdateUndoToolbar();
+        }
     }
 }

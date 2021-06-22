@@ -2,8 +2,10 @@ export class UndoRedoToolbar {
     $container;
     $view;
 
-    onUndo;
-    onRedo;
+    onUndo = () => {};
+    onRedo = () => {};
+    onShow = () => {};
+    onHide = () => [];
 
     constructor($container){
         this.$container = $container;
@@ -77,13 +79,22 @@ export class UndoRedoToolbar {
 
     Hide(){
         this.$view.hide();
+        this.onHide();
     }
 
     Show(){
-        this.$view.fadeIn();
+        this.$view.fadeIn(400, () => this.onShow());
     }
 
     Toggle(){
         $view.is(":visible") ? this.Hide() : this.Show();
+    }
+
+    SetOnShow(f){
+        this.onShow = f;
+    }
+
+    SetOnHide(f){
+        this.onHide = f;
     }
 }

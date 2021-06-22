@@ -38,6 +38,9 @@ body{
 }
 
 .workspace{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
     background-color: #1e1e1e;
     outline: none;
@@ -808,12 +811,8 @@ body{
 /********************************* UNDO-REDO TOOLBAR *********************************/
 
 .editor-undo-redo-toolbar-container {
-    width: 50%;
-    position: absolute;
-    
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .undo-redo-toolbar-container {
@@ -832,7 +831,7 @@ body{
     display: flex;
     width: 50%;
     align-items: center;
-    padding: 10px 15px;
+    padding: 12px 15px;
 
     cursor: pointer;
     color: #C4C4C4;
@@ -866,8 +865,8 @@ body{
     mask-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
 
     
     background-color: #75BEFF;
@@ -948,4 +947,127 @@ body{
     background-color: #C4C4C4;
     -webkit-mask-image: url(/Images/UndoRedoToolbar/close.svg);
     mask-image: url(/Images/UndoRedoToolbar/close.svg);
+}
+
+/* Editor Toast Messages */
+
+.editor-toast-messages {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    max-width: min(50%, 500px);
+
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+}
+
+.toast-message-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    padding: 15px;
+    
+    font-family: 'Roboto';
+    color: #C2C2C2;
+    background-color: #252526;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), -4px 0px 4px rgba(0, 0, 0, 0.25), 4px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.toast-message-container .title-bar {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.toast-message-container .title {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    font-size: 16px;
+}
+
+.toast-message-container .icon {
+    --webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+    mask-repeat: no-repeat;
+    mask-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 22px;
+    height: 22px;
+    background-color: white;
+    
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.toast-message-container .icon.warning {
+    -webkit-mask-image: url(/Images/ToastMessages/warning.svg);
+    mask-image: url(/Images/ToastMessages/warning.svg);
+    background-color: #CCA700;
+}
+
+.toast-message-container .icon.error {
+    -webkit-mask-image: url(/Images/ToastMessages/error.svg);
+    mask-image: url(/Images/ToastMessages/error.svg);
+    background-color: #F48771;
+}
+
+.toast-message-container .icon.information {
+    -webkit-mask-image: url(/Images/ToastMessages/information.svg);
+    mask-image: url(/Images/ToastMessages/information.svg);
+    background-color: #75BEFF;
+}
+
+.toast-message-container .close-container {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toast-message-container .close-container:hover {
+    background-color: #303031;
+    cursor: pointer;
+}
+
+.toast-message-container .icon.close {
+    width: 12px;
+    height: 12px;
+    -webkit-mask-image: url(/Images/ToastMessages/close.svg);
+    mask-image: url(/Images/ToastMessages/close.svg);
+    background-color: #c2c2c2;
+}
+
+.toast-message-container .content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+
+    font-size: 14px;
+}
+
+.toast-message-container .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.toast-message-container .button {
+    user-select: none;
+
+    padding: 10px 15px;
+    background-color: #0E639C;
+    cursor: pointer;
+}
+
+.toast-message-container .button:hover {
+    background-color: #007ACC;
+    color: #ffffff;
 }
