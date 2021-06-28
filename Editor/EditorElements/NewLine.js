@@ -15,6 +15,8 @@ export class NewLine extends EditorElement {
     }
 
     Render_($container){
-        assert(false, 'Should not be rendered, as it just changes the parent group\'s layout');
+        this.$customizableView = this.$wholeView = $('<div/>').addClass('new-line');
+
+        $container.append(this.$wholeView); 
     }
 }

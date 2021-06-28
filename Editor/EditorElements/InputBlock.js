@@ -28,7 +28,7 @@ export class InputBlock extends EditorElement {
     }
 
     Render_($container){
-        this.$wholeView = this.$customizableView = $('<div/>').addClass('block');
+        this.$wholeView = this.$customizableView = $('<div/>').addClass('input-block');
         this.$wholeView.attr('title', this.symbol.tooltip || this.symbol.alias || this.symbol.symbol.name);
 
         this.CreateInput_();
@@ -38,7 +38,7 @@ export class InputBlock extends EditorElement {
     }
 
     CreateInput_(){
-        this.$input = $('<input>').addClass('block-input');
+        this.$input = $('<input>').addClass('input');
         this.$input.attr('placeholder', this.symbol.alias || this.symbol.symbol.name);
 
         if (this.userInput_ !== undefined && this.userInput_ !== ''){

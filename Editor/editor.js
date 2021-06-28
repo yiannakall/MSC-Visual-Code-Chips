@@ -301,9 +301,9 @@ export class Editor {
 
     BindRootElemToEditor_(elem){
         elem.SetDraggable(false);
-        elem.SetOnClick((elem) => {
+        elem.SetOnClick(() => {
             this.$contextMenuContainer.empty();
-            this.Select(elem);
+            this.Select(undefined);
         });
     }
 
@@ -319,6 +319,10 @@ export class Editor {
                 elem.SetDraggable(false);
                 elem.SetDroppable(false);
                 break;
+            case EditorElementTypes.NewLine:
+                elem.SetDraggable(false);
+                elem.SetDroppable(false);
+                break;
             case EditorElementTypes.SimpleBlock:
                 if (!elem.GetGeneratedBy()){
                     elem.SetDraggable(false);
@@ -327,9 +331,9 @@ export class Editor {
                 break;
         }
 
-        if (elem.GetSymbol && elem.GetSymbol().repeatable){
+        if (elem.GetSymbol && elem.GetSymbol().repeatable)
             elem.SetDraggable(false);
-        }
+        
         
         this.SetElem_OnDrop(elem);
         this.SetElem_OnClick_(elem);
@@ -349,9 +353,13 @@ export class Editor {
     }
 
     SetElem_OnClick_(elem){
-        elem.SetOnClick((elem) => {
+        elem.SetOnClick((e, elem) => {
             this.$contextMenuContainer.empty();
-            this.Select(elem);
+            
+            if (elem.GetType() !== EditorElementTypes.NewLine && elem.GetType() !== EditorElementTypes.Tab){
+                e.stopPropagation();
+                this.Select(elem);
+            }
         });
     }
 
@@ -608,8 +616,13 @@ export class Editor {
 
     NavigateIn() {
         if (this.selected && this.selected.GetType() === EditorElementTypes.Group){
-            this.Select(this.selected.GetElem(0));
-            return true;
+            for (let i = 0; i < this.selected.GetLength(); ++i){
+                let elem = this.selected.GetElem(i);
+                if (elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab){
+                    this.Select(elem);
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -629,8 +642,9 @@ export class Editor {
             assert(parent.GetType() === EditorElementTypes.Group);
             
             for (let i = parent.IndexOf(this.selected) - 1; i >= 0; --i){
-                if (parent.GetElem(i).GetType() != EditorElementTypes.NewLine){
-                    this.Select(parent.GetElem(i));
+                let elem = parent.GetElem(i);
+                if (elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab){
+                    this.Select(elem);
                     return true;
                 }
             }
@@ -644,8 +658,9 @@ export class Editor {
             assert(parent.GetType() === EditorElementTypes.Group);
 
             for (let i = parent.IndexOf(this.selected) + 1; i < parent.GetLength(); ++i){
-                if (parent.GetElem(i).GetType() != EditorElementTypes.NewLine){
-                    this.Select(parent.GetElem(i));
+                let elem = parent.GetElem(i);
+                if (elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab){
+                    this.Select(elem);
                     return true;
                 }
             }
@@ -657,14 +672,22 @@ export class Editor {
         let parent = this.selected?.GetParent();
         if (parent){
             assert(parent.GetType() === EditorElementTypes.Group);
-            
-            for (let i = parent.IndexOf(this.selected); i > 0; --i){
-                if (
-                    parent.GetElem(i).GetType() === EditorElementTypes.NewLine && 
-                    parent.GetElem(i - 1).GetType() !== EditorElementTypes.NewLine
-                ){
-                    this.Select(parent.GetElem(i - 1));
-                    return true;
+
+            for (var i = parent.IndexOf(this.selected); i > 0; --i){
+                if ( parent.GetElem(i).GetType() === EditorElementTypes.NewLine )
+                    break;
+            }
+
+            if (i > 0 && parent.GetElem(i).GetType() === EditorElementTypes.NewLine){
+                for (i = i - 1; i >= 0; --i){
+                    let elem = parent.GetElem(i);
+                    if (
+                        elem.GetType() != EditorElementTypes.NewLine &&
+                        elem.GetType() != EditorElementTypes.Tab
+                    ){
+                        this.Select(elem);
+                        return true;
+                    }
                 }
             }
         }
@@ -676,13 +699,22 @@ export class Editor {
             let parent = this.selected.GetParent();
             assert(parent.GetType() === EditorElementTypes.Group);
             
-            for (let i = parent.IndexOf(this.selected); i < parent.GetLength() - 1; ++i){
-                if (
-                    parent.GetElem(i).GetType() === EditorElementTypes.NewLine && 
-                    parent.GetElem(i + 1).GetType() !== EditorElementTypes.NewLine
-                ){
-                    this.Select(parent.GetElem(i + 1));
-                    return true;
+            for (var i = parent.IndexOf(this.selected); i < parent.GetLength() - 1; ++i){
+                if ( parent.GetElem(i).GetType() === EditorElementTypes.NewLine ){
+                    break;
+                }
+            }
+
+            if (i < parent.GetLength() - 1 && parent.GetElem(i).GetType() === EditorElementTypes.NewLine){
+                for (i = i + 1; i < parent.GetLength(); ++i){
+                    let elem = parent.GetElem(i);
+                    if (
+                        elem.GetType() != EditorElementTypes.NewLine &&
+                        elem.GetType() != EditorElementTypes.Tab
+                    ){
+                        this.Select(elem);
+                        return true;
+                    }
                 }
             }
         }
@@ -709,7 +741,7 @@ export class Editor {
             type: ToastMessage.Types.Information,
             title: 'Leaving Undo/Redo mode',
             explanation:    `To edit you have to leave Undo/Redo mode. After editting, redo won't be available for the actions that 
-                            are currently on your redo hsitory`,
+                            are currently on your redo history`,
             buttons: [
                 {
                     name: 'Ok',

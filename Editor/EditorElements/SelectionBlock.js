@@ -36,8 +36,8 @@ export class SelectionBlock extends EditorElement {
 
     Render_($container){
         let $blockWithArrow = 
-            $('<div/>').addClass('block-with-arrow').append(
-                $('<div/>').addClass('block').html(this.symbol.alias || this.symbol.symbol.name),
+            $('<div/>').addClass('selection-block').append(
+                $('<div/>').addClass('text').html(this.symbol.alias || this.symbol.symbol.name),
                 $('<div/>').addClass('arrow')
             );
 
@@ -45,22 +45,22 @@ export class SelectionBlock extends EditorElement {
             $blockWithArrow.addClass('block-can-repeat');
         }
         $blockWithArrow.attr('title', this.symbol.tooltip || this.symbol.alias || this.symbol.symbol.name);
-        this.$customizableView = $blockWithArrow;
-
-        this.$blockAlternateSelections = $('<div/>').addClass('block-alternate-selections').hide();
         
-        this.$wholeView = 
-            $('<div/>').addClass('block-with-selections').append(
-                $blockWithArrow,
-                this.$blockAlternateSelections
-            );
-
         $blockWithArrow.on('click', (e) => {
             if (this.isEditable_){
                 $('.block-alternate-selections').not(this.$blockAlternateSelections).hide();
                 this.$blockAlternateSelections.toggle();
             }
         });
+        
+        this.$customizableView = $blockWithArrow;
+        this.$blockAlternateSelections = $('<div/>').addClass('block-alternate-selections').hide();
+        
+        this.$wholeView = 
+            $('<div/>').addClass('selection-block-container').append(
+                $blockWithArrow,
+                this.$blockAlternateSelections
+            );
 
         for (let symbol of this.alternateSymbols){
             this.$blockAlternateSelections.append(this.CreateChoiceView_(symbol));

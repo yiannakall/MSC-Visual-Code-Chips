@@ -18,7 +18,7 @@ export class EditorElement {
     isDraggable = true;
     isDroppable = true;
 
-    onClick = (self) => {};
+    onClick = (e, self) => {};
     onContextMenu = (e, self) => {};
     theme = (self) => { return ''; };
     
@@ -107,8 +107,7 @@ export class EditorElement {
 
     AddOnClick_() {
         this.$wholeView.on('click', (e) => {
-            this.onClick(this);
-            e.stopPropagation();
+            this.onClick(e, this);
         });
     }
 

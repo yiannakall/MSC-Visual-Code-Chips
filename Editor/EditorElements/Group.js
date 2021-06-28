@@ -145,25 +145,17 @@ export class Group extends EditorElement {
 
     Render_($container) {
         let $group = $('<div class = "group"></div>');
-        let $differentLines = $('<div class = "different-line-elems"></div>');
-        let $inline = $('<div class = "inline-elems"></div>');
-
-        $differentLines.append($inline);
-        $group.append($differentLines);
+        
         $container.append($group);
         
         $group.attr('title', this.symbol.tooltip || this.symbol.alias || this.symbol.symbol.name);
         this.$wholeView = this.$customizableView = $group;
 
         for (let elem of this.elems){
-            if (elem.type === EditorElementTypes.NewLine){
-                $inline = $('<div class = "inline-elems"></div>');
-                $differentLines.append($inline);
-            }else{
-                elem.Render($inline);
+                elem.Render($group);
+
                 if (this.onRenderElem)
                     this.onRenderElem(elem);
-            }
         }
 
         if (this.onRenderElem)
