@@ -27,14 +27,14 @@ export class InputBlock extends EditorElement {
         };
     }
 
-    Render_($container){
-        this.$wholeView = this.$customizableView = $('<div/>').addClass('input-block');
-        this.$wholeView.attr('title', this.symbol.tooltip || this.symbol.alias || this.symbol.symbol.name);
+    Render_(){
+        let $inputBlock = $('<div/>').addClass('input-block');
+        $inputBlock.attr('title', this.symbol.tooltip || this.symbol.alias || this.symbol.symbol.name);
 
         this.CreateInput_();
-        this.$wholeView.append(this.$input);
+        $inputBlock.append(this.$input);
 
-        $container.append(this.$wholeView);
+        this.$wholeView = this.$customizableView = $inputBlock;
     }
 
     CreateInput_(){
@@ -64,7 +64,7 @@ export class InputBlock extends EditorElement {
         });
     }
 
-    PastStyling_(){
+    PastRendering_(){
         this.$wholeView.css('width', this.$input.textWidth(this.$input.val() || this.$input.attr('placeholder')) + 20 + 'px');
         
         let lightenedColors = this.$wholeView.css('background-color')
@@ -82,6 +82,7 @@ export class InputBlock extends EditorElement {
 
     SetText(text){
         this.userInput_ = text;
+        this.$input?.val(this.userInput_);
     }
 
     SetOnInput(f){

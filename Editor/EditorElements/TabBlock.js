@@ -13,9 +13,8 @@ export class TabBlock extends EditorElement {
         return {};
     }
 
-    Render_($container){
+    Render_(){
         let $elem = $('<div/>').addClass('tab');
-        $container.append($elem);
         this.$wholeView = this.$customizableView = $elem;
     }
 }

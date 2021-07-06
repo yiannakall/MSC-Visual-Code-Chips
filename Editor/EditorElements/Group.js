@@ -5,7 +5,7 @@ export class Group extends EditorElement {
     elems = [];
     symbol;
     
-    onRenderElem;
+    onRenderElem = (elem) => {};
     
     constructor(symbol, elems){
         super(EditorElementTypes.Group);
@@ -26,11 +26,18 @@ export class Group extends EditorElement {
     PushElem(elem){
         elem.SetParent(this);
         this.elems.push(elem);
+
+        if (this.$wholeView)
+            this.RenderChild_(elem)
     }
 
     PopElem(){
         let elem = this.elems.pop(elem);
         elem.SetParent(null);
+
+        if (this.$wholeView)
+            elem.RemoveRenderedView();
+
         return elem;
     }
 
@@ -42,16 +49,21 @@ export class Group extends EditorElement {
 
         this.elems.splice(i, 0, elem);
         elem.SetParent(this);
+
+        if (this.$wholeView){
+            i === this.elems.length - 1 ?
+                this.RenderChild_(elem) :
+                this.RenderChildBefore_(this.elems[i + 1], elem);
+        }
     }
 
     InsertBeforeElem_WithOffset(elem, offset, newElem){
         assert(elem.GetParent() === this, `${this} is not the parent of ${elem}`);
         
         let index = this.elems.indexOf(elem);
-        assert(index !== -1, `${elem} is not a child of group ${this}`)
+        assert(index !== -1, `${elem} is not a child of group ${this}`);
 
-        this.elems.splice(index + offset, 0, newElem);
-        newElem.SetParent(this);
+        this.InsertAtIndex(index + offset, newElem);
     }
 
     InsertBeforeElem(elem, newElem){
@@ -70,6 +82,9 @@ export class Group extends EditorElement {
 
         this.elems.splice(index, 1);
         elem.SetParent(null);
+
+        if (this.$wholeView)
+            elem.RemoveRenderedView();
     }
 
     ReplaceElem(elem, newElem) {
@@ -143,23 +158,39 @@ export class Group extends EditorElement {
         };
     }
 
-    Render_($container) {
-        let $group = $('<div class = "group"></div>');
-        
-        $container.append($group);
-        
+    Render_() {
+        let $group = $('<div/>').addClass('group');
         $group.attr('title', this.symbol.tooltip || this.symbol.alias || this.symbol.symbol.name);
-        this.$wholeView = this.$customizableView = $group;
 
-        for (let elem of this.elems){
-                elem.Render($group);
+        this.$wholeView = $group, this.$customizableView = $group
+    }
 
-                if (this.onRenderElem)
-                    this.onRenderElem(elem);
+    RenderChild_(elem){
+        elem.Render(this.$wholeView);
+        this.onRenderElem(elem);
+    }
+
+    RenderChildBefore_(nextElem, elem){
+        let $nextElem = nextElem.GetWholeView();
+        if ($nextElem){
+            elem.RenderBefore($nextElem);
+            this.onRenderElem(elem);
         }
+    }
 
-        if (this.onRenderElem)
-            this.onRenderElem(this);
+    RenderChildAfter_(previousElem, elem){
+        let $previousElem = previousElem.GetWholeView();
+        if ($previousElem){
+            elem.RenderAfter($previousElem);
+            this.onRenderElem(elem);
+        }
+    }
+
+    PastRendering_() { // needs to happen after being attached to a $container for the PastRendering_ of children elements
+        for (let elem of this.elems)
+            this.RenderChild_(elem);
+
+        this.onRenderElem(this);
     }
 
     SetOnRenderElem(f){

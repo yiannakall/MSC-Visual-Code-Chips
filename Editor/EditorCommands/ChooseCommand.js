@@ -32,8 +32,7 @@ export class ChooseCommand extends EditorCommand {
             this.selectionBlock.GetParent().InsertBeforeElem(this.selectionBlock, this.newLine);
         }
 
-        this.editor.RenderWorkspace();
-        this.editor.Select(this.newBlock);
+        window.requestAnimationFrame( () => this.editor.Select(this.newBlock) );
     }
 
     Redo(){

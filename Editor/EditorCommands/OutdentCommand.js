@@ -18,13 +18,11 @@ export class OutdentCommand extends EditorCommand{
         this.tab = previous;
 
         this.block.GetParent().RemoveElem(previous);
-        this.editor.RenderWorkspace();
     }
 
     Undo(){
         assert(this.tab);
         this.block.GetParent().InsertBeforeElem(this.block, this.tab);
-        this.editor.RenderWorkspace();
     }
 
     Redo(){

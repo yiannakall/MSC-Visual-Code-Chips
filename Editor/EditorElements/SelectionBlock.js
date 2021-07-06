@@ -34,7 +34,7 @@ export class SelectionBlock extends EditorElement {
         };
     }
 
-    Render_($container){
+    Render_(){
         let $blockWithArrow = 
             $('<div/>').addClass('selection-block').append(
                 $('<div/>').addClass('text').html(this.symbol.alias || this.symbol.symbol.name),
@@ -53,21 +53,22 @@ export class SelectionBlock extends EditorElement {
             }
         });
         
-        this.$customizableView = $blockWithArrow;
         this.$blockAlternateSelections = $('<div/>').addClass('block-alternate-selections').hide();
-        
-        this.$wholeView = 
-            $('<div/>').addClass('selection-block-container').append(
-                $blockWithArrow,
-                this.$blockAlternateSelections
-            );
 
         for (let symbol of this.alternateSymbols){
             this.$blockAlternateSelections.append(this.CreateChoiceView_(symbol));
         }
         this.$blockAlternateSelections.attr('title', '');
 
-        $container.append(this.$wholeView);
+        let $selectionBlockContainer = $('<div/>')
+            .addClass('selection-block-container')
+            .append(
+                $blockWithArrow,
+                this.$blockAlternateSelections
+            );
+
+        this.$customizableView = $blockWithArrow;
+        this.$wholeView = $selectionBlockContainer;
     }
 
     CreateChoiceView_(symbol){
@@ -76,6 +77,7 @@ export class SelectionBlock extends EditorElement {
 
         $choice.on( 'click', () => {
             this.selectedSymbol = symbol;
+            this.$blockAlternateSelections.toggle();
             this.onSelect(this);
         });
     

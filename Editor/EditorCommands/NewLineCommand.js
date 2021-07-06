@@ -16,13 +16,11 @@ export class NewLineCommand extends EditorCommand{
             this.newLine = this.editor.CreateNewLine();
         
         this.block.GetParent().InsertBeforeElem(this.block, this.newLine);
-        this.editor.RenderWorkspace();
     }
 
     Undo(){
         assert(this.newLine);
         this.newLine.GetParent().RemoveElem(this.newLine);
-        this.editor.RenderWorkspace();
     }
 
     Redo(){

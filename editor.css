@@ -43,6 +43,10 @@ body{
     height: 32px;
 }
 
+.new-line:first-child {
+    height: 32px;
+}
+
 /* Tab */
 
 .group > .tab {
@@ -56,8 +60,7 @@ body{
 .selection-block-container {
     position: relative;
     width: fit-content;
-    display: inline-flex;
-    align-items: center;
+    display: inline-block;
 }
 
 .selection-block {

@@ -30,21 +30,17 @@ export class GenerateInputBlockCommand extends EditorCommand {
 
         this.inputBlock.GetParent().InsertBeforeElem(this.inputBlock, this.newInputBlock);
 
-        this.editor.RenderWorkspace();
         this.editor.Select(this.newInputBlock);
         this.newInputBlock.GetInput().focus();
     }
 
     Undo(){
         this.editor.RemoveElem_WithChecks(this.newInputBlock);
-        this.editor.RenderWorkspace();
         this.editor.Select(this.inputBlock);
     }
 
     Redo(){
         this.inputBlock.GetParent().InsertBeforeElem(this.inputBlock, this.newInputBlock);
-
-        this.editor.RenderWorkspace();
         this.editor.Select(this.newInputBlock);
     }
 }

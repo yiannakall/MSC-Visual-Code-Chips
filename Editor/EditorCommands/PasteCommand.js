@@ -58,7 +58,6 @@ export class PasteCommand extends EditorCommand{
         assert(result);
         this.newLine = result.newLine, this.destClone = result.destClone;
         
-        this.editor.RenderWorkspace();
         this.editor.Select(this.source);
     }
 
@@ -66,13 +65,12 @@ export class PasteCommand extends EditorCommand{
         let parent = this.source.GetParent();
 
         parent.InsertAfterElem(this.source, this.dest);
-        
+
         if (this.newLine)   parent.RemoveElem(this.newLine);
         if (this.destClone) parent.RemoveElem(this.destClone);
 
         parent.RemoveElem(this.source);
 
-        this.editor.RenderWorkspace();
         this.editor.Select(this.dest);
     }
 
@@ -86,7 +84,6 @@ export class PasteCommand extends EditorCommand{
 
         parent.RemoveElem(this.dest);
 
-        this.editor.RenderWorkspace();
         this.editor.Select(this.source);
     }
     

@@ -14,9 +14,9 @@ export class NewLine extends EditorElement {
         return {};
     }
 
-    Render_($container){
-        this.$customizableView = this.$wholeView = $('<div/>').addClass('new-line');
+    Render_(){
+        let $newline = $('<div/>').addClass('new-line');
 
-        $container.append(this.$wholeView); 
+        this.$customizableView = this.$wholeView = $newline;
     }
 }

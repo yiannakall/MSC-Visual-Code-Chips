@@ -35,7 +35,6 @@ export class DeleteCommand extends EditorCommand{
             this.generatedBy.GetParent().RemoveElem(this.generatedBy);
         
         this.parent.InsertAtIndex(this.index, this.block);
-        this.editor.RenderWorkspace();
         this.editor.Select(this.selected);
     }
 

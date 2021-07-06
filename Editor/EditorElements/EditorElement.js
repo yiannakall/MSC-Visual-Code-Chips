@@ -1,3 +1,5 @@
+import { assert } from "../../Utils/Assert.js";
+
 export const EditorElementTypes = {
     NewLine: 'NEW_LINE',
     Tab: 'TAB_BLOCK',
@@ -37,7 +39,7 @@ export class EditorElement {
     Clone_()                            { assert(false, 'Non implemented by subclass'); }
     ToJson_()                           { assert(false, 'Non implemented by subclass'); }
     Render_($container)                 { assert(false, 'Non implemented by subclass'); }
-    PastStyling_()                      { }
+    PastRendering_()                      { }
 
     /* --------------------- */
 
@@ -86,20 +88,52 @@ export class EditorElement {
     }
 
     Render($container) {
-        this.Render_($container);
+        this.$customizableView = this.$wholeView = undefined;
+        this.Render_();
+        assert(this.$customizableView), assert(this.$wholeView);
+        $container.append(this.$wholeView);
+
+        this.PastRendering();
+    }
+    
+    RenderAfter($prev){
+        this.$customizableView = this.$wholeView = undefined;
+        this.Render_();
+        assert(this.$customizableView), assert(this.$wholeView);
+        $prev.after(this.$wholeView);
+
+        this.PastRendering();
+    }
+
+    RenderBefore($next){
+        this.$customizableView = this.$wholeView = undefined;
+        this.Render_();
+        assert(this.$customizableView), assert(this.$wholeView);
+        $next.before(this.$wholeView);
+
+        this.PastRendering();
+    }
+
+    RemoveRenderedView(){
+        this.$wholeView.remove();
+        this.$wholeView = this.$customizableView = undefined;
+    }
+
+    PastRendering(){
         this.ApplyTheme_();
-        this.PastStyling_();
         this.AddOnClick_();
         this.AddOnContextMenu_();
-
+        
         if (this.isDraggable){
             this.MakeDraggable_();
         }
         if (this.isDroppable){
             this.MakeDroppable_();
         }
+
+        this.PastRendering_();
     }
-    
+
     ApplyTheme_(){
         let style = this.theme(this);
         this.$customizableView.addClass(style);

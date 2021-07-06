@@ -248,11 +248,11 @@ export class Editor {
         }
 
         if (elem === this.selected){
-            this.NavigateRight() || this.NavigateOut() || (this.selected = undefined);
+            this.NavigateLeft() || this.NavigateOut() || (this.selected = undefined);
         }
 
         parent.RemoveElem(elem);
-        this.RenderWorkspace();
+
         return true;
     }
 

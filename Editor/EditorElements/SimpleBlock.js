@@ -18,9 +18,8 @@ export class SimpleBlock extends EditorElement {
         };
     }
 
-    Render_($container){
+    Render_(){
         let $elem = $('<div/>').addClass('simple-block').html(this.symbol.alias || this.symbol.symbol.name);
-        $container.append($elem);
         this.$wholeView = this.$customizableView = $elem;
     }
 
