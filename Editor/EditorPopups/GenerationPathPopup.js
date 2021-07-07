@@ -55,6 +55,7 @@ export class GenerationPathPopup extends PopupWindow {
                 elem.SetOnRenderElem(elem =>
                     elem.views ? elem.views.push(elem.GetCustomizableView()) : elem.views = [elem.GetCustomizableView()]
                 );
+                elem.SetAutoRendering(false);
             }
             else if (elem.GetType() === EditorElementTypes.InputBlock || elem.GetType() === EditorElementTypes.SelectionBlock){
                 elem.SetEditable(false);
@@ -62,7 +63,7 @@ export class GenerationPathPopup extends PopupWindow {
         });
 
         let startingSymbol = new AliasedGrammarSymbol(new GrammarSymbol('Generation Path', false));
-        this.code = new Group( startingSymbol, [this.code] );
+        this.code = new Group( startingSymbol, [this.code] ), this.code.SetAutoRendering(false);
         this.code.SetOnRenderElem(elem =>
             elem.views ? elem.views.push(elem.GetCustomizableView()) : elem.views = [elem.GetCustomizableView()]
         );

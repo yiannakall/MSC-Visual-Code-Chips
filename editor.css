@@ -61,6 +61,7 @@ body{
     position: relative;
     width: fit-content;
     display: inline-block;
+    vertical-align: top;
 }
 
 .selection-block {

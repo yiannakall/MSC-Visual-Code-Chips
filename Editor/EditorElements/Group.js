@@ -4,7 +4,8 @@ import { EditorElement, EditorElementTypes } from './EditorElement.js'
 export class Group extends EditorElement {
     elems = [];
     symbol;
-    
+    autoRendering = true;
+
     onRenderElem = (elem) => {};
     
     constructor(symbol, elems){
@@ -27,15 +28,15 @@ export class Group extends EditorElement {
         elem.SetParent(this);
         this.elems.push(elem);
 
-        if (this.$wholeView)
-            this.RenderChild_(elem)
+        if (this.autoRendering && this.$wholeView)
+            this.RenderChild_(elem);
     }
 
     PopElem(){
         let elem = this.elems.pop(elem);
         elem.SetParent(null);
 
-        if (this.$wholeView)
+        if (this.autoRendering && this.$wholeView)
             elem.RemoveRenderedView();
 
         return elem;
@@ -50,7 +51,7 @@ export class Group extends EditorElement {
         this.elems.splice(i, 0, elem);
         elem.SetParent(this);
 
-        if (this.$wholeView){
+        if (this.autoRendering && this.$wholeView){
             i === this.elems.length - 1 ?
                 this.RenderChild_(elem) :
                 this.RenderChildBefore_(this.elems[i + 1], elem);
@@ -83,7 +84,7 @@ export class Group extends EditorElement {
         this.elems.splice(index, 1);
         elem.SetParent(null);
 
-        if (this.$wholeView)
+        if (this.autoRendering && this.$wholeView)
             elem.RemoveRenderedView();
     }
 
@@ -195,6 +196,10 @@ export class Group extends EditorElement {
 
     SetOnRenderElem(f){
         this.onRenderElem = f;
+    }
+
+    SetAutoRendering(autoRendering) {
+        this.autoRendering = autoRendering;
     }
 
 }
