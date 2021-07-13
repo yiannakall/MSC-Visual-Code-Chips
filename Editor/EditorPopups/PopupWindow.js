@@ -26,6 +26,10 @@ export class PopupWindow {
         
         this.$container.append(this.$popup);
 
+        this.$popup.on('contextmenu', e => {
+            e.stopPropagation();
+        });
+
         this.Render_();
     }
 

@@ -33,6 +33,7 @@ export class CodeChips {
                         symObj.alias,
                         symObj.repeatable,
                         symObj.optional,
+                        symObj.textViewOnly,
                         symObj.tooltip
                     );
                     syms.push(sym);

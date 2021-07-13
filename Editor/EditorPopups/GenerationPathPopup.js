@@ -56,6 +56,15 @@ export class GenerationPathPopup extends PopupWindow {
                     elem.views ? elem.views.push(elem.GetCustomizableView()) : elem.views = [elem.GetCustomizableView()]
                 );
                 elem.SetAutoRendering(false);
+
+                let i = 0;
+                while (i < elem.GetLength()){
+                    if (elem.GetElem(i).GetType() === EditorElementTypes.InvisibleBlock){
+                        elem.RemoveElemAt(i);
+                        continue;    
+                    }else
+                        ++i;
+                }
             }
             else if (elem.GetType() === EditorElementTypes.InputBlock || elem.GetType() === EditorElementTypes.SelectionBlock){
                 elem.SetEditable(false);

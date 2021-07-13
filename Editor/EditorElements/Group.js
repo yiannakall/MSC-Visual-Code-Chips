@@ -1,5 +1,5 @@
 import { assert } from '../../Utils/Assert.js';
-import { EditorElement, EditorElementTypes } from './EditorElement.js'
+import { EditorElement, EditorElementTypes, EditorElementViewMode } from './EditorElement.js'
 
 export class Group extends EditorElement {
     elems = [];
@@ -79,8 +79,23 @@ export class Group extends EditorElement {
         assert(elem.GetParent() === this, `${this} is not the parent of ${elem}`);
 
         let index = this.elems.indexOf(elem);
-        assert(index !== -1, `${elem} is not a child of group ${this}`)
+        
+        if (index === -1){
+            assert(false, `${elem} is not a child of group ${this}`);
+            return;
+        }
 
+        this.RemoveElemAt(index);
+    }
+
+    RemoveElemAt(index){
+        if (index < 0 && index >= this.elems.length){
+            assert(false, `Index ${index} is out of bounds`);
+            return;
+        }
+
+        let elem = this.GetElem(index);
+        
         this.elems.splice(index, 1);
         elem.SetParent(null);
 
@@ -201,5 +216,4 @@ export class Group extends EditorElement {
     SetAutoRendering(autoRendering) {
         this.autoRendering = autoRendering;
     }
-
 }

@@ -14,13 +14,15 @@ export class AliasedGrammarSymbol {
     alias;  // string
     repeatable; // bool
     optional; // bool
+    textViewOnly; // bool
     tooltip; // string
 
-    constructor(symbol, alias, repeatable, optional, tooltip){
+    constructor(symbol, alias, repeatable, optional, textViewOnly, tooltip){
         this.symbol = symbol, this.alias = alias;
         this.repeatable = !!repeatable;
         this.optional = !!optional;
         this.tooltip = tooltip;
+        this.textViewOnly = !!textViewOnly;
     }
 
     Clone(){
@@ -29,6 +31,7 @@ export class AliasedGrammarSymbol {
             this.alias,
             this.repeatable,
             this.optional,
+            this.textViewOnly,
             this.tooltip
         );
     }
@@ -42,6 +45,7 @@ export class AliasedGrammarSymbol {
             symbolJson.alias,
             symbolJson.repeatable,
             symbolJson.optional,
+            symbolJson.textViewOnly,
             symbolJson.tooltip
         );
     }

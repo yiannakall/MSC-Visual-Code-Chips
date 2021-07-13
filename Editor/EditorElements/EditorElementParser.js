@@ -6,6 +6,7 @@ import { SimpleBlock } from './SimpleBlock.js'
 import { NewLine } from './NewLine.js'
 import { TabBlock } from './TabBlock.js'
 import { AliasedGrammarSymbol, GrammarSymbol } from '../../Language.js';
+import { InvisibleBlock } from './InvisibleBlock.js';
 
 export class EditorElementParser {
 
@@ -45,6 +46,10 @@ export class EditorElementParser {
             case EditorElementTypes.SimpleBlock:
                 symbol = AliasedGrammarSymbol.FromJson(elemJson.symbol);
                 elem = new SimpleBlock(symbol);
+                break;
+            case EditorElementTypes.InvisibleBlock:
+                symbol = AliasedGrammarSymbol.FromJson(elemJson.symbol);
+                elem = new InvisibleBlock(symbol);
                 break;
             case EditorElementTypes.NewLine:
                 elem = new NewLine();

@@ -6,14 +6,21 @@ export const EditorElementTypes = {
     SimpleBlock: 'SIMPLE_BLOCK',
     InputBlock: 'INPUT_BLOCK',
     SelectionBlock: 'SELECTION_BLOCK',
-    Group: 'GROUP'
+    Group: 'GROUP',
+    InvisibleBlock: 'INVISIBLE_BLOCK'
 }
+
+export const EditorElementViewMode = {
+    BlockView: 'BlockView',
+    PureTextView: 'PureTextView'
+};
 
 export class EditorElement {
     parent;
     generatedBy;
     type;
-    
+    viewMode = EditorElementViewMode.BlockView;
+
     $wholeView;
     $customizableView;
 
@@ -39,7 +46,9 @@ export class EditorElement {
     Clone_()                            { assert(false, 'Non implemented by subclass'); }
     ToJson_()                           { assert(false, 'Non implemented by subclass'); }
     Render_($container)                 { assert(false, 'Non implemented by subclass'); }
-    PastRendering_()                      { }
+    ApplyViewMode(mode)                 { assert(false, 'Non implemented by subclass'); }
+    PastRendering_()                    { }
+    OnApplyViewMode_()                  { }
 
     /* --------------------- */
 
@@ -121,6 +130,7 @@ export class EditorElement {
 
     PastRendering(){
         this.ApplyTheme_();
+        this.ApplyViewMode(this.viewMode);
         this.AddOnClick_();
         this.AddOnContextMenu_();
         
@@ -141,12 +151,18 @@ export class EditorElement {
 
     AddOnClick_() {
         this.$wholeView.on('click', (e) => {
+            if (this.viewMode === EditorElementViewMode.PureTextView)
+                return;
+
             this.onClick(e, this);
         });
     }
 
     AddOnContextMenu_(){
         this.$wholeView.on('contextmenu', (e) => {
+            if (this.viewMode === EditorElementViewMode.PureTextView)
+                return;
+
             this.onContextMenu(e, this);
         });
     }
@@ -155,12 +171,18 @@ export class EditorElement {
         this.$customizableView.attr('draggable', 'true');
 
         this.$customizableView.on('dragstart', (e) => {
+            if (this.viewMode === EditorElementViewMode.PureTextView)
+                return;
+
             e.stopPropagation();
             e.originalEvent.dataTransfer.setData('block', this.ToString());
             this.onDragStart(e, this);
         });
 
         this.$customizableView.on('dragend', (e) => {
+            if (this.viewMode === EditorElementViewMode.PureTextView)
+                return;
+            
             e.stopPropagation();
             this.onDragEnd(e, this);
         });
@@ -168,26 +190,58 @@ export class EditorElement {
 
     MakeDroppable_(){
         this.$customizableView.on('dragover', (e) => {
+            if (this.viewMode === EditorElementViewMode.PureTextView)
+                return;
+
             e.preventDefault();
         });
 
         this.$customizableView.on('drop', (e) => {
+            if (this.viewMode === EditorElementViewMode.PureTextView)
+                return;
+
             this.onDrop(e, this);
         });
 
         this.$customizableView.on('dragenter', (e) => {
+            if (this.viewMode === EditorElementViewMode.PureTextView)
+                return;
+
             e.preventDefault();
             e.stopPropagation();
             this.onDragEnter(e, this);
         });
 
         this.$customizableView.on('dragleave', (e) => {
+            if (this.viewMode === EditorElementViewMode.PureTextView)
+                return;
+
             this.onDragLeave(e, this);
         });
     }
 
+    ApplyViewMode(mode){
+        switch (mode) {
+            case EditorElementViewMode.PureTextView:
+                this.$wholeView?.addClass('pure-text');
+                this.$customizableView?.attr('draggable', 'false');
+                break;
+            case EditorElementViewMode.BlockView:
+                this.$wholeView?.removeClass('pure-text');
+                this.$customizableView?.attr('draggable', this.isDraggable);
+                break;
+            default:
+                assert(false, `Non supported view mode: "${mode}"`);
+        }
+
+        this.viewMode = mode;
+
+        this.OnApplyViewMode_();
+    }
+
     GetWholeView()                  { return this.$wholeView; }
     GetCustomizableView()           { return this.$customizableView; }
+    GetViewMode()                   { return this.viewMode; }
     GetType()                       { return this.type; }
     GetGeneratedBy()                { return this.generatedBy; }
     GetParent()                     { return this.parent; }

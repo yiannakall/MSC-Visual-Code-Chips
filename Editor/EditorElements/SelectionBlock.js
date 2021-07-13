@@ -1,4 +1,4 @@
-import { EditorElement, EditorElementTypes } from './EditorElement.js'
+import { EditorElement, EditorElementTypes, EditorElementViewMode } from './EditorElement.js'
 
 export class SelectionBlock extends EditorElement {
     symbol;
@@ -41,13 +41,10 @@ export class SelectionBlock extends EditorElement {
                 $('<div/>').addClass('arrow')
             );
 
-        if (this.symbol.repeatable){
-            $blockWithArrow.addClass('block-can-repeat');
-        }
         $blockWithArrow.attr('title', this.symbol.tooltip || this.symbol.alias || this.symbol.symbol.name);
         
         $blockWithArrow.on('click', (e) => {
-            if (this.isEditable_){
+            if (this.isEditable_ && this.viewMode !== EditorElementViewMode.PureTextView){
                 $('.block-alternate-selections').not(this.$blockAlternateSelections).hide();
                 this.$blockAlternateSelections.toggle();
             }
@@ -66,6 +63,10 @@ export class SelectionBlock extends EditorElement {
                 $blockWithArrow,
                 this.$blockAlternateSelections
             );
+
+        if (this.symbol.repeatable){
+            $selectionBlockContainer.addClass('block-can-repeat');
+        }
 
         this.$customizableView = $blockWithArrow;
         this.$wholeView = $selectionBlockContainer;

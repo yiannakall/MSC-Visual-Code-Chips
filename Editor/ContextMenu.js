@@ -7,14 +7,20 @@ export class ContextMenu {
     
     $openInnerMenu;
 
+    $previouslyFocused;
+
     constructor($container, options){
         this.options = options;
         this.$container = $container;
     }
 
     Render(){
+        this.$previouslyFocused = $(document.activeElement);
+        
         this.$contextMenu = this.CreateContextMenu_(this.options);
         this.$container.append( this.$contextMenu );
+        
+        this.$contextMenu.focus();
         
         return this.$contextMenu;
     }
@@ -119,6 +125,9 @@ export class ContextMenu {
         this.$contextMenu?.remove();
         this.$contextMenu = undefined;
         this.$openInnerMenu = undefined;
+
+        this.$previouslyFocused.focus();
+        this.$previouslyFocused = undefined;
     }
 
 }

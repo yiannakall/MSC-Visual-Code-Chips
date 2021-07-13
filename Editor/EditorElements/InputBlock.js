@@ -1,4 +1,4 @@
-import { EditorElement, EditorElementTypes } from './EditorElement.js' 
+import { EditorElement, EditorElementTypes, EditorElementViewMode } from './EditorElement.js' 
 
 export class InputBlock extends EditorElement {
     symbol;
@@ -34,6 +34,10 @@ export class InputBlock extends EditorElement {
         this.CreateInput_();
         $inputBlock.append(this.$input);
 
+        if (this.symbol.repeatable){
+            $inputBlock.addClass('block-can-repeat');
+        }
+
         this.$wholeView = this.$customizableView = $inputBlock;
     }
 
@@ -48,10 +52,6 @@ export class InputBlock extends EditorElement {
 
         this.$input?.prop("readonly", !this.isEditable_);
 
-        if (this.symbol.repeatable){
-            this.$input.addClass('block-can-repeat');
-        }
-
         this.$input.on('keypress', e => e.stopPropagation() );
         this.$input.on('keyup', e => e.stopPropagation() );
         this.$input.on('keydown', e => e.stopPropagation() );
@@ -59,13 +59,19 @@ export class InputBlock extends EditorElement {
         this.$input.on('input', (e) => {
             this.userInput_ = this.$input.val();
             this.onInput(this);
-            this.$wholeView.css('width', this.$input.textWidth(this.$input.val() || this.$input.attr('placeholder')) + 20 + 'px');
+            this.FitInput_();
             e.stopPropagation();
         });
     }
 
+    FitInput_(){
+        this.viewMode === EditorElementViewMode.BlockView ?
+            this.$wholeView.css('width', this.$input.textWidth(this.$input.val() || this.$input.attr('placeholder')) + 20 + 'px') :
+            this.$wholeView.css('width', this.$input.textWidth(this.$input.val() || this.$input.attr('placeholder')) + 'px');
+    }
+
     PastRendering_(){
-        this.$wholeView.css('width', this.$input.textWidth(this.$input.val() || this.$input.attr('placeholder')) + 20 + 'px');
+        this.FitInput_();
         
         let lightenedColors = this.$wholeView.css('background-color')
             .substring(4, this.$wholeView.css('background-color').length - 1)
@@ -74,6 +80,14 @@ export class InputBlock extends EditorElement {
             .map(color => { return Number(color) + 0.1 * (255 - Number(color)) });
 
         this.$input.css('background-color', 'rgb(' + lightenedColors.join(', ') + ')');
+    }
+
+    OnApplyViewMode_(){
+        this.FitInput_();
+
+        (this.viewMode === EditorElementViewMode.BlockView) ?
+            this.$input?.prop("readonly", !this.isEditable_) :
+            this.$input?.prop("readonly", true);
     }
 
     GetInput(){

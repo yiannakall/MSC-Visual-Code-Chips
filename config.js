@@ -20,7 +20,7 @@ export let config = {
                             type: "non_terminal",
                             name: "stmt",
                             repeatable: true
-                        }
+                        },
                     ],
                 ]
             },
@@ -135,6 +135,12 @@ export let config = {
                 alternate_rules: [
                     [
                         {
+                            type: "terminal",
+                            name: "LEFT_PARENTHESIS",
+                            alias: "(",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             name: "expr",
                             tooltip: "The first operand"
@@ -148,7 +154,13 @@ export let config = {
                             type: "non_terminal",
                             name: "expr",
                             tooltip: "The second operand"
-                        }
+                        },
+                        {
+                            type: "terminal",
+                            name: "RIGHT_PARENTHESIS",
+                            alias: ")",
+                            textViewOnly: true
+                        },
                     ]
                 ]
             },
@@ -210,6 +222,12 @@ export let config = {
                 alternate_rules: [
                     [
                         {
+                            type: "terminal",
+                            name: "LEFT_PARENTHESIS",
+                            alias: "(",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             name: "expr",
                             tooltip: "The first operand"
@@ -223,7 +241,13 @@ export let config = {
                             type: "non_terminal",
                             name: "expr",
                             tooltip: "The second operand"
-                        }
+                        },
+                        {
+                            type: "terminal",
+                            name: "RIGHT_PARENTHESIS",
+                            alias: ")",
+                            textViewOnly: true
+                        },
                     ]
                 ]
             },
@@ -304,6 +328,12 @@ export let config = {
                 alternate_rules: [
                     [
                         {
+                            type: "terminal",
+                            name: "LEFT_PARENTHESIS",
+                            alias: "(",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             name: "expr",
                             tooltip: "The first operand"
@@ -314,9 +344,16 @@ export let config = {
                             tooltip: "Performs a binary operation with 2 operands"
                         },
                         {
+                            name: "expr",
                             type: "non_terminal",
-                            name: "The second operand"
-                        }
+                            tooltip: "The second operand"
+                        },
+                        {
+                            type: "terminal",
+                            name: "LEFT_PARENTHESIS",
+                            alias: "(",
+                            textViewOnly: true
+                        },
                     ]
                 ]
             },
@@ -419,7 +456,7 @@ export let config = {
                         {
                             type: "non_terminal",
                             name: "expr"
-                        }
+                        },
                     ]
                 ]
             },
@@ -441,13 +478,37 @@ export let config = {
                             name: "OF",
                         },
                         {
+                            type: "terminal",
+                            name: "LEFT_PARENTHESIS",
+                            alias: "(",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             name: "ident_list"
                         },
                         {
+                            type: "terminal",
+                            name: "RIGHT_PARENTHESIS",
+                            alias: ")",
+                            textViewOnly: true
+                        },
+                        {
+                            type: "terminal",
+                            name: "LEFT_CURLY_BRACE",
+                            alias: "{",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             name: "stmts"
-                        }
+                        },
+                        {
+                            type: "terminal",
+                            name: "RIGHT_CURLY_BRACE",
+                            alias: "}",
+                            textViewOnly: true
+                        },
                     ]
                 ]
             },
@@ -469,8 +530,20 @@ export let config = {
                             name: "WITH",
                         },
                         {
+                            type: "terminal",
+                            name: "LEFT_PARENTHESIS",
+                            alias: "(",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             name: "expr_list"
+                        },
+                        {
+                            type: "terminal",
+                            name: "RIGHT_PARENTHESIS",
+                            alias: ")",
+                            textViewOnly: true
                         },
                     ]
                 ]
@@ -484,15 +557,39 @@ export let config = {
                             name: "IF"
                         },
                         {
+                            type: "terminal",
+                            name: "LEFT_PARENTHESIS",
+                            alias: "(",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             alias: "condition",
                             name: "expr"
                         },
                         {
+                            type: "terminal",
+                            name: "RIGHT_PARENTHESIS",
+                            alias: ")",
+                            textViewOnly: true
+                        },
+                        {
+                            type: "terminal",
+                            name: "LEFT_CURLY_BRACE",
+                            alias: "{",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             alias: "if_part",
                             name: "stmts"
-                        }
+                        },
+                        {
+                            type: "terminal",
+                            name: "RIGHT_CURLY_BRACE",
+                            alias: "}",
+                            textViewOnly: true
+                        },
                     ]
                 ]
             },
@@ -505,9 +602,27 @@ export let config = {
                             name: "IF"
                         },
                         {
+                            type: "terminal",
+                            name: "LEFT_PARENTHESIS",
+                            alias: "(",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             alias: "condition",
                             name: "expr"
+                        },
+                        {
+                            type: "terminal",
+                            name: "RIGHT_PARENTHESIS",
+                            alias: ")",
+                            textViewOnly: true
+                        },
+                        {
+                            type: "terminal",
+                            name: "LEFT_CURLY_BRACE",
+                            alias: "{",
+                            textViewOnly: true
                         },
                         {
                             type: "non_terminal",
@@ -516,13 +631,31 @@ export let config = {
                         },
                         {
                             type: "terminal",
+                            name: "RIGHT_CURLY_BRACE",
+                            alias: "}",
+                            textViewOnly: true
+                        },
+                        {
+                            type: "terminal",
                             name: "ELSE"
+                        },
+                        {
+                            type: "terminal",
+                            name: "LEFT_CURLY_BRACE",
+                            alias: "{",
+                            textViewOnly: true
                         },
                         {
                             type: "non_terminal",
                             alias: "else_part",
                             name: "stmts"
-                        }
+                        },
+                        {
+                            type: "terminal",
+                            name: "RIGHT_CURLY_BRACE",
+                            alias: "}",
+                            textViewOnly: true
+                        },
                     ]
                 ]
             },
@@ -535,15 +668,39 @@ export let config = {
                             name: "WHILE"
                         },
                         {
+                            type: "terminal",
+                            name: "LEFT_PARENTHESIS",
+                            alias: "(",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             alias: "condition",
                             name: "expr"
                         },
                         {
+                            type: "terminal",
+                            name: "RIGHT_PARENTHESIS",
+                            alias: ")",
+                            textViewOnly: true
+                        },
+                        {
+                            type: "terminal",
+                            name: "LEFT_CURLY_BRACE",
+                            alias: "{",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             alias: "while_part",
                             name: "stmts"
-                        }
+                        },
+                        {
+                            type: "terminal",
+                            name: "RIGHT_CURLY_BRACE",
+                            alias: "}",
+                            textViewOnly: true
+                        },
                     ]
                 ]
             },
@@ -556,9 +713,21 @@ export let config = {
                             name: "FOR"
                         },
                         {
+                            type: "terminal",
+                            name: "LEFT_PARENTHESIS",
+                            alias: "(",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             alias: "initialization",
                             name: "assign_stmt"
+                        },
+                        {
+                            type: "terminal",
+                            name: "SEMI_COLON",
+                            alias: ";",
+                            textViewOnly: true
                         },
                         {
                             type: "non_terminal",
@@ -566,15 +735,39 @@ export let config = {
                             name: "expr"
                         },
                         {
+                            type: "terminal",
+                            name: "SEMI_COLON",
+                            alias: ";",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             alias: "step",
                             name: "assign_stmt"
                         },
                         {
+                            type: "terminal",
+                            name: "RIGHT_PARENTHESIS",
+                            alias: ")",
+                            textViewOnly: true
+                        },
+                        {
+                            type: "terminal",
+                            name: "LEFT_CURLY_BRACE",
+                            alias: "{",
+                            textViewOnly: true
+                        },
+                        {
                             type: "non_terminal",
                             alias: "for_part",
                             name: "stmts"
-                        }
+                        },
+                        {
+                            type: "terminal",
+                            name: "RIGHT_CURLY_BRACE",
+                            alias: "}",
+                            textViewOnly: true
+                        },
                     ]
                 ]
             },
@@ -761,37 +954,37 @@ export let config = {
         },
         "IDENT" : {
             'background-color': 'transparent',
-            'border': 'solid 2px #37373D',
+            'border-color': '#37373D',
             'color': '#4A9CD6',
             'font-weight': '700'
         },
         "INT_CONST" : {
             'background-color': 'transparent',
-            'border': 'solid 2px #37373D',
+            'border-color': '#37373D',
             'color': '#44C9B0',
             'font-weight': '700'
         },
         "FLOAT_CONST" : {
             'background-color': 'transparent',
-            'border': 'solid 2px #37373D',
+            'border-color': '#37373D',
             'color': '#44C9B0',
             'font-weight': '700'
         },
         "CHAR_CONST" : {
             'background-color': 'transparent',
-            'border': 'solid 2px #37373D',
+            'border-color': '#37373D',
             'color': '#CE9178',
             'font-weight': '700'
         },
         "STRING_CONST" : {
             'background-color': 'transparent',
-            'border': 'solid 2px #37373D',
+            'border-color': '#37373D',
             'color': '#CE9178',
             'font-weight': '700'
         },
         "BOOL_CONST" : {
             'background-color': 'transparent',
-            'border': 'solid 2px #37373D',
+            'border-color': '#37373D',
             'color': '#8CDCFE',
             'font-weight': '700'
         },
@@ -839,6 +1032,14 @@ export let config = {
             'background-color': 'transparent',
             'color': '#C57991',
             'font-weight': '900',
+        },
+        "LEFT_CURLY_BRACE.pure-text" : {
+            'display': 'flex',
+            'margin-top': '5px'
+        },
+        "RIGHT_CURLY_BRACE.pure-text" : {
+            'display': 'flex',
+            'margin-top': '5px'
         },
     },
     toolbox: [

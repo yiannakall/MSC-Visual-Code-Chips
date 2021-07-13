@@ -1,6 +1,6 @@
 import { AliasedGrammarSymbol, Language} from '../Language.js'
 import { assert } from "../Utils/Assert.js";
-import { EditorElement, EditorElementTypes } from './EditorElements/EditorElement.js'
+import { EditorElement, EditorElementTypes, EditorElementViewMode } from './EditorElements/EditorElement.js'
 import { Group } from './EditorElements/Group.js'
 import { InputBlock } from './EditorElements/InputBlock.js'
 import { NewLine } from './EditorElements/NewLine.js'
@@ -25,6 +25,7 @@ import { DeleteAllCommand } from './EditorCommands/DeleteAllCommand.js';
 import { UndoRedoToolbar } from './UndoRedoToolbar/UndoRedoToolbar.js';
 import { DownloadAsFile } from '../Utils/Download.js';
 import { ToastMessage } from './EditorToastMessages/ToastMessage.js';
+import { InvisibleBlock } from './EditorElements/InvisibleBlock.js';
 
 export class Editor {
 
@@ -49,6 +50,8 @@ export class Editor {
     undoToastMessageDisabled = false;
     undoToastMessage;
     undoToolbar;
+
+    viewMode = EditorElementViewMode.BlockView;
 
     keyboardEventManager;
     
@@ -130,6 +133,9 @@ export class Editor {
         this.$editor.on('click', () => {
             this.$contextMenuContainer.empty();
         });
+        this.$workspace.on('click', ()=> {
+            this.Select(undefined);
+        });
 
         this.$container.empty();
         this.$container.append(this.$editor);
@@ -138,25 +144,35 @@ export class Editor {
     InitializeEvents_(){
         const Keys = KeyboardEventManager.Keys;
         
+        let EvHandler = (f) => {
+            return () => {
+                if (this.viewMode === EditorElementViewMode.PureTextView)
+                    return;
+
+                f();
+            };
+        };
+
         this.keyboardEventManager = new KeyboardEventManager(this.$workspace)
-            .AddEventHandler( [Keys.UP],                            () => this.EventHandler_NavigateUp_() )
-            .AddEventHandler( [Keys.DOWN],                          () => this.EventHandler_NavigateDown_() )
-            .AddEventHandler( [Keys.LEFT],                          () => this.EventHandler_NavigateLeft_() )
-            .AddEventHandler( [Keys.RIGHT],                         () => this.EventHandler_NavigateRight_() )
-            .AddEventHandler( [Keys.ONE],                           () => this.EventHandler_NavigateIn_() )
-            .AddEventHandler( [Keys.TWO],                           () => this.EventHandler_NavigateOut_() )
-            .AddEventHandler( [Keys.BACKSPACE],                     () => this.EventHandler_Backspace_() )
-            .AddEventHandler( [Keys.CTRL, Keys.A, Keys.DELETE],     () => this.EventHandler_DeleteAll_() )
-            .AddEventHandler( [Keys.ALT, Keys.DELETE],              () => this.EventHandler_DeleteUntilPossible_() )
-            .AddEventHandler( [Keys.DELETE],                        () => this.EventHandler_Delete_() )
-            .AddEventHandler( [Keys.ENTER],                         () => this.EventHandler_NewLine_() )
-            .AddEventHandler( [Keys.SHIFT, Keys.TAB],               () => this.EventHandler_Outdent_() )
-            .AddEventHandler( [Keys.TAB],                           () => this.EventHandler_Indent_() )
-            .AddEventHandler( [Keys.CTRL, Keys.X],                  () => this.EventHandler_Cut_() )
-            .AddEventHandler( [Keys.CTRL, Keys.C],                  () => this.EventHandler_Copy_() )
-            .AddEventHandler( [Keys.CTRL, Keys.V],                  () => this.EventHandler_Paste_() )
-            .AddEventHandler( [Keys.CTRL, Keys.Z],                  () => this.EventHandler_Undo_() )
-            .AddEventHandler( [Keys.CTRL, Keys.Y],                  () => this.EventHandler_Redo_() )
+            .AddEventHandler( [Keys.UP],                            EvHandler(() => this.EventHandler_NavigateUp_()) )
+            .AddEventHandler( [Keys.DOWN],                          EvHandler(() => this.EventHandler_NavigateDown_()) )
+            .AddEventHandler( [Keys.LEFT],                          EvHandler(() => this.EventHandler_NavigateLeft_()) )
+            .AddEventHandler( [Keys.RIGHT],                         EvHandler(() => this.EventHandler_NavigateRight_()) )
+            .AddEventHandler( [Keys.ONE],                           EvHandler(() => this.EventHandler_NavigateIn_()) )
+            .AddEventHandler( [Keys.TWO],                           EvHandler(() => this.EventHandler_NavigateOut_()) )
+            .AddEventHandler( [Keys.BACKSPACE],                     EvHandler(() => this.EventHandler_Backspace_()) )
+            .AddEventHandler( [Keys.CTRL, Keys.A, Keys.DELETE],     EvHandler(() => this.EventHandler_DeleteAll_()) )
+            .AddEventHandler( [Keys.ALT, Keys.DELETE],              EvHandler(() => this.EventHandler_DeleteUntilPossible_()) )
+            .AddEventHandler( [Keys.DELETE],                        EvHandler(() => this.EventHandler_Delete_()) )
+            .AddEventHandler( [Keys.ENTER],                         EvHandler(() => this.EventHandler_NewLine_()) )
+            .AddEventHandler( [Keys.SHIFT, Keys.TAB],               EvHandler(() => this.EventHandler_Outdent_()) )
+            .AddEventHandler( [Keys.TAB],                           EvHandler(() => this.EventHandler_Indent_()) )
+            .AddEventHandler( [Keys.CTRL, Keys.X],                  EvHandler(() => this.EventHandler_Cut_()) )
+            .AddEventHandler( [Keys.CTRL, Keys.C],                  EvHandler(() => this.EventHandler_Copy_()) )
+            .AddEventHandler( [Keys.CTRL, Keys.V],                  EvHandler(() => this.EventHandler_Paste_()) )
+            .AddEventHandler( [Keys.CTRL, Keys.Z],                  EvHandler(() => this.EventHandler_Undo_()) )
+            .AddEventHandler( [Keys.CTRL, Keys.Y],                  EvHandler(() => this.EventHandler_Redo_()) )
+            .AddEventHandler( [Keys.CTRL, Keys.M],                  () => this.EventHandler_ToggleViewMode() )
         ;
     }
 
@@ -169,7 +185,7 @@ export class Editor {
 
         this.undoToolbar.SetOnHide(() => { 
             this.undoToolbarVisible = false;
-            this.undoToastMessage.Destroy();
+            this.undoToastMessage?.Destroy();
             this.undoToastMessageVisible = false;
         });
     }
@@ -193,15 +209,47 @@ export class Editor {
 
             let contextMenu = new ContextMenu(this.$contextMenuContainer, [
                 [
-                    { name: 'Undo', shortcut: 'Ctrl+Z', disabled: !this.commands.GetUndoSize(), handler: () => this.EventHandler_Undo_() },
-                    { name: 'Redo', shortcut: 'Ctrl+Y', disabled: !this.commands.GetRedoSize(), handler: () => this.EventHandler_Redo_() },
+                    {
+                        name: 'Undo',
+                        shortcut: 'Ctrl+Z',
+                        disabled: this.viewMode === EditorElementViewMode.PureTextView || !this.commands.GetUndoSize(),
+                        handler: () => this.EventHandler_Undo_()
+                    },
+                    {
+                        name: 'Redo',
+                        shortcut: 'Ctrl+Y',
+                        disabled: this.viewMode === EditorElementViewMode.PureTextView || !this.commands.GetRedoSize(),
+                        handler: () => this.EventHandler_Redo_()
+                    },
                 ],
                 [
-                    { name: 'Import Visual Code', shortcut: 'Ctrl+L', needsFile: true, handler: (files) => this.EventHandler_LoadCode_(files) },
-                    { name: 'Download Visual Code', shortcut: 'Ctrl+S', handler: () => this.EventHandler_DownloadCode_() }
+                    {
+                        name: 'Import Visual Code',
+                        shortcut: 'Ctrl+L',
+                        disabled: this.viewMode === EditorElementViewMode.PureTextView,
+                        needsFile: true,
+                        handler: (files) => this.EventHandler_LoadCode_(files)
+                    },
+                    {
+                        name: 'Download Visual Code',
+                        shortcut: 'Ctrl+S',
+                        handler: () => this.EventHandler_DownloadCode_()
+                    }
                 ],
                 [
-                    { name: 'Delete All', shortcut: 'Ctrl+A+Del', handler: () => this.EventHandler_DeleteAll_() }
+                    {
+                        name: this.viewMode === EditorElementViewMode.BlockView ? 'View Code As Text' : 'View Code As Blocks',
+                        shortcut: 'Ctrl+M',
+                        handler: () => this.EventHandler_ToggleViewMode()
+                    }
+                ],
+                [
+                    {
+                        name: 'Delete All',
+                        shortcut: 'Ctrl+A+Del',
+                        disabled: this.viewMode === EditorElementViewMode.PureTextView,
+                        handler: () => this.EventHandler_DeleteAll_()
+                    }
                 ],
             ]);
 
@@ -365,8 +413,12 @@ export class Editor {
 
     SetElem_OnContextMenu_(elem){
         elem.SetOnContextMenu((e, elem) => {
-            e.stopPropagation();
+            if (elem.GetType() == EditorElementTypes.NewLine || elem.GetType() == EditorElementTypes.Tab){
+                return;
+            }
+            
             e.preventDefault();
+            e.stopPropagation();
 
             this.$contextMenuContainer.empty();
 
@@ -521,7 +573,9 @@ export class Editor {
         if (symbol.isTerminal){
 
             if (this.language.GetTerminalType(symbol) === Language.TerminalType.Static){
-                elem = new SimpleBlock(aliasedSymbol);
+                (aliasedSymbol.textViewOnly) ? 
+                    elem = new InvisibleBlock(aliasedSymbol) : 
+                    elem = new SimpleBlock(aliasedSymbol);
             }else{
                 elem = new InputBlock(aliasedSymbol);
             }
@@ -548,7 +602,7 @@ export class Editor {
                 let alternateSymbols = [];
                 for (let production of productions){
                     let productionSymbols = production.GetRhs().GetSymbols();
-                    assert(productionSymbols.length <= 1, 'Block with an alternative selection of more than 1 symbols');
+                    assert(productionSymbols.length <= 1, `Block ${symbol.name} with an alternative selection of more than 1 symbols`);
                     alternateSymbols.push(productionSymbols[0]);
                 }
                 elem = new SelectionBlock(aliasedSymbol, alternateSymbols);
@@ -618,7 +672,11 @@ export class Editor {
         if (this.selected && this.selected.GetType() === EditorElementTypes.Group){
             for (let i = 0; i < this.selected.GetLength(); ++i){
                 let elem = this.selected.GetElem(i);
-                if (elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab){
+                if (
+                    elem.GetType() != EditorElementTypes.NewLine &&
+                    elem.GetType() != EditorElementTypes.Tab &&
+                    elem.GetType() != EditorElementTypes.InvisibleBlock
+                ){
                     this.Select(elem);
                     return true;
                 }
@@ -643,7 +701,11 @@ export class Editor {
             
             for (let i = parent.IndexOf(this.selected) - 1; i >= 0; --i){
                 let elem = parent.GetElem(i);
-                if (elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab){
+                if (
+                    elem.GetType() != EditorElementTypes.NewLine &&
+                    elem.GetType() != EditorElementTypes.Tab &&
+                    elem.GetType() != EditorElementTypes.InvisibleBlock    
+                ){
                     this.Select(elem);
                     return true;
                 }
@@ -659,7 +721,11 @@ export class Editor {
 
             for (let i = parent.IndexOf(this.selected) + 1; i < parent.GetLength(); ++i){
                 let elem = parent.GetElem(i);
-                if (elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab){
+                if (
+                    elem.GetType() != EditorElementTypes.NewLine && 
+                    elem.GetType() != EditorElementTypes.Tab &&
+                    elem.GetType() != EditorElementTypes.InvisibleBlock
+                ){
                     this.Select(elem);
                     return true;
                 }
@@ -683,7 +749,8 @@ export class Editor {
                     let elem = parent.GetElem(i);
                     if (
                         elem.GetType() != EditorElementTypes.NewLine &&
-                        elem.GetType() != EditorElementTypes.Tab
+                        elem.GetType() != EditorElementTypes.Tab &&
+                        elem.GetType() != EditorElementTypes.InvisibleBlock
                     ){
                         this.Select(elem);
                         return true;
@@ -710,7 +777,8 @@ export class Editor {
                     let elem = parent.GetElem(i);
                     if (
                         elem.GetType() != EditorElementTypes.NewLine &&
-                        elem.GetType() != EditorElementTypes.Tab
+                        elem.GetType() != EditorElementTypes.Tab &&
+                        elem.GetType() != EditorElementTypes.InvisibleBlock
                     ){
                         this.Select(elem);
                         return true;
@@ -926,5 +994,13 @@ export class Editor {
             this.commands.Redo();
             this.UpdateUndoToolbar();
         }
+    }
+
+    EventHandler_ToggleViewMode(){
+        this.viewMode === EditorElementViewMode.PureTextView ?
+            this.viewMode = EditorElementViewMode.BlockView :
+            this.viewMode = EditorElementViewMode.PureTextView;
+
+        this.code.ForEachRec( elem => elem.ApplyViewMode(this.viewMode) );
     }
 }
