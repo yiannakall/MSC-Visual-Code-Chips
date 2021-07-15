@@ -1,4 +1,4 @@
-import { AliasedGrammarSymbol, Language} from '../Language.js'
+import { AliasedGrammarSymbol, DefinitionRhs, Language} from '../Language.js'
 import { assert } from "../Utils/Assert.js";
 import { EditorElement, EditorElementTypes, EditorElementViewMode } from './EditorElements/EditorElement.js'
 import { Group } from './EditorElements/Group.js'
@@ -561,52 +561,45 @@ export class Editor {
         });
     }
 
-    CreateElem(aliasedSymbol){
+    CreateElem(rhsSymbol){
         let symbol = this.language.GetSymbol(
-            aliasedSymbol.symbol.name,
-            aliasedSymbol.symbol.isTerminal
+            rhsSymbol.symbol.name,
+            rhsSymbol.symbol.isTerminal
         );
-        let productions = this.language.GetProductions(symbol);
-        
+
         let elem;
 
         if (symbol.isTerminal){
 
             if (this.language.GetTerminalType(symbol) === Language.TerminalType.Static){
-                (aliasedSymbol.textViewOnly) ? 
-                    elem = new InvisibleBlock(aliasedSymbol) : 
-                    elem = new SimpleBlock(aliasedSymbol);
-            }else{
-                elem = new InputBlock(aliasedSymbol);
-            }
+                (rhsSymbol.textViewOnly) ? 
+                    elem = new InvisibleBlock(rhsSymbol) : 
+                    elem = new SimpleBlock(rhsSymbol);
+            }else
+                elem = new InputBlock(rhsSymbol);
             
         }else{
-            if (productions.length === 1){
-        
-                /*
-                    if the symbol has only one production then skip it and create 
-                    code for its production's right hand side symbols
-                */
-                let production = productions[0];
-                let aliasedSymbols = production.GetRhs().GetSymbols();
-                let elems = aliasedSymbols.map( (s) => this.CreateElem(s) );
+            let def = this.language.GetDefinition(symbol);
 
-                elem = elems.length === 1 ? elems[0] : new Group(aliasedSymbol, elems);
-            
-            }else{
-    
-                /*
-                    if the symbol has more than 1 productions create a block for it
-                    with its production right hand side symbols as alternative choices
-                */
-                let alternateSymbols = [];
-                for (let production of productions){
-                    let productionSymbols = production.GetRhs().GetSymbols();
-                    assert(productionSymbols.length <= 1, `Block ${symbol.name} with an alternative selection of more than 1 symbols`);
-                    alternateSymbols.push(productionSymbols[0]);
+            switch (def.type) {
+                case DefinitionRhs.Types.ALL_OFF:{
+                    let elems = def.symbols.map( (rhsSymbol) => this.CreateElem(rhsSymbol) );
+                    elem = (elems.length === 1) ? elems[0] : new Group(rhsSymbol, elems);
+                    break;
                 }
-                elem = new SelectionBlock(aliasedSymbol, alternateSymbols);
-
+                case DefinitionRhs.Types.ANY_OF: {
+                    (def.symbols.length === 1) ?
+                        elem = this.CreateElem(def.symbols[0]) :
+                        elem = new SelectionBlock(rhsSymbol, def.symbols);
+                    break;
+                }
+                case DefinitionRhs.Types.LIST_OF:{
+                    let elems = def.symbols.map( (rhsSymbol) => this.CreateElem(rhsSymbol) );
+                    elem = new Group(rhsSymbol, elems);
+                    break;
+                }
+                default:
+                    assert(false, `Definition rhs with type of ${def.type}`);
             }
         }
 

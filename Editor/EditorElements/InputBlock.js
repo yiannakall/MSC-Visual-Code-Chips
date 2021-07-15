@@ -34,10 +34,6 @@ export class InputBlock extends EditorElement {
         this.CreateInput_();
         $inputBlock.append(this.$input);
 
-        if (this.symbol.repeatable){
-            $inputBlock.addClass('block-can-repeat');
-        }
-
         this.$wholeView = this.$customizableView = $inputBlock;
     }
 

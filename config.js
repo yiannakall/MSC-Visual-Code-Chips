@@ -1,833 +1,727 @@
 export let config = {
     language: {
-        non_terminals: [
+        definitions: [
             {
                 name: "program",
-                alternate_rules: [
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "stmts"
-                        }
-                    ]
+                all_of: [
+                    {
+                        type: "non_terminal",
+                        name: "stmts"
+                    }
                 ]
             },
             {
                 name: "stmts",
-                alternate_rules: [
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "stmt",
-                            repeatable: true
-                        },
-                    ],
+                all_of: [
+                    {
+                        type: "non_terminal",
+                        name: "stmt",
+                    },
                 ]
             },
             {
                 name: "stmt",
-                alternate_rules: [
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "if_stmt",
-                            tooltip: "Do something if a condition is true"
-                        }
-                    ],
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "if_else_stmt",
-                            tooltip: "Do something if a condition is true, else do something else"
-                        }
-                    ],
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "while_stmt",
-                            tooltip: "Do something while a condition is true"
-                        }
-                    ],
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "for_stmt",
-                            tooltip: "Do something while a condition is true. Commonly used with a known number of iterations."
-                        }
-                    ],
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "assign_stmt",
-                            tooltip: "Set a variable's value"
-                        }
-                    ],
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "func_def_stmt",
-                            tooltip: "Define reusable code as a function"
-                        }
-                    ],
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "func_call_stmt",
-                            tooltip: "Use a defined function"
-                        }
-                    ]
+                any_of: [
+                    {
+                        type: "non_terminal",
+                        name: "if_stmt",
+                        tooltip: "Do something if a condition is true"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "if_else_stmt",
+                        tooltip: "Do something if a condition is true, else do something else"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "while_stmt",
+                        tooltip: "Do something while a condition is true"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "for_stmt",
+                        tooltip: "Do something while a condition is true. Commonly used with a known number of iterations."
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "assign_stmt",
+                        tooltip: "Set a variable's value"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "func_def_stmt",
+                        tooltip: "Define reusable code as a function"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "func_call_stmt",
+                        tooltip: "Use a defined function"
+                    }
                 ]
             },
             {
                 name: "expr",
-                alternate_rules: [
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "arith_expr",
-                            tooltip: "Perform a mathematic operation"
-                        }
-                    ],
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "rel_expr",
-                            tooltip: "An operator that compares the 2 operands and returns true or false"
-                        }
-                    ],
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "bool_expr",
-                            tooltip: "An expression that evaluates to true or false"
-                        }
-                    ],
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "primary_expr",
-                            tooltip: "An identifier or a constant"
-                        }
-                    ]
+                any_of: [
+                    {
+                        type: "non_terminal",
+                        name: "arith_expr",
+                        tooltip: "Perform a mathematic operation"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "rel_expr",
+                        tooltip: "An operator that compares the 2 operands and returns true or false"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "bool_expr",
+                        tooltip: "An expression that evaluates to true or false"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "primary_expr",
+                        tooltip: "An identifier or a constant"
+                    }
                 ]
             },
             {
                 name: "arith_expr",
-                alternate_rules: [
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "binary_arith_expr",
-                            tooltip: "An arithmetic expression with 2 operands"
-                        }
-                    ],
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "unary_minus",
-                            tooltip: "Negates the value of its operand"
-                        }
-                    ]
+                any_of: [
+                    {
+                        type: "non_terminal",
+                        name: "binary_arith_expr",
+                        tooltip: "An arithmetic expression with 2 operands"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "unary_minus",
+                        tooltip: "Negates the value of its operand"
+                    }
                 ]
             },
             {
                 name: "binary_arith_expr",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "LEFT_PARENTHESIS",
-                            alias: "(",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "expr",
-                            tooltip: "The first operand"
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "arith_op",
-                            tooltip: "An arithmetic operator (e.g. +, -)"
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "expr",
-                            tooltip: "The second operand"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_PARENTHESIS",
-                            alias: ")",
-                            textViewOnly: true
-                        },
-                    ]
+                all_of: [
+                    {
+                        type: "terminal",
+                        name: "LEFT_PARENTHESIS",
+                        alias: "(",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "expr",
+                        tooltip: "The first operand"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "arith_op",
+                        tooltip: "An arithmetic operator (e.g. +, -)"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "expr",
+                        tooltip: "The second operand"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_PARENTHESIS",
+                        alias: ")",
+                        textViewOnly: true
+                    },
                 ]
             },
             {
                 name: "unary_minus",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "MINUS",
-                            alias: "-"
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "expr"
-                        },
-                    ]
+                all_of: [
+                    {
+                        type: "terminal",
+                        name: "MINUS",
+                        alias: "-"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "expr"
+                    },
                 ]
             },
             {
                 name: "arith_op",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "PLUS",
-                            alias: "+",
-                            tooltip: "Performs addition"
-                        }
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "MINUS",
-                            alias: "-",
-                            tooltip: "Performs subtraction"
-                        }
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "TIMES",
-                            alias: "*",
-                            tooltip: "Performs multiplication"
-                        }
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "BY",
-                            alias: "/",
-                            tooltip: "Performs division"
-                        }
-                    ],
+                any_of: [
+                    {
+                        type: "terminal",
+                        name: "PLUS",
+                        alias: "+",
+                        tooltip: "Performs addition"
+                    },
+                    {
+                        type: "terminal",
+                        name: "MINUS",
+                        alias: "-",
+                        tooltip: "Performs subtraction"
+                    },
+                    {
+                        type: "terminal",
+                        name: "TIMES",
+                        alias: "*",
+                        tooltip: "Performs multiplication"
+                    },
+                    {
+                        type: "terminal",
+                        name: "BY",
+                        alias: "/",
+                        tooltip: "Performs division"
+                    }
                 ]
             },
             {
                 name: "rel_expr",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "LEFT_PARENTHESIS",
-                            alias: "(",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "expr",
-                            tooltip: "The first operand"
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "rel_op",
-                            tooltip: "A comparison operator that returns true or false (e.g <, >)"
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "expr",
-                            tooltip: "The second operand"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_PARENTHESIS",
-                            alias: ")",
-                            textViewOnly: true
-                        },
-                    ]
+                all_of: [
+                    {
+                        type: "terminal",
+                        name: "LEFT_PARENTHESIS",
+                        alias: "(",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "expr",
+                        tooltip: "The first operand"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "rel_op",
+                        tooltip: "A comparison operator that returns true or false (e.g <, >)"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "expr",
+                        tooltip: "The second operand"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_PARENTHESIS",
+                        alias: ")",
+                        textViewOnly: true
+                    },
                 ]
             },
             {
                 name: "rel_op",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "GREATER",
-                            alias: ">",
-                            tooltip: "Returns true if the first operand is greater than the second operand, else returns false"
-                        }
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "LESS",
-                            alias: "<",
-                            tooltip: "Returns true if the first operand is less than the second operand, else returns false"
-                        }
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "EQUAL_TO",
-                            alias: "==",
-                            tooltip: "Returns true if the first operand is equal to the second operand, else returns false"
-                        }
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "NOT_EQUAL_TO",
-                            alias: "!=",
-                            tooltip: "Returns true if the first operand not equal to the second operand, else returns false"
-                        }
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "GREATER_EQUAL",
-                            alias: ">=",
-                            tooltip: "Returns true if the first operand is greater than or equal to the second operand, else returns false"
-                        }
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "LESS_EQUAL",
-                            alias: "<=",
-                            tooltip: "Returns true if the first operand is less than or equal to the second operand, else returns false"
-                        }
-                    ],
+                any_of: [
+                    {
+                        type: "terminal",
+                        name: "GREATER",
+                        alias: ">",
+                        tooltip: "Returns true if the first operand is greater than the second operand, else returns false"
+                    },
+                    {
+                        type: "terminal",
+                        name: "LESS",
+                        alias: "<",
+                        tooltip: "Returns true if the first operand is less than the second operand, else returns false"
+                    },
+                    {
+                        type: "terminal",
+                        name: "EQUAL_TO",
+                        alias: "==",
+                        tooltip: "Returns true if the first operand is equal to the second operand, else returns false"
+                    },
+                    {
+                        type: "terminal",
+                        name: "NOT_EQUAL_TO",
+                        alias: "!=",
+                        tooltip: "Returns true if the first operand not equal to the second operand, else returns false"
+                    },
+                    {
+                        type: "terminal",
+                        name: "GREATER_EQUAL",
+                        alias: ">=",
+                        tooltip: "Returns true if the first operand is greater than or equal to the second operand, else returns false"
+                    },
+                    {
+                        type: "terminal",
+                        name: "LESS_EQUAL",
+                        alias: "<=",
+                        tooltip: "Returns true if the first operand is less than or equal to the second operand, else returns false"
+                    }
                 ]
             },
             {
                 name: "bool_expr",
-                alternate_rules: [
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "binary_bool_expr",
-                            tooltip: "Performs a binary operation with 2 operands"
-                        }
-                    ],
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "not_expr",
-                            tooltip: "Performs logical negation. True becomes false and false becomes true"
-                        }
-                    ]
+                any_of: [
+                    {
+                        type: "non_terminal",
+                        name: "binary_bool_expr",
+                        tooltip: "Performs a binary operation with 2 operands"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "not_expr",
+                        tooltip: "Performs logical negation. True becomes false and false becomes true"
+                    }
                 ]
             },
             {
                 name: "binary_bool_expr",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "LEFT_PARENTHESIS",
-                            alias: "(",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "expr",
-                            tooltip: "The first operand"
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "bool_bin_op",
-                            tooltip: "Performs a binary operation with 2 operands"
-                        },
-                        {
-                            name: "expr",
-                            type: "non_terminal",
-                            tooltip: "The second operand"
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_PARENTHESIS",
-                            alias: "(",
-                            textViewOnly: true
-                        },
-                    ]
+                all_of: [
+                    {
+                        type: "terminal",
+                        name: "LEFT_PARENTHESIS",
+                        alias: "(",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "expr",
+                        tooltip: "The first operand"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "bool_bin_op",
+                        tooltip: "Performs a binary operation with 2 operands"
+                    },
+                    {
+                        name: "expr",
+                        type: "non_terminal",
+                        tooltip: "The second operand"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_PARENTHESIS",
+                        alias: ")",
+                        textViewOnly: true
+                    },
                 ]
             },
             {
                 name: "bool_bin_op",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "AND",
-                            tooltip: "Returns true if both operands are true, else returns false"
-                        }
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "OR",
-                            tooltip: "Returns true if either operand is true, else returns false"
-                        }
-                    ]
+                any_of: [
+                    {
+                        type: "terminal",
+                        name: "AND",
+                        tooltip: "Returns true if both operands are true, else returns false"
+                    },
+                    {
+                        type: "terminal",
+                        name: "OR",
+                        tooltip: "Returns true if either operand is true, else returns false"
+                    }
                 ]
             },
             {
                 name: "not_expr",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "NOT",
-                            tooltip: "Returns true if the operand is false, else returns false"
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "expr",
-                            tooltip: "The operand"
-                        }
-                    ]
+                all_of: [
+                    {
+                        type: "terminal",
+                        name: "NOT",
+                        tooltip: "Returns true if the operand is false, else returns false"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "expr",
+                        tooltip: "The operand"
+                    }
                 ]
             },
             {
                 name: "primary_expr",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "IDENT",
-                            tooltip: "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
-                        },
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "INT_CONST",
-                            tooltip: "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
-                        },
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "FLOAT_CONST",
-                            tooltip: "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
-                        },
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "CHAR_CONST",
-                            tooltip: "One single character"
-                        },
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "STRING_CONST",
-                            tooltip: "Any sequence of characters or the empty sequence"
-                        },
-                    ],
-                    [
-                        {
-                            type: "terminal",
-                            name: "BOOL_CONST",
-                            tooltip: "One of true or false"
-                        }
-                    ]
+                any_of: [
+                    {
+                        type: "terminal",
+                        name: "IDENT",
+                        tooltip: "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                    },
+                    {
+                        type: "terminal",
+                        name: "INT_CONST",
+                        tooltip: "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
+                    },
+                    {
+                        type: "terminal",
+                        name: "FLOAT_CONST",
+                        tooltip: "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
+                    },
+                    {
+                        type: "terminal",
+                        name: "CHAR_CONST",
+                        tooltip: "One single character"
+                    },
+                    {
+                        type: "terminal",
+                        name: "STRING_CONST",
+                        tooltip: "Any sequence of characters or the empty sequence"
+                    },
+                    {
+                        type: "terminal",
+                        name: "BOOL_CONST",
+                        tooltip: "One of true or false"
+                    }
                 ]
             },
             {
                 name: "assign_stmt",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "IDENT",
-                        },
-                        {
-                            type: "terminal",
-                            name: "EQUALS",
-                            alias: "="
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "expr"
-                        },
-                    ]
+                all_of: [
+                    {
+                        type: "terminal",
+                        name: "IDENT",
+                    },
+                    {
+                        type: "terminal",
+                        name: "EQUALS",
+                        alias: "="
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "expr"
+                    },
                 ]
             },
             {
                 name: "func_def_stmt",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "FUNCTION",
-                        },
-                        {
-                            type: "terminal",
-                            name: "IDENT",
-                            alias: "NAME"
-                        },
-                        {
-                            type: "terminal",
-                            name: "OF",
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_PARENTHESIS",
-                            alias: "(",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "ident_list"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_PARENTHESIS",
-                            alias: ")",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_CURLY_BRACE",
-                            alias: "{",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "stmts"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_CURLY_BRACE",
-                            alias: "}",
-                            textViewOnly: true
-                        },
-                    ]
+                all_of: [
+                    {
+                        type: "terminal",
+                        name: "FUNCTION",
+                    },
+                    {
+                        type: "terminal",
+                        name: "IDENT",
+                        alias: "NAME"
+                    },
+                    {
+                        type: "terminal",
+                        name: "OF",
+                    },
+                    {
+                        type: "terminal",
+                        name: "LEFT_PARENTHESIS",
+                        alias: "(",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "ident_list"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_PARENTHESIS",
+                        alias: ")",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "terminal",
+                        name: "LEFT_CURLY_BRACE",
+                        alias: "{",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "stmts"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_CURLY_BRACE",
+                        alias: "}",
+                        textViewOnly: true
+                    },
                 ]
             },
             {
                 name: "func_call_stmt",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "CALL",
-                        },
-                        {
-                            type: "terminal",
-                            name: "IDENT",
-                            alias: "FUNCTION NAME"
-                        },
-                        {
-                            type: "terminal",
-                            name: "WITH",
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_PARENTHESIS",
-                            alias: "(",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            name: "expr_list"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_PARENTHESIS",
-                            alias: ")",
-                            textViewOnly: true
-                        },
-                    ]
+                all_of: [
+                    {
+                        type: "terminal",
+                        name: "CALL",
+                    },
+                    {
+                        type: "terminal",
+                        name: "IDENT",
+                        alias: "FUNCTION NAME"
+                    },
+                    {
+                        type: "terminal",
+                        name: "WITH",
+                    },
+                    {
+                        type: "terminal",
+                        name: "LEFT_PARENTHESIS",
+                        alias: "(",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "expr_list"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_PARENTHESIS",
+                        alias: ")",
+                        textViewOnly: true
+                    },
                 ]
             },
             {
                 name: "if_stmt",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "IF"
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_PARENTHESIS",
-                            alias: "(",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            alias: "condition",
-                            name: "expr"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_PARENTHESIS",
-                            alias: ")",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_CURLY_BRACE",
-                            alias: "{",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            alias: "if_part",
-                            name: "stmts"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_CURLY_BRACE",
-                            alias: "}",
-                            textViewOnly: true
-                        },
-                    ]
+                all_of: [
+                    {
+                        type: "terminal",
+                        name: "IF"
+                    },
+                    {
+                        type: "terminal",
+                        name: "LEFT_PARENTHESIS",
+                        alias: "(",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        alias: "condition",
+                        name: "expr"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_PARENTHESIS",
+                        alias: ")",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "terminal",
+                        name: "LEFT_CURLY_BRACE",
+                        alias: "{",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        alias: "if_part",
+                        name: "stmts"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_CURLY_BRACE",
+                        alias: "}",
+                        textViewOnly: true
+                    },
                 ]
             },
             {
                 name: "if_else_stmt",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "IF"
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_PARENTHESIS",
-                            alias: "(",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            alias: "condition",
-                            name: "expr"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_PARENTHESIS",
-                            alias: ")",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_CURLY_BRACE",
-                            alias: "{",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            alias: "if_part",
-                            name: "stmts"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_CURLY_BRACE",
-                            alias: "}",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "terminal",
-                            name: "ELSE"
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_CURLY_BRACE",
-                            alias: "{",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            alias: "else_part",
-                            name: "stmts"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_CURLY_BRACE",
-                            alias: "}",
-                            textViewOnly: true
-                        },
-                    ]
+                all_of: [
+                    {
+                        type: "terminal",
+                        name: "IF"
+                    },
+                    {
+                        type: "terminal",
+                        name: "LEFT_PARENTHESIS",
+                        alias: "(",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        alias: "condition",
+                        name: "expr"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_PARENTHESIS",
+                        alias: ")",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "terminal",
+                        name: "LEFT_CURLY_BRACE",
+                        alias: "{",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        alias: "if_part",
+                        name: "stmts"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_CURLY_BRACE",
+                        alias: "}",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "terminal",
+                        name: "ELSE"
+                    },
+                    {
+                        type: "terminal",
+                        name: "LEFT_CURLY_BRACE",
+                        alias: "{",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        alias: "else_part",
+                        name: "stmts"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_CURLY_BRACE",
+                        alias: "}",
+                        textViewOnly: true
+                    },
                 ]
             },
             {
                 name: "while_stmt",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "WHILE"
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_PARENTHESIS",
-                            alias: "(",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            alias: "condition",
-                            name: "expr"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_PARENTHESIS",
-                            alias: ")",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_CURLY_BRACE",
-                            alias: "{",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            alias: "while_part",
-                            name: "stmts"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_CURLY_BRACE",
-                            alias: "}",
-                            textViewOnly: true
-                        },
-                    ]
+                all_of: [
+                    {
+                        type: "terminal",
+                        name: "WHILE"
+                    },
+                    {
+                        type: "terminal",
+                        name: "LEFT_PARENTHESIS",
+                        alias: "(",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        alias: "condition",
+                        name: "expr"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_PARENTHESIS",
+                        alias: ")",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "terminal",
+                        name: "LEFT_CURLY_BRACE",
+                        alias: "{",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        alias: "while_part",
+                        name: "stmts"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_CURLY_BRACE",
+                        alias: "}",
+                        textViewOnly: true
+                    },
                 ]
             },
             {
                 name: "for_stmt",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "FOR"
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_PARENTHESIS",
-                            alias: "(",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            alias: "initialization",
-                            name: "assign_stmt"
-                        },
-                        {
-                            type: "terminal",
-                            name: "SEMI_COLON",
-                            alias: ";",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            alias: "condition",
-                            name: "expr"
-                        },
-                        {
-                            type: "terminal",
-                            name: "SEMI_COLON",
-                            alias: ";",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            alias: "step",
-                            name: "assign_stmt"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_PARENTHESIS",
-                            alias: ")",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "terminal",
-                            name: "LEFT_CURLY_BRACE",
-                            alias: "{",
-                            textViewOnly: true
-                        },
-                        {
-                            type: "non_terminal",
-                            alias: "for_part",
-                            name: "stmts"
-                        },
-                        {
-                            type: "terminal",
-                            name: "RIGHT_CURLY_BRACE",
-                            alias: "}",
-                            textViewOnly: true
-                        },
-                    ]
+                all_of: [
+                    {
+                        type: "terminal",
+                        name: "FOR"
+                    },
+                    {
+                        type: "terminal",
+                        name: "LEFT_PARENTHESIS",
+                        alias: "(",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        alias: "initialization",
+                        name: "assign_stmt"
+                    },
+                    {
+                        type: "terminal",
+                        name: "SEMI_COLON",
+                        alias: ";",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        alias: "condition",
+                        name: "expr"
+                    },
+                    {
+                        type: "terminal",
+                        name: "SEMI_COLON",
+                        alias: ";",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        alias: "step",
+                        name: "assign_stmt"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_PARENTHESIS",
+                        alias: ")",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "terminal",
+                        name: "LEFT_CURLY_BRACE",
+                        alias: "{",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        alias: "for_part",
+                        name: "stmts"
+                    },
+                    {
+                        type: "terminal",
+                        name: "RIGHT_CURLY_BRACE",
+                        alias: "}",
+                        textViewOnly: true
+                    },
                 ]
             },
             {
                 name: "ident_list",
-                alternate_rules: [
-                    [
-                        {
-                            type: "terminal",
-                            name: "IDENT",
-                            repeatable: true
-                        },
-                    ],
+                list_of: [
+                    {
+                        type: "terminal",
+                        name: "IDENT",
+                    },
                 ]
             },
             {
                 name: "expr_list",
-                alternate_rules: [
-                    [
-                        {
-                            type: "non_terminal",
-                            name: "expr",
-                            alias: 'ARG',
-                            repeatable: true
-                        },
-                    ],
+                list_of: [
+                    {
+                        type: "non_terminal",
+                        name: "expr",
+                        alias: 'ARG',
+                    },
                 ]
             }
         ],
-        terminals: {
-            staticText: [
-                "+", "-", "*", "/", "AND", "OR", "NOT", "=", "IF", "ELSE", "WHILE", "FOR"
-            ],
-            dynamicText: [
-                {
-                    name: "INT_CONST",
-                    type: "INT",
-                },
-                {
-                    name: "FLOAT_CONST",
-                    type: "FLOAT",
-                },
-                {
-                    name: "CHAR_CONST",
-                    type: "CHAR",
-                },
-                {
-                    name: "STRING_CONST",
-                    type: "STRING",
-                },
-                {
-                    name: "BOOL_CONST",
-                    type: "BOOL",
-                },
-                {
-                    name: "IDENT",
-                    type: "IDENTIFIER"
-                }
-            ]
-        },
+        terminalTypes: [
+            {
+                name: "INT_CONST",
+                type: "INT",
+            },
+            {
+                name: "FLOAT_CONST",
+                type: "FLOAT",
+            },
+            {
+                name: "CHAR_CONST",
+                type: "CHAR",
+            },
+            {
+                name: "STRING_CONST",
+                type: "STRING",
+            },
+            {
+                name: "BOOL_CONST",
+                type: "BOOL",
+            },
+            {
+                name: "IDENT",
+                type: "IDENTIFIER"
+            }
+        ]
     },
     styles: {
         "program" : {

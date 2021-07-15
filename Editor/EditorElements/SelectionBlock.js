@@ -64,10 +64,6 @@ export class SelectionBlock extends EditorElement {
                 this.$blockAlternateSelections
             );
 
-        if (this.symbol.repeatable){
-            $selectionBlockContainer.addClass('block-can-repeat');
-        }
-
         this.$customizableView = $blockWithArrow;
         this.$wholeView = $selectionBlockContainer;
     }

@@ -9,18 +9,34 @@ export class GrammarSymbol {
     }
 }
 
+export class DefinitionRhs {
+    static Types = {
+        ANY_OF:     'ANY_OF',
+        ALL_OFF:    'ALL_OF',
+        LIST_OF:    'LIST_OF',
+        Includes(type){
+            return typeof type === 'string' && Object.values(this).includes(type);
+        }
+    };
+
+    type;       // 'ANY_OF' || 'ALL_OF' || 'LIST_OF'
+    symbols;    // AliasedGrammarSymbol[]
+
+    constructor(type, symbols){
+        this.type = type, this.symbols = symbols;
+        assert(DefinitionRhs.Types.Includes(type), `A language definition has an incorrect type ${type}`);
+        assert(typeof symbols === 'object', `A language definition has content of wrong type "${typeof symbols}"`);
+    }
+}
+
 export class AliasedGrammarSymbol {
     symbol; // GrammarSymbol
     alias;  // string
-    repeatable; // bool
-    optional; // bool
     textViewOnly; // bool
     tooltip; // string
 
-    constructor(symbol, alias, repeatable, optional, textViewOnly, tooltip){
+    constructor(symbol, alias, textViewOnly, tooltip){
         this.symbol = symbol, this.alias = alias;
-        this.repeatable = !!repeatable;
-        this.optional = !!optional;
         this.tooltip = tooltip;
         this.textViewOnly = !!textViewOnly;
     }
@@ -29,8 +45,6 @@ export class AliasedGrammarSymbol {
         return new AliasedGrammarSymbol(
             this.symbol,
             this.alias,
-            this.repeatable,
-            this.optional,
             this.textViewOnly,
             this.tooltip
         );
@@ -43,47 +57,16 @@ export class AliasedGrammarSymbol {
                 symbolJson.symbol.isTerminal
             ),
             symbolJson.alias,
-            symbolJson.repeatable,
-            symbolJson.optional,
             symbolJson.textViewOnly,
             symbolJson.tooltip
         );
     }
 }
 
-export class GrammarRuleRhs {
-    rhs = [];               // AliasedGrammarSymbol[]
-
-    constructor(rhs){
-        this.rhs = rhs;
-    }
-
-    GetSymbols(){
-        return this.rhs;
-    }
-}
-
-export class GrammarProduction {
-    lhs;                    // GrammarSymbol
-    rhs;                    // GrammarRuleRhs
-
-    constructor(lhs, rhs){
-        this.lhs = lhs, this.rhs = rhs;
-    }
-
-    GetRhs(){
-        return this.rhs;
-    }
-
-    GetLhs(){
-        return this.lhs;
-    }
-}
-
 export class Language {
     terminals = [];                     // GrammarSymbol[]
     nonTerminals = [];                  // GrammarSymbol[]
-    productions = new Map;              // Map<GrammarSymbol, GrammarProduction[]>
+    defs = new Map;                     // Map<GrammarSymbol, RhsItem[]>
     
     static TerminalType = {
         Static:         "STATIC",
@@ -98,52 +81,140 @@ export class Language {
         }
     };
 
-    terminalTypes = new Map;
+    terminalTypes = new Map;            // Map<GrammarSymbol, string>
 
-    GetSymbol(nameStr, isTerminal){
-        if (isTerminal === undefined)
-            return this.GetSymbol(nameStr, true) | this.GetSymbol(nameStr, false)
-
-        let container = isTerminal ? this.terminals : this.nonTerminals;
-        return container.find(symbol => symbol.name === nameStr);
+    GetSymbol(str){
+        return this.GetTerminal(str) || this.GetNonTerminal(str);
     }
 
-    AddSymbol(symbol){
-        let container = symbol.isTerminal ? this.terminals : this.nonTerminals;
-        container.push(symbol);
+    GetTerminal(str){
+        return this.terminals.find(sym => sym.name === str);
     }
 
-    GetOrAddSymbol(nameStr, isTerminal){
-        let symbol = this.GetSymbol(nameStr, isTerminal);
-        if (!symbol){
-            symbol = new GrammarSymbol(nameStr, isTerminal);
-            this.AddSymbol(symbol);
-        }
-        return symbol;
+    GetNonTerminal(str){
+        return this.nonTerminals.find(sym => sym.name === str);
     }
 
-    AddProduction(symbol, rhs){
-        symbol.isTerminal ? alert('error') : false; 
-        let symProductions = this.productions.get(symbol);
-        if (!symProductions){
-            this.productions.set(symbol, []);
-            symProductions = this.productions.get(symbol);
-        }
-        symProductions.push(new GrammarProduction(symbol, rhs));
+    GetDefinition(symbol){
+        if (typeof symbol === 'string')
+            symbol = this.GetSymbol(symbol);
+        
+        if (!symbol)
+            return undefined;
+                
+        return this.defs.get(symbol);
     }
 
-    GetProductions(symbol) {
-        return this.productions.get(symbol);
+    NewSymbol(name, isTerminal){
+        return isTerminal ? this.NewTerminal(name) : this.NewNonTerminal(name);
+    }
+
+    NewTerminal(name){
+        if (this.GetSymbol(name))
+            return undefined;
+
+        let terminal = new GrammarSymbol(name, true);
+        this.terminals.push(terminal);
+
+        return terminal;
+    }
+
+    NewNonTerminal(name){
+        if (this.GetSymbol(name))
+            return undefined;
+
+        let nonTerminal = new GrammarSymbol(name, false);
+        this.nonTerminals.push(nonTerminal);
+
+        return nonTerminal;
+    }
+
+    SetSymbolDefinition(symbol, definition){
+        if (typeof symbol === 'string')
+            symbol = this.GetSymbol(symbol);
+
+        if ( !symbol || symbol.isTerminal || !this.nonTerminals.find(sym => sym === symbol) )
+            return false;
+
+        this.defs.set(symbol, definition);
     }
 
     SetTerminalType(symbol, type){
-        assert(symbol.isTerminal);
-        assert(Language.TerminalType.Includes(type));
+        if (typeof symbol === 'string')
+            symbol = this.GetSymbol(symbol);
+
+        if ( !symbol || !symbol.isTerminal || !this.terminals.find(sym => sym === symbol) )
+            return false;
+
         this.terminalTypes.set(symbol, type);
     }
 
     GetTerminalType(symbol){
+        if (typeof symbol === 'string')
+            symbol = this.GetSymbol(symbol);
+
+        if ( !symbol || !symbol.isTerminal || !this.terminals.find(sym => sym === symbol) )
+            return false;
+
         let type = this.terminalTypes.get(symbol);
         return type || Language.TerminalType.Static;
+    }
+
+    static FromJson(languageJson){
+        let lang = new Language;
+
+        if (!languageJson.definitions || !languageJson.terminalTypes){
+            assert(false, 'Incorrect json format for converting into Langauge');
+            return undefined;
+        }
+
+        for (let definition of languageJson.definitions){
+            if (!definition.name || !(definition.list_of || definition.all_of || definition.any_of) ){
+                assert(false, 'A definition misses a lhs or a rhs');
+                console.log(definition);
+                return undefined;
+            }
+
+            let lhs = lang.GetSymbol(definition.name) || lang.NewNonTerminal(definition.name);
+
+            if (lhs.isTerminal){
+                assert(false, `Symbol "${definition.name}" exists as a terminal`);
+                return undefined;
+            }
+
+            let rhsSymbols = (definition.list_of || definition.all_of || definition.any_of)
+                .map(symJson => new AliasedGrammarSymbol(
+                                    lang.GetSymbol(symJson.name) || lang.NewSymbol(symJson.name, symJson.type === 'terminal'),
+                                    symJson.alias,
+                                    symJson.textViewOnly,
+                                    symJson.tooltip
+                                )
+                );
+
+            let rhs = new DefinitionRhs(
+                definition.list_of ? DefinitionRhs.Types.LIST_OF :
+                        definition.all_of ? DefinitionRhs.Types.ALL_OFF :
+                        definition.any_of ? DefinitionRhs.Types.ANY_OF :
+                        null, 
+                rhsSymbols
+            );
+
+            lang.SetSymbolDefinition(lhs, rhs);
+        }
+
+        for (let t of languageJson.terminalTypes){
+            let symbol = lang.GetTerminal(t.name);
+            if (!symbol){
+                assert(false, `Trying to set type for terminal "${t.name}" but no such terminal exists`);
+                return undefined;
+            }
+            if (!Language.TerminalType.Includes(t.type)){
+                assert(false, `Terminal type "${t.type}" does not exist`);
+                return undefined;
+            }
+            lang.SetTerminalType(symbol, t.type);
+        }
+
+        return lang;
     }
 }
