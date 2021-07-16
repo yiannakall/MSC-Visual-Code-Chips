@@ -171,7 +171,6 @@ export class Language {
         for (let definition of languageJson.definitions){
             if (!definition.name || !(definition.list_of || definition.all_of || definition.any_of) ){
                 assert(false, 'A definition misses a lhs or a rhs');
-                console.log(definition);
                 return undefined;
             }
 

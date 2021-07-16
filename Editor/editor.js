@@ -20,12 +20,12 @@ import { NewLineCommand } from './EditorCommands/NewLineCommand.js';
 import { PasteCommand } from './EditorCommands/PasteCommand.js';
 import { DeleteCommand } from './EditorCommands/DeleteCommand.js';
 import { DeleteUntilPossibleCommand } from './EditorCommands/DeleteUntilPossibleCommand.js';
-import { GenerateInputBlockCommand } from './EditorCommands/GenerateInputBlockCommand.js';
 import { DeleteAllCommand } from './EditorCommands/DeleteAllCommand.js';
 import { UndoRedoToolbar } from './UndoRedoToolbar/UndoRedoToolbar.js';
 import { DownloadAsFile } from '../Utils/Download.js';
 import { ToastMessage } from './EditorToastMessages/ToastMessage.js';
 import { InvisibleBlock } from './EditorElements/InvisibleBlock.js';
+import { RepetitionGroup } from './EditorElements/RepetitionGroup.js';
 
 export class Editor {
 
@@ -101,12 +101,7 @@ export class Editor {
 
     InitializeCode_(){
         let startingSymbol = new AliasedGrammarSymbol(this.language.GetSymbol('program', false));
-
-        this.code = new Group(
-            startingSymbol,
-            [this.CreateElem(startingSymbol)]
-        );
-
+        this.code = this.CreateElem(startingSymbol);
         this.BindRootElemToEditor_(this.code);
     }
 
@@ -280,6 +275,7 @@ export class Editor {
         return  elem?.GetParent() && 
                 (
                     elem.GetGeneratedBy() ||
+                    elem.GetParent().GetType() === EditorElementTypes.RepetitionGroup ||
                     elem.GetType() === EditorElementTypes.Tab || 
                     elem.GetType() === EditorElementTypes.NewLine
                 );
@@ -290,7 +286,7 @@ export class Editor {
 
         let parent = elem.GetParent(), generatedBy = elem.GetGeneratedBy();
 
-        if (generatedBy && !generatedBy.GetSymbol().repeatable){
+        if (generatedBy){
             parent.InsertAfterElem(elem, generatedBy);
             this.Select(generatedBy);
         }
@@ -356,20 +352,15 @@ export class Editor {
     }
 
     BindElemToEditor_(elem){
+        if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab)
+            return;
+
         switch(elem.GetType()){
             case EditorElementTypes.InputBlock:
                 this.SetInputBlock_OnInput_(elem);
                 break;
             case EditorElementTypes.SelectionBlock:
                 this.SetSelectionBlock_OnSelect_(elem);
-                break;
-            case EditorElementTypes.Tab:
-                elem.SetDraggable(false);
-                elem.SetDroppable(false);
-                break;
-            case EditorElementTypes.NewLine:
-                elem.SetDraggable(false);
-                elem.SetDroppable(false);
                 break;
             case EditorElementTypes.SimpleBlock:
                 if (!elem.GetGeneratedBy()){
@@ -378,10 +369,6 @@ export class Editor {
                 }
                 break;
         }
-
-        if (elem.GetSymbol && elem.GetSymbol().repeatable)
-            elem.SetDraggable(false);
-        
         
         this.SetElem_OnDrop(elem);
         this.SetElem_OnClick_(elem);
@@ -391,11 +378,9 @@ export class Editor {
 
     SetElem_Theme_(elem){
         elem.SetTheme((elem) => {
-            let type = elem.GetType();
-            let styles = type;
-            if (type != EditorElementTypes.NewLine && type != EditorElementTypes.Tab){
-                styles += ` ${elem.GetSymbol().symbol.name}`;
-            }
+            let styles = elem.GetType();
+            assert(elem.GetSymbol);
+            styles += ` ${elem.GetSymbol().symbol.name}`;
             return styles;
         });
     }
@@ -403,20 +388,16 @@ export class Editor {
     SetElem_OnClick_(elem){
         elem.SetOnClick((e, elem) => {
             this.$contextMenuContainer.empty();
-            
-            if (elem.GetType() !== EditorElementTypes.NewLine && elem.GetType() !== EditorElementTypes.Tab){
-                e.stopPropagation();
-                this.Select(elem);
-            }
+            e.stopPropagation();
+            this.Select(elem);
         });
     }
 
     SetElem_OnContextMenu_(elem){
         elem.SetOnContextMenu((e, elem) => {
-            if (elem.GetType() == EditorElementTypes.NewLine || elem.GetType() == EditorElementTypes.Tab){
+            if (elem === this.code)
                 return;
-            }
-            
+
             e.preventDefault();
             e.stopPropagation();
 
@@ -522,7 +503,7 @@ export class Editor {
                 if (!elemStr)   return;
                 
                 let droppedBlock = EditorElementParser.FromString( elemStr, elem => this.BindElemToEditor_(elem) );
-                if (elem.GetType() !== EditorElementTypes.Tab && this.CanPaste(droppedBlock, elem)){
+                if (this.CanPaste(droppedBlock, elem)){
                     this.ExecuteCommand( new PasteCommand(this, droppedBlock, elem) );
                 }
                 e.stopPropagation();
@@ -552,12 +533,6 @@ export class Editor {
             
             let $input = inputBlock.GetInput(), text = $input.val();
             text === '' || isValid(text) ? $input.removeClass('invalid-input') : $input.addClass('invalid-input');
-
-            if (inputBlock.GetSymbol().repeatable){
-                this.ExecuteCommand(
-                    new GenerateInputBlockCommand(this, inputBlock, text)
-                );
-            }
         });
     }
 
@@ -595,7 +570,8 @@ export class Editor {
                 }
                 case DefinitionRhs.Types.LIST_OF:{
                     let elems = def.symbols.map( (rhsSymbol) => this.CreateElem(rhsSymbol) );
-                    elem = new Group(rhsSymbol, elems);
+                    let repElem = (elems.length === 1) ? elems[0] : new Group(rhsSymbol, elems);
+                    elem = new RepetitionGroup(rhsSymbol, repElem, []);
                     break;
                 }
                 default:
@@ -609,18 +585,16 @@ export class Editor {
 
     CreateNewLine(){
         let nl = new NewLine();
-        this.BindElemToEditor_(nl);
         return nl;
     }
 
     CreateTab(){
         let tab = new TabBlock();
-        this.BindElemToEditor_(tab);
         return tab;
     }
 
     CanCopy(elem){
-        return elem && elem.GetSymbol && !elem.GetSymbol().repeatable;
+        return elem && elem.GetSymbol;
     }
 
     CopyToClipboard(elem){
@@ -662,7 +636,9 @@ export class Editor {
     }
 
     NavigateIn() {
-        if (this.selected && this.selected.GetType() === EditorElementTypes.Group){
+        let type = this.selected?.GetType();
+
+        if ( type && (type === EditorElementTypes.Group || type === EditorElementTypes.RepetitionGroup) ){
             for (let i = 0; i < this.selected.GetLength(); ++i){
                 let elem = this.selected.GetElem(i);
                 if (
@@ -689,8 +665,8 @@ export class Editor {
 
     NavigateLeft() {
         if (this.selected && this.selected.GetParent()){
-            let parent = this.selected.GetParent();
-            assert(parent.GetType() === EditorElementTypes.Group);
+            let parent = this.selected.GetParent(), type = parent.GetType();
+            assert(type === EditorElementTypes.Group || type === EditorElementTypes.RepetitionGroup);
             
             for (let i = parent.IndexOf(this.selected) - 1; i >= 0; --i){
                 let elem = parent.GetElem(i);
@@ -709,8 +685,8 @@ export class Editor {
 
     NavigateRight() {
         if (this.selected && this.selected.GetParent()){
-            let parent = this.selected.GetParent();
-            assert(parent.GetType() === EditorElementTypes.Group);
+            let parent = this.selected.GetParent(), type = parent.GetType();
+            assert(type === EditorElementTypes.Group || type === EditorElementTypes.RepetitionGroup);
 
             for (let i = parent.IndexOf(this.selected) + 1; i < parent.GetLength(); ++i){
                 let elem = parent.GetElem(i);
@@ -730,7 +706,8 @@ export class Editor {
     NavigateUp() {
         let parent = this.selected?.GetParent();
         if (parent){
-            assert(parent.GetType() === EditorElementTypes.Group);
+            let type = parent.GetType();
+            assert(type === EditorElementTypes.Group || type === EditorElementTypes.RepetitionGroup);
 
             for (var i = parent.IndexOf(this.selected); i > 0; --i){
                 if ( parent.GetElem(i).GetType() === EditorElementTypes.NewLine )
@@ -756,8 +733,8 @@ export class Editor {
 
     NavigateDown() {
         if (this.selected && this.selected.GetParent()){
-            let parent = this.selected.GetParent();
-            assert(parent.GetType() === EditorElementTypes.Group);
+            let parent = this.selected.GetParent(), type = parent.GetType();
+            assert(type === EditorElementTypes.Group || type === EditorElementTypes.RepetitionGroup);
             
             for (var i = parent.IndexOf(this.selected); i < parent.GetLength() - 1; ++i){
                 if ( parent.GetElem(i).GetType() === EditorElementTypes.NewLine ){

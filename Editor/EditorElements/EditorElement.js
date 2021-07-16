@@ -7,6 +7,7 @@ export const EditorElementTypes = {
     InputBlock: 'INPUT_BLOCK',
     SelectionBlock: 'SELECTION_BLOCK',
     Group: 'GROUP',
+    RepetitionGroup: 'REPETITION_GROUP',
     InvisibleBlock: 'INVISIBLE_BLOCK'
 }
 

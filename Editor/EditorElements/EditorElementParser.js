@@ -7,6 +7,7 @@ import { NewLine } from './NewLine.js'
 import { TabBlock } from './TabBlock.js'
 import { AliasedGrammarSymbol, GrammarSymbol } from '../../Language.js';
 import { InvisibleBlock } from './InvisibleBlock.js';
+import { RepetitionGroup } from './RepetitionGroup.js';
 
 export class EditorElementParser {
 
@@ -29,6 +30,14 @@ export class EditorElementParser {
             case EditorElementTypes.Group:
                 symbol = AliasedGrammarSymbol.FromJson(elemJson.symbol);
                 elem = new Group(symbol, elemJson.elems.map(elem => this.FromJson(elem, bindElem)));
+                break;
+            case EditorElementTypes.RepetitionGroup:
+                symbol = AliasedGrammarSymbol.FromJson(elemJson.symbol);
+                elem = new RepetitionGroup(
+                    symbol,
+                    this.FromJson(elemJson.repetitiveElem, bindElem),
+                    elemJson.elems.map(elem => this.FromJson(elem, bindElem))
+                );
                 break;
             case EditorElementTypes.InputBlock:
                 symbol = AliasedGrammarSymbol.FromJson(elemJson.symbol);

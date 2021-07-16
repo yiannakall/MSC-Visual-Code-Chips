@@ -38,6 +38,61 @@ body{
     margin-right: 1ch;
 }
 
+.group.repetition-group.pure-text > :nth-last-child(2) {
+    margin-right: 0px;
+}
+
+.group.repetition-group .repeat-button {
+    display: flex;
+    width: fit-content;
+    padding: 8px 8px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+
+    background: #0E639C;
+    color: #f2f2f2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.group.repetition-group .repeat-button:hover {
+    color: #ffffff;
+    background-color: #007ACC;
+}
+
+.group.repetition-group .repeat-button:hover .plus {
+    background: #ffffff;
+}
+
+.group.repetition-group .repeat-button:not(:first-child){
+    margin-top: 10px;
+}
+
+.group.repetition-group:not(.pure-text) > .input-block {
+    vertical-align: middle;
+}
+
+.group.repetition-group .repeat-button .plus {
+    --webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+    mask-repeat: no-repeat;
+    mask-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 12px;
+    height: 12px;
+
+    background: #f2f2f2;
+    -webkit-mask-image: url(/Images/plus.svg);
+    mask-image: url(/Images/plus.svg);
+}
+
+.group.repetition-group.pure-text .repeat-button {
+    display: none !important;
+}
+
+
 /* New Line */
 
 .group > .new-line:not(.pure-text) {
@@ -95,7 +150,6 @@ body{
 .selection-block-container.pure-text .text{
     font-style: italic;
     opacity: 0.8;
-    text-decoration: line-through;
 }
 
 .selection-block-container .selection-block {
@@ -111,10 +165,6 @@ body{
 
 .selection-block-container.pure-text .arrow {
     display: none;
-}
-
-.selection-block-container.block-can-repeat .selection-block{
-    opacity: 0.5;
 }
 
 .selection-block-container .arrow{
@@ -266,10 +316,6 @@ body{
     display: inline-flex;
 }
 
-.block-can-repeat.pure-text {
-    display: none;
-}
-
 .editor {
     font-family: Roboto;
     font-style: normal;
@@ -352,6 +398,7 @@ body{
     pointer-events: none;
     position: absolute;
     visibility: hidden;
+    z-index: 1;
 }
 
 .tooltip-container:after {
@@ -548,6 +595,19 @@ body{
     mask-image: url(/Images/Toolbox/delete.svg);
 }
 
+.category-blocks .category-block .repeat-button {
+    display: inline-block;
+    opacity: 0.3;
+    vertical-align: top !important;
+    margin-top: 3px !important;
+    cursor: default !important;
+}
+.category-blocks .category-block .repeat-button::before {
+    display: none !important;
+}
+.category-blocks .category-block .repeat-button::after {
+    display: none !important;
+}
 
 /********************************* SCROLLBARS *********************************/
 

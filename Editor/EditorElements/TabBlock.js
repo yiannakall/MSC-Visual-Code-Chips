@@ -3,6 +3,8 @@ import { EditorElement, EditorElementTypes } from './EditorElement.js'
 export class TabBlock extends EditorElement {
     constructor(){
         super(EditorElementTypes.Tab);
+        this.SetDraggable(false);
+        this.SetDroppable(false);
     }
 
     Clone_() {

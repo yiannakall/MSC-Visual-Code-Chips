@@ -19,9 +19,7 @@ export class DeleteCommand extends EditorCommand{
         this.parent = block.GetParent();
         this.index = this.parent.IndexOf(block);
 
-        let generatedBy = this.block.GetGeneratedBy();
-        if (generatedBy && !generatedBy.GetSymbol().repeatable)
-            this.generatedBy = generatedBy;
+        this.generatedBy = this.block.GetGeneratedBy();
 
         this.selected = this.editor.selected;
     }

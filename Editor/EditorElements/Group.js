@@ -150,7 +150,7 @@ export class Group extends EditorElement {
         for (let i = 0; i < this.elems.length; ++i){
             let elem = this.elems[i];
 
-            if (elem.GetType() === EditorElementTypes.Group){
+            if (elem.GetType() === EditorElementTypes.Group || elem.GetType() === EditorElementTypes.RepetitionGroup){
                 elem.ForEachRec(fPre, fPost);
             }else{
                 if (fPre)   fPre(elem);

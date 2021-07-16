@@ -7,7 +7,6 @@ export class ChooseCommand extends EditorCommand {
     selectedSymbol;
 
     newBlock;
-    newLine;
 
     constructor(editor, selectionBlock, selectedSymbol){
         super(editor, `Choose ${selectedSymbol.alias || selectedSymbol.symbol.name}`);
@@ -19,18 +18,9 @@ export class ChooseCommand extends EditorCommand {
         if (!this.newBlock)
             this.newBlock = this.editor.CreateElem(this.selectedSymbol);
 
-        if (!this.newLine && this.selectionBlock.GetSymbol().repeatable) 
-            this.newLine = this.editor.CreateNewLine();
-
         this.newBlock.SetGeneratedBy(this.selectionBlock);
-
         this.selectionBlock.GetParent().InsertBeforeElem(this.selectionBlock, this.newBlock);
-
-        if (!this.selectionBlock.GetSymbol().repeatable){
-            this.selectionBlock.GetParent().RemoveElem(this.selectionBlock);
-        }else{
-            this.selectionBlock.GetParent().InsertBeforeElem(this.selectionBlock, this.newLine);
-        }
+        this.selectionBlock.GetParent().RemoveElem(this.selectionBlock);
 
         window.requestAnimationFrame( () => this.editor.Select(this.newBlock) );
     }
@@ -41,8 +31,6 @@ export class ChooseCommand extends EditorCommand {
 
     Undo(){
         assert(this.newBlock);
-
-        this.newLine?.GetParent().RemoveElem(this.newLine);
         this.editor.RemoveElem_WithChecks(this.newBlock);
     }
 }

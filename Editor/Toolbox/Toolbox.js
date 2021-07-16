@@ -47,13 +47,7 @@ export class Toolbox {
             for (let category of categories){
                 this.categories[category.name] = (new MenuCategory(category.name, category.icon, '#A5A5A5'));
                 this.blocks[category.name] = category.blocks.map(blockJson => {
-                    let b = EditorElementParser.FromJson(blockJson, 
-                        (block) => {
-                            this.SetBlockTheme(block) 
-                            block.SetDraggable(false);
-                            block.SetDroppable(false);
-                        }
-                    );
+                    let b = EditorElementParser.FromJson( blockJson, block => this.BindElem(block) );
                     this.SetBlockDragEvents(category.name, b);
                     return b;
                 });
@@ -305,11 +299,7 @@ export class Toolbox {
             let blockStr = e.originalEvent.dataTransfer.getData('block');
             if (!blockStr)  return;
 
-            let block = this.draggedBlock || EditorElementParser.FromString( blockStr, block => { 
-                                                this.SetBlockTheme(block);
-                                                block.SetDraggable(false);
-                                                block.SetDroppable(false);
-                                            });
+            let block = this.draggedBlock || EditorElementParser.FromString( blockStr, block => this.BindElem(block) );
 
             if (!this.draggedBlock)
                 this.history.ExecuteAndAppend( new InsertCommand(this, block, categoryName, indexFromDrop) );
@@ -329,11 +319,22 @@ export class Toolbox {
         });
     }
 
-    SetBlockTheme(block){
-        if (block.GetType() === EditorElementTypes.InputBlock || block.GetType() === EditorElementTypes.SelectionBlock){
+    BindElem(block){
+        this.SetBlockTheme(block);
+        
+        if (
+            block.GetType() === EditorElementTypes.InputBlock ||
+            block.GetType() === EditorElementTypes.SelectionBlock ||
+            block.GetType() === EditorElementTypes.RepetitionGroup
+        ){
             block.SetEditable(false);
         }
 
+        block.SetDraggable(false);
+        block.SetDroppable(false);
+    }
+
+    SetBlockTheme(block){
         block.SetTheme((elem) => {
             let type = elem.GetType();
             let styles = type;

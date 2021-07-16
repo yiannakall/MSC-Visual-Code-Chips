@@ -51,7 +51,7 @@ export class GenerationPathPopup extends PopupWindow {
                 return styles;
             });
 
-            if (elem.GetType() === EditorElementTypes.Group){
+            if (elem.GetType() === EditorElementTypes.Group || elem.GetType() === EditorElementTypes.RepetitionGroup){
                 elem.SetOnRenderElem(elem =>
                     elem.views ? elem.views.push(elem.GetCustomizableView()) : elem.views = [elem.GetCustomizableView()]
                 );
@@ -82,7 +82,7 @@ export class GenerationPathPopup extends PopupWindow {
 
         // each group handles the child nodes so that they are in their starting state (i.e. for_stmt becomes stmt)
         this.code.ForEachRec( undefined , (elem) => { //postorder traversal
-            if (elem.GetType() === EditorElementTypes.Group){
+            if (elem.GetType() === EditorElementTypes.Group || elem.GetType() === EditorElementTypes.RepetitionGroup){
                 elem.ForEach((childElem) => {
                     for (var root = childElem; root.GetGeneratedBy(); root = root.GetGeneratedBy());
 
@@ -173,7 +173,8 @@ export class GenerationPathPopup extends PopupWindow {
     }
 
     CreateTreeNodeFromBlock(elem) {
-        let numChildren = elem.GetType() === EditorElementTypes.Group && 
+        let numChildren = 
+            ( elem.GetType() === EditorElementTypes.Group || elem.GetType() === EditorElementTypes.RepetitionGroup ) &&
             elem.GetElems().reduce( 
                 (sum, elem) => sum + !!(
                     elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab
@@ -232,7 +233,7 @@ export class GenerationPathPopup extends PopupWindow {
 
         this.code.ForEachRec(
             elem => {
-                if (elem.GetType() === EditorElementTypes.Group)
+                if (elem.GetType() === EditorElementTypes.Group || elem.GetType() === EditorElementTypes.RepetitionGroup)
                     elem.ForEach( childElem => this.RenderGenerationPathFromBlock(childElem) );
 
                 let $nodes, $insertionPoint;
@@ -244,11 +245,11 @@ export class GenerationPathPopup extends PopupWindow {
                     $insertionPoint.append($nodes[0]);
                 }
 
-                if (elem.GetType() === EditorElementTypes.Group)
+                if (elem.GetType() === EditorElementTypes.Group || elem.GetType() === EditorElementTypes.RepetitionGroup)
                     treePoints.push($nodes[$nodes.length - 1].children('.children'));
             },
             elem => {
-                if (elem.GetType() === EditorElementTypes.Group)
+                if (elem.GetType() === EditorElementTypes.Group || elem.GetType() === EditorElementTypes.RepetitionGroup)
                     treePoints.pop();
             }
         );
