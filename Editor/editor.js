@@ -26,6 +26,7 @@ import { DownloadAsFile } from '../Utils/Download.js';
 import { ToastMessage } from './EditorToastMessages/ToastMessage.js';
 import { InvisibleBlock } from './EditorElements/InvisibleBlock.js';
 import { RepetitionGroup } from './EditorElements/RepetitionGroup.js';
+import { CreateRepetitiveElemCommand } from './EditorCommands/CreateRepetitiveElemCommand.js';
 
 export class Editor {
 
@@ -320,11 +321,11 @@ export class Editor {
         });
 
         this.toolbox.SetElem_OnDragEnd((e, elem) => {
-            this.RemoveHightlights();
+            this.RemoveHighlights();
         });
 
         this.toolbox.SetToolbox_OnDrop((e, elem) => {
-            this.RemoveHightlights();
+            this.RemoveHighlights();
         });
 
         this.$workspace.on('dragover', (e) => {
@@ -361,6 +362,14 @@ export class Editor {
                 break;
             case EditorElementTypes.SelectionBlock:
                 this.SetSelectionBlock_OnSelect_(elem);
+                break;
+            case EditorElementTypes.RepetitionGroup:
+                this.SetRepetitionGroup_OnCreate(elem);
+
+                if (elem.GetLength() === 0){
+                    ( new CreateRepetitiveElemCommand(this, elem) ).Execute(); // begin with 1 ready/created element
+                }
+
                 break;
             case EditorElementTypes.SimpleBlock:
                 if (!elem.GetGeneratedBy()){
@@ -487,7 +496,7 @@ export class Editor {
         });
 
         elem.SetOnDragEnd((e, elem) => {
-            this.RemoveHightlights();
+            this.RemoveHighlights();
         });
 
         elem.SetOnDragEnter((e, elem) => {
@@ -506,6 +515,8 @@ export class Editor {
                 if (this.CanPaste(droppedBlock, elem)){
                     this.ExecuteCommand( new PasteCommand(this, droppedBlock, elem) );
                 }
+
+                this.RemoveHighlights();
                 e.stopPropagation();
             }
         });
@@ -534,6 +545,14 @@ export class Editor {
             let $input = inputBlock.GetInput(), text = $input.val();
             text === '' || isValid(text) ? $input.removeClass('invalid-input') : $input.addClass('invalid-input');
         });
+    }
+
+    SetRepetitionGroup_OnCreate(repetitionGroup){
+        repetitionGroup.SetOnCreate(() =>
+            this.ExecuteCommand(
+                new CreateRepetitiveElemCommand(this, repetitionGroup)
+            )
+        );
     }
 
     CreateElem(rhsSymbol){
@@ -612,7 +631,7 @@ export class Editor {
         });
     }
 
-    RemoveHightlights(){
+    RemoveHighlights(){
         this.$code.find('.highlighted').removeClass('highlighted');
     }
 
@@ -632,7 +651,7 @@ export class Editor {
     }
 
     CanPaste(source, dest){
-        return !!this.FindCommonPredecessor(source, dest);
+        return source !== dest && !!this.FindCommonPredecessor(source, dest);
     }
 
     NavigateIn() {

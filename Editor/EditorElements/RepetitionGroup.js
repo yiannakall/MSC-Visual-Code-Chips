@@ -9,13 +9,12 @@ export class RepetitionGroup extends Group{
     
     isEditable_ = true;
 
+    onCreate = () => {};
+
     constructor(symbol, repetitiveElem, elems){
         super(symbol, elems);
         this.repetitiveElem_ = repetitiveElem;
         this.type = EditorElementTypes.RepetitionGroup;
-
-        if (!elems || elems.length === 0)
-            this.CreateElem();
     }
 
     CreateButton_(){
@@ -31,7 +30,7 @@ export class RepetitionGroup extends Group{
         $repButton.on('click', (e) => {
             if (this.isEditable_){
                 e.stopPropagation();
-                this.CreateElem();
+                this.onCreate();
             }
         });
 
@@ -43,20 +42,6 @@ export class RepetitionGroup extends Group{
             });
 
         return $repButton;
-    }
-
-    CreateElem(){
-        if (this.GetLength() !== 0 &&
-            (
-                this.repetitiveElem_.GetType() === EditorElementTypes.SelectionBlock ||
-                this.repetitiveElem_.GetType() === EditorElementTypes.Group ||
-                this.repetitiveElem_.GetType() === EditorElementTypes.RepetitionGroup
-            )
-        ){
-            this.PushElem(new NewLine());
-        }
-
-        this.PushElem(this.repetitiveElem_.CloneRec());
     }
 
     Render_() {
@@ -74,7 +59,9 @@ export class RepetitionGroup extends Group{
 
     Clone_(){
         let clonedElems = this.elems.map(elem => elem.CloneRec());
-        return new RepetitionGroup(this.symbol.Clone(), this.repetitiveElem_, clonedElems);
+        let repGroup = new RepetitionGroup(this.symbol.Clone(), this.repetitiveElem_, clonedElems);
+        repGroup.SetOnCreate(this.onCreate.bind(repGroup));
+        return repGroup;
     }
 
     ToJson_(){
@@ -89,6 +76,14 @@ export class RepetitionGroup extends Group{
 
     SetEditable(isEditable){
         this.isEditable_ = !!isEditable;
+    }
+
+    SetOnCreate(f){
+        this.onCreate = f;
+    }
+
+    GetRepetitiveElem(){
+        return this.repetitiveElem_;
     }
 
 }
