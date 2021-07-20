@@ -33,7 +33,7 @@ export class Group extends EditorElement {
     }
 
     PopElem(){
-        let elem = this.elems.pop(elem);
+        let elem = this.elems.pop();
         elem.SetParent(null);
 
         if (this.autoRendering && this.$wholeView)
@@ -43,8 +43,15 @@ export class Group extends EditorElement {
     }
 
     InsertAtIndex(i, elem){
-        if (i < 0 && i > this.elems.length){
+        let length = this.elems.length;
+
+        if (i < 0 && i > length){
             assert(false, `Index ${i} is out of bounds`);
+            return;
+        }
+
+        if (i === length){
+            this.PushElem(elem);
             return;
         }
 
@@ -52,7 +59,7 @@ export class Group extends EditorElement {
         elem.SetParent(this);
 
         if (this.autoRendering && this.$wholeView){
-            i === this.elems.length - 1 ?
+            i === this.length - 1 ?
                 this.RenderChild_(elem) :
                 this.RenderChildBefore_(this.elems[i + 1], elem);
         }

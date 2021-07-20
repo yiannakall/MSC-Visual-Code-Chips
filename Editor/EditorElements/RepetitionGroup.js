@@ -1,6 +1,5 @@
 import { EditorElementTypes } from "./EditorElement.js";
 import { Group } from "./Group.js";
-import { NewLine } from "./NewLine.js";
 
 export class RepetitionGroup extends Group{
 

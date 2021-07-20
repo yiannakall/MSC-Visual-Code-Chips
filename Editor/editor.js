@@ -27,6 +27,8 @@ import { ToastMessage } from './EditorToastMessages/ToastMessage.js';
 import { InvisibleBlock } from './EditorElements/InvisibleBlock.js';
 import { RepetitionGroup } from './EditorElements/RepetitionGroup.js';
 import { CreateRepetitiveElemCommand } from './EditorCommands/CreateRepetitiveElemCommand.js';
+import { ReorderUpCommand } from './EditorCommands/ReorderUpCommand.js';
+import { ReorderDownCommand } from './EditorCommands/ReorderDownCommand.js';
 
 export class Editor {
 
@@ -150,6 +152,8 @@ export class Editor {
         };
 
         this.keyboardEventManager = new KeyboardEventManager(this.$workspace)
+            .AddEventHandler( [Keys.ALT, Keys.UP],                  EvHandler(() => this.EventHandler_ReorderUp_()) )
+            .AddEventHandler( [Keys.ALT, Keys.DOWN],                EvHandler(() => this.EventHandler_ReorderDown_()) )
             .AddEventHandler( [Keys.UP],                            EvHandler(() => this.EventHandler_NavigateUp_()) )
             .AddEventHandler( [Keys.DOWN],                          EvHandler(() => this.EventHandler_NavigateDown_()) )
             .AddEventHandler( [Keys.LEFT],                          EvHandler(() => this.EventHandler_NavigateLeft_()) )
@@ -874,6 +878,103 @@ export class Editor {
 
     EventHandler_NavigateOut_(){
         this.NavigateOut();
+    }
+
+    FindPreviousNewLine(group, startingIndex){
+        for (let i = startingIndex - 1; i >= 0; --i){
+            if ( group.GetElem(i).GetType() === EditorElementTypes.NewLine )
+                return i;
+        }
+        return -1;
+    }
+
+    FindNextNewLine(group, startingIndex){
+        for (let i = startingIndex; i < group.GetLength(); ++i){
+            if ( group.GetElem(i).GetType() === EditorElementTypes.NewLine )
+                return i;
+        }
+        return group.GetLength();
+    }
+
+    GetElemLine(elem){
+        let parent = elem?.GetParent();
+
+        if (
+            parent?.GetType() === EditorElementTypes.RepetitionGroup || 
+            parent?.GetType() === EditorElementTypes.Group
+        ){
+            let selectedIndex = parent.IndexOf(elem);
+
+            let prevNewLine = this.FindPreviousNewLine(parent, selectedIndex);
+            let nextNewLine = this.FindNextNewLine(parent, selectedIndex);
+
+            let currLine = { 
+                start: prevNewLine + 1,
+                end: nextNewLine === parent.GetLength() ? nextNewLine - 1 : nextNewLine
+            };
+            currLine.elems =  parent.GetElems().slice(currLine.start, currLine.end + 1);
+            
+            return currLine;
+        }
+
+        return undefined;
+    }
+
+    CanReorderUp_(targetElem){
+        let parent = targetElem?.GetParent();
+        if (!parent || parent.GetType() !== EditorElementTypes.RepetitionGroup)
+            return false;
+        
+        let currLine = this.GetElemLine(targetElem);
+
+        if (currLine?.start === 0)    // there is no line above this one
+            return false;
+        
+        return true;
+    }
+
+    ReorderContinuousLines(line1, line2){
+        assert(line2.start === line1.end + 1);
+
+        let parent = line1.elems[0].GetParent(), endl;
+
+        if (parent.GetElem(line2.end).GetType() !== EditorElementTypes.NewLine)
+            endl = line1.elems[line1.elems.length - 1];
+
+        for (let i = 0; i < line1.elems.length; ++i){
+            let elem = line1.elems[i];
+            parent.RemoveElemAt(line1.start);
+            parent.InsertAtIndex(line2.end, elem);
+        }
+
+        if (endl){
+            assert(endl === parent.GetElem(parent.GetLength() - 1));
+            parent.PopElem();
+            parent.InsertAtIndex(line1.start + (line2.end - line2.start + 1), endl);
+        }
+    }
+
+    EventHandler_ReorderUp_(){
+        if (this.CanReorderUp_(this.selected))
+            this.ExecuteCommand( new ReorderUpCommand(this, this.selected) );
+    }
+
+    CanReorderDown_(targetElem){
+        let parent = targetElem?.GetParent();
+        if (!parent || parent.GetType() !== EditorElementTypes.RepetitionGroup)
+            return false;
+        
+        let currLine = this.GetElemLine(targetElem);
+
+        if (currLine?.end === parent.GetLength() - 1)    // there is no line above this one
+            return false;
+
+        return true;
+    }
+
+    EventHandler_ReorderDown_(){
+        if (this.CanReorderDown_(this.selected))
+            this.ExecuteCommand( new ReorderDownCommand(this, this.selected) );
     }
 
     EventHandler_Delete_(){
