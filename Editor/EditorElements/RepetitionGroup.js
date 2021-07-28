@@ -8,7 +8,7 @@ export class RepetitionGroup extends Group{
     
     isEditable_ = true;
 
-    onCreate = () => {};
+    onCreate = (self) => {};
 
     constructor(symbol, repetitiveElem, elems){
         super(symbol, elems);
@@ -29,7 +29,7 @@ export class RepetitionGroup extends Group{
         $repButton.on('click', (e) => {
             if (this.isEditable_){
                 e.stopPropagation();
-                this.onCreate();
+                this.onCreate(this);
             }
         });
 
@@ -57,8 +57,8 @@ export class RepetitionGroup extends Group{
     }
 
     Clone_(){
-        let clonedElems = this.elems.map(elem => elem.CloneRec());
-        let repGroup = new RepetitionGroup(this.symbol.Clone(), this.repetitiveElem_, clonedElems);
+        let clonedElems = this.elems.map(elem => elem.CloneRec()), clonedRep = this.repetitiveElem_.CloneRec();
+        let repGroup = new RepetitionGroup(this.symbol.Clone(), clonedRep, clonedElems);
         repGroup.SetOnCreate(this.onCreate.bind(repGroup));
         return repGroup;
     }

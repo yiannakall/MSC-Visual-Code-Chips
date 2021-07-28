@@ -29,6 +29,7 @@ import { RepetitionGroup } from './EditorElements/RepetitionGroup.js';
 import { CreateRepetitiveElemCommand } from './EditorCommands/CreateRepetitiveElemCommand.js';
 import { ReorderUpCommand } from './EditorCommands/ReorderUpCommand.js';
 import { ReorderDownCommand } from './EditorCommands/ReorderDownCommand.js';
+import { DropCommand } from './EditorCommands/DropCommand.js';
 
 export class Editor {
 
@@ -58,7 +59,13 @@ export class Editor {
 
     keyboardEventManager;
     
-    elemForDropping; // needed because event.dataTransfer.getData is not available onDragEnter
+    draggedElem;
+    dropTarget;
+    dropPlaceholderIndex;
+    $dropPlaceholder = $('<div/>').append(
+        $('<div/>').addClass('overlay'),
+        $('<div/>').addClass('content')
+    ).addClass('drop-placeholder');
 
     generationPathPopup;
 
@@ -320,15 +327,18 @@ export class Editor {
     SetWorkspace_DragAndDrop() {
         this.toolbox.SetElem_OnDragStart((e, elem) => {
             this.$contextMenuContainer.empty();
-            this.elemForDropping = elem;
-            this.HighlightValidPasteTargets(this.elemForDropping);
+            this.draggedElem = elem;
+            this.FillDropPlaceholder(this.draggedElem);
+            this.HighlightValidPasteTargets(this.draggedElem);
         });
 
         this.toolbox.SetElem_OnDragEnd((e, elem) => {
+            this.RemoveDropPlaceholder();
             this.RemoveHighlights();
         });
 
         this.toolbox.SetToolbox_OnDrop((e, elem) => {
+            this.RemoveDropPlaceholder();
             this.RemoveHighlights();
         });
 
@@ -369,6 +379,7 @@ export class Editor {
                 break;
             case EditorElementTypes.RepetitionGroup:
                 this.SetRepetitionGroup_OnCreate(elem);
+                this.SetRepetitionGroup_OnDragOver(elem);
 
                 if (elem.GetLength() === 0){
                     ( new CreateRepetitiveElemCommand(this, elem) ).Execute(); // begin with 1 ready/created element
@@ -490,39 +501,125 @@ export class Editor {
         });
     }
 
+    BindPlaceholderElem(elem) {
+        if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab)
+            return;
+                
+        elem.SetDraggable(false);
+        elem.SetDroppable(true);
+        this.SetElem_Theme_(elem);
+    }
+
+    RemoveDropPlaceholder(){
+        this.$dropPlaceholder?.remove();
+        this.dropPlaceholderIndex = undefined;
+    }
+
+    FillDropPlaceholder(elem){
+        let placeholderElem = EditorElementParser.FromString( 
+            elem.ToString(),
+            elem => this.BindPlaceholderElem(elem)
+        );
+        this.$dropPlaceholder.children('.content').empty();
+        placeholderElem.Render(this.$dropPlaceholder.children('.content'));
+    }
+
+    FindPlaceholderPos(hoverElem, mouseY){
+        assert(hoverElem.GetType() === EditorElementTypes.RepetitionGroup);
+
+        let elems = hoverElem.GetElems();
+        let start = 0, end = elems.length - 1, middle = Math.floor((end + start) / 2);
+        let offset = mouseY - elems[middle].GetWholeView().offset().top - elems[middle].GetWholeView().height() / 2;
+
+        while (end >= start){
+            middle = Math.floor((end + start) / 2);
+            offset = mouseY - elems[middle].GetWholeView().offset().top - elems[middle].GetWholeView().height() / 2;
+
+            if (offset === 0)
+                return middle;
+            
+            offset < 0 ? end = middle - 1 : start = middle + 1;
+        }
+
+        let pp = (offset <= 0) ? middle : middle + 1;
+
+        if (
+            pp != elems.length && pp >= 1 &&
+            elems[pp].GetType() === EditorElementTypes.NewLine &&
+            elems[pp-1].GetType() !== EditorElementTypes.NewLine
+        ){
+            ++pp;
+        }
+
+        return pp;
+    }
+
+    SetRepetitionGroup_OnDragOver(elem){
+        let cachedDragElem;
+        let canPaste;
+
+        elem.SetOnDragOver((e, elem) => {
+            if (cachedDragElem !== this.draggedElem){
+                canPaste = this.CanPaste( this.draggedElem, elem.GetRepetitiveElem() );
+                cachedDragElem = this.draggedElem;
+            }
+
+            if (!canPaste)  return;
+
+            let mousePos = { x: e.pageX, y: e.pageY }, elems = elem.GetElems();
+            let pp = this.FindPlaceholderPos(elem, mousePos.y);
+
+            if (pp === this.dropPlaceholderIndex) return; // the placeholder is in the correct position already
+
+            pp === elems.length ?
+                this.$dropPlaceholder.insertAfter(elems[elems.length - 1].GetWholeView()) :
+                this.$dropPlaceholder.insertBefore(elems[pp].GetWholeView());
+                
+            this.dropPlaceholderIndex = pp;
+            this.dropTarget = elem;
+
+            this.Select(undefined);
+        });
+    }
+
     SetElem_OnDrop(elem){
-        let pasteOn;
 
         elem.SetOnDragStart((e, elem) => {
             this.$contextMenuContainer.empty();
-            this.elemForDropping = elem;
-            this.HighlightValidPasteTargets(this.elemForDropping);
+            this.draggedElem = elem;
+            this.FillDropPlaceholder(this.draggedElem);
+            this.HighlightValidPasteTargets(this.draggedElem);
         });
 
         elem.SetOnDragEnd((e, elem) => {
+            this.RemoveDropPlaceholder();
             this.RemoveHighlights();
         });
 
         elem.SetOnDragEnter((e, elem) => {
-            if (this.FindCommonPredecessor(this.elemForDropping, elem)){
+            if (this.FindCommonPredecessor(this.draggedElem, elem)){
+                this.dropTarget = elem;
+                
+                this.RemoveDropPlaceholder();
                 this.Select(elem);
-                pasteOn = elem;
             }
         });
 
         elem.SetOnDrop((e, elem) => {
-            if (elem === pasteOn){
-                let elemStr = e.originalEvent.dataTransfer.getData('block');
-                if (!elemStr)   return;
-                
-                let droppedBlock = EditorElementParser.FromString( elemStr, elem => this.BindElemToEditor_(elem) );
-                if (this.CanPaste(droppedBlock, elem)){
-                    this.ExecuteCommand( new PasteCommand(this, droppedBlock, elem) );
-                }
+            if (elem !== this.dropTarget)
+                return;
 
-                this.RemoveHighlights();
-                e.stopPropagation();
-            }
+            e.stopPropagation();
+
+            let b = EditorElementParser.FromString( this.draggedElem.ToString(), e => this.BindElemToEditor_(e) );
+            
+            if (this.dropPlaceholderIndex !== undefined && elem.GetType() === EditorElementTypes.RepetitionGroup)
+                this.ExecuteCommand( new DropCommand(this, elem, b, this.dropPlaceholderIndex) );
+            else if (this.CanPaste(b, elem))
+                this.ExecuteCommand( new PasteCommand(this, b, elem) );
+        
+            this.RemoveHighlights();
+            this.RemoveDropPlaceholder();
         });
     }
 
@@ -552,7 +649,7 @@ export class Editor {
     }
 
     SetRepetitionGroup_OnCreate(repetitionGroup){
-        repetitionGroup.SetOnCreate(() =>
+        repetitionGroup.SetOnCreate((repetitionGroup) =>
             this.ExecuteCommand(
                 new CreateRepetitiveElemCommand(this, repetitionGroup)
             )
@@ -593,8 +690,14 @@ export class Editor {
                 }
                 case DefinitionRhs.Types.LIST_OF:{
                     let elems = def.symbols.map( (rhsSymbol) => this.CreateElem(rhsSymbol) );
-                    let repElem = (elems.length === 1) ? elems[0] : new Group(rhsSymbol, elems);
-                    elem = new RepetitionGroup(rhsSymbol, repElem, []);
+                    if (elems.length === 1){
+                        elem = new RepetitionGroup(rhsSymbol, elems[0], []);
+                    }
+                    else{
+                        let repElem = new Group(rhsSymbol, elems);
+                        this.BindElemToEditor_(repElem);
+                        elem = new RepetitionGroup(rhsSymbol, repElem, []);
+                    }
                     break;
                 }
                 default:
@@ -840,7 +943,7 @@ export class Editor {
         this.undoToolbar.SetUndoDescription( undoCommand ? `Undo "${undoCommand.description}"` : '-' );
 
         let redoCommand = this.commands.GetCurrentRedo();
-        this.undoToolbar.SetRedoDescription( redoCommand ? `${redoCommand.description}` : '-' );
+        this.undoToolbar.SetRedoDescription( redoCommand ? `Redo "${redoCommand.description}"` : '-' );
     }
     
     AppendToastMessage(toastMessage, expirationTime, expirationCb){

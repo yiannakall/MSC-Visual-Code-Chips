@@ -264,7 +264,6 @@ body{
     font: inherit;
     opacity: 0.8;
     font-style: italic;
-    text-decoration: line-through;
 }
 
 .input-block .invalid-input{
@@ -389,6 +388,42 @@ body{
 .selected.highlighted{
     border-color: #FFE34D !important;
 }
+
+/********************************* Drop Placeholder *********************************/
+
+.new-line + .drop-placeholder + .new-line {
+    height: 32px !important;
+}
+
+.code .drop-placeholder {
+    margin-bottom: 5px;
+    max-height: 100px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    width: fit-content;
+    opacity: 0.5;
+}
+
+.code .drop-placeholder > .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.code .drop-placeholder > * {
+    border-radius: inherit;
+}
+
+.code .drop-placeholder > .content > * {
+    border-radius: inherit;
+}
+
+/********************************* Tooltip *********************************/
 
 .tooltip-container {
     position: relative;

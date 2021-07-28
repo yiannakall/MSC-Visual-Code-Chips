@@ -36,6 +36,7 @@ export class EditorElement {
     onDragEnd = (e, self) => { };
     onDrop = (e, self) => { };
     onDragEnter = (e, self) => { };
+    onDragOver = (e, self) => { };
     onDragLeave = (e, self) => { };
     
     constructor(type){
@@ -190,21 +191,27 @@ export class EditorElement {
     }
 
     MakeDroppable_(){
-        this.$customizableView.on('dragover', (e) => {
+        this.$wholeView.on('dragover', (e) => {
             if (this.viewMode === EditorElementViewMode.PureTextView)
                 return;
 
             e.preventDefault();
+            e.stopPropagation();
+            this.onDragOver(e, this);
         });
 
-        this.$customizableView.on('drop', (e) => {
+        this.$wholeView.on('drop', (e) => {
             if (this.viewMode === EditorElementViewMode.PureTextView)
                 return;
+                
+            if (!e.originalEvent.dataTransfer.getData('block'))
+                return;
 
+            e.preventDefault();
             this.onDrop(e, this);
         });
 
-        this.$customizableView.on('dragenter', (e) => {
+        this.$wholeView.on('dragenter', (e) => {
             if (this.viewMode === EditorElementViewMode.PureTextView)
                 return;
 
@@ -213,10 +220,12 @@ export class EditorElement {
             this.onDragEnter(e, this);
         });
 
-        this.$customizableView.on('dragleave', (e) => {
+        this.$wholeView.on('dragleave', (e) => {
             if (this.viewMode === EditorElementViewMode.PureTextView)
                 return;
 
+            e.preventDefault();
+            e.stopPropagation();
             this.onDragLeave(e, this);
         });
     }
@@ -253,6 +262,7 @@ export class EditorElement {
     SetOnDragEnd(f)                 { this.onDragEnd = f; }
     SetOnDrop(f)                    { this.onDrop = f; }
     SetOnDragEnter(f)               { this.onDragEnter = f; }
+    SetOnDragOver(f)                { this.onDragOver = f; }
     SetOnDragLeave(f)               { this.onDragLeave = f; }
     SetDraggable(isDraggable)       { this.isDraggable = !!isDraggable; }
     SetDroppable(isDroppable)       { this.isDroppable = !!isDroppable; }
