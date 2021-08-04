@@ -474,6 +474,56 @@ body{
     visibility: visible;
 }
 
+/********************************* Tooltip With No Pseudo-Elements *********************************/
+
+.tooltip-container2 {
+    position: relative;
+}
+
+.tooltip-container2 > .tooltip-arrow, .tooltip-container2 > .tooltip-content {
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
+    z-index: 1;
+}
+
+.tooltip-container2 > .tooltip-arrow {
+    border: 8px solid transparent;
+    border-right-color: #004A78;
+    width: 0px;
+    height: 0px;
+    box-sizing: border-box;
+    content: '';
+    
+    top: 50%;
+    transform: translateY(-50%);
+    right: -16px;
+}
+
+.tooltip-container2 > .tooltip-content {
+    background: #004A78;
+    border-radius: 2px;
+    color: #eeeeee;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 5px;
+
+    top: 0px;
+    right: -15px;
+    transform: translateX(100%);
+    
+    display: flex;
+    width: max-content;
+    max-width: 250px;
+}
+
+.tooltip-container2:hover>.tooltip-content {
+    visibility: visible;
+}
+.tooltip-container2:hover>.tooltip-arrow {
+    visibility: visible;
+}
+
 /********************************* TOOLBOX *********************************/
 
 .menu-category {

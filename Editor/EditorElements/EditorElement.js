@@ -269,4 +269,13 @@ export class EditorElement {
     SetGeneratedBy(generatedBy)     { this.generatedBy = generatedBy; }
     SetParent(p)                    { this.parent = p; }
     SetTheme(f)                     { this.theme = f; }
+
+    ApplyThemes_(themes){
+        this.customizableViews.forEach((view) => {
+            let theme = themes[view.id];
+            if (!theme) return;
+            
+            (view.ApplyTheme) ? view.ApplyTheme(theme): view.GetView().css(theme.ToCss());
+        });
+    }
 }
