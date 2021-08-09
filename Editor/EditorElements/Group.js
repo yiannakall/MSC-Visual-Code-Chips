@@ -1,5 +1,6 @@
 import { assert } from '../../Utils/Assert.js';
-import { EditorElement, EditorElementTypes, EditorElementViewMode } from './EditorElement.js'
+import { Themeable, ThemeableProps } from '../Theme.js';
+import { EditorElement, EditorElementTypes } from './EditorElement.js'
 
 export class Group extends EditorElement {
     elems = [];
@@ -8,6 +9,33 @@ export class Group extends EditorElement {
 
     onRenderElem = (elem) => {};
     
+    static themeableIds = {
+        Group: 'Group Block',
+    };
+
+    static themeables = [
+        {
+            id: Group.themeableIds.Group,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+                ThemeableProps.Props.PaddingLeft,
+                ThemeableProps.Props.PaddingRight,
+                ThemeableProps.Props.PaddingTop,
+                ThemeableProps.Props.PaddingBottom,
+                ThemeableProps.Props.BorderWidth,
+                ThemeableProps.Props.BorderColor,
+                ThemeableProps.Props.BorderRadius,
+            ),
+        },
+    ];
+
+    customizableViews = [
+        {
+            id: Group.themeableIds.Group,
+            GetView: () => { return this.$wholeView; }
+        },
+    ];
+
     constructor(symbol, elems){
         super(EditorElementTypes.Group);
         elems.forEach( (elem) => elem.SetParent(this) );

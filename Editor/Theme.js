@@ -14,10 +14,13 @@ export class ThemeableProps {
         PaddingTop: 'PaddingTop',
         PaddingBottom: 'PaddingBottom',
         FontSize: 'FontSize',
+        FontColor: 'FontColor',
         Width: 'Width',
         Height: 'Height',
         Gap: 'Gap',
-        FontColor: 'FontColor'
+        BorderWidth: 'BorderWidth',
+        BorderColor: 'BorderColor',
+        BorderRadius: 'BorderRadius',
     };
 
     static PropDefs = {
@@ -81,6 +84,24 @@ export class ThemeableProps {
             type: this.ValueTypes.Number
         },
 
+        BorderWidth: {
+            name: 'Border Width',
+            description: 'The width of the border (outline surrounding the object) in pixels',
+            type: this.ValueTypes.Number
+        },
+
+        BorderColor: {
+            name: 'Border Color',
+            description: 'The color of the border',
+            type: this.ValueTypes.Color
+        },
+
+        BorderRadius: {
+            name: 'Border Radius',
+            description: 'The corners\' radius in pixels. An increase makes the object rounder',
+            type: this.ValueTypes.Number
+        },
+
     };
 
     static css = {
@@ -102,6 +123,9 @@ export class ThemeableProps {
         FontSize: (value) => {
             return { 'font-size': value };
         },
+        FontColor: (value) => {
+            return { 'color': value };
+        },
         Width: (value) => {
             return { 'width': value };
         },
@@ -110,6 +134,15 @@ export class ThemeableProps {
         },
         Gap: (value) => {
             return { 'gap': value };
+        },
+        BorderWidth: (value) => {
+            return { 'border-width': value };
+        },
+        BorderColor: (value) => {
+            return { 'border-color': value };
+        },
+        BorderRadius: (value) => {
+            return { 'border-radius': value };
         }
     }
 
@@ -129,7 +162,7 @@ export class ThemeableProps {
             console.error('trying to convert non valid property-value pair into css');
             return;
         }
-
+        console.log(prop);
         return ThemeableProps.css[prop](value);
     }
 }
@@ -139,14 +172,14 @@ export class Theme {
 
     constructor(props){
         for (let prop in props){
-            assert(ThemeableProps.IsValid(prop, props[prpo]), `Not supported themable property pair ${prop} -> ${props[prop]}`);
+            assert(ThemeableProps.IsValid(prop, props[prop]), `Not supported themable property pair ${prop} -> ${props[prop]}`);
         }
 
         this.theme = props;
     }
 
     Set(prop, value){
-        assert(ThemeableProps.IsValid(prop, props[prpo]), `Not supported themable property pair ${prop} -> ${props[prop]}`);
+        assert(ThemeableProps.IsValid(prop, props[prop]), `Not supported themable property pair ${prop} -> ${props[prop]}`);
         this.theme[prop] = value;
     }
 
@@ -165,8 +198,10 @@ export class Theme {
     ToCss(){
         let css = [];
 
-        for (let prop in this.theme)
-            css.push( ThemeableProps.ToCss(prop, this.theme[prop]) );
+        for (let prop in this.theme){
+            if (this.theme[prop])
+                css.push( ThemeableProps.ToCss(prop, this.theme[prop]) );
+        }
     
         css = Object.assign({}, ...css);
 

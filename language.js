@@ -216,4 +216,12 @@ export class Language {
 
         return lang;
     }
+
+    GetTerminals(){
+        return this.terminals;
+    }
+
+    GetNonTerminals(){
+        return this.nonTerminals;
+    }
 }

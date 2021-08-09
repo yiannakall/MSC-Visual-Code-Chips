@@ -1,3 +1,4 @@
+import { assert } from '../../Utils/Assert.js';
 import { Theme, Themeable, ThemeableProps } from '../Theme.js';
 import { EditorElement, EditorElementTypes, EditorElementViewMode } from './EditorElement.js'
 
@@ -34,7 +35,10 @@ export class SelectionBlock extends EditorElement {
                 ThemeableProps.Props.PaddingBottom,
                 ThemeableProps.Props.FontSize,
                 ThemeableProps.Props.FontColor,
-                ThemeableProps.Props.Gap
+                ThemeableProps.Props.Gap,
+                ThemeableProps.Props.BorderWidth,
+                ThemeableProps.Props.BorderColor,
+                ThemeableProps.Props.BorderRadius,
             ),
         },
         {
@@ -87,19 +91,19 @@ export class SelectionBlock extends EditorElement {
     customizableViews = [
         {
             id: SelectionBlock.themeableIds.SelectionBlock,
-            GetView: () => { return this.$selectionBlock; }
+            GetView: () => { assert(this.$selectionBlock); return this.$selectionBlock; }
         },
         {
             id: SelectionBlock.themeableIds.Arrow,
-            GetView: () => { return this.$arrow; }
+            GetView: () => { assert(this.$arrow); return this.$arrow; }
         },
         {
             id: SelectionBlock.themeableIds.OptionContainer,
-            GetView: () => { return this.$optionContainer; }
+            GetView: () => { assert(this.$optionContainer); return this.$optionContainer; }
         },
         {
             id: SelectionBlock.themeableIds.Option,
-            GetView: () => { return this.$option; }
+            GetView: () => { assert(this.$option); return this.$option; }
         },
         {
             id: SelectionBlock.themeableIds.OptionOnHover,
@@ -109,23 +113,23 @@ export class SelectionBlock extends EditorElement {
 
                 let prevBg, prevColor;
 
-                this.$option.on('mouseenter', () => {
+                this.$option.on('mouseenter', function () {
                     if (!prevBg)
-                        prevBg = this.$option.css('background-color');
+                        prevBg = $(this).css('background-color');
                     if (!prevColor)
-                        prevColor = this.$option.css('color');
+                        prevColor = $(this).css('color');
                 
                     if (hoverBg)
-                        this.$option.css('background-color', hoverBg);
+                        $(this).css('background-color', hoverBg);
                     if (hoverColor)
-                        this.$option.css('color', hoverColor);
+                        $(this).css('color', hoverColor);
                 });
 
-                this.$option.on('mouseleave', () => {
-                    if (prevBg)
-                        this.$option.css('background-color', prevBg);
-                    if (prevColor)
-                        this.$option.css('color', prevColor);
+                this.$option.on('mouseleave', function() {
+                    if (prevBg && hoverBg)
+                        $(this).css('background-color', prevBg);
+                    if (prevColor && hoverColor)
+                        $(this).css('color', prevColor);
                 });
             }
         },
@@ -136,11 +140,11 @@ export class SelectionBlock extends EditorElement {
                 let fColor = theme.Get(ThemeableProps.Props.FontColor);
                 let fSize = theme.Get(ThemeableProps.Props.FontSize);
 
-                let triangle = this.$option.children('.tooltip-content');
-                let box = this.$option.children('.tooltip-arrow');
+                let triangle = this.$option.children('.tooltip-arrow');
+                let box = this.$option.children('.tooltip-content');
 
                 if (bg !== undefined){
-                    triangle.css('border-left-color', bg);
+                    triangle.css('border-right-color', bg);
                     box.css('background-color', bg);
                 }
 
@@ -178,11 +182,12 @@ export class SelectionBlock extends EditorElement {
     }
 
     Render_(){
-        this.$selectionBlock = 
-            $('<div/>').addClass('selection-block').append(
-                $('<div/>').addClass('text').html(this.symbol.alias || this.symbol.symbol.name),
-                $('<div/>').addClass('arrow')
-            );
+        this.$selectionBlock = $('<div/>').addClass('selection-block');
+
+        let $text = $('<div/>').addClass('text').html(this.symbol.alias || this.symbol.symbol.name);
+        this.$arrow = $('<div/>').addClass('arrow');
+
+        this.$selectionBlock.append($text, this.$arrow);
 
         this.$selectionBlock.attr('title', this.symbol.tooltip || this.symbol.alias || this.symbol.symbol.name);
         

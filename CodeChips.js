@@ -8,41 +8,21 @@ export class CodeChips {
         $container,
         {
             languageJson,
-            stylesJson,
+            themeJson,
             toolboxJson,
         }
-    ){
-        CodeChips.LoadStyles(stylesJson);
-        
+    ){  
         let language = CodeChips.ParseLanguageJson_(languageJson);
         if (!language){
             assert('Parsing the language resulted into an error');    
             return;
         }
-
-        new Editor(
-            $container,
-            language,
-            toolboxJson
-        );
+        
+        let editor = new Editor($container, language, toolboxJson, themeJson);
     }
 
     static ParseLanguageJson_(languageJson){
         return Language.FromJson(languageJson);
     }
-
-    static LoadStyles(stylesJson){
-        let viewClasses = Object.keys(stylesJson);
-        for (let viewClass of viewClasses){
-            let props = Object.keys(stylesJson[viewClass]);
-            let css =   '\n.' + viewClass + '{\n' 
-                        + props.map(prop => '\t' + prop + ': ' + stylesJson[viewClass][prop] + ';').join('\n')
-                        + '\n}\n';
-            
-            let $style = $(`<style id = "${viewClass + '-style'}" type="text/css"></style>`);
-            $style.append(css);
-            $('head').append($style);
-        }
-    }
-
+    
 }

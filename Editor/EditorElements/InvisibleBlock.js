@@ -2,8 +2,6 @@ import { assert } from "../../Utils/Assert.js";
 import { EditorElementTypes, EditorElement, EditorElementViewMode } from "./EditorElement.js";
 
 export class InvisibleBlock extends EditorElement {
-    symbol;
-
     constructor(symbol){
         super(EditorElementTypes.InvisibleBlock);
         this.symbol = symbol;

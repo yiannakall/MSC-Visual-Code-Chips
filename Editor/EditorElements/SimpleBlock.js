@@ -1,7 +1,37 @@
+import { Themeable, ThemeableProps } from '../Theme.js';
 import { EditorElement, EditorElementTypes } from './EditorElement.js'
 
 export class SimpleBlock extends EditorElement {
     symbol;
+
+    static themeableIds ={
+        SimpleBlock: 'Simple Block',
+    };
+
+    static themeables = [
+        {
+            id: this.themeableIds.SimpleBlock,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+                ThemeableProps.Props.PaddingLeft,
+                ThemeableProps.Props.PaddingRight,
+                ThemeableProps.Props.PaddingTop,
+                ThemeableProps.Props.PaddingBottom,
+                ThemeableProps.Props.FontColor,
+                ThemeableProps.Props.FontSize,
+                ThemeableProps.Props.BorderWidth,
+                ThemeableProps.Props.BorderColor,
+                ThemeableProps.Props.BorderRadius,
+            ),
+        },
+    ];
+
+    customizableViews = [
+        {
+            id: SimpleBlock.themeableIds.SimpleBlock,
+            GetView: () => { return this.$wholeView; }
+        },
+    ];
 
     constructor(symbol){
         super(EditorElementTypes.SimpleBlock);

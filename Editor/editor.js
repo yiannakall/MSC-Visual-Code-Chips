@@ -30,6 +30,7 @@ import { CreateRepetitiveElemCommand } from './EditorCommands/CreateRepetitiveEl
 import { ReorderUpCommand } from './EditorCommands/ReorderUpCommand.js';
 import { ReorderDownCommand } from './EditorCommands/ReorderDownCommand.js';
 import { DropCommand } from './EditorCommands/DropCommand.js';
+import { Theme } from './Theme.js';
 
 export class Editor {
 
@@ -92,10 +93,12 @@ export class Editor {
     };
 
     commands = new CommandHistory();
+    theme;
 
-    constructor($container, language, toolboxInfo){
+    constructor($container, language, toolboxInfo, themeJson){
         this.$container = $container;
         this.language = language;
+        this.SetTheme(themeJson);
 
         this.InitializeCode_();
         this.InitializeView_();
@@ -107,6 +110,102 @@ export class Editor {
 
         this.SetWorkspace_DragAndDrop();
         this.Render();
+    }
+
+    IsCorrectTheme(theme){
+        //todo
+        return true;
+    }
+
+    CreateGeneralBlockThemeStructure(){
+        let blockThemes = {};
+
+        let blockClasses = [ Group, RepetitionGroup, SimpleBlock, InputBlock, SelectionBlock ];
+        
+        for (let blockClass of blockClasses){
+            blockThemes[blockClass.name] = {};
+
+            for (let themable of blockClass.themeables){
+                blockThemes[blockClass.name][themable.id] = {};
+
+                for (let prop of themable.themeable.props){
+                    blockThemes[blockClass.name][themable.id][prop] = '';
+                }
+            }
+        }
+
+        return blockThemes;
+    }
+
+    CreateSpecificBlockThemeStructure(){
+        let blockThemes = {};
+
+        for (let symbol of [...this.language.GetTerminals(), ...this.language.GetNonTerminals()]){
+            blockThemes[symbol.name] = {};
+            
+            let blockClass = this.PeekElemType(symbol);
+
+            if (!blockClass)
+                continue;
+
+            for (let themable of blockClass.themeables){
+                blockThemes[symbol.name][themable.id] = {};
+
+                for (let prop of themable.themeable.props){
+                    blockThemes[symbol.name][themable.id][prop] = '';
+                }
+            }
+        }
+
+        return blockThemes;
+    }
+
+    CreateThemeStructure(){
+        let themes = {};
+
+        let blockThemes = {};
+        blockThemes['General'] = this.CreateGeneralBlockThemeStructure();
+        blockThemes['Specific'] = this.CreateSpecificBlockThemeStructure();
+        
+        themes['Blocks'] = blockThemes;
+
+        return themes;
+    }
+
+    CalculateCompositeBlockTheme(theme){
+        theme["Blocks"]["Composite"] = {};
+
+        for (let symbol of [...this.language.GetTerminals(), ...this.language.GetNonTerminals()]){
+            let blockClass = this.PeekElemType(symbol);
+
+            if (!blockClass)
+                continue;
+
+            let general = theme["Blocks"]["General"][blockClass.name];
+            let specific = theme["Blocks"]["Specific"][symbol.name];
+            let composite = theme["Blocks"]["Composite"][symbol.name] = {};
+            
+            for (let themeable of blockClass.themeables){
+                composite[themeable.id] = {};
+
+                for (let prop of themeable.themeable.props){
+                    if (specific[themeable.id][prop] !== '' && specific[themeable.id][prop] !== undefined)
+                        composite[themeable.id][prop] = specific[themeable.id][prop];
+                    else if (general[themeable.id][prop] !== '' && general[themeable.id][prop] !== undefined)
+                        composite[themeable.id][prop] = general[themeable.id][prop];
+                }
+
+                composite[themeable.id] = new Theme(composite[themeable.id]);
+            }
+        }
+    }
+
+    SetTheme(theme){
+        if (!this.IsCorrectTheme(theme)) return;
+
+        this.CalculateCompositeBlockTheme(theme);
+
+        this.theme = theme;
     }
 
     InitializeCode_(){
@@ -198,7 +297,7 @@ export class Editor {
     }
 
     SetUpToolbox_(toolboxInfo){
-        this.toolbox = new Toolbox(this.$toolboxspace, toolboxInfo);
+        this.toolbox = new Toolbox(this.$toolboxspace, toolboxInfo, this.theme);
         this.toolbox.SetToolbox_MaxWidth(() => {
             return 0.8 * this.$container.width();
         });
@@ -402,10 +501,10 @@ export class Editor {
 
     SetElem_Theme_(elem){
         elem.SetTheme((elem) => {
-            let styles = elem.GetType();
-            assert(elem.GetSymbol);
-            styles += ` ${elem.GetSymbol().symbol.name}`;
-            return styles;
+            if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab){
+                return {};
+            }
+            return this.theme["Blocks"]["Composite"][elem.GetSymbol().symbol.name];
         });
     }
 
@@ -654,6 +753,33 @@ export class Editor {
                 new CreateRepetitiveElemCommand(this, repetitionGroup)
             )
         );
+    }
+
+    PeekElemType(symbol){
+        if (symbol.isTerminal){
+        
+            if (this.language.GetTerminalType(symbol) === Language.TerminalType.Static) return SimpleBlock;
+            else return InputBlock;
+        
+        }else{
+            let def = this.language.GetDefinition(symbol);
+
+            switch (def.type) {
+                case DefinitionRhs.Types.ALL_OFF:{
+                    if (def.symbols.length === 1) return null; // the definition will be skipped for its rhs
+                    else return Group;
+                }
+                case DefinitionRhs.Types.ANY_OF: {
+                    if (def.symbols.length === 1) return null; // the definition will be skipped for its rhs
+                    else return SelectionBlock;
+                }
+                case DefinitionRhs.Types.LIST_OF:{
+                    return RepetitionGroup;
+                }
+                default:
+                    assert(false, `Definition rhs with type of ${def.type}`);
+            }
+        }
     }
 
     CreateElem(rhsSymbol){

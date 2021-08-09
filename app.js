@@ -16,7 +16,7 @@ $(document).ready(function () {
         $('#injection-div'), 
         {
             languageJson: config.language,
-            stylesJson: config.styles,
+            themeJson: config.theme,
             toolboxJson: config.toolbox
         }
     );

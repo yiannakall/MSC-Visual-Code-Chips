@@ -1,14 +1,14 @@
 import { assert } from "../../Utils/Assert.js";
 
 export const EditorElementTypes = {
-    NewLine: 'NEW_LINE',
-    Tab: 'TAB_BLOCK',
-    SimpleBlock: 'SIMPLE_BLOCK',
-    InputBlock: 'INPUT_BLOCK',
-    SelectionBlock: 'SELECTION_BLOCK',
-    Group: 'GROUP',
-    RepetitionGroup: 'REPETITION_GROUP',
-    InvisibleBlock: 'INVISIBLE_BLOCK'
+    NewLine: 'NewLine',
+    Tab: 'TabBlock',
+    SimpleBlock: 'SimpleBlock',
+    InputBlock: 'InputBlock',
+    SelectionBlock: 'SelectionBlock',
+    Group: 'Group',
+    RepetitionGroup: 'RepetitionGroup',
+    InvisibleBlock: 'InvisibleBlock'
 }
 
 export const EditorElementViewMode = {
@@ -24,6 +24,7 @@ export class EditorElement {
 
     $wholeView;
     $customizableView;
+    customizableViews = [];
 
     isDraggable = true;
     isDroppable = true;
@@ -131,7 +132,7 @@ export class EditorElement {
     }
 
     PastRendering(){
-        this.ApplyTheme_();
+        this.ApplyThemes_();
         this.ApplyViewMode(this.viewMode);
         this.AddOnClick_();
         this.AddOnContextMenu_();
@@ -146,9 +147,15 @@ export class EditorElement {
         this.PastRendering_();
     }
 
-    ApplyTheme_(){
-        let style = this.theme(this);
-        this.$customizableView.addClass(style);
+    ApplyThemes_(){
+        let themes = this.theme(this);
+
+        this.customizableViews.forEach((view) => {
+            let theme = themes[view.id];
+            if (!theme) return;
+            
+            (view.ApplyTheme) ? view.ApplyTheme(theme): view.GetView().css(theme.ToCss());
+        });
     }
 
     AddOnClick_() {
@@ -269,13 +276,4 @@ export class EditorElement {
     SetGeneratedBy(generatedBy)     { this.generatedBy = generatedBy; }
     SetParent(p)                    { this.parent = p; }
     SetTheme(f)                     { this.theme = f; }
-
-    ApplyThemes_(themes){
-        this.customizableViews.forEach((view) => {
-            let theme = themes[view.id];
-            if (!theme) return;
-            
-            (view.ApplyTheme) ? view.ApplyTheme(theme): view.GetView().css(theme.ToCss());
-        });
-    }
 }

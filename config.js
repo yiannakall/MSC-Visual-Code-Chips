@@ -723,61 +723,1264 @@ export let config = {
             }
         ]
     },
+    theme: {
+        "Blocks": {
+            "General": {
+                "Group": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "RepetitionGroup": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Button": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": ""
+                    },
+                    "Button Plus Sign": {
+                        "Width": "",
+                        "Height": "",
+                        "BackgroundColor": ""
+                    },
+                    "Button Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    },
+                    "Button On Hover": {
+                        "BackgroundColor": ""
+                    },
+                    "Button Plus Sign On Hover": {
+                        "BackgroundColor": ""
+                    }
+                },
+                "SimpleBlock": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "InputBlock": {
+                    "Input Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Input": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "",
+                        "FontSize": ""
+                    }
+                },
+                "SelectionBlock": {
+                    "Selection Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": "",
+                        "Gap": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Arrow": {
+                        "BackgroundColor": "",
+                        "Width": "",
+                        "Height": ""
+                    },
+                    "Option Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": ""
+                    },
+                    "Option": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": ""
+                    },
+                    "Option On Hover": {
+                        "BackgroundColor": "#094771",
+                        "FontColor": "#E5ECF0"
+                    },
+                    "Option Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    }
+                }
+            },
+            "Specific": {
+                "LEFT_PARENTHESIS": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "RIGHT_PARENTHESIS": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "MINUS": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "PLUS": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "TIMES": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "BY": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "GREATER": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "LESS": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "EQUAL_TO": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "NOT_EQUAL_TO": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "GREATER_EQUAL": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "LESS_EQUAL": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "AND": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "OR": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "NOT": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "IDENT": {
+                    "Input Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "#37373D",
+                        "BorderRadius": ""
+                    },
+                    "Input": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#4A9CD6",
+                        "FontSize": ""
+                    }
+                },
+                "INT_CONST": {
+                    "Input Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "#37373D",
+                        "BorderRadius": ""
+                    },
+                    "Input": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#44C9B0",
+                        "FontSize": ""
+                    }
+                },
+                "FLOAT_CONST": {
+                    "Input Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "#37373D",
+                        "BorderRadius": ""
+                    },
+                    "Input": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#44C9B0",
+                        "FontSize": ""
+                    }
+                },
+                "CHAR_CONST": {
+                    "Input Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "#37373D",
+                        "BorderRadius": ""
+                    },
+                    "Input": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#CE9178",
+                        "FontSize": ""
+                    }
+                },
+                "STRING_CONST": {
+                    "Input Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "#37373D",
+                        "BorderRadius": ""
+                    },
+                    "Input": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#CE9178",
+                        "FontSize": ""
+                    }
+                },
+                "BOOL_CONST": {
+                    "Input Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "#37373D",
+                        "BorderRadius": ""
+                    },
+                    "Input": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#8CDCFE",
+                        "FontSize": ""
+                    }
+                },
+                "EQUALS": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#DCB962",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "FUNCTION": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#C57991",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "OF": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#C57991",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "LEFT_CURLY_BRACE": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "RIGHT_CURLY_BRACE": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "CALL": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#C57991",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "WITH": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#C57991",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "IF": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#C57991",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "ELSE": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#C57991",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "WHILE": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#C57991",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "FOR": {
+                    "Simple Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#C57991",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "SEMI_COLON": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "program": {},
+                "stmts": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Button": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": ""
+                    },
+                    "Button Plus Sign": {
+                        "Width": "",
+                        "Height": "",
+                        "BackgroundColor": ""
+                    },
+                    "Button Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    },
+                    "Button On Hover": {
+                        "BackgroundColor": ""
+                    },
+                    "Button Plus Sign On Hover": {
+                        "BackgroundColor": ""
+                    }
+                },
+                "stmt": {
+                    "Selection Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": "",
+                        "Gap": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Arrow": {
+                        "BackgroundColor": "",
+                        "Width": "",
+                        "Height": ""
+                    },
+                    "Option Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": ""
+                    },
+                    "Option": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": ""
+                    },
+                    "Option On Hover": {
+                        "BackgroundColor": "",
+                        "FontColor": ""
+                    },
+                    "Option Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    }
+                },
+                "if_stmt": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "if_else_stmt": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "while_stmt": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "for_stmt": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "assign_stmt": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "func_def_stmt": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "func_call_stmt": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "expr": {
+                    "Selection Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": "",
+                        "Gap": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Arrow": {
+                        "BackgroundColor": "",
+                        "Width": "",
+                        "Height": ""
+                    },
+                    "Option Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": ""
+                    },
+                    "Option": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": ""
+                    },
+                    "Option On Hover": {
+                        "BackgroundColor": "",
+                        "FontColor": ""
+                    },
+                    "Option Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    }
+                },
+                "arith_expr": {
+                    "Selection Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": "",
+                        "Gap": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Arrow": {
+                        "BackgroundColor": "",
+                        "Width": "",
+                        "Height": ""
+                    },
+                    "Option Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": ""
+                    },
+                    "Option": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": ""
+                    },
+                    "Option On Hover": {
+                        "BackgroundColor": "",
+                        "FontColor": ""
+                    },
+                    "Option Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    }
+                },
+                "rel_expr": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "bool_expr": {
+                    "Selection Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": "",
+                        "Gap": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Arrow": {
+                        "BackgroundColor": "",
+                        "Width": "",
+                        "Height": ""
+                    },
+                    "Option Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": ""
+                    },
+                    "Option": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": ""
+                    },
+                    "Option On Hover": {
+                        "BackgroundColor": "",
+                        "FontColor": ""
+                    },
+                    "Option Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    }
+                },
+                "primary_expr": {
+                    "Selection Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": "",
+                        "Gap": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Arrow": {
+                        "BackgroundColor": "",
+                        "Width": "",
+                        "Height": ""
+                    },
+                    "Option Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": ""
+                    },
+                    "Option": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": ""
+                    },
+                    "Option On Hover": {
+                        "BackgroundColor": "",
+                        "FontColor": ""
+                    },
+                    "Option Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    }
+                },
+                "binary_arith_expr": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "unary_minus": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "arith_op": {
+                    "Selection Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": "",
+                        "Gap": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Arrow": {
+                        "BackgroundColor": "",
+                        "Width": "",
+                        "Height": ""
+                    },
+                    "Option Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": ""
+                    },
+                    "Option": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": ""
+                    },
+                    "Option On Hover": {
+                        "BackgroundColor": "",
+                        "FontColor": ""
+                    },
+                    "Option Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    }
+                },
+                "rel_op": {
+                    "Selection Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": "",
+                        "Gap": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Arrow": {
+                        "BackgroundColor": "",
+                        "Width": "",
+                        "Height": ""
+                    },
+                    "Option Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": ""
+                    },
+                    "Option": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": ""
+                    },
+                    "Option On Hover": {
+                        "BackgroundColor": "",
+                        "FontColor": ""
+                    },
+                    "Option Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    }
+                },
+                "binary_bool_expr": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "not_expr": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "bool_bin_op": {
+                    "Selection Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": "",
+                        "Gap": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Arrow": {
+                        "BackgroundColor": "",
+                        "Width": "",
+                        "Height": ""
+                    },
+                    "Option Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": ""
+                    },
+                    "Option": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": ""
+                    },
+                    "Option On Hover": {
+                        "BackgroundColor": "",
+                        "FontColor": ""
+                    },
+                    "Option Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    }
+                },
+                "ident_list": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Button": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": ""
+                    },
+                    "Button Plus Sign": {
+                        "Width": "",
+                        "Height": "",
+                        "BackgroundColor": ""
+                    },
+                    "Button Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    },
+                    "Button On Hover": {
+                        "BackgroundColor": ""
+                    },
+                    "Button Plus Sign On Hover": {
+                        "BackgroundColor": ""
+                    }
+                },
+                "expr_list": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Button": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": ""
+                    },
+                    "Button Plus Sign": {
+                        "Width": "",
+                        "Height": "",
+                        "BackgroundColor": ""
+                    },
+                    "Button Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    },
+                    "Button On Hover": {
+                        "BackgroundColor": ""
+                    },
+                    "Button Plus Sign On Hover": {
+                        "BackgroundColor": ""
+                    }
+                }
+            }
+        }
+    },
     styles: {
-        "program" : {
-            /* not rendered since it has only one child which is a non-terminal */
-        },
-        "stmts" : {
-
-        },
-        "stmt" : {
-            
-        },
-        "if_stmt" : {
-
-        },
-        "if_else_stmt" : {
-
-        },
-        "while_stmt" : {
-
-        },
-        "for_stmt" : {
-
-        },
-        "assign_stmt" : {
-
-        },
-        "expr" : {
-
-        },
-        "arith_expr" : {
-
-        },
-        "binary_arith_expr" : {
-
-        },
-        "unary_minus" : {
-
-        },
-        "bool_expr" : {
-
-        },
-        "primary_expr" : {
-
-        },
-        "arith_op" : {
-
-        },
-        "binary_bool_expr" : {
-
-        },
-        "not_expr" : {
-
-        },
-        "bool_bin_op" : {
-
-        },
         "PLUS" : {
             'background-color': 'transparent',
             'font-weight': '900',
@@ -959,7 +2162,7 @@ export let config = {
                                 },
                                 "textViewOnly": false
                             },
-                            "type": "SIMPLE_BLOCK"
+                            "type": "SimpleBlock"
                         },
                         {
                             "symbol": {
@@ -970,7 +2173,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -1015,7 +2218,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -1026,7 +2229,7 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -1037,13 +2240,13 @@ export let config = {
                                 "alias": "{",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
-                            "type": "NEW_LINE"
+                            "type": "NewLine"
                         },
                         {
-                            "type": "TAB_BLOCK"
+                            "type": "TabBlock"
                         },
                         {
                             "symbol": {
@@ -1121,7 +2324,7 @@ export let config = {
                                             "tooltip": "Use a defined function"
                                         }
                                     ],
-                                    "type": "SELECTION_BLOCK"
+                                    "type": "SelectionBlock"
                                 }
                             ],
                             "repetitiveElem": {
@@ -1190,9 +2393,9 @@ export let config = {
                                         "tooltip": "Use a defined function"
                                     }
                                 ],
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             },
-                            "type": "REPETITION_GROUP"
+                            "type": "RepetitionGroup"
                         },
                         {
                             "symbol": {
@@ -1203,10 +2406,10 @@ export let config = {
                                 "alias": "}",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -1274,7 +2477,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 0,
-                        "type": "SELECTION_BLOCK"
+                        "type": "SelectionBlock"
                     }
                 },
                 {
@@ -1295,7 +2498,7 @@ export let config = {
                                 },
                                 "textViewOnly": false
                             },
-                            "type": "SIMPLE_BLOCK"
+                            "type": "SimpleBlock"
                         },
                         {
                             "symbol": {
@@ -1306,7 +2509,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -1351,7 +2554,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -1362,7 +2565,7 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -1373,13 +2576,13 @@ export let config = {
                                 "alias": "{",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
-                            "type": "NEW_LINE"
+                            "type": "NewLine"
                         },
                         {
-                            "type": "TAB_BLOCK"
+                            "type": "TabBlock"
                         },
                         {
                             "symbol": {
@@ -1457,7 +2660,7 @@ export let config = {
                                             "tooltip": "Use a defined function"
                                         }
                                     ],
-                                    "type": "SELECTION_BLOCK"
+                                    "type": "SelectionBlock"
                                 }
                             ],
                             "repetitiveElem": {
@@ -1526,9 +2729,9 @@ export let config = {
                                         "tooltip": "Use a defined function"
                                     }
                                 ],
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             },
-                            "type": "REPETITION_GROUP"
+                            "type": "RepetitionGroup"
                         },
                         {
                             "symbol": {
@@ -1539,10 +2742,10 @@ export let config = {
                                 "alias": "}",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
-                            "type": "NEW_LINE"
+                            "type": "NewLine"
                         },
                         {
                             "symbol": {
@@ -1552,7 +2755,7 @@ export let config = {
                                 },
                                 "textViewOnly": false
                             },
-                            "type": "SIMPLE_BLOCK"
+                            "type": "SimpleBlock"
                         },
                         {
                             "symbol": {
@@ -1563,13 +2766,13 @@ export let config = {
                                 "alias": "{",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
-                            "type": "NEW_LINE"
+                            "type": "NewLine"
                         },
                         {
-                            "type": "TAB_BLOCK"
+                            "type": "TabBlock"
                         },
                         {
                             "symbol": {
@@ -1647,7 +2850,7 @@ export let config = {
                                             "tooltip": "Use a defined function"
                                         }
                                     ],
-                                    "type": "SELECTION_BLOCK"
+                                    "type": "SelectionBlock"
                                 }
                             ],
                             "repetitiveElem": {
@@ -1716,9 +2919,9 @@ export let config = {
                                         "tooltip": "Use a defined function"
                                     }
                                 ],
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             },
-                            "type": "REPETITION_GROUP"
+                            "type": "RepetitionGroup"
                         },
                         {
                             "symbol": {
@@ -1729,10 +2932,10 @@ export let config = {
                                 "alias": "}",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -1800,7 +3003,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SELECTION_BLOCK"
+                        "type": "SelectionBlock"
                     }
                 },
                 {
@@ -1821,7 +3024,7 @@ export let config = {
                                 },
                                 "textViewOnly": false
                             },
-                            "type": "SIMPLE_BLOCK"
+                            "type": "SimpleBlock"
                         },
                         {
                             "symbol": {
@@ -1832,7 +3035,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -1877,7 +3080,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -1888,7 +3091,7 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -1899,13 +3102,13 @@ export let config = {
                                 "alias": "{",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
-                            "type": "NEW_LINE"
+                            "type": "NewLine"
                         },
                         {
-                            "type": "TAB_BLOCK"
+                            "type": "TabBlock"
                         },
                         {
                             "symbol": {
@@ -1983,7 +3186,7 @@ export let config = {
                                             "tooltip": "Use a defined function"
                                         }
                                     ],
-                                    "type": "SELECTION_BLOCK"
+                                    "type": "SelectionBlock"
                                 }
                             ],
                             "repetitiveElem": {
@@ -2052,9 +3255,9 @@ export let config = {
                                         "tooltip": "Use a defined function"
                                     }
                                 ],
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             },
-                            "type": "REPETITION_GROUP"
+                            "type": "RepetitionGroup"
                         },
                         {
                             "symbol": {
@@ -2065,10 +3268,10 @@ export let config = {
                                 "alias": "}",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -2136,7 +3339,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 2,
-                        "type": "SELECTION_BLOCK"
+                        "type": "SelectionBlock"
                     }
                 },
                 {
@@ -2157,7 +3360,7 @@ export let config = {
                                 },
                                 "textViewOnly": false
                             },
-                            "type": "SIMPLE_BLOCK"
+                            "type": "SimpleBlock"
                         },
                         {
                             "symbol": {
@@ -2168,7 +3371,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -2188,7 +3391,7 @@ export let config = {
                                         },
                                         "textViewOnly": false
                                     },
-                                    "type": "INPUT_BLOCK"
+                                    "type": "InputBlock"
                                 },
                                 {
                                     "symbol": {
@@ -2199,7 +3402,7 @@ export let config = {
                                         "alias": "=",
                                         "textViewOnly": false
                                     },
-                                    "type": "SIMPLE_BLOCK"
+                                    "type": "SimpleBlock"
                                 },
                                 {
                                     "symbol": {
@@ -2243,10 +3446,10 @@ export let config = {
                                             "tooltip": "An identifier or a constant"
                                         }
                                     ],
-                                    "type": "SELECTION_BLOCK"
+                                    "type": "SelectionBlock"
                                 }
                             ],
-                            "type": "GROUP"
+                            "type": "Group"
                         },
                         {
                             "symbol": {
@@ -2257,7 +3460,7 @@ export let config = {
                                 "alias": ";",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -2302,7 +3505,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -2313,7 +3516,7 @@ export let config = {
                                 "alias": ";",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -2333,7 +3536,7 @@ export let config = {
                                         },
                                         "textViewOnly": false
                                     },
-                                    "type": "INPUT_BLOCK"
+                                    "type": "InputBlock"
                                 },
                                 {
                                     "symbol": {
@@ -2344,7 +3547,7 @@ export let config = {
                                         "alias": "=",
                                         "textViewOnly": false
                                     },
-                                    "type": "SIMPLE_BLOCK"
+                                    "type": "SimpleBlock"
                                 },
                                 {
                                     "symbol": {
@@ -2388,10 +3591,10 @@ export let config = {
                                             "tooltip": "An identifier or a constant"
                                         }
                                     ],
-                                    "type": "SELECTION_BLOCK"
+                                    "type": "SelectionBlock"
                                 }
                             ],
-                            "type": "GROUP"
+                            "type": "Group"
                         },
                         {
                             "symbol": {
@@ -2402,7 +3605,7 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -2413,13 +3616,13 @@ export let config = {
                                 "alias": "{",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
-                            "type": "NEW_LINE"
+                            "type": "NewLine"
                         },
                         {
-                            "type": "TAB_BLOCK"
+                            "type": "TabBlock"
                         },
                         {
                             "symbol": {
@@ -2497,7 +3700,7 @@ export let config = {
                                             "tooltip": "Use a defined function"
                                         }
                                     ],
-                                    "type": "SELECTION_BLOCK"
+                                    "type": "SelectionBlock"
                                 }
                             ],
                             "repetitiveElem": {
@@ -2566,9 +3769,9 @@ export let config = {
                                         "tooltip": "Use a defined function"
                                     }
                                 ],
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             },
-                            "type": "REPETITION_GROUP"
+                            "type": "RepetitionGroup"
                         },
                         {
                             "symbol": {
@@ -2579,10 +3782,10 @@ export let config = {
                                 "alias": "}",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -2650,7 +3853,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 3,
-                        "type": "SELECTION_BLOCK"
+                        "type": "SelectionBlock"
                     }
                 }
             ]
@@ -2668,7 +3871,7 @@ export let config = {
                         "textViewOnly": false,
                         "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                     },
-                    "type": "INPUT_BLOCK",
+                    "type": "InputBlock",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -2729,7 +3932,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 0,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -2773,7 +3976,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 3,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 },
@@ -2786,7 +3989,7 @@ export let config = {
                         "textViewOnly": false,
                         "tooltip": "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
                     },
-                    "type": "INPUT_BLOCK",
+                    "type": "InputBlock",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -2847,7 +4050,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -2891,7 +4094,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 3,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 },
@@ -2904,7 +4107,7 @@ export let config = {
                         "textViewOnly": false,
                         "tooltip": "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
                     },
-                    "type": "INPUT_BLOCK",
+                    "type": "InputBlock",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -2965,7 +4168,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 2,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -3009,7 +4212,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 3,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 },
@@ -3022,7 +4225,7 @@ export let config = {
                         "textViewOnly": false,
                         "tooltip": "One single character"
                     },
-                    "type": "INPUT_BLOCK",
+                    "type": "InputBlock",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -3083,7 +4286,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 3,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -3127,7 +4330,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 3,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 },
@@ -3140,7 +4343,7 @@ export let config = {
                         "textViewOnly": false,
                         "tooltip": "Any sequence of characters or the empty sequence"
                     },
-                    "type": "INPUT_BLOCK",
+                    "type": "InputBlock",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -3201,7 +4404,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 4,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -3245,7 +4448,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 3,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 },
@@ -3259,7 +4462,7 @@ export let config = {
                         "tooltip": "One of true or false"
                     },
                     "userInput_": "true",
-                    "type": "INPUT_BLOCK",
+                    "type": "InputBlock",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -3320,7 +4523,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 5,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -3364,7 +4567,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 3,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 },
@@ -3378,7 +4581,7 @@ export let config = {
                         "tooltip": "One of true or false"
                     },
                     "userInput_": "false",
-                    "type": "INPUT_BLOCK",
+                    "type": "InputBlock",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -3439,7 +4642,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 5,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -3483,7 +4686,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 3,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 }
@@ -3512,7 +4715,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -3557,7 +4760,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -3569,7 +4772,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Performs addition"
                             },
-                            "type": "SIMPLE_BLOCK",
+                            "type": "SimpleBlock",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -3618,7 +4821,7 @@ export let config = {
                                     }
                                 ],
                                 "selectedSymbol": 0,
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             }
                         },
                         {
@@ -3664,7 +4867,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -3675,10 +4878,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -3707,7 +4910,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 0,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -3751,7 +4954,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 0,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 },
@@ -3774,7 +4977,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -3819,7 +5022,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -3831,7 +5034,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Performs subtraction"
                             },
-                            "type": "SIMPLE_BLOCK",
+                            "type": "SimpleBlock",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -3880,7 +5083,7 @@ export let config = {
                                     }
                                 ],
                                 "selectedSymbol": 1,
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             }
                         },
                         {
@@ -3926,7 +5129,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -3937,10 +5140,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -3969,7 +5172,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 0,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -4013,7 +5216,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 0,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 },
@@ -4036,7 +5239,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -4081,7 +5284,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -4093,7 +5296,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Performs multiplication"
                             },
-                            "type": "SIMPLE_BLOCK",
+                            "type": "SimpleBlock",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -4142,7 +5345,7 @@ export let config = {
                                     }
                                 ],
                                 "selectedSymbol": 2,
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             }
                         },
                         {
@@ -4188,7 +5391,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -4199,10 +5402,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -4231,7 +5434,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 0,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -4275,7 +5478,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 0,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 },
@@ -4298,7 +5501,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -4343,7 +5546,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -4355,7 +5558,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Performs division"
                             },
-                            "type": "SIMPLE_BLOCK",
+                            "type": "SimpleBlock",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -4404,7 +5607,7 @@ export let config = {
                                     }
                                 ],
                                 "selectedSymbol": 3,
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             }
                         },
                         {
@@ -4450,7 +5653,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -4461,10 +5664,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -4493,7 +5696,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 0,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -4537,7 +5740,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 0,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 },
@@ -4560,7 +5763,7 @@ export let config = {
                                 "alias": "-",
                                 "textViewOnly": false
                             },
-                            "type": "SIMPLE_BLOCK"
+                            "type": "SimpleBlock"
                         },
                         {
                             "symbol": {
@@ -4604,10 +5807,10 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -4636,7 +5839,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -4680,7 +5883,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 0,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 }
@@ -4709,7 +5912,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -4754,7 +5957,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -4766,7 +5969,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Returns true if the first operand is greater than the second operand, else returns false"
                             },
-                            "type": "SIMPLE_BLOCK",
+                            "type": "SimpleBlock",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -4833,7 +6036,7 @@ export let config = {
                                     }
                                 ],
                                 "selectedSymbol": 0,
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             }
                         },
                         {
@@ -4879,7 +6082,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -4890,10 +6093,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -4937,7 +6140,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SELECTION_BLOCK"
+                        "type": "SelectionBlock"
                     }
                 },
                 {
@@ -4959,7 +6162,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -5004,7 +6207,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -5016,7 +6219,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Returns true if the first operand is less than the second operand, else returns false"
                             },
-                            "type": "SIMPLE_BLOCK",
+                            "type": "SimpleBlock",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -5083,7 +6286,7 @@ export let config = {
                                     }
                                 ],
                                 "selectedSymbol": 1,
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             }
                         },
                         {
@@ -5129,7 +6332,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -5140,10 +6343,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -5187,7 +6390,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SELECTION_BLOCK"
+                        "type": "SelectionBlock"
                     }
                 },
                 {
@@ -5209,7 +6412,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -5254,7 +6457,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -5266,7 +6469,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Returns true if the first operand is equal to the second operand, else returns false"
                             },
-                            "type": "SIMPLE_BLOCK",
+                            "type": "SimpleBlock",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -5333,7 +6536,7 @@ export let config = {
                                     }
                                 ],
                                 "selectedSymbol": 2,
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             }
                         },
                         {
@@ -5379,7 +6582,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -5390,10 +6593,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -5437,7 +6640,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SELECTION_BLOCK"
+                        "type": "SelectionBlock"
                     }
                 },
                 {
@@ -5459,7 +6662,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -5504,7 +6707,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -5516,7 +6719,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Returns true if the first operand not equal to the second operand, else returns false"
                             },
-                            "type": "SIMPLE_BLOCK",
+                            "type": "SimpleBlock",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -5583,7 +6786,7 @@ export let config = {
                                     }
                                 ],
                                 "selectedSymbol": 3,
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             }
                         },
                         {
@@ -5629,7 +6832,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -5640,10 +6843,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -5687,7 +6890,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SELECTION_BLOCK"
+                        "type": "SelectionBlock"
                     }
                 },
                 {
@@ -5709,7 +6912,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -5754,7 +6957,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -5766,7 +6969,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Returns true if the first operand is greater than or equal to the second operand, else returns false"
                             },
-                            "type": "SIMPLE_BLOCK",
+                            "type": "SimpleBlock",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -5833,7 +7036,7 @@ export let config = {
                                     }
                                 ],
                                 "selectedSymbol": 4,
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             }
                         },
                         {
@@ -5879,7 +7082,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -5890,10 +7093,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -5937,7 +7140,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SELECTION_BLOCK"
+                        "type": "SelectionBlock"
                     }
                 },
                 {
@@ -5959,7 +7162,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -6004,7 +7207,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -6016,7 +7219,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Returns true if the first operand is less than or equal to the second operand, else returns false"
                             },
-                            "type": "SIMPLE_BLOCK",
+                            "type": "SimpleBlock",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -6083,7 +7286,7 @@ export let config = {
                                     }
                                 ],
                                 "selectedSymbol": 5,
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             }
                         },
                         {
@@ -6129,7 +7332,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -6140,10 +7343,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -6187,7 +7390,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SELECTION_BLOCK"
+                        "type": "SelectionBlock"
                     }
                 },
                 {
@@ -6209,7 +7412,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -6254,7 +7457,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -6265,7 +7468,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Returns true if both operands are true, else returns false"
                             },
-                            "type": "SIMPLE_BLOCK",
+                            "type": "SimpleBlock",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -6294,7 +7497,7 @@ export let config = {
                                     }
                                 ],
                                 "selectedSymbol": 0,
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             }
                         },
                         {
@@ -6340,7 +7543,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -6351,10 +7554,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -6383,7 +7586,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 0,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -6427,7 +7630,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 2,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 },
@@ -6450,7 +7653,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -6495,7 +7698,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -6506,7 +7709,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Returns true if either operand is true, else returns false"
                             },
-                            "type": "SIMPLE_BLOCK",
+                            "type": "SimpleBlock",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -6535,7 +7738,7 @@ export let config = {
                                     }
                                 ],
                                 "selectedSymbol": 1,
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             }
                         },
                         {
@@ -6581,7 +7784,7 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -6592,10 +7795,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -6624,7 +7827,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 0,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -6668,7 +7871,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 2,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 },
@@ -6691,7 +7894,7 @@ export let config = {
                                 "textViewOnly": false,
                                 "tooltip": "Returns true if the operand is false, else returns false"
                             },
-                            "type": "SIMPLE_BLOCK"
+                            "type": "SimpleBlock"
                         },
                         {
                             "symbol": {
@@ -6736,10 +7939,10 @@ export let config = {
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -6768,7 +7971,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SELECTION_BLOCK",
+                        "type": "SelectionBlock",
                         "generatedBy": {
                             "symbol": {
                                 "symbol": {
@@ -6812,7 +8015,7 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 2,
-                            "type": "SELECTION_BLOCK"
+                            "type": "SelectionBlock"
                         }
                     }
                 }
@@ -6840,7 +8043,7 @@ export let config = {
                                 },
                                 "textViewOnly": false
                             },
-                            "type": "SIMPLE_BLOCK"
+                            "type": "SimpleBlock"
                         },
                         {
                             "symbol": {
@@ -6851,7 +8054,7 @@ export let config = {
                                 "alias": "NAME",
                                 "textViewOnly": false
                             },
-                            "type": "INPUT_BLOCK"
+                            "type": "InputBlock"
                         },
                         {
                             "symbol": {
@@ -6861,7 +8064,7 @@ export let config = {
                                 },
                                 "textViewOnly": false
                             },
-                            "type": "SIMPLE_BLOCK"
+                            "type": "SimpleBlock"
                         },
                         {
                             "symbol": {
@@ -6872,7 +8075,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -6891,7 +8094,7 @@ export let config = {
                                         },
                                         "textViewOnly": false
                                     },
-                                    "type": "INPUT_BLOCK"
+                                    "type": "InputBlock"
                                 }
                             ],
                             "repetitiveElem": {
@@ -6902,9 +8105,9 @@ export let config = {
                                     },
                                     "textViewOnly": false
                                 },
-                                "type": "INPUT_BLOCK"
+                                "type": "InputBlock"
                             },
-                            "type": "REPETITION_GROUP"
+                            "type": "RepetitionGroup"
                         },
                         {
                             "symbol": {
@@ -6915,7 +8118,7 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -6926,13 +8129,13 @@ export let config = {
                                 "alias": "{",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
-                            "type": "NEW_LINE"
+                            "type": "NewLine"
                         },
                         {
-                            "type": "TAB_BLOCK"
+                            "type": "TabBlock"
                         },
                         {
                             "symbol": {
@@ -7009,7 +8212,7 @@ export let config = {
                                             "tooltip": "Use a defined function"
                                         }
                                     ],
-                                    "type": "SELECTION_BLOCK"
+                                    "type": "SelectionBlock"
                                 }
                             ],
                             "repetitiveElem": {
@@ -7078,9 +8281,9 @@ export let config = {
                                         "tooltip": "Use a defined function"
                                     }
                                 ],
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             },
-                            "type": "REPETITION_GROUP"
+                            "type": "RepetitionGroup"
                         },
                         {
                             "symbol": {
@@ -7091,10 +8294,10 @@ export let config = {
                                 "alias": "}",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -7162,7 +8365,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 5,
-                        "type": "SELECTION_BLOCK"
+                        "type": "SelectionBlock"
                     }
                 },
                 {
@@ -7183,7 +8386,7 @@ export let config = {
                                 },
                                 "textViewOnly": false
                             },
-                            "type": "SIMPLE_BLOCK"
+                            "type": "SimpleBlock"
                         },
                         {
                             "symbol": {
@@ -7194,7 +8397,7 @@ export let config = {
                                 "alias": "FUNCTION NAME",
                                 "textViewOnly": false
                             },
-                            "type": "INPUT_BLOCK"
+                            "type": "InputBlock"
                         },
                         {
                             "symbol": {
@@ -7204,7 +8407,7 @@ export let config = {
                                 },
                                 "textViewOnly": false
                             },
-                            "type": "SIMPLE_BLOCK"
+                            "type": "SimpleBlock"
                         },
                         {
                             "symbol": {
@@ -7215,7 +8418,7 @@ export let config = {
                                 "alias": "(",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
@@ -7269,7 +8472,7 @@ export let config = {
                                             "tooltip": "An identifier or a constant"
                                         }
                                     ],
-                                    "type": "SELECTION_BLOCK"
+                                    "type": "SelectionBlock"
                                 }
                             ],
                             "repetitiveElem": {
@@ -7315,9 +8518,9 @@ export let config = {
                                         "tooltip": "An identifier or a constant"
                                     }
                                 ],
-                                "type": "SELECTION_BLOCK"
+                                "type": "SelectionBlock"
                             },
-                            "type": "REPETITION_GROUP"
+                            "type": "RepetitionGroup"
                         },
                         {
                             "symbol": {
@@ -7328,10 +8531,10 @@ export let config = {
                                 "alias": ")",
                                 "textViewOnly": true
                             },
-                            "type": "INVISIBLE_BLOCK"
+                            "type": "InvisibleBlock"
                         }
                     ],
-                    "type": "GROUP",
+                    "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
@@ -7399,7 +8602,7 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 6,
-                        "type": "SELECTION_BLOCK"
+                        "type": "SelectionBlock"
                     }
                 }
             ]

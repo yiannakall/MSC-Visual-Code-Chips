@@ -1,3 +1,4 @@
+import { Themeable, ThemeableProps } from '../Theme.js';
 import { EditorElement, EditorElementTypes, EditorElementViewMode } from './EditorElement.js' 
 
 export class InputBlock extends EditorElement {
@@ -6,6 +7,50 @@ export class InputBlock extends EditorElement {
     isEditable_ = true;
 
     onInput = () => {};
+
+    static themeableIds ={
+        InputContainer: 'Input Container',
+        Input: 'Input',
+    };
+
+    static themeables = [
+        {
+            id: InputBlock.themeableIds.InputContainer,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+                ThemeableProps.Props.PaddingLeft,
+                ThemeableProps.Props.PaddingRight,
+                ThemeableProps.Props.PaddingTop,
+                ThemeableProps.Props.PaddingBottom,
+                ThemeableProps.Props.BorderWidth,
+                ThemeableProps.Props.BorderColor,
+                ThemeableProps.Props.BorderRadius,
+            ),
+        },
+        {
+            id: InputBlock.themeableIds.Input,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+                ThemeableProps.Props.PaddingLeft,
+                ThemeableProps.Props.PaddingRight,
+                ThemeableProps.Props.PaddingTop,
+                ThemeableProps.Props.PaddingBottom,
+                ThemeableProps.Props.FontColor,
+                ThemeableProps.Props.FontSize,
+            )
+        },
+    ];
+
+    customizableViews = [
+        {
+            id: InputBlock.themeableIds.InputContainer,
+            GetView: () => { return this.$wholeView; }
+        },
+        {
+            id: InputBlock.themeableIds.Input,
+            GetView: () => { return this.$input; }
+        },
+    ];
 
     constructor(symbol){
         super(EditorElementTypes.InputBlock);
@@ -62,8 +107,8 @@ export class InputBlock extends EditorElement {
 
     FitInput_(){
         this.viewMode === EditorElementViewMode.BlockView ?
-            this.$wholeView.css('width', this.$input.textWidth(this.$input.val() || this.$input.attr('placeholder')) + 20 + 'px') :
-            this.$wholeView.css('width', this.$input.textWidth(this.$input.val() || this.$input.attr('placeholder')) + 'px');
+            this.$input.css('width', this.$input.textWidth(this.$input.val() || this.$input.attr('placeholder')) + 20 + 'px') :
+            this.$input.css('width', this.$input.textWidth(this.$input.val() || this.$input.attr('placeholder')) + 'px');
     }
 
     PastRendering_(){

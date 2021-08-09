@@ -208,11 +208,6 @@ body{
     cursor: pointer;
 }
 
-.selection-block-container .block-alternate-selection:hover{
-    background-color: #094771;
-    color: #E5ECF0;
-}
-
 /* Input Block */
 
 .input-block:not(.pure-text){
@@ -247,7 +242,6 @@ body{
     width: 100%;
     text-align: center;
     display: block;
-    box-sizing: border-box;
 
     font: inherit;
     background: inherit;

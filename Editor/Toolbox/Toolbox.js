@@ -36,11 +36,13 @@ export class Toolbox {
     maxWidth;
     minWidth;
 
+    theme;
+
     /**
      * 
      * @param {[{name: string, icon: string, blocks: [EditorElement]}]} categories 
      */
-    constructor($container, categories) {
+    constructor($container, categories, theme) {
         assert($container);
 
         if (categories){
@@ -55,6 +57,7 @@ export class Toolbox {
         }
 
         this.$container = $container;
+        this.theme = theme;
         this.InitializeView_();
         this.Render();
         
@@ -336,12 +339,10 @@ export class Toolbox {
 
     SetBlockTheme(block){
         block.SetTheme((elem) => {
-            let type = elem.GetType();
-            let styles = type;
-            if (type != EditorElementTypes.NewLine && type != EditorElementTypes.Tab){
-                styles += ` ${elem.GetSymbol().symbol.name}`;
+            if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab){
+                return {};
             }
-            return styles;
+            return this.theme["Blocks"]["Composite"][elem.GetSymbol().symbol.name];
         });
     }
 
