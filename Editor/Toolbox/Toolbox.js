@@ -8,13 +8,14 @@ import { CommandHistory } from "../../Utils/Command.js";
 import { DeleteCommand } from "./ToolboxCommands/DeleteCommand.js";
 import { InsertCommand } from "./ToolboxCommands/InsertCommand.js";
 import { MoveCommand } from "./ToolboxCommands/MoveCommand.js";
+import { ApplyCssToStyle, Themeable, ThemeableProps } from "../Theme.js";
 
 export class Toolbox {
     categories = {};
     blocks = {};
     $scrollTargets = {};
 
-    selectedCategory;
+    selected;
 
     $container;
     $toolbox;
@@ -38,6 +39,270 @@ export class Toolbox {
 
     theme;
 
+    blockTheme = () => { return {}; };
+
+    static themeableIds = {
+        ToolboxMenu: 'Toolbox Menu',
+        ToolboxMenuIcon: 'Toolbox Menu Icon',
+        ToolboxMenuSelectedIcon: 'Toolbox Menu Selected Icon',
+        ToolboxMenuLabel: 'Toolbox Menu Label',
+        ToolboxMenuSelectedLabel: 'Toolbox Menu Selected Label',
+        ToolboxMenuSelectedTag: 'Selected Tag',
+        Toolbox: 'Toolbox',
+        BlockCategoryTitle: 'Block Category Title',
+        BlockCategoryOnDropHover: 'Block Category On Drop Hover',
+        BlockCategoryOnDropPlaceholder: 'Block Category On Drop Placeholder',
+        BlockDeleteButtonContainer: 'Block Delete Button Container',
+        BlockDeleteButtonX: 'Block Delete Button X',
+        Scrollbar: 'Scrollbar',
+        ScrollbarThumb: 'Scrollbar Thumb',
+        ScrollbarThumbOnHover: 'Scrollbar Thumb On Hover',
+        ScrollbarTrack: 'Scrollbar Track',
+    };
+
+    static themeables = [
+        {
+            id: Toolbox.themeableIds.ToolboxMenu,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.ToolboxMenuIcon,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+                ThemeableProps.Props.Width,
+                ThemeableProps.Props.Height,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.ToolboxMenuSelectedIcon,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.ToolboxMenuLabel,
+            themeable: new Themeable(
+                ThemeableProps.Props.FontColor,
+                ThemeableProps.Props.FontSize,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.ToolboxMenuSelectedLabel,
+            themeable: new Themeable(
+                ThemeableProps.Props.FontColor,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.ToolboxMenuSelectedTag,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.Toolbox,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.BlockCategoryTitle,
+            themeable: new Themeable(
+                ThemeableProps.Props.FontSize,
+                ThemeableProps.Props.FontColor,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.BlockCategoryOnDropHover,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.BlockCategoryOnDropPlaceholder,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.BlockDeleteButtonContainer,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.BlockDeleteButtonX,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.Scrollbar,
+            themeable: new Themeable(
+                ThemeableProps.Props.Width,
+                ThemeableProps.Props.Height,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.ScrollbarThumb,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+                ThemeableProps.Props.BorderRadius,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.ScrollbarThumbOnHover,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
+            id: Toolbox.themeableIds.ScrollbarTrack,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+                ThemeableProps.Props.BorderWidth,
+                ThemeableProps.Props.BorderColor,
+            ),
+        },
+    ];
+
+    customizableViews = [
+        {
+            id: Toolbox.themeableIds.ToolboxMenu,
+            GetView: () => { return this.$toolboxMenu; }
+        },
+        {
+            id: Toolbox.themeableIds.ToolboxMenuIcon,
+            GetView: () => { return this.$toolboxMenu.find('.menu-category .icon'); }
+        },
+        {
+            id: Toolbox.themeableIds.ToolboxMenuSelectedIcon,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-selected-icon`,
+                    [`#${this.id} .menu-category.selected .icon`],
+                    [theme.ToCss()]
+                )
+            },
+        },
+        {
+            id: Toolbox.themeableIds.ToolboxMenuLabel,
+            GetView: () => { return this.$toolboxMenu.find('.menu-category .text'); }
+        },
+        {
+            id: Toolbox.themeableIds.ToolboxMenuSelectedLabel,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-selected-label`,
+                    [`#${this.id} .menu-category.selected .text`],
+                    [theme.ToCss()]
+                )
+            },
+        },
+        {
+            id: Toolbox.themeableIds.ToolboxMenuSelectedTag,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-selected-tag`,
+                    [`#${this.id} .menu-category.selected + .selected-line`],
+                    [theme.ToCss()]
+                )
+            },
+        },
+        {
+            id: Toolbox.themeableIds.Toolbox,
+            GetView: () => { return this.$toolboxBlocks; }
+        },
+        {
+            id: Toolbox.themeableIds.BlockCategoryTitle,
+            GetView: () => { return this.$toolboxBlocks.find('.category-name'); }
+        },
+        {
+            id: Toolbox.themeableIds.BlockCategoryOnDropHover,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-droparea`,
+                    [`#${this.id} .toolbox-blocks .category-blocks.droparea`],
+                    [theme.ToCss()]
+                )
+            },
+        },
+        {
+            id: Toolbox.themeableIds.BlockCategoryOnDropPlaceholder,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-drop-indicator`,
+                    [`#${this.id} .toolbox-blocks .category-blocks .drop-indicator`],
+                    [theme.ToCss()]
+                )
+            },
+        },
+        {
+            id: Toolbox.themeableIds.BlockDeleteButtonContainer,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-delete-button`,
+                    [`#${this.id} .category-blocks .category-block .delete-button`],
+                    [theme.ToCss()]
+                )
+            },
+        },
+        {
+            id: Toolbox.themeableIds.BlockDeleteButtonX,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-delete-button-x`,
+                    [`#${this.id} .category-blocks .category-block .delete-button .icon`],
+                    [theme.ToCss()]
+                )
+            },
+        },
+        {
+            id: Toolbox.themeableIds.Scrollbar,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-scrollbar`,
+                    [`#${this.id} .toolbox-blocks::-webkit-scrollbar`],
+                    [theme.ToCss()]
+                )
+            },
+        },
+        {
+            id: Toolbox.themeableIds.ScrollbarThumb,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-scrollbar-thumb`,
+                    [`#${this.id} .toolbox-blocks::-webkit-scrollbar-thumb`],
+                    [theme.ToCss()]
+                )
+            },
+        },
+        {
+            id: Toolbox.themeableIds.ScrollbarThumbOnHover,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-scrollbar-thumb-hover`,
+                    [`#${this.id} .toolbox-blocks::-webkit-scrollbar-thumb:hover`],
+                    [theme.ToCss()]
+                )
+            },
+        },
+        {
+            id: Toolbox.themeableIds.ScrollbarTrack,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-scrollbar-track`,
+                    [`#${this.id} .toolbox-blocks::-webkit-scrollbar-track`],
+                    [theme.ToCss()]
+                )
+            },
+        },
+    ];
+
+    static currId = 0;
+    id;
+
     /**
      * 
      * @param {[{name: string, icon: string, blocks: [EditorElement]}]} categories 
@@ -45,29 +310,26 @@ export class Toolbox {
     constructor($container, categories, theme) {
         assert($container);
 
-        if (categories){
-            for (let category of categories){
-                this.categories[category.name] = (new MenuCategory(category.name, category.icon, '#A5A5A5'));
-                this.blocks[category.name] = category.blocks.map(blockJson => {
-                    let b = EditorElementParser.FromJson( blockJson, block => this.BindElem(block) );
-                    this.SetBlockDragEvents(category.name, b);
-                    return b;
-                });
-            }
+        this.id = 'toolbox' + Toolbox.currId++;
+
+        for (let category of categories){
+            this.categories[category.name] = (new MenuCategory(category.name, category.icon, '#A5A5A5'));
+            this.blocks[category.name] = category.blocks.map(blockJson => {
+                let b = EditorElementParser.FromJson( blockJson, block => this.BindElem(block) );
+                this.SetBlockDragEvents(category.name, b);
+                return b;
+            });
         }
 
         this.$container = $container;
         this.theme = theme;
-        this.InitializeView_();
-        this.Render();
-        
-        this.SetUpKeyboardEvents_();
-
-        if (categories){
-            this.Select_(this.categories[categories[0].name]);
-        }
-
         this.history = new CommandHistory();
+        
+        this.InitializeView_();
+        this.SetUpKeyboardEvents_();
+        
+        this.Render();        
+        this.Select_(this.categories[categories[0].name]);
     }
     
     static FromJson($container, toolboxJson){
@@ -99,7 +361,7 @@ export class Toolbox {
     }
 
     InitializeView_(){
-        this.$toolbox = $('<div/>').addClass('toolbox');
+        this.$toolbox = $('<div/>').addClass('toolbox').attr('id', this.id);
         this.$toolboxMenu = $('<div/>').addClass('toolbox-menu');
         
         this.$toolboxBlocks = $('<div/>').addClass('toolbox-blocks');
@@ -323,8 +585,8 @@ export class Toolbox {
     }
 
     BindElem(block){
-        this.SetBlockTheme(block);
-        
+        block.SetTheme(elem => this.blockTheme(elem));
+
         if (
             block.GetType() === EditorElementTypes.InputBlock ||
             block.GetType() === EditorElementTypes.SelectionBlock ||
@@ -335,15 +597,6 @@ export class Toolbox {
 
         block.SetDraggable(false);
         block.SetDroppable(false);
-    }
-
-    SetBlockTheme(block){
-        block.SetTheme((elem) => {
-            if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab){
-                return {};
-            }
-            return this.theme["Blocks"]["Composite"][elem.GetSymbol().symbol.name];
-        });
     }
 
     SetBlockDragEvents(categoryName, block){
@@ -367,13 +620,38 @@ export class Toolbox {
     }
 
     Select_(category){
-        this.selected?.SetColor('#A5A5A5');
+        this.selected?.GetView()?.removeClass('selected');
+        category?.GetView()?.addClass('selected');
+
+        // this.selected?.SetColor('#A5A5A5');
         this.selected?.GetView()?.siblings().remove('.selected-line');
         
-        category?.SetColor('#FAFAFA');
+        // category?.SetColor('#FAFAFA');
         category?.GetView()?.parent().append($('<div/>').addClass('selected-line'));
 
         this.selected = category;
+    }
+
+    CreateThemeStructure(){
+        let theme = {};
+
+        for (let themable of Toolbox.themeables){
+            theme[themable.id] = {};
+
+            for (let prop of themable.themeable.props)
+                theme[themable.id][prop] = '';
+        }
+
+        return theme;
+    }
+
+    ApplyTheme(themes){
+        this.customizableViews.forEach((view) => {
+            let theme = themes[view.id];
+            if (!theme) return;
+            
+            (view.ApplyTheme) ? view.ApplyTheme(theme): view.GetView().css(theme.ToCss());
+        });
     }
 
     SetElem_OnDragStart(f){
@@ -383,6 +661,19 @@ export class Toolbox {
     SetElem_OnDragEnd(f){
         this.onDragEnd = f;
     }
+
+    SetElem_Theme(f){
+        this.blockTheme = f;
+    }
+
+    // SetBlockTheme(block){
+    //     block.SetTheme((elem) => {
+    //         if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab){
+    //             return {};
+    //         }
+    //         return this.theme["Blocks"]["Composite"][elem.GetSymbol().symbol.name];
+    //     });
+    // }
 
     SetToolbox_OnDrop(f){
         this.onDrop = f;

@@ -30,7 +30,7 @@ import { CreateRepetitiveElemCommand } from './EditorCommands/CreateRepetitiveEl
 import { ReorderUpCommand } from './EditorCommands/ReorderUpCommand.js';
 import { ReorderDownCommand } from './EditorCommands/ReorderDownCommand.js';
 import { DropCommand } from './EditorCommands/DropCommand.js';
-import { Theme } from './Theme.js';
+import { ApplyCssToStyle, Theme, Themeable, ThemeableProps } from './Theme.js';
 
 export class Editor {
 
@@ -93,11 +93,112 @@ export class Editor {
     };
 
     commands = new CommandHistory();
+
     theme;
 
+    // themeableIds, themeables, customizableViews for code
+
+    static themeableIds = {
+        CodeWorkspace: 'Code Workspace',
+        Scrollbar: 'Scrollbar',
+        ScrollbarThumb: 'Scrollbar Thumb',
+        ScrollbarThumbOnHover: 'Scrollbar Thumb On Hover',
+        ScrollbarTrack: 'Scrollbar Track',
+    };
+
+    static themeables = [
+        {
+            id: Editor.themeableIds.CodeWorkspace,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
+            id: Editor.themeableIds.Scrollbar,
+            themeable: new Themeable(
+                ThemeableProps.Props.Width,
+                ThemeableProps.Props.Height,
+            )
+        },
+        {
+            id: Editor.themeableIds.ScrollbarThumb,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+                ThemeableProps.Props.BorderRadius
+            )
+        },
+        {
+            id: Editor.themeableIds.ScrollbarThumbOnHover,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
+            id: Editor.themeableIds.ScrollbarTrack,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+                ThemeableProps.Props.BorderWidth,
+                ThemeableProps.Props.BorderColor,
+            ),
+        },
+    ];
+
+    customizableViews = [
+        {
+            id: Editor.themeableIds.CodeWorkspace,
+            GetView: () => { return this.$code; }
+        },
+        {
+            id: Editor.themeableIds.Scrollbar,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-scrollbar-style`,
+                    [`#${this.id} .code::-webkit-scrollbar`],
+                    [theme.ToCss()]
+                )
+            }
+        },
+        {
+            id: Editor.themeableIds.ScrollbarThumb,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-scrollbar-thumb-style`,
+                    [`#${this.id} .code::-webkit-scrollbar-thumb`],
+                    [theme.ToCss()]
+                )
+            }
+        },
+        {
+            id: Editor.themeableIds.ScrollbarThumbOnHover,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-scrollbar-thumb-hover-style`,
+                    [`#${this.id} .code::-webkit-scrollbar-thumb:hover`],
+                    [theme.ToCss()]
+                )
+            }
+        },
+        {
+            id: Editor.themeableIds.ScrollbarTrack,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-scrollbar-track-style`,
+                    [`#${this.id} .code::-webkit-scrollbar-track`],
+                    [theme.ToCss()]
+                )
+            }
+        },
+    ];
+
+    static currId = 0;
+    id;
+
     constructor($container, language, toolboxInfo, themeJson){
+        this.id = 'editor' + Editor.currId++;
+
         this.$container = $container;
         this.language = language;
+        
         this.SetTheme(themeJson);
 
         this.InitializeCode_();
@@ -106,10 +207,11 @@ export class Editor {
         this.SetUpContextMenu_();
 
         this.SetUpToolbox_(toolboxInfo);
+        this.SetWorkspace_DragAndDrop();
         this.SetUpUndoToolbar_();
 
-        this.SetWorkspace_DragAndDrop();
         this.Render();
+        this.ApplyTheme();
     }
 
     IsCorrectTheme(theme){
@@ -160,16 +262,47 @@ export class Editor {
         return blockThemes;
     }
 
-    CreateThemeStructure(){
-        let themes = {};
+    CreateCodeThemeStructure(){
+        let codeTheme = {};
 
-        let blockThemes = {};
-        blockThemes['General'] = this.CreateGeneralBlockThemeStructure();
-        blockThemes['Specific'] = this.CreateSpecificBlockThemeStructure();
-        
-        themes['Blocks'] = blockThemes;
+        for (let themable of Editor.themeables){
+            codeTheme[themable.id] = {};
+
+            for (let prop of themable.themeable.props)
+                codeTheme[themable.id][prop] = '';
+        }
+
+        return codeTheme;
+    }
+
+    CreateThemeStructure(){
+        let themes = {
+            'Blocks': {
+                'General': this.CreateGeneralBlockThemeStructure(),
+                'Specific': this.CreateSpecificBlockThemeStructure()
+            },
+            'Code Workspace': this.CreateCodeThemeStructure(),
+            'Toolbox': this.toolbox.CreateThemeStructure(),
+            'Undo Redo Toolbar': UndoRedoToolbar.CreateThemeStructure(),
+            'Context Menu': ContextMenu.CreateThemeStructure()
+        };
 
         return themes;
+    }
+
+    ApplyTheme() {
+        this.ApplyCodeWorkspaceTheme(this.theme['Code Workspace']);
+        this.toolbox.ApplyTheme(this.theme['Toolbox']);
+        this.undoToolbar.ApplyTheme(this.theme['Undo Redo Toolbar']);
+    }
+
+    ApplyCodeWorkspaceTheme(themes){
+        this.customizableViews.forEach((view) => {
+            let theme = themes[view.id];
+            if (!theme) return;
+            
+            (view.ApplyTheme) ? view.ApplyTheme(theme): view.GetView().css(theme.ToCss());
+        });
     }
 
     CalculateCompositeBlockTheme(theme){
@@ -201,11 +334,18 @@ export class Editor {
     }
 
     SetTheme(theme){
-        if (!this.IsCorrectTheme(theme)) return;
+        if (!this.IsCorrectTheme(theme)) return false;
 
         this.CalculateCompositeBlockTheme(theme);
 
+        for (let component of ['Code Workspace', 'Toolbox', 'Undo Redo Toolbar', 'Context Menu']){
+            for (let themePart in theme[component])
+                theme[component][themePart] = new Theme(theme[component][themePart]);
+        }
+
         this.theme = theme;
+
+        return true;
     }
 
     InitializeCode_(){
@@ -231,7 +371,7 @@ export class Editor {
 
         this.$toolboxspace = $('<div/>').addClass('toolboxspace');
 
-        this.$editor = $('<div/>').addClass('editor');
+        this.$editor = $('<div/>').addClass('editor').attr('id', this.id);
         this.$editor.append(this.$toolboxspace, this.$workspace);
         
         this.$editor.on('click', () => {
@@ -304,6 +444,14 @@ export class Editor {
         this.toolbox.SetToolbox_MinWidth(() => {
             return 0.2 * this.$container.width();
         });
+        
+        this.toolbox.SetElem_Theme((elem) => {
+            if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab){
+                return {};
+            }
+            return this.theme["Blocks"]["Composite"][elem.GetSymbol().symbol.name];
+        });
+        this.toolbox.RenderAllBlocks();
     }
 
     SetUpContextMenu_(){
@@ -360,6 +508,7 @@ export class Editor {
             ]);
 
             contextMenu.Render();
+            contextMenu.ApplyTheme(this.theme['Context Menu']);
 
             this.FitContextMenu_(e);
         });
@@ -595,6 +744,7 @@ export class Editor {
             ]);
 
             contextMenu.Render();
+            contextMenu.ApplyTheme(this.theme['Context Menu']);
 
             this.FitContextMenu_(e);
         });

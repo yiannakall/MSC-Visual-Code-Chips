@@ -91,19 +91,19 @@ export class SelectionBlock extends EditorElement {
     customizableViews = [
         {
             id: SelectionBlock.themeableIds.SelectionBlock,
-            GetView: () => { assert(this.$selectionBlock); return this.$selectionBlock; }
+            GetView: () => { return this.$selectionBlock; }
         },
         {
             id: SelectionBlock.themeableIds.Arrow,
-            GetView: () => { assert(this.$arrow); return this.$arrow; }
+            GetView: () => { return this.$arrow; }
         },
         {
             id: SelectionBlock.themeableIds.OptionContainer,
-            GetView: () => { assert(this.$optionContainer); return this.$optionContainer; }
+            GetView: () => { return this.$optionContainer; }
         },
         {
             id: SelectionBlock.themeableIds.Option,
-            GetView: () => { assert(this.$option); return this.$option; }
+            GetView: () => { return this.$option; }
         },
         {
             id: SelectionBlock.themeableIds.OptionOnHover,

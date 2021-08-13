@@ -85,6 +85,9 @@ export class RepetitionGroup extends Group{
                     let prevBg;
     
                     this.$repButton_.on('mouseenter', () => {
+                        if (!this.isEditable_)
+                            return;
+
                         if (!prevBg)
                             prevBg = this.$repButton_.css('background-color');
                         
@@ -93,6 +96,9 @@ export class RepetitionGroup extends Group{
                     });
     
                     this.$repButton_.on('mouseleave', () => {
+                        if (!this.isEditable_)
+                            return;
+
                         if (prevBg)
                             this.$repButton_.css('background-color', prevBg);
                     });
@@ -105,6 +111,9 @@ export class RepetitionGroup extends Group{
                     let prevBg;
     
                     this.$repButton_.on('mouseenter', () => {
+                        if (!this.isEditable_)
+                            return;
+
                         if (!prevBg)
                             prevBg = this.$plus_.css('background-color');
                         
@@ -113,6 +122,9 @@ export class RepetitionGroup extends Group{
                     });
     
                     this.$repButton_.on('mouseleave', () => {
+                        if (!this.isEditable_)
+                            return;
+
                         if (prevBg)
                             this.$plus_.css('background-color', prevBg);
                     });
@@ -153,9 +165,12 @@ export class RepetitionGroup extends Group{
                                     )
         ;
 
-        $repButton.addClass('tooltip-container2');
-        $repButton.append($('<div/>').addClass('tooltip-arrow'));
-        $repButton.append($('<div/>').addClass('tooltip-content').text(tooltipText));
+        if (this.isEditable_){
+            $repButton.addClass('tooltip-container2');
+            $repButton.append($('<div/>').addClass('tooltip-arrow'));
+            $repButton.append($('<div/>').addClass('tooltip-content').text(tooltipText));
+        }
+        
         $repButton.attr('title', '');
 
         $repButton.append($plus);

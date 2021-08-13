@@ -136,7 +136,7 @@ export class ThemeableProps {
             return { 'gap': value };
         },
         BorderWidth: (value) => {
-            return { 'border-width': value };
+            return { 'border-width': value, 'border-style': 'solid' };
         },
         BorderColor: (value) => {
             return { 'border-color': value };
@@ -162,7 +162,6 @@ export class ThemeableProps {
             console.error('trying to convert non valid property-value pair into css');
             return;
         }
-        console.log(prop);
         return ThemeableProps.css[prop](value);
     }
 }
@@ -223,4 +222,27 @@ export class Themeable {
     CanAccept(theme){
         return theme.GetKeys && !theme.GetKeys().some( (prop) => !this.props.includes(prop) );
     }
+}
+
+export function ApplyCssToStyle(styleId, selectorArray, cssArray){
+    let $style = $('head').find(`#${styleId}`);
+
+    if (!$style.length){
+        $style = $(`<style id = "${styleId}" type="text/css"></style>`);
+        $('head').append($style);
+    }
+
+    assert(selectorArray.length === cssArray.length);
+
+    $style.empty();
+
+    for (let i = 0; i < selectorArray.length; ++i){
+        let selector = selectorArray[i], cssObj = cssArray[i], css = '';
+
+        for (let key in cssObj)
+            css += `\t${key}: ${cssObj[key]} !important;\n`;
+
+        $style.append(`${selector} {\n${css}}\n`);
+    }
+
 }
