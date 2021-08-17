@@ -794,8 +794,8 @@ export let config = {
                         "BackgroundColor": "",
                         "PaddingLeft": "",
                         "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
+                        "PaddingTop": "5px",
+                        "PaddingBottom": "5px",
                         "BorderWidth": "",
                         "BorderColor": "",
                         "BorderRadius": ""
@@ -815,8 +815,8 @@ export let config = {
                         "BackgroundColor": "",
                         "PaddingLeft": "",
                         "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
+                        "PaddingTop": "5px",
+                        "PaddingBottom": "5px",
                         "FontSize": "",
                         "FontColor": "",
                         "Gap": "",
@@ -2002,7 +2002,11 @@ export let config = {
         },
         "Toolbox": {
             "Toolbox Menu": {
-                "BackgroundColor": ""
+                "BackgroundColor": "",
+                "PaddingLeft": "",
+                "PaddingRight": "",
+                "PaddingTop": "",
+                "PaddingBottom": "",
             },
             "Toolbox Menu Icon": {
                 "BackgroundColor": "",
@@ -2010,14 +2014,14 @@ export let config = {
                 "Height": ""
             },
             "Toolbox Menu Selected Icon": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#ffffff"
             },
             "Toolbox Menu Label": {
                 "FontColor": "",
                 "FontSize": ""
             },
             "Toolbox Menu Selected Label": {
-                "FontColor": ""
+                "FontColor": "#ffffff"
             },
             "Selected Tag": {
                 "BackgroundColor": ""
@@ -2049,7 +2053,7 @@ export let config = {
                 "BackgroundColor": ""
             },
             "Scrollbar Thumb On Hover": {
-                "BackgroundColor": "white"
+                "BackgroundColor": ""
             },
             "Scrollbar Track": {
                 "BackgroundColor": "",
@@ -2057,11 +2061,46 @@ export let config = {
                 "BorderColor": ""
             }
         },
+        "Undo Redo Toolbar": {
+            "Undo Button": {
+                "BackgroundColor": "",
+                "FontColor": "",
+                "FontSize": ""
+            },
+            "Undo Button On Hover": {
+                "BackgroundColor": "",
+                "FontColor": "",
+                "FontSize": ""
+            },
+            "Undo Icon": {
+                "BackgroundColor": ""
+            },
+            "Undo Number Notification": {
+                "BackgroundColor": ""
+            },
+            "Separator": {
+                "BackgroundColor": "",
+                "Width": "1px"
+            },
+            "Close Button": {
+                "BackgroundColor": ""
+            },
+            "Close Button X": {
+                "BackgroundColor": "#F2F2F2"
+            },
+            "Close Button On Hover": {
+                "BackgroundColor": "#0B598E"
+            },
+            "Close Button X On Hover": {
+                "BackgroundColor": "#FFFFFF"
+            }
+        },
         "Context Menu": {
             "Option Container": {
                 "BackgroundColor": "",
                 "BorderWidth": "",
                 "BorderColor": "",
+                "BorderRadius": "",
                 "PaddingLeft": "",
                 "PaddingRight": "",
                 "PaddingTop": "",
@@ -8729,7 +8768,7 @@ export let config = {
     ]
 };
 
-let lightTheme = {
+export let lightTheme = {
     "Blocks": {
         "General": {
             "Group": {
@@ -8800,8 +8839,8 @@ let lightTheme = {
                     "BackgroundColor": "#FAFAFA",
                     "PaddingLeft": "",
                     "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "2px",
                     "BorderColor": "#c2c2c2",
                     "BorderRadius": ""
@@ -8821,8 +8860,8 @@ let lightTheme = {
                     "BackgroundColor": "#FAFAFA",
                     "PaddingLeft": "",
                     "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "FontSize": "",
                     "FontColor": "#000000",
                     "Gap": "",
@@ -10004,11 +10043,19 @@ let lightTheme = {
             "BackgroundColor": "",
             "BorderWidth": "1px",
             "BorderColor": "#c2c2c2"
-        }
+        },
+        "Selected Block": {
+            "BorderColor": "#fc3",
+            "BorderShadow": "1px #fc3"
+        },
     },
     "Toolbox": {
         "Toolbox Menu": {
-            "BackgroundColor": "#1A506F"
+            "BackgroundColor": "#1A506F",
+            "PaddingLeft": "",
+            "PaddingRight": "",
+            "PaddingTop": "",
+            "PaddingBottom": ""
         },
         "Toolbox Menu Icon": {
             "BackgroundColor": "#DADADA",
@@ -10103,6 +10150,7 @@ let lightTheme = {
             "BackgroundColor": "#ECECEC",
             "BorderWidth": "",
             "BorderColor": "",
+            "BorderRadius": "",
             "PaddingLeft": "",
             "PaddingRight": "",
             "PaddingTop": "",
@@ -10136,5 +10184,2837 @@ let lightTheme = {
     }
 };
 
-config.theme = lightTheme;
+export let colorfulTheme = {
+    "Blocks": {
+        "General": {
+            "Group": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "1px",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "RepetitionGroup": {
+                "Group Block": {
+                    "BackgroundColor": "rgba(255,255,255,0.1)",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "1px",
+                    "BorderColor": "rgba(0,0,0,0.2)",
+                    "BorderRadius": ""
+                },
+                "Button": {
+                    "BackgroundColor": "rgba(25,0,125,0.7)",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "0px",
+                    "BorderColor": "transparent"
+                },
+                "Button Plus Sign": {
+                    "Width": "",
+                    "Height": "",
+                    "BackgroundColor": ""
+                },
+                "Button Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "white",
+                    "BackgroundColor": "rgba(25,0,125,0.7)"
+                },
+                "Button On Hover": {
+                    "BackgroundColor": "rgba(50,0,150,0.7)"
+                },
+                "Button Plus Sign On Hover": {
+                    "BackgroundColor": "#ffffff"
+                }
+            },
+            "SimpleBlock": {
+                "Simple Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "#ffffff",
+                    "FontSize": "",
+                    "BorderWidth": "1px",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "InputBlock": {
+                "Input Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "2px",
+                    "PaddingBottom": "2px",
+                    "BorderWidth": "1px",
+                    "BorderColor": "transparent",
+                    "BorderRadius": "5px"
+                },
+                "Input": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "#000000",
+                    "FontSize": ""
+                }
+            },
+            "SelectionBlock": {
+                "Selection Block": {
+                    "BackgroundColor": "rgba(255,255,255,0.7)",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontSize": "",
+                    "FontColor": "#000000",
+                    "Gap": "10px",
+                    "BorderWidth": "1px",
+                    "BorderColor": "#c2c2c2",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "#000000",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "#FAFAFA",
+                    "PaddingLeft": "0",
+                    "PaddingRight": "0",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px"
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "8px",
+                    "PaddingRight": "8px",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "#000000"
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "#5B80A5",
+                    "FontColor": "#FFFFFF"
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "#ffffff",
+                    "BackgroundColor": "#364D63"
+                }
+            }
+        },
+        "Specific": {
+            "LEFT_PARENTHESIS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "RIGHT_PARENTHESIS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "MINUS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "PLUS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "TIMES": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "BY": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "GREATER": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "LESS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "EQUAL_TO": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "NOT_EQUAL_TO": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "GREATER_EQUAL": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "LESS_EQUAL": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "AND": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "OR": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "NOT": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "IDENT": {
+                "Input Container": {
+                    "BackgroundColor": "#E1C7D2",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Input": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": ""
+                }
+            },
+            "INT_CONST": {
+                "Input Container": {
+                    "BackgroundColor": "#C7C9E1",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Input": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": ""
+                }
+            },
+            "FLOAT_CONST": {
+                "Input Container": {
+                    "BackgroundColor": "#C7C9E1",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Input": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": ""
+                }
+            },
+            "CHAR_CONST": {
+                "Input Container": {
+                    "BackgroundColor": "#C7E1D7",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Input": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": ""
+                }
+            },
+            "STRING_CONST": {
+                "Input Container": {
+                    "BackgroundColor": "#C7E1D7",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Input": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": ""
+                }
+            },
+            "BOOL_CONST": {
+                "Input Container": {
+                    "BackgroundColor": "#C7D2E1",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Input": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": ""
+                }
+            },
+            "EQUALS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "FUNCTION": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "OF": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "LEFT_CURLY_BRACE": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "RIGHT_CURLY_BRACE": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "CALL": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "WITH": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "IF": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "ELSE": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "WHILE": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "FOR": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "SEMI_COLON": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "program": {},
+            "stmts": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Button": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": ""
+                },
+                "Button Plus Sign": {
+                    "Width": "",
+                    "Height": "",
+                    "BackgroundColor": ""
+                },
+                "Button Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                },
+                "Button On Hover": {
+                    "BackgroundColor": ""
+                },
+                "Button Plus Sign On Hover": {
+                    "BackgroundColor": ""
+                }
+            },
+            "stmt": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "if_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#5B80A5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "10px",
+                    "PaddingBottom": "10px",
+                    "BorderWidth": "",
+                    "BorderColor": "#364D63",
+                    "BorderRadius": ""
+                }
+            },
+            "if_else_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#5B80A5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "10px",
+                    "PaddingBottom": "10px",
+                    "BorderWidth": "",
+                    "BorderColor": "#364D63",
+                    "BorderRadius": ""
+                }
+            },
+            "while_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#5BA55B",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "10px",
+                    "PaddingBottom": "10px",
+                    "BorderWidth": "",
+                    "BorderColor": "#488448",
+                    "BorderRadius": ""
+                }
+            },
+            "for_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#5BA55B",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "10px",
+                    "PaddingBottom": "10px",
+                    "BorderWidth": "",
+                    "BorderColor": "#488448",
+                    "BorderRadius": ""
+                }
+            },
+            "assign_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#A55B80",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#844866",
+                    "BorderRadius": ""
+                }
+            },
+            "func_def_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "10px",
+                    "PaddingBottom": "10px",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "func_call_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "expr": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "arith_expr": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "rel_expr": {
+                "Group Block": {
+                    "BackgroundColor": "#5B80A5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#364D63",
+                    "BorderRadius": ""
+                }
+            },
+            "bool_expr": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "primary_expr": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "binary_arith_expr": {
+                "Group Block": {
+                    "BackgroundColor": "#5B67A5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#363D63",
+                    "BorderRadius": ""
+                }
+            },
+            "unary_minus": {
+                "Group Block": {
+                    "BackgroundColor": "#5B67A5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#363D63",
+                    "BorderRadius": ""
+                }
+            },
+            "arith_op": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "rel_op": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "binary_bool_expr": {
+                "Group Block": {
+                    "BackgroundColor": "#5B80A5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#364D63",
+                    "BorderRadius": ""
+                }
+            },
+            "not_expr": {
+                "Group Block": {
+                    "BackgroundColor": "#5B80A5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#364D63",
+                    "BorderRadius": ""
+                }
+            },
+            "bool_bin_op": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "ident_list": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Button": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": ""
+                },
+                "Button Plus Sign": {
+                    "Width": "",
+                    "Height": "",
+                    "BackgroundColor": ""
+                },
+                "Button Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                },
+                "Button On Hover": {
+                    "BackgroundColor": ""
+                },
+                "Button Plus Sign On Hover": {
+                    "BackgroundColor": ""
+                }
+            },
+            "expr_list": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Button": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": ""
+                },
+                "Button Plus Sign": {
+                    "Width": "",
+                    "Height": "",
+                    "BackgroundColor": ""
+                },
+                "Button Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                },
+                "Button On Hover": {
+                    "BackgroundColor": ""
+                },
+                "Button Plus Sign On Hover": {
+                    "BackgroundColor": ""
+                }
+            }
+        }
+    },
+    "Code Workspace": {
+        "Code Workspace": {
+            "BackgroundColor": "#FAFAFA"
+        },
+        "Scrollbar": {
+            "Width": "10px",
+            "Height": "10px"
+        },
+        "Scrollbar Thumb": {
+            "BackgroundColor": "#BBBBBB",
+            "BorderRadius": "25px"
+        },
+        "Scrollbar Thumb On Hover": {
+            "BackgroundColor": "#999999"
+        },
+        "Scrollbar Track": {
+            "BackgroundColor": "",
+            "BorderWidth": "",
+            "BorderColor": ""
+        },
+        "Selected Block": {
+            "BorderColor": "#fc3",
+            "BorderShadow": "1px #fc3",
+            "BorderWidth": ""
+        },
+    },
+    "Toolbox": {
+        "Toolbox Menu": {
+            "BackgroundColor": "#5B80A5",
+            "PaddingLeft": "10px",
+            "PaddingRight": "10px",
+            "PaddingTop": "",
+            "PaddingBottom": ""
+        },
+        "Toolbox Menu Icon": {
+            "BackgroundColor": "#DADADA",
+            "Width": "",
+            "Height": ""
+        },
+        "Toolbox Menu Selected Icon": {
+            "BackgroundColor": "#FFFFFF"
+        },
+        "Toolbox Menu Label": {
+            "FontColor": "#DADADA",
+            "FontSize": ""
+        },
+        "Toolbox Menu Selected Label": {
+            "FontColor": "#FFFFFF"
+        },
+        "Selected Tag": {
+            "BackgroundColor": "#FFFFFF"
+        },
+        "Toolbox": {
+            "BackgroundColor": "#F6F6F6"
+        },
+        "Block Category Title": {
+            "FontSize": "",
+            "FontColor": "#2B2B2B"
+        },
+        "Block Category On Drop Hover": {
+            "BackgroundColor": "#6CB097"
+        },
+        "Block Category On Drop Placeholder": {
+            "BackgroundColor": "green"
+        },
+        "Block Delete Button Container": {
+            "BackgroundColor": ""
+        },
+        "Block Delete Button X": {
+            "BackgroundColor": ""
+        },
+        "Scrollbar": {
+            "Width": "10px",
+            "Height": "10px"
+        },
+        "Scrollbar Thumb": {
+            "BackgroundColor": "#BBBBBB",
+            "BorderRadius": "25px"
+        },
+        "Scrollbar Thumb On Hover": {
+            "BackgroundColor": "#999999"
+        },
+        "Scrollbar Track": {
+            "BackgroundColor": "",
+            "BorderWidth": "",
+            "BorderColor": "#c2c2c2"
+        }
+    },
+    "Undo Redo Toolbar": {
+        "Undo Button": {
+            "BackgroundColor": "#FAFAFA",
+            "FontColor": "black",
+            "FontSize": ""
+        },
+        "Undo Button On Hover": {
+            "BackgroundColor": "#F3F3F3",
+            "FontColor": "",
+            "FontSize": ""
+        },
+        "Undo Icon": {
+            "BackgroundColor": "#1A506F"
+        },
+        "Undo Number Notification": {
+            "BackgroundColor": ""
+        },
+        "Separator": {
+            "BackgroundColor": "#DDDDDD",
+            "Width": "1px"
+        },
+        "Close Button": {
+            "BackgroundColor": "#5B80A5"
+        },
+        "Close Button X": {
+            "BackgroundColor": "#F2F2F2"
+        },
+        "Close Button On Hover": {
+            "BackgroundColor": "#1F5E83"
+        },
+        "Close Button X On Hover": {
+            "BackgroundColor": "#FFFFFF"
+        }
+    },
+    "Context Menu": {
+        "Option Container": {
+            "BackgroundColor": "#ffffff",
+            "BorderWidth": "",
+            "BorderColor": "",
+            "BorderRadius": "5px",
+            "PaddingLeft": "",
+            "PaddingRight": "",
+            "PaddingTop": "5px",
+            "PaddingBottom": "5px"
+        },
+        "Option": {
+            "BackgroundColor": "",
+            "PaddingLeft": "20px",
+            "PaddingRight": "20px",
+            "PaddingTop": "",
+            "PaddingBottom": ""
+        },
+        "Option On Hover": {
+            "BackgroundColor": "#5B80A5"
+        },
+        "Option Text": {
+            "FontColor": "#2C2C2C"
+        },
+        "Option Text On Hover": {
+            "FontColor": "#ffffff"
+        },
+        "Shortcut text": {
+            "FontColor": "#6C6C6C"
+        },
+        "Shortcut text On Hover": {
+            "FontColor": "#ffffff"
+        },
+        "Separator": {
+            "BackgroundColor": "#C2C2C2"
+        }
+    }
+};
+
+export let darkColorfulTheme = {
+    "Blocks": {
+        "General": {
+            "Group": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "1px",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "RepetitionGroup": {
+                "Group Block": {
+                    "BackgroundColor": "rgba(255,255,255,0.1)",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "1px",
+                    "BorderColor": "rgba(0,0,0,0.2)",
+                    "BorderRadius": ""
+                },
+                "Button": {
+                    "BackgroundColor": "rgba(75,0,150,0.7)",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "0px",
+                    "BorderColor": "transparent"
+                },
+                "Button Plus Sign": {
+                    "Width": "",
+                    "Height": "",
+                    "BackgroundColor": ""
+                },
+                "Button Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "white",
+                    "BackgroundColor": "rgba(75,0,150,1)"
+                },
+                "Button On Hover": {
+                    "BackgroundColor": "rgba(100,0,175,0.7)"
+                },
+                "Button Plus Sign On Hover": {
+                    "BackgroundColor": "#ffffff"
+                }
+            },
+            "SimpleBlock": {
+                "Simple Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "#ffffff",
+                    "FontSize": "",
+                    "BorderWidth": "1px",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "InputBlock": {
+                "Input Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "2px",
+                    "PaddingBottom": "2px",
+                    "BorderWidth": "1px",
+                    "BorderColor": "transparent",
+                    "BorderRadius": "5px"
+                },
+                "Input": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "#000000",
+                    "FontSize": ""
+                }
+            },
+            "SelectionBlock": {
+                "Selection Block": {
+                    "BackgroundColor": "rgba(255,255,255,0.85)",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontSize": "",
+                    "FontColor": "#000000",
+                    "Gap": "10px",
+                    "BorderWidth": "1px",
+                    "BorderColor": "#c2c2c2",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "#000000",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "#FAFAFA",
+                    "PaddingLeft": "1px",
+                    "PaddingRight": "1px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px"
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "8px",
+                    "PaddingRight": "8px",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "#000000"
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "#5B80A5",
+                    "FontColor": "#FFFFFF"
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "#ffffff",
+                    "BackgroundColor": "#364D63"
+                }
+            }
+        },
+        "Specific": {
+            "LEFT_PARENTHESIS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "RIGHT_PARENTHESIS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "MINUS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "PLUS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "TIMES": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "BY": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "GREATER": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "LESS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "EQUAL_TO": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "NOT_EQUAL_TO": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "GREATER_EQUAL": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "LESS_EQUAL": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "AND": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "OR": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "NOT": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "IDENT": {
+                "Input Container": {
+                    "BackgroundColor": "#E1C7D2",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Input": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": ""
+                }
+            },
+            "INT_CONST": {
+                "Input Container": {
+                    "BackgroundColor": "#C7C9E1",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Input": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": ""
+                }
+            },
+            "FLOAT_CONST": {
+                "Input Container": {
+                    "BackgroundColor": "#C7C9E1",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Input": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": ""
+                }
+            },
+            "CHAR_CONST": {
+                "Input Container": {
+                    "BackgroundColor": "#C7E1D7",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Input": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": ""
+                }
+            },
+            "STRING_CONST": {
+                "Input Container": {
+                    "BackgroundColor": "#C7E1D7",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Input": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": ""
+                }
+            },
+            "BOOL_CONST": {
+                "Input Container": {
+                    "BackgroundColor": "#C7D2E1",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Input": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": ""
+                }
+            },
+            "EQUALS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "FUNCTION": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "OF": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "LEFT_CURLY_BRACE": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "RIGHT_CURLY_BRACE": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "CALL": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "WITH": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "IF": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "ELSE": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "WHILE": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "FOR": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "SEMI_COLON": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "program": {},
+            "stmts": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Button": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": ""
+                },
+                "Button Plus Sign": {
+                    "Width": "",
+                    "Height": "",
+                    "BackgroundColor": ""
+                },
+                "Button Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                },
+                "Button On Hover": {
+                    "BackgroundColor": ""
+                },
+                "Button Plus Sign On Hover": {
+                    "BackgroundColor": ""
+                }
+            },
+            "stmt": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "if_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#5B80A5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "10px",
+                    "PaddingBottom": "10px",
+                    "BorderWidth": "",
+                    "BorderColor": "#364D63",
+                    "BorderRadius": ""
+                }
+            },
+            "if_else_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#5B80A5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "10px",
+                    "PaddingBottom": "10px",
+                    "BorderWidth": "",
+                    "BorderColor": "#364D63",
+                    "BorderRadius": ""
+                }
+            },
+            "while_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#5BA55B",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "10px",
+                    "PaddingBottom": "10px",
+                    "BorderWidth": "",
+                    "BorderColor": "#488448",
+                    "BorderRadius": ""
+                }
+            },
+            "for_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#5BA55B",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "10px",
+                    "PaddingBottom": "10px",
+                    "BorderWidth": "",
+                    "BorderColor": "#488448",
+                    "BorderRadius": ""
+                }
+            },
+            "assign_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#A55B80",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#844866",
+                    "BorderRadius": ""
+                }
+            },
+            "func_def_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "10px",
+                    "PaddingBottom": "10px",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "func_call_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "expr": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "arith_expr": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "rel_expr": {
+                "Group Block": {
+                    "BackgroundColor": "#5B80A5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#364D63",
+                    "BorderRadius": ""
+                }
+            },
+            "bool_expr": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "primary_expr": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "binary_arith_expr": {
+                "Group Block": {
+                    "BackgroundColor": "#5B67A5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#363D63",
+                    "BorderRadius": ""
+                }
+            },
+            "unary_minus": {
+                "Group Block": {
+                    "BackgroundColor": "#5B67A5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#363D63",
+                    "BorderRadius": ""
+                }
+            },
+            "arith_op": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "rel_op": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "binary_bool_expr": {
+                "Group Block": {
+                    "BackgroundColor": "#5B80A5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#364D63",
+                    "BorderRadius": ""
+                }
+            },
+            "not_expr": {
+                "Group Block": {
+                    "BackgroundColor": "#5B80A5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#364D63",
+                    "BorderRadius": ""
+                }
+            },
+            "bool_bin_op": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "ident_list": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Button": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": ""
+                },
+                "Button Plus Sign": {
+                    "Width": "",
+                    "Height": "",
+                    "BackgroundColor": ""
+                },
+                "Button Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                },
+                "Button On Hover": {
+                    "BackgroundColor": ""
+                },
+                "Button Plus Sign On Hover": {
+                    "BackgroundColor": ""
+                }
+            },
+            "expr_list": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Button": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": ""
+                },
+                "Button Plus Sign": {
+                    "Width": "",
+                    "Height": "",
+                    "BackgroundColor": ""
+                },
+                "Button Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                },
+                "Button On Hover": {
+                    "BackgroundColor": ""
+                },
+                "Button Plus Sign On Hover": {
+                    "BackgroundColor": ""
+                }
+            }
+        }
+    },
+    "Code Workspace": {
+        "Code Workspace": {
+            "BackgroundColor": "#1E1E1E"
+        },
+        "Scrollbar": {
+            "Width": "10px",
+            "Height": "10px"
+        },
+        "Scrollbar Thumb": {
+            "BackgroundColor": "#424242",
+            "BorderRadius": "25px"
+        },
+        "Scrollbar Thumb On Hover": {
+            "BackgroundColor": "#525252"
+        },
+        "Scrollbar Track": {
+            "BackgroundColor": "",
+            "BorderWidth": "",
+            "BorderColor": ""
+        },
+        "Selected Block": {
+            "BorderColor": "#fc3",
+            "BorderShadow": "1px #fc3",
+            "BorderWidth": ""
+        },
+    },
+    "Toolbox": {
+        "Toolbox Menu": {
+            "BackgroundColor": "#333333",
+            "PaddingLeft": "10px",
+            "PaddingRight": "10px",
+            "PaddingTop": "",
+            "PaddingBottom": ""
+        },
+        "Toolbox Menu Icon": {
+            "BackgroundColor": "#DADADA",
+            "Width": "",
+            "Height": ""
+        },
+        "Toolbox Menu Selected Icon": {
+            "BackgroundColor": "#FFFFFF"
+        },
+        "Toolbox Menu Label": {
+            "FontColor": "#DADADA",
+            "FontSize": ""
+        },
+        "Toolbox Menu Selected Label": {
+            "FontColor": "#FFFFFF"
+        },
+        "Selected Tag": {
+            "BackgroundColor": "#5B80A5"
+        },
+        "Toolbox": {
+            "BackgroundColor": "#252526"
+        },
+        "Block Category Title": {
+            "FontSize": "",
+            "FontColor": "#DADADA"
+        },
+        "Block Category On Drop Hover": {
+            "BackgroundColor": "#6CB097"
+        },
+        "Block Category On Drop Placeholder": {
+            "BackgroundColor": "green"
+        },
+        "Block Delete Button Container": {
+            "BackgroundColor": ""
+        },
+        "Block Delete Button X": {
+            "BackgroundColor": ""
+        },
+        "Scrollbar": {
+            "Width": "10px",
+            "Height": "10px"
+        },
+        "Scrollbar Thumb": {
+            "BackgroundColor": "#424242",
+            "BorderRadius": "25px"
+        },
+        "Scrollbar Thumb On Hover": {
+            "BackgroundColor": "#525252"
+        },
+        "Scrollbar Track": {
+            "BackgroundColor": "",
+            "BorderWidth": "",
+            "BorderColor": "#c2c2c2"
+        }
+    },
+    "Undo Redo Toolbar": {
+        "Undo Button": {
+            "BackgroundColor": "",
+            "FontColor": "",
+            "FontSize": ""
+        },
+        "Undo Button On Hover": {
+            "BackgroundColor": "",
+            "FontColor": "",
+            "FontSize": ""
+        },
+        "Undo Icon": {
+            "BackgroundColor": ""
+        },
+        "Undo Number Notification": {
+            "BackgroundColor": ""
+        },
+        "Separator": {
+            "BackgroundColor": "",
+            "Width": "1px"
+        },
+        "Close Button": {
+            "BackgroundColor": ""
+        },
+        "Close Button X": {
+            "BackgroundColor": "#F2F2F2"
+        },
+        "Close Button On Hover": {
+            "BackgroundColor": "#0B598E"
+        },
+        "Close Button X On Hover": {
+            "BackgroundColor": "#FFFFFF"
+        }
+    },
+    "Context Menu": {
+        "Option Container": {
+            "BackgroundColor": "#ffffff",
+            "BorderWidth": "",
+            "BorderColor": "",
+            "BorderRadius": "5px",
+            "PaddingLeft": "",
+            "PaddingRight": "",
+            "PaddingTop": "5px",
+            "PaddingBottom": "5px"
+        },
+        "Option": {
+            "BackgroundColor": "",
+            "PaddingLeft": "20px",
+            "PaddingRight": "20px",
+            "PaddingTop": "",
+            "PaddingBottom": ""
+        },
+        "Option On Hover": {
+            "BackgroundColor": "#5B80A5"
+        },
+        "Option Text": {
+            "FontColor": "#2C2C2C"
+        },
+        "Option Text On Hover": {
+            "FontColor": "#ffffff"
+        },
+        "Shortcut text": {
+            "FontColor": "#6C6C6C"
+        },
+        "Shortcut text On Hover": {
+            "FontColor": "#ffffff"
+        },
+        "Separator": {
+            "BackgroundColor": "#C2C2C2"
+        }
+    }
+};
 

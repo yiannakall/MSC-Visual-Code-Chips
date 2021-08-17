@@ -14,11 +14,16 @@ export class DropCommand extends EditorCommand{
         }`);
 
         this.parent = parent, this.elem = elem, this.dropIndex = dropIndex;
-        this.newLine = this.editor.CreateNewLine();
+        
+        if (this.parent.GetLength() !== 0)
+            this.newLine = this.editor.CreateNewLine();
     }
     
     Execute(){
-        if (this.dropIndex === this.parent.GetLength()){
+        if (this.parent.GetLength() === 0){
+            this.parent.InsertAtIndex(this.dropIndex, this.elem);
+        }
+        else if (this.dropIndex === this.parent.GetLength()){
             this.parent.InsertAtIndex(this.dropIndex, this.elem);
             this.parent.InsertAtIndex(this.dropIndex, this.newLine);
         }
@@ -30,7 +35,9 @@ export class DropCommand extends EditorCommand{
 
     Undo(){
         this.parent.RemoveElemAt(this.dropIndex);
-        this.parent.RemoveElemAt(this.dropIndex);
+
+        if (this.newLine)
+            this.parent.RemoveElemAt(this.dropIndex);
     }
 
     Redo(){

@@ -65,6 +65,10 @@ export class Toolbox {
             id: Toolbox.themeableIds.ToolboxMenu,
             themeable: new Themeable(
                 ThemeableProps.Props.BackgroundColor,
+                ThemeableProps.Props.PaddingLeft,
+                ThemeableProps.Props.PaddingRight,
+                ThemeableProps.Props.PaddingTop,
+                ThemeableProps.Props.PaddingBottom,
             ),
         },
         {
@@ -463,6 +467,8 @@ export class Toolbox {
         this.$toolboxBlocks.append($('<div/>').addClass('fill'));
 
         this.$toolboxBlocks.scrollTop(scrollTop);
+
+        this.ApplyTheme();
     }
 
     Render() {
@@ -646,6 +652,9 @@ export class Toolbox {
     }
 
     ApplyTheme(themes){
+        themes ? this.theme = themes : themes = this.theme;
+        if (!themes) return;
+
         this.customizableViews.forEach((view) => {
             let theme = themes[view.id];
             if (!theme) return;

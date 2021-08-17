@@ -1,4 +1,4 @@
-import { config } from './Config.js'
+import { colorfulTheme, config, darkColorfulTheme, lightTheme } from './Config.js'
 import { CodeChips } from './CodeChips.js'
 
 $(document).ready(function () {
@@ -16,7 +16,7 @@ $(document).ready(function () {
         $('#injection-div'), 
         {
             languageJson: config.language,
-            themeJson: config.theme,
+            themeJson: darkColorfulTheme,
             toolboxJson: config.toolbox
         }
     );

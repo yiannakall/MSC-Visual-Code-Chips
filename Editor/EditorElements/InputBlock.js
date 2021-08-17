@@ -107,20 +107,12 @@ export class InputBlock extends EditorElement {
 
     FitInput_(){
         this.viewMode === EditorElementViewMode.BlockView ?
-            this.$input.css('width', this.$input.textWidth(this.$input.val() || this.$input.attr('placeholder')) + 20 + 'px') :
+            this.$input.css('width', this.$input.textWidth(this.$input.val() || this.$input.attr('placeholder')) + 10 + 'px') :
             this.$input.css('width', this.$input.textWidth(this.$input.val() || this.$input.attr('placeholder')) + 'px');
     }
 
     PastRendering_(){
         this.FitInput_();
-        
-        let lightenedColors = this.$wholeView.css('background-color')
-            .substring(4, this.$wholeView.css('background-color').length - 1)
-            .replace(/\s/g, '')
-            .split(',')
-            .map(color => { return Number(color) + 0.1 * (255 - Number(color)) });
-
-        this.$input.css('background-color', 'rgb(' + lightenedColors.join(', ') + ')');
     }
 
     OnApplyViewMode_(){

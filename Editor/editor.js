@@ -99,6 +99,7 @@ export class Editor {
     // themeableIds, themeables, customizableViews for code
 
     static themeableIds = {
+        SelectedBlock: 'Selected Block',
         CodeWorkspace: 'Code Workspace',
         Scrollbar: 'Scrollbar',
         ScrollbarThumb: 'Scrollbar Thumb',
@@ -107,6 +108,14 @@ export class Editor {
     };
 
     static themeables = [
+        {
+            id: Editor.themeableIds.SelectedBlock,
+            themeable: new Themeable(
+                ThemeableProps.Props.BorderColor,
+                ThemeableProps.Props.BorderShadow,
+                ThemeableProps.Props.BorderWidth,
+            ),
+        },
         {
             id: Editor.themeableIds.CodeWorkspace,
             themeable: new Themeable(
@@ -144,6 +153,16 @@ export class Editor {
     ];
 
     customizableViews = [
+        {
+            id: Editor.themeableIds.SelectedBlock,
+            ApplyTheme: (theme) => {
+                ApplyCssToStyle(
+                    `${this.id}-selected-block`,
+                    [`#${this.id} .code .selected`],
+                    [theme.ToCss()]
+                )
+            }
+        },
         {
             id: Editor.themeableIds.CodeWorkspace,
             GetView: () => { return this.$code; }
@@ -212,6 +231,7 @@ export class Editor {
 
         this.Render();
         this.ApplyTheme();
+        console.log( this.CreateThemeStructure() );
     }
 
     IsCorrectTheme(theme){
@@ -437,7 +457,7 @@ export class Editor {
     }
 
     SetUpToolbox_(toolboxInfo){
-        this.toolbox = new Toolbox(this.$toolboxspace, toolboxInfo, this.theme);
+        this.toolbox = new Toolbox(this.$toolboxspace, toolboxInfo);
         this.toolbox.SetToolbox_MaxWidth(() => {
             return 0.8 * this.$container.width();
         });
@@ -777,6 +797,10 @@ export class Editor {
         assert(hoverElem.GetType() === EditorElementTypes.RepetitionGroup);
 
         let elems = hoverElem.GetElems();
+
+        if (elems.length === 0)
+            return 0;
+
         let start = 0, end = elems.length - 1, middle = Math.floor((end + start) / 2);
         let offset = mouseY - elems[middle].GetWholeView().offset().top - elems[middle].GetWholeView().height() / 2;
 
@@ -820,9 +844,13 @@ export class Editor {
 
             if (pp === this.dropPlaceholderIndex) return; // the placeholder is in the correct position already
 
-            pp === elems.length ?
-                this.$dropPlaceholder.insertAfter(elems[elems.length - 1].GetWholeView()) :
-                this.$dropPlaceholder.insertBefore(elems[pp].GetWholeView());
+            if (pp === 0 && elems.length === 0){
+                elem.GetWholeView().prepend(this.$dropPlaceholder);
+            } else {
+                pp === elems.length ?
+                    this.$dropPlaceholder.insertAfter(elems[elems.length - 1].GetWholeView()) :
+                    this.$dropPlaceholder.insertBefore(elems[pp].GetWholeView());
+            }
                 
             this.dropPlaceholderIndex = pp;
             this.dropTarget = elem;

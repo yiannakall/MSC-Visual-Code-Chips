@@ -28,6 +28,7 @@ export class ContextMenu {
                 ThemeableProps.Props.BackgroundColor,
                 ThemeableProps.Props.BorderWidth,
                 ThemeableProps.Props.BorderColor,
+                ThemeableProps.Props.BorderRadius,
                 ThemeableProps.Props.PaddingLeft,
                 ThemeableProps.Props.PaddingRight,
                 ThemeableProps.Props.PaddingTop,

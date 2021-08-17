@@ -5,6 +5,9 @@ export class ThemeableProps {
         Color: 'Color',
         Number: 'Number',
         Enumerated: 'Enumerated',
+        Pair: (type1, type2) => {
+            return [type1, type2];
+        }
     };
 
     static Props = {
@@ -21,6 +24,7 @@ export class ThemeableProps {
         BorderWidth: 'BorderWidth',
         BorderColor: 'BorderColor',
         BorderRadius: 'BorderRadius',
+        BorderShadow: 'BorderShadow',
     };
 
     static PropDefs = {
@@ -102,6 +106,11 @@ export class ThemeableProps {
             type: this.ValueTypes.Number
         },
 
+        BorderShadow: {
+            name: 'Border Shadow',
+            description: 'The inside and outside shadow width in pixels followed by the shadow\'s color',
+            type: this.ValueTypes.Pair(this.ValueTypes.Number, this.ValueTypes.Color),
+        },
     };
 
     static css = {
@@ -143,7 +152,11 @@ export class ThemeableProps {
         },
         BorderRadius: (value) => {
             return { 'border-radius': value };
-        }
+        },
+        BorderShadow: (value) => {
+            let [width, color] = value.split(' ');
+            return { 'box-shadow': `inset 0 0 0 ${width} ${color}, 0 0 0 ${width} ${color}` };
+        },
     }
 
     static IsValid(prop, value) {

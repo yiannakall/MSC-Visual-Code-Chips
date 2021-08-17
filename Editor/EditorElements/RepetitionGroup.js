@@ -146,7 +146,7 @@ export class RepetitionGroup extends Group{
                     }
     
                     if (fColor !== undefined)
-                        box.css('font-color', fColor);
+                        box.css('color', fColor);
                     
                     if (fSize !== undefined)
                         box.css('font-size', fSize);
