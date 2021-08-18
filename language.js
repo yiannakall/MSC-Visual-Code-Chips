@@ -3,9 +3,10 @@ import { assert } from "./Utils/Assert.js";
 export class GrammarSymbol {
     name;
     isTerminal;
+    textViewOnly;
 
-    constructor(name, isTerminal){
-        this.name = name, this.isTerminal = isTerminal;
+    constructor(name, isTerminal, textViewOnly){
+        this.name = name, this.isTerminal = isTerminal, this.textViewOnly = textViewOnly;
     }
 }
 
@@ -32,20 +33,17 @@ export class DefinitionRhs {
 export class AliasedGrammarSymbol {
     symbol; // GrammarSymbol
     alias;  // string
-    textViewOnly; // bool
     tooltip; // string
 
-    constructor(symbol, alias, textViewOnly, tooltip){
+    constructor(symbol, alias, tooltip){
         this.symbol = symbol, this.alias = alias;
         this.tooltip = tooltip;
-        this.textViewOnly = !!textViewOnly;
     }
 
     Clone(){
         return new AliasedGrammarSymbol(
             this.symbol,
             this.alias,
-            this.textViewOnly,
             this.tooltip
         );
     }
@@ -54,10 +52,10 @@ export class AliasedGrammarSymbol {
         return new AliasedGrammarSymbol(
             new GrammarSymbol(
                 symbolJson.symbol.name,
-                symbolJson.symbol.isTerminal
+                symbolJson.symbol.isTerminal,
+                symbolJson.symbol.textViewOnly
             ),
             symbolJson.alias,
-            symbolJson.textViewOnly,
             symbolJson.tooltip
         );
     }
@@ -105,15 +103,15 @@ export class Language {
         return this.defs.get(symbol);
     }
 
-    NewSymbol(name, isTerminal){
-        return isTerminal ? this.NewTerminal(name) : this.NewNonTerminal(name);
+    NewSymbol(name, isTerminal, textViewOnly){
+        return isTerminal ? this.NewTerminal(name, textViewOnly) : this.NewNonTerminal(name);
     }
 
-    NewTerminal(name){
+    NewTerminal(name, textViewOnly){
         if (this.GetSymbol(name))
             return undefined;
 
-        let terminal = new GrammarSymbol(name, true);
+        let terminal = new GrammarSymbol(name, true, textViewOnly);
         this.terminals.push(terminal);
 
         return terminal;
@@ -183,9 +181,12 @@ export class Language {
 
             let rhsSymbols = (definition.list_of || definition.all_of || definition.any_of)
                 .map(symJson => new AliasedGrammarSymbol(
-                                    lang.GetSymbol(symJson.name) || lang.NewSymbol(symJson.name, symJson.type === 'terminal'),
+                                    lang.GetSymbol(symJson.name) || lang.NewSymbol(
+                                                                        symJson.name,
+                                                                        symJson.type === 'terminal',
+                                                                        symJson.textViewOnly
+                                                                    ),
                                     symJson.alias,
-                                    symJson.textViewOnly,
                                     symJson.tooltip
                                 )
                 );

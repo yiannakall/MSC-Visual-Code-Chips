@@ -263,12 +263,12 @@ export class Editor {
         let blockThemes = {};
 
         for (let symbol of [...this.language.GetTerminals(), ...this.language.GetNonTerminals()]){
-            blockThemes[symbol.name] = {};
-            
             let blockClass = this.PeekElemType(symbol);
 
-            if (!blockClass)
+            if (!blockClass || blockClass === InvisibleBlock)
                 continue;
+
+            blockThemes[symbol.name] = {};
 
             for (let themable of blockClass.themeables){
                 blockThemes[symbol.name][themable.id] = {};
@@ -276,6 +276,23 @@ export class Editor {
                 for (let prop of themable.themeable.props){
                     blockThemes[symbol.name][themable.id][prop] = '';
                 }
+            }
+        }
+
+        return blockThemes;
+    }
+
+    CreateSourceTextThemeStructure(){
+        let blockThemes = {};
+
+        for (let symbol of [...this.language.GetTerminals(), ...this.language.GetNonTerminals()]){
+            let blockClass = this.PeekElemType(symbol);
+
+            if (
+                blockClass === SelectionBlock || blockClass === InputBlock ||
+                blockClass === SimpleBlock || blockClass === InvisibleBlock
+            ){
+                blockThemes[symbol.name] = '';
             }
         }
 
@@ -304,7 +321,8 @@ export class Editor {
             'Code Workspace': this.CreateCodeThemeStructure(),
             'Toolbox': this.toolbox.CreateThemeStructure(),
             'Undo Redo Toolbar': UndoRedoToolbar.CreateThemeStructure(),
-            'Context Menu': ContextMenu.CreateThemeStructure()
+            'Context Menu': ContextMenu.CreateThemeStructure(),
+            'Source Text View Colors': this.CreateSourceTextThemeStructure()
         };
 
         return themes;
@@ -331,7 +349,7 @@ export class Editor {
         for (let symbol of [...this.language.GetTerminals(), ...this.language.GetNonTerminals()]){
             let blockClass = this.PeekElemType(symbol);
 
-            if (!blockClass)
+            if (!blockClass || blockClass === InvisibleBlock)
                 continue;
 
             let general = theme["Blocks"]["General"][blockClass.name];
@@ -361,6 +379,14 @@ export class Editor {
         for (let component of ['Code Workspace', 'Toolbox', 'Undo Redo Toolbar', 'Context Menu']){
             for (let themePart in theme[component])
                 theme[component][themePart] = new Theme(theme[component][themePart]);
+        }
+
+        for (let symbol in theme['Source Text View Colors']){
+            let colorOnlyTheme = {};
+            colorOnlyTheme[ThemeableProps.Props.FontColor] = theme['Source Text View Colors'][symbol];
+            colorOnlyTheme = new Theme(colorOnlyTheme);
+
+            theme['Source Text View Colors'][symbol] = colorOnlyTheme;
         }
 
         this.theme = theme;
@@ -666,6 +692,7 @@ export class Editor {
         this.SetElem_OnClick_(elem);
         this.SetElem_OnContextMenu_(elem);
         this.SetElem_Theme_(elem);
+        this.SetElem_TextViewTheme_(elem);
     }
 
     SetElem_Theme_(elem){
@@ -674,6 +701,16 @@ export class Editor {
                 return {};
             }
             return this.theme["Blocks"]["Composite"][elem.GetSymbol().symbol.name];
+        });
+    }
+
+    SetElem_TextViewTheme_(elem){
+        elem.SetTextViewTheme((elem) => {
+            if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab){
+                return;
+            }
+
+            return this.theme["Source Text View Colors"][elem.GetSymbol().symbol.name];
         });
     }
 
@@ -936,7 +973,8 @@ export class Editor {
     PeekElemType(symbol){
         if (symbol.isTerminal){
         
-            if (this.language.GetTerminalType(symbol) === Language.TerminalType.Static) return SimpleBlock;
+            if (symbol.textViewOnly) return InvisibleBlock;
+            else if (this.language.GetTerminalType(symbol) === Language.TerminalType.Static) return SimpleBlock;
             else return InputBlock;
         
         }else{
@@ -971,7 +1009,7 @@ export class Editor {
         if (symbol.isTerminal){
 
             if (this.language.GetTerminalType(symbol) === Language.TerminalType.Static){
-                (rhsSymbol.textViewOnly) ? 
+                (symbol.textViewOnly) ? 
                     elem = new InvisibleBlock(rhsSymbol) : 
                     elem = new SimpleBlock(rhsSymbol);
             }else

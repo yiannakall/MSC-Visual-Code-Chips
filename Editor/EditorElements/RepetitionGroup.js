@@ -69,6 +69,8 @@ export class RepetitionGroup extends Group{
         this.repetitiveElem_ = repetitiveElem;
         this.type = EditorElementTypes.RepetitionGroup;
 
+        let buttonMouseOver, buttonMouseLeave, buttonPlusMouseOver, buttonPlusMouseLeave;
+
         this.customizableViews.push(
             {
                 id: RepetitionGroup.themeableIds.Button,
@@ -82,52 +84,46 @@ export class RepetitionGroup extends Group{
                 id: RepetitionGroup.themeableIds.ButtonOnHover,
                 ApplyTheme: (theme) => {
                     let hoverBg = theme.Get(ThemeableProps.Props.BackgroundColor);
-                    let prevBg;
+                    let prevBg = this.$repButton_.css('background-color');
     
-                    this.$repButton_.on('mouseenter', () => {
-                        if (!this.isEditable_)
-                            return;
+                    if(buttonMouseOver) this.$repButton_.off('mouseenter', buttonMouseOver);
+                    if(buttonMouseLeave) this.$repButton_.off('mouseenter', buttonMouseLeave);
 
-                        if (!prevBg)
-                            prevBg = this.$repButton_.css('background-color');
-                        
-                        if (hoverBg)
-                            this.$repButton_.css('background-color', hoverBg);
-                    });
-    
-                    this.$repButton_.on('mouseleave', () => {
-                        if (!this.isEditable_)
-                            return;
+                    buttonMouseOver = () => {
+                        if (!this.isEditable_)  return;
+                        if (hoverBg)            this.$repButton_.css('background-color', hoverBg);
+                    };
+            
+                    buttonMouseLeave = () => {
+                        if (!this.isEditable_)  return;
+                        if (prevBg)             this.$repButton_.css('background-color', prevBg);
+                    };
 
-                        if (prevBg)
-                            this.$repButton_.css('background-color', prevBg);
-                    });
+                    this.$repButton_.on('mouseenter', buttonMouseOver);
+                    this.$repButton_.on('mouseleave', buttonMouseLeave);
                 }
             },
             {
                 id: RepetitionGroup.themeableIds.ButtonPlusSignOnHover,
                 ApplyTheme: (theme) => {
                     let hoverBg = theme.Get(ThemeableProps.Props.BackgroundColor);
-                    let prevBg;
-    
-                    this.$repButton_.on('mouseenter', () => {
-                        if (!this.isEditable_)
-                            return;
+                    let prevBg = this.$plus_.css('background-color');
 
-                        if (!prevBg)
-                            prevBg = this.$plus_.css('background-color');
-                        
-                        if (hoverBg)
-                            this.$plus_.css('background-color', hoverBg);
-                    });
+                    if(buttonPlusMouseOver) this.$repButton_.off('mouseenter', buttonPlusMouseOver);
+                    if(buttonPlusMouseLeave) this.$repButton_.off('mouseenter', buttonPlusMouseLeave);
     
-                    this.$repButton_.on('mouseleave', () => {
-                        if (!this.isEditable_)
-                            return;
+                    buttonPlusMouseOver = () => {
+                        if (!this.isEditable_)  return;
+                        if (hoverBg)            this.$plus_.css('background-color', hoverBg);
+                    };
+            
+                    buttonPlusMouseLeave = () => {
+                        if (!this.isEditable_)  return;
+                        if (prevBg)             this.$plus_.css('background-color', prevBg);
+                    }
 
-                        if (prevBg)
-                            this.$plus_.css('background-color', prevBg);
-                    });
+                    this.$repButton_.on('mouseenter', buttonPlusMouseOver);
+                    this.$repButton_.on('mouseleave', buttonPlusMouseLeave);
                 }
             },
             {

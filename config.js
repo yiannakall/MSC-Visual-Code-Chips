@@ -104,8 +104,7 @@ export let config = {
                 all_of: [
                     {
                         type: "terminal",
-                        name: "LEFT_PARENTHESIS",
-                        alias: "(",
+                        name: "(",
                         textViewOnly: true
                     },
                     {
@@ -125,8 +124,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_PARENTHESIS",
-                        alias: ")",
+                        name: ")",
                         textViewOnly: true
                     },
                 ]
@@ -179,8 +177,7 @@ export let config = {
                 all_of: [
                     {
                         type: "terminal",
-                        name: "LEFT_PARENTHESIS",
-                        alias: "(",
+                        name: "(",
                         textViewOnly: true
                     },
                     {
@@ -200,8 +197,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_PARENTHESIS",
-                        alias: ")",
+                        name: ")",
                         textViewOnly: true
                     },
                 ]
@@ -267,8 +263,7 @@ export let config = {
                 all_of: [
                     {
                         type: "terminal",
-                        name: "LEFT_PARENTHESIS",
-                        alias: "(",
+                        name: "(",
                         textViewOnly: true
                     },
                     {
@@ -288,8 +283,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_PARENTHESIS",
-                        alias: ")",
+                        name: ")",
                         textViewOnly: true
                     },
                 ]
@@ -395,8 +389,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "LEFT_PARENTHESIS",
-                        alias: "(",
+                        name: "(",
                         textViewOnly: true
                     },
                     {
@@ -405,14 +398,12 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_PARENTHESIS",
-                        alias: ")",
+                        name: ")",
                         textViewOnly: true
                     },
                     {
                         type: "terminal",
-                        name: "LEFT_CURLY_BRACE",
-                        alias: "{",
+                        name: "{",
                         textViewOnly: true
                     },
                     {
@@ -421,8 +412,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_CURLY_BRACE",
-                        alias: "}",
+                        name: "}",
                         textViewOnly: true
                     },
                 ]
@@ -445,8 +435,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "LEFT_PARENTHESIS",
-                        alias: "(",
+                        name: "(",
                         textViewOnly: true
                     },
                     {
@@ -455,8 +444,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_PARENTHESIS",
-                        alias: ")",
+                        name: ")",
                         textViewOnly: true
                     },
                 ]
@@ -470,8 +458,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "LEFT_PARENTHESIS",
-                        alias: "(",
+                        name: "(",
                         textViewOnly: true
                     },
                     {
@@ -481,14 +468,12 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_PARENTHESIS",
-                        alias: ")",
+                        name: ")",
                         textViewOnly: true
                     },
                     {
                         type: "terminal",
-                        name: "LEFT_CURLY_BRACE",
-                        alias: "{",
+                        name: "{",
                         textViewOnly: true
                     },
                     {
@@ -498,8 +483,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_CURLY_BRACE",
-                        alias: "}",
+                        name: "}",
                         textViewOnly: true
                     },
                 ]
@@ -513,8 +497,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "LEFT_PARENTHESIS",
-                        alias: "(",
+                        name: "(",
                         textViewOnly: true
                     },
                     {
@@ -524,14 +507,12 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_PARENTHESIS",
-                        alias: ")",
+                        name: ")",
                         textViewOnly: true
                     },
                     {
                         type: "terminal",
-                        name: "LEFT_CURLY_BRACE",
-                        alias: "{",
+                        name: "{",
                         textViewOnly: true
                     },
                     {
@@ -541,8 +522,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_CURLY_BRACE",
-                        alias: "}",
+                        name: "}",
                         textViewOnly: true
                     },
                     {
@@ -551,8 +531,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "LEFT_CURLY_BRACE",
-                        alias: "{",
+                        name: "{",
                         textViewOnly: true
                     },
                     {
@@ -562,8 +541,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_CURLY_BRACE",
-                        alias: "}",
+                        name: "}",
                         textViewOnly: true
                     },
                 ]
@@ -577,8 +555,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "LEFT_PARENTHESIS",
-                        alias: "(",
+                        name: "(",
                         textViewOnly: true
                     },
                     {
@@ -588,14 +565,12 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_PARENTHESIS",
-                        alias: ")",
+                        name: ")",
                         textViewOnly: true
                     },
                     {
                         type: "terminal",
-                        name: "LEFT_CURLY_BRACE",
-                        alias: "{",
+                        name: "{",
                         textViewOnly: true
                     },
                     {
@@ -605,8 +580,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_CURLY_BRACE",
-                        alias: "}",
+                        name: "}",
                         textViewOnly: true
                     },
                 ]
@@ -620,8 +594,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "LEFT_PARENTHESIS",
-                        alias: "(",
+                        name: "(",
                         textViewOnly: true
                     },
                     {
@@ -631,8 +604,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "SEMI_COLON",
-                        alias: ";",
+                        name: ";",
                         textViewOnly: true
                     },
                     {
@@ -642,8 +614,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "SEMI_COLON",
-                        alias: ";",
+                        name: ";",
                         textViewOnly: true
                     },
                     {
@@ -653,14 +624,12 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_PARENTHESIS",
-                        alias: ")",
+                        name: ")",
                         textViewOnly: true
                     },
                     {
                         type: "terminal",
-                        name: "LEFT_CURLY_BRACE",
-                        alias: "{",
+                        name: "{",
                         textViewOnly: true
                     },
                     {
@@ -670,8 +639,7 @@ export let config = {
                     },
                     {
                         type: "terminal",
-                        name: "RIGHT_CURLY_BRACE",
-                        alias: "}",
+                        name: "}",
                         textViewOnly: true
                     },
                 ]
@@ -857,34 +825,6 @@ export let config = {
                 }
             },
             "Specific": {
-                "LEFT_PARENTHESIS": {
-                    "Simple Block": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
-                        "FontColor": "",
-                        "FontSize": "",
-                        "BorderWidth": "",
-                        "BorderColor": "",
-                        "BorderRadius": ""
-                    }
-                },
-                "RIGHT_PARENTHESIS": {
-                    "Simple Block": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
-                        "FontColor": "",
-                        "FontSize": "",
-                        "BorderWidth": "",
-                        "BorderColor": "",
-                        "BorderRadius": ""
-                    }
-                },
                 "MINUS": {
                     "Simple Block": {
                         "BackgroundColor": "transparent",
@@ -1235,34 +1175,6 @@ export let config = {
                         "BorderRadius": ""
                     }
                 },
-                "LEFT_CURLY_BRACE": {
-                    "Simple Block": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
-                        "FontColor": "",
-                        "FontSize": "",
-                        "BorderWidth": "",
-                        "BorderColor": "",
-                        "BorderRadius": ""
-                    }
-                },
-                "RIGHT_CURLY_BRACE": {
-                    "Simple Block": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
-                        "FontColor": "",
-                        "FontSize": "",
-                        "BorderWidth": "",
-                        "BorderColor": "",
-                        "BorderRadius": ""
-                    }
-                },
                 "CALL": {
                     "Simple Block": {
                         "BackgroundColor": "transparent",
@@ -1347,21 +1259,6 @@ export let config = {
                         "BorderRadius": ""
                     }
                 },
-                "SEMI_COLON": {
-                    "Simple Block": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
-                        "FontColor": "",
-                        "FontSize": "",
-                        "BorderWidth": "",
-                        "BorderColor": "",
-                        "BorderRadius": ""
-                    }
-                },
-                "program": {},
                 "stmts": {
                     "Group Block": {
                         "BackgroundColor": "",
@@ -2131,166 +2028,50 @@ export let config = {
             "Separator": {
                 "BackgroundColor": ""
             }
+        },
+        "Source Text View Colors": {
+            "(": "#ffffff",
+            ")": "#ffffff",
+            "MINUS": "#DCB962",
+            "PLUS": "#DCB962",
+            "TIMES": "#DCB962",
+            "BY": "#DCB962",
+            "GREATER": "#D4C59F",
+            "LESS": "#D4C59F",
+            "EQUAL_TO": "#D4C59F",
+            "NOT_EQUAL_TO": "#D4C59F",
+            "GREATER_EQUAL": "#D4C59F",
+            "LESS_EQUAL": "#D4C59F",
+            "AND": "#B5C078",
+            "OR": "#B5C078",
+            "NOT": "#B5C078",
+            "IDENT": "#8CDCFE",
+            "INT_CONST": "#44C9B0",
+            "FLOAT_CONST": "#44C9B0",
+            "CHAR_CONST": "#D15036",
+            "STRING_CONST": "#D15036",
+            "BOOL_CONST": "#D4C59F",
+            "EQUALS": "#ffffff",
+            "FUNCTION": "#C57991",
+            "OF": "#C57991",
+            "{": "#ffffff",
+            "}": "#ffffff",
+            "CALL": "#C57991",
+            "WITH": "#C57991",
+            "IF": "#C57991",
+            "ELSE": "#C57991",
+            "WHILE": "#C57991",
+            "FOR": "#C57991",
+            ";": "#ffffff",
+            "stmt": "#ffffff",
+            "expr": "#ffffff",
+            "arith_expr": "#ffffff",
+            "bool_expr": "#ffffff",
+            "primary_expr": "#ffffff",
+            "arith_op": "#ffffff",
+            "rel_op": "#ffffff",
+            "bool_bin_op": "#ffffff"
         }
-    },
-    styles: {
-        "PLUS" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962'
-        },
-        "MINUS" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962'
-        },
-        "TIMES" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962'
-        },
-        "BY" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962',
-        },
-        "EQUAL_TO" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962',
-        },
-        "NOT_EQUAL_TO" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962',
-        },
-        "GREATER" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962',
-        },
-        "LESS" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962',
-        },
-        "GREATER_EQUAL" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962',
-        },
-        "LESS_EQUAL" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962',
-        },
-        "AND" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962',
-            'text-decoration': 'underline'
-        },
-        "OR" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962',
-            'text-decoration': 'underline'
-        },
-        "NOT" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962',
-            'text-decoration': 'underline'
-        },
-        "IDENT" : {
-            'background-color': 'transparent',
-            'border-color': '#37373D',
-            'color': '#4A9CD6',
-            'font-weight': '700'
-        },
-        "INT_CONST" : {
-            'background-color': 'transparent',
-            'border-color': '#37373D',
-            'color': '#44C9B0',
-            'font-weight': '700'
-        },
-        "FLOAT_CONST" : {
-            'background-color': 'transparent',
-            'border-color': '#37373D',
-            'color': '#44C9B0',
-            'font-weight': '700'
-        },
-        "CHAR_CONST" : {
-            'background-color': 'transparent',
-            'border-color': '#37373D',
-            'color': '#CE9178',
-            'font-weight': '700'
-        },
-        "STRING_CONST" : {
-            'background-color': 'transparent',
-            'border-color': '#37373D',
-            'color': '#CE9178',
-            'font-weight': '700'
-        },
-        "BOOL_CONST" : {
-            'background-color': 'transparent',
-            'border-color': '#37373D',
-            'color': '#8CDCFE',
-            'font-weight': '700'
-        },
-        "EQUALS" : {
-            'background-color': 'transparent',
-            'font-weight': '900',
-            'color': '#DCB962',
-        },
-        "IF" : {
-            'background-color': 'transparent',
-            'color': '#C57991',
-            'font-weight': '900',
-        },
-        "ELSE" : {
-            'background-color': 'transparent',
-            'color': '#C57991',
-            'font-weight': '900',
-        },
-        "WHILE" : {
-            'background-color': 'transparent',
-            'color': '#C57991',
-            'font-weight': '900',
-        },
-        "FOR" : {
-            'background-color': 'transparent',
-            'color': '#C57991',
-            'font-weight': '900',
-        },
-        "FUNCTION" : {
-            'background-color': 'transparent',
-            'color': '#C57991',
-            'font-weight': '900',
-        },
-        "OF" : {
-            'background-color': 'transparent',
-            'color': '#C57991',
-            'font-weight': '900',
-        },
-        "CALL" : {
-            'background-color': 'transparent',
-            'color': '#C57991',
-            'font-weight': '900',
-        },
-        "WITH" : {
-            'background-color': 'transparent',
-            'color': '#C57991',
-            'font-weight': '900',
-        },
-        "LEFT_CURLY_BRACE.pure-text" : {
-            'display': 'flex',
-            'margin-top': '5px'
-        },
-        "RIGHT_CURLY_BRACE.pure-text" : {
-            'display': 'flex',
-            'margin-top': '5px'
-        },
     },
     toolbox: [
         {
@@ -2303,7 +2084,6 @@ export let config = {
                             "name": "if_stmt",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "Do something if a condition is true"
                     },
                     "elems": [
@@ -2320,11 +2100,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -2343,7 +2122,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -2351,7 +2129,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -2359,7 +2136,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -2367,7 +2143,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -2376,22 +2151,20 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_CURLY_BRACE",
-                                    "isTerminal": true
+                                    "name": "{",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "{",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -2425,7 +2198,6 @@ export let config = {
                                                 "name": "if_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something if a condition is true"
                                         },
                                         {
@@ -2433,7 +2205,6 @@ export let config = {
                                                 "name": "if_else_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something if a condition is true, else do something else"
                                         },
                                         {
@@ -2441,7 +2212,6 @@ export let config = {
                                                 "name": "while_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something while a condition is true"
                                         },
                                         {
@@ -2449,7 +2219,6 @@ export let config = {
                                                 "name": "for_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                                         },
                                         {
@@ -2457,7 +2226,6 @@ export let config = {
                                                 "name": "assign_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Set a variable's value"
                                         },
                                         {
@@ -2465,7 +2233,6 @@ export let config = {
                                                 "name": "func_def_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Define reusable code as a function"
                                         },
                                         {
@@ -2473,7 +2240,6 @@ export let config = {
                                                 "name": "func_call_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Use a defined function"
                                         }
                                     ],
@@ -2494,7 +2260,6 @@ export let config = {
                                             "name": "if_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something if a condition is true"
                                     },
                                     {
@@ -2502,7 +2267,6 @@ export let config = {
                                             "name": "if_else_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something if a condition is true, else do something else"
                                     },
                                     {
@@ -2510,7 +2274,6 @@ export let config = {
                                             "name": "while_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something while a condition is true"
                                     },
                                     {
@@ -2518,7 +2281,6 @@ export let config = {
                                             "name": "for_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                                     },
                                     {
@@ -2526,7 +2288,6 @@ export let config = {
                                             "name": "assign_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Set a variable's value"
                                     },
                                     {
@@ -2534,7 +2295,6 @@ export let config = {
                                             "name": "func_def_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Define reusable code as a function"
                                     },
                                     {
@@ -2542,7 +2302,6 @@ export let config = {
                                             "name": "func_call_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Use a defined function"
                                     }
                                 ],
@@ -2553,11 +2312,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_CURLY_BRACE",
-                                    "isTerminal": true
+                                    "name": "}",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "}",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -2577,7 +2335,6 @@ export let config = {
                                     "name": "if_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something if a condition is true"
                             },
                             {
@@ -2585,7 +2342,6 @@ export let config = {
                                     "name": "if_else_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something if a condition is true, else do something else"
                             },
                             {
@@ -2593,7 +2349,6 @@ export let config = {
                                     "name": "while_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something while a condition is true"
                             },
                             {
@@ -2601,7 +2356,6 @@ export let config = {
                                     "name": "for_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                             },
                             {
@@ -2609,7 +2363,6 @@ export let config = {
                                     "name": "assign_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Set a variable's value"
                             },
                             {
@@ -2617,7 +2370,6 @@ export let config = {
                                     "name": "func_def_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Define reusable code as a function"
                             },
                             {
@@ -2625,7 +2377,6 @@ export let config = {
                                     "name": "func_call_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Use a defined function"
                             }
                         ],
@@ -2639,7 +2390,6 @@ export let config = {
                             "name": "if_else_stmt",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "Do something if a condition is true, else do something else"
                     },
                     "elems": [
@@ -2656,11 +2406,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -2679,7 +2428,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -2687,7 +2435,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -2695,7 +2442,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -2703,7 +2449,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -2712,22 +2457,20 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_CURLY_BRACE",
-                                    "isTerminal": true
+                                    "name": "{",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "{",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -2761,7 +2504,6 @@ export let config = {
                                                 "name": "if_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something if a condition is true"
                                         },
                                         {
@@ -2769,7 +2511,6 @@ export let config = {
                                                 "name": "if_else_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something if a condition is true, else do something else"
                                         },
                                         {
@@ -2777,7 +2518,6 @@ export let config = {
                                                 "name": "while_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something while a condition is true"
                                         },
                                         {
@@ -2785,7 +2525,6 @@ export let config = {
                                                 "name": "for_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                                         },
                                         {
@@ -2793,7 +2532,6 @@ export let config = {
                                                 "name": "assign_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Set a variable's value"
                                         },
                                         {
@@ -2801,7 +2539,6 @@ export let config = {
                                                 "name": "func_def_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Define reusable code as a function"
                                         },
                                         {
@@ -2809,7 +2546,6 @@ export let config = {
                                                 "name": "func_call_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Use a defined function"
                                         }
                                     ],
@@ -2830,7 +2566,6 @@ export let config = {
                                             "name": "if_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something if a condition is true"
                                     },
                                     {
@@ -2838,7 +2573,6 @@ export let config = {
                                             "name": "if_else_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something if a condition is true, else do something else"
                                     },
                                     {
@@ -2846,7 +2580,6 @@ export let config = {
                                             "name": "while_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something while a condition is true"
                                     },
                                     {
@@ -2854,7 +2587,6 @@ export let config = {
                                             "name": "for_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                                     },
                                     {
@@ -2862,7 +2594,6 @@ export let config = {
                                             "name": "assign_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Set a variable's value"
                                     },
                                     {
@@ -2870,7 +2601,6 @@ export let config = {
                                             "name": "func_def_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Define reusable code as a function"
                                     },
                                     {
@@ -2878,7 +2608,6 @@ export let config = {
                                             "name": "func_call_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Use a defined function"
                                     }
                                 ],
@@ -2889,11 +2618,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_CURLY_BRACE",
-                                    "isTerminal": true
+                                    "name": "}",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "}",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -2913,11 +2641,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_CURLY_BRACE",
-                                    "isTerminal": true
+                                    "name": "{",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "{",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -2951,7 +2678,6 @@ export let config = {
                                                 "name": "if_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something if a condition is true"
                                         },
                                         {
@@ -2959,7 +2685,6 @@ export let config = {
                                                 "name": "if_else_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something if a condition is true, else do something else"
                                         },
                                         {
@@ -2967,7 +2692,6 @@ export let config = {
                                                 "name": "while_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something while a condition is true"
                                         },
                                         {
@@ -2975,7 +2699,6 @@ export let config = {
                                                 "name": "for_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                                         },
                                         {
@@ -2983,7 +2706,6 @@ export let config = {
                                                 "name": "assign_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Set a variable's value"
                                         },
                                         {
@@ -2991,7 +2713,6 @@ export let config = {
                                                 "name": "func_def_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Define reusable code as a function"
                                         },
                                         {
@@ -2999,7 +2720,6 @@ export let config = {
                                                 "name": "func_call_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Use a defined function"
                                         }
                                     ],
@@ -3020,7 +2740,6 @@ export let config = {
                                             "name": "if_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something if a condition is true"
                                     },
                                     {
@@ -3028,7 +2747,6 @@ export let config = {
                                             "name": "if_else_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something if a condition is true, else do something else"
                                     },
                                     {
@@ -3036,7 +2754,6 @@ export let config = {
                                             "name": "while_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something while a condition is true"
                                     },
                                     {
@@ -3044,7 +2761,6 @@ export let config = {
                                             "name": "for_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                                     },
                                     {
@@ -3052,7 +2768,6 @@ export let config = {
                                             "name": "assign_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Set a variable's value"
                                     },
                                     {
@@ -3060,7 +2775,6 @@ export let config = {
                                             "name": "func_def_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Define reusable code as a function"
                                     },
                                     {
@@ -3068,7 +2782,6 @@ export let config = {
                                             "name": "func_call_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Use a defined function"
                                     }
                                 ],
@@ -3079,11 +2792,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_CURLY_BRACE",
-                                    "isTerminal": true
+                                    "name": "}",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "}",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -3103,7 +2815,6 @@ export let config = {
                                     "name": "if_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something if a condition is true"
                             },
                             {
@@ -3111,7 +2822,6 @@ export let config = {
                                     "name": "if_else_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something if a condition is true, else do something else"
                             },
                             {
@@ -3119,7 +2829,6 @@ export let config = {
                                     "name": "while_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something while a condition is true"
                             },
                             {
@@ -3127,7 +2836,6 @@ export let config = {
                                     "name": "for_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                             },
                             {
@@ -3135,7 +2843,6 @@ export let config = {
                                     "name": "assign_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Set a variable's value"
                             },
                             {
@@ -3143,7 +2850,6 @@ export let config = {
                                     "name": "func_def_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Define reusable code as a function"
                             },
                             {
@@ -3151,7 +2857,6 @@ export let config = {
                                     "name": "func_call_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Use a defined function"
                             }
                         ],
@@ -3165,7 +2870,6 @@ export let config = {
                             "name": "while_stmt",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "Do something while a condition is true"
                     },
                     "elems": [
@@ -3182,11 +2886,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3205,7 +2908,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -3213,7 +2915,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -3221,7 +2922,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -3229,7 +2929,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -3238,22 +2937,20 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_CURLY_BRACE",
-                                    "isTerminal": true
+                                    "name": "{",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "{",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3287,7 +2984,6 @@ export let config = {
                                                 "name": "if_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something if a condition is true"
                                         },
                                         {
@@ -3295,7 +2991,6 @@ export let config = {
                                                 "name": "if_else_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something if a condition is true, else do something else"
                                         },
                                         {
@@ -3303,7 +2998,6 @@ export let config = {
                                                 "name": "while_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something while a condition is true"
                                         },
                                         {
@@ -3311,7 +3005,6 @@ export let config = {
                                                 "name": "for_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                                         },
                                         {
@@ -3319,7 +3012,6 @@ export let config = {
                                                 "name": "assign_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Set a variable's value"
                                         },
                                         {
@@ -3327,7 +3019,6 @@ export let config = {
                                                 "name": "func_def_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Define reusable code as a function"
                                         },
                                         {
@@ -3335,7 +3026,6 @@ export let config = {
                                                 "name": "func_call_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Use a defined function"
                                         }
                                     ],
@@ -3356,7 +3046,6 @@ export let config = {
                                             "name": "if_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something if a condition is true"
                                     },
                                     {
@@ -3364,7 +3053,6 @@ export let config = {
                                             "name": "if_else_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something if a condition is true, else do something else"
                                     },
                                     {
@@ -3372,7 +3060,6 @@ export let config = {
                                             "name": "while_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something while a condition is true"
                                     },
                                     {
@@ -3380,7 +3067,6 @@ export let config = {
                                             "name": "for_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                                     },
                                     {
@@ -3388,7 +3074,6 @@ export let config = {
                                             "name": "assign_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Set a variable's value"
                                     },
                                     {
@@ -3396,7 +3081,6 @@ export let config = {
                                             "name": "func_def_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Define reusable code as a function"
                                     },
                                     {
@@ -3404,7 +3088,6 @@ export let config = {
                                             "name": "func_call_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Use a defined function"
                                     }
                                 ],
@@ -3415,11 +3098,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_CURLY_BRACE",
-                                    "isTerminal": true
+                                    "name": "}",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "}",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -3439,7 +3121,6 @@ export let config = {
                                     "name": "if_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something if a condition is true"
                             },
                             {
@@ -3447,7 +3128,6 @@ export let config = {
                                     "name": "if_else_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something if a condition is true, else do something else"
                             },
                             {
@@ -3455,7 +3135,6 @@ export let config = {
                                     "name": "while_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something while a condition is true"
                             },
                             {
@@ -3463,7 +3142,6 @@ export let config = {
                                     "name": "for_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                             },
                             {
@@ -3471,7 +3149,6 @@ export let config = {
                                     "name": "assign_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Set a variable's value"
                             },
                             {
@@ -3479,7 +3156,6 @@ export let config = {
                                     "name": "func_def_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Define reusable code as a function"
                             },
                             {
@@ -3487,7 +3163,6 @@ export let config = {
                                     "name": "func_call_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Use a defined function"
                             }
                         ],
@@ -3501,7 +3176,6 @@ export let config = {
                             "name": "for_stmt",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                     },
                     "elems": [
@@ -3518,11 +3192,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3571,7 +3244,6 @@ export let config = {
                                                 "name": "arith_expr",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Perform a mathematic operation"
                                         },
                                         {
@@ -3579,7 +3251,6 @@ export let config = {
                                                 "name": "rel_expr",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "An operator that compares the 2 operands and returns true or false"
                                         },
                                         {
@@ -3587,7 +3258,6 @@ export let config = {
                                                 "name": "bool_expr",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "An expression that evaluates to true or false"
                                         },
                                         {
@@ -3595,7 +3265,6 @@ export let config = {
                                                 "name": "primary_expr",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "An identifier or a constant"
                                         }
                                     ],
@@ -3607,11 +3276,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "SEMI_COLON",
-                                    "isTerminal": true
+                                    "name": ";",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ";",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3630,7 +3298,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -3638,7 +3305,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -3646,7 +3312,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -3654,7 +3319,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -3663,11 +3327,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "SEMI_COLON",
-                                    "isTerminal": true
+                                    "name": ";",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ";",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3716,7 +3379,6 @@ export let config = {
                                                 "name": "arith_expr",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Perform a mathematic operation"
                                         },
                                         {
@@ -3724,7 +3386,6 @@ export let config = {
                                                 "name": "rel_expr",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "An operator that compares the 2 operands and returns true or false"
                                         },
                                         {
@@ -3732,7 +3393,6 @@ export let config = {
                                                 "name": "bool_expr",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "An expression that evaluates to true or false"
                                         },
                                         {
@@ -3740,7 +3400,6 @@ export let config = {
                                                 "name": "primary_expr",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "An identifier or a constant"
                                         }
                                     ],
@@ -3752,22 +3411,20 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_CURLY_BRACE",
-                                    "isTerminal": true
+                                    "name": "{",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "{",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3801,7 +3458,6 @@ export let config = {
                                                 "name": "if_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something if a condition is true"
                                         },
                                         {
@@ -3809,7 +3465,6 @@ export let config = {
                                                 "name": "if_else_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something if a condition is true, else do something else"
                                         },
                                         {
@@ -3817,7 +3472,6 @@ export let config = {
                                                 "name": "while_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something while a condition is true"
                                         },
                                         {
@@ -3825,7 +3479,6 @@ export let config = {
                                                 "name": "for_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                                         },
                                         {
@@ -3833,7 +3486,6 @@ export let config = {
                                                 "name": "assign_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Set a variable's value"
                                         },
                                         {
@@ -3841,7 +3493,6 @@ export let config = {
                                                 "name": "func_def_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Define reusable code as a function"
                                         },
                                         {
@@ -3849,7 +3500,6 @@ export let config = {
                                                 "name": "func_call_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Use a defined function"
                                         }
                                     ],
@@ -3870,7 +3520,6 @@ export let config = {
                                             "name": "if_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something if a condition is true"
                                     },
                                     {
@@ -3878,7 +3527,6 @@ export let config = {
                                             "name": "if_else_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something if a condition is true, else do something else"
                                     },
                                     {
@@ -3886,7 +3534,6 @@ export let config = {
                                             "name": "while_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something while a condition is true"
                                     },
                                     {
@@ -3894,7 +3541,6 @@ export let config = {
                                             "name": "for_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                                     },
                                     {
@@ -3902,7 +3548,6 @@ export let config = {
                                             "name": "assign_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Set a variable's value"
                                     },
                                     {
@@ -3910,7 +3555,6 @@ export let config = {
                                             "name": "func_def_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Define reusable code as a function"
                                     },
                                     {
@@ -3918,7 +3562,6 @@ export let config = {
                                             "name": "func_call_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Use a defined function"
                                     }
                                 ],
@@ -3929,11 +3572,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_CURLY_BRACE",
-                                    "isTerminal": true
+                                    "name": "}",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "}",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -3953,7 +3595,6 @@ export let config = {
                                     "name": "if_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something if a condition is true"
                             },
                             {
@@ -3961,7 +3602,6 @@ export let config = {
                                     "name": "if_else_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something if a condition is true, else do something else"
                             },
                             {
@@ -3969,7 +3609,6 @@ export let config = {
                                     "name": "while_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something while a condition is true"
                             },
                             {
@@ -3977,7 +3616,6 @@ export let config = {
                                     "name": "for_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                             },
                             {
@@ -3985,7 +3623,6 @@ export let config = {
                                     "name": "assign_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Set a variable's value"
                             },
                             {
@@ -3993,7 +3630,6 @@ export let config = {
                                     "name": "func_def_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Define reusable code as a function"
                             },
                             {
@@ -4001,7 +3637,6 @@ export let config = {
                                     "name": "func_call_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Use a defined function"
                             }
                         ],
@@ -4021,7 +3656,6 @@ export let config = {
                             "name": "IDENT",
                             "isTerminal": true
                         },
-                        "textViewOnly": false,
                         "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                     },
                     "type": "InputBlock",
@@ -4031,7 +3665,6 @@ export let config = {
                                 "name": "primary_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "An identifier or a constant"
                         },
                         "alternateSymbols": [
@@ -4040,7 +3673,6 @@ export let config = {
                                     "name": "IDENT",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                             },
                             {
@@ -4048,7 +3680,6 @@ export let config = {
                                     "name": "INT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
                             },
                             {
@@ -4056,7 +3687,6 @@ export let config = {
                                     "name": "FLOAT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
                             },
                             {
@@ -4064,7 +3694,6 @@ export let config = {
                                     "name": "CHAR_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One single character"
                             },
                             {
@@ -4072,7 +3701,6 @@ export let config = {
                                     "name": "STRING_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Any sequence of characters or the empty sequence"
                             },
                             {
@@ -4080,7 +3708,6 @@ export let config = {
                                     "name": "BOOL_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One of true or false"
                             }
                         ],
@@ -4100,7 +3727,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -4108,7 +3734,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -4116,7 +3741,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -4124,7 +3748,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -4139,7 +3762,6 @@ export let config = {
                             "name": "INT_CONST",
                             "isTerminal": true
                         },
-                        "textViewOnly": false,
                         "tooltip": "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
                     },
                     "type": "InputBlock",
@@ -4149,7 +3771,6 @@ export let config = {
                                 "name": "primary_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "An identifier or a constant"
                         },
                         "alternateSymbols": [
@@ -4158,7 +3779,6 @@ export let config = {
                                     "name": "IDENT",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                             },
                             {
@@ -4166,7 +3786,6 @@ export let config = {
                                     "name": "INT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
                             },
                             {
@@ -4174,7 +3793,6 @@ export let config = {
                                     "name": "FLOAT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
                             },
                             {
@@ -4182,7 +3800,6 @@ export let config = {
                                     "name": "CHAR_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One single character"
                             },
                             {
@@ -4190,7 +3807,6 @@ export let config = {
                                     "name": "STRING_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Any sequence of characters or the empty sequence"
                             },
                             {
@@ -4198,7 +3814,6 @@ export let config = {
                                     "name": "BOOL_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One of true or false"
                             }
                         ],
@@ -4218,7 +3833,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -4226,7 +3840,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -4234,7 +3847,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -4242,7 +3854,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -4257,7 +3868,6 @@ export let config = {
                             "name": "FLOAT_CONST",
                             "isTerminal": true
                         },
-                        "textViewOnly": false,
                         "tooltip": "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
                     },
                     "type": "InputBlock",
@@ -4267,7 +3877,6 @@ export let config = {
                                 "name": "primary_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "An identifier or a constant"
                         },
                         "alternateSymbols": [
@@ -4276,7 +3885,6 @@ export let config = {
                                     "name": "IDENT",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                             },
                             {
@@ -4284,7 +3892,6 @@ export let config = {
                                     "name": "INT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
                             },
                             {
@@ -4292,7 +3899,6 @@ export let config = {
                                     "name": "FLOAT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
                             },
                             {
@@ -4300,7 +3906,6 @@ export let config = {
                                     "name": "CHAR_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One single character"
                             },
                             {
@@ -4308,7 +3913,6 @@ export let config = {
                                     "name": "STRING_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Any sequence of characters or the empty sequence"
                             },
                             {
@@ -4316,7 +3920,6 @@ export let config = {
                                     "name": "BOOL_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One of true or false"
                             }
                         ],
@@ -4336,7 +3939,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -4344,7 +3946,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -4352,7 +3953,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -4360,7 +3960,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -4375,7 +3974,6 @@ export let config = {
                             "name": "CHAR_CONST",
                             "isTerminal": true
                         },
-                        "textViewOnly": false,
                         "tooltip": "One single character"
                     },
                     "type": "InputBlock",
@@ -4385,7 +3983,6 @@ export let config = {
                                 "name": "primary_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "An identifier or a constant"
                         },
                         "alternateSymbols": [
@@ -4394,7 +3991,6 @@ export let config = {
                                     "name": "IDENT",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                             },
                             {
@@ -4402,7 +3998,6 @@ export let config = {
                                     "name": "INT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
                             },
                             {
@@ -4410,7 +4005,6 @@ export let config = {
                                     "name": "FLOAT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
                             },
                             {
@@ -4418,7 +4012,6 @@ export let config = {
                                     "name": "CHAR_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One single character"
                             },
                             {
@@ -4426,7 +4019,6 @@ export let config = {
                                     "name": "STRING_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Any sequence of characters or the empty sequence"
                             },
                             {
@@ -4434,7 +4026,6 @@ export let config = {
                                     "name": "BOOL_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One of true or false"
                             }
                         ],
@@ -4454,7 +4045,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -4462,7 +4052,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -4470,7 +4059,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -4478,7 +4066,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -4493,7 +4080,6 @@ export let config = {
                             "name": "STRING_CONST",
                             "isTerminal": true
                         },
-                        "textViewOnly": false,
                         "tooltip": "Any sequence of characters or the empty sequence"
                     },
                     "type": "InputBlock",
@@ -4503,7 +4089,6 @@ export let config = {
                                 "name": "primary_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "An identifier or a constant"
                         },
                         "alternateSymbols": [
@@ -4512,7 +4097,6 @@ export let config = {
                                     "name": "IDENT",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                             },
                             {
@@ -4520,7 +4104,6 @@ export let config = {
                                     "name": "INT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
                             },
                             {
@@ -4528,7 +4111,6 @@ export let config = {
                                     "name": "FLOAT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
                             },
                             {
@@ -4536,7 +4118,6 @@ export let config = {
                                     "name": "CHAR_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One single character"
                             },
                             {
@@ -4544,7 +4125,6 @@ export let config = {
                                     "name": "STRING_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Any sequence of characters or the empty sequence"
                             },
                             {
@@ -4552,7 +4132,6 @@ export let config = {
                                     "name": "BOOL_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One of true or false"
                             }
                         ],
@@ -4572,7 +4151,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -4580,7 +4158,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -4588,7 +4165,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -4596,7 +4172,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -4611,7 +4186,6 @@ export let config = {
                             "name": "BOOL_CONST",
                             "isTerminal": true
                         },
-                        "textViewOnly": false,
                         "tooltip": "One of true or false"
                     },
                     "userInput_": "true",
@@ -4622,7 +4196,6 @@ export let config = {
                                 "name": "primary_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "An identifier or a constant"
                         },
                         "alternateSymbols": [
@@ -4631,7 +4204,6 @@ export let config = {
                                     "name": "IDENT",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                             },
                             {
@@ -4639,7 +4211,6 @@ export let config = {
                                     "name": "INT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
                             },
                             {
@@ -4647,7 +4218,6 @@ export let config = {
                                     "name": "FLOAT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
                             },
                             {
@@ -4655,7 +4225,6 @@ export let config = {
                                     "name": "CHAR_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One single character"
                             },
                             {
@@ -4663,7 +4232,6 @@ export let config = {
                                     "name": "STRING_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Any sequence of characters or the empty sequence"
                             },
                             {
@@ -4671,7 +4239,6 @@ export let config = {
                                     "name": "BOOL_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One of true or false"
                             }
                         ],
@@ -4691,7 +4258,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -4699,7 +4265,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -4707,7 +4272,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -4715,7 +4279,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -4730,7 +4293,6 @@ export let config = {
                             "name": "BOOL_CONST",
                             "isTerminal": true
                         },
-                        "textViewOnly": false,
                         "tooltip": "One of true or false"
                     },
                     "userInput_": "false",
@@ -4741,7 +4303,6 @@ export let config = {
                                 "name": "primary_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "An identifier or a constant"
                         },
                         "alternateSymbols": [
@@ -4750,7 +4311,6 @@ export let config = {
                                     "name": "IDENT",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                             },
                             {
@@ -4758,7 +4318,6 @@ export let config = {
                                     "name": "INT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
                             },
                             {
@@ -4766,7 +4325,6 @@ export let config = {
                                     "name": "FLOAT_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
                             },
                             {
@@ -4774,7 +4332,6 @@ export let config = {
                                     "name": "CHAR_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One single character"
                             },
                             {
@@ -4782,7 +4339,6 @@ export let config = {
                                     "name": "STRING_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Any sequence of characters or the empty sequence"
                             },
                             {
@@ -4790,7 +4346,6 @@ export let config = {
                                     "name": "BOOL_CONST",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "One of true or false"
                             }
                         ],
@@ -4810,7 +4365,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -4818,7 +4372,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -4826,7 +4379,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -4834,7 +4386,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -4855,18 +4406,16 @@ export let config = {
                             "name": "binary_arith_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "An arithmetic expression with 2 operands"
                     },
                     "elems": [
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -4876,7 +4425,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The first operand"
                             },
                             "alternateSymbols": [
@@ -4885,7 +4433,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -4893,7 +4440,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -4901,7 +4447,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -4909,7 +4454,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -4922,7 +4466,6 @@ export let config = {
                                     "isTerminal": true
                                 },
                                 "alias": "+",
-                                "textViewOnly": false,
                                 "tooltip": "Performs addition"
                             },
                             "type": "SimpleBlock",
@@ -4932,7 +4475,6 @@ export let config = {
                                         "name": "arith_op",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An arithmetic operator (e.g. +, -)"
                                 },
                                 "alternateSymbols": [
@@ -4942,7 +4484,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "+",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs addition"
                                     },
                                     {
@@ -4951,7 +4492,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "-",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs subtraction"
                                     },
                                     {
@@ -4960,7 +4500,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "*",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs multiplication"
                                     },
                                     {
@@ -4969,7 +4508,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "/",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs division"
                                     }
                                 ],
@@ -4983,7 +4521,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The second operand"
                             },
                             "alternateSymbols": [
@@ -4992,7 +4529,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -5000,7 +4536,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -5008,7 +4543,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -5016,7 +4550,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -5025,11 +4558,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -5041,7 +4573,6 @@ export let config = {
                                 "name": "arith_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "Perform a mathematic operation"
                         },
                         "alternateSymbols": [
@@ -5050,7 +4581,6 @@ export let config = {
                                     "name": "binary_arith_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An arithmetic expression with 2 operands"
                             },
                             {
@@ -5058,7 +4588,6 @@ export let config = {
                                     "name": "unary_minus",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Negates the value of its operand"
                             }
                         ],
@@ -5078,7 +4607,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -5086,7 +4614,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -5094,7 +4621,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -5102,7 +4628,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -5117,18 +4642,16 @@ export let config = {
                             "name": "binary_arith_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "An arithmetic expression with 2 operands"
                     },
                     "elems": [
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -5138,7 +4661,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The first operand"
                             },
                             "alternateSymbols": [
@@ -5147,7 +4669,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -5155,7 +4676,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -5163,7 +4683,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -5171,7 +4690,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -5184,7 +4702,6 @@ export let config = {
                                     "isTerminal": true
                                 },
                                 "alias": "-",
-                                "textViewOnly": false,
                                 "tooltip": "Performs subtraction"
                             },
                             "type": "SimpleBlock",
@@ -5194,7 +4711,6 @@ export let config = {
                                         "name": "arith_op",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An arithmetic operator (e.g. +, -)"
                                 },
                                 "alternateSymbols": [
@@ -5204,7 +4720,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "+",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs addition"
                                     },
                                     {
@@ -5213,7 +4728,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "-",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs subtraction"
                                     },
                                     {
@@ -5222,7 +4736,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "*",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs multiplication"
                                     },
                                     {
@@ -5231,7 +4744,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "/",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs division"
                                     }
                                 ],
@@ -5245,7 +4757,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The second operand"
                             },
                             "alternateSymbols": [
@@ -5254,7 +4765,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -5262,7 +4772,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -5270,7 +4779,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -5278,7 +4786,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -5287,11 +4794,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -5303,7 +4809,6 @@ export let config = {
                                 "name": "arith_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "Perform a mathematic operation"
                         },
                         "alternateSymbols": [
@@ -5312,7 +4817,6 @@ export let config = {
                                     "name": "binary_arith_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An arithmetic expression with 2 operands"
                             },
                             {
@@ -5320,7 +4824,6 @@ export let config = {
                                     "name": "unary_minus",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Negates the value of its operand"
                             }
                         ],
@@ -5340,7 +4843,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -5348,7 +4850,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -5356,7 +4857,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -5364,7 +4864,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -5379,18 +4878,16 @@ export let config = {
                             "name": "binary_arith_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "An arithmetic expression with 2 operands"
                     },
                     "elems": [
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -5400,7 +4897,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The first operand"
                             },
                             "alternateSymbols": [
@@ -5409,7 +4905,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -5417,7 +4912,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -5425,7 +4919,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -5433,7 +4926,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -5446,7 +4938,6 @@ export let config = {
                                     "isTerminal": true
                                 },
                                 "alias": "*",
-                                "textViewOnly": false,
                                 "tooltip": "Performs multiplication"
                             },
                             "type": "SimpleBlock",
@@ -5456,7 +4947,6 @@ export let config = {
                                         "name": "arith_op",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An arithmetic operator (e.g. +, -)"
                                 },
                                 "alternateSymbols": [
@@ -5466,7 +4956,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "+",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs addition"
                                     },
                                     {
@@ -5475,7 +4964,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "-",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs subtraction"
                                     },
                                     {
@@ -5484,7 +4972,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "*",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs multiplication"
                                     },
                                     {
@@ -5493,7 +4980,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "/",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs division"
                                     }
                                 ],
@@ -5507,7 +4993,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The second operand"
                             },
                             "alternateSymbols": [
@@ -5516,7 +5001,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -5524,7 +5008,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -5532,7 +5015,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -5540,7 +5022,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -5549,11 +5030,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -5565,7 +5045,6 @@ export let config = {
                                 "name": "arith_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "Perform a mathematic operation"
                         },
                         "alternateSymbols": [
@@ -5574,7 +5053,6 @@ export let config = {
                                     "name": "binary_arith_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An arithmetic expression with 2 operands"
                             },
                             {
@@ -5582,7 +5060,6 @@ export let config = {
                                     "name": "unary_minus",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Negates the value of its operand"
                             }
                         ],
@@ -5602,7 +5079,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -5610,7 +5086,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -5618,7 +5093,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -5626,7 +5100,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -5641,18 +5114,16 @@ export let config = {
                             "name": "binary_arith_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "An arithmetic expression with 2 operands"
                     },
                     "elems": [
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -5662,7 +5133,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The first operand"
                             },
                             "alternateSymbols": [
@@ -5671,7 +5141,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -5679,7 +5148,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -5687,7 +5155,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -5695,7 +5162,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -5708,7 +5174,6 @@ export let config = {
                                     "isTerminal": true
                                 },
                                 "alias": "/",
-                                "textViewOnly": false,
                                 "tooltip": "Performs division"
                             },
                             "type": "SimpleBlock",
@@ -5718,7 +5183,6 @@ export let config = {
                                         "name": "arith_op",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An arithmetic operator (e.g. +, -)"
                                 },
                                 "alternateSymbols": [
@@ -5728,7 +5192,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "+",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs addition"
                                     },
                                     {
@@ -5737,7 +5200,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "-",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs subtraction"
                                     },
                                     {
@@ -5746,7 +5208,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "*",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs multiplication"
                                     },
                                     {
@@ -5755,7 +5216,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "/",
-                                        "textViewOnly": false,
                                         "tooltip": "Performs division"
                                     }
                                 ],
@@ -5769,7 +5229,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The second operand"
                             },
                             "alternateSymbols": [
@@ -5778,7 +5237,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -5786,7 +5244,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -5794,7 +5251,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -5802,7 +5258,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -5811,11 +5266,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -5827,7 +5281,6 @@ export let config = {
                                 "name": "arith_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "Perform a mathematic operation"
                         },
                         "alternateSymbols": [
@@ -5836,7 +5289,6 @@ export let config = {
                                     "name": "binary_arith_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An arithmetic expression with 2 operands"
                             },
                             {
@@ -5844,7 +5296,6 @@ export let config = {
                                     "name": "unary_minus",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Negates the value of its operand"
                             }
                         ],
@@ -5864,7 +5315,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -5872,7 +5322,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -5880,7 +5329,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -5888,7 +5336,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -5903,7 +5350,6 @@ export let config = {
                             "name": "unary_minus",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "Negates the value of its operand"
                     },
                     "elems": [
@@ -5932,7 +5378,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -5940,7 +5385,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -5948,7 +5392,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -5956,7 +5399,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -5970,7 +5412,6 @@ export let config = {
                                 "name": "arith_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "Perform a mathematic operation"
                         },
                         "alternateSymbols": [
@@ -5979,7 +5420,6 @@ export let config = {
                                     "name": "binary_arith_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An arithmetic expression with 2 operands"
                             },
                             {
@@ -5987,7 +5427,6 @@ export let config = {
                                     "name": "unary_minus",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Negates the value of its operand"
                             }
                         ],
@@ -6007,7 +5446,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -6015,7 +5453,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -6023,7 +5460,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -6031,7 +5467,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -6052,18 +5487,16 @@ export let config = {
                             "name": "rel_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "An operator that compares the 2 operands and returns true or false"
                     },
                     "elems": [
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -6073,7 +5506,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The first operand"
                             },
                             "alternateSymbols": [
@@ -6082,7 +5514,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -6090,7 +5521,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -6098,7 +5528,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -6106,7 +5535,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -6119,7 +5547,6 @@ export let config = {
                                     "isTerminal": true
                                 },
                                 "alias": ">",
-                                "textViewOnly": false,
                                 "tooltip": "Returns true if the first operand is greater than the second operand, else returns false"
                             },
                             "type": "SimpleBlock",
@@ -6129,7 +5556,6 @@ export let config = {
                                         "name": "rel_op",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "A comparison operator that returns true or false (e.g <, >)"
                                 },
                                 "alternateSymbols": [
@@ -6139,7 +5565,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": ">",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is greater than the second operand, else returns false"
                                     },
                                     {
@@ -6148,7 +5573,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "<",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is less than the second operand, else returns false"
                                     },
                                     {
@@ -6157,7 +5581,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "==",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is equal to the second operand, else returns false"
                                     },
                                     {
@@ -6166,7 +5589,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "!=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand not equal to the second operand, else returns false"
                                     },
                                     {
@@ -6175,7 +5597,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": ">=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is greater than or equal to the second operand, else returns false"
                                     },
                                     {
@@ -6184,7 +5605,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "<=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is less than or equal to the second operand, else returns false"
                                     }
                                 ],
@@ -6198,7 +5618,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The second operand"
                             },
                             "alternateSymbols": [
@@ -6207,7 +5626,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -6215,7 +5633,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -6223,7 +5640,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -6231,7 +5647,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -6240,11 +5655,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -6264,7 +5678,6 @@ export let config = {
                                     "name": "arith_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Perform a mathematic operation"
                             },
                             {
@@ -6272,7 +5685,6 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An operator that compares the 2 operands and returns true or false"
                             },
                             {
@@ -6280,7 +5692,6 @@ export let config = {
                                     "name": "bool_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An expression that evaluates to true or false"
                             },
                             {
@@ -6288,7 +5699,6 @@ export let config = {
                                     "name": "primary_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier or a constant"
                             }
                         ],
@@ -6302,18 +5712,16 @@ export let config = {
                             "name": "rel_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "An operator that compares the 2 operands and returns true or false"
                     },
                     "elems": [
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -6323,7 +5731,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The first operand"
                             },
                             "alternateSymbols": [
@@ -6332,7 +5739,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -6340,7 +5746,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -6348,7 +5753,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -6356,7 +5760,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -6369,7 +5772,6 @@ export let config = {
                                     "isTerminal": true
                                 },
                                 "alias": "<",
-                                "textViewOnly": false,
                                 "tooltip": "Returns true if the first operand is less than the second operand, else returns false"
                             },
                             "type": "SimpleBlock",
@@ -6379,7 +5781,6 @@ export let config = {
                                         "name": "rel_op",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "A comparison operator that returns true or false (e.g <, >)"
                                 },
                                 "alternateSymbols": [
@@ -6389,7 +5790,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": ">",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is greater than the second operand, else returns false"
                                     },
                                     {
@@ -6398,7 +5798,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "<",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is less than the second operand, else returns false"
                                     },
                                     {
@@ -6407,7 +5806,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "==",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is equal to the second operand, else returns false"
                                     },
                                     {
@@ -6416,7 +5814,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "!=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand not equal to the second operand, else returns false"
                                     },
                                     {
@@ -6425,7 +5822,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": ">=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is greater than or equal to the second operand, else returns false"
                                     },
                                     {
@@ -6434,7 +5830,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "<=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is less than or equal to the second operand, else returns false"
                                     }
                                 ],
@@ -6448,7 +5843,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The second operand"
                             },
                             "alternateSymbols": [
@@ -6457,7 +5851,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -6465,7 +5858,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -6473,7 +5865,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -6481,7 +5872,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -6490,11 +5880,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -6514,7 +5903,6 @@ export let config = {
                                     "name": "arith_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Perform a mathematic operation"
                             },
                             {
@@ -6522,7 +5910,6 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An operator that compares the 2 operands and returns true or false"
                             },
                             {
@@ -6530,7 +5917,6 @@ export let config = {
                                     "name": "bool_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An expression that evaluates to true or false"
                             },
                             {
@@ -6538,7 +5924,6 @@ export let config = {
                                     "name": "primary_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier or a constant"
                             }
                         ],
@@ -6552,18 +5937,16 @@ export let config = {
                             "name": "rel_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "An operator that compares the 2 operands and returns true or false"
                     },
                     "elems": [
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -6573,7 +5956,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The first operand"
                             },
                             "alternateSymbols": [
@@ -6582,7 +5964,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -6590,7 +5971,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -6598,7 +5978,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -6606,7 +5985,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -6619,7 +5997,6 @@ export let config = {
                                     "isTerminal": true
                                 },
                                 "alias": "==",
-                                "textViewOnly": false,
                                 "tooltip": "Returns true if the first operand is equal to the second operand, else returns false"
                             },
                             "type": "SimpleBlock",
@@ -6629,7 +6006,6 @@ export let config = {
                                         "name": "rel_op",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "A comparison operator that returns true or false (e.g <, >)"
                                 },
                                 "alternateSymbols": [
@@ -6639,7 +6015,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": ">",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is greater than the second operand, else returns false"
                                     },
                                     {
@@ -6648,7 +6023,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "<",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is less than the second operand, else returns false"
                                     },
                                     {
@@ -6657,7 +6031,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "==",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is equal to the second operand, else returns false"
                                     },
                                     {
@@ -6666,7 +6039,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "!=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand not equal to the second operand, else returns false"
                                     },
                                     {
@@ -6675,7 +6047,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": ">=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is greater than or equal to the second operand, else returns false"
                                     },
                                     {
@@ -6684,7 +6055,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "<=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is less than or equal to the second operand, else returns false"
                                     }
                                 ],
@@ -6698,7 +6068,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The second operand"
                             },
                             "alternateSymbols": [
@@ -6707,7 +6076,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -6715,7 +6083,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -6723,7 +6090,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -6731,7 +6097,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -6740,11 +6105,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -6764,7 +6128,6 @@ export let config = {
                                     "name": "arith_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Perform a mathematic operation"
                             },
                             {
@@ -6772,7 +6135,6 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An operator that compares the 2 operands and returns true or false"
                             },
                             {
@@ -6780,7 +6142,6 @@ export let config = {
                                     "name": "bool_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An expression that evaluates to true or false"
                             },
                             {
@@ -6788,7 +6149,6 @@ export let config = {
                                     "name": "primary_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier or a constant"
                             }
                         ],
@@ -6802,18 +6162,16 @@ export let config = {
                             "name": "rel_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "An operator that compares the 2 operands and returns true or false"
                     },
                     "elems": [
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -6823,7 +6181,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The first operand"
                             },
                             "alternateSymbols": [
@@ -6832,7 +6189,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -6840,7 +6196,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -6848,7 +6203,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -6856,7 +6210,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -6869,7 +6222,6 @@ export let config = {
                                     "isTerminal": true
                                 },
                                 "alias": "!=",
-                                "textViewOnly": false,
                                 "tooltip": "Returns true if the first operand not equal to the second operand, else returns false"
                             },
                             "type": "SimpleBlock",
@@ -6879,7 +6231,6 @@ export let config = {
                                         "name": "rel_op",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "A comparison operator that returns true or false (e.g <, >)"
                                 },
                                 "alternateSymbols": [
@@ -6889,7 +6240,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": ">",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is greater than the second operand, else returns false"
                                     },
                                     {
@@ -6898,7 +6248,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "<",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is less than the second operand, else returns false"
                                     },
                                     {
@@ -6907,7 +6256,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "==",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is equal to the second operand, else returns false"
                                     },
                                     {
@@ -6916,7 +6264,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "!=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand not equal to the second operand, else returns false"
                                     },
                                     {
@@ -6925,7 +6272,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": ">=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is greater than or equal to the second operand, else returns false"
                                     },
                                     {
@@ -6934,7 +6280,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "<=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is less than or equal to the second operand, else returns false"
                                     }
                                 ],
@@ -6948,7 +6293,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The second operand"
                             },
                             "alternateSymbols": [
@@ -6957,7 +6301,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -6965,7 +6308,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -6973,7 +6315,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -6981,7 +6322,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -6990,11 +6330,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -7014,7 +6353,6 @@ export let config = {
                                     "name": "arith_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Perform a mathematic operation"
                             },
                             {
@@ -7022,7 +6360,6 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An operator that compares the 2 operands and returns true or false"
                             },
                             {
@@ -7030,7 +6367,6 @@ export let config = {
                                     "name": "bool_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An expression that evaluates to true or false"
                             },
                             {
@@ -7038,7 +6374,6 @@ export let config = {
                                     "name": "primary_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier or a constant"
                             }
                         ],
@@ -7052,18 +6387,16 @@ export let config = {
                             "name": "rel_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "An operator that compares the 2 operands and returns true or false"
                     },
                     "elems": [
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -7073,7 +6406,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The first operand"
                             },
                             "alternateSymbols": [
@@ -7082,7 +6414,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -7090,7 +6421,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -7098,7 +6428,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -7106,7 +6435,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -7119,7 +6447,6 @@ export let config = {
                                     "isTerminal": true
                                 },
                                 "alias": ">=",
-                                "textViewOnly": false,
                                 "tooltip": "Returns true if the first operand is greater than or equal to the second operand, else returns false"
                             },
                             "type": "SimpleBlock",
@@ -7129,7 +6456,6 @@ export let config = {
                                         "name": "rel_op",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "A comparison operator that returns true or false (e.g <, >)"
                                 },
                                 "alternateSymbols": [
@@ -7139,7 +6465,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": ">",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is greater than the second operand, else returns false"
                                     },
                                     {
@@ -7148,7 +6473,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "<",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is less than the second operand, else returns false"
                                     },
                                     {
@@ -7157,7 +6481,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "==",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is equal to the second operand, else returns false"
                                     },
                                     {
@@ -7166,7 +6489,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "!=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand not equal to the second operand, else returns false"
                                     },
                                     {
@@ -7175,7 +6497,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": ">=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is greater than or equal to the second operand, else returns false"
                                     },
                                     {
@@ -7184,7 +6505,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "<=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is less than or equal to the second operand, else returns false"
                                     }
                                 ],
@@ -7198,7 +6518,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The second operand"
                             },
                             "alternateSymbols": [
@@ -7207,7 +6526,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -7215,7 +6533,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -7223,7 +6540,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -7231,7 +6547,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -7240,11 +6555,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -7264,7 +6578,6 @@ export let config = {
                                     "name": "arith_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Perform a mathematic operation"
                             },
                             {
@@ -7272,7 +6585,6 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An operator that compares the 2 operands and returns true or false"
                             },
                             {
@@ -7280,7 +6592,6 @@ export let config = {
                                     "name": "bool_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An expression that evaluates to true or false"
                             },
                             {
@@ -7288,7 +6599,6 @@ export let config = {
                                     "name": "primary_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier or a constant"
                             }
                         ],
@@ -7302,18 +6612,16 @@ export let config = {
                             "name": "rel_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "An operator that compares the 2 operands and returns true or false"
                     },
                     "elems": [
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -7323,7 +6631,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The first operand"
                             },
                             "alternateSymbols": [
@@ -7332,7 +6639,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -7340,7 +6646,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -7348,7 +6653,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -7356,7 +6660,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -7369,7 +6672,6 @@ export let config = {
                                     "isTerminal": true
                                 },
                                 "alias": "<=",
-                                "textViewOnly": false,
                                 "tooltip": "Returns true if the first operand is less than or equal to the second operand, else returns false"
                             },
                             "type": "SimpleBlock",
@@ -7379,7 +6681,6 @@ export let config = {
                                         "name": "rel_op",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "A comparison operator that returns true or false (e.g <, >)"
                                 },
                                 "alternateSymbols": [
@@ -7389,7 +6690,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": ">",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is greater than the second operand, else returns false"
                                     },
                                     {
@@ -7398,7 +6698,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "<",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is less than the second operand, else returns false"
                                     },
                                     {
@@ -7407,7 +6706,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "==",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is equal to the second operand, else returns false"
                                     },
                                     {
@@ -7416,7 +6714,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "!=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand not equal to the second operand, else returns false"
                                     },
                                     {
@@ -7425,7 +6722,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": ">=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is greater than or equal to the second operand, else returns false"
                                     },
                                     {
@@ -7434,7 +6730,6 @@ export let config = {
                                             "isTerminal": true
                                         },
                                         "alias": "<=",
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if the first operand is less than or equal to the second operand, else returns false"
                                     }
                                 ],
@@ -7448,7 +6743,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The second operand"
                             },
                             "alternateSymbols": [
@@ -7457,7 +6751,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -7465,7 +6758,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -7473,7 +6765,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -7481,7 +6772,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -7490,11 +6780,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -7514,7 +6803,6 @@ export let config = {
                                     "name": "arith_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Perform a mathematic operation"
                             },
                             {
@@ -7522,7 +6810,6 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An operator that compares the 2 operands and returns true or false"
                             },
                             {
@@ -7530,7 +6817,6 @@ export let config = {
                                     "name": "bool_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An expression that evaluates to true or false"
                             },
                             {
@@ -7538,7 +6824,6 @@ export let config = {
                                     "name": "primary_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "An identifier or a constant"
                             }
                         ],
@@ -7552,18 +6837,16 @@ export let config = {
                             "name": "binary_bool_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "Performs a binary operation with 2 operands"
                     },
                     "elems": [
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -7573,7 +6856,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The first operand"
                             },
                             "alternateSymbols": [
@@ -7582,7 +6864,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -7590,7 +6871,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -7598,7 +6878,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -7606,7 +6885,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -7618,7 +6896,6 @@ export let config = {
                                     "name": "AND",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Returns true if both operands are true, else returns false"
                             },
                             "type": "SimpleBlock",
@@ -7628,7 +6905,6 @@ export let config = {
                                         "name": "bool_bin_op",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Performs a binary operation with 2 operands"
                                 },
                                 "alternateSymbols": [
@@ -7637,7 +6913,6 @@ export let config = {
                                             "name": "AND",
                                             "isTerminal": true
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if both operands are true, else returns false"
                                     },
                                     {
@@ -7645,7 +6920,6 @@ export let config = {
                                             "name": "OR",
                                             "isTerminal": true
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if either operand is true, else returns false"
                                     }
                                 ],
@@ -7659,7 +6933,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The second operand"
                             },
                             "alternateSymbols": [
@@ -7668,7 +6941,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -7676,7 +6948,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -7684,7 +6955,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -7692,7 +6962,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -7701,11 +6970,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -7717,7 +6985,6 @@ export let config = {
                                 "name": "bool_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "An expression that evaluates to true or false"
                         },
                         "alternateSymbols": [
@@ -7726,7 +6993,6 @@ export let config = {
                                     "name": "binary_bool_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Performs a binary operation with 2 operands"
                             },
                             {
@@ -7734,7 +7000,6 @@ export let config = {
                                     "name": "not_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Performs logical negation. True becomes false and false becomes true"
                             }
                         ],
@@ -7754,7 +7019,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -7762,7 +7026,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -7770,7 +7033,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -7778,7 +7040,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -7793,18 +7054,16 @@ export let config = {
                             "name": "binary_bool_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "Performs a binary operation with 2 operands"
                     },
                     "elems": [
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -7814,7 +7073,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The first operand"
                             },
                             "alternateSymbols": [
@@ -7823,7 +7081,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -7831,7 +7088,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -7839,7 +7095,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -7847,7 +7102,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -7859,7 +7113,6 @@ export let config = {
                                     "name": "OR",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Returns true if either operand is true, else returns false"
                             },
                             "type": "SimpleBlock",
@@ -7869,7 +7122,6 @@ export let config = {
                                         "name": "bool_bin_op",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Performs a binary operation with 2 operands"
                                 },
                                 "alternateSymbols": [
@@ -7878,7 +7130,6 @@ export let config = {
                                             "name": "AND",
                                             "isTerminal": true
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if both operands are true, else returns false"
                                     },
                                     {
@@ -7886,7 +7137,6 @@ export let config = {
                                             "name": "OR",
                                             "isTerminal": true
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Returns true if either operand is true, else returns false"
                                     }
                                 ],
@@ -7900,7 +7150,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The second operand"
                             },
                             "alternateSymbols": [
@@ -7909,7 +7158,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -7917,7 +7165,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -7925,7 +7172,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -7933,7 +7179,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -7942,11 +7187,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -7958,7 +7202,6 @@ export let config = {
                                 "name": "bool_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "An expression that evaluates to true or false"
                         },
                         "alternateSymbols": [
@@ -7967,7 +7210,6 @@ export let config = {
                                     "name": "binary_bool_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Performs a binary operation with 2 operands"
                             },
                             {
@@ -7975,7 +7217,6 @@ export let config = {
                                     "name": "not_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Performs logical negation. True becomes false and false becomes true"
                             }
                         ],
@@ -7995,7 +7236,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -8003,7 +7243,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -8011,7 +7250,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -8019,7 +7257,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -8034,7 +7271,6 @@ export let config = {
                             "name": "not_expr",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "Performs logical negation. True becomes false and false becomes true"
                     },
                     "elems": [
@@ -8044,7 +7280,6 @@ export let config = {
                                     "name": "NOT",
                                     "isTerminal": true
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Returns true if the operand is false, else returns false"
                             },
                             "type": "SimpleBlock"
@@ -8055,7 +7290,6 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "The operand"
                             },
                             "alternateSymbols": [
@@ -8064,7 +7298,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -8072,7 +7305,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -8080,7 +7312,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -8088,7 +7319,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -8102,7 +7332,6 @@ export let config = {
                                 "name": "bool_expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false,
                             "tooltip": "An expression that evaluates to true or false"
                         },
                         "alternateSymbols": [
@@ -8111,7 +7340,6 @@ export let config = {
                                     "name": "binary_bool_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Performs a binary operation with 2 operands"
                             },
                             {
@@ -8119,7 +7347,6 @@ export let config = {
                                     "name": "not_expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Performs logical negation. True becomes false and false becomes true"
                             }
                         ],
@@ -8139,7 +7366,6 @@ export let config = {
                                         "name": "arith_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "Perform a mathematic operation"
                                 },
                                 {
@@ -8147,7 +7373,6 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
@@ -8155,7 +7380,6 @@ export let config = {
                                         "name": "bool_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An expression that evaluates to true or false"
                                 },
                                 {
@@ -8163,7 +7387,6 @@ export let config = {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
-                                    "textViewOnly": false,
                                     "tooltip": "An identifier or a constant"
                                 }
                             ],
@@ -8184,7 +7407,6 @@ export let config = {
                             "name": "func_def_stmt",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "Define reusable code as a function"
                     },
                     "elems": [
@@ -8222,11 +7444,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -8265,22 +7486,20 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_CURLY_BRACE",
-                                    "isTerminal": true
+                                    "name": "{",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "{",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -8313,7 +7532,6 @@ export let config = {
                                                 "name": "if_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something if a condition is true"
                                         },
                                         {
@@ -8321,7 +7539,6 @@ export let config = {
                                                 "name": "if_else_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something if a condition is true, else do something else"
                                         },
                                         {
@@ -8329,7 +7546,6 @@ export let config = {
                                                 "name": "while_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something while a condition is true"
                                         },
                                         {
@@ -8337,7 +7553,6 @@ export let config = {
                                                 "name": "for_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                                         },
                                         {
@@ -8345,7 +7560,6 @@ export let config = {
                                                 "name": "assign_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Set a variable's value"
                                         },
                                         {
@@ -8353,7 +7567,6 @@ export let config = {
                                                 "name": "func_def_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Define reusable code as a function"
                                         },
                                         {
@@ -8361,7 +7574,6 @@ export let config = {
                                                 "name": "func_call_stmt",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Use a defined function"
                                         }
                                     ],
@@ -8382,7 +7594,6 @@ export let config = {
                                             "name": "if_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something if a condition is true"
                                     },
                                     {
@@ -8390,7 +7601,6 @@ export let config = {
                                             "name": "if_else_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something if a condition is true, else do something else"
                                     },
                                     {
@@ -8398,7 +7608,6 @@ export let config = {
                                             "name": "while_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something while a condition is true"
                                     },
                                     {
@@ -8406,7 +7615,6 @@ export let config = {
                                             "name": "for_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                                     },
                                     {
@@ -8414,7 +7622,6 @@ export let config = {
                                             "name": "assign_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Set a variable's value"
                                     },
                                     {
@@ -8422,7 +7629,6 @@ export let config = {
                                             "name": "func_def_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Define reusable code as a function"
                                     },
                                     {
@@ -8430,7 +7636,6 @@ export let config = {
                                             "name": "func_call_stmt",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Use a defined function"
                                     }
                                 ],
@@ -8441,11 +7646,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_CURLY_BRACE",
-                                    "isTerminal": true
+                                    "name": "}",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "}",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -8465,7 +7669,6 @@ export let config = {
                                     "name": "if_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something if a condition is true"
                             },
                             {
@@ -8473,7 +7676,6 @@ export let config = {
                                     "name": "if_else_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something if a condition is true, else do something else"
                             },
                             {
@@ -8481,7 +7683,6 @@ export let config = {
                                     "name": "while_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something while a condition is true"
                             },
                             {
@@ -8489,7 +7690,6 @@ export let config = {
                                     "name": "for_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                             },
                             {
@@ -8497,7 +7697,6 @@ export let config = {
                                     "name": "assign_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Set a variable's value"
                             },
                             {
@@ -8505,7 +7704,6 @@ export let config = {
                                     "name": "func_def_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Define reusable code as a function"
                             },
                             {
@@ -8513,7 +7711,6 @@ export let config = {
                                     "name": "func_call_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Use a defined function"
                             }
                         ],
@@ -8527,7 +7724,6 @@ export let config = {
                             "name": "func_call_stmt",
                             "isTerminal": false
                         },
-                        "textViewOnly": false,
                         "tooltip": "Use a defined function"
                     },
                     "elems": [
@@ -8565,11 +7761,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "LEFT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": "(",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         },
@@ -8597,7 +7792,6 @@ export let config = {
                                                 "name": "arith_expr",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "Perform a mathematic operation"
                                         },
                                         {
@@ -8605,7 +7799,6 @@ export let config = {
                                                 "name": "rel_expr",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "An operator that compares the 2 operands and returns true or false"
                                         },
                                         {
@@ -8613,7 +7806,6 @@ export let config = {
                                                 "name": "bool_expr",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "An expression that evaluates to true or false"
                                         },
                                         {
@@ -8621,7 +7813,6 @@ export let config = {
                                                 "name": "primary_expr",
                                                 "isTerminal": false
                                             },
-                                            "textViewOnly": false,
                                             "tooltip": "An identifier or a constant"
                                         }
                                     ],
@@ -8643,7 +7834,6 @@ export let config = {
                                             "name": "arith_expr",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "Perform a mathematic operation"
                                     },
                                     {
@@ -8651,7 +7841,6 @@ export let config = {
                                             "name": "rel_expr",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "An operator that compares the 2 operands and returns true or false"
                                     },
                                     {
@@ -8659,7 +7848,6 @@ export let config = {
                                             "name": "bool_expr",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "An expression that evaluates to true or false"
                                     },
                                     {
@@ -8667,7 +7855,6 @@ export let config = {
                                             "name": "primary_expr",
                                             "isTerminal": false
                                         },
-                                        "textViewOnly": false,
                                         "tooltip": "An identifier or a constant"
                                     }
                                 ],
@@ -8678,11 +7865,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "RIGHT_PARENTHESIS",
-                                    "isTerminal": true
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
                                 },
-                                "alias": ")",
-                                "textViewOnly": true
                             },
                             "type": "InvisibleBlock"
                         }
@@ -8702,7 +7888,6 @@ export let config = {
                                     "name": "if_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something if a condition is true"
                             },
                             {
@@ -8710,7 +7895,6 @@ export let config = {
                                     "name": "if_else_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something if a condition is true, else do something else"
                             },
                             {
@@ -8718,7 +7902,6 @@ export let config = {
                                     "name": "while_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something while a condition is true"
                             },
                             {
@@ -8726,7 +7909,6 @@ export let config = {
                                     "name": "for_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                             },
                             {
@@ -8734,7 +7916,6 @@ export let config = {
                                     "name": "assign_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Set a variable's value"
                             },
                             {
@@ -8742,7 +7923,6 @@ export let config = {
                                     "name": "func_def_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Define reusable code as a function"
                             },
                             {
@@ -8750,7 +7930,6 @@ export let config = {
                                     "name": "func_call_stmt",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false,
                                 "tooltip": "Use a defined function"
                             }
                         ],
@@ -8902,34 +8081,6 @@ export let lightTheme = {
             }
         },
         "Specific": {
-            "LEFT_PARENTHESIS": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "RIGHT_PARENTHESIS": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
             "MINUS": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -9280,34 +8431,6 @@ export let lightTheme = {
                     "BorderRadius": ""
                 }
             },
-            "LEFT_CURLY_BRACE": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "RIGHT_CURLY_BRACE": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
             "CALL": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -9392,21 +8515,6 @@ export let lightTheme = {
                     "BorderRadius": ""
                 }
             },
-            "SEMI_COLON": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "program": {},
             "stmts": {
                 "Group Block": {
                     "BackgroundColor": "",
@@ -10181,6 +9289,49 @@ export let lightTheme = {
         "Separator": {
             "BackgroundColor": "#C2C2C2"
         }
+    },
+    "Source Text View Colors": {
+        "(": "#000000",
+        ")": "#000000",
+        "MINUS": "#000000",
+        "PLUS": "#000000",
+        "TIMES": "#000000",
+        "BY": "#000000",
+        "GREATER": "#000000",
+        "LESS": "#000000",
+        "EQUAL_TO": "#000000",
+        "NOT_EQUAL_TO": "#000000",
+        "GREATER_EQUAL": "#000000",
+        "LESS_EQUAL": "#000000",
+        "AND": "#000000",
+        "OR": "#000000",
+        "NOT": "#000000",
+        "IDENT": "#000000",
+        "INT_CONST": "#008052",
+        "FLOAT_CONST": "#008052",
+        "CHAR_CONST": "#A31515",
+        "STRING_CONST": "#A31515",
+        "BOOL_CONST": "#237893",
+        "EQUALS": "#000000",
+        "FUNCTION": "#0000FF",
+        "OF": "#0000FF",
+        "{": "#000000",
+        "}": "#000000",
+        "CALL": "#0000FF",
+        "WITH": "#0000FF",
+        "IF": "#0000FF",
+        "ELSE": "#0000FF",
+        "WHILE": "#0000FF",
+        "FOR": "#0000FF",
+        ";": "#000000",
+        "stmt": "#000000",
+        "expr": "#000000",
+        "arith_expr": "#000000",
+        "bool_expr": "#000000",
+        "primary_expr": "#000000",
+        "arith_op": "#000000",
+        "rel_op": "#000000",
+        "bool_bin_op": "#000000"
     }
 };
 
@@ -10318,34 +9469,6 @@ export let colorfulTheme = {
             }
         },
         "Specific": {
-            "LEFT_PARENTHESIS": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "RIGHT_PARENTHESIS": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
             "MINUS": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -10696,34 +9819,6 @@ export let colorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "LEFT_CURLY_BRACE": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "RIGHT_CURLY_BRACE": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
             "CALL": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -10808,21 +9903,6 @@ export let colorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "SEMI_COLON": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "program": {},
             "stmts": {
                 "Group Block": {
                     "BackgroundColor": "",
@@ -11598,6 +10678,49 @@ export let colorfulTheme = {
         "Separator": {
             "BackgroundColor": "#C2C2C2"
         }
+    },
+    "Source Text View Colors": {
+        "(": "#000000",
+        ")": "#000000",
+        "MINUS": "#000000",
+        "PLUS": "#000000",
+        "TIMES": "#000000",
+        "BY": "#000000",
+        "GREATER": "#000000",
+        "LESS": "#000000",
+        "EQUAL_TO": "#000000",
+        "NOT_EQUAL_TO": "#000000",
+        "GREATER_EQUAL": "#000000",
+        "LESS_EQUAL": "#000000",
+        "AND": "#000000",
+        "OR": "#000000",
+        "NOT": "#000000",
+        "IDENT": "#000000",
+        "INT_CONST": "#008052",
+        "FLOAT_CONST": "#008052",
+        "CHAR_CONST": "#A31515",
+        "STRING_CONST": "#A31515",
+        "BOOL_CONST": "#237893",
+        "EQUALS": "#000000",
+        "FUNCTION": "#0000FF",
+        "OF": "#0000FF",
+        "{": "#000000",
+        "}": "#000000",
+        "CALL": "#0000FF",
+        "WITH": "#0000FF",
+        "IF": "#0000FF",
+        "ELSE": "#0000FF",
+        "WHILE": "#0000FF",
+        "FOR": "#0000FF",
+        ";": "#000000",
+        "stmt": "#000000",
+        "expr": "#000000",
+        "arith_expr": "#000000",
+        "bool_expr": "#000000",
+        "primary_expr": "#000000",
+        "arith_op": "#000000",
+        "rel_op": "#000000",
+        "bool_bin_op": "#000000"
     }
 };
 
@@ -11735,34 +10858,6 @@ export let darkColorfulTheme = {
             }
         },
         "Specific": {
-            "LEFT_PARENTHESIS": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "RIGHT_PARENTHESIS": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
             "MINUS": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -12113,34 +11208,6 @@ export let darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "LEFT_CURLY_BRACE": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "RIGHT_CURLY_BRACE": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
             "CALL": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -12225,21 +11292,6 @@ export let darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "SEMI_COLON": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "program": {},
             "stmts": {
                 "Group Block": {
                     "BackgroundColor": "",
@@ -13015,6 +12067,48 @@ export let darkColorfulTheme = {
         "Separator": {
             "BackgroundColor": "#C2C2C2"
         }
+    },
+    "Source Text View Colors": {
+        "(": "#ffffff",
+        ")": "#ffffff",
+        "MINUS": "#DCB962",
+        "PLUS": "#DCB962",
+        "TIMES": "#DCB962",
+        "BY": "#DCB962",
+        "GREATER": "#D4C59F",
+        "LESS": "#D4C59F",
+        "EQUAL_TO": "#D4C59F",
+        "NOT_EQUAL_TO": "#D4C59F",
+        "GREATER_EQUAL": "#D4C59F",
+        "LESS_EQUAL": "#D4C59F",
+        "AND": "#B5C078",
+        "OR": "#B5C078",
+        "NOT": "#B5C078",
+        "IDENT": "#8CDCFE",
+        "INT_CONST": "#44C9B0",
+        "FLOAT_CONST": "#44C9B0",
+        "CHAR_CONST": "#D15036",
+        "STRING_CONST": "#D15036",
+        "BOOL_CONST": "#D4C59F",
+        "EQUALS": "#ffffff",
+        "FUNCTION": "#C57991",
+        "OF": "#C57991",
+        "{": "#ffffff",
+        "}": "#ffffff",
+        "CALL": "#C57991",
+        "WITH": "#C57991",
+        "IF": "#C57991",
+        "ELSE": "#C57991",
+        "WHILE": "#C57991",
+        "FOR": "#C57991",
+        ";": "#ffffff",
+        "stmt": "#ffffff",
+        "expr": "#ffffff",
+        "arith_expr": "#ffffff",
+        "bool_expr": "#ffffff",
+        "primary_expr": "#ffffff",
+        "arith_op": "#ffffff",
+        "rel_op": "#ffffff",
+        "bool_bin_op": "#ffffff"
     }
 };
-

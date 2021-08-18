@@ -31,7 +31,8 @@ export class EditorElement {
 
     onClick = (e, self) => {};
     onContextMenu = (e, self) => {};
-    theme = (self) => { return ''; };
+    theme = (self) => { return; };
+    textViewTheme = (self) => { return; };
     
     onDragStart = (e, self) => { };
     onDragEnd = (e, self) => { };
@@ -52,6 +53,7 @@ export class EditorElement {
     ApplyViewMode(mode)                 { assert(false, 'Non implemented by subclass'); }
     PastRendering_()                    { }
     OnApplyViewMode_()                  { }
+    ApplyTextViewTheme_()               { }
 
     /* --------------------- */
 
@@ -61,6 +63,7 @@ export class EditorElement {
         instance.onClick = this.onClick.bind(instance);
         instance.onContextMenu = this.onContextMenu.bind(instance);
         instance.theme = this.theme.bind(instance);
+        instance.textViewTheme = this.textViewTheme.bind(instance);
         instance.onDragStart = this.onDragStart.bind(instance);
         instance.onDragEnd = this.onDragEnd.bind(instance);
         instance.onDrop = this.onDrop.bind(instance);
@@ -242,10 +245,12 @@ export class EditorElement {
             case EditorElementViewMode.PureTextView:
                 this.$wholeView?.addClass('pure-text');
                 this.$customizableView?.attr('draggable', 'false');
+                this.ApplyTextViewTheme_();
                 break;
             case EditorElementViewMode.BlockView:
                 this.$wholeView?.removeClass('pure-text');
                 this.$customizableView?.attr('draggable', this.isDraggable);
+                this.ApplyThemes_();
                 break;
             default:
                 assert(false, `Non supported view mode: "${mode}"`);
@@ -276,4 +281,5 @@ export class EditorElement {
     SetGeneratedBy(generatedBy)     { this.generatedBy = generatedBy; }
     SetParent(p)                    { this.parent = p; }
     SetTheme(f)                     { this.theme = f; }
+    SetTextViewTheme(f)             { this.textViewTheme = f; }
 }

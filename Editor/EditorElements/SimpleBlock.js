@@ -53,6 +53,12 @@ export class SimpleBlock extends EditorElement {
         this.$wholeView = this.$customizableView = $elem;
     }
 
+    ApplyTextViewTheme_(){
+        let theme = this.textViewTheme(this), color = theme?.Get(ThemeableProps.Props.FontColor);
+
+        if (theme && color) this.$wholeView.css(ThemeableProps.ToCss(ThemeableProps.Props.FontColor, color));
+    }
+
     GetSymbol(){
         return this.symbol;
     }

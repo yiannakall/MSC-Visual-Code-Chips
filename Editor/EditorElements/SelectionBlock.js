@@ -113,6 +113,8 @@ export class SelectionBlock extends EditorElement {
 
                 let prevBg, prevColor;
 
+                this.$option.off('mouseenter'), this.$option.off('mouseleave');
+
                 this.$option.on('mouseenter', function () {
                     if (!prevBg)
                         prevBg = $(this).css('background-color');
@@ -216,6 +218,12 @@ export class SelectionBlock extends EditorElement {
 
         this.$customizableView = this.$selectionBlock;
         this.$wholeView = $selectionBlockContainer;
+    }
+
+    ApplyTextViewTheme_(){
+        let theme = this.textViewTheme(this), color = theme?.Get(ThemeableProps.Props.FontColor);
+
+        if (theme && color) this.$selectionBlock.css(ThemeableProps.ToCss(ThemeableProps.Props.FontColor, color));
     }
 
     CreateChoiceView_(symbol){
