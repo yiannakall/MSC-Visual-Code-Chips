@@ -64,7 +64,7 @@ export class AliasedGrammarSymbol {
 export class Language {
     terminals = [];                     // GrammarSymbol[]
     nonTerminals = [];                  // GrammarSymbol[]
-    defs = new Map;                     // Map<GrammarSymbol, RhsItem[]>
+    defs = new Map;                     // Map<GrammarSymbol, DefinitionRhs[]>
     
     static TerminalType = {
         Static:         "STATIC",

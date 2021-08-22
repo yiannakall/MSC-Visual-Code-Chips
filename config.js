@@ -2071,6 +2071,38 @@ export let config = {
             "arith_op": "#ffffff",
             "rel_op": "#ffffff",
             "bool_bin_op": "#ffffff"
+        },
+        "Pretty Print": {
+            "stmts":                { "NewLine Between Blocks": true },
+            "if_stmt":              [ "IF", "condition", "$$_newline", "$$_tab", "if_part"],
+            "if_else_stmt":         [ 
+                                        "IF", "condition", "$$_newline", "$$_tab", "if_part",
+                                        "$$_newline", "ELSE", "$$_newline", "$$_tab", "else_part"
+                                    ],
+            "while_stmt":           [ "WHILE", "condition", "$$_newline", "$$_tab", "while_part" ],
+            "for_stmt":             [ "FOR", "initialization", "condition", "step", "$$_newline", "$$_tab", "for_part" ],
+            "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
+            "ident_list":           { "NewLine Between Blocks": false },
+            "expr_list":            { "NewLine Between Blocks": false }
+        },
+        "Source Text Pretty Print": {
+            "stmts":                { "NewLine Between Blocks": true },
+            "if_stmt":              [ "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}" ],
+            "if_else_stmt":         [
+                                        "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}", 
+                                        "$$_newline", "ELSE", "{", "$$_newline", "$$_tab", "else_part", "$$_newline", "}" 
+                                    ],
+            "while_stmt":           [ "WHILE", "(", "condition", ")", "{", "$$_newline", "$$_tab", "while_part", "$$_newline", "}" ],
+            "for_stmt":             [
+                                        "FOR", "(", "initialization", ";", "condition", ";", "step", ")", "{",
+                                        "$$_newline", "$$_tab", "for_part", "$$_newline", "}" 
+                                    ],
+            "func_def_stmt":        [ 
+                                        "FUNCTION", "NAME", "OF", "(", "ident_list", ")", "{", 
+                                        "$$_newline", "$$_tab", "stmts", "$$_newline", "}" 
+                                    ],
+            "ident_list":           { "NewLine Between Blocks": false },
+            "expr_list":            { "NewLine Between Blocks": false }
         }
     },
     toolbox: [
@@ -9332,6 +9364,38 @@ export let lightTheme = {
         "arith_op": "#000000",
         "rel_op": "#000000",
         "bool_bin_op": "#000000"
+    },
+    "Pretty Print": {
+        "stmts":                { "NewLine Between Blocks": true },
+        "if_stmt":              [ "IF", "condition", "$$_newline", "$$_tab", "if_part"],
+        "if_else_stmt":         [ 
+                                    "IF", "condition", "$$_newline", "$$_tab", "if_part",
+                                    "$$_newline", "ELSE", "$$_newline", "$$_tab", "else_part"
+                                ],
+        "while_stmt":           [ "WHILE", "condition", "$$_newline", "$$_tab", "while_part" ],
+        "for_stmt":             [ "FOR", "initialization", "condition", "step", "$$_newline", "$$_tab", "for_part" ],
+        "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
+        "ident_list":           { "NewLine Between Blocks": false },
+        "expr_list":            { "NewLine Between Blocks": false }
+    },
+    "Source Text Pretty Print": {
+        "stmts":                { "NewLine Between Blocks": true },
+        "if_stmt":              [ "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}" ],
+        "if_else_stmt":         [
+                                    "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}", 
+                                    "$$_newline", "ELSE", "{", "$$_newline", "$$_tab", "else_part", "$$_newline", "}" 
+                                ],
+        "while_stmt":           [ "WHILE", "(", "condition", ")", "{", "$$_newline", "$$_tab", "while_part", "$$_newline", "}" ],
+        "for_stmt":             [
+                                    "FOR", "(", "initialization", ";", "condition", ";", "step", ")", "{",
+                                    "$$_newline", "$$_tab", "for_part", "$$_newline", "}" 
+                                ],
+        "func_def_stmt":        [ 
+                                    "FUNCTION", "NAME", "OF", "(", "ident_list", ")", "{", 
+                                    "$$_newline", "$$_tab", "stmts", "$$_newline", "}" 
+                                ],
+        "ident_list":           { "NewLine Between Blocks": false },
+        "expr_list":            { "NewLine Between Blocks": false }
     }
 };
 
@@ -10721,6 +10785,38 @@ export let colorfulTheme = {
         "arith_op": "#000000",
         "rel_op": "#000000",
         "bool_bin_op": "#000000"
+    },
+    "Pretty Print": {
+        "stmts":                { "NewLine Between Blocks": true },
+        "if_stmt":              [ "IF", "condition", "$$_newline", "$$_tab", "if_part"],
+        "if_else_stmt":         [ 
+                                    "IF", "condition", "$$_newline", "$$_tab", "if_part",
+                                    "$$_newline", "ELSE", "$$_newline", "$$_tab", "else_part"
+                                ],
+        "while_stmt":           [ "WHILE", "condition", "$$_newline", "$$_tab", "while_part" ],
+        "for_stmt":             [ "FOR", "initialization", "condition", "step", "$$_newline", "$$_tab", "for_part" ],
+        "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
+        "ident_list":           { "NewLine Between Blocks": false },
+        "expr_list":            { "NewLine Between Blocks": false }
+    },
+    "Source Text Pretty Print": {
+        "stmts":                { "NewLine Between Blocks": true },
+        "if_stmt":              [ "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}" ],
+        "if_else_stmt":         [
+                                    "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}", 
+                                    "$$_newline", "ELSE", "{", "$$_newline", "$$_tab", "else_part", "$$_newline", "}" 
+                                ],
+        "while_stmt":           [ "WHILE", "(", "condition", ")", "{", "$$_newline", "$$_tab", "while_part", "$$_newline", "}" ],
+        "for_stmt":             [
+                                    "FOR", "(", "initialization", ";", "condition", ";", "step", ")", "{",
+                                    "$$_newline", "$$_tab", "for_part", "$$_newline", "}" 
+                                ],
+        "func_def_stmt":        [ 
+                                    "FUNCTION", "NAME", "OF", "(", "ident_list", ")", "{", 
+                                    "$$_newline", "$$_tab", "stmts", "$$_newline", "}" 
+                                ],
+        "ident_list":           { "NewLine Between Blocks": false },
+        "expr_list":            { "NewLine Between Blocks": false }
     }
 };
 
@@ -12110,5 +12206,37 @@ export let darkColorfulTheme = {
         "arith_op": "#ffffff",
         "rel_op": "#ffffff",
         "bool_bin_op": "#ffffff"
+    },
+    "Pretty Print": {
+        "stmts":                { "NewLine Between Blocks": true },
+        "if_stmt":              [ "IF", "condition", "$$_newline", "$$_tab", "if_part"],
+        "if_else_stmt":         [ 
+                                    "IF", "condition", "$$_newline", "$$_tab", "if_part",
+                                    "$$_newline", "ELSE", "$$_newline", "$$_tab", "else_part"
+                                ],
+        "while_stmt":           [ "WHILE", "condition", "$$_newline", "$$_tab", "while_part" ],
+        "for_stmt":             [ "FOR", "initialization", "condition", "step", "$$_newline", "$$_tab", "for_part" ],
+        "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
+        "ident_list":           { "NewLine Between Blocks": false },
+        "expr_list":            { "NewLine Between Blocks": false }
+    },
+    "Source Text Pretty Print": {
+        "stmts":                { "NewLine Between Blocks": true },
+        "if_stmt":              [ "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}" ],
+        "if_else_stmt":         [
+                                    "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}", 
+                                    "$$_newline", "ELSE", "{", "$$_newline", "$$_tab", "else_part", "$$_newline", "}" 
+                                ],
+        "while_stmt":           [ "WHILE", "(", "condition", ")", "{", "$$_newline", "$$_tab", "while_part", "$$_newline", "}" ],
+        "for_stmt":             [
+                                    "FOR", "(", "initialization", ";", "condition", ";", "step", ")", "{",
+                                    "$$_newline", "$$_tab", "for_part", "$$_newline", "}" 
+                                ],
+        "func_def_stmt":        [ 
+                                    "FUNCTION", "NAME", "OF", "(", "ident_list", ")", "{", 
+                                    "$$_newline", "$$_tab", "stmts", "$$_newline", "}" 
+                                ],
+        "ident_list":           { "NewLine Between Blocks": false },
+        "expr_list":            { "NewLine Between Blocks": false }
     }
 };

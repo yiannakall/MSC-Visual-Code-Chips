@@ -17,14 +17,21 @@ export class CreateRepetitiveElemCommand extends EditorCommand {
     }
 
     Execute(){
-        if (this.repetitionGroup.GetLength() !== 0 &&
-            (
-                this.repetitionGroup.GetRepetitiveElem().GetType() === EditorElementTypes.SelectionBlock ||
-                this.repetitionGroup.GetRepetitiveElem().GetType() === EditorElementTypes.Group ||
-                this.repetitionGroup.GetRepetitiveElem().GetType() === EditorElementTypes.RepetitionGroup
-            )
-        ){
-            this.repetitionGroup.PushElem( this.newLine || (this.newLine = new NewLine()) );
+        let nl = this.editor.theme['Pretty Print'][this.repetitionGroup.GetSymbol().symbol.name]['NewLine Between Blocks'];
+
+        if ( this.repetitionGroup.GetLength() !== 0 ){
+            if (!this.editor.autoPrettyPrint || nl === 'auto' || nl === undefined || nl === null){
+                if (
+                    this.repetitionGroup.GetRepetitiveElem().GetType() === EditorElementTypes.SelectionBlock ||
+                    this.repetitionGroup.GetRepetitiveElem().GetType() === EditorElementTypes.Group ||
+                    this.repetitionGroup.GetRepetitiveElem().GetType() === EditorElementTypes.RepetitionGroup
+                ){
+                    this.repetitionGroup.PushElem( this.newLine || (this.newLine = new NewLine()) );
+                }
+            }
+            else if (nl === true){
+                this.repetitionGroup.PushElem( this.newLine || (this.newLine = new NewLine()) );
+            }
         }
 
         this.repetitionGroup.PushElem(this.newElem || (this.newElem = this.repetitionGroup.GetRepetitiveElem().CloneRec()) );

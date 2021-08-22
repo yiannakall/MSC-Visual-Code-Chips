@@ -92,29 +92,34 @@ body{
 
 /* New Line */
 
-.group > .new-line:not(.pure-text) {
+.group > .new-line.hidden {
+    display: none !important;
+    height: 0px !important;
+}
+
+.group > .new-line:not(.pure-text):not(.hidden) {
     display: block;
     height: 5px;
 }
 
-.group > .new-line:not(.pure-text) + .new-line {
+.group > .new-line:not(.pure-text):not(.hidden) + .new-line:not(.hidden) {
     height: 32px;
 }
 
-.new-line:first-child:not(.pure-text) {
+.new-line:first-child:not(.pure-text):not(.hidden) {
     height: 32px;
 }
 
-.group > .new-line.pure-text {
+.group > .new-line.pure-text:not(.hidden) {
     display: block !important;
     height: 5px !important;
 }
 
-.group > .new-line.pure-text + .new-line.pure-text {
+.group > .new-line.pure-text:not(.hidden) + .new-line.pure-text:not(.hidden) {
     height: calc(1em + 5px) !important;
 }
 
-.new-line:first-child.pure-text {
+.new-line:first-child.pure-text:not(.hidden) {
     height: calc(1em + 5px) !important;
 }
 
@@ -124,6 +129,10 @@ body{
     width: 15px;
     display: inline-block;
     vertical-align: top;
+}
+
+.tab.hidden {
+    display: none !important;
 }
 
 /* Selection Block */

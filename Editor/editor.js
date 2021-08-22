@@ -31,6 +31,7 @@ import { ReorderUpCommand } from './EditorCommands/ReorderUpCommand.js';
 import { ReorderDownCommand } from './EditorCommands/ReorderDownCommand.js';
 import { DropCommand } from './EditorCommands/DropCommand.js';
 import { ApplyCssToStyle, Theme, Themeable, ThemeableProps } from './Theme.js';
+import { BeautifyCommand } from './EditorCommands/BeautifyCommand.js';
 
 export class Editor {
 
@@ -95,6 +96,7 @@ export class Editor {
     commands = new CommandHistory();
 
     theme;
+    autoPrettyPrint = true;
 
     // themeableIds, themeables, customizableViews for code
 
@@ -282,6 +284,30 @@ export class Editor {
         return blockThemes;
     }
 
+    CreatePrettyPrintThemeStructure(ignoreTextViewOnlySymbols){
+        let prettyPrint = {};
+
+        for (let symbol of this.language.GetNonTerminals()){
+            let blockClass = this.PeekElemType(symbol);
+
+            if (blockClass === Group){
+                let children = this.language.GetDefinition(symbol).symbols;
+
+                if (ignoreTextViewOnlySymbols)
+                    children = children.filter(sym => !sym.symbol.textViewOnly);
+
+                children = children.map(sym => sym.alias || sym.symbol.name);
+                
+                prettyPrint[symbol.name] = children;
+            }
+            else if (blockClass === RepetitionGroup){
+                prettyPrint[symbol.name] = { 'NewLine Between Blocks': 'auto' }
+            }
+        }
+
+        return prettyPrint;
+    }
+
     CreateSourceTextThemeStructure(){
         let blockThemes = {};
 
@@ -322,7 +348,9 @@ export class Editor {
             'Toolbox': this.toolbox.CreateThemeStructure(),
             'Undo Redo Toolbar': UndoRedoToolbar.CreateThemeStructure(),
             'Context Menu': ContextMenu.CreateThemeStructure(),
-            'Source Text View Colors': this.CreateSourceTextThemeStructure()
+            'Source Text View Colors': this.CreateSourceTextThemeStructure(),
+            'Pretty Print': this.CreatePrettyPrintThemeStructure(true),
+            'Source Text Pretty Print': this.CreatePrettyPrintThemeStructure(false),
         };
 
         return themes;
@@ -464,6 +492,7 @@ export class Editor {
             .AddEventHandler( [Keys.CTRL, Keys.V],                  EvHandler(() => this.EventHandler_Paste_()) )
             .AddEventHandler( [Keys.CTRL, Keys.Z],                  EvHandler(() => this.EventHandler_Undo_()) )
             .AddEventHandler( [Keys.CTRL, Keys.Y],                  EvHandler(() => this.EventHandler_Redo_()) )
+            .AddEventHandler( [Keys.CTRL, Keys.B],                  EvHandler(() => this.EventHandler_Beautify()) )
             .AddEventHandler( [Keys.CTRL, Keys.M],                  () => this.EventHandler_ToggleViewMode() )
         ;
     }
@@ -541,6 +570,14 @@ export class Editor {
                         name: this.viewMode === EditorElementViewMode.BlockView ? 'View Code As Text' : 'View Code As Blocks',
                         shortcut: 'Ctrl+M',
                         handler: () => this.EventHandler_ToggleViewMode()
+                    }
+                ],
+                [
+                    {
+                        name: 'Beautify',
+                        shortcut: 'Ctrl+B',
+                        disabled: this.viewMode === EditorElementViewMode.PureTextView,
+                        handler: () => this.EventHandler_Beautify()
                     }
                 ],
                 [
@@ -678,6 +715,12 @@ export class Editor {
                 if (elem.GetLength() === 0){
                     ( new CreateRepetitiveElemCommand(this, elem) ).Execute(); // begin with 1 ready/created element
                 }
+                
+                if (this.autoPrettyPrint){
+                    elem.SetButtonPlacement(
+                        this.theme['Pretty Print'][elem.GetSymbol().symbol.name]['NewLine Between Blocks']
+                    );
+                }
 
                 break;
             case EditorElementTypes.SimpleBlock:
@@ -693,6 +736,77 @@ export class Editor {
         this.SetElem_OnContextMenu_(elem);
         this.SetElem_Theme_(elem);
         this.SetElem_TextViewTheme_(elem);
+    }
+
+    ApplyPrettyPrint(elem, prettyPrintTheme, viewMode){
+        if (elem.GetType() === EditorElementTypes.Group){
+            let pp = prettyPrintTheme[elem.GetSymbol().symbol.name];
+            if (!pp) return;
+        
+            let children = elem.GetElems();
+            let toBlock = { '$$_newline': () => this.CreateNewLine(), '$$_tab': () => this.CreateTab() };
+
+            if (viewMode === EditorElementViewMode.BlockView){
+                children = children.filter(elem => elem.GetType() !== EditorElementTypes.InvisibleBlock);
+            }else{
+                children = children.filter(elem =>
+                    elem.GetType() !== EditorElementTypes.NewLine &&
+                    elem.GetType() !== EditorElementTypes.Tab
+                );
+            }
+            
+            let indentationChars = [], indentationCharsTotal = [];
+
+            for (let i = 0; i < pp.length; ++i){
+                if (pp[i] === '$$_newline' || pp[i] === '$$_tab'){
+                    indentationChars.push( toBlock[pp[i]]() );
+                }
+                else if (indentationChars.length){
+                    let startingIndex = elem.IndexOf(children[i - indentationCharsTotal.length - indentationChars.length]);
+                    
+                    for (let j = 0; j < indentationChars.length; ++j){
+                        let indentationChar = indentationChars[j], index = startingIndex + j;
+
+                        elem.InsertAtIndex(index, indentationChar);
+                        indentationCharsTotal.push({ index, indentationChar });
+                    }
+                    
+                    indentationChars = [];
+                }
+            }
+
+            return indentationCharsTotal;
+        }
+        else if (elem.GetType() === EditorElementTypes.RepetitionGroup){
+            let nl = prettyPrintTheme[elem.GetSymbol().symbol.name]['NewLine Between Blocks'];
+            
+            if (nl === true || nl === false)    elem.SetButtonPlacement(nl);
+            else                                elem.SetButtonPlacement('auto');            
+
+            if ( nl === true || (nl === 'auto' ||nl === undefined || nl === null) &&
+                                (
+                                    elem.GetRepetitiveElem().GetType() === EditorElementTypes.SelectionBlock ||
+                                    elem.GetRepetitiveElem().GetType() === EditorElementTypes.Group ||
+                                    elem.GetRepetitiveElem().GetType() === EditorElementTypes.RepetitionGroup
+                                )
+            ){
+                let indentationCharsTotal = [];
+
+                for (let i = 1; i < elem.GetLength(); ++i){
+                    let childType = elem.GetElem(i).GetType();
+
+                    if (childType !== EditorElementTypes.Tab && childType !== EditorElementTypes.NewLine){
+                        let indentationChar = this.CreateNewLine();
+                        elem.InsertAtIndex(i, indentationChar);
+                        indentationCharsTotal.push({ indentationChar, index: i });
+                        
+                        ++i;
+                    }
+                }
+
+                return indentationCharsTotal;
+            }
+        }
     }
 
     SetElem_Theme_(elem){
@@ -1047,6 +1161,9 @@ export class Editor {
             }
         }
 
+        if (this.autoPrettyPrint)
+            this.ApplyPrettyPrint(elem, this.theme['Pretty Print'], EditorElementViewMode.BlockView);
+        
         this.BindElemToEditor_(elem);
         return elem;
     }
@@ -1531,11 +1648,51 @@ export class Editor {
         }
     }
 
+    sourceTextPrettyPrintElements = [];
+
     EventHandler_ToggleViewMode(){
         this.viewMode === EditorElementViewMode.PureTextView ?
             this.viewMode = EditorElementViewMode.BlockView :
             this.viewMode = EditorElementViewMode.PureTextView;
 
-        this.code.ForEachRec( elem => elem.ApplyViewMode(this.viewMode) );
+        this.code.ForEachRec( elem => {
+            if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab)
+                elem.GetWholeView().toggleClass('hidden');
+        });
+
+        if (this.theme['Source Text Pretty Print']){
+            if (this.viewMode === EditorElementViewMode.PureTextView){
+                
+                this.code.ForEachRec(
+                    elem => {
+                        let ppElems = this.ApplyPrettyPrint(
+                            elem,
+                            this.theme['Source Text Pretty Print'],
+                            EditorElementViewMode.PureTextView
+                        );
+
+                        if (ppElems)
+                            this.sourceTextPrettyPrintElements.push( ...ppElems.map(tupple => tupple.indentationChar) );
+                    }
+                );
+
+            }
+            else{
+
+                for (let ppElem of this.sourceTextPrettyPrintElements)
+                    ppElem.GetParent().RemoveElem(ppElem);
+            
+                this.sourceTextPrettyPrintElements = [];
+
+            }
+        }
+        
+        this.code.ForEachRec( elem => {
+            elem.ApplyViewMode(this.viewMode);
+        });
+    }
+
+    EventHandler_Beautify(){
+        this.ExecuteCommand( new BeautifyCommand(this) );
     }
 }

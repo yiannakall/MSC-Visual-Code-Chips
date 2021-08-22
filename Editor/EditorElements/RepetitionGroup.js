@@ -9,6 +9,7 @@ export class RepetitionGroup extends Group{
     $plus_;
     
     isEditable_ = true;
+    isButtonInline = 'auto';
 
     onCreate = (self) => {};
 
@@ -178,15 +179,14 @@ export class RepetitionGroup extends Group{
             }
         });
 
-        if (this.repetitiveElem_.GetType() === EditorElementTypes.InputBlock)
-            $repButton.css({
-                'display': 'inline-flex',
-                'margin-top': '0px',
-                'vertical-align': 'middle'
-            });
-
         this.$repButton_ = $repButton;
         this.$plus_ = $plus;
+
+        if (this.isButtonInline === 'auto'){
+            this.MakeButtonPositionAuto();
+        } else {
+            this.isButtonInline ? this.PlaceButtonInline() : this.PlaceButtonInSeparateLine();
+        }
     }
 
     Render_() {
@@ -229,6 +229,39 @@ export class RepetitionGroup extends Group{
 
     GetRepetitiveElem(){
         return this.repetitiveElem_;
+    }
+
+    SetButtonPlacement(newline){
+        this.isButtonInline = (newline === 'auto') ? 'auto' : !newline;
+
+        if (!this.$repButton_) return;
+        
+        if (this.isButtonInline === 'auto'){
+            this.MakeButtonPositionAuto();
+        } else {
+            this.isButtonInline ? this.PlaceButtonInline() : this.PlaceButtonInSeparateLine();
+        }
+    }
+
+    PlaceButtonInline(){
+        this.$repButton_.css({
+            'display': 'inline-flex',
+            'margin-top': '0px',
+            'vertical-align': 'middle'
+        });
+    }
+
+    PlaceButtonInSeparateLine(){
+        this.$repButton_.css({
+            'display': '',
+            'margin-top': '',
+            'vertical-align': ''
+        });
+    }
+
+    MakeButtonPositionAuto(){
+        (this.repetitiveElem_.GetType() === EditorElementTypes.InputBlock) ?
+            this.PlaceButtonInline() : this.PlaceButtonInSeparateLine();
     }
 
 }
