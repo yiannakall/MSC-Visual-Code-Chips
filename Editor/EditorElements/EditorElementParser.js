@@ -5,7 +5,7 @@ import { SelectionBlock } from './SelectionBlock.js'
 import { SimpleBlock } from './SimpleBlock.js'
 import { NewLine } from './NewLine.js'
 import { TabBlock } from './TabBlock.js'
-import { AliasedGrammarSymbol, GrammarSymbol } from '../../Language.js';
+import { AliasedGrammarSymbol, GrammarSymbol } from '../../language.js';
 import { InvisibleBlock } from './InvisibleBlock.js';
 import { RepetitionGroup } from './RepetitionGroup.js';
 

@@ -1,4 +1,4 @@
-import { AliasedGrammarSymbol, DefinitionRhs, Language} from '../Language.js'
+import { AliasedGrammarSymbol, DefinitionRhs, Language} from '../language.js'
 import { assert } from "../Utils/Assert.js";
 import { EditorElement, EditorElementTypes, EditorElementViewMode } from './EditorElements/EditorElement.js'
 import { Group } from './EditorElements/Group.js'

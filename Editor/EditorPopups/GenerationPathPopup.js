@@ -2,7 +2,7 @@ import { PopupWindow } from "./PopupWindow.js";
 import { EditorElementParser } from "../EditorElements/EditorElementParser.js"
 import { EditorElementTypes } from "../EditorElements/EditorElement.js"
 import { assert } from "../../Utils/Assert.js";
-import { AliasedGrammarSymbol, GrammarSymbol } from "../../Language.js";
+import { AliasedGrammarSymbol, GrammarSymbol } from "../../language.js";
 import { Group } from "../EditorElements/Group.js";
 import { ContainerResizer } from "../../Utils/ContainerResizer.js";
 
