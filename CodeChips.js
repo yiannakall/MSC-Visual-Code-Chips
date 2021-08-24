@@ -1,5 +1,5 @@
-import { Editor } from './Editor/Editor.js'
-import { Language } from './Language.js'
+import { Editor } from './Editor/editor.js'
+import { Language } from './language.js'
 import { assert } from './Utils/Assert.js'
 
 export class CodeChips {
