@@ -383,12 +383,12 @@ export class Editor {
             let general = theme["Blocks"]["General"][blockClass.name];
             let specific = theme["Blocks"]["Specific"][symbol.name];
             let composite = theme["Blocks"]["Composite"][symbol.name] = {};
-            
+
             for (let themeable of blockClass.themeables){
                 composite[themeable.id] = {};
 
                 for (let prop of themeable.themeable.props){
-                    if (specific[themeable.id][prop] !== '' && specific[themeable.id][prop] !== undefined)
+                    if (specific && specific[themeable.id][prop] !== '' && specific[themeable.id][prop] !== undefined)
                         composite[themeable.id][prop] = specific[themeable.id][prop];
                     else if (general[themeable.id][prop] !== '' && general[themeable.id][prop] !== undefined)
                         composite[themeable.id][prop] = general[themeable.id][prop];
@@ -718,7 +718,9 @@ export class Editor {
                 
                 if (this.autoPrettyPrint){
                     elem.SetButtonPlacement(
-                        this.theme['Pretty Print'][elem.GetSymbol().symbol.name]['NewLine Between Blocks']
+                        this.theme['Pretty Print'][elem.GetSymbol().symbol.name] ?
+                            this.theme['Pretty Print'][elem.GetSymbol().symbol.name]['NewLine Between Blocks']: 
+                            'auto'
                     );
                 }
 
@@ -778,7 +780,10 @@ export class Editor {
             return indentationCharsTotal;
         }
         else if (elem.GetType() === EditorElementTypes.RepetitionGroup){
-            let nl = prettyPrintTheme[elem.GetSymbol().symbol.name]['NewLine Between Blocks'];
+            let nl = prettyPrintTheme[elem.GetSymbol().symbol.name] ?
+                        prettyPrintTheme[elem.GetSymbol().symbol.name]['NewLine Between Blocks'] :
+                        'auto'
+            ;
             
             if (nl === true || nl === false)    elem.SetButtonPlacement(nl);
             else                                elem.SetButtonPlacement('auto');            

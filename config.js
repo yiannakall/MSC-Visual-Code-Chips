@@ -55,7 +55,11 @@ export let config = {
                     {
                         type: "non_terminal",
                         name: "func_call_stmt",
-                        tooltip: "Use a defined function"
+                        tooltip: "Use a user-defined function"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "array_method_call",
                     }
                 ]
             },
@@ -350,6 +354,11 @@ export let config = {
                         type: "terminal",
                         name: "BOOL_CONST",
                         tooltip: "One of true or false"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "ARRAY_CONST",
+                        tooltip: "An array of elements"
                     }
                 ]
             },
@@ -447,6 +456,86 @@ export let config = {
                         name: ")",
                         textViewOnly: true
                     },
+                ]
+            },
+            {
+                name: "method_call_obj",
+                any_of: [
+                    { type: "terminal", name: "IDENT" },
+                    { type: "non_terminal", name: "expr" }
+                ]
+            },
+            {
+                name: "array_method_call",
+                all_of: [
+                    { type: "terminal", name: "IN ARRAY", },
+                    { type: "non_terminal", name: "method_call_obj", alias: "array" },
+                    { type: "terminal", name: "CALL", },
+                    { type: "non_terminal", name: "array_method" },
+                ]
+            },
+            {
+                name: "array_method",
+                any_of: [
+                    { type: "non_terminal", name: "array_get", alias: "get" },
+                    { type: "non_terminal", name: "array_insert", alias: "insert" },
+                    { type: "non_terminal", name: "array_push_back", alias: "push_back" },
+                    { type: "non_terminal", name: "array_set", alias: "set" },
+                    { type: "non_terminal", name: "array_size", alias: "get_size" },
+                ]
+            },
+            {
+                name: "array_get",
+                all_of: [
+                    { type: "terminal", name: "get" },
+                    { type: "terminal", name: "WITH" },
+                    { type: "non_terminal", name: "expr", alias: "index" },
+                ]
+            },
+            {
+                name: "array_insert",
+                all_of: [
+                    { type: "terminal", name: "insert" },
+                    { type: "terminal", name: "WITH" },
+                    { type: "non_terminal", name: "expr", alias: "index" },
+                    { type: "non_terminal", name: "expr", alias: "element" },
+                ]
+            },
+            {
+                name: "array_push_back",
+                all_of: [
+                    { type: "terminal", name: "push_back" },
+                    { type: "terminal", name: "WITH" },
+                    { type: "non_terminal", name: "expr", alias: "element" },
+                ]
+            },
+            {
+                name: "array_set",
+                all_of: [
+                    { type: "terminal", name: "set" },
+                    { type: "terminal", name: "WITH" },
+                    { type: "non_terminal", name: "expr", alias: "index" },
+                    { type: "non_terminal", name: "expr", alias: "element" },
+                ]
+            },
+            {
+                name: "array_size",
+                all_of: [
+                    { type: "terminal", name: "get_size" },
+                ]
+            },
+            {
+                name: "ARRAY_CONST",
+                all_of: [
+                    { type: "terminal", name: "ARRAY", },
+                    { type: "terminal", name: "WITH", },
+                    { type: "non_terminal", name: "element_list", },
+                ]
+            },
+            {
+                name: 'element_list',
+                list_of: [
+                    { type: "terminal", name: "expr", alias: "element" }
                 ]
             },
             {
@@ -12002,6 +12091,303 @@ export let darkColorfulTheme = {
                 "Button Plus Sign On Hover": {
                     "BackgroundColor": ""
                 }
+            },
+            "IN ARRAY": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "get": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "insert": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "push_back": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "set": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "get_size": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "ARRAY": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "array_method_call": {
+                "Group Block": {
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#5C4884",
+                    "BorderRadius": ""
+                }
+            },
+            "ARRAY_CONST": {
+                "Group Block": {
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#5C4884",
+                    "BorderRadius": ""
+                }
+            },
+            "method_call_obj": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "array_method": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "array_get": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "array_insert": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "array_push_back": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "array_set": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "element_list": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Button": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": ""
+                },
+                "Button Plus Sign": {
+                    "Width": "",
+                    "Height": "",
+                    "BackgroundColor": ""
+                },
+                "Button Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                },
+                "Button On Hover": {
+                    "BackgroundColor": ""
+                },
+                "Button Plus Sign On Hover": {
+                    "BackgroundColor": ""
+                }
             }
         }
     },
@@ -12218,7 +12604,8 @@ export let darkColorfulTheme = {
         "for_stmt":             [ "FOR", "initialization", "condition", "step", "$$_newline", "$$_tab", "for_part" ],
         "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
         "ident_list":           { "NewLine Between Blocks": false },
-        "expr_list":            { "NewLine Between Blocks": false }
+        "expr_list":            { "NewLine Between Blocks": false },
+        "element_list":         { "NewLine Between Blocks": false },
     },
     "Source Text Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
@@ -12237,6 +12624,7 @@ export let darkColorfulTheme = {
                                     "$$_newline", "$$_tab", "stmts", "$$_newline", "}" 
                                 ],
         "ident_list":           { "NewLine Between Blocks": false },
-        "expr_list":            { "NewLine Between Blocks": false }
+        "expr_list":            { "NewLine Between Blocks": false },
+        "element_list":         { "NewLine Between Blocks": false },
     }
 };

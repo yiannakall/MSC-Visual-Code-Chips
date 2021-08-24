@@ -17,7 +17,10 @@ export class CreateRepetitiveElemCommand extends EditorCommand {
     }
 
     Execute(){
-        let nl = this.editor.theme['Pretty Print'][this.repetitionGroup.GetSymbol().symbol.name]['NewLine Between Blocks'];
+        let nl = this.editor.theme['Pretty Print'][this.repetitionGroup.GetSymbol().symbol.name] ?
+                    this.editor.theme['Pretty Print'][this.repetitionGroup.GetSymbol().symbol.name]['NewLine Between Blocks']:
+                    'auto'
+        ;
 
         if ( this.repetitionGroup.GetLength() !== 0 ){
             if (!this.editor.autoPrettyPrint || nl === 'auto' || nl === undefined || nl === null){
