@@ -1,4 +1,4 @@
-import { colorfulTheme, config, darkColorfulTheme, lightTheme } from './Config.js'
+import { colorfulTheme, config, darkColorfulTheme, lightTheme } from './config.js'
 import { CodeChips } from './CodeChips.js'
 
 $(document).ready(function () {
