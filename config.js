@@ -60,6 +60,10 @@ export let config = {
                     {
                         type: "non_terminal",
                         name: "array_method_call",
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "string_method_call",
                     }
                 ]
             },
@@ -363,6 +367,20 @@ export let config = {
                 ]
             },
             {
+                name: "ARRAY_CONST",
+                all_of: [
+                    { type: "terminal", name: "ARRAY", },
+                    { type: "terminal", name: "WITH", },
+                    { type: "non_terminal", name: "element_list", },
+                ]
+            },
+            {
+                name: 'element_list',
+                list_of: [
+                    { type: "terminal", name: "expr", alias: "element" }
+                ]
+            },
+            {
                 name: "assign_stmt",
                 all_of: [
                     {
@@ -459,17 +477,10 @@ export let config = {
                 ]
             },
             {
-                name: "method_call_obj",
-                any_of: [
-                    { type: "terminal", name: "IDENT" },
-                    { type: "non_terminal", name: "expr" }
-                ]
-            },
-            {
                 name: "array_method_call",
                 all_of: [
                     { type: "terminal", name: "IN ARRAY", },
-                    { type: "non_terminal", name: "method_call_obj", alias: "array" },
+                    { type: "non_terminal", name: "expr", alias: "array" },
                     { type: "terminal", name: "CALL", },
                     { type: "non_terminal", name: "array_method" },
                 ]
@@ -525,17 +536,62 @@ export let config = {
                 ]
             },
             {
-                name: "ARRAY_CONST",
+                name: "string_method_call",
                 all_of: [
-                    { type: "terminal", name: "ARRAY", },
-                    { type: "terminal", name: "WITH", },
-                    { type: "non_terminal", name: "element_list", },
+                    { type: "terminal", name: "IN STRING", },
+                    { type: "non_terminal", name: "expr", alias: "string" },
+                    { type: "terminal", name: "CALL", },
+                    { type: "non_terminal", name: "string_method" },
                 ]
             },
             {
-                name: 'element_list',
-                list_of: [
-                    { type: "terminal", name: "expr", alias: "element" }
+                name: "string_method",
+                any_of: [
+                    { type: "non_terminal", name: "string_append", alias: "append" },
+                    { type: "non_terminal", name: "string_get_character", alias: "get_character" },
+                    { type: "non_terminal", name: "string_get_substring", alias: "get_substring" },
+                    { type: "non_terminal", name: "string_set_character", alias: "set_character" },
+                    { type: "non_terminal", name: "string_size", alias: "get_size" },
+                ]
+            },
+            {
+                name: "string_append",
+                all_of: [
+                    { type: "terminal", name: "append" },
+                    { type: "terminal", name: "WITH" },
+                    { type: "non_terminal", name: "expr", alias: "string" },
+                ]
+            },
+            {
+                name: "string_get_character",
+                all_of: [
+                    { type: "terminal", name: "get_character" },
+                    { type: "terminal", name: "WITH" },
+                    { type: "non_terminal", name: "expr", alias: "index" },
+                ]
+            },
+            {
+                name: "string_get_substring",
+                all_of: [
+                    { type: "terminal", name: "get_substring" },
+                    { type: "terminal", name: "WITH" },
+                    { type: "non_terminal", name: "expr", alias: "start_index" },
+                    { type: "non_terminal", name: "expr", alias: "end_index" },
+                ]
+            },
+            {
+                name: "string_set_character",
+                all_of: [
+                    { type: "terminal", name: "set_character" },
+                    { type: "terminal", name: "WITH" },
+                    { type: "non_terminal", name: "expr", alias: "index" },
+                    { type: "non_terminal", name: "expr", alias: "character" },
+                ]
+            },
+            {
+                name: "string_size",
+                all_of: [
+                    { type: "terminal", name: "get_size" },
                 ]
             },
             {
@@ -12214,51 +12270,6 @@ export let darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "method_call_obj": {
-                "Selection Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": "",
-                    "Gap": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Arrow": {
-                    "BackgroundColor": "",
-                    "Width": "",
-                    "Height": ""
-                },
-                "Option Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": ""
-                },
-                "Option": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": ""
-                },
-                "Option On Hover": {
-                    "BackgroundColor": "",
-                    "FontColor": ""
-                },
-                "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                }
-            },
             "array_method": {
                 "Selection Block": {
                     "BackgroundColor": "",
@@ -12312,7 +12323,7 @@ export let darkColorfulTheme = {
                     "PaddingTop": "0px",
                     "PaddingBottom": "0px",
                     "BorderWidth": "",
-                    "BorderColor": "transparent",
+                    "BorderColor": "",
                     "BorderRadius": ""
                 }
             },
@@ -12336,7 +12347,7 @@ export let darkColorfulTheme = {
                     "PaddingTop": "0px",
                     "PaddingBottom": "0px",
                     "BorderWidth": "",
-                    "BorderColor": "transparent",
+                    "BorderColor": "",
                     "BorderRadius": ""
                 }
             },
@@ -12348,7 +12359,7 @@ export let darkColorfulTheme = {
                     "PaddingTop": "0px",
                     "PaddingBottom": "0px",
                     "BorderWidth": "",
-                    "BorderColor": "transparent",
+                    "BorderColor": "",
                     "BorderRadius": ""
                 }
             },
@@ -12387,6 +12398,111 @@ export let darkColorfulTheme = {
                 },
                 "Button Plus Sign On Hover": {
                     "BackgroundColor": ""
+                }
+            },
+            "string_method": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "string_method_call": {
+                "Group Block": {
+                    "BackgroundColor": "#5BA58C",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_append": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_get_character": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_get_substring": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_set_character": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
                 }
             }
         }
@@ -12591,7 +12707,21 @@ export let darkColorfulTheme = {
         "primary_expr": "#ffffff",
         "arith_op": "#ffffff",
         "rel_op": "#ffffff",
-        "bool_bin_op": "#ffffff"
+        "bool_bin_op": "#ffffff",
+        "ARRAY": "#C57991",
+        "IN ARRAY": "#C57991",
+        "IN STRING": "#C57991",
+        "append": "#ffffff",
+        "array_method": "#ffffff",
+        "get": "#ffffff",
+        "get_character": "#ffffff",
+        "get_size": "#ffffff",
+        "get_substring": "#ffffff",
+        "insert": "#ffffff",
+        "push_back": "#ffffff",
+        "set": "#ffffff",
+        "set_character": "#ffffff",
+        "string_method": "#ffffff",
     },
     "Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
