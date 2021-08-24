@@ -81,8 +81,8 @@ body{
     height: 12px;
 
     background: #f2f2f2;
-    -webkit-mask-image: url(/Images/plus.svg);
-    mask-image: url(/Images/plus.svg);
+    -webkit-mask-image: url(./Images/plus.svg);
+    mask-image: url(./Images/plus.svg);
 }
 
 .group.repetition-group.pure-text .repeat-button {
@@ -185,8 +185,8 @@ body{
     background: white;
     -webkit-mask-size: cover;
     mask-size: cover;
-    -webkit-mask-image: url(/Images/arrow.svg);
-    mask-image: url(/Images/arrow.svg);
+    -webkit-mask-image: url(./Images/arrow.svg);
+    mask-image: url(./Images/arrow.svg);
 }
 
 .selection-block-container .block-alternate-selections{
@@ -700,8 +700,8 @@ body{
     width: 12px;
     height: 12px;
     background-color: #C4C4C4;
-    -webkit-mask-image: url(/Images/Toolbox/delete.svg);
-    mask-image: url(/Images/Toolbox/delete.svg);
+    -webkit-mask-image: url(./Images/Toolbox/delete.svg);
+    mask-image: url(./Images/Toolbox/delete.svg);
 }
 
 .category-blocks .category-block .repeat-button {
@@ -813,8 +813,8 @@ body{
     background: #d1d1d1;
     -webkit-mask-size: cover;
     mask-size: cover;
-    -webkit-mask-image: url(/Images/arrow.svg);
-    mask-image: url(/Images/arrow.svg);
+    -webkit-mask-image: url(./Images/arrow.svg);
+    mask-image: url(./Images/arrow.svg);
 
     position: absolute;
     top: 50%;
@@ -885,18 +885,18 @@ body{
     background: #C4C4C4;
     -webkit-mask-size: cover;
     mask-size: cover;
-    -webkit-mask-image: url(/Images/arrow.svg);
-    mask-image: url(/Images/arrow.svg);
+    -webkit-mask-image: url(./Images/arrow.svg);
+    mask-image: url(./Images/arrow.svg);
 }
 
 .workspace .popup-window .close {
-    -webkit-mask-image: url(/Images/PopupWindow/close.svg);
-    mask-image: url(/Images/PopupWindow/close.svg);
+    -webkit-mask-image: url(./Images/PopupWindow/close.svg);
+    mask-image: url(./Images/PopupWindow/close.svg);
 }
 
 .workspace .popup-window .maximize {
-    -webkit-mask-image: url(/Images/PopupWindow/maximize.svg);
-    mask-image: url(/Images/PopupWindow/maximize.svg);
+    -webkit-mask-image: url(./Images/PopupWindow/maximize.svg);
+    mask-image: url(./Images/PopupWindow/maximize.svg);
 }
 
 .workspace .popup-window .button:hover {
@@ -953,8 +953,8 @@ body{
     background: white;
     -webkit-mask-size: cover;
     mask-size: cover;
-    -webkit-mask-image: url(/Images/GenerationPathPopup/next.svg);
-    mask-image: url(/Images/GenerationPathPopup/next.svg);
+    -webkit-mask-image: url(./Images/GenerationPathPopup/next.svg);
+    mask-image: url(./Images/GenerationPathPopup/next.svg);
 }
 
 .generation-path .block-alternate-selection:hover{
@@ -1154,13 +1154,13 @@ body{
 }
 
 .undo-redo-toolbar .undo-segment .icon {
-    -webkit-mask-image: url(/Images/UndoRedoToolbar/undo.svg);
-    mask-image: url(/Images/UndoRedoToolbar/undo.svg);
+    -webkit-mask-image: url(./Images/UndoRedoToolbar/undo.svg);
+    mask-image: url(./Images/UndoRedoToolbar/undo.svg);
 }
 
 .undo-redo-toolbar .redo-segment .icon {
-    -webkit-mask-image: url(/Images/UndoRedoToolbar/redo.svg);
-    mask-image: url(/Images/UndoRedoToolbar/redo.svg);
+    -webkit-mask-image: url(./Images/UndoRedoToolbar/redo.svg);
+    mask-image: url(./Images/UndoRedoToolbar/redo.svg);
 }
 
 .undo-redo-toolbar .icon-container {
@@ -1226,8 +1226,8 @@ body{
     width: 14px;
     height: 14px;
     background-color: #C4C4C4;
-    -webkit-mask-image: url(/Images/UndoRedoToolbar/close.svg);
-    mask-image: url(/Images/UndoRedoToolbar/close.svg);
+    -webkit-mask-image: url(./Images/UndoRedoToolbar/close.svg);
+    mask-image: url(./Images/UndoRedoToolbar/close.svg);
 }
 
 /* Editor Toast Messages */
@@ -1286,20 +1286,20 @@ body{
 }
 
 .toast-message-container .icon.warning {
-    -webkit-mask-image: url(/Images/ToastMessages/warning.svg);
-    mask-image: url(/Images/ToastMessages/warning.svg);
+    -webkit-mask-image: url(./Images/ToastMessages/warning.svg);
+    mask-image: url(./Images/ToastMessages/warning.svg);
     background-color: #CCA700;
 }
 
 .toast-message-container .icon.error {
-    -webkit-mask-image: url(/Images/ToastMessages/error.svg);
-    mask-image: url(/Images/ToastMessages/error.svg);
+    -webkit-mask-image: url(./Images/ToastMessages/error.svg);
+    mask-image: url(./Images/ToastMessages/error.svg);
     background-color: #F48771;
 }
 
 .toast-message-container .icon.information {
-    -webkit-mask-image: url(/Images/ToastMessages/information.svg);
-    mask-image: url(/Images/ToastMessages/information.svg);
+    -webkit-mask-image: url(./Images/ToastMessages/information.svg);
+    mask-image: url(./Images/ToastMessages/information.svg);
     background-color: #75BEFF;
 }
 
@@ -1319,8 +1319,8 @@ body{
 .toast-message-container .icon.close {
     width: 12px;
     height: 12px;
-    -webkit-mask-image: url(/Images/ToastMessages/close.svg);
-    mask-image: url(/Images/ToastMessages/close.svg);
+    -webkit-mask-image: url(./Images/ToastMessages/close.svg);
+    mask-image: url(./Images/ToastMessages/close.svg);
     background-color: #c2c2c2;
 }
 
