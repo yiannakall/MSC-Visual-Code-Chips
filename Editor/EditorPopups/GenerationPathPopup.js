@@ -178,8 +178,8 @@ export class GenerationPathPopup extends PopupWindow {
             );
 
         let icon = numChildren > 0 || elem.next ? 
-            '../../Images/GenerationPathPopup/arrow.svg' :
-            '../../Images/GenerationPathPopup/block.svg'
+            './../../Images/GenerationPathPopup/arrow.svg' :
+            './../../Images/GenerationPathPopup/block.svg'
         ;
 
         let name = elem.GetSymbol().alias || elem.GetSymbol().symbol.name;
