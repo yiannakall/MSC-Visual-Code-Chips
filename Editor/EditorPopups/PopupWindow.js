@@ -40,8 +40,8 @@ export class PopupWindow {
         
         $headerBar.append($title, $buttons);
 
-        let $xButton = this.CreateHeaderButton_( '/Images/PopupWindow/close.svg', () => this.Destroy() );
-        let $maximizeButton = this.CreateHeaderButton_( '/Images/PopupWindow/maximize.svg' );
+        let $xButton = this.CreateHeaderButton_( '../../Images/PopupWindow/close.svg', () => this.Destroy() );
+        let $maximizeButton = this.CreateHeaderButton_( '../../Images/PopupWindow/maximize.svg' );
 
         $buttons.append($maximizeButton, $xButton);
 
