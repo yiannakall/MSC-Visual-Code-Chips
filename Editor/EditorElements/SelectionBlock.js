@@ -103,7 +103,7 @@ export class SelectionBlock extends EditorElement {
         },
         {
             id: SelectionBlock.themeableIds.Option,
-            GetView: () => { return this.$option; }
+            GetView: () => { return this.$option.not('.selected-symbol'); }
         },
         {
             id: SelectionBlock.themeableIds.OptionOnHover,
@@ -111,27 +111,31 @@ export class SelectionBlock extends EditorElement {
                 let hoverBg = theme.Get(ThemeableProps.Props.BackgroundColor);
                 let hoverColor = theme.Get(ThemeableProps.Props.FontColor);
 
-                let prevBg, prevColor;
+                let prevBg, prevColor, isEditable = () => this.isEditable_;
 
                 this.$option.off('mouseenter'), this.$option.off('mouseleave');
 
                 this.$option.on('mouseenter', function () {
-                    if (!prevBg)
-                        prevBg = $(this).css('background-color');
-                    if (!prevColor)
-                        prevColor = $(this).css('color');
-                
-                    if (hoverBg)
-                        $(this).css('background-color', hoverBg);
-                    if (hoverColor)
-                        $(this).css('color', hoverColor);
+                    if ( isEditable() ){
+                        if (!prevBg)
+                            prevBg = $(this).css('background-color');
+                        if (!prevColor)
+                            prevColor = $(this).css('color');
+                    
+                        if (hoverBg)
+                            $(this).css('background-color', hoverBg);
+                        if (hoverColor)
+                            $(this).css('color', hoverColor);
+                    }
                 });
 
                 this.$option.on('mouseleave', function() {
-                    if (prevBg && hoverBg)
-                        $(this).css('background-color', prevBg);
-                    if (prevColor && hoverColor)
-                        $(this).css('color', prevColor);
+                    if ( isEditable() ){
+                        if (prevBg && hoverBg)
+                            $(this).css('background-color', prevBg);
+                        if (prevColor && hoverColor)
+                            $(this).css('color', prevColor);
+                    }
                 });
             }
         },
@@ -231,9 +235,11 @@ export class SelectionBlock extends EditorElement {
         let $choice = $('<div/>').addClass('block-alternate-selection').html(text);
 
         $choice.on( 'click', () => {
-            this.selectedSymbol = symbol;
-            this.$optionContainer.toggle();
-            this.onSelect(this);
+            if (this.isEditable_){
+                this.selectedSymbol = symbol;
+                this.$optionContainer.toggle();
+                this.onSelect(this);
+            }
         });
     
         if (symbol.tooltip){
@@ -242,7 +248,23 @@ export class SelectionBlock extends EditorElement {
             $choice.append($('<div/>').addClass('tooltip-content').text(symbol.tooltip));
         }
 
+        if (!this.isEditable_)
+            $choice.addClass('tooltip-disabled');
+
         if (symbol === this.selectedSymbol){
+            let theme = this.theme(this)?.[SelectionBlock.themeableIds.OptionOnHover];
+
+            if (theme){
+                let hoverBg = theme.Get(ThemeableProps.Props.BackgroundColor);
+                let hoverColor = theme.Get(ThemeableProps.Props.FontColor);
+
+                if (hoverBg)
+                    $choice.css('background-color', hoverBg);
+                
+                if (hoverColor)
+                    $choice.css('color', hoverColor);
+            }
+
             $choice.addClass('selected-symbol');
         }
 

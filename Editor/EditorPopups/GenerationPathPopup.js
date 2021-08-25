@@ -41,15 +41,10 @@ export class GenerationPathPopup extends PopupWindow {
     }
 
     InitCode(code){
+        let theme = elem => code.theme(elem);
+
         this.code = EditorElementParser.FromJson( code.ToJsonRec(), (elem) => {
-            elem.SetTheme((elem) => {
-                let type = elem.GetType();
-                let styles = type;
-                if (type != EditorElementTypes.NewLine && type != EditorElementTypes.Tab){
-                    styles += ` ${elem.GetSymbol().symbol.name}`;
-                }
-                return styles;
-            });
+            elem.SetTheme(elem => theme(elem));
 
             if (elem.GetType() === EditorElementTypes.Group || elem.GetType() === EditorElementTypes.RepetitionGroup){
                 elem.SetOnRenderElem(elem =>

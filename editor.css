@@ -489,10 +489,10 @@ body{
     max-width: 250px;
 }
 
-.tooltip-container:hover:after {
+.tooltip-container:not(.tooltip-disabled):hover:after {
     visibility: visible;
 }
-.tooltip-container:hover::before {
+.tooltip-container:not(.tooltip-disabled):hover::before {
     visibility: visible;
 }
 
@@ -541,10 +541,10 @@ body{
     z-index: 1;
 }
 
-.tooltip-container2:hover>.tooltip-content {
+.tooltip-container2:not(.tooltip-disabled):hover>.tooltip-content {
     display: flex;
 }
-.tooltip-container2:hover>.tooltip-arrow {
+.tooltip-container2:not(.tooltip-disabled):hover>.tooltip-arrow {
     display: block;
 }
 

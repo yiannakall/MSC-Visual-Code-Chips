@@ -153,12 +153,13 @@ export class EditorElement {
     ApplyThemes_(){
         let themes = this.theme(this);
 
-        this.customizableViews.forEach((view) => {
-            let theme = themes[view.id];
-            if (!theme) return;
-            
-            (view.ApplyTheme) ? view.ApplyTheme(theme): view.GetView().css(theme.ToCss());
-        });
+        if (themes)
+            this.customizableViews.forEach((view) => {
+                let theme = themes[view.id];
+                if (!theme) return;
+                
+                (view.ApplyTheme) ? view.ApplyTheme(theme): view.GetView().css(theme.ToCss());
+            });
     }
 
     AddOnClick_() {
