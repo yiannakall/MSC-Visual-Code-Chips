@@ -44,18 +44,14 @@ export let config = {
                     },
                     {
                         type: "non_terminal",
-                        name: "assign_stmt",
-                        tooltip: "Set a variable's value"
+                        name: "expr",
+                        alias: "expr_stmt",
+                        tooltip: "A single expression as a statement"
                     },
                     {
                         type: "non_terminal",
                         name: "func_def_stmt",
                         tooltip: "Define reusable code as a function"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "func_call_stmt",
-                        tooltip: "Use a user-defined function"
                     },
                     {
                         type: "non_terminal",
@@ -84,6 +80,16 @@ export let config = {
                         type: "non_terminal",
                         name: "bool_expr",
                         tooltip: "An expression that evaluates to true or false"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "assign_expr",
+                        tooltip: "Set a variable's value"
+                    },
+                    {
+                        type: "non_terminal",
+                        name: "func_call_expr",
+                        tooltip: "Use a user-defined function"
                     },
                     {
                         type: "non_terminal",
@@ -383,7 +389,7 @@ export let config = {
                 ]
             },
             {
-                name: "assign_stmt",
+                name: "assign_expr",
                 all_of: [
                     {
                         type: "terminal",
@@ -447,7 +453,7 @@ export let config = {
                 ]
             },
             {
-                name: "func_call_stmt",
+                name: "func_call_expr",
                 all_of: [
                     {
                         type: "terminal",
@@ -610,7 +616,7 @@ export let config = {
                     },
                     {
                         type: "non_terminal",
-                        alias: "condition",
+                        alias: "condition_expr",
                         name: "expr"
                     },
                     {
@@ -649,7 +655,7 @@ export let config = {
                     },
                     {
                         type: "non_terminal",
-                        alias: "condition",
+                        alias: "condition_expr",
                         name: "expr"
                     },
                     {
@@ -707,7 +713,7 @@ export let config = {
                     },
                     {
                         type: "non_terminal",
-                        alias: "condition",
+                        alias: "condition_expr",
                         name: "expr"
                     },
                     {
@@ -746,17 +752,7 @@ export let config = {
                     },
                     {
                         type: "non_terminal",
-                        alias: "initialization",
-                        name: "assign_stmt"
-                    },
-                    {
-                        type: "terminal",
-                        name: ";",
-                        textViewOnly: true
-                    },
-                    {
-                        type: "non_terminal",
-                        alias: "condition",
+                        alias: "initialization_expr",
                         name: "expr"
                     },
                     {
@@ -766,8 +762,18 @@ export let config = {
                     },
                     {
                         type: "non_terminal",
-                        alias: "step",
-                        name: "assign_stmt"
+                        alias: "condition_expr",
+                        name: "expr"
+                    },
+                    {
+                        type: "terminal",
+                        name: ";",
+                        textViewOnly: true
+                    },
+                    {
+                        type: "non_terminal",
+                        alias: "step_expr",
+                        name: "expr"
                     },
                     {
                         type: "terminal",
@@ -1536,7 +1542,7 @@ export let config = {
                         "BorderRadius": ""
                     }
                 },
-                "assign_stmt": {
+                "assign_expr": {
                     "Group Block": {
                         "BackgroundColor": "",
                         "PaddingLeft": "",
@@ -1560,7 +1566,7 @@ export let config = {
                         "BorderRadius": ""
                     }
                 },
-                "func_call_stmt": {
+                "func_call_expr": {
                     "Group Block": {
                         "BackgroundColor": "",
                         "PaddingLeft": "",
@@ -2612,13 +2618,13 @@ export let config = {
         },
         "Pretty Print": {
             "stmts":                { "NewLine Between Blocks": true },
-            "if_stmt":              [ "IF", "condition", "$$_newline", "$$_tab", "if_part"],
+            "if_stmt":              [ "IF", "condition_expr", "$$_newline", "$$_tab", "if_part"],
             "if_else_stmt":         [ 
-                                        "IF", "condition", "$$_newline", "$$_tab", "if_part",
+                                        "IF", "condition_expr", "$$_newline", "$$_tab", "if_part",
                                         "$$_newline", "ELSE", "$$_newline", "$$_tab", "else_part"
                                     ],
-            "while_stmt":           [ "WHILE", "condition", "$$_newline", "$$_tab", "while_part" ],
-            "for_stmt":             [ "FOR", "initialization", "condition", "step", "$$_newline", "$$_tab", "for_part" ],
+            "while_stmt":           [ "WHILE", "condition_expr", "$$_newline", "$$_tab", "while_part" ],
+            "for_stmt":             [ "FOR", "initialization", "condition_expr", "step", "$$_newline", "$$_tab", "for_part" ],
             "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
             "ident_list":           { "NewLine Between Blocks": false },
             "expr_list":            { "NewLine Between Blocks": false },
@@ -2626,14 +2632,14 @@ export let config = {
         },
         "Source Text Pretty Print": {
             "stmts":                { "NewLine Between Blocks": true },
-            "if_stmt":              [ "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}" ],
+            "if_stmt":              [ "IF", "(", "condition_expr", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}" ],
             "if_else_stmt":         [
-                                        "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}", 
+                                        "IF", "(", "condition_expr", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}", 
                                         "$$_newline", "ELSE", "{", "$$_newline", "$$_tab", "else_part", "$$_newline", "}" 
                                     ],
-            "while_stmt":           [ "WHILE", "(", "condition", ")", "{", "$$_newline", "$$_tab", "while_part", "$$_newline", "}" ],
+            "while_stmt":           [ "WHILE", "(", "condition_expr", ")", "{", "$$_newline", "$$_tab", "while_part", "$$_newline", "}" ],
             "for_stmt":             [
-                                        "FOR", "(", "initialization", ";", "condition", ";", "step", ")", "{",
+                                        "FOR", "(", "initialization", ";", "condition_expr", ";", "step", ")", "{",
                                         "$$_newline", "$$_tab", "for_part", "$$_newline", "}" 
                                     ],
             "func_def_stmt":        [ 
@@ -2664,8 +2670,7 @@ export let config = {
                                 "symbol": {
                                     "name": "IF",
                                     "isTerminal": true
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "type": "SimpleBlock"
                         },
@@ -2675,7 +2680,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -2685,8 +2690,7 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "alias": "condition",
-                                "textViewOnly": false
+                                "alias": "condition_expr"
                             },
                             "alternateSymbols": [
                                 {
@@ -2712,6 +2716,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -2726,7 +2744,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -2736,7 +2754,7 @@ export let config = {
                                     "name": "{",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -2752,8 +2770,7 @@ export let config = {
                                     "name": "stmts",
                                     "isTerminal": false
                                 },
-                                "alias": "if_part",
-                                "textViewOnly": false
+                                "alias": "if_part"
                             },
                             "elems": [
                                 {
@@ -2761,8 +2778,7 @@ export let config = {
                                         "symbol": {
                                             "name": "stmt",
                                             "isTerminal": false
-                                        },
-                                        "textViewOnly": false
+                                        }
                                     },
                                     "alternateSymbols": [
                                         {
@@ -2795,10 +2811,11 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "assign_stmt",
+                                                "name": "expr",
                                                 "isTerminal": false
                                             },
-                                            "tooltip": "Set a variable's value"
+                                            "alias": "expr_stmt",
+                                            "tooltip": "A single expression as a statement"
                                         },
                                         {
                                             "symbol": {
@@ -2809,10 +2826,15 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_call_stmt",
+                                                "name": "array_method_call",
                                                 "isTerminal": false
-                                            },
-                                            "tooltip": "Use a defined function"
+                                            }
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "string_method_call",
+                                                "isTerminal": false
+                                            }
                                         }
                                     ],
                                     "type": "SelectionBlock"
@@ -2823,8 +2845,7 @@ export let config = {
                                     "symbol": {
                                         "name": "stmt",
                                         "isTerminal": false
-                                    },
-                                    "textViewOnly": false
+                                    }
                                 },
                                 "alternateSymbols": [
                                     {
@@ -2857,10 +2878,11 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "assign_stmt",
+                                            "name": "expr",
                                             "isTerminal": false
                                         },
-                                        "tooltip": "Set a variable's value"
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
                                     },
                                     {
                                         "symbol": {
@@ -2871,10 +2893,15 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_call_stmt",
+                                            "name": "array_method_call",
                                             "isTerminal": false
-                                        },
-                                        "tooltip": "Use a defined function"
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
                                     }
                                 ],
                                 "type": "SelectionBlock"
@@ -2887,7 +2914,7 @@ export let config = {
                                     "name": "}",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -2898,8 +2925,7 @@ export let config = {
                             "symbol": {
                                 "name": "stmt",
                                 "isTerminal": false
-                            },
-                            "textViewOnly": false
+                            }
                         },
                         "alternateSymbols": [
                             {
@@ -2932,10 +2958,11 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "assign_stmt",
+                                    "name": "expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Set a variable's value"
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
                             },
                             {
                                 "symbol": {
@@ -2946,10 +2973,15 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "func_call_stmt",
+                                    "name": "array_method_call",
                                     "isTerminal": false
-                                },
-                                "tooltip": "Use a defined function"
+                                }
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                }
                             }
                         ],
                         "selectedSymbol": 0,
@@ -2970,8 +3002,7 @@ export let config = {
                                 "symbol": {
                                     "name": "IF",
                                     "isTerminal": true
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "type": "SimpleBlock"
                         },
@@ -2981,7 +3012,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -2991,8 +3022,7 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "alias": "condition",
-                                "textViewOnly": false
+                                "alias": "condition_expr"
                             },
                             "alternateSymbols": [
                                 {
@@ -3018,6 +3048,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -3032,7 +3076,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3042,7 +3086,7 @@ export let config = {
                                     "name": "{",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3058,8 +3102,7 @@ export let config = {
                                     "name": "stmts",
                                     "isTerminal": false
                                 },
-                                "alias": "if_part",
-                                "textViewOnly": false
+                                "alias": "if_part"
                             },
                             "elems": [
                                 {
@@ -3067,8 +3110,7 @@ export let config = {
                                         "symbol": {
                                             "name": "stmt",
                                             "isTerminal": false
-                                        },
-                                        "textViewOnly": false
+                                        }
                                     },
                                     "alternateSymbols": [
                                         {
@@ -3101,10 +3143,11 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "assign_stmt",
+                                                "name": "expr",
                                                 "isTerminal": false
                                             },
-                                            "tooltip": "Set a variable's value"
+                                            "alias": "expr_stmt",
+                                            "tooltip": "A single expression as a statement"
                                         },
                                         {
                                             "symbol": {
@@ -3115,10 +3158,15 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_call_stmt",
+                                                "name": "array_method_call",
                                                 "isTerminal": false
-                                            },
-                                            "tooltip": "Use a defined function"
+                                            }
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "string_method_call",
+                                                "isTerminal": false
+                                            }
                                         }
                                     ],
                                     "type": "SelectionBlock"
@@ -3129,8 +3177,7 @@ export let config = {
                                     "symbol": {
                                         "name": "stmt",
                                         "isTerminal": false
-                                    },
-                                    "textViewOnly": false
+                                    }
                                 },
                                 "alternateSymbols": [
                                     {
@@ -3163,10 +3210,11 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "assign_stmt",
+                                            "name": "expr",
                                             "isTerminal": false
                                         },
-                                        "tooltip": "Set a variable's value"
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
                                     },
                                     {
                                         "symbol": {
@@ -3177,10 +3225,15 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_call_stmt",
+                                            "name": "array_method_call",
                                             "isTerminal": false
-                                        },
-                                        "tooltip": "Use a defined function"
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
                                     }
                                 ],
                                 "type": "SelectionBlock"
@@ -3193,7 +3246,7 @@ export let config = {
                                     "name": "}",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3205,8 +3258,7 @@ export let config = {
                                 "symbol": {
                                     "name": "ELSE",
                                     "isTerminal": true
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "type": "SimpleBlock"
                         },
@@ -3216,7 +3268,7 @@ export let config = {
                                     "name": "{",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3232,8 +3284,7 @@ export let config = {
                                     "name": "stmts",
                                     "isTerminal": false
                                 },
-                                "alias": "else_part",
-                                "textViewOnly": false
+                                "alias": "else_part"
                             },
                             "elems": [
                                 {
@@ -3241,8 +3292,7 @@ export let config = {
                                         "symbol": {
                                             "name": "stmt",
                                             "isTerminal": false
-                                        },
-                                        "textViewOnly": false
+                                        }
                                     },
                                     "alternateSymbols": [
                                         {
@@ -3275,10 +3325,11 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "assign_stmt",
+                                                "name": "expr",
                                                 "isTerminal": false
                                             },
-                                            "tooltip": "Set a variable's value"
+                                            "alias": "expr_stmt",
+                                            "tooltip": "A single expression as a statement"
                                         },
                                         {
                                             "symbol": {
@@ -3289,10 +3340,15 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_call_stmt",
+                                                "name": "array_method_call",
                                                 "isTerminal": false
-                                            },
-                                            "tooltip": "Use a defined function"
+                                            }
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "string_method_call",
+                                                "isTerminal": false
+                                            }
                                         }
                                     ],
                                     "type": "SelectionBlock"
@@ -3303,8 +3359,7 @@ export let config = {
                                     "symbol": {
                                         "name": "stmt",
                                         "isTerminal": false
-                                    },
-                                    "textViewOnly": false
+                                    }
                                 },
                                 "alternateSymbols": [
                                     {
@@ -3337,10 +3392,11 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "assign_stmt",
+                                            "name": "expr",
                                             "isTerminal": false
                                         },
-                                        "tooltip": "Set a variable's value"
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
                                     },
                                     {
                                         "symbol": {
@@ -3351,10 +3407,15 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_call_stmt",
+                                            "name": "array_method_call",
                                             "isTerminal": false
-                                        },
-                                        "tooltip": "Use a defined function"
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
                                     }
                                 ],
                                 "type": "SelectionBlock"
@@ -3367,7 +3428,7 @@ export let config = {
                                     "name": "}",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -3378,8 +3439,7 @@ export let config = {
                             "symbol": {
                                 "name": "stmt",
                                 "isTerminal": false
-                            },
-                            "textViewOnly": false
+                            }
                         },
                         "alternateSymbols": [
                             {
@@ -3412,10 +3472,11 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "assign_stmt",
+                                    "name": "expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Set a variable's value"
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
                             },
                             {
                                 "symbol": {
@@ -3426,10 +3487,15 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "func_call_stmt",
+                                    "name": "array_method_call",
                                     "isTerminal": false
-                                },
-                                "tooltip": "Use a defined function"
+                                }
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                }
                             }
                         ],
                         "selectedSymbol": 1,
@@ -3450,8 +3516,7 @@ export let config = {
                                 "symbol": {
                                     "name": "WHILE",
                                     "isTerminal": true
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "type": "SimpleBlock"
                         },
@@ -3461,7 +3526,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3471,8 +3536,7 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "alias": "condition",
-                                "textViewOnly": false
+                                "alias": "condition_expr"
                             },
                             "alternateSymbols": [
                                 {
@@ -3498,6 +3562,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -3512,7 +3590,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3522,7 +3600,7 @@ export let config = {
                                     "name": "{",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3538,8 +3616,7 @@ export let config = {
                                     "name": "stmts",
                                     "isTerminal": false
                                 },
-                                "alias": "while_part",
-                                "textViewOnly": false
+                                "alias": "while_part"
                             },
                             "elems": [
                                 {
@@ -3547,8 +3624,7 @@ export let config = {
                                         "symbol": {
                                             "name": "stmt",
                                             "isTerminal": false
-                                        },
-                                        "textViewOnly": false
+                                        }
                                     },
                                     "alternateSymbols": [
                                         {
@@ -3581,10 +3657,11 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "assign_stmt",
+                                                "name": "expr",
                                                 "isTerminal": false
                                             },
-                                            "tooltip": "Set a variable's value"
+                                            "alias": "expr_stmt",
+                                            "tooltip": "A single expression as a statement"
                                         },
                                         {
                                             "symbol": {
@@ -3595,10 +3672,15 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_call_stmt",
+                                                "name": "array_method_call",
                                                 "isTerminal": false
-                                            },
-                                            "tooltip": "Use a defined function"
+                                            }
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "string_method_call",
+                                                "isTerminal": false
+                                            }
                                         }
                                     ],
                                     "type": "SelectionBlock"
@@ -3609,8 +3691,7 @@ export let config = {
                                     "symbol": {
                                         "name": "stmt",
                                         "isTerminal": false
-                                    },
-                                    "textViewOnly": false
+                                    }
                                 },
                                 "alternateSymbols": [
                                     {
@@ -3643,10 +3724,11 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "assign_stmt",
+                                            "name": "expr",
                                             "isTerminal": false
                                         },
-                                        "tooltip": "Set a variable's value"
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
                                     },
                                     {
                                         "symbol": {
@@ -3657,10 +3739,15 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_call_stmt",
+                                            "name": "array_method_call",
                                             "isTerminal": false
-                                        },
-                                        "tooltip": "Use a defined function"
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
                                     }
                                 ],
                                 "type": "SelectionBlock"
@@ -3673,7 +3760,7 @@ export let config = {
                                     "name": "}",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -3684,8 +3771,7 @@ export let config = {
                             "symbol": {
                                 "name": "stmt",
                                 "isTerminal": false
-                            },
-                            "textViewOnly": false
+                            }
                         },
                         "alternateSymbols": [
                             {
@@ -3718,10 +3804,11 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "assign_stmt",
+                                    "name": "expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Set a variable's value"
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
                             },
                             {
                                 "symbol": {
@@ -3732,10 +3819,15 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "func_call_stmt",
+                                    "name": "array_method_call",
                                     "isTerminal": false
-                                },
-                                "tooltip": "Use a defined function"
+                                }
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                }
                             }
                         ],
                         "selectedSymbol": 2,
@@ -3756,8 +3848,7 @@ export let config = {
                                 "symbol": {
                                     "name": "FOR",
                                     "isTerminal": true
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "type": "SimpleBlock"
                         },
@@ -3767,91 +3858,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
-                            },
-                            "type": "InvisibleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "assign_stmt",
-                                    "isTerminal": false
-                                },
-                                "alias": "initialization",
-                                "textViewOnly": false
-                            },
-                            "elems": [
-                                {
-                                    "symbol": {
-                                        "symbol": {
-                                            "name": "IDENT",
-                                            "isTerminal": true
-                                        },
-                                        "textViewOnly": false
-                                    },
-                                    "type": "InputBlock"
-                                },
-                                {
-                                    "symbol": {
-                                        "symbol": {
-                                            "name": "EQUALS",
-                                            "isTerminal": true
-                                        },
-                                        "alias": "=",
-                                        "textViewOnly": false
-                                    },
-                                    "type": "SimpleBlock"
-                                },
-                                {
-                                    "symbol": {
-                                        "symbol": {
-                                            "name": "expr",
-                                            "isTerminal": false
-                                        },
-                                        "textViewOnly": false
-                                    },
-                                    "alternateSymbols": [
-                                        {
-                                            "symbol": {
-                                                "name": "arith_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Perform a mathematic operation"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "rel_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An operator that compares the 2 operands and returns true or false"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "bool_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An expression that evaluates to true or false"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "primary_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An identifier or a constant"
-                                        }
-                                    ],
-                                    "type": "SelectionBlock"
                                 }
-                            ],
-                            "type": "Group"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": ";",
-                                    "isTerminal": true,
-                                    "textViewOnly": true
-                                },
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3861,8 +3868,7 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "alias": "condition",
-                                "textViewOnly": false
+                                "alias": "initialization_expr"
                             },
                             "alternateSymbols": [
                                 {
@@ -3888,6 +3894,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -3902,83 +3922,127 @@ export let config = {
                                     "name": ";",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "assign_stmt",
+                                    "name": "expr",
                                     "isTerminal": false
                                 },
-                                "alias": "step",
-                                "textViewOnly": false
+                                "alias": "condition_expr"
                             },
-                            "elems": [
+                            "alternateSymbols": [
                                 {
                                     "symbol": {
-                                        "symbol": {
-                                            "name": "IDENT",
-                                            "isTerminal": true
-                                        },
-                                        "textViewOnly": false
+                                        "name": "arith_expr",
+                                        "isTerminal": false
                                     },
-                                    "type": "InputBlock"
+                                    "tooltip": "Perform a mathematic operation"
                                 },
                                 {
                                     "symbol": {
-                                        "symbol": {
-                                            "name": "EQUALS",
-                                            "isTerminal": true
-                                        },
-                                        "alias": "=",
-                                        "textViewOnly": false
+                                        "name": "rel_expr",
+                                        "isTerminal": false
                                     },
-                                    "type": "SimpleBlock"
+                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "symbol": {
-                                            "name": "expr",
-                                            "isTerminal": false
-                                        },
-                                        "textViewOnly": false
+                                        "name": "bool_expr",
+                                        "isTerminal": false
                                     },
-                                    "alternateSymbols": [
-                                        {
-                                            "symbol": {
-                                                "name": "arith_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Perform a mathematic operation"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "rel_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An operator that compares the 2 operands and returns true or false"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "bool_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An expression that evaluates to true or false"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "primary_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An identifier or a constant"
-                                        }
-                                    ],
-                                    "type": "SelectionBlock"
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
                                 }
                             ],
-                            "type": "Group"
+                            "type": "SelectionBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": ";",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
+                                }
+                            },
+                            "type": "InvisibleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "step_expr"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "bool_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "type": "SelectionBlock"
                         },
                         {
                             "symbol": {
@@ -3986,7 +4050,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -3996,7 +4060,7 @@ export let config = {
                                     "name": "{",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -4012,8 +4076,7 @@ export let config = {
                                     "name": "stmts",
                                     "isTerminal": false
                                 },
-                                "alias": "for_part",
-                                "textViewOnly": false
+                                "alias": "for_part"
                             },
                             "elems": [
                                 {
@@ -4021,8 +4084,7 @@ export let config = {
                                         "symbol": {
                                             "name": "stmt",
                                             "isTerminal": false
-                                        },
-                                        "textViewOnly": false
+                                        }
                                     },
                                     "alternateSymbols": [
                                         {
@@ -4055,10 +4117,11 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "assign_stmt",
+                                                "name": "expr",
                                                 "isTerminal": false
                                             },
-                                            "tooltip": "Set a variable's value"
+                                            "alias": "expr_stmt",
+                                            "tooltip": "A single expression as a statement"
                                         },
                                         {
                                             "symbol": {
@@ -4069,10 +4132,15 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_call_stmt",
+                                                "name": "array_method_call",
                                                 "isTerminal": false
-                                            },
-                                            "tooltip": "Use a defined function"
+                                            }
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "string_method_call",
+                                                "isTerminal": false
+                                            }
                                         }
                                     ],
                                     "type": "SelectionBlock"
@@ -4083,8 +4151,7 @@ export let config = {
                                     "symbol": {
                                         "name": "stmt",
                                         "isTerminal": false
-                                    },
-                                    "textViewOnly": false
+                                    }
                                 },
                                 "alternateSymbols": [
                                     {
@@ -4117,10 +4184,11 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "assign_stmt",
+                                            "name": "expr",
                                             "isTerminal": false
                                         },
-                                        "tooltip": "Set a variable's value"
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
                                     },
                                     {
                                         "symbol": {
@@ -4131,10 +4199,15 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_call_stmt",
+                                            "name": "array_method_call",
                                             "isTerminal": false
-                                        },
-                                        "tooltip": "Use a defined function"
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
                                     }
                                 ],
                                 "type": "SelectionBlock"
@@ -4147,7 +4220,7 @@ export let config = {
                                     "name": "}",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -4158,8 +4231,7 @@ export let config = {
                             "symbol": {
                                 "name": "stmt",
                                 "isTerminal": false
-                            },
-                            "textViewOnly": false
+                            }
                         },
                         "alternateSymbols": [
                             {
@@ -4192,10 +4264,11 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "assign_stmt",
+                                    "name": "expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Set a variable's value"
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
                             },
                             {
                                 "symbol": {
@@ -4206,10 +4279,15 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "func_call_stmt",
+                                    "name": "array_method_call",
                                     "isTerminal": false
-                                },
-                                "tooltip": "Use a defined function"
+                                }
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                }
                             }
                         ],
                         "selectedSymbol": 3,
@@ -4290,8 +4368,7 @@ export let config = {
                                 "symbol": {
                                     "name": "expr",
                                     "isTerminal": false
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "alternateSymbols": [
                                 {
@@ -4396,8 +4473,7 @@ export let config = {
                                 "symbol": {
                                     "name": "expr",
                                     "isTerminal": false
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "alternateSymbols": [
                                 {
@@ -4502,8 +4578,7 @@ export let config = {
                                 "symbol": {
                                     "name": "expr",
                                     "isTerminal": false
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "alternateSymbols": [
                                 {
@@ -4608,8 +4683,7 @@ export let config = {
                                 "symbol": {
                                     "name": "expr",
                                     "isTerminal": false
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "alternateSymbols": [
                                 {
@@ -4714,8 +4788,7 @@ export let config = {
                                 "symbol": {
                                     "name": "expr",
                                     "isTerminal": false
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "alternateSymbols": [
                                 {
@@ -4821,8 +4894,7 @@ export let config = {
                                 "symbol": {
                                     "name": "expr",
                                     "isTerminal": false
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "alternateSymbols": [
                                 {
@@ -4928,8 +5000,7 @@ export let config = {
                                 "symbol": {
                                     "name": "expr",
                                     "isTerminal": false
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "alternateSymbols": [
                                 {
@@ -4987,7 +5058,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -5020,6 +5091,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -5119,6 +5204,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -5133,7 +5232,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -5171,7 +5270,7 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false
+                                "alias": "expr_stmt"
                             },
                             "alternateSymbols": [
                                 {
@@ -5197,6 +5296,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -5204,7 +5317,74 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 0,
-                            "type": "SelectionBlock"
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "array_method_call",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
                         }
                     }
                 },
@@ -5223,7 +5403,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -5256,6 +5436,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -5355,6 +5549,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -5369,7 +5577,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -5407,7 +5615,7 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false
+                                "alias": "expr_stmt"
                             },
                             "alternateSymbols": [
                                 {
@@ -5433,6 +5641,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -5440,7 +5662,74 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 0,
-                            "type": "SelectionBlock"
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "array_method_call",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
                         }
                     }
                 },
@@ -5459,7 +5748,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -5492,6 +5781,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -5591,6 +5894,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -5605,7 +5922,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -5643,7 +5960,7 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false
+                                "alias": "expr_stmt"
                             },
                             "alternateSymbols": [
                                 {
@@ -5669,6 +5986,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -5676,7 +6007,74 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 0,
-                            "type": "SelectionBlock"
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "array_method_call",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
                         }
                     }
                 },
@@ -5695,7 +6093,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -5728,6 +6126,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -5827,6 +6239,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -5841,7 +6267,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -5879,7 +6305,8 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
                             },
                             "alternateSymbols": [
                                 {
@@ -5905,6 +6332,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -5912,7 +6353,74 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 0,
-                            "type": "SelectionBlock"
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "array_method_call",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
                         }
                     }
                 },
@@ -5931,8 +6439,7 @@ export let config = {
                                     "name": "MINUS",
                                     "isTerminal": true
                                 },
-                                "alias": "-",
-                                "textViewOnly": false
+                                "alias": "-"
                             },
                             "type": "SimpleBlock"
                         },
@@ -5941,8 +6448,7 @@ export let config = {
                                 "symbol": {
                                     "name": "expr",
                                     "isTerminal": false
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "alternateSymbols": [
                                 {
@@ -5965,6 +6471,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -6010,7 +6530,8 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
                             },
                             "alternateSymbols": [
                                 {
@@ -6036,6 +6557,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -6043,7 +6578,74 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 0,
-                            "type": "SelectionBlock"
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "array_method_call",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
                         }
                     }
                 }
@@ -6068,7 +6670,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -6101,6 +6703,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -6216,6 +6832,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -6230,7 +6860,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -6242,7 +6872,8 @@ export let config = {
                                 "name": "expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false
+                            "alias": "expr_stmt",
+                            "tooltip": "A single expression as a statement"
                         },
                         "alternateSymbols": [
                             {
@@ -6268,6 +6899,20 @@ export let config = {
                             },
                             {
                                 "symbol": {
+                                    "name": "assign_expr",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Set a variable's value"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_call_expr",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            },
+                            {
+                                "symbol": {
                                     "name": "primary_expr",
                                     "isTerminal": false
                                 },
@@ -6275,7 +6920,74 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SelectionBlock"
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                }
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true, else do something else"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "expr",
+                                        "isTerminal": false
+                                    },
+                                    "alias": "expr_stmt",
+                                    "tooltip": "A single expression as a statement"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_method_call",
+                                        "isTerminal": false
+                                    }
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "string_method_call",
+                                        "isTerminal": false
+                                    }
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock"
+                        }
                     }
                 },
                 {
@@ -6293,7 +7005,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -6326,6 +7038,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -6441,6 +7167,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -6455,7 +7195,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -6467,7 +7207,8 @@ export let config = {
                                 "name": "expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false
+                            "alias": "expr_stmt",
+                            "tooltip": "A single expression as a statement"
                         },
                         "alternateSymbols": [
                             {
@@ -6493,6 +7234,20 @@ export let config = {
                             },
                             {
                                 "symbol": {
+                                    "name": "assign_expr",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Set a variable's value"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_call_expr",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            },
+                            {
+                                "symbol": {
                                     "name": "primary_expr",
                                     "isTerminal": false
                                 },
@@ -6500,7 +7255,74 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SelectionBlock"
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                }
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true, else do something else"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "expr",
+                                        "isTerminal": false
+                                    },
+                                    "alias": "expr_stmt",
+                                    "tooltip": "A single expression as a statement"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_method_call",
+                                        "isTerminal": false
+                                    }
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "string_method_call",
+                                        "isTerminal": false
+                                    }
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock"
+                        }
                     }
                 },
                 {
@@ -6518,7 +7340,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -6551,6 +7373,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -6666,6 +7502,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -6680,7 +7530,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -6692,7 +7542,8 @@ export let config = {
                                 "name": "expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false
+                            "alias": "expr_stmt",
+                            "tooltip": "A single expression as a statement"
                         },
                         "alternateSymbols": [
                             {
@@ -6718,6 +7569,20 @@ export let config = {
                             },
                             {
                                 "symbol": {
+                                    "name": "assign_expr",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Set a variable's value"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_call_expr",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            },
+                            {
+                                "symbol": {
                                     "name": "primary_expr",
                                     "isTerminal": false
                                 },
@@ -6725,7 +7590,74 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SelectionBlock"
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                }
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true, else do something else"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "expr",
+                                        "isTerminal": false
+                                    },
+                                    "alias": "expr_stmt",
+                                    "tooltip": "A single expression as a statement"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_method_call",
+                                        "isTerminal": false
+                                    }
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "string_method_call",
+                                        "isTerminal": false
+                                    }
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock"
+                        }
                     }
                 },
                 {
@@ -6743,7 +7675,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -6776,6 +7708,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -6891,6 +7837,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -6905,7 +7865,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -6917,7 +7877,8 @@ export let config = {
                                 "name": "expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false
+                            "alias": "expr_stmt",
+                            "tooltip": "A single expression as a statement"
                         },
                         "alternateSymbols": [
                             {
@@ -6943,6 +7904,20 @@ export let config = {
                             },
                             {
                                 "symbol": {
+                                    "name": "assign_expr",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Set a variable's value"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_call_expr",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            },
+                            {
+                                "symbol": {
                                     "name": "primary_expr",
                                     "isTerminal": false
                                 },
@@ -6950,7 +7925,74 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SelectionBlock"
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                }
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true, else do something else"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "expr",
+                                        "isTerminal": false
+                                    },
+                                    "alias": "expr_stmt",
+                                    "tooltip": "A single expression as a statement"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_method_call",
+                                        "isTerminal": false
+                                    }
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "string_method_call",
+                                        "isTerminal": false
+                                    }
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock"
+                        }
                     }
                 },
                 {
@@ -6968,7 +8010,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -7001,6 +8043,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -7116,6 +8172,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -7130,7 +8200,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -7142,7 +8212,8 @@ export let config = {
                                 "name": "expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false
+                            "alias": "expr_stmt",
+                            "tooltip": "A single expression as a statement"
                         },
                         "alternateSymbols": [
                             {
@@ -7168,6 +8239,20 @@ export let config = {
                             },
                             {
                                 "symbol": {
+                                    "name": "assign_expr",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Set a variable's value"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_call_expr",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            },
+                            {
+                                "symbol": {
                                     "name": "primary_expr",
                                     "isTerminal": false
                                 },
@@ -7175,7 +8260,74 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SelectionBlock"
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                }
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true, else do something else"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "expr",
+                                        "isTerminal": false
+                                    },
+                                    "alias": "expr_stmt",
+                                    "tooltip": "A single expression as a statement"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_method_call",
+                                        "isTerminal": false
+                                    }
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "string_method_call",
+                                        "isTerminal": false
+                                    }
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock"
+                        }
                     }
                 },
                 {
@@ -7193,7 +8345,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -7226,6 +8378,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -7341,6 +8507,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -7355,7 +8535,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -7367,7 +8547,8 @@ export let config = {
                                 "name": "expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false
+                            "alias": "expr_stmt",
+                            "tooltip": "A single expression as a statement"
                         },
                         "alternateSymbols": [
                             {
@@ -7393,6 +8574,20 @@ export let config = {
                             },
                             {
                                 "symbol": {
+                                    "name": "assign_expr",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Set a variable's value"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_call_expr",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            },
+                            {
+                                "symbol": {
                                     "name": "primary_expr",
                                     "isTerminal": false
                                 },
@@ -7400,7 +8595,74 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 1,
-                        "type": "SelectionBlock"
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                }
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true, else do something else"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "expr",
+                                        "isTerminal": false
+                                    },
+                                    "alias": "expr_stmt",
+                                    "tooltip": "A single expression as a statement"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_method_call",
+                                        "isTerminal": false
+                                    }
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "string_method_call",
+                                        "isTerminal": false
+                                    }
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock"
+                        }
                     }
                 },
                 {
@@ -7418,7 +8680,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -7451,6 +8713,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -7531,6 +8807,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -7545,7 +8835,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -7583,7 +8873,8 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
                             },
                             "alternateSymbols": [
                                 {
@@ -7609,6 +8900,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -7616,7 +8921,74 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 2,
-                            "type": "SelectionBlock"
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "array_method_call",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
                         }
                     }
                 },
@@ -7635,7 +9007,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -7668,6 +9040,20 @@ export let config = {
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
                                 },
                                 {
                                     "symbol": {
@@ -7748,6 +9134,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -7762,7 +9162,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -7800,7 +9200,8 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
                             },
                             "alternateSymbols": [
                                 {
@@ -7826,6 +9227,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -7833,7 +9248,74 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 2,
-                            "type": "SelectionBlock"
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "array_method_call",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
                         }
                     }
                 },
@@ -7888,6 +9370,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -7930,7 +9426,8 @@ export let config = {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "textViewOnly": false
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
                             },
                             "alternateSymbols": [
                                 {
@@ -7956,6 +9453,20 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Use a user-defined function"
+                                },
+                                {
+                                    "symbol": {
                                         "name": "primary_expr",
                                         "isTerminal": false
                                     },
@@ -7963,202 +9474,13 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 2,
-                            "type": "SelectionBlock"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name": "Function",
-            "icon": "./Images/Toolbox/function.svg",
-            "blocks": [
-                {
-                    "symbol": {
-                        "symbol": {
-                            "name": "func_def_stmt",
-                            "isTerminal": false
-                        },
-                        "tooltip": "Define reusable code as a function"
-                    },
-                    "elems": [
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "FUNCTION",
-                                    "isTerminal": true
-                                },
-                                "textViewOnly": false
-                            },
-                            "type": "SimpleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "IDENT",
-                                    "isTerminal": true
-                                },
-                                "alias": "NAME",
-                                "textViewOnly": false
-                            },
-                            "type": "InputBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "OF",
-                                    "isTerminal": true
-                                },
-                                "textViewOnly": false
-                            },
-                            "type": "SimpleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "(",
-                                    "isTerminal": true,
-                                    "textViewOnly": true
-                                },
-                            },
-                            "type": "InvisibleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "ident_list",
-                                    "isTerminal": false
-                                },
-                                "textViewOnly": false
-                            },
-                            "elems": [
-                                {
-                                    "symbol": {
-                                        "symbol": {
-                                            "name": "IDENT",
-                                            "isTerminal": true
-                                        },
-                                        "textViewOnly": false
-                                    },
-                                    "type": "InputBlock"
-                                }
-                            ],
-                            "repetitiveElem": {
-                                "symbol": {
-                                    "symbol": {
-                                        "name": "IDENT",
-                                        "isTerminal": true
-                                    },
-                                    "textViewOnly": false
-                                },
-                                "type": "InputBlock"
-                            },
-                            "type": "RepetitionGroup"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": ")",
-                                    "isTerminal": true,
-                                    "textViewOnly": true
-                                },
-                            },
-                            "type": "InvisibleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "{",
-                                    "isTerminal": true,
-                                    "textViewOnly": true
-                                },
-                            },
-                            "type": "InvisibleBlock"
-                        },
-                        {
-                            "type": "NewLine"
-                        },
-                        {
-                            "type": "TabBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "stmts",
-                                    "isTerminal": false
-                                },
-                                "textViewOnly": false
-                            },
-                            "elems": [
-                                {
-                                    "symbol": {
-                                        "symbol": {
-                                            "name": "stmt",
-                                            "isTerminal": false
-                                        },
-                                        "textViewOnly": false
-                                    },
-                                    "alternateSymbols": [
-                                        {
-                                            "symbol": {
-                                                "name": "if_stmt",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Do something if a condition is true"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "if_else_stmt",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Do something if a condition is true, else do something else"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "while_stmt",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Do something while a condition is true"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "for_stmt",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "assign_stmt",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Set a variable's value"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "func_def_stmt",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Define reusable code as a function"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "func_call_stmt",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Use a defined function"
-                                        }
-                                    ],
-                                    "type": "SelectionBlock"
-                                }
-                            ],
-                            "repetitiveElem": {
+                            "type": "SelectionBlock",
+                            "generatedBy": {
                                 "symbol": {
                                     "symbol": {
                                         "name": "stmt",
                                         "isTerminal": false
-                                    },
-                                    "textViewOnly": false
+                                    }
                                 },
                                 "alternateSymbols": [
                                     {
@@ -8191,10 +9513,11 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "assign_stmt",
+                                            "name": "expr",
                                             "isTerminal": false
                                         },
-                                        "tooltip": "Set a variable's value"
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
                                     },
                                     {
                                         "symbol": {
@@ -8205,10 +9528,268 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_call_stmt",
+                                            "name": "array_method_call",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Function",
+            "icon": "./Images/Toolbox/function.svg",
+            "blocks": [
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "func_def_stmt",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Define reusable code as a function"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "FUNCTION",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "alias": "NAME"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "OF",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "(",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
+                                }
+                            },
+                            "type": "InvisibleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "ident_list",
+                                    "isTerminal": false
+                                }
+                            },
+                            "elems": [
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "IDENT",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type": "InputBlock"
+                                }
+                            ],
+                            "repetitiveElem": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "IDENT",
+                                        "isTerminal": true
+                                    }
+                                },
+                                "type": "InputBlock"
+                            },
+                            "type": "RepetitionGroup"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": ")",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
+                                }
+                            },
+                            "type": "InvisibleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "{",
+                                    "isTerminal": true,
+                                    "textViewOnly": true
+                                }
+                            },
+                            "type": "InvisibleBlock"
+                        },
+                        {
+                            "type": "NewLine"
+                        },
+                        {
+                            "type": "TabBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmts",
+                                    "isTerminal": false
+                                }
+                            },
+                            "elems": [
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "stmt",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "if_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something if a condition is true"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "if_else_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something if a condition is true, else do something else"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "while_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something while a condition is true"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "for_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "expr",
+                                                "isTerminal": false
+                                            },
+                                            "alias": "expr_stmt",
+                                            "tooltip": "A single expression as a statement"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "func_def_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Define reusable code as a function"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "array_method_call",
+                                                "isTerminal": false
+                                            }
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "string_method_call",
+                                                "isTerminal": false
+                                            }
+                                        }
+                                    ],
+                                    "type": "SelectionBlock"
+                                }
+                            ],
+                            "repetitiveElem": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
                                             "isTerminal": false
                                         },
-                                        "tooltip": "Use a defined function"
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "array_method_call",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_method_call",
+                                            "isTerminal": false
+                                        }
                                     }
                                 ],
                                 "type": "SelectionBlock"
@@ -8221,7 +9802,7 @@ export let config = {
                                     "name": "}",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -8232,8 +9813,7 @@ export let config = {
                             "symbol": {
                                 "name": "stmt",
                                 "isTerminal": false
-                            },
-                            "textViewOnly": false
+                            }
                         },
                         "alternateSymbols": [
                             {
@@ -8266,10 +9846,11 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "assign_stmt",
+                                    "name": "expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Set a variable's value"
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
                             },
                             {
                                 "symbol": {
@@ -8280,10 +9861,15 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "func_call_stmt",
+                                    "name": "array_method_call",
                                     "isTerminal": false
-                                },
-                                "tooltip": "Use a defined function"
+                                }
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                }
                             }
                         ],
                         "selectedSymbol": 5,
@@ -8293,10 +9879,10 @@ export let config = {
                 {
                     "symbol": {
                         "symbol": {
-                            "name": "func_call_stmt",
+                            "name": "func_call_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "Use a defined function"
+                        "tooltip": "Use a user-defined function"
                     },
                     "elems": [
                         {
@@ -8304,8 +9890,7 @@ export let config = {
                                 "symbol": {
                                     "name": "CALL",
                                     "isTerminal": true
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "type": "SimpleBlock"
                         },
@@ -8315,8 +9900,7 @@ export let config = {
                                     "name": "IDENT",
                                     "isTerminal": true
                                 },
-                                "alias": "FUNCTION NAME",
-                                "textViewOnly": false
+                                "alias": "FUNCTION NAME"
                             },
                             "type": "InputBlock"
                         },
@@ -8325,8 +9909,7 @@ export let config = {
                                 "symbol": {
                                     "name": "WITH",
                                     "isTerminal": true
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "type": "SimpleBlock"
                         },
@@ -8336,7 +9919,7 @@ export let config = {
                                     "name": "(",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         },
@@ -8345,8 +9928,7 @@ export let config = {
                                 "symbol": {
                                     "name": "expr_list",
                                     "isTerminal": false
-                                },
-                                "textViewOnly": false
+                                }
                             },
                             "elems": [
                                 {
@@ -8355,8 +9937,7 @@ export let config = {
                                             "name": "expr",
                                             "isTerminal": false
                                         },
-                                        "alias": "ARG",
-                                        "textViewOnly": false
+                                        "alias": "ARG"
                                     },
                                     "alternateSymbols": [
                                         {
@@ -8382,6 +9963,20 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
+                                                "name": "assign_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Set a variable's value"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "func_call_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Use a user-defined function"
+                                        },
+                                        {
+                                            "symbol": {
                                                 "name": "primary_expr",
                                                 "isTerminal": false
                                             },
@@ -8397,8 +9992,7 @@ export let config = {
                                         "name": "expr",
                                         "isTerminal": false
                                     },
-                                    "alias": "ARG",
-                                    "textViewOnly": false
+                                    "alias": "ARG"
                                 },
                                 "alternateSymbols": [
                                     {
@@ -8424,6 +10018,20 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
+                                            "name": "assign_expr",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Set a variable's value"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_call_expr",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Use a user-defined function"
+                                    },
+                                    {
+                                        "symbol": {
                                             "name": "primary_expr",
                                             "isTerminal": false
                                         },
@@ -8440,7 +10048,7 @@ export let config = {
                                     "name": ")",
                                     "isTerminal": true,
                                     "textViewOnly": true
-                                },
+                                }
                             },
                             "type": "InvisibleBlock"
                         }
@@ -8449,64 +10057,125 @@ export let config = {
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
-                                "name": "stmt",
+                                "name": "expr",
                                 "isTerminal": false
                             },
-                            "textViewOnly": false
+                            "alias": "expr_stmt",
+                            "tooltip": "A single expression as a statement"
                         },
                         "alternateSymbols": [
                             {
                                 "symbol": {
-                                    "name": "if_stmt",
+                                    "name": "arith_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Do something if a condition is true"
+                                "tooltip": "Perform a mathematic operation"
                             },
                             {
                                 "symbol": {
-                                    "name": "if_else_stmt",
+                                    "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Do something if a condition is true, else do something else"
+                                "tooltip": "An operator that compares the 2 operands and returns true or false"
                             },
                             {
                                 "symbol": {
-                                    "name": "while_stmt",
+                                    "name": "bool_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Do something while a condition is true"
+                                "tooltip": "An expression that evaluates to true or false"
                             },
                             {
                                 "symbol": {
-                                    "name": "for_stmt",
-                                    "isTerminal": false
-                                },
-                                "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
-                            },
-                            {
-                                "symbol": {
-                                    "name": "assign_stmt",
+                                    "name": "assign_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Set a variable's value"
                             },
                             {
                                 "symbol": {
-                                    "name": "func_def_stmt",
+                                    "name": "func_call_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Define reusable code as a function"
+                                "tooltip": "Use a user-defined function"
                             },
                             {
                                 "symbol": {
-                                    "name": "func_call_stmt",
+                                    "name": "primary_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Use a defined function"
+                                "tooltip": "An identifier or a constant"
                             }
                         ],
-                        "selectedSymbol": 6,
-                        "type": "SelectionBlock"
+                        "selectedSymbol": 4,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmt",
+                                    "isTerminal": false
+                                }
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "if_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "if_else_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something if a condition is true, else do something else"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "while_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "for_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "expr",
+                                        "isTerminal": false
+                                    },
+                                    "alias": "expr_stmt",
+                                    "tooltip": "A single expression as a statement"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_def_stmt",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_method_call",
+                                        "isTerminal": false
+                                    }
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "string_method_call",
+                                        "isTerminal": false
+                                    }
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock"
+                        }
                     }
                 }
             ]
@@ -9217,7 +10886,7 @@ export let lightTheme = {
                     "BorderRadius": ""
                 }
             },
-            "assign_stmt": {
+            "assign_expr": {
                 "Group Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -9241,7 +10910,7 @@ export let lightTheme = {
                     "BorderRadius": ""
                 }
             },
-            "func_call_stmt": {
+            "func_call_expr": {
                 "Group Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -10292,13 +11961,13 @@ export let lightTheme = {
     },
     "Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
-        "if_stmt":              [ "IF", "condition", "$$_newline", "$$_tab", "if_part"],
+        "if_stmt":              [ "IF", "condition_expr", "$$_newline", "$$_tab", "if_part"],
         "if_else_stmt":         [ 
-                                    "IF", "condition", "$$_newline", "$$_tab", "if_part",
+                                    "IF", "condition_expr", "$$_newline", "$$_tab", "if_part",
                                     "$$_newline", "ELSE", "$$_newline", "$$_tab", "else_part"
                                 ],
-        "while_stmt":           [ "WHILE", "condition", "$$_newline", "$$_tab", "while_part" ],
-        "for_stmt":             [ "FOR", "initialization", "condition", "step", "$$_newline", "$$_tab", "for_part" ],
+        "while_stmt":           [ "WHILE", "condition_expr", "$$_newline", "$$_tab", "while_part" ],
+        "for_stmt":             [ "FOR", "initialization", "condition_expr", "step", "$$_newline", "$$_tab", "for_part" ],
         "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
         "ident_list":           { "NewLine Between Blocks": false },
         "expr_list":            { "NewLine Between Blocks": false },
@@ -10306,14 +11975,14 @@ export let lightTheme = {
     },
     "Source Text Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
-        "if_stmt":              [ "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}" ],
+        "if_stmt":              [ "IF", "(", "condition_expr", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}" ],
         "if_else_stmt":         [
-                                    "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}", 
+                                    "IF", "(", "condition_expr", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}", 
                                     "$$_newline", "ELSE", "{", "$$_newline", "$$_tab", "else_part", "$$_newline", "}" 
                                 ],
-        "while_stmt":           [ "WHILE", "(", "condition", ")", "{", "$$_newline", "$$_tab", "while_part", "$$_newline", "}" ],
+        "while_stmt":           [ "WHILE", "(", "condition_expr", ")", "{", "$$_newline", "$$_tab", "while_part", "$$_newline", "}" ],
         "for_stmt":             [
-                                    "FOR", "(", "initialization", ";", "condition", ";", "step", ")", "{",
+                                    "FOR", "(", "initialization", ";", "condition_expr", ";", "step", ")", "{",
                                     "$$_newline", "$$_tab", "for_part", "$$_newline", "}" 
                                 ],
         "func_def_stmt":        [ 
@@ -11024,7 +12693,7 @@ export let colorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "assign_stmt": {
+            "assign_expr": {
                 "Group Block": {
                     "BackgroundColor": "#A55B80",
                     "PaddingLeft": "",
@@ -11048,7 +12717,7 @@ export let colorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "func_call_stmt": {
+            "func_call_expr": {
                 "Group Block": {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "",
@@ -12086,13 +13755,13 @@ export let colorfulTheme = {
     },
     "Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
-        "if_stmt":              [ "IF", "condition", "$$_newline", "$$_tab", "if_part"],
+        "if_stmt":              [ "IF", "condition_expr", "$$_newline", "$$_tab", "if_part"],
         "if_else_stmt":         [ 
-                                    "IF", "condition", "$$_newline", "$$_tab", "if_part",
+                                    "IF", "condition_expr", "$$_newline", "$$_tab", "if_part",
                                     "$$_newline", "ELSE", "$$_newline", "$$_tab", "else_part"
                                 ],
-        "while_stmt":           [ "WHILE", "condition", "$$_newline", "$$_tab", "while_part" ],
-        "for_stmt":             [ "FOR", "initialization", "condition", "step", "$$_newline", "$$_tab", "for_part" ],
+        "while_stmt":           [ "WHILE", "condition_expr", "$$_newline", "$$_tab", "while_part" ],
+        "for_stmt":             [ "FOR", "initialization", "condition_expr", "step", "$$_newline", "$$_tab", "for_part" ],
         "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
         "ident_list":           { "NewLine Between Blocks": false },
         "expr_list":            { "NewLine Between Blocks": false },
@@ -12100,14 +13769,14 @@ export let colorfulTheme = {
     },
     "Source Text Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
-        "if_stmt":              [ "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}" ],
+        "if_stmt":              [ "IF", "(", "condition_expr", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}" ],
         "if_else_stmt":         [
-                                    "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}", 
+                                    "IF", "(", "condition_expr", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}", 
                                     "$$_newline", "ELSE", "{", "$$_newline", "$$_tab", "else_part", "$$_newline", "}" 
                                 ],
-        "while_stmt":           [ "WHILE", "(", "condition", ")", "{", "$$_newline", "$$_tab", "while_part", "$$_newline", "}" ],
+        "while_stmt":           [ "WHILE", "(", "condition_expr", ")", "{", "$$_newline", "$$_tab", "while_part", "$$_newline", "}" ],
         "for_stmt":             [
-                                    "FOR", "(", "initialization", ";", "condition", ";", "step", ")", "{",
+                                    "FOR", "(", "initialization", ";", "condition_expr", ";", "step", ")", "{",
                                     "$$_newline", "$$_tab", "for_part", "$$_newline", "}" 
                                 ],
         "func_def_stmt":        [ 
@@ -12818,7 +14487,7 @@ export let darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "assign_stmt": {
+            "assign_expr": {
                 "Group Block": {
                     "BackgroundColor": "#A55B80",
                     "PaddingLeft": "",
@@ -12842,7 +14511,7 @@ export let darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "func_call_stmt": {
+            "func_call_expr": {
                 "Group Block": {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "",
@@ -13880,13 +15549,13 @@ export let darkColorfulTheme = {
     },
     "Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
-        "if_stmt":              [ "IF", "condition", "$$_newline", "$$_tab", "if_part"],
+        "if_stmt":              [ "IF", "condition_expr", "$$_newline", "$$_tab", "if_part"],
         "if_else_stmt":         [ 
-                                    "IF", "condition", "$$_newline", "$$_tab", "if_part",
+                                    "IF", "condition_expr", "$$_newline", "$$_tab", "if_part",
                                     "$$_newline", "ELSE", "$$_newline", "$$_tab", "else_part"
                                 ],
-        "while_stmt":           [ "WHILE", "condition", "$$_newline", "$$_tab", "while_part" ],
-        "for_stmt":             [ "FOR", "initialization", "condition", "step", "$$_newline", "$$_tab", "for_part" ],
+        "while_stmt":           [ "WHILE", "condition_expr", "$$_newline", "$$_tab", "while_part" ],
+        "for_stmt":             [ "FOR", "initialization", "condition_expr", "step", "$$_newline", "$$_tab", "for_part" ],
         "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
         "ident_list":           { "NewLine Between Blocks": false },
         "expr_list":            { "NewLine Between Blocks": false },
@@ -13894,14 +15563,14 @@ export let darkColorfulTheme = {
     },
     "Source Text Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
-        "if_stmt":              [ "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}" ],
+        "if_stmt":              [ "IF", "(", "condition_expr", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}" ],
         "if_else_stmt":         [
-                                    "IF", "(", "condition", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}", 
+                                    "IF", "(", "condition_expr", ")", "{", "$$_newline", "$$_tab", "if_part", "$$_newline", "}", 
                                     "$$_newline", "ELSE", "{", "$$_newline", "$$_tab", "else_part", "$$_newline", "}" 
                                 ],
-        "while_stmt":           [ "WHILE", "(", "condition", ")", "{", "$$_newline", "$$_tab", "while_part", "$$_newline", "}" ],
+        "while_stmt":           [ "WHILE", "(", "condition_expr", ")", "{", "$$_newline", "$$_tab", "while_part", "$$_newline", "}" ],
         "for_stmt":             [
-                                    "FOR", "(", "initialization", ";", "condition", ";", "step", ")", "{",
+                                    "FOR", "(", "initialization", ";", "condition_expr", ";", "step", ")", "{",
                                     "$$_newline", "$$_tab", "for_part", "$$_newline", "}" 
                                 ],
         "func_def_stmt":        [ 

@@ -354,6 +354,7 @@ export class Toolbox {
         this.keyboardEventManager = new KeyboardEventManager(this.$toolbox)
             .AddEventHandler( [Keys.CTRL, Keys.Z],                  () => this.EventHandler_Undo_() )
             .AddEventHandler( [Keys.CTRL, Keys.Y],                  () => this.EventHandler_Redo_() )
+            .AddEventHandler( [Keys.CTRL, Keys.P],                  () => console.log(this.ToJson()) )
         ;
     }
 
