@@ -117,7 +117,6 @@ export class InputBlock extends EditorElement {
 
     ApplyTextViewTheme_(){
         let theme = this.textViewTheme(this), color = theme?.Get(ThemeableProps.Props.FontColor);
-
         if (theme && color) this.$input.css(ThemeableProps.ToCss(ThemeableProps.Props.FontColor, color));
     }
 

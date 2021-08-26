@@ -19,6 +19,8 @@ export class CodeChips {
         }
         
         let editor = new Editor($container, language, toolboxJson, themeJson);
+
+        return editor;
     }
 
     static ParseLanguageJson_(languageJson){

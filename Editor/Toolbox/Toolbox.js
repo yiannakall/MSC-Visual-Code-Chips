@@ -326,13 +326,21 @@ export class Toolbox {
         }
 
         this.$container = $container;
+        
         this.theme = theme;
+        this.SetElem_Theme((elem) => {
+            if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab){
+                return {};
+            }
+            return this.theme?.["Blocks"]["Composite"][elem.GetSymbol().symbol.name];
+        });
+
         this.history = new CommandHistory();
         
         this.InitializeView_();
         this.SetUpKeyboardEvents_();
         
-        this.Render();        
+        this.Render();
         this.Select_(this.categories[categories[0].name]);
     }
     
@@ -661,6 +669,15 @@ export class Toolbox {
             
             (view.ApplyTheme) ? view.ApplyTheme(theme): view.GetView().css(theme.ToCss());
         });
+
+        for (let categoryName in this.blocks) {
+            for (let block of this.blocks[categoryName]){
+                if (block.GetType() === EditorElementTypes.Group || block.GetType() === EditorElementTypes.RepetitionGroup){
+                    block.ForEachRec((block) => block.ApplyThemes_());
+                }else
+                    block.ApplyThemes_()
+            }
+        }
     }
 
     SetElem_OnDragStart(f){
@@ -674,15 +691,6 @@ export class Toolbox {
     SetElem_Theme(f){
         this.blockTheme = f;
     }
-
-    // SetBlockTheme(block){
-    //     block.SetTheme((elem) => {
-    //         if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab){
-    //             return {};
-    //         }
-    //         return this.theme["Blocks"]["Composite"][elem.GetSymbol().symbol.name];
-    //     });
-    // }
 
     SetToolbox_OnDrop(f){
         this.onDrop = f;

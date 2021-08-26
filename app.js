@@ -12,7 +12,7 @@ $(document).ready(function () {
         return $.fn.textWidth.fakeEl.width();
     };
 
-    CodeChips.Inject(
+    let editor = CodeChips.Inject(
         $('#injection-div'), 
         {
             languageJson: config.language,
@@ -20,4 +20,12 @@ $(document).ready(function () {
             toolboxJson: config.toolbox
         }
     );
+
+    let themes = [ darkColorfulTheme, colorfulTheme, config.theme, lightTheme ];
+
+    $('#theme-selection').on('change', function() {
+        editor.SetTheme(themes[+this.value]);
+        editor.ApplyTheme();
+    });
+
 });

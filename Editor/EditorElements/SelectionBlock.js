@@ -248,24 +248,25 @@ export class SelectionBlock extends EditorElement {
             $choice.append($('<div/>').addClass('tooltip-content').text(symbol.tooltip));
         }
 
-        if (!this.isEditable_)
+        if (!this.isEditable_){
             $choice.addClass('tooltip-disabled');
 
-        if (symbol === this.selectedSymbol){
-            let theme = this.theme(this)?.[SelectionBlock.themeableIds.OptionOnHover];
-
-            if (theme){
-                let hoverBg = theme.Get(ThemeableProps.Props.BackgroundColor);
-                let hoverColor = theme.Get(ThemeableProps.Props.FontColor);
-
-                if (hoverBg)
-                    $choice.css('background-color', hoverBg);
-                
-                if (hoverColor)
-                    $choice.css('color', hoverColor);
+            if (symbol === this.selectedSymbol){
+                let theme = this.theme(this)?.[SelectionBlock.themeableIds.OptionOnHover];
+    
+                if (theme){
+                    let hoverBg = theme.Get(ThemeableProps.Props.BackgroundColor);
+                    let hoverColor = theme.Get(ThemeableProps.Props.FontColor);
+    
+                    if (hoverBg)
+                        $choice.css('background-color', hoverBg);
+                    
+                    if (hoverColor)
+                        $choice.css('color', hoverColor);
+                }
+    
+                $choice.addClass('selected-symbol');
             }
-
-            $choice.addClass('selected-symbol');
         }
 
         return $choice;

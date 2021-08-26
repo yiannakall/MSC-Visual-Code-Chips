@@ -369,9 +369,11 @@ export let config = {
             {
                 name: "ARRAY_CONST",
                 all_of: [
+                    { type: "terminal", name: "(", textViewOnly: true },
                     { type: "terminal", name: "ARRAY", },
                     { type: "terminal", name: "WITH", },
                     { type: "non_terminal", name: "element_list", },
+                    { type: "terminal", name: ")", textViewOnly: true },
                 ]
             },
             {
@@ -841,45 +843,45 @@ export let config = {
             "General": {
                 "Group": {
                     "Group Block": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
-                        "BorderWidth": "",
-                        "BorderColor": "",
-                        "BorderRadius": ""
+                        "BackgroundColor": "#1e1e1e",
+                        "PaddingLeft": "10px",
+                        "PaddingRight": "10px",
+                        "PaddingTop": "5px",
+                        "PaddingBottom": "5px",
+                        "BorderWidth": "2px",
+                        "BorderColor": "#37373D",
+                        "BorderRadius": "10px"
                     }
                 },
                 "RepetitionGroup": {
                     "Group Block": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
-                        "BorderWidth": "",
-                        "BorderColor": "",
-                        "BorderRadius": ""
+                        "BackgroundColor": "#1e1e1e",
+                        "PaddingLeft": "10px",
+                        "PaddingRight": "10px",
+                        "PaddingTop": "5px",
+                        "PaddingBottom": "5px",
+                        "BorderWidth": "2px",
+                        "BorderColor": "#37373D",
+                        "BorderRadius": "10px"
                     },
                     "Button": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
-                        "BorderWidth": "",
-                        "BorderColor": ""
+                        "BackgroundColor": "#0E639C",
+                        "PaddingLeft": "8px",
+                        "PaddingRight": "8px",
+                        "PaddingTop": "8px",
+                        "PaddingBottom": "8px",
+                        "BorderWidth": "0px",
+                        "BorderColor": "transparent"
                     },
                     "Button Plus Sign": {
-                        "Width": "",
-                        "Height": "",
-                        "BackgroundColor": ""
+                        "Width": "12px",
+                        "Height": "12px",
+                        "BackgroundColor": "#f2f2f2"
                     },
                     "Button Tooltip": {
-                        "FontSize": "",
-                        "FontColor": "",
-                        "BackgroundColor": ""
+                        "FontSize": "14px",
+                        "FontColor": "#eeeeee",
+                        "BackgroundColor": "#004A78"
                     },
                     "Button On Hover": {
                         "BackgroundColor": "#007ACC"
@@ -890,82 +892,82 @@ export let config = {
                 },
                 "SimpleBlock": {
                     "Simple Block": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
-                        "FontColor": "",
-                        "FontSize": "",
-                        "BorderWidth": "",
-                        "BorderColor": "",
-                        "BorderRadius": ""
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "4px",
+                        "PaddingRight": "4px",
+                        "PaddingTop": "5px",
+                        "PaddingBottom": "5px",
+                        "FontColor": "#E5ECF0",
+                        "FontSize": "14px",
+                        "BorderWidth": "2px",
+                        "BorderColor": "transparent",
+                        "BorderRadius": "10px"
                     }
                 },
                 "InputBlock": {
                     "Input Container": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "0px",
+                        "PaddingRight": "0px",
                         "PaddingTop": "5px",
                         "PaddingBottom": "5px",
-                        "BorderWidth": "",
-                        "BorderColor": "",
-                        "BorderRadius": ""
+                        "BorderWidth": "2px",
+                        "BorderColor": "#37373D",
+                        "BorderRadius": "10px"
                     },
                     "Input": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
-                        "FontColor": "",
-                        "FontSize": ""
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "0px",
+                        "PaddingRight": "0px",
+                        "PaddingTop": "0px",
+                        "PaddingBottom": "0px",
+                        "FontColor": "#ffffff",
+                        "FontSize": "14px"
                     }
                 },
                 "SelectionBlock": {
                     "Selection Block": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
+                        "BackgroundColor": "#37373D",
+                        "PaddingLeft": "2px",
+                        "PaddingRight": "2px",
                         "PaddingTop": "5px",
                         "PaddingBottom": "5px",
-                        "FontSize": "",
-                        "FontColor": "",
-                        "Gap": "",
-                        "BorderWidth": "",
-                        "BorderColor": "",
-                        "BorderRadius": ""
+                        "FontSize": "14px",
+                        "FontColor": "#E5ECF0",
+                        "Gap": "20px",
+                        "BorderWidth": "2px",
+                        "BorderColor": "transparent",
+                        "BorderRadius": "10px"
                     },
                     "Arrow": {
-                        "BackgroundColor": "",
-                        "Width": "",
-                        "Height": ""
+                        "BackgroundColor": "#ffffff",
+                        "Width": "8px",
+                        "Height": "8px"
                     },
                     "Option Container": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": ""
+                        "BackgroundColor": "#252526",
+                        "PaddingLeft": "0px",
+                        "PaddingRight": "0px",
+                        "PaddingTop": "5px",
+                        "PaddingBottom": "5px"
                     },
                     "Option": {
-                        "BackgroundColor": "",
-                        "PaddingLeft": "",
-                        "PaddingRight": "",
-                        "PaddingTop": "",
-                        "PaddingBottom": "",
-                        "FontSize": "",
-                        "FontColor": ""
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "5px",
+                        "PaddingRight": "5px",
+                        "PaddingTop": "5px",
+                        "PaddingBottom": "5px",
+                        "FontSize": "14px",
+                        "FontColor": "#C2C2C2"
                     },
                     "Option On Hover": {
                         "BackgroundColor": "#094771",
                         "FontColor": "#E5ECF0"
                     },
                     "Option Tooltip": {
-                        "FontSize": "",
-                        "FontColor": "",
-                        "BackgroundColor": ""
+                        "FontSize": "14px",
+                        "FontColor": "#eeeeee",
+                        "BackgroundColor": "#004A78"
                     }
                 }
             },
@@ -1160,7 +1162,7 @@ export let config = {
                         "PaddingTop": "",
                         "PaddingBottom": "",
                         "BorderWidth": "",
-                        "BorderColor": "#37373D",
+                        "BorderColor": "",
                         "BorderRadius": ""
                     },
                     "Input": {
@@ -1181,7 +1183,7 @@ export let config = {
                         "PaddingTop": "",
                         "PaddingBottom": "",
                         "BorderWidth": "",
-                        "BorderColor": "#37373D",
+                        "BorderColor": "",
                         "BorderRadius": ""
                     },
                     "Input": {
@@ -1202,7 +1204,7 @@ export let config = {
                         "PaddingTop": "",
                         "PaddingBottom": "",
                         "BorderWidth": "",
-                        "BorderColor": "#37373D",
+                        "BorderColor": "",
                         "BorderRadius": ""
                     },
                     "Input": {
@@ -1223,7 +1225,7 @@ export let config = {
                         "PaddingTop": "",
                         "PaddingBottom": "",
                         "BorderWidth": "",
-                        "BorderColor": "#37373D",
+                        "BorderColor": "",
                         "BorderRadius": ""
                     },
                     "Input": {
@@ -1244,7 +1246,7 @@ export let config = {
                         "PaddingTop": "",
                         "PaddingBottom": "",
                         "BorderWidth": "",
-                        "BorderColor": "#37373D",
+                        "BorderColor": "",
                         "BorderRadius": ""
                     },
                     "Input": {
@@ -1265,7 +1267,7 @@ export let config = {
                         "PaddingTop": "",
                         "PaddingBottom": "",
                         "BorderWidth": "",
-                        "BorderColor": "#37373D",
+                        "BorderColor": "",
                         "BorderRadius": ""
                     },
                     "Input": {
@@ -2018,114 +2020,491 @@ export let config = {
                     "Button Plus Sign On Hover": {
                         "BackgroundColor": ""
                     }
+                },
+                "IN ARRAY": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#C57991",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "get": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "insert": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "push_back": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "set": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "get_size": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "ARRAY": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#C57991",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "array_method_call": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "ARRAY_CONST": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "array_method": {
+                    "Selection Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": "",
+                        "Gap": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Arrow": {
+                        "BackgroundColor": "",
+                        "Width": "",
+                        "Height": ""
+                    },
+                    "Option Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": ""
+                    },
+                    "Option": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": ""
+                    },
+                    "Option On Hover": {
+                        "BackgroundColor": "",
+                        "FontColor": ""
+                    },
+                    "Option Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    }
+                },
+                "array_get": {
+                    "Group Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "0px",
+                        "PaddingRight": "0px",
+                        "PaddingTop": "0px",
+                        "PaddingBottom": "0px",
+                        "BorderWidth": "",
+                        "BorderColor": "transparent",
+                        "BorderRadius": ""
+                    }
+                },
+                "array_insert": {
+                    "Group Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "0px",
+                        "PaddingRight": "0px",
+                        "PaddingTop": "0px",
+                        "PaddingBottom": "0px",
+                        "BorderWidth": "",
+                        "BorderColor": "transparent",
+                        "BorderRadius": ""
+                    }
+                },
+                "array_push_back": {
+                    "Group Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "0px",
+                        "PaddingRight": "0px",
+                        "PaddingTop": "0px",
+                        "PaddingBottom": "0px",
+                        "BorderWidth": "",
+                        "BorderColor": "transparent",
+                        "BorderRadius": ""
+                    }
+                },
+                "array_set": {
+                    "Group Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "0px",
+                        "PaddingRight": "0px",
+                        "PaddingTop": "0px",
+                        "PaddingBottom": "0px",
+                        "BorderWidth": "",
+                        "BorderColor": "transparent",
+                        "BorderRadius": ""
+                    }
+                },
+                "element_list": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Button": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": ""
+                    },
+                    "Button Plus Sign": {
+                        "Width": "",
+                        "Height": "",
+                        "BackgroundColor": ""
+                    },
+                    "Button Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    },
+                    "Button On Hover": {
+                        "BackgroundColor": ""
+                    },
+                    "Button Plus Sign On Hover": {
+                        "BackgroundColor": ""
+                    }
+                },
+                "IN STRING": {
+                    "Simple Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontColor": "#C57991",
+                        "FontSize": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "string_method": {
+                    "Selection Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": "",
+                        "Gap": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    },
+                    "Arrow": {
+                        "BackgroundColor": "",
+                        "Width": "",
+                        "Height": ""
+                    },
+                    "Option Container": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": ""
+                    },
+                    "Option": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "FontSize": "",
+                        "FontColor": ""
+                    },
+                    "Option On Hover": {
+                        "BackgroundColor": "",
+                        "FontColor": ""
+                    },
+                    "Option Tooltip": {
+                        "FontSize": "",
+                        "FontColor": "",
+                        "BackgroundColor": ""
+                    }
+                },
+                "string_method_call": {
+                    "Group Block": {
+                        "BackgroundColor": "",
+                        "PaddingLeft": "",
+                        "PaddingRight": "",
+                        "PaddingTop": "",
+                        "PaddingBottom": "",
+                        "BorderWidth": "",
+                        "BorderColor": "",
+                        "BorderRadius": ""
+                    }
+                },
+                "string_append": {
+                    "Group Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "0px",
+                        "PaddingRight": "0px",
+                        "PaddingTop": "0px",
+                        "PaddingBottom": "0px",
+                        "BorderWidth": "",
+                        "BorderColor": "transparent",
+                        "BorderRadius": ""
+                    }
+                },
+                "string_get_character": {
+                    "Group Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "0px",
+                        "PaddingRight": "0px",
+                        "PaddingTop": "0px",
+                        "PaddingBottom": "0px",
+                        "BorderWidth": "",
+                        "BorderColor": "transparent",
+                        "BorderRadius": ""
+                    }
+                },
+                "string_get_substring": {
+                    "Group Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "0px",
+                        "PaddingRight": "0px",
+                        "PaddingTop": "0px",
+                        "PaddingBottom": "0px",
+                        "BorderWidth": "",
+                        "BorderColor": "transparent",
+                        "BorderRadius": ""
+                    }
+                },
+                "string_set_character": {
+                    "Group Block": {
+                        "BackgroundColor": "transparent",
+                        "PaddingLeft": "0px",
+                        "PaddingRight": "0px",
+                        "PaddingTop": "0px",
+                        "PaddingBottom": "0px",
+                        "BorderWidth": "",
+                        "BorderColor": "transparent",
+                        "BorderRadius": ""
+                    }
                 }
             }
         },
         "Code Workspace": {
             "Code Workspace": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#1E1E1E"
             },
             "Scrollbar": {
-                "Width": "",
-                "Height": ""
+                "Width": "10px",
+                "Height": "10px"
             },
             "Scrollbar Thumb": {
-                "BackgroundColor": "",
-                "BorderRadius": ""
+                "BackgroundColor": "#424242",
+                "BorderRadius": "25px"
             },
             "Scrollbar Thumb On Hover": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#525252"
             },
             "Scrollbar Track": {
-                "BackgroundColor": "",
-                "BorderWidth": "",
-                "BorderColor": ""
-            }
+                "BackgroundColor": "transparent",
+                "BorderWidth": "0px",
+                "BorderColor": "transparent"
+            },
+            "Selected Block": {
+                "BorderColor": "#fc3",
+                "BorderShadow": "0px #fc3",
+                "BorderWidth": ""
+            },
         },
         "Toolbox": {
             "Toolbox Menu": {
-                "BackgroundColor": "",
-                "PaddingLeft": "",
-                "PaddingRight": "",
-                "PaddingTop": "",
-                "PaddingBottom": "",
+                "BackgroundColor": "#333333",
+                "PaddingLeft": "10px",
+                "PaddingRight": "10px",
+                "PaddingTop": "20px",
+                "PaddingBottom": "20px"
             },
             "Toolbox Menu Icon": {
-                "BackgroundColor": "",
-                "Width": "",
-                "Height": ""
+                "BackgroundColor": "#DADADA",
+                "Width": "22px",
+                "Height": "22px"
             },
             "Toolbox Menu Selected Icon": {
-                "BackgroundColor": "#ffffff"
+                "BackgroundColor": "#FFFFFF"
             },
             "Toolbox Menu Label": {
-                "FontColor": "",
-                "FontSize": ""
+                "FontColor": "#DADADA",
+                "FontSize": "14px"
             },
             "Toolbox Menu Selected Label": {
-                "FontColor": "#ffffff"
+                "FontColor": "#FFFFFF"
             },
             "Selected Tag": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#5B80A5"
             },
             "Toolbox": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#252526"
             },
             "Block Category Title": {
-                "FontSize": "",
-                "FontColor": ""
+                "FontSize": "18px",
+                "FontColor": "#DADADA"
             },
             "Block Category On Drop Hover": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#6CB097"
             },
             "Block Category On Drop Placeholder": {
-                "BackgroundColor": ""
+                "BackgroundColor": "green"
             },
             "Block Delete Button Container": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#094771"
             },
             "Block Delete Button X": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#C4C4C4"
             },
             "Scrollbar": {
-                "Width": "",
-                "Height": ""
+                "Width": "10px",
+                "Height": "10px"
             },
             "Scrollbar Thumb": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#424242",
+                "BorderRadius": "25px"
             },
             "Scrollbar Thumb On Hover": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#525252"
             },
             "Scrollbar Track": {
-                "BackgroundColor": "",
-                "BorderWidth": "",
-                "BorderColor": ""
+                "BackgroundColor": "transparent",
+                "BorderWidth": "0px",
+                "BorderColor": "transparent"
             }
         },
         "Undo Redo Toolbar": {
             "Undo Button": {
-                "BackgroundColor": "",
-                "FontColor": "",
-                "FontSize": ""
+                "BackgroundColor": "#252526",
+                "FontColor": "#C4C4C4",
+                "FontSize": "14px"
             },
             "Undo Button On Hover": {
-                "BackgroundColor": "",
-                "FontColor": "",
-                "FontSize": ""
+                "BackgroundColor": "#333333",
+                "FontColor": "#ffffff",
+                "FontSize": "14px"
             },
             "Undo Icon": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#75BEFF"
             },
             "Undo Number Notification": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#FA3E3E"
             },
             "Separator": {
-                "BackgroundColor": "",
+                "BackgroundColor": "#333333",
                 "Width": "1px"
             },
             "Close Button": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#094771"
             },
             "Close Button X": {
                 "BackgroundColor": "#F2F2F2"
@@ -2139,39 +2518,39 @@ export let config = {
         },
         "Context Menu": {
             "Option Container": {
-                "BackgroundColor": "",
-                "BorderWidth": "",
-                "BorderColor": "",
-                "BorderRadius": "",
-                "PaddingLeft": "",
-                "PaddingRight": "",
-                "PaddingTop": "",
-                "PaddingBottom": ""
+                "BackgroundColor": "#252526",
+                "BorderWidth": "0px",
+                "BorderColor": "transparent",
+                "BorderRadius": "0px",
+                "PaddingLeft": "0px",
+                "PaddingRight": "0px",
+                "PaddingTop": "5px",
+                "PaddingBottom": "5px"
             },
             "Option": {
-                "BackgroundColor": "",
-                "PaddingLeft": "",
-                "PaddingRight": "",
-                "PaddingTop": "",
-                "PaddingBottom": ""
+                "BackgroundColor": "transparent",
+                "PaddingLeft": "20px",
+                "PaddingRight": "20px",
+                "PaddingTop": "5px",
+                "PaddingBottom": "5px"
             },
             "Option On Hover": {
                 "BackgroundColor": "#094771"
             },
             "Option Text": {
-                "FontColor": ""
+                "FontColor": "#d1d1d1"
             },
             "Option Text On Hover": {
-                "FontColor": ""
+                "FontColor": "#ffffff"
             },
             "Shortcut text": {
-                "FontColor": ""
+                "FontColor": "#a1a1a1"
             },
             "Shortcut text On Hover": {
-                "FontColor": ""
+                "FontColor": "#ffffff"
             },
             "Separator": {
-                "BackgroundColor": ""
+                "BackgroundColor": "#303031"
             }
         },
         "Source Text View Colors": {
@@ -2181,22 +2560,22 @@ export let config = {
             "PLUS": "#DCB962",
             "TIMES": "#DCB962",
             "BY": "#DCB962",
-            "GREATER": "#D4C59F",
-            "LESS": "#D4C59F",
-            "EQUAL_TO": "#D4C59F",
-            "NOT_EQUAL_TO": "#D4C59F",
-            "GREATER_EQUAL": "#D4C59F",
-            "LESS_EQUAL": "#D4C59F",
-            "AND": "#B5C078",
-            "OR": "#B5C078",
-            "NOT": "#B5C078",
-            "IDENT": "#8CDCFE",
+            "GREATER": "#DCB962",
+            "LESS": "#DCB962",
+            "EQUAL_TO": "#DCB962",
+            "NOT_EQUAL_TO": "#DCB962",
+            "GREATER_EQUAL": "#DCB962",
+            "LESS_EQUAL": "#DCB962",
+            "AND": "#DCB962",
+            "OR": "#DCB962",
+            "NOT": "#DCB962",
+            "IDENT": "#ffffff",
             "INT_CONST": "#44C9B0",
             "FLOAT_CONST": "#44C9B0",
             "CHAR_CONST": "#D15036",
             "STRING_CONST": "#D15036",
             "BOOL_CONST": "#D4C59F",
-            "EQUALS": "#ffffff",
+            "EQUALS": "#DCB962",
             "FUNCTION": "#C57991",
             "OF": "#C57991",
             "{": "#ffffff",
@@ -2215,7 +2594,21 @@ export let config = {
             "primary_expr": "#ffffff",
             "arith_op": "#ffffff",
             "rel_op": "#ffffff",
-            "bool_bin_op": "#ffffff"
+            "bool_bin_op": "#ffffff",
+            "ARRAY": "#C57991",
+            "IN ARRAY": "#C57991",
+            "IN STRING": "#C57991",
+            "append": "#ffffff",
+            "array_method": "#ffffff",
+            "get": "#ffffff",
+            "get_character": "#ffffff",
+            "get_size": "#ffffff",
+            "get_substring": "#ffffff",
+            "insert": "#ffffff",
+            "push_back": "#ffffff",
+            "set": "#ffffff",
+            "set_character": "#ffffff",
+            "string_method": "#ffffff",
         },
         "Pretty Print": {
             "stmts":                { "NewLine Between Blocks": true },
@@ -2228,7 +2621,8 @@ export let config = {
             "for_stmt":             [ "FOR", "initialization", "condition", "step", "$$_newline", "$$_tab", "for_part" ],
             "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
             "ident_list":           { "NewLine Between Blocks": false },
-            "expr_list":            { "NewLine Between Blocks": false }
+            "expr_list":            { "NewLine Between Blocks": false },
+            "element_list":         { "NewLine Between Blocks": false },
         },
         "Source Text Pretty Print": {
             "stmts":                { "NewLine Between Blocks": true },
@@ -2247,7 +2641,8 @@ export let config = {
                                         "$$_newline", "$$_tab", "stmts", "$$_newline", "}" 
                                     ],
             "ident_list":           { "NewLine Between Blocks": false },
-            "expr_list":            { "NewLine Between Blocks": false }
+            "expr_list":            { "NewLine Between Blocks": false },
+            "element_list":         { "NewLine Between Blocks": false },
         }
     },
     toolbox: [
@@ -8130,43 +8525,43 @@ export let lightTheme = {
             "Group": {
                 "Group Block": {
                     "BackgroundColor": "#FAFAFA",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "2px",
                     "BorderColor": "#c2c2c2",
-                    "BorderRadius": ""
+                    "BorderRadius": "10px"
                 }
             },
             "RepetitionGroup": {
                 "Group Block": {
                     "BackgroundColor": "#FAFAFA",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "2px",
                     "BorderColor": "#c2c2c2",
-                    "BorderRadius": ""
+                    "BorderRadius": "10px"
                 },
                 "Button": {
                     "BackgroundColor": "#1A506F",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": ""
+                    "PaddingLeft": "8px",
+                    "PaddingRight": "8px",
+                    "PaddingTop": "8px",
+                    "PaddingBottom": "8px",
+                    "BorderWidth": "0px",
+                    "BorderColor": "transparent"
                 },
                 "Button Plus Sign": {
-                    "Width": "",
-                    "Height": "",
+                    "Width": "12px",
+                    "Height": "12px",
                     "BackgroundColor": ""
                 },
                 "Button Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
+                    "FontSize": "14px",
+                    "FontColor": "#eeeeee",
                     "BackgroundColor": "#1A506F"
                 },
                 "Button On Hover": {
@@ -8179,56 +8574,56 @@ export let lightTheme = {
             "SimpleBlock": {
                 "Simple Block": {
                     "BackgroundColor": "#FAFAFA",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
+                    "PaddingLeft": "4px",
+                    "PaddingRight": "4px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontColor": "black",
+                    "FontSize": "14px",
+                    "BorderWidth": "2px",
+                    "BorderColor": "transparent",
+                    "BorderRadius": "10px"
                 }
             },
             "InputBlock": {
                 "Input Container": {
                     "BackgroundColor": "#FAFAFA",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
                     "PaddingTop": "5px",
                     "PaddingBottom": "5px",
                     "BorderWidth": "2px",
                     "BorderColor": "#c2c2c2",
-                    "BorderRadius": ""
+                    "BorderRadius": "10px"
                 },
                 "Input": {
                     "BackgroundColor": "#FAFAFA",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": ""
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "FontColor": "#ffffff",
+                    "FontSize": "14px"
                 }
             },
             "SelectionBlock": {
                 "Selection Block": {
                     "BackgroundColor": "#FAFAFA",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
+                    "PaddingLeft": "2px",
+                    "PaddingRight": "2px",
                     "PaddingTop": "5px",
                     "PaddingBottom": "5px",
-                    "FontSize": "",
+                    "FontSize": "14px",
                     "FontColor": "#000000",
-                    "Gap": "",
+                    "Gap": "20px",
                     "BorderWidth": "2px",
                     "BorderColor": "#c2c2c2",
-                    "BorderRadius": ""
+                    "BorderRadius": "10px"
                 },
                 "Arrow": {
                     "BackgroundColor": "#000000",
-                    "Width": "",
-                    "Height": ""
+                    "Width": "8px",
+                    "Height": "8px"
                 },
                 "Option Container": {
                     "BackgroundColor": "#FAFAFA",
@@ -8238,12 +8633,12 @@ export let lightTheme = {
                     "PaddingBottom": "5px"
                 },
                 "Option": {
-                    "BackgroundColor": "",
+                    "BackgroundColor": "transparent",
                     "PaddingLeft": "20px",
                     "PaddingRight": "20px",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontSize": "14px",
                     "FontColor": "#000000"
                 },
                 "Option On Hover": {
@@ -8251,8 +8646,8 @@ export let lightTheme = {
                     "FontColor": "#FFFFFF"
                 },
                 "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
+                    "FontSize": "14px",
+                    "FontColor": "#eeeeee",
                     "BackgroundColor": "#1A506F"
                 }
             }
@@ -9305,6 +9700,377 @@ export let lightTheme = {
                 },
                 "Button Plus Sign On Hover": {
                     "BackgroundColor": ""
+                }
+            },
+            "IN ARRAY": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "#0000FF",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "get": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "insert": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "push_back": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "set": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "get_size": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "ARRAY": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "#0000FF",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "array_method_call": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "ARRAY_CONST": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "array_method": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "array_get": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "array_insert": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "array_push_back": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "array_set": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "element_list": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Button": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": ""
+                },
+                "Button Plus Sign": {
+                    "Width": "",
+                    "Height": "",
+                    "BackgroundColor": ""
+                },
+                "Button Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                },
+                "Button On Hover": {
+                    "BackgroundColor": ""
+                },
+                "Button Plus Sign On Hover": {
+                    "BackgroundColor": ""
+                }
+            },
+            "IN STRING": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "#0000FF",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_method": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "string_method_call": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_append": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "string_get_character": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "string_get_substring": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "string_set_character": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
                 }
             }
         }
@@ -9337,22 +10103,22 @@ export let lightTheme = {
     "Toolbox": {
         "Toolbox Menu": {
             "BackgroundColor": "#1A506F",
-            "PaddingLeft": "",
-            "PaddingRight": "",
-            "PaddingTop": "",
-            "PaddingBottom": ""
+            "PaddingLeft": "10px",
+            "PaddingRight": "10px",
+            "PaddingTop": "20px",
+            "PaddingBottom": "20px"
         },
         "Toolbox Menu Icon": {
             "BackgroundColor": "#DADADA",
-            "Width": "",
-            "Height": ""
+            "Width": "22px",
+            "Height": "22px"
         },
         "Toolbox Menu Selected Icon": {
             "BackgroundColor": "#FFFFFF"
         },
         "Toolbox Menu Label": {
             "FontColor": "#DADADA",
-            "FontSize": ""
+            "FontSize": "14px"
         },
         "Toolbox Menu Selected Label": {
             "FontColor": "#FFFFFF"
@@ -9364,7 +10130,7 @@ export let lightTheme = {
             "BackgroundColor": "#ECECEC"
         },
         "Block Category Title": {
-            "FontSize": "",
+            "FontSize": "18px",
             "FontColor": "#2B2B2B"
         },
         "Block Category On Drop Hover": {
@@ -9374,10 +10140,10 @@ export let lightTheme = {
             "BackgroundColor": "green"
         },
         "Block Delete Button Container": {
-            "BackgroundColor": ""
+            "BackgroundColor": "#094771"
         },
         "Block Delete Button X": {
-            "BackgroundColor": ""
+            "BackgroundColor": "#C4C4C4"
         },
         "Scrollbar": {
             "Width": "15px",
@@ -9391,7 +10157,7 @@ export let lightTheme = {
             "BackgroundColor": "#707070"
         },
         "Scrollbar Track": {
-            "BackgroundColor": "",
+            "BackgroundColor": "transparent",
             "BorderWidth": "1px",
             "BorderColor": "#c2c2c2"
         }
@@ -9400,18 +10166,18 @@ export let lightTheme = {
         "Undo Button": {
             "BackgroundColor": "#ECECEC",
             "FontColor": "black",
-            "FontSize": ""
+            "FontSize": "14px"
         },
         "Undo Button On Hover": {
             "BackgroundColor": "#F3F3F3",
-            "FontColor": "",
-            "FontSize": ""
+            "FontColor": "black",
+            "FontSize": "14px"
         },
         "Undo Icon": {
             "BackgroundColor": "#1A506F"
         },
         "Undo Number Notification": {
-            "BackgroundColor": ""
+            "BackgroundColor": "#FA3E3E"
         },
         "Separator": {
             "BackgroundColor": "#DDDDDD",
@@ -9433,20 +10199,20 @@ export let lightTheme = {
     "Context Menu": {
         "Option Container": {
             "BackgroundColor": "#ECECEC",
-            "BorderWidth": "",
-            "BorderColor": "",
-            "BorderRadius": "",
-            "PaddingLeft": "",
-            "PaddingRight": "",
-            "PaddingTop": "",
-            "PaddingBottom": ""
+            "BorderWidth": "0px",
+            "BorderColor": "transparent",
+            "BorderRadius": "0px",
+            "PaddingLeft": "0px",
+            "PaddingRight": "0px",
+            "PaddingTop": "5px",
+            "PaddingBottom": "5px"
         },
         "Option": {
-            "BackgroundColor": "",
-            "PaddingLeft": "",
-            "PaddingRight": "",
-            "PaddingTop": "",
-            "PaddingBottom": ""
+            "BackgroundColor": "transparent",
+            "PaddingLeft": "20px",
+            "PaddingRight": "20px",
+            "PaddingTop": "5px",
+            "PaddingBottom": "5px"
         },
         "Option On Hover": {
             "BackgroundColor": "#1A506F"
@@ -9508,7 +10274,21 @@ export let lightTheme = {
         "primary_expr": "#000000",
         "arith_op": "#000000",
         "rel_op": "#000000",
-        "bool_bin_op": "#000000"
+        "bool_bin_op": "#000000",
+        "ARRAY": "#0000FF",
+        "IN ARRAY": "#0000FF",
+        "IN STRING": "#0000FF",
+        "append": "#000000",
+        "array_method": "#000000",
+        "get": "#000000",
+        "get_character": "#000000",
+        "get_size": "#000000",
+        "get_substring": "#000000",
+        "insert": "#000000",
+        "push_back": "#000000",
+        "set": "#000000",
+        "set_character": "#000000",
+        "string_method": "#000000",
     },
     "Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
@@ -9521,7 +10301,8 @@ export let lightTheme = {
         "for_stmt":             [ "FOR", "initialization", "condition", "step", "$$_newline", "$$_tab", "for_part" ],
         "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
         "ident_list":           { "NewLine Between Blocks": false },
-        "expr_list":            { "NewLine Between Blocks": false }
+        "expr_list":            { "NewLine Between Blocks": false },
+        "element_list":         { "NewLine Between Blocks": false },
     },
     "Source Text Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
@@ -9540,7 +10321,8 @@ export let lightTheme = {
                                     "$$_newline", "$$_tab", "stmts", "$$_newline", "}" 
                                 ],
         "ident_list":           { "NewLine Between Blocks": false },
-        "expr_list":            { "NewLine Between Blocks": false }
+        "expr_list":            { "NewLine Between Blocks": false },
+        "element_list":         { "NewLine Between Blocks": false },
     }
 };
 
@@ -9549,43 +10331,43 @@ export let colorfulTheme = {
         "General": {
             "Group": {
                 "Group Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "BackgroundColor": "#1e1e1e",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "1px",
                     "BorderColor": "transparent",
-                    "BorderRadius": ""
+                    "BorderRadius": "10px"
                 }
             },
             "RepetitionGroup": {
                 "Group Block": {
                     "BackgroundColor": "rgba(255,255,255,0.1)",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "1px",
                     "BorderColor": "rgba(0,0,0,0.2)",
-                    "BorderRadius": ""
+                    "BorderRadius": "10px"
                 },
                 "Button": {
                     "BackgroundColor": "rgba(25,0,125,0.7)",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "PaddingLeft": "8px",
+                    "PaddingRight": "8px",
+                    "PaddingTop": "8px",
+                    "PaddingBottom": "8px",
                     "BorderWidth": "0px",
                     "BorderColor": "transparent"
                 },
                 "Button Plus Sign": {
-                    "Width": "",
-                    "Height": "",
-                    "BackgroundColor": ""
+                    "Width": "12px",
+                    "Height": "12px",
+                    "BackgroundColor": "#f2f2f2"
                 },
                 "Button Tooltip": {
-                    "FontSize": "",
+                    "FontSize": "14px",
                     "FontColor": "white",
                     "BackgroundColor": "rgba(25,0,125,0.7)"
                 },
@@ -9599,56 +10381,56 @@ export let colorfulTheme = {
             "SimpleBlock": {
                 "Simple Block": {
                     "BackgroundColor": "transparent",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "#ffffff",
-                    "FontSize": "",
+                    "PaddingLeft": "4px",
+                    "PaddingRight": "4px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontColor": "#E5ECF0",
+                    "FontSize": "14px",
                     "BorderWidth": "1px",
                     "BorderColor": "transparent",
-                    "BorderRadius": ""
+                    "BorderRadius": "10px"
                 }
             },
             "InputBlock": {
                 "Input Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "2px",
-                    "PaddingBottom": "2px",
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "1px",
                     "BorderColor": "transparent",
                     "BorderRadius": "5px"
                 },
                 "Input": {
                     "BackgroundColor": "transparent",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
                     "FontColor": "#000000",
-                    "FontSize": ""
+                    "FontSize": "14px"
                 }
             },
             "SelectionBlock": {
                 "Selection Block": {
                     "BackgroundColor": "rgba(255,255,255,0.7)",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
+                    "PaddingLeft": "2px",
+                    "PaddingRight": "2px",
                     "PaddingTop": "5px",
                     "PaddingBottom": "5px",
-                    "FontSize": "",
+                    "FontSize": "14px",
                     "FontColor": "#000000",
                     "Gap": "10px",
                     "BorderWidth": "1px",
                     "BorderColor": "#c2c2c2",
-                    "BorderRadius": ""
+                    "BorderRadius": "10px"
                 },
                 "Arrow": {
                     "BackgroundColor": "#000000",
-                    "Width": "",
-                    "Height": ""
+                    "Width": "8px",
+                    "Height": "8px"
                 },
                 "Option Container": {
                     "BackgroundColor": "#FAFAFA",
@@ -9658,12 +10440,12 @@ export let colorfulTheme = {
                     "PaddingBottom": "5px"
                 },
                 "Option": {
-                    "BackgroundColor": "",
+                    "BackgroundColor": "transparent",
                     "PaddingLeft": "8px",
                     "PaddingRight": "8px",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontSize": "14px",
                     "FontColor": "#000000"
                 },
                 "Option On Hover": {
@@ -9671,7 +10453,7 @@ export let colorfulTheme = {
                     "FontColor": "#FFFFFF"
                 },
                 "Option Tooltip": {
-                    "FontSize": "",
+                    "FontSize": "14px",
                     "FontColor": "#ffffff",
                     "BackgroundColor": "#364D63"
                 }
@@ -10199,8 +10981,8 @@ export let colorfulTheme = {
                     "BackgroundColor": "#5B80A5",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
-                    "PaddingTop": "10px",
-                    "PaddingBottom": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
                     "BorderColor": "#364D63",
                     "BorderRadius": ""
@@ -10211,8 +10993,8 @@ export let colorfulTheme = {
                     "BackgroundColor": "#5B80A5",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
-                    "PaddingTop": "10px",
-                    "PaddingBottom": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
                     "BorderColor": "#364D63",
                     "BorderRadius": ""
@@ -10223,8 +11005,8 @@ export let colorfulTheme = {
                     "BackgroundColor": "#5BA55B",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
-                    "PaddingTop": "10px",
-                    "PaddingBottom": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
                     "BorderColor": "#488448",
                     "BorderRadius": ""
@@ -10235,8 +11017,8 @@ export let colorfulTheme = {
                     "BackgroundColor": "#5BA55B",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
-                    "PaddingTop": "10px",
-                    "PaddingBottom": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
                     "BorderColor": "#488448",
                     "BorderRadius": ""
@@ -10259,8 +11041,8 @@ export let colorfulTheme = {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
-                    "PaddingTop": "10px",
-                    "PaddingBottom": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
                     "BorderColor": "#7A4884",
                     "BorderRadius": ""
@@ -10726,6 +11508,363 @@ export let colorfulTheme = {
                 "Button Plus Sign On Hover": {
                     "BackgroundColor": ""
                 }
+            },
+            "IN ARRAY": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "get": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "insert": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "push_back": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "set": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "get_size": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "ARRAY": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "array_method_call": {
+                "Group Block": {
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#5C4884",
+                    "BorderRadius": ""
+                }
+            },
+            "ARRAY_CONST": {
+                "Group Block": {
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#5C4884",
+                    "BorderRadius": ""
+                }
+            },
+            "array_method": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "array_get": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "array_insert": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "array_push_back": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "array_set": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "element_list": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Button": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": ""
+                },
+                "Button Plus Sign": {
+                    "Width": "",
+                    "Height": "",
+                    "BackgroundColor": ""
+                },
+                "Button Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                },
+                "Button On Hover": {
+                    "BackgroundColor": ""
+                },
+                "Button Plus Sign On Hover": {
+                    "BackgroundColor": ""
+                }
+            },
+            "string_method": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "string_method_call": {
+                "Group Block": {
+                    "BackgroundColor": "#5BA58C",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_append": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_get_character": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_get_substring": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_set_character": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
             }
         }
     },
@@ -10745,9 +11884,9 @@ export let colorfulTheme = {
             "BackgroundColor": "#999999"
         },
         "Scrollbar Track": {
-            "BackgroundColor": "",
-            "BorderWidth": "",
-            "BorderColor": ""
+            "BackgroundColor": "transparent",
+            "BorderWidth": "0px",
+            "BorderColor": "transparent"
         },
         "Selected Block": {
             "BorderColor": "#fc3",
@@ -10760,20 +11899,20 @@ export let colorfulTheme = {
             "BackgroundColor": "#5B80A5",
             "PaddingLeft": "10px",
             "PaddingRight": "10px",
-            "PaddingTop": "",
-            "PaddingBottom": ""
+            "PaddingTop": "20px",
+            "PaddingBottom": "20px"
         },
         "Toolbox Menu Icon": {
             "BackgroundColor": "#DADADA",
-            "Width": "",
-            "Height": ""
+            "Width": "22px",
+            "Height": "22px"
         },
         "Toolbox Menu Selected Icon": {
             "BackgroundColor": "#FFFFFF"
         },
         "Toolbox Menu Label": {
             "FontColor": "#DADADA",
-            "FontSize": ""
+            "FontSize": "14px"
         },
         "Toolbox Menu Selected Label": {
             "FontColor": "#FFFFFF"
@@ -10785,7 +11924,7 @@ export let colorfulTheme = {
             "BackgroundColor": "#F6F6F6"
         },
         "Block Category Title": {
-            "FontSize": "",
+            "FontSize": "18px",
             "FontColor": "#2B2B2B"
         },
         "Block Category On Drop Hover": {
@@ -10795,10 +11934,10 @@ export let colorfulTheme = {
             "BackgroundColor": "green"
         },
         "Block Delete Button Container": {
-            "BackgroundColor": ""
+            "BackgroundColor": "#094771"
         },
         "Block Delete Button X": {
-            "BackgroundColor": ""
+            "BackgroundColor": "#C4C4C4"
         },
         "Scrollbar": {
             "Width": "10px",
@@ -10812,8 +11951,8 @@ export let colorfulTheme = {
             "BackgroundColor": "#999999"
         },
         "Scrollbar Track": {
-            "BackgroundColor": "",
-            "BorderWidth": "",
+            "BackgroundColor": "transparent",
+            "BorderWidth": "0px",
             "BorderColor": "#c2c2c2"
         }
     },
@@ -10821,18 +11960,18 @@ export let colorfulTheme = {
         "Undo Button": {
             "BackgroundColor": "#FAFAFA",
             "FontColor": "black",
-            "FontSize": ""
+            "FontSize": "14px"
         },
         "Undo Button On Hover": {
             "BackgroundColor": "#F3F3F3",
-            "FontColor": "",
-            "FontSize": ""
+            "FontColor": "black",
+            "FontSize": "14px"
         },
         "Undo Icon": {
             "BackgroundColor": "#1A506F"
         },
         "Undo Number Notification": {
-            "BackgroundColor": ""
+            "BackgroundColor": "#FA3E3E"
         },
         "Separator": {
             "BackgroundColor": "#DDDDDD",
@@ -10854,20 +11993,20 @@ export let colorfulTheme = {
     "Context Menu": {
         "Option Container": {
             "BackgroundColor": "#ffffff",
-            "BorderWidth": "",
-            "BorderColor": "",
+            "BorderWidth": "0px",
+            "BorderColor": "transparent",
             "BorderRadius": "5px",
-            "PaddingLeft": "",
-            "PaddingRight": "",
+            "PaddingLeft": "0px",
+            "PaddingRight": "0px",
             "PaddingTop": "5px",
             "PaddingBottom": "5px"
         },
         "Option": {
-            "BackgroundColor": "",
+            "BackgroundColor": "transparent",
             "PaddingLeft": "20px",
             "PaddingRight": "20px",
-            "PaddingTop": "",
-            "PaddingBottom": ""
+            "PaddingTop": "5px",
+            "PaddingBottom": "5px"
         },
         "Option On Hover": {
             "BackgroundColor": "#5B80A5"
@@ -10929,7 +12068,21 @@ export let colorfulTheme = {
         "primary_expr": "#000000",
         "arith_op": "#000000",
         "rel_op": "#000000",
-        "bool_bin_op": "#000000"
+        "bool_bin_op": "#000000",
+        "ARRAY": "#0000FF",
+        "IN ARRAY": "#0000FF",
+        "IN STRING": "#0000FF",
+        "append": "#000000",
+        "array_method": "#000000",
+        "get": "#000000",
+        "get_character": "#000000",
+        "get_size": "#000000",
+        "get_substring": "#000000",
+        "insert": "#000000",
+        "push_back": "#000000",
+        "set": "#000000",
+        "set_character": "#000000",
+        "string_method": "#000000",
     },
     "Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
@@ -10942,7 +12095,8 @@ export let colorfulTheme = {
         "for_stmt":             [ "FOR", "initialization", "condition", "step", "$$_newline", "$$_tab", "for_part" ],
         "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
         "ident_list":           { "NewLine Between Blocks": false },
-        "expr_list":            { "NewLine Between Blocks": false }
+        "expr_list":            { "NewLine Between Blocks": false },
+        "element_list":         { "NewLine Between Blocks": false },
     },
     "Source Text Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
@@ -10961,7 +12115,8 @@ export let colorfulTheme = {
                                     "$$_newline", "$$_tab", "stmts", "$$_newline", "}" 
                                 ],
         "ident_list":           { "NewLine Between Blocks": false },
-        "expr_list":            { "NewLine Between Blocks": false }
+        "expr_list":            { "NewLine Between Blocks": false },
+        "element_list":         { "NewLine Between Blocks": false },
     }
 };
 
@@ -10970,43 +12125,43 @@ export let darkColorfulTheme = {
         "General": {
             "Group": {
                 "Group Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "BackgroundColor": "#1e1e1e",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "1px",
                     "BorderColor": "transparent",
-                    "BorderRadius": ""
+                    "BorderRadius": "10px"
                 }
             },
             "RepetitionGroup": {
                 "Group Block": {
                     "BackgroundColor": "rgba(255,255,255,0.1)",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "1px",
                     "BorderColor": "rgba(0,0,0,0.2)",
-                    "BorderRadius": ""
+                    "BorderRadius": "10px"
                 },
                 "Button": {
                     "BackgroundColor": "rgba(75,0,150,0.7)",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "PaddingLeft": "8px",
+                    "PaddingRight": "8px",
+                    "PaddingTop": "8px",
+                    "PaddingBottom": "8px",
                     "BorderWidth": "0px",
                     "BorderColor": "transparent"
                 },
                 "Button Plus Sign": {
-                    "Width": "",
-                    "Height": "",
-                    "BackgroundColor": ""
+                    "Width": "12px",
+                    "Height": "12px",
+                    "BackgroundColor": "#f2f2f2"
                 },
                 "Button Tooltip": {
-                    "FontSize": "",
+                    "FontSize": "14px",
                     "FontColor": "white",
                     "BackgroundColor": "rgba(75,0,150,1)"
                 },
@@ -11020,56 +12175,56 @@ export let darkColorfulTheme = {
             "SimpleBlock": {
                 "Simple Block": {
                     "BackgroundColor": "transparent",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "PaddingLeft": "4px",
+                    "PaddingRight": "4px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "FontColor": "#ffffff",
-                    "FontSize": "",
+                    "FontSize": "14px",
                     "BorderWidth": "1px",
                     "BorderColor": "transparent",
-                    "BorderRadius": ""
+                    "BorderRadius": "10px"
                 }
             },
             "InputBlock": {
                 "Input Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "2px",
-                    "PaddingBottom": "2px",
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "1px",
                     "BorderColor": "transparent",
                     "BorderRadius": "5px"
                 },
                 "Input": {
                     "BackgroundColor": "transparent",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
                     "FontColor": "#000000",
-                    "FontSize": ""
+                    "FontSize": "14px"
                 }
             },
             "SelectionBlock": {
                 "Selection Block": {
                     "BackgroundColor": "rgba(255,255,255,0.85)",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
+                    "PaddingLeft": "2px",
+                    "PaddingRight": "2px",
                     "PaddingTop": "5px",
                     "PaddingBottom": "5px",
-                    "FontSize": "",
+                    "FontSize": "14px",
                     "FontColor": "#000000",
                     "Gap": "10px",
                     "BorderWidth": "1px",
                     "BorderColor": "#c2c2c2",
-                    "BorderRadius": ""
+                    "BorderRadius": "10px"
                 },
                 "Arrow": {
                     "BackgroundColor": "#000000",
-                    "Width": "",
-                    "Height": ""
+                    "Width": "8px",
+                    "Height": "8px"
                 },
                 "Option Container": {
                     "BackgroundColor": "#FAFAFA",
@@ -11079,12 +12234,12 @@ export let darkColorfulTheme = {
                     "PaddingBottom": "5px"
                 },
                 "Option": {
-                    "BackgroundColor": "",
+                    "BackgroundColor": "transparent",
                     "PaddingLeft": "8px",
                     "PaddingRight": "8px",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontSize": "14px",
                     "FontColor": "#000000"
                 },
                 "Option On Hover": {
@@ -11620,8 +12775,8 @@ export let darkColorfulTheme = {
                     "BackgroundColor": "#5B80A5",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
-                    "PaddingTop": "10px",
-                    "PaddingBottom": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
                     "BorderColor": "#364D63",
                     "BorderRadius": ""
@@ -11632,8 +12787,8 @@ export let darkColorfulTheme = {
                     "BackgroundColor": "#5B80A5",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
-                    "PaddingTop": "10px",
-                    "PaddingBottom": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
                     "BorderColor": "#364D63",
                     "BorderRadius": ""
@@ -11644,8 +12799,8 @@ export let darkColorfulTheme = {
                     "BackgroundColor": "#5BA55B",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
-                    "PaddingTop": "10px",
-                    "PaddingBottom": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
                     "BorderColor": "#488448",
                     "BorderRadius": ""
@@ -11656,8 +12811,8 @@ export let darkColorfulTheme = {
                     "BackgroundColor": "#5BA55B",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
-                    "PaddingTop": "10px",
-                    "PaddingBottom": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
                     "BorderColor": "#488448",
                     "BorderRadius": ""
@@ -11680,8 +12835,8 @@ export let darkColorfulTheme = {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
-                    "PaddingTop": "10px",
-                    "PaddingBottom": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
                     "BorderColor": "#7A4884",
                     "BorderRadius": ""
@@ -12523,9 +13678,9 @@ export let darkColorfulTheme = {
             "BackgroundColor": "#525252"
         },
         "Scrollbar Track": {
-            "BackgroundColor": "",
-            "BorderWidth": "",
-            "BorderColor": ""
+            "BackgroundColor": "transparent",
+            "BorderWidth": "0px",
+            "BorderColor": "transparent"
         },
         "Selected Block": {
             "BorderColor": "#fc3",
@@ -12538,20 +13693,20 @@ export let darkColorfulTheme = {
             "BackgroundColor": "#333333",
             "PaddingLeft": "10px",
             "PaddingRight": "10px",
-            "PaddingTop": "",
-            "PaddingBottom": ""
+            "PaddingTop": "20px",
+            "PaddingBottom": "20px"
         },
         "Toolbox Menu Icon": {
             "BackgroundColor": "#DADADA",
-            "Width": "",
-            "Height": ""
+            "Width": "22px",
+            "Height": "22px"
         },
         "Toolbox Menu Selected Icon": {
             "BackgroundColor": "#FFFFFF"
         },
         "Toolbox Menu Label": {
             "FontColor": "#DADADA",
-            "FontSize": ""
+            "FontSize": "14px"
         },
         "Toolbox Menu Selected Label": {
             "FontColor": "#FFFFFF"
@@ -12563,7 +13718,7 @@ export let darkColorfulTheme = {
             "BackgroundColor": "#252526"
         },
         "Block Category Title": {
-            "FontSize": "",
+            "FontSize": "18px",
             "FontColor": "#DADADA"
         },
         "Block Category On Drop Hover": {
@@ -12573,10 +13728,10 @@ export let darkColorfulTheme = {
             "BackgroundColor": "green"
         },
         "Block Delete Button Container": {
-            "BackgroundColor": ""
+            "BackgroundColor": "#094771"
         },
         "Block Delete Button X": {
-            "BackgroundColor": ""
+            "BackgroundColor": "#C4C4C4"
         },
         "Scrollbar": {
             "Width": "10px",
@@ -12590,34 +13745,34 @@ export let darkColorfulTheme = {
             "BackgroundColor": "#525252"
         },
         "Scrollbar Track": {
-            "BackgroundColor": "",
-            "BorderWidth": "",
+            "BackgroundColor": "transparent",
+            "BorderWidth": "0px",
             "BorderColor": "#c2c2c2"
         }
     },
     "Undo Redo Toolbar": {
         "Undo Button": {
-            "BackgroundColor": "",
-            "FontColor": "",
-            "FontSize": ""
+            "BackgroundColor": "#252526",
+            "FontColor": "#C4C4C4",
+            "FontSize": "14px"
         },
         "Undo Button On Hover": {
-            "BackgroundColor": "",
-            "FontColor": "",
-            "FontSize": ""
+            "BackgroundColor": "#333333",
+            "FontColor": "#ffffff",
+            "FontSize": "14px"
         },
         "Undo Icon": {
-            "BackgroundColor": ""
+            "BackgroundColor": "#75BEFF"
         },
         "Undo Number Notification": {
-            "BackgroundColor": ""
+            "BackgroundColor": "#FA3E3E"
         },
         "Separator": {
-            "BackgroundColor": "",
+            "BackgroundColor": "#333333",
             "Width": "1px"
         },
         "Close Button": {
-            "BackgroundColor": ""
+            "BackgroundColor": "#094771"
         },
         "Close Button X": {
             "BackgroundColor": "#F2F2F2"
@@ -12632,20 +13787,20 @@ export let darkColorfulTheme = {
     "Context Menu": {
         "Option Container": {
             "BackgroundColor": "#ffffff",
-            "BorderWidth": "",
-            "BorderColor": "",
+            "BorderWidth": "0px",
+            "BorderColor": "transparent",
             "BorderRadius": "5px",
-            "PaddingLeft": "",
-            "PaddingRight": "",
+            "PaddingLeft": "0px",
+            "PaddingRight": "0px",
             "PaddingTop": "5px",
             "PaddingBottom": "5px"
         },
         "Option": {
-            "BackgroundColor": "",
+            "BackgroundColor": "transparent",
             "PaddingLeft": "20px",
             "PaddingRight": "20px",
-            "PaddingTop": "",
-            "PaddingBottom": ""
+            "PaddingTop": "5px",
+            "PaddingBottom": "5px"
         },
         "Option On Hover": {
             "BackgroundColor": "#5B80A5"
@@ -12673,22 +13828,22 @@ export let darkColorfulTheme = {
         "PLUS": "#DCB962",
         "TIMES": "#DCB962",
         "BY": "#DCB962",
-        "GREATER": "#D4C59F",
-        "LESS": "#D4C59F",
-        "EQUAL_TO": "#D4C59F",
-        "NOT_EQUAL_TO": "#D4C59F",
-        "GREATER_EQUAL": "#D4C59F",
-        "LESS_EQUAL": "#D4C59F",
-        "AND": "#B5C078",
-        "OR": "#B5C078",
-        "NOT": "#B5C078",
-        "IDENT": "#8CDCFE",
+        "GREATER": "#DCB962",
+        "LESS": "#DCB962",
+        "EQUAL_TO": "#DCB962",
+        "NOT_EQUAL_TO": "#DCB962",
+        "GREATER_EQUAL": "#DCB962",
+        "LESS_EQUAL": "#DCB962",
+        "AND": "#DCB962",
+        "OR": "#DCB962",
+        "NOT": "#DCB962",
+        "IDENT": "#ffffff",
         "INT_CONST": "#44C9B0",
         "FLOAT_CONST": "#44C9B0",
         "CHAR_CONST": "#D15036",
         "STRING_CONST": "#D15036",
         "BOOL_CONST": "#D4C59F",
-        "EQUALS": "#ffffff",
+        "EQUALS": "#DCB962",
         "FUNCTION": "#C57991",
         "OF": "#C57991",
         "{": "#ffffff",

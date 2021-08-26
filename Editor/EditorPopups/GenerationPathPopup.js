@@ -146,10 +146,7 @@ export class GenerationPathPopup extends PopupWindow {
         }
 
         if (icon){
-            $icon.css({
-                '-webkit-mask-image': `url(${icon})`,
-                'mask-image': `url(${icon})`
-            });
+            $icon.addClass(icon);
         }
 
         $node.append($info, $children);
@@ -177,14 +174,11 @@ export class GenerationPathPopup extends PopupWindow {
                 0
             );
 
-        let icon = numChildren > 0 || elem.next ? 
-            './../../Images/GenerationPathPopup/arrow.svg' :
-            './../../Images/GenerationPathPopup/block.svg'
-        ;
+        let iconClass = numChildren > 0 || elem.next ? 'arrow' : 'block';
 
         let name = elem.GetSymbol().alias || elem.GetSymbol().symbol.name;
         
-        let $node = this.CreateTreeNode(icon, name, numChildren);
+        let $node = this.CreateTreeNode(iconClass, name, numChildren);
 
         $node.children('.info').on('click', () => {
             this.$selectedElemViews.forEach($view => {

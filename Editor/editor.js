@@ -360,6 +360,17 @@ export class Editor {
         this.ApplyCodeWorkspaceTheme(this.theme['Code Workspace']);
         this.toolbox.ApplyTheme(this.theme['Toolbox']);
         this.undoToolbar.ApplyTheme(this.theme['Undo Redo Toolbar']);
+
+        this.code.ForEachRec(elem => {
+            elem.ApplyViewMode(this.viewMode);
+        });
+
+        this.toolbox.SetElem_Theme((elem) => {
+            if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab){
+                return {};
+            }
+            return this.theme["Blocks"]["Composite"][elem.GetSymbol().symbol.name];
+        });
     }
 
     ApplyCodeWorkspaceTheme(themes){
@@ -402,12 +413,17 @@ export class Editor {
     SetTheme(theme){
         if (!this.IsCorrectTheme(theme)) return false;
 
+        theme = JSON.parse(JSON.stringify(theme));
+
         this.CalculateCompositeBlockTheme(theme);
 
         for (let component of ['Code Workspace', 'Toolbox', 'Undo Redo Toolbar', 'Context Menu']){
             for (let themePart in theme[component])
                 theme[component][themePart] = new Theme(theme[component][themePart]);
         }
+
+        
+        theme["Toolbox"]["Blocks"] = theme["Blocks"];
 
         for (let symbol in theme['Source Text View Colors']){
             let colorOnlyTheme = {};
@@ -519,13 +535,7 @@ export class Editor {
         this.toolbox.SetToolbox_MinWidth(() => {
             return 0.2 * this.$container.width();
         });
-        
-        this.toolbox.SetElem_Theme((elem) => {
-            if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab){
-                return {};
-            }
-            return this.theme["Blocks"]["Composite"][elem.GetSymbol().symbol.name];
-        });
+
         this.toolbox.RenderAllBlocks();
     }
 

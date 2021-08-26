@@ -40,22 +40,18 @@ export class PopupWindow {
         
         $headerBar.append($title, $buttons);
 
-        let $xButton = this.CreateHeaderButton_( './../../Images/PopupWindow/close.svg', () => this.Destroy() );
-        let $maximizeButton = this.CreateHeaderButton_( './../../Images/PopupWindow/maximize.svg' );
+        let $xButton = this.CreateHeaderButton_( 'close', () => this.Destroy() );
 
-        $buttons.append($maximizeButton, $xButton);
+        $buttons.append($xButton);
 
         return $headerBar;
     }
 
-    CreateHeaderButton_(imgPath, action){
+    CreateHeaderButton_(imgClass, action){
         let $button = $('<div/>').addClass('button');
         let $buttonIcon = $('<div/>').addClass('button-icon');
 
-        $buttonIcon.css({
-            '-webkit-mask-image': `url(${imgPath})`,
-            'mask-image': `url(${imgPath})`,
-        });
+        $buttonIcon.addClass(imgClass);
 
         $button.append($buttonIcon);
         
