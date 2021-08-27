@@ -32,6 +32,7 @@ import { ReorderDownCommand } from './EditorCommands/ReorderDownCommand.js';
 import { DropCommand } from './EditorCommands/DropCommand.js';
 import { ApplyCssToStyle, Theme, Themeable, ThemeableProps } from './Theme.js';
 import { BeautifyCommand } from './EditorCommands/BeautifyCommand.js';
+import { ReduceCommand } from './EditorCommands/ReduceCommand.js';
 
 export class Editor {
 
@@ -653,6 +654,19 @@ export class Editor {
         return true;
     }
 
+    CanReduceElem(elem) {
+        return !!elem.GetGeneratedBy();
+    }
+
+    GetGeneratedBys(elem){
+        let generatedBys = [];
+        
+        for (let i = elem.GetGeneratedBy(); i; i = i.GetGeneratedBy())
+            generatedBys.push(i);
+        
+        return generatedBys;
+    }
+
     Select(elem) {
         if (this.selected) {
             this.selected.GetCustomizableView()?.removeClass('selected');
@@ -907,6 +921,20 @@ export class Editor {
                         shortcut: 'Alt+Del',
                         disabled: !this.CanRemoveElem(this.selected),
                         handler: () => this.EventHandler_DeleteUntilPossible_()
+                    },
+                    {
+                        name: 'Reduce',
+                        disabled: !this.CanReduceElem(this.selected),
+                        options: [
+                            this.GetGeneratedBys(elem)
+                                .map(generatedBy => {
+                                    return {
+                                        name: generatedBy.GetSymbol().alias || generatedBy.GetSymbol().symbol.name,
+                                        disabled: false,
+                                        handler: () => this.ExecuteCommand( new ReduceCommand(this, elem, generatedBy) )
+                                    };
+                                })
+                        ]
                     },
                 ],
                 [

@@ -18,6 +18,8 @@ export class ContextMenu {
         OptionTextOnHover: 'Option Text On Hover',
         ShortcutText: 'Shortcut text',
         ShortcutTextOnHover: 'Shortcut text On Hover',
+        InnerOptionArrow: 'Inner Option Arrow',
+        InnerOptionOnHover: 'Inner Option Arrow On Hover',
         Separator: 'Separator',
     };
 
@@ -76,6 +78,18 @@ export class ContextMenu {
             ),
         },
         {
+            id: ContextMenu.themeableIds.InnerOptionArrow,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
+            id: ContextMenu.themeableIds.InnerOptionOnHover,
+            themeable: new Themeable(
+                ThemeableProps.Props.BackgroundColor,
+            ),
+        },
+        {
             id: ContextMenu.themeableIds.Separator,
             themeable: new Themeable(
                 ThemeableProps.Props.BackgroundColor,
@@ -86,7 +100,7 @@ export class ContextMenu {
     customizableViews = [
         {
             id: ContextMenu.themeableIds.OptionContainer,
-            GetView: () => { return this.$contextMenu; }
+            GetView: () => { return this.$contextMenu.add(this.$contextMenu.find('.context-menu')); }
         },
         {
             id: ContextMenu.themeableIds.Option,
@@ -95,22 +109,27 @@ export class ContextMenu {
         {
             id: ContextMenu.themeableIds.OptionOnHover,
             ApplyTheme: (theme) => {
-                let $option = this.$contextMenu.find('.option:not(.disabled)');
+                let $optionContainer = this.$contextMenu.find('*:not(.option-with-arrow) > .option:not(.disabled)')
+                                .add( this.$contextMenu.find('.option-with-arrow:not(.disabled)') );
 
                 let hoverBg = theme.Get(ThemeableProps.Props.BackgroundColor);
                 let prevBg;
 
-                $option.on('mouseenter', function () {
+                $optionContainer.on('mouseenter', function () {
+                    let $option = $(this).hasClass('option') ? $(this) : $(this).children('.option');
+
                     if (!prevBg)
-                        prevBg = $(this).css('background-color');
+                        prevBg = $option.css('background-color');
                 
                     if (hoverBg)
-                        $(this).css('background-color', hoverBg);
+                        $option.css('background-color', hoverBg);
                 });
 
-                $option.on('mouseleave', function () {
+                $optionContainer.on('mouseleave', function () {
+                    let $option = $(this).hasClass('option') ? $(this) : $(this).children('.option');
+
                     if (prevBg && hoverBg)
-                        $(this).css('background-color', prevBg);
+                        $option.css('background-color', prevBg);
                 });
             }
         },
@@ -121,22 +140,27 @@ export class ContextMenu {
         {
             id: ContextMenu.themeableIds.OptionTextOnHover,
             ApplyTheme: (theme) => {
-                let $option = this.$contextMenu.find('.option:not(.disabled)');
+                let $option = this.$contextMenu.find('*:not(.option-with-arrow) > .option:not(.disabled)')
+                                .add( this.$contextMenu.find('.option-with-arrow:not(.disabled)') );
 
                 let hoverFontColor = theme.Get(ThemeableProps.Props.FontColor);
                 let prevFontColor;
 
                 $option.on('mouseenter', function () {
+                    let $label = $(this).children('.label').add( $(this).children().children('.label') );
+
                     if (!prevFontColor)
-                        prevFontColor = $(this).children('.label').css('color');
+                        prevFontColor = $label.css('color');
                 
                     if (hoverFontColor)
-                        $(this).children('.label').css('color', hoverFontColor);
+                        $label.css('color', hoverFontColor);
                 });
 
                 $option.on('mouseleave', function () {
+                    let $label = $(this).children('.label').add( $(this).children().children('.label') );
+
                     if (prevFontColor && hoverFontColor)
-                        $(this).children('.label').css('color', prevFontColor);
+                        $label.css('color', prevFontColor);
                 });
             }
         },
@@ -147,22 +171,57 @@ export class ContextMenu {
         {
             id: ContextMenu.themeableIds.ShortcutTextOnHover,
             ApplyTheme: (theme) => {
-                let $option = this.$contextMenu.find('.option:not(.disabled)');
+                let $option = this.$contextMenu.find('*:not(.option-with-arrow) > .option:not(.disabled)')
+                                .add( this.$contextMenu.find('.option-with-arrow:not(.disabled)') );
 
                 let hoverFontColor = theme.Get(ThemeableProps.Props.FontColor);
                 let prevFontColor;
 
                 $option.on('mouseenter', function () {
+                    let $shortcut = $(this).children('.shortcut').add( $(this).children().children('.shortcut') );
+
                     if (!prevFontColor)
-                        prevFontColor = $(this).children('.shortcut').css('color');
+                        prevFontColor = $shortcut.css('color');
                 
                     if (hoverFontColor)
-                        $(this).children('.shortcut').css('color', hoverFontColor);
+                        $shortcut.css('color', hoverFontColor);
                 });
 
                 $option.on('mouseleave', function () {
+                    let $shortcut = $(this).children('.shortcut').add( $(this).children().children('.shortcut') );
+
                     if (prevFontColor && hoverFontColor)
-                        $(this).children('.shortcut').css('color', prevFontColor);
+                        $shortcut.css('color', prevFontColor);
+                });
+            }
+        },
+        {
+            id: ContextMenu.themeableIds.InnerOptionArrow,
+            GetView: () => { return this.$contextMenu.find('.arrow'); }
+        },
+        {
+            id: ContextMenu.themeableIds.InnerOptionOnHover,
+            ApplyTheme: (theme) => {
+                let $option = this.$contextMenu.find('.option-with-arrow:not(.disabled)');
+
+                let hoverBgColor = theme.Get(ThemeableProps.Props.BackgroundColor);
+                let prevBgColor;
+
+                $option.on('mouseover', function () {
+                    let $arrow = $(this).children('.arrow');
+
+                    if (!prevBgColor)
+                        prevBgColor = $arrow.css('background-color');
+                
+                    if (hoverBgColor)
+                        $arrow.css('background-color', hoverBgColor);
+                });
+
+                $option.on('mouseleave', function () {
+                    let $arrow = $(this).children('.arrow');
+
+                    if (prevBgColor && hoverBgColor)
+                        $arrow.css('background-color', prevBgColor);
                 });
             }
         },
@@ -274,23 +333,26 @@ export class ContextMenu {
                     this.Destroy();
                 });
             }
-            
-            if (options){
-                $option = $('<div/>').addClass('option-with-arrow').append($option);
-                $option.append( $('<div/>').addClass('arrow') );
-    
+        }
+
+        if (options){
+            $option = $('<div/>').addClass('option-with-arrow').append($option);
+            $option.append( $('<div/>').addClass('arrow') );
+
+            if (disabled){
+                $option.addClass('disabled');
+            }else{
                 let $contextMenu = this.CreateContextMenu_(options);
-    
+
                 $contextMenu.addClass('inner');
                 $contextMenu.hide();
-    
-                $option.on('mouseover', () => this.ShowInnerMenu_($contextMenu) );
-    
-                $option.append($contextMenu);
-            }else
-                $option.on('mouseover', () => this.ClearInnerMenu_());
 
-        }
+                $option.on('mouseover', () => this.ShowInnerMenu_($contextMenu) );
+
+                $option.append($contextMenu);
+            }
+        }else
+            $option.on('mouseover', () => this.ClearInnerMenu_());
 
         return $option;
     }

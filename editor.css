@@ -814,6 +814,10 @@ body{
     opacity: 0.4;
 }
 
+.context-menu .option-with-arrow.disabled .arrow {
+    opacity: 0.4;
+}
+
 .context-menu .separator {
     height: 1px;
     background-color: #303031;

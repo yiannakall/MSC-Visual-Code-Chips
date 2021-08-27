@@ -2555,6 +2555,12 @@ export let config = {
             "Shortcut text On Hover": {
                 "FontColor": "#ffffff"
             },
+            "Inner Option Arrow": {
+                "BackgroundColor": "#a1a1a1"
+            },
+            "Inner Option Arrow On Hover": {
+                "BackgroundColor": "#ffffff"
+            },
             "Separator": {
                 "BackgroundColor": "#303031"
             }
@@ -11898,6 +11904,12 @@ export let lightTheme = {
         "Shortcut text On Hover": {
             "FontColor": "#ffffff"
         },
+        "Inner Option Arrow": {
+            "BackgroundColor": "#6C6C6C"
+        },
+        "Inner Option Arrow On Hover": {
+            "BackgroundColor": "#ffffff"
+        },
         "Separator": {
             "BackgroundColor": "#C2C2C2"
         }
@@ -13692,6 +13704,12 @@ export let colorfulTheme = {
         "Shortcut text On Hover": {
             "FontColor": "#ffffff"
         },
+        "Inner Option Arrow": {
+            "BackgroundColor": "#6C6C6C"
+        },
+        "Inner Option Arrow On Hover": {
+            "BackgroundColor": "#ffffff"
+        },
         "Separator": {
             "BackgroundColor": "#C2C2C2"
         }
@@ -15485,6 +15503,12 @@ export let darkColorfulTheme = {
         },
         "Shortcut text On Hover": {
             "FontColor": "#ffffff"
+        },
+        "Inner Option Arrow": {
+            "BackgroundColor": "#6C6C6C"
+        },
+        "Inner Option Arrow On Hover": {
+            "BackgroundColor": "#ffffff"
         },
         "Separator": {
             "BackgroundColor": "#C2C2C2"
