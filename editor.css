@@ -934,7 +934,7 @@ body{
     width: 100%;
 }
 
-/********************************* GENERATION PATH *********************************/
+/********************************* PRODUCTION PATH *********************************/
 
 .generation-content-container {
     width: 100%;
@@ -1007,7 +1007,7 @@ body{
     height: 10px;
 }
 
-/********************************* GENERATION PATH TREE-VIEW *********************************/
+/********************************* PRODCTION TREE-VIEW *********************************/
 
 .generation-content-container .tree-view-container {
     display: flex;

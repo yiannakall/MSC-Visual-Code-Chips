@@ -19,7 +19,7 @@ export class GenerationPathPopup extends PopupWindow {
     $selectedElemViews = [];
 
     constructor($container, code) {
-        super($container, 'Generation path');
+        super($container, 'Production path');
         
         this.InitCode(code);
     }
@@ -66,7 +66,7 @@ export class GenerationPathPopup extends PopupWindow {
             }
         });
 
-        let startingSymbol = new AliasedGrammarSymbol(new GrammarSymbol('Generation Path', false));
+        let startingSymbol = new AliasedGrammarSymbol(new GrammarSymbol('Production Path', false));
         this.code = new Group( startingSymbol, [this.code] ), this.code.SetAutoRendering(false);
         this.code.SetOnRenderElem(elem =>
             elem.views ? elem.views.push(elem.GetCustomizableView()) : elem.views = [elem.GetCustomizableView()]

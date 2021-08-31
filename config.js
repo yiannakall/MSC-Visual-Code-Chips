@@ -74,11 +74,11 @@ export let config = {
                     {
                         type: "non_terminal",
                         name: "rel_expr",
-                        tooltip: "An operator that compares the 2 operands and returns true or false"
+                        tooltip: "An operator that compares the two operands and returns true or false"
                     },
                     {
                         type: "non_terminal",
-                        name: "bool_expr",
+                        name: "logical_expr",
                         tooltip: "An expression that evaluates to true or false"
                     },
                     {
@@ -104,7 +104,7 @@ export let config = {
                     {
                         type: "non_terminal",
                         name: "binary_arith_expr",
-                        tooltip: "An arithmetic expression with 2 operands"
+                        tooltip: "An arithmetic expression with two operands"
                     },
                     {
                         type: "non_terminal",
@@ -258,12 +258,12 @@ export let config = {
                 ]
             },
             {
-                name: "bool_expr",
+                name: "logical_expr",
                 any_of: [
                     {
                         type: "non_terminal",
-                        name: "binary_bool_expr",
-                        tooltip: "Performs a binary operation with 2 operands"
+                        name: "binary_logical_expr",
+                        tooltip: "Performs a binary operation with two operands"
                     },
                     {
                         type: "non_terminal",
@@ -273,7 +273,7 @@ export let config = {
                 ]
             },
             {
-                name: "binary_bool_expr",
+                name: "binary_logical_expr",
                 all_of: [
                     {
                         type: "terminal",
@@ -287,8 +287,8 @@ export let config = {
                     },
                     {
                         type: "non_terminal",
-                        name: "bool_bin_op",
-                        tooltip: "Performs a binary operation with 2 operands"
+                        name: "logical_binary_op",
+                        tooltip: "Performs a binary operation with two operands"
                     },
                     {
                         name: "expr",
@@ -303,7 +303,7 @@ export let config = {
                 ]
             },
             {
-                name: "bool_bin_op",
+                name: "logical_binary_op",
                 any_of: [
                     {
                         type: "terminal",
@@ -1680,7 +1680,7 @@ export let config = {
                         "BorderRadius": ""
                     }
                 },
-                "bool_expr": {
+                "logical_expr": {
                     "Selection Block": {
                         "BackgroundColor": "",
                         "PaddingLeft": "",
@@ -1884,7 +1884,7 @@ export let config = {
                         "BackgroundColor": ""
                     }
                 },
-                "binary_bool_expr": {
+                "binary_logical_expr": {
                     "Group Block": {
                         "BackgroundColor": "",
                         "PaddingLeft": "",
@@ -1908,7 +1908,7 @@ export let config = {
                         "BorderRadius": ""
                     }
                 },
-                "bool_bin_op": {
+                "logical_binary_op": {
                     "Selection Block": {
                         "BackgroundColor": "",
                         "PaddingLeft": "",
@@ -2602,11 +2602,11 @@ export let config = {
             "stmt": "#ffffff",
             "expr": "#ffffff",
             "arith_expr": "#ffffff",
-            "bool_expr": "#ffffff",
+            "logical_expr": "#ffffff",
             "primary_expr": "#ffffff",
             "arith_op": "#ffffff",
             "rel_op": "#ffffff",
-            "bool_bin_op": "#ffffff",
+            "logical_binary_op": "#ffffff",
             "ARRAY": "#C57991",
             "IN ARRAY": "#C57991",
             "IN STRING": "#C57991",
@@ -2711,11 +2711,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -3043,11 +3043,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -3557,11 +3557,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -3889,11 +3889,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -3953,11 +3953,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -4017,11 +4017,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -4389,11 +4389,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -4494,11 +4494,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -4599,11 +4599,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -4704,11 +4704,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -4809,11 +4809,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -4915,11 +4915,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -5021,11 +5021,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -5055,7 +5055,7 @@ export let config = {
                             "name": "binary_arith_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "An arithmetic expression with 2 operands"
+                        "tooltip": "An arithmetic expression with two operands"
                     },
                     "elems": [
                         {
@@ -5089,11 +5089,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -5199,11 +5199,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -5258,7 +5258,7 @@ export let config = {
                                     "name": "binary_arith_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "An arithmetic expression with 2 operands"
+                                "tooltip": "An arithmetic expression with two operands"
                             },
                             {
                                 "symbol": {
@@ -5291,11 +5291,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -5400,7 +5400,7 @@ export let config = {
                             "name": "binary_arith_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "An arithmetic expression with 2 operands"
+                        "tooltip": "An arithmetic expression with two operands"
                     },
                     "elems": [
                         {
@@ -5434,11 +5434,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -5544,11 +5544,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -5603,7 +5603,7 @@ export let config = {
                                     "name": "binary_arith_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "An arithmetic expression with 2 operands"
+                                "tooltip": "An arithmetic expression with two operands"
                             },
                             {
                                 "symbol": {
@@ -5636,11 +5636,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -5745,7 +5745,7 @@ export let config = {
                             "name": "binary_arith_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "An arithmetic expression with 2 operands"
+                        "tooltip": "An arithmetic expression with two operands"
                     },
                     "elems": [
                         {
@@ -5779,11 +5779,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -5889,11 +5889,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -5948,7 +5948,7 @@ export let config = {
                                     "name": "binary_arith_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "An arithmetic expression with 2 operands"
+                                "tooltip": "An arithmetic expression with two operands"
                             },
                             {
                                 "symbol": {
@@ -5981,11 +5981,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -6090,7 +6090,7 @@ export let config = {
                             "name": "binary_arith_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "An arithmetic expression with 2 operands"
+                        "tooltip": "An arithmetic expression with two operands"
                     },
                     "elems": [
                         {
@@ -6124,11 +6124,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -6234,11 +6234,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -6293,7 +6293,7 @@ export let config = {
                                     "name": "binary_arith_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "An arithmetic expression with 2 operands"
+                                "tooltip": "An arithmetic expression with two operands"
                             },
                             {
                                 "symbol": {
@@ -6327,11 +6327,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -6469,11 +6469,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -6518,7 +6518,7 @@ export let config = {
                                     "name": "binary_arith_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "An arithmetic expression with 2 operands"
+                                "tooltip": "An arithmetic expression with two operands"
                             },
                             {
                                 "symbol": {
@@ -6552,11 +6552,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -6658,7 +6658,7 @@ export let config = {
             ]
         },
         {
-            "name": "Boolean",
+            "name": "Logical",
             "icon": "./Images/Toolbox/comparison.svg",
             "blocks": [
                 {
@@ -6667,7 +6667,7 @@ export let config = {
                             "name": "rel_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "An operator that compares the 2 operands and returns true or false"
+                        "tooltip": "An operator that compares the two operands and returns true or false"
                     },
                     "elems": [
                         {
@@ -6701,11 +6701,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -6827,11 +6827,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -6894,11 +6894,11 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                "tooltip": "An operator that compares the two operands and returns true or false"
                             },
                             {
                                 "symbol": {
-                                    "name": "bool_expr",
+                                    "name": "logical_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "An expression that evaluates to true or false"
@@ -7002,7 +7002,7 @@ export let config = {
                             "name": "rel_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "An operator that compares the 2 operands and returns true or false"
+                        "tooltip": "An operator that compares the two operands and returns true or false"
                     },
                     "elems": [
                         {
@@ -7036,11 +7036,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -7162,11 +7162,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -7229,11 +7229,11 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                "tooltip": "An operator that compares the two operands and returns true or false"
                             },
                             {
                                 "symbol": {
-                                    "name": "bool_expr",
+                                    "name": "logical_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "An expression that evaluates to true or false"
@@ -7337,7 +7337,7 @@ export let config = {
                             "name": "rel_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "An operator that compares the 2 operands and returns true or false"
+                        "tooltip": "An operator that compares the two operands and returns true or false"
                     },
                     "elems": [
                         {
@@ -7371,11 +7371,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -7497,11 +7497,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -7564,11 +7564,11 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                "tooltip": "An operator that compares the two operands and returns true or false"
                             },
                             {
                                 "symbol": {
-                                    "name": "bool_expr",
+                                    "name": "logical_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "An expression that evaluates to true or false"
@@ -7672,7 +7672,7 @@ export let config = {
                             "name": "rel_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "An operator that compares the 2 operands and returns true or false"
+                        "tooltip": "An operator that compares the two operands and returns true or false"
                     },
                     "elems": [
                         {
@@ -7706,11 +7706,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -7832,11 +7832,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -7899,11 +7899,11 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                "tooltip": "An operator that compares the two operands and returns true or false"
                             },
                             {
                                 "symbol": {
-                                    "name": "bool_expr",
+                                    "name": "logical_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "An expression that evaluates to true or false"
@@ -8007,7 +8007,7 @@ export let config = {
                             "name": "rel_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "An operator that compares the 2 operands and returns true or false"
+                        "tooltip": "An operator that compares the two operands and returns true or false"
                     },
                     "elems": [
                         {
@@ -8041,11 +8041,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -8167,11 +8167,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -8234,11 +8234,11 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                "tooltip": "An operator that compares the two operands and returns true or false"
                             },
                             {
                                 "symbol": {
-                                    "name": "bool_expr",
+                                    "name": "logical_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "An expression that evaluates to true or false"
@@ -8342,7 +8342,7 @@ export let config = {
                             "name": "rel_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "An operator that compares the 2 operands and returns true or false"
+                        "tooltip": "An operator that compares the two operands and returns true or false"
                     },
                     "elems": [
                         {
@@ -8376,11 +8376,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -8502,11 +8502,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -8569,11 +8569,11 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                "tooltip": "An operator that compares the two operands and returns true or false"
                             },
                             {
                                 "symbol": {
-                                    "name": "bool_expr",
+                                    "name": "logical_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "An expression that evaluates to true or false"
@@ -8674,10 +8674,10 @@ export let config = {
                 {
                     "symbol": {
                         "symbol": {
-                            "name": "binary_bool_expr",
+                            "name": "binary_logical_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "Performs a binary operation with 2 operands"
+                        "tooltip": "Performs a binary operation with two operands"
                     },
                     "elems": [
                         {
@@ -8711,11 +8711,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -8756,10 +8756,10 @@ export let config = {
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
-                                        "name": "bool_bin_op",
+                                        "name": "logical_binary_op",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "Performs a binary operation with 2 operands"
+                                    "tooltip": "Performs a binary operation with two operands"
                                 },
                                 "alternateSymbols": [
                                     {
@@ -8802,11 +8802,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -8850,7 +8850,7 @@ export let config = {
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
-                                "name": "bool_expr",
+                                "name": "logical_expr",
                                 "isTerminal": false
                             },
                             "tooltip": "An expression that evaluates to true or false"
@@ -8858,10 +8858,10 @@ export let config = {
                         "alternateSymbols": [
                             {
                                 "symbol": {
-                                    "name": "binary_bool_expr",
+                                    "name": "binary_logical_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Performs a binary operation with 2 operands"
+                                "tooltip": "Performs a binary operation with two operands"
                             },
                             {
                                 "symbol": {
@@ -8895,11 +8895,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -9001,10 +9001,10 @@ export let config = {
                 {
                     "symbol": {
                         "symbol": {
-                            "name": "binary_bool_expr",
+                            "name": "binary_logical_expr",
                             "isTerminal": false
                         },
-                        "tooltip": "Performs a binary operation with 2 operands"
+                        "tooltip": "Performs a binary operation with two operands"
                     },
                     "elems": [
                         {
@@ -9038,11 +9038,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -9083,10 +9083,10 @@ export let config = {
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
-                                        "name": "bool_bin_op",
+                                        "name": "logical_binary_op",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "Performs a binary operation with 2 operands"
+                                    "tooltip": "Performs a binary operation with two operands"
                                 },
                                 "alternateSymbols": [
                                     {
@@ -9129,11 +9129,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -9177,7 +9177,7 @@ export let config = {
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
-                                "name": "bool_expr",
+                                "name": "logical_expr",
                                 "isTerminal": false
                             },
                             "tooltip": "An expression that evaluates to true or false"
@@ -9185,10 +9185,10 @@ export let config = {
                         "alternateSymbols": [
                             {
                                 "symbol": {
-                                    "name": "binary_bool_expr",
+                                    "name": "binary_logical_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Performs a binary operation with 2 operands"
+                                "tooltip": "Performs a binary operation with two operands"
                             },
                             {
                                 "symbol": {
@@ -9222,11 +9222,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -9365,11 +9365,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -9403,7 +9403,7 @@ export let config = {
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
-                                "name": "bool_expr",
+                                "name": "logical_expr",
                                 "isTerminal": false
                             },
                             "tooltip": "An expression that evaluates to true or false"
@@ -9411,10 +9411,10 @@ export let config = {
                         "alternateSymbols": [
                             {
                                 "symbol": {
-                                    "name": "binary_bool_expr",
+                                    "name": "binary_logical_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "Performs a binary operation with 2 operands"
+                                "tooltip": "Performs a binary operation with two operands"
                             },
                             {
                                 "symbol": {
@@ -9448,11 +9448,11 @@ export let config = {
                                         "name": "rel_expr",
                                         "isTerminal": false
                                     },
-                                    "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
                                 },
                                 {
                                     "symbol": {
-                                        "name": "bool_expr",
+                                        "name": "logical_expr",
                                         "isTerminal": false
                                     },
                                     "tooltip": "An expression that evaluates to true or false"
@@ -9958,11 +9958,11 @@ export let config = {
                                                 "name": "rel_expr",
                                                 "isTerminal": false
                                             },
-                                            "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                            "tooltip": "An operator that compares the two operands and returns true or false"
                                         },
                                         {
                                             "symbol": {
-                                                "name": "bool_expr",
+                                                "name": "logical_expr",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "An expression that evaluates to true or false"
@@ -10013,11 +10013,11 @@ export let config = {
                                             "name": "rel_expr",
                                             "isTerminal": false
                                         },
-                                        "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                        "tooltip": "An operator that compares the two operands and returns true or false"
                                     },
                                     {
                                         "symbol": {
-                                            "name": "bool_expr",
+                                            "name": "logical_expr",
                                             "isTerminal": false
                                         },
                                         "tooltip": "An expression that evaluates to true or false"
@@ -10082,11 +10082,11 @@ export let config = {
                                     "name": "rel_expr",
                                     "isTerminal": false
                                 },
-                                "tooltip": "An operator that compares the 2 operands and returns true or false"
+                                "tooltip": "An operator that compares the two operands and returns true or false"
                             },
                             {
                                 "symbol": {
-                                    "name": "bool_expr",
+                                    "name": "logical_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "An expression that evaluates to true or false"
@@ -11030,7 +11030,7 @@ export let lightTheme = {
                     "BorderRadius": ""
                 }
             },
-            "bool_expr": {
+            "logical_expr": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -11234,7 +11234,7 @@ export let lightTheme = {
                     "BackgroundColor": ""
                 }
             },
-            "binary_bool_expr": {
+            "binary_logical_expr": {
                 "Group Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -11258,7 +11258,7 @@ export let lightTheme = {
                     "BorderRadius": ""
                 }
             },
-            "bool_bin_op": {
+            "logical_binary_op": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -11951,11 +11951,11 @@ export let lightTheme = {
         "stmt": "#000000",
         "expr": "#000000",
         "arith_expr": "#000000",
-        "bool_expr": "#000000",
+        "logical_expr": "#000000",
         "primary_expr": "#000000",
         "arith_op": "#000000",
         "rel_op": "#000000",
-        "bool_bin_op": "#000000",
+        "logical_binary_op": "#000000",
         "ARRAY": "#0000FF",
         "IN ARRAY": "#0000FF",
         "IN STRING": "#0000FF",
@@ -12843,7 +12843,7 @@ export let colorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "bool_expr": {
+            "logical_expr": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -13047,7 +13047,7 @@ export let colorfulTheme = {
                     "BackgroundColor": ""
                 }
             },
-            "binary_bool_expr": {
+            "binary_logical_expr": {
                 "Group Block": {
                     "BackgroundColor": "#5B80A5",
                     "PaddingLeft": "",
@@ -13071,7 +13071,7 @@ export let colorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "bool_bin_op": {
+            "logical_binary_op": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -13751,11 +13751,11 @@ export let colorfulTheme = {
         "stmt": "#000000",
         "expr": "#000000",
         "arith_expr": "#000000",
-        "bool_expr": "#000000",
+        "logical_expr": "#000000",
         "primary_expr": "#000000",
         "arith_op": "#000000",
         "rel_op": "#000000",
-        "bool_bin_op": "#000000",
+        "logical_binary_op": "#000000",
         "ARRAY": "#0000FF",
         "IN ARRAY": "#0000FF",
         "IN STRING": "#0000FF",
@@ -14643,7 +14643,7 @@ export let darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "bool_expr": {
+            "logical_expr": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -14847,7 +14847,7 @@ export let darkColorfulTheme = {
                     "BackgroundColor": ""
                 }
             },
-            "binary_bool_expr": {
+            "binary_logical_expr": {
                 "Group Block": {
                     "BackgroundColor": "#5B80A5",
                     "PaddingLeft": "",
@@ -14871,7 +14871,7 @@ export let darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "bool_bin_op": {
+            "logical_binary_op": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -15551,11 +15551,11 @@ export let darkColorfulTheme = {
         "stmt": "#ffffff",
         "expr": "#ffffff",
         "arith_expr": "#ffffff",
-        "bool_expr": "#ffffff",
+        "logical_expr": "#ffffff",
         "primary_expr": "#ffffff",
         "arith_op": "#ffffff",
         "rel_op": "#ffffff",
-        "bool_bin_op": "#ffffff",
+        "logical_binary_op": "#ffffff",
         "ARRAY": "#C57991",
         "IN ARRAY": "#C57991",
         "IN STRING": "#C57991",
