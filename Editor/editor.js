@@ -641,13 +641,14 @@ export class Editor {
 
         let parent = elem.GetParent(), generatedBy = elem.GetGeneratedBy();
 
-        if (generatedBy){
+        if (generatedBy)
             parent.InsertAfterElem(elem, generatedBy);
-            this.Select(generatedBy);
-        }
 
         if (elem === this.selected){
-            this.NavigateLeft() || this.NavigateOut() || (this.selected = undefined);
+            if (generatedBy)
+                this.Select(generatedBy);
+            else
+                this.NavigateLeft() || this.NavigateOut() || (this.selected = undefined);
         }
 
         parent.RemoveElem(elem);
@@ -1440,16 +1441,21 @@ export class Editor {
         return false;
     }
 
+    pendingCommand;
+
     ExecuteCommand(command){
         if (!this.undoToastMessageDisabled && !this.undoToastMessageVisible && this.undoToolbarVisible){
+            this.pendingCommand = command;
             this.AppendUndoToastMessage();
             return;
         }
-        
+
         if (this.undoToastMessageDisabled && this.undoToolbarVisible)
             this.undoToolbar.Hide();
 
-        if (!this.undoToastMessageVisible)
+        if (this.undoToastMessageVisible)
+            this.pendingCommand = command;
+        else
             this.commands.ExecuteAndAppend(command);
     }
 
@@ -1467,7 +1473,12 @@ export class Editor {
                     handler: (toastMessage) => {
                         this.undoToolbar.Hide();
                         this.undoToastMessageVisible = false;
-                        toastMessage.Destroy()
+                        toastMessage.Destroy();
+
+                        if(this.pendingCommand){
+                            this.commands.ExecuteAndAppend(this.pendingCommand);
+                            this.pendingCommand = undefined;
+                        }
                     }
                 },
                 {
@@ -1476,16 +1487,27 @@ export class Editor {
                         this.undoToolbar.Hide();
                         this.undoToastMessageVisible = false, this.undoToastMessageDisabled = true; 
                         toastMessage.Destroy();
+
+                        if(this.pendingCommand){
+                            this.commands.ExecuteAndAppend(this.pendingCommand);
+                            this.pendingCommand = undefined;
+                        }
                     }
                 },
                 {
                     name: 'Cancel',
-                    handler: (toastMessage) => { this.undoToastMessageVisible = false, toastMessage.Destroy(); }
+                    handler: (toastMessage) => {
+                        this.undoToastMessageVisible = false, toastMessage.Destroy();
+                        this.pendingCommand = undefined;
+                    }
                 }
             ]
         });
 
-        this.undoToastMessage.SetOnClose( () => this.undoToastMessageVisible = false );
+        this.undoToastMessage.SetOnClose( () => {
+            this.undoToastMessageVisible = false;
+            this.pendingCommand = undefined;
+        });
 
         this.AppendToastMessage(this.undoToastMessage);
     }
@@ -1655,7 +1677,7 @@ export class Editor {
         let prev = this.selected.GetParent().GetPreviousElem(this.selected);
 
         if (this.CanRemoveElem(prev)){
-            this.ExecuteCommand( new DeleteCommand(this, prev) );
+            this.ExecuteCommand( new DeleteUntilPossibleCommand(this, prev) );
         }
     }
 
