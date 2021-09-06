@@ -4,233 +4,104 @@ export let config = {
             {
                 name: "program",
                 all_of: [
-                    {
-                        type: "non_terminal",
-                        name: "stmts"
-                    }
+                    { type: "non_terminal", name: "stmts" }
                 ]
             },
             {
                 name: "stmts",
                 list_of: [
-                    {
-                        type: "non_terminal",
-                        name: "stmt",
-                    },
+                    { type: "non_terminal", name: "stmt", },
                 ]
             },
             {
                 name: "stmt",
                 any_of: [
-                    {
-                        type: "non_terminal",
-                        name: "if_stmt",
-                        tooltip: "Do something if a condition is true"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "if_else_stmt",
-                        tooltip: "Do something if a condition is true, else do something else"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "while_stmt",
-                        tooltip: "Do something while a condition is true"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "for_stmt",
-                        tooltip: "Do something while a condition is true. Commonly used with a known number of iterations."
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "expr",
-                        alias: "expr_stmt",
-                        tooltip: "A single expression as a statement"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "func_def_stmt",
-                        tooltip: "Define reusable code as a function"
-                    },
+                    { type: "non_terminal", name: "if_stmt", tooltip: "Do something if a condition is true" },
+                    { type: "non_terminal", name: "if_else_stmt", tooltip: "Do something if a condition is true, else do something else" },
+                    { type: "non_terminal", name: "while_stmt", tooltip: "Do something while a condition is true" },
+                    { type: "non_terminal", name: "for_stmt", tooltip: "Do something while a condition is true. Commonly used with a known number of iterations." },
+                    { type: "non_terminal", name: "expr", alias: "expr_stmt", tooltip: "A single expression as a statement" },
+                    { type: "non_terminal", name: "func_def_stmt", tooltip: "Define reusable code as a function" },
+                    { type: "non_terminal", name: "break_stmt", tooltip: "Exit from the current loop" },
+                    { type: "non_terminal", name: "continue_stmt", tooltip: "Continue to the next iteration of the current loop" },
                 ]
             },
             {
                 name: "expr",
                 any_of: [
-                    {
-                        type: "non_terminal",
-                        name: "arith_expr",
-                        tooltip: "Perform a mathematic operation"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "rel_expr",
-                        tooltip: "An operator that compares the two operands and returns true or false"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "logical_expr",
-                        tooltip: "An expression that evaluates to true or false"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "assign_expr",
-                        tooltip: "Set a variable's value"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "call_expr",
-                        tooltip: "Call a user-defined or built-in function/method"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "primary_expr",
-                        tooltip: "An identifier or a constant"
-                    },
+                    { type: "non_terminal", name: "arith_expr", tooltip: "Perform a mathematic operation" },
+                    { type: "non_terminal", name: "rel_expr", tooltip: "An operator that compares the two operands and returns true or false" },
+                    { type: "non_terminal", name: "logical_expr", tooltip: "An expression that evaluates to true or false" },
+                    { type: "non_terminal", name: "assign_expr", tooltip: "Set a variable's value" },
+                    { type: "non_terminal", name: "call_expr", tooltip: "Call a user-defined or built-in function/method" },
+                    { type: "non_terminal", name: "primary_expr", tooltip: "An identifier or a constant" },
                 ]
             },
             {
                 name: "arith_expr",
                 any_of: [
-                    {
-                        type: "non_terminal",
-                        name: "binary_arith_expr",
-                        tooltip: "An arithmetic expression with two operands"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "unary_minus",
-                        tooltip: "Negates the value of its operand"
-                    }
+                    { type: "non_terminal", name: "binary_arith_expr", tooltip: "An arithmetic expression with two operands" },
+                    { type: "non_terminal", name: "unary_minus", tooltip: "Negates the value of its operand" }
                 ]
             },
             {
                 name: "binary_arith_expr",
                 all_of: [
-                    {
-                        type: "non_terminal",
-                        name: "expr",
-                        tooltip: "The first operand"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "arith_op",
-                        tooltip: "An arithmetic operator (e.g. +, -)"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "expr",
-                        tooltip: "The second operand"
-                    },
+                    { type: "non_terminal", name: "expr", tooltip: "The first operand" },
+                    { type: "non_terminal", name: "arith_op", tooltip: "An arithmetic operator (e.g. +, -)" },
+                    { type: "non_terminal", name: "expr", tooltip: "The second operand" },
                 ]
             },
             {
                 name: "unary_minus",
                 all_of: [
-                    {
-                        type: "terminal",
-                        name: "MINUS",
-                        alias: "-"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "expr"
-                    },
+                    { type: "terminal", name: "MINUS", alias: "-" },
+                    { type: "non_terminal", name: "expr" },
                 ]
             },
             {
                 name: "arith_op",
                 any_of: [
-                    {
-                        type: "terminal",
-                        name: "PLUS",
-                        alias: "+",
-                        tooltip: "Performs addition"
-                    },
-                    {
-                        type: "terminal",
-                        name: "MINUS",
-                        alias: "-",
-                        tooltip: "Performs subtraction"
-                    },
-                    {
-                        type: "terminal",
-                        name: "TIMES",
-                        alias: "*",
-                        tooltip: "Performs multiplication"
-                    },
-                    {
-                        type: "terminal",
-                        name: "BY",
-                        alias: "/",
-                        tooltip: "Performs division"
-                    },
-                    {
-                        type: "terminal",
-                        name: "MODULO",
-                        alias: "%",
-                        tooltip: "Performs the modulo operation"
-                    }
+                    { type: "terminal", name: "PLUS", alias: "+", tooltip: "Performs addition" },
+                    { type: "terminal", name: "MINUS", alias: "-", tooltip: "Performs subtraction" },
+                    { type: "terminal", name: "TIMES", alias: "*", tooltip: "Performs multiplication" },
+                    { type: "terminal", name: "BY", alias: "/", tooltip: "Performs division" },
+                    { type: "terminal", name: "MODULO", alias: "%", tooltip: "Performs the modulo operation" }
                 ]
             },
             {
                 name: "rel_expr",
                 all_of: [
-                    {
-                        type: "non_terminal",
-                        name: "expr",
-                        tooltip: "The first operand"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "rel_op",
-                        tooltip: "A comparison operator that returns true or false (e.g <, >)"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "expr",
-                        tooltip: "The second operand"
-                    },
+                    { type: "non_terminal", name: "expr", tooltip: "The first operand" },
+                    { type: "non_terminal", name: "rel_op", tooltip: "A comparison operator that returns true or false (e.g <, >)" },
+                    { type: "non_terminal", name: "expr", tooltip: "The second operand" },
                 ]
             },
             {
                 name: "rel_op",
                 any_of: [
                     {
-                        type: "terminal",
-                        name: "GREATER",
-                        alias: ">",
+                        type: "terminal", name: "GREATER", alias: ">",
                         tooltip: "Returns true if the first operand is greater than the second operand, else returns false"
                     },
                     {
-                        type: "terminal",
-                        name: "LESS",
-                        alias: "<",
+                        type: "terminal", name: "LESS", alias: "<",
                         tooltip: "Returns true if the first operand is less than the second operand, else returns false"
                     },
                     {
-                        type: "terminal",
-                        name: "EQUAL_TO",
-                        alias: "==",
+                        type: "terminal", name: "EQUAL_TO", alias: "==",
                         tooltip: "Returns true if the first operand is equal to the second operand, else returns false"
                     },
                     {
-                        type: "terminal",
-                        name: "NOT_EQUAL_TO",
-                        alias: "!=",
+                        type: "terminal", name: "NOT_EQUAL_TO", alias: "!=",
                         tooltip: "Returns true if the first operand not equal to the second operand, else returns false"
                     },
                     {
-                        type: "terminal",
-                        name: "GREATER_EQUAL",
-                        alias: ">=",
+                        type: "terminal", name: "GREATER_EQUAL", alias: ">=",
                         tooltip: "Returns true if the first operand is greater than or equal to the second operand, else returns false"
                     },
                     {
-                        type: "terminal",
-                        name: "LESS_EQUAL",
-                        alias: "<=",
+                        type: "terminal", name: "LESS_EQUAL", alias: "<=",
                         tooltip: "Returns true if the first operand is less than or equal to the second operand, else returns false"
                     }
                 ]
@@ -238,107 +109,57 @@ export let config = {
             {
                 name: "logical_expr",
                 any_of: [
-                    {
-                        type: "non_terminal",
-                        name: "binary_logical_expr",
-                        tooltip: "Performs a binary operation with two operands"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "not_expr",
-                        tooltip: "Performs logical negation. True becomes false and false becomes true"
-                    }
+                    { type: "non_terminal", name: "binary_logical_expr", tooltip: "Performs a binary operation with two operands" },
+                    { type: "non_terminal", name: "not_expr", tooltip: "Performs logical negation. True becomes false and false becomes true" }
                 ]
             },
             {
                 name: "binary_logical_expr",
                 all_of: [
-                    {
-                        type: "non_terminal",
-                        name: "expr",
-                        tooltip: "The first operand"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "logical_binary_op",
-                        tooltip: "Performs a binary operation with two operands"
-                    },
-                    {
-                        name: "expr",
-                        type: "non_terminal",
-                        tooltip: "The second operand"
-                    },
+                    { type: "non_terminal", name: "expr", tooltip: "The first operand" },
+                    { type: "non_terminal", name: "logical_binary_op", tooltip: "Performs a binary operation with two operands" },
+                    { name: "expr", type: "non_terminal", tooltip: "The second operand" },
                 ]
             },
             {
                 name: "logical_binary_op",
                 any_of: [
-                    {
-                        type: "terminal",
-                        name: "AND",
-                        tooltip: "Returns true if both operands are true, else returns false"
-                    },
-                    {
-                        type: "terminal",
-                        name: "OR",
-                        tooltip: "Returns true if either operand is true, else returns false"
-                    }
+                    { type: "terminal", name: "AND", tooltip: "Returns true if both operands are true, else returns false" },
+                    { type: "terminal", name: "OR", tooltip: "Returns true if either operand is true, else returns false" }
                 ]
             },
             {
                 name: "not_expr",
                 all_of: [
-                    {
-                        type: "terminal",
-                        name: "NOT",
-                        tooltip: "Returns true if the operand is false, else returns false"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "expr",
-                        tooltip: "The operand"
-                    }
+                    { type: "terminal", name: "NOT", tooltip: "Returns true if the operand is false, else returns false" },
+                    { type: "non_terminal", name: "expr", tooltip: "The operand" }
                 ]
             },
             {
                 name: "primary_expr",
                 any_of: [
                     {
-                        type: "terminal",
-                        name: "IDENT",
+                        type: "terminal", name: "IDENT",
                         tooltip: "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                     },
                     {
-                        type: "terminal",
-                        name: "INT_CONST",
+                        type: "terminal", name: "INT_CONST",
                         tooltip: "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
                     },
                     {
-                        type: "terminal",
-                        name: "FLOAT_CONST",
+                        type: "terminal", name: "FLOAT_CONST",
                         tooltip: "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
                     },
                     {
-                        type: "terminal",
-                        name: "CHAR_CONST",
+                        type: "terminal", name: "CHAR_CONST",
                         tooltip: "One single character"
                     },
                     {
-                        type: "terminal",
-                        name: "STRING_CONST",
+                        type: "terminal", name: "STRING_CONST",
                         tooltip: "Any sequence of characters or the empty sequence"
                     },
-                    {
-                        type: "non_terminal",
-                        name: "BOOL_CONST",
-                        alias: "boolean",
-                        tooltip: "One of true or false"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "ARRAY_CONST",
-                        tooltip: "An array of elements"
-                    }
+                    { type: "non_terminal", name: "BOOL_CONST", alias: "boolean", tooltip: "One of true or false" },
+                    { type: "non_terminal", name: "ARRAY_CONST", tooltip: "An array of elements" }
                 ]
             },
             {
@@ -351,31 +172,11 @@ export let config = {
             {
                 name: "call_expr",
                 any_of: [
-                    {
-                        type: "non_terminal",
-                        name: "input_output_call",
-                        tooltip: "Use a built-in input/output function"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "math_call",
-                        tooltip: "Use a built-in math function"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "string_method_call",
-                        tooltip: "Use a built-in string method"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "array_method_call",
-                        tooltip: "Use a built-in array method"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "user_function_call",
-                        tooltip: "Use a user-defined function"
-                    },
+                    { type: "non_terminal", name: "input_output_call", tooltip: "Use a built-in input/output function" },
+                    { type: "non_terminal", name: "math_call", tooltip: "Use a built-in math function" },
+                    { type: "non_terminal", name: "string_method_call", tooltip: "Use a built-in string method" },
+                    { type: "non_terminal", name: "array_method_call", tooltip: "Use a built-in array method" },
+                    { type: "non_terminal", name: "user_function_call", tooltip: "Use a user-defined function" },
                 ]
             },
             {
@@ -395,67 +196,40 @@ export let config = {
             {
                 name: "assign_expr",
                 all_of: [
-                    {
-                        type: "terminal",
-                        name: "IDENT",
-                    },
-                    {
-                        type: "terminal",
-                        name: "EQUALS",
-                        alias: "="
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "expr"
-                    },
+                    { type: "terminal", name: "IDENT", },
+                    { type: "terminal", name: "EQUALS", alias: "=" },
+                    { type: "non_terminal", name: "expr" },
                 ]
             },
             {
                 name: "func_def_stmt",
                 all_of: [
-                    {
-                        type: "terminal",
-                        name: "FUNCTION",
-                    },
-                    {
-                        type: "terminal",
-                        name: "IDENT",
-                        alias: "NAME"
-                    },
-                    {
-                        type: "terminal",
-                        name: "OF",
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "ident_list"
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "stmts"
-                    },
+                    { type: "terminal", name: "FUNCTION", },
+                    { type: "terminal", name: "IDENT", alias: "NAME" },
+                    { type: "terminal", name: "OF", },
+                    { type: "non_terminal", name: "ident_list" },
+                    { type: "non_terminal", name: "stmts" },
+                ]
+            },
+            {
+                name: "break_stmt",
+                all_of: [
+                    { type: "terminal", name: "BREAK" }
+                ]
+            },
+            {
+                name: "continue_stmt",
+                all_of: [
+                    { type: "terminal", name: "CONTINUE" }
                 ]
             },
             {
                 name: "user_function_call",
                 all_of: [
-                    {
-                        type: "terminal",
-                        name: "CALL",
-                    },
-                    {
-                        type: "terminal",
-                        name: "IDENT",
-                        alias: "FUNCTION NAME"
-                    },
-                    {
-                        type: "terminal",
-                        name: "WITH",
-                    },
-                    {
-                        type: "non_terminal",
-                        name: "expr_list"
-                    },
+                    { type: "terminal", name: "CALL", },
+                    { type: "terminal", name: "IDENT", alias: "FUNCTION NAME" },
+                    { type: "terminal", name: "WITH", },
+                    { type: "non_terminal", name: "expr_list" },
                 ]
             },
             {
@@ -738,139 +512,58 @@ export let config = {
             {
                 name: "if_stmt",
                 all_of: [
-                    {
-                        type: "terminal",
-                        name: "IF"
-                    },
-                    {
-                        type: "non_terminal",
-                        alias: "condition_expr",
-                        name: "expr"
-                    },
-                    {
-                        type: "non_terminal",
-                        alias: "if_part",
-                        name: "stmts"
-                    },
+                    { type: "terminal", name: "IF" },
+                    { type: "non_terminal", alias: "condition_expr", name: "expr" },
+                    { type: "non_terminal", alias: "if_part", name: "stmts" },
                 ]
             },
             {
                 name: "if_else_stmt",
                 all_of: [
-                    {
-                        type: "terminal",
-                        name: "IF"
-                    },
-                    {
-                        type: "non_terminal",
-                        alias: "condition_expr",
-                        name: "expr"
-                    },
-                    {
-                        type: "non_terminal",
-                        alias: "if_part",
-                        name: "stmts"
-                    },
-                    {
-                        type: "terminal",
-                        name: "ELSE"
-                    },
-                    {
-                        type: "non_terminal",
-                        alias: "else_part",
-                        name: "stmts"
-                    },
+                    { type: "terminal", name: "IF" },
+                    { type: "non_terminal", alias: "condition_expr", name: "expr" },
+                    { type: "non_terminal", alias: "if_part", name: "stmts" },
+                    { type: "terminal", name: "ELSE" },
+                    { type: "non_terminal", alias: "else_part", name: "stmts" },
                 ]
             },
             {
                 name: "while_stmt",
                 all_of: [
-                    {
-                        type: "terminal",
-                        name: "WHILE"
-                    },
-                    {
-                        type: "non_terminal",
-                        alias: "condition_expr",
-                        name: "expr"
-                    },
-                    {
-                        type: "non_terminal",
-                        alias: "while_part",
-                        name: "stmts"
-                    },
+                    { type: "terminal", name: "WHILE" },
+                    { type: "non_terminal", alias: "condition_expr", name: "expr" },
+                    { type: "non_terminal", alias: "while_part", name: "stmts" },
                 ]
             },
             {
                 name: "for_stmt",
                 all_of: [
-                    {
-                        type: "terminal",
-                        name: "FOR"
-                    },
-                    {
-                        type: "non_terminal",
-                        alias: "initialization_expr",
-                        name: "expr"
-                    },
-                    {
-                        type: "non_terminal",
-                        alias: "condition_expr",
-                        name: "expr"
-                    },
-                    {
-                        type: "non_terminal",
-                        alias: "step_expr",
-                        name: "expr"
-                    },
-                    {
-                        type: "non_terminal",
-                        alias: "for_part",
-                        name: "stmts"
-                    },
+                    { type: "terminal", name: "FOR" },
+                    { type: "non_terminal", alias: "initialization_expr", name: "expr" },
+                    { type: "non_terminal", alias: "condition_expr", name: "expr" },
+                    { type: "non_terminal", alias: "step_expr", name: "expr" },
+                    { type: "non_terminal", alias: "for_part", name: "stmts" },
                 ]
             },
             {
                 name: "ident_list",
                 list_of: [
-                    {
-                        type: "terminal",
-                        name: "IDENT",
-                    },
+                    { type: "terminal", name: "IDENT", },
                 ]
             },
             {
                 name: "expr_list",
                 list_of: [
-                    {
-                        type: "non_terminal",
-                        name: "expr",
-                        alias: 'ARG',
-                    },
+                    { type: "non_terminal", name: "expr", alias: "arg", },
                 ]
             }
         ],
         terminalTypes: [
-            {
-                name: "INT_CONST",
-                type: "INT",
-            },
-            {
-                name: "FLOAT_CONST",
-                type: "FLOAT",
-            },
-            {
-                name: "CHAR_CONST",
-                type: "CHAR",
-            },
-            {
-                name: "STRING_CONST",
-                type: "STRING",
-            },
-            {
-                name: "IDENT",
-                type: "IDENTIFIER"
-            }
+            { name: "INT_CONST", type: "INT", },
+            { name: "FLOAT_CONST", type: "FLOAT", },
+            { name: "CHAR_CONST", type: "CHAR", },
+            { name: "STRING_CONST", type: "STRING", },
+            { name: "IDENT", type: "IDENTIFIER" }
         ]
     },
     toolbox: [
@@ -2313,6 +2006,162 @@ export let config = {
                             }
                         ],
                         "selectedSymbol": 3,
+                        "type": "SelectionBlock"
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "BREAK",
+                            "isTerminal": true
+                        }
+                    },
+                    "type": "SimpleBlock",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "stmt",
+                                "isTerminal": false
+                            }
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "if_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Do something if a condition is true"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "if_else_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Do something if a condition is true, else do something else"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "while_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Do something while a condition is true"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "for_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                            },
+                            {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_def_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define reusable code as a function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "break_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Exit from the current loop"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "continue_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Continue to the next iteration of the current loop"
+                            }
+                        ],
+                        "selectedSymbol": 6,
+                        "type": "SelectionBlock"
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "CONTINUE",
+                            "isTerminal": true
+                        }
+                    },
+                    "type": "SimpleBlock",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "stmt",
+                                "isTerminal": false
+                            }
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "if_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Do something if a condition is true"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "if_else_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Do something if a condition is true, else do something else"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "while_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Do something while a condition is true"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "for_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                            },
+                            {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "func_def_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define reusable code as a function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "break_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Exit from the current loop"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "continue_stmt",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Continue to the next iteration of the current loop"
+                            }
+                        ],
+                        "selectedSymbol": 7,
                         "type": "SelectionBlock"
                     }
                 }
@@ -14636,7 +14485,7 @@ export let config = {
                                             "name": "expr",
                                             "isTerminal": false
                                         },
-                                        "alias": "ARG"
+                                        "alias": "arg"
                                     },
                                     "alternateSymbols": [
                                         {
@@ -14691,7 +14540,7 @@ export let config = {
                                         "name": "expr",
                                         "isTerminal": false
                                     },
-                                    "alias": "ARG"
+                                    "alias": "arg"
                                 },
                                 "alternateSymbols": [
                                     {
@@ -15941,7 +15790,7 @@ export let config = {
                                             "name": "expr",
                                             "isTerminal": false
                                         },
-                                        "alias": "ARG"
+                                        "alias": "arg"
                                     },
                                     "alternateSymbols": [
                                         {
@@ -15996,7 +15845,7 @@ export let config = {
                                         "name": "expr",
                                         "isTerminal": false
                                     },
-                                    "alias": "ARG"
+                                    "alias": "arg"
                                 },
                                 "alternateSymbols": [
                                     {
@@ -16664,30 +16513,58 @@ config.darkTheme = {
             },
             "true": {
                 "Simple Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "BackgroundColor": "#1e1e1e",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "FontColor": "#C57991",
                     "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
+                    "BorderWidth": "2px",
+                    "BorderColor": "#37373D",
+                    "BorderRadius": "10px"
                 }
             },
             "false": {
                 "Simple Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "BackgroundColor": "#1e1e1e",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "FontColor": "#C57991",
                     "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
+                    "BorderWidth": "2px",
+                    "BorderColor": "#37373D",
+                    "BorderRadius": "10px"
+                }
+            },
+            "BREAK": {
+                "Simple Block": {
+                    "BackgroundColor": "#1e1e1e",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontColor": "#C57991",
+                    "FontSize": "",
+                    "BorderWidth": "2px",
+                    "BorderColor": "#37373D",
+                    "BorderRadius": "10px"
+                }
+            },
+            "CONTINUE": {
+                "Simple Block": {
+                    "BackgroundColor": "#1e1e1e",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontColor": "#C57991",
+                    "FontSize": "",
+                    "BorderWidth": "2px",
+                    "BorderColor": "#37373D",
+                    "BorderRadius": "10px"
                 }
             },
             "EQUALS": {
@@ -17994,6 +17871,8 @@ config.darkTheme = {
         "BOOL_CONST": "#ffffff",
         "true": "#C57991",
         "false": "#C57991",
+        "BREAK": "#C57991",
+        "CONTINUE": "#C57991",
         "EQUALS": "#DCB962",
         "FUNCTION": "#C57991",
         "OF": "#C57991",
@@ -18610,30 +18489,58 @@ config.lightTheme = {
             },
             "true": {
                 "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "BackgroundColor": "#FAFAFA",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "FontColor": "#0000FF",
                     "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
+                    "BorderWidth": "2px",
+                    "BorderColor": "#c2c2c2",
+                    "BorderRadius": "10px"
                 }
             },
             "false": {
                 "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
+                    "BackgroundColor": "#FAFAFA",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "FontColor": "#0000FF",
                     "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
+                    "BorderWidth": "2px",
+                    "BorderColor": "#c2c2c2",
+                    "BorderRadius": "10px"
+                }
+            },
+            "BREAK": {
+                "Simple Block": {
+                    "BackgroundColor": "#FAFAFA",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontColor": "#0000FF",
+                    "FontSize": "",
+                    "BorderWidth": "2px",
+                    "BorderColor": "#c2c2c2",
+                    "BorderRadius": "10px"
+                }
+            },
+            "CONTINUE": {
+                "Simple Block": {
+                    "BackgroundColor": "#FAFAFA",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontColor": "#0000FF",
+                    "FontSize": "",
+                    "BorderWidth": "2px",
+                    "BorderColor": "#c2c2c2",
+                    "BorderRadius": "10px"
                 }
             },
             "EQUALS": {
@@ -19939,6 +19846,8 @@ config.lightTheme = {
         "BOOL_CONST": "#000000",
         "true": "#0000FF",
         "false": "#0000FF",
+        "BREAK": "#0000FF",
+        "CONTINUE": "#0000FF",
         "EQUALS": "#000000",
         "FUNCTION": "#0000FF",
         "OF": "#0000FF",
@@ -20568,6 +20477,34 @@ config.colorfulTheme = {
                     "BorderWidth": "1px",
                     "BorderColor": "transparent",
                     "BorderRadius": "5px"
+                }
+            },
+            "BREAK": {
+                "Simple Block": {
+                    "BackgroundColor": "#5BA55B",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#488448",
+                    "BorderRadius": ""
+                }
+            },
+            "CONTINUE": {
+                "Simple Block": {
+                    "BackgroundColor": "#5BA55B",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#488448",
+                    "BorderRadius": ""
                 }
             },
             "EQUALS": {
@@ -21968,6 +21905,8 @@ config.colorfulTheme = {
         "BOOL_CONST": "#000000",
         "true": "#0000FF",
         "false": "#0000FF",
+        "BREAK": "#0000FF",
+        "CONTINUE": "#0000FF",
         "EQUALS": "#000000",
         "FUNCTION": "#0000FF",
         "OF": "#0000FF",
@@ -22597,6 +22536,34 @@ config.darkColorfulTheme = {
                     "BorderWidth": "1px",
                     "BorderColor": "transparent",
                     "BorderRadius": "5px"
+                }
+            },
+            "BREAK": {
+                "Simple Block": {
+                    "BackgroundColor": "#5BA55B",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#488448",
+                    "BorderRadius": ""
+                }
+            },
+            "CONTINUE": {
+                "Simple Block": {
+                    "BackgroundColor": "#5BA55B",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#488448",
+                    "BorderRadius": ""
                 }
             },
             "EQUALS": {
@@ -23997,6 +23964,8 @@ config.darkColorfulTheme = {
         "BOOL_CONST": "#ffffff",
         "true": "#C57991",
         "false": "#C57991",
+        "BREAK": "#C57991",
+        "CONTINUE": "#C57991",
         "EQUALS": "#DCB962",
         "FUNCTION": "#C57991",
         "OF": "#C57991",
