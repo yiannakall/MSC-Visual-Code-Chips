@@ -1,5 +1,6 @@
-import { colorfulTheme, config, darkColorfulTheme, lightTheme } from './config.js'
+import { config as codeChipsConfig } from './config.js'
 import { CodeChips } from './CodeChips.js'
+import { config as javaClassesConfig } from './javaClassDef.js'
 
 $(document).ready(function () {
 
@@ -12,20 +13,67 @@ $(document).ready(function () {
         return $.fn.textWidth.fakeEl.width();
     };
 
-    let editor = CodeChips.Inject(
-        $('#injection-div'), 
-        {
-            languageJson: config.language,
-            themeJson: darkColorfulTheme,
-            toolboxJson: config.toolbox
-        }
-    );
+    let editors = {
+        'Code Chips': CodeChips.Inject(
+            $('#injection-div2'), 
+            {
+                languageJson:   codeChipsConfig.language,
+                themeJson:      codeChipsConfig.darkColorfulTheme,
+                toolboxJson:    codeChipsConfig.toolbox
+            }
+        ),
+        'Java Classes': CodeChips.Inject(
+            $('#injection-div1'), 
+            {
+                languageJson:   javaClassesConfig.language,
+                themeJson:      javaClassesConfig.darkTheme,
+                toolboxJson:    javaClassesConfig.toolbox
+            }
+        ),
+    };
 
-    let themes = [ darkColorfulTheme, colorfulTheme, config.theme, lightTheme ];
+    let themes = {
+        'Code Chips': { 
+            'Dark Colorful Theme':      codeChipsConfig.darkColorfulTheme, 
+            'Light Colorful Theme':     codeChipsConfig.colorfulTheme, 
+            'Dark Theme':               codeChipsConfig.darkTheme,
+            'Light Theme':              codeChipsConfig.lightTheme
+        },
+        'Java Classes': {
+            'Dark Theme':               javaClassesConfig.darkTheme,
+            'Light Theme':              javaClassesConfig.lightTheme
+        }
+    };
+
+    let selectedThemes = {
+        'Code Chips':       'Dark Colorful Theme',
+        'Java Classes':     'Dark Theme'
+    };
+
+    let curr = 'Code Chips';
+
+    for (let theme in themes[curr])
+        $('#theme-selection').append(`<option value="${theme}"> ${theme} </option>`);
+
+    editors['Java Classes'].$container.toggle();
+
+    $('#language-selection').on('change', function() {
+        editors[curr].$container.toggle(); 
+        curr = this.value;
+        editors[curr].$container.toggle();
+
+        $('#theme-selection').empty();
+
+        for (let theme in themes[curr])
+            $('#theme-selection').append(`<option value="${theme}"> ${theme} </option>`);
+
+        $('#theme-selection').val(selectedThemes[curr]);
+    });
 
     $('#theme-selection').on('change', function() {
-        editor.SetTheme(themes[+this.value]);
-        editor.ApplyTheme();
+        editors[curr].SetTheme(themes[curr][this.value]);
+        editors[curr].ApplyTheme();
+        selectedThemes[curr] = this.value;
     });
 
 });

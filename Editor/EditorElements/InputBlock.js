@@ -37,6 +37,9 @@ export class InputBlock extends EditorElement {
                 ThemeableProps.Props.PaddingBottom,
                 ThemeableProps.Props.FontColor,
                 ThemeableProps.Props.FontSize,
+                ThemeableProps.Props.FontIsUnderlined,
+                ThemeableProps.Props.FontIsBold,
+                ThemeableProps.Props.FontIsItalic,
             )
         },
     ];

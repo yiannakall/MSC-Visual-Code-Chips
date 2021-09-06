@@ -3,10 +3,9 @@ import { assert } from "./Utils/Assert.js";
 export class GrammarSymbol {
     name;
     isTerminal;
-    textViewOnly;
 
-    constructor(name, isTerminal, textViewOnly){
-        this.name = name, this.isTerminal = isTerminal, this.textViewOnly = textViewOnly;
+    constructor(name, isTerminal){
+        this.name = name, this.isTerminal = isTerminal;
     }
 }
 
@@ -15,18 +14,23 @@ export class DefinitionRhs {
         ANY_OF:     'ANY_OF',
         ALL_OFF:    'ALL_OF',
         LIST_OF:    'LIST_OF',
+        OPTIONAL:   'OPTIONAL',
         Includes(type){
             return typeof type === 'string' && Object.values(this).includes(type);
         }
     };
 
-    type;       // 'ANY_OF' || 'ALL_OF' || 'LIST_OF'
+    type;       // 'ANY_OF' || 'ALL_OF' || 'LIST_OF' || 'OPTIONAL'
     symbols;    // AliasedGrammarSymbol[]
 
     constructor(type, symbols){
         this.type = type, this.symbols = symbols;
         assert(DefinitionRhs.Types.Includes(type), `A language definition has an incorrect type ${type}`);
         assert(typeof symbols === 'object', `A language definition has content of wrong type "${typeof symbols}"`);
+        
+        if (type == DefinitionRhs.Types.OPTIONAL){
+            assert(symbols.length === 1, 'A language definition of type "optional" must have exactly one right hand side symbol');
+        }
     }
 }
 
@@ -53,7 +57,6 @@ export class AliasedGrammarSymbol {
             new GrammarSymbol(
                 symbolJson.symbol.name,
                 symbolJson.symbol.isTerminal,
-                symbolJson.symbol.textViewOnly
             ),
             symbolJson.alias,
             symbolJson.tooltip
@@ -103,15 +106,15 @@ export class Language {
         return this.defs.get(symbol);
     }
 
-    NewSymbol(name, isTerminal, textViewOnly){
-        return isTerminal ? this.NewTerminal(name, textViewOnly) : this.NewNonTerminal(name);
+    NewSymbol(name, isTerminal){
+        return isTerminal ? this.NewTerminal(name) : this.NewNonTerminal(name);
     }
 
-    NewTerminal(name, textViewOnly){
+    NewTerminal(name){
         if (this.GetSymbol(name))
             return undefined;
 
-        let terminal = new GrammarSymbol(name, true, textViewOnly);
+        let terminal = new GrammarSymbol(name, true);
         this.terminals.push(terminal);
 
         return terminal;
@@ -167,7 +170,7 @@ export class Language {
         }
 
         for (let definition of languageJson.definitions){
-            if (!definition.name || !(definition.list_of || definition.all_of || definition.any_of) ){
+            if (!definition.name || !(definition.list_of || definition.all_of || definition.any_of || definition.optional) ){
                 assert(false, 'A definition misses a lhs or a rhs');
                 return undefined;
             }
@@ -179,13 +182,9 @@ export class Language {
                 return undefined;
             }
 
-            let rhsSymbols = (definition.list_of || definition.all_of || definition.any_of)
+            let rhsSymbols = (definition.list_of || definition.all_of || definition.any_of || definition.optional)
                 .map(symJson => new AliasedGrammarSymbol(
-                                    lang.GetSymbol(symJson.name) || lang.NewSymbol(
-                                                                        symJson.name,
-                                                                        symJson.type === 'terminal',
-                                                                        symJson.textViewOnly
-                                                                    ),
+                                    lang.GetSymbol(symJson.name) || lang.NewSymbol( symJson.name, symJson.type === 'terminal' ),
                                     symJson.alias,
                                     symJson.tooltip
                                 )
@@ -195,6 +194,7 @@ export class Language {
                 definition.list_of ? DefinitionRhs.Types.LIST_OF :
                         definition.all_of ? DefinitionRhs.Types.ALL_OFF :
                         definition.any_of ? DefinitionRhs.Types.ANY_OF :
+                        definition.optional ? DefinitionRhs.Types.OPTIONAL :
                         null, 
                 rhsSymbols
             );

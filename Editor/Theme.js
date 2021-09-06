@@ -5,6 +5,7 @@ export class ThemeableProps {
         Color: 'Color',
         Number: 'Number',
         Enumerated: 'Enumerated',
+        Boolean: 'Boolean',
         Pair: (type1, type2) => {
             return [type1, type2];
         }
@@ -18,6 +19,9 @@ export class ThemeableProps {
         PaddingBottom: 'PaddingBottom',
         FontSize: 'FontSize',
         FontColor: 'FontColor',
+        FontIsUnderlined: 'FontIsUnderlined',
+        FontIsBold: 'FontIsBold',
+        FontIsItalic: 'FontIsItalic',
         Width: 'Width',
         Height: 'Height',
         Gap: 'Gap',
@@ -70,6 +74,24 @@ export class ThemeableProps {
             type: this.ValueTypes.Number
         },
 
+        FontIsUnderlined: {
+            name: 'Font Is Underlined',
+            description: 'When set to true the text will be underlined',
+            type: this.ValueTypes.Boolean
+        },
+
+        FontIsBold: {
+            name: 'Font Is Bold',
+            description: 'When set to true the text will be in bold',
+            type: this.ValueTypes.Boolean
+        },
+
+        FontIsItalic: {
+            name: 'Font Is Italic',
+            description: 'When set to true the text will be in Italic',
+            type: this.ValueTypes.Boolean
+        },
+
         Width: {
             name: 'Width',
             description: 'The horizontal size in pixels',
@@ -111,6 +133,7 @@ export class ThemeableProps {
             description: 'The inside and outside shadow width in pixels followed by the shadow\'s color',
             type: this.ValueTypes.Pair(this.ValueTypes.Number, this.ValueTypes.Color),
         },
+
     };
 
     static css = {
@@ -134,6 +157,15 @@ export class ThemeableProps {
         },
         FontColor: (value) => {
             return { 'color': value };
+        },
+        FontIsUnderlined: (value) => {
+            return value ? { 'text-decoration': 'underline' } : {};
+        },
+        FontIsBold: (value) => {
+            return value ? { 'font-weight': '500' } : {};
+        },
+        FontIsItalic: (value) => {
+            return value ? { 'font-style': 'italic' } : {};
         },
         Width: (value) => {
             return { 'width': value };

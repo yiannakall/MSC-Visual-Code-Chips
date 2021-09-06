@@ -8,7 +8,7 @@ export const EditorElementTypes = {
     SelectionBlock: 'SelectionBlock',
     Group: 'Group',
     RepetitionGroup: 'RepetitionGroup',
-    InvisibleBlock: 'InvisibleBlock'
+    OptionalBlock: 'OptionalBlock'
 }
 
 export const EditorElementViewMode = {
@@ -50,7 +50,7 @@ export class EditorElement {
     Clone_()                            { assert(false, 'Non implemented by subclass'); }
     ToJson_()                           { assert(false, 'Non implemented by subclass'); }
     Render_($container)                 { assert(false, 'Non implemented by subclass'); }
-    ApplyViewMode(mode)                 { assert(false, 'Non implemented by subclass'); }
+    ApplyViewMode(mode)                 { }
     PastRendering_()                    { }
     OnApplyViewMode_()                  { }
     ApplyTextViewTheme_()               { }
@@ -68,6 +68,7 @@ export class EditorElement {
         instance.onDragEnd = this.onDragEnd.bind(instance);
         instance.onDrop = this.onDrop.bind(instance);
         instance.onDragEnter = this.onDragEnter.bind(instance);
+        instance.onDragOver = this.onDragOver.bind(instance);
         instance.onDragLeave = this.onDragLeave.bind(instance);
 
         instance.isDraggable = this.isDraggable;

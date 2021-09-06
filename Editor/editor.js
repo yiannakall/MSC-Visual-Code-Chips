@@ -1,4 +1,4 @@
-import { AliasedGrammarSymbol, DefinitionRhs, Language} from '../language.js'
+import { AliasedGrammarSymbol, DefinitionRhs, GrammarSymbol, Language} from '../language.js'
 import { assert } from "../Utils/Assert.js";
 import { EditorElement, EditorElementTypes, EditorElementViewMode } from './EditorElements/EditorElement.js'
 import { Group } from './EditorElements/Group.js'
@@ -24,7 +24,6 @@ import { DeleteAllCommand } from './EditorCommands/DeleteAllCommand.js';
 import { UndoRedoToolbar } from './UndoRedoToolbar/UndoRedoToolbar.js';
 import { DownloadAsFile } from '../Utils/Download.js';
 import { ToastMessage } from './EditorToastMessages/ToastMessage.js';
-import { InvisibleBlock } from './EditorElements/InvisibleBlock.js';
 import { RepetitionGroup } from './EditorElements/RepetitionGroup.js';
 import { CreateRepetitiveElemCommand } from './EditorCommands/CreateRepetitiveElemCommand.js';
 import { ReorderUpCommand } from './EditorCommands/ReorderUpCommand.js';
@@ -33,6 +32,7 @@ import { DropCommand } from './EditorCommands/DropCommand.js';
 import { ApplyCssToStyle, Theme, Themeable, ThemeableProps } from './Theme.js';
 import { BeautifyCommand } from './EditorCommands/BeautifyCommand.js';
 import { ReduceCommand } from './EditorCommands/ReduceCommand.js';
+import { OptionalBlock } from './EditorElements/OptionalBlock.js';
 
 export class Editor {
 
@@ -245,7 +245,7 @@ export class Editor {
     CreateGeneralBlockThemeStructure(){
         let blockThemes = {};
 
-        let blockClasses = [ Group, RepetitionGroup, SimpleBlock, InputBlock, SelectionBlock ];
+        let blockClasses = [ Group, RepetitionGroup, SimpleBlock, InputBlock, SelectionBlock, OptionalBlock ];
         
         for (let blockClass of blockClasses){
             blockThemes[blockClass.name] = {};
@@ -268,7 +268,7 @@ export class Editor {
         for (let symbol of [...this.language.GetTerminals(), ...this.language.GetNonTerminals()]){
             let blockClass = this.PeekElemType(symbol);
 
-            if (!blockClass || blockClass === InvisibleBlock)
+            if (!blockClass)
                 continue;
 
             blockThemes[symbol.name] = {};
@@ -285,7 +285,7 @@ export class Editor {
         return blockThemes;
     }
 
-    CreatePrettyPrintThemeStructure(ignoreTextViewOnlySymbols){
+    CreatePrettyPrintThemeStructure(forBlockView){
         let prettyPrint = {};
 
         for (let symbol of this.language.GetNonTerminals()){
@@ -294,15 +294,19 @@ export class Editor {
             if (blockClass === Group){
                 let children = this.language.GetDefinition(symbol).symbols;
 
-                if (ignoreTextViewOnlySymbols)
-                    children = children.filter(sym => !sym.symbol.textViewOnly);
-
                 children = children.map(sym => sym.alias || sym.symbol.name);
                 
                 prettyPrint[symbol.name] = children;
             }
             else if (blockClass === RepetitionGroup){
-                prettyPrint[symbol.name] = { 'NewLine Between Blocks': 'auto' }
+                forBlockView ?
+                    prettyPrint[symbol.name] = { 'NewLine Between Blocks': 'auto' }:
+                    prettyPrint[symbol.name] = {
+                        'Insert When Empty': [],
+                        'Insert Before First Block': [],
+                        'Insert Between Blocks': [],
+                        'Insert After Last Block': [],
+                    };
             }
         }
 
@@ -315,10 +319,7 @@ export class Editor {
         for (let symbol of [...this.language.GetTerminals(), ...this.language.GetNonTerminals()]){
             let blockClass = this.PeekElemType(symbol);
 
-            if (
-                blockClass === SelectionBlock || blockClass === InputBlock ||
-                blockClass === SimpleBlock || blockClass === InvisibleBlock
-            ){
+            if ( blockClass === SelectionBlock || blockClass === InputBlock || blockClass === SimpleBlock ){
                 blockThemes[symbol.name] = '';
             }
         }
@@ -389,7 +390,7 @@ export class Editor {
         for (let symbol of [...this.language.GetTerminals(), ...this.language.GetNonTerminals()]){
             let blockClass = this.PeekElemType(symbol);
 
-            if (!blockClass || blockClass === InvisibleBlock)
+            if (!blockClass)
                 continue;
 
             let general = theme["Blocks"]["General"][blockClass.name];
@@ -755,6 +756,10 @@ export class Editor {
                     elem.SetDroppable(false);
                 }
                 break;
+            case EditorElementTypes.OptionalBlock:
+                elem.SetDraggable(false);
+                elem.SetDroppable(false);
+                break;
         }
         
         this.SetElem_OnDrop(elem);
@@ -765,27 +770,42 @@ export class Editor {
     }
 
     ApplyPrettyPrint(elem, prettyPrintTheme, viewMode){
-        if (elem.GetType() === EditorElementTypes.Group){
-            let pp = prettyPrintTheme[elem.GetSymbol().symbol.name];
-            if (!pp) return;
         
-            let children = elem.GetElems();
-            let toBlock = { '$$_newline': () => this.CreateNewLine(), '$$_tab': () => this.CreateTab() };
+        if (elem.GetType() !== EditorElementTypes.Group && elem.GetType() !== EditorElementTypes.RepetitionGroup)
+            return;
 
-            if (viewMode === EditorElementViewMode.BlockView){
-                children = children.filter(elem => elem.GetType() !== EditorElementTypes.InvisibleBlock);
-            }else{
+        let pp = prettyPrintTheme[elem.GetSymbol().symbol.name];
+
+        if (!pp) return;
+
+        let toBlock = (id) => {
+            if (id === '$$_newline')
+                return this.CreateNewLine();
+            else if (id === '$$_tab')
+                return this.CreateTab();
+            else {
+                let sb = new SimpleBlock( new AliasedGrammarSymbol(new GrammarSymbol(id.substring(3), true)) );
+                this.BindElemToEditor_(sb);
+                return sb;
+            }
+        };
+
+        if (elem.GetType() === EditorElementTypes.Group){
+            let children = elem.GetElems();
+
+            if (viewMode === EditorElementViewMode.PureTextView){
                 children = children.filter(elem =>
                     elem.GetType() !== EditorElementTypes.NewLine &&
                     elem.GetType() !== EditorElementTypes.Tab
                 );
-            }
+            }else
+                children = [...children];
             
             let indentationChars = [], indentationCharsTotal = [];
 
             for (let i = 0; i < pp.length; ++i){
-                if (pp[i] === '$$_newline' || pp[i] === '$$_tab'){
-                    indentationChars.push( toBlock[pp[i]]() );
+                if (pp[i].length >= 3 && pp[i].substring(0, 3) === '$$_'){
+                    indentationChars.push( toBlock(pp[i]) );
                 }
                 else if (indentationChars.length){
                     let startingIndex = elem.IndexOf(children[i - indentationCharsTotal.length - indentationChars.length]);
@@ -801,40 +821,77 @@ export class Editor {
                 }
             }
 
+            for (let j = 0; j < indentationChars.length; ++j){
+                let indentationChar = indentationChars[j], index = elem.GetLength();
+
+                elem.PushElem(indentationChar);
+                indentationCharsTotal.push({ index, indentationChar });
+            }
+
             return indentationCharsTotal;
         }
         else if (elem.GetType() === EditorElementTypes.RepetitionGroup){
-            let nl = prettyPrintTheme[elem.GetSymbol().symbol.name] ?
-                        prettyPrintTheme[elem.GetSymbol().symbol.name]['NewLine Between Blocks'] :
-                        'auto'
-            ;
+            let inbetween = [];
+
+            if (viewMode === EditorElementViewMode.PureTextView){
+                inbetween = pp['Insert Between Blocks'] || [];
+            }else{
+                let nl = pp['NewLine Between Blocks'] || 'auto';
             
-            if (nl === true || nl === false)    elem.SetButtonPlacement(nl);
-            else                                elem.SetButtonPlacement('auto');            
+                if (nl === true || nl === false)    elem.SetButtonPlacement(nl);
+                else                                elem.SetButtonPlacement('auto');
 
-            if ( nl === true || (nl === 'auto' ||nl === undefined || nl === null) &&
-                                (
-                                    elem.GetRepetitiveElem().GetType() === EditorElementTypes.SelectionBlock ||
-                                    elem.GetRepetitiveElem().GetType() === EditorElementTypes.Group ||
-                                    elem.GetRepetitiveElem().GetType() === EditorElementTypes.RepetitionGroup
-                                )
-            ){
-                let indentationCharsTotal = [];
+                if ( nl === true || (nl === 'auto' ||nl === undefined || nl === null) &&
+                                    (
+                                        elem.GetRepetitiveElem().GetType() === EditorElementTypes.SelectionBlock ||
+                                        elem.GetRepetitiveElem().GetType() === EditorElementTypes.Group ||
+                                        elem.GetRepetitiveElem().GetType() === EditorElementTypes.RepetitionGroup
+                                    )
+                ){
+                    inbetween.push('$$_newline');
+                }
+            }
 
+            let indentationCharsTotal = [];
+
+            if (inbetween.length){
                 for (let i = 1; i < elem.GetLength(); ++i){
                     let childType = elem.GetElem(i).GetType();
 
                     if (childType !== EditorElementTypes.Tab && childType !== EditorElementTypes.NewLine){
-                        let indentationChar = this.CreateNewLine();
-                        elem.InsertAtIndex(i, indentationChar);
-                        indentationCharsTotal.push({ indentationChar, index: i });
-                        
-                        ++i;
+                        for (let char of inbetween){
+                            let indentationChar = toBlock(char);
+                            elem.InsertAtIndex(i, indentationChar);
+                            indentationCharsTotal.push({ indentationChar, index: i });
+                            
+                            ++i;
+                        }
                     }
                 }
-
-                return indentationCharsTotal;
             }
+
+            if (viewMode === EditorElementViewMode.PureTextView){
+                if (elem.GetLength()){
+                    
+                    let beforeFirst = pp['Insert Before First Block'] || [];
+
+                    for(let char of beforeFirst)
+                        indentationCharsTotal.unshift( toBlock(char) );
+                    
+                    let afterLast = pp['Insert After Last Block'] || [];
+
+                    for(let char of afterLast)
+                        indentationCharsTotal.push( toBlock(char) );
+                    
+                }else{
+                    let whenEmpty = pp['Insert When Empty'] || [];
+                    
+                    for (let char of whenEmpty)
+                        indentationCharsTotal.push( toBlock(char) );
+                }
+            }
+
+            return indentationCharsTotal;
         }
     }
 
@@ -861,7 +918,17 @@ export class Editor {
         elem.SetOnClick((e, elem) => {
             this.$contextMenuContainer.empty();
             e.stopPropagation();
-            this.Select(elem);
+            
+            if (elem.GetType() === EditorElementTypes.OptionalBlock){
+                this.ExecuteCommand(
+                    new ChooseCommand(
+                        this, elem,
+                        elem.GetNewSymbol()
+                    )
+                );
+            }else
+                this.Select(elem);
+        
         });
     }
 
@@ -1129,13 +1196,14 @@ export class Editor {
 
     PeekElemType(symbol){
         if (symbol.isTerminal){
-        
-            if (symbol.textViewOnly) return InvisibleBlock;
-            else if (this.language.GetTerminalType(symbol) === Language.TerminalType.Static) return SimpleBlock;
+
+            if (this.language.GetTerminalType(symbol) === Language.TerminalType.Static) return SimpleBlock;
             else return InputBlock;
         
         }else{
             let def = this.language.GetDefinition(symbol);
+            
+            assert(def, `missing definition for symbol ${symbol.name}`);
 
             switch (def.type) {
                 case DefinitionRhs.Types.ALL_OFF:{
@@ -1145,6 +1213,9 @@ export class Editor {
                 case DefinitionRhs.Types.ANY_OF: {
                     if (def.symbols.length === 1) return null; // the definition will be skipped for its rhs
                     else return SelectionBlock;
+                }
+                case DefinitionRhs.Types.OPTIONAL:{
+                    return OptionalBlock;
                 }
                 case DefinitionRhs.Types.LIST_OF:{
                     return RepetitionGroup;
@@ -1166,9 +1237,7 @@ export class Editor {
         if (symbol.isTerminal){
 
             if (this.language.GetTerminalType(symbol) === Language.TerminalType.Static){
-                (symbol.textViewOnly) ? 
-                    elem = new InvisibleBlock(rhsSymbol) : 
-                    elem = new SimpleBlock(rhsSymbol);
+                elem = new SimpleBlock(rhsSymbol);
             }else
                 elem = new InputBlock(rhsSymbol);
             
@@ -1178,13 +1247,17 @@ export class Editor {
             switch (def.type) {
                 case DefinitionRhs.Types.ALL_OFF:{
                     let elems = def.symbols.map( (rhsSymbol) => this.CreateElem(rhsSymbol) );
-                    elem = (elems.length === 1) ? elems[0] : new Group(rhsSymbol, elems);
+                    if (elems.length === 1) return elems[0];
+                    elem = new Group(rhsSymbol, elems);
                     break;
                 }
                 case DefinitionRhs.Types.ANY_OF: {
-                    (def.symbols.length === 1) ?
-                        elem = this.CreateElem(def.symbols[0]) :
-                        elem = new SelectionBlock(rhsSymbol, def.symbols);
+                    if (def.symbols.length === 1) return this.CreateElem(def.symbols[0]);
+                    elem = new SelectionBlock(rhsSymbol, def.symbols);
+                    break;
+                }
+                case DefinitionRhs.Types.OPTIONAL:{
+                    elem = new OptionalBlock(rhsSymbol, def.symbols[0]);
                     break;
                 }
                 case DefinitionRhs.Types.LIST_OF:{
@@ -1269,11 +1342,7 @@ export class Editor {
         if ( type && (type === EditorElementTypes.Group || type === EditorElementTypes.RepetitionGroup) ){
             for (let i = 0; i < this.selected.GetLength(); ++i){
                 let elem = this.selected.GetElem(i);
-                if (
-                    elem.GetType() != EditorElementTypes.NewLine &&
-                    elem.GetType() != EditorElementTypes.Tab &&
-                    elem.GetType() != EditorElementTypes.InvisibleBlock
-                ){
+                if ( elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab) {
                     this.Select(elem);
                     return true;
                 }
@@ -1298,11 +1367,7 @@ export class Editor {
             
             for (let i = parent.IndexOf(this.selected) - 1; i >= 0; --i){
                 let elem = parent.GetElem(i);
-                if (
-                    elem.GetType() != EditorElementTypes.NewLine &&
-                    elem.GetType() != EditorElementTypes.Tab &&
-                    elem.GetType() != EditorElementTypes.InvisibleBlock    
-                ){
+                if ( elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab ){
                     this.Select(elem);
                     return true;
                 }
@@ -1318,11 +1383,7 @@ export class Editor {
 
             for (let i = parent.IndexOf(this.selected) + 1; i < parent.GetLength(); ++i){
                 let elem = parent.GetElem(i);
-                if (
-                    elem.GetType() != EditorElementTypes.NewLine && 
-                    elem.GetType() != EditorElementTypes.Tab &&
-                    elem.GetType() != EditorElementTypes.InvisibleBlock
-                ){
+                if ( elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab ){
                     this.Select(elem);
                     return true;
                 }
@@ -1345,11 +1406,7 @@ export class Editor {
             if (i > 0 && parent.GetElem(i).GetType() === EditorElementTypes.NewLine){
                 for (i = i - 1; i >= 0; --i){
                     let elem = parent.GetElem(i);
-                    if (
-                        elem.GetType() != EditorElementTypes.NewLine &&
-                        elem.GetType() != EditorElementTypes.Tab &&
-                        elem.GetType() != EditorElementTypes.InvisibleBlock
-                    ){
+                    if ( elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab){
                         this.Select(elem);
                         return true;
                     }
@@ -1373,11 +1430,7 @@ export class Editor {
             if (i < parent.GetLength() - 1 && parent.GetElem(i).GetType() === EditorElementTypes.NewLine){
                 for (i = i + 1; i < parent.GetLength(); ++i){
                     let elem = parent.GetElem(i);
-                    if (
-                        elem.GetType() != EditorElementTypes.NewLine &&
-                        elem.GetType() != EditorElementTypes.Tab &&
-                        elem.GetType() != EditorElementTypes.InvisibleBlock
-                    ){
+                    if ( elem.GetType() != EditorElementTypes.NewLine && elem.GetType() != EditorElementTypes.Tab ){
                         this.Select(elem);
                         return true;
                     }

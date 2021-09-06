@@ -19,6 +19,8 @@ export class SimpleBlock extends EditorElement {
                 ThemeableProps.Props.PaddingBottom,
                 ThemeableProps.Props.FontColor,
                 ThemeableProps.Props.FontSize,
+                ThemeableProps.Props.FontIsItalic,
+                ThemeableProps.Props.FontIsBold,
                 ThemeableProps.Props.BorderWidth,
                 ThemeableProps.Props.BorderColor,
                 ThemeableProps.Props.BorderRadius,

@@ -6,8 +6,8 @@ import { SimpleBlock } from './SimpleBlock.js'
 import { NewLine } from './NewLine.js'
 import { TabBlock } from './TabBlock.js'
 import { AliasedGrammarSymbol, GrammarSymbol } from '../../language.js';
-import { InvisibleBlock } from './InvisibleBlock.js';
 import { RepetitionGroup } from './RepetitionGroup.js';
+import { OptionalBlock } from './OptionalBlock.js';
 
 export class EditorElementParser {
 
@@ -56,9 +56,9 @@ export class EditorElementParser {
                 symbol = AliasedGrammarSymbol.FromJson(elemJson.symbol);
                 elem = new SimpleBlock(symbol);
                 break;
-            case EditorElementTypes.InvisibleBlock:
+            case EditorElementTypes.OptionalBlock:
                 symbol = AliasedGrammarSymbol.FromJson(elemJson.symbol);
-                elem = new InvisibleBlock(symbol);
+                elem = new OptionalBlock(symbol, AliasedGrammarSymbol.FromJson(elemJson.newSymbol));
                 break;
             case EditorElementTypes.NewLine:
                 elem = new NewLine();

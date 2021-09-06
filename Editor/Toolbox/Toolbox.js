@@ -638,10 +638,7 @@ export class Toolbox {
         this.selected?.GetView()?.removeClass('selected');
         category?.GetView()?.addClass('selected');
 
-        // this.selected?.SetColor('#A5A5A5');
         this.selected?.GetView()?.siblings().remove('.selected-line');
-        
-        // category?.SetColor('#FAFAFA');
         category?.GetView()?.parent().append($('<div/>').addClass('selected-line'));
 
         this.selected = category;
