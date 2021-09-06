@@ -164,7 +164,7 @@ export let config = {
                 any_of: [
                     { type: "terminal", name: "?", tooltip: "Any object"},
                     { type: "non_terminal", name: "? extends ReferenceType", alias: "? extends T", tooltip: "Any object that derives from of T (includes T)"},
-                    { type: "non_terminal", name: "? super ReferenceType", alias: "? extends T", tooltip: "Any object that is a superclass of T (includes T)"},
+                    { type: "non_terminal", name: "? super ReferenceType", alias: "? super T", tooltip: "Any object that is a superclass of T (includes T)"},
                 ]
             },
             {

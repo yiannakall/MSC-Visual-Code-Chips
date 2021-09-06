@@ -19,6 +19,8 @@ export class ChooseCommand extends EditorCommand {
             this.newBlock = this.editor.CreateElem(this.selectedSymbol);
 
         this.newBlock.SetGeneratedBy(this.selectionBlock);
+        this.newBlock.SetDraggable(true), this.newBlock.SetDroppable(true);
+
         this.selectionBlock.GetParent().InsertBeforeElem(this.selectionBlock, this.newBlock);
         this.selectionBlock.GetParent().RemoveElem(this.selectionBlock);
 
