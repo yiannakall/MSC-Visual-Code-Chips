@@ -967,7 +967,7 @@ export class Editor {
                 ],
                 [
                     {
-                        name: 'Show Generation Path',
+                        name: 'Show Productions',
                         shortcut: 'Ctrl+G',
                         handler: () => {
                             this.generationPathPopup?.Destroy();
@@ -990,7 +990,7 @@ export class Editor {
                         handler: () => this.EventHandler_DeleteUntilPossible_()
                     },
                     {
-                        name: 'Reduce',
+                        name: 'Reduce To',
                         disabled: !this.CanReduceElem(this.selected),
                         options: [
                             this.GetGeneratedBys(elem)
