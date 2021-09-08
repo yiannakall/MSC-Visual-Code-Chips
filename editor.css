@@ -682,6 +682,9 @@ body{
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+.toolbox-blocks .category-blocks:empty{
     min-height: 100px;
 }
 

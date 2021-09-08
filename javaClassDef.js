@@ -427,455 +427,6 @@ config.toolbox = [
             {
                 "symbol": {
                     "symbol": {
-                        "name": "FieldDecl",
-                        "isTerminal": false
-                    },
-                    "tooltip": "Declare a variable"
-                },
-                "elems": [
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "OptionalModifiers",
-                                "isTerminal": false
-                            },
-                            "alias": "+ Modifiers"
-                        },
-                        "newSymbol": {
-                            "symbol": {
-                                "name": "Modifiers",
-                                "isTerminal": false
-                            }
-                        },
-                        "type": "OptionalBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "WholeType",
-                                "isTerminal": false
-                            }
-                        },
-                        "elems": [
-                            {
-                                "symbol": {
-                                    "symbol": {
-                                        "name": "Type",
-                                        "isTerminal": false
-                                    }
-                                },
-                                "alternateSymbols": [
-                                    {
-                                        "symbol": {
-                                            "name": "BasicType",
-                                            "isTerminal": false
-                                        },
-                                        "tooltip": "The primitive types available within the Java language"
-                                    },
-                                    {
-                                        "symbol": {
-                                            "name": "ReferenceType",
-                                            "isTerminal": false
-                                        },
-                                        "tooltip": "A data type that's based on a class"
-                                    }
-                                ],
-                                "type": "SelectionBlock"
-                            },
-                            {
-                                "symbol": {
-                                    "symbol": {
-                                        "name": "Optional[]List",
-                                        "isTerminal": false
-                                    },
-                                    "alias": "+ [ ]"
-                                },
-                                "newSymbol": {
-                                    "symbol": {
-                                        "name": "[]List",
-                                        "isTerminal": false
-                                    }
-                                },
-                                "type": "OptionalBlock"
-                            }
-                        ],
-                        "type": "Group"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "ListOfIds",
-                                "isTerminal": false
-                            }
-                        },
-                        "elems": [
-                            {
-                                "symbol": {
-                                    "symbol": {
-                                        "name": "id",
-                                        "isTerminal": true
-                                    }
-                                },
-                                "type": "InputBlock"
-                            }
-                        ],
-                        "repetitiveElem": {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "id",
-                                    "isTerminal": true
-                                }
-                            },
-                            "type": "InputBlock"
-                        },
-                        "type": "RepetitionGroup"
-                    }
-                ],
-                "type": "Group",
-                "generatedBy": {
-                    "symbol": {
-                        "symbol": {
-                            "name": "MemberDecl",
-                            "isTerminal": false
-                        }
-                    },
-                    "alternateSymbols": [
-                        {
-                            "symbol": {
-                                "name": "FieldDecl",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Declare a variable"
-                        },
-                        {
-                            "symbol": {
-                                "name": "MethodDecl",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Declare a method"
-                        },
-                        {
-                            "symbol": {
-                                "name": "ConstructorDecl",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Declare a constructor"
-                        },
-                        {
-                            "symbol": {
-                                "name": "ClassDecl",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Declare a class"
-                        }
-                    ],
-                    "selectedSymbol": 0,
-                    "type": "SelectionBlock"
-                }
-            },
-            {
-                "symbol": {
-                    "symbol": {
-                        "name": "MethodDecl",
-                        "isTerminal": false
-                    },
-                    "tooltip": "Declare a method"
-                },
-                "elems": [
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "OptionalModifiers",
-                                "isTerminal": false
-                            },
-                            "alias": "+ Modifiers"
-                        },
-                        "newSymbol": {
-                            "symbol": {
-                                "name": "Modifiers",
-                                "isTerminal": false
-                            }
-                        },
-                        "type": "OptionalBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "OptionalTypeParameters",
-                                "isTerminal": false
-                            },
-                            "alias": "+ TypeParams"
-                        },
-                        "newSymbol": {
-                            "symbol": {
-                                "name": "TypeParameters",
-                                "isTerminal": false
-                            }
-                        },
-                        "type": "OptionalBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "ReturnType",
-                                "isTerminal": false
-                            }
-                        },
-                        "alternateSymbols": [
-                            {
-                                "symbol": {
-                                    "name": "WholeType",
-                                    "isTerminal": false
-                                },
-                                "alias": "NonVoid",
-                                "tooltip": "The method returns a value"
-                            },
-                            {
-                                "symbol": {
-                                    "name": "void",
-                                    "isTerminal": true
-                                },
-                                "tooltip": "Void methods do not return a value"
-                            }
-                        ],
-                        "type": "SelectionBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "id",
-                                "isTerminal": true
-                            }
-                        },
-                        "type": "InputBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "(",
-                                "isTerminal": true
-                            }
-                        },
-                        "type": "SimpleBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "OptionalFormalParameterDecls",
-                                "isTerminal": false
-                            },
-                            "alias": "+ Args"
-                        },
-                        "newSymbol": {
-                            "symbol": {
-                                "name": "FormalParameterDecls",
-                                "isTerminal": false
-                            }
-                        },
-                        "type": "OptionalBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": ")",
-                                "isTerminal": true
-                            }
-                        },
-                        "type": "SimpleBlock"
-                    }
-                ],
-                "type": "Group",
-                "generatedBy": {
-                    "symbol": {
-                        "symbol": {
-                            "name": "MemberDecl",
-                            "isTerminal": false
-                        }
-                    },
-                    "alternateSymbols": [
-                        {
-                            "symbol": {
-                                "name": "FieldDecl",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Declare a variable"
-                        },
-                        {
-                            "symbol": {
-                                "name": "MethodDecl",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Declare a method"
-                        },
-                        {
-                            "symbol": {
-                                "name": "ConstructorDecl",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Declare a constructor"
-                        },
-                        {
-                            "symbol": {
-                                "name": "ClassDecl",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Declare a class"
-                        }
-                    ],
-                    "selectedSymbol": 1,
-                    "type": "SelectionBlock"
-                }
-            },
-            {
-                "symbol": {
-                    "symbol": {
-                        "name": "ConstructorDecl",
-                        "isTerminal": false
-                    },
-                    "tooltip": "Declare a constructor"
-                },
-                "elems": [
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "OptionalModifiers",
-                                "isTerminal": false
-                            },
-                            "alias": "+ Modifiers"
-                        },
-                        "newSymbol": {
-                            "symbol": {
-                                "name": "Modifiers",
-                                "isTerminal": false
-                            }
-                        },
-                        "type": "OptionalBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "id",
-                                "isTerminal": true
-                            }
-                        },
-                        "type": "InputBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "(",
-                                "isTerminal": true
-                            }
-                        },
-                        "type": "SimpleBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "OptionalFormalParameterDecls",
-                                "isTerminal": false
-                            },
-                            "alias": "+ Args"
-                        },
-                        "newSymbol": {
-                            "symbol": {
-                                "name": "FormalParameterDecls",
-                                "isTerminal": false
-                            }
-                        },
-                        "type": "OptionalBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": ")",
-                                "isTerminal": true
-                            }
-                        },
-                        "type": "SimpleBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "{",
-                                "isTerminal": true
-                            }
-                        },
-                        "type": "SimpleBlock"
-                    },
-                    {
-                        "type": "NewLine"
-                    },
-                    {
-                        "type": "TabBlock"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "code...",
-                                "isTerminal": true
-                            }
-                        },
-                        "type": "SimpleBlock"
-                    },
-                    {
-                        "type": "NewLine"
-                    },
-                    {
-                        "symbol": {
-                            "symbol": {
-                                "name": "}",
-                                "isTerminal": true
-                            }
-                        },
-                        "type": "SimpleBlock"
-                    }
-                ],
-                "type": "Group",
-                "generatedBy": {
-                    "symbol": {
-                        "symbol": {
-                            "name": "MemberDecl",
-                            "isTerminal": false
-                        }
-                    },
-                    "alternateSymbols": [
-                        {
-                            "symbol": {
-                                "name": "FieldDecl",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Declare a variable"
-                        },
-                        {
-                            "symbol": {
-                                "name": "MethodDecl",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Declare a method"
-                        },
-                        {
-                            "symbol": {
-                                "name": "ConstructorDecl",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Declare a constructor"
-                        },
-                        {
-                            "symbol": {
-                                "name": "ClassDecl",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Declare a class"
-                        }
-                    ],
-                    "selectedSymbol": 2,
-                    "type": "SelectionBlock"
-                }
-            },
-            {
-                "symbol": {
-                    "symbol": {
                         "name": "ClassDecl",
                         "isTerminal": false
                     },
@@ -1104,6 +655,477 @@ config.toolbox = [
                         }
                     ],
                     "selectedSymbol": 3,
+                    "type": "SelectionBlock"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Field",
+        "icon": "./Images/Toolbox/variable.svg",
+        "blocks": [
+            {
+                "symbol": {
+                    "symbol": {
+                        "name": "FieldDecl",
+                        "isTerminal": false
+                    },
+                    "tooltip": "Declare a variable"
+                },
+                "elems": [
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "OptionalModifiers",
+                                "isTerminal": false
+                            },
+                            "alias": "+ Modifiers",
+                            "tooltip": "Define the access and the linkage of the member"
+                        },
+                        "newSymbol": {
+                            "symbol": {
+                                "name": "Modifiers",
+                                "isTerminal": false
+                            }
+                        },
+                        "type": "OptionalBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "WholeType",
+                                "isTerminal": false
+                            }
+                        },
+                        "elems": [
+                            {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "Type",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "BasicType",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "The primitive types available within the Java language"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "ReferenceType",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "A data type that's based on a class"
+                                    }
+                                ],
+                                "type": "SelectionBlock"
+                            },
+                            {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "Optional[]List",
+                                        "isTerminal": false
+                                    },
+                                    "alias": "+ [ ]"
+                                },
+                                "newSymbol": {
+                                    "symbol": {
+                                        "name": "[]List",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "type": "OptionalBlock"
+                            }
+                        ],
+                        "type": "Group"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "ListOfIds",
+                                "isTerminal": false
+                            }
+                        },
+                        "elems": [
+                            {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "id",
+                                        "isTerminal": true
+                                    }
+                                },
+                                "type": "InputBlock"
+                            }
+                        ],
+                        "repetitiveElem": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "id",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "InputBlock"
+                        },
+                        "type": "RepetitionGroup"
+                    }
+                ],
+                "type": "Group",
+                "generatedBy": {
+                    "symbol": {
+                        "symbol": {
+                            "name": "MemberDecl",
+                            "isTerminal": false
+                        }
+                    },
+                    "alternateSymbols": [
+                        {
+                            "symbol": {
+                                "name": "FieldDecl",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Declare a variable"
+                        },
+                        {
+                            "symbol": {
+                                "name": "MethodDecl",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Declare a method"
+                        },
+                        {
+                            "symbol": {
+                                "name": "ConstructorDecl",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Declare a constructor"
+                        },
+                        {
+                            "symbol": {
+                                "name": "ClassDecl",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Declare a class"
+                        }
+                    ],
+                    "selectedSymbol": 0,
+                    "type": "SelectionBlock"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Method",
+        "icon": "./Images/Toolbox/function.svg",
+        "blocks": [
+            {
+                "symbol": {
+                    "symbol": {
+                        "name": "MethodDecl",
+                        "isTerminal": false
+                    },
+                    "tooltip": "Declare a method"
+                },
+                "elems": [
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "OptionalModifiers",
+                                "isTerminal": false
+                            },
+                            "alias": "+ Modifiers",
+                            "tooltip": "Define the access and the linkage of the method"
+                        },
+                        "newSymbol": {
+                            "symbol": {
+                                "name": "Modifiers",
+                                "isTerminal": false
+                            }
+                        },
+                        "type": "OptionalBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "OptionalTypeParameters",
+                                "isTerminal": false
+                            },
+                            "alias": "+ TypeParams",
+                            "tooltip": "Make the method generic"
+                        },
+                        "newSymbol": {
+                            "symbol": {
+                                "name": "TypeParameters",
+                                "isTerminal": false
+                            }
+                        },
+                        "type": "OptionalBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "ReturnType",
+                                "isTerminal": false
+                            }
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "WholeType",
+                                    "isTerminal": false
+                                },
+                                "alias": "NonVoid",
+                                "tooltip": "The method returns a value"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "void",
+                                    "isTerminal": true
+                                },
+                                "tooltip": "Void methods do not return a value"
+                            }
+                        ],
+                        "type": "SelectionBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "id",
+                                "isTerminal": true
+                            }
+                        },
+                        "type": "InputBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "(",
+                                "isTerminal": true
+                            }
+                        },
+                        "type": "SimpleBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "OptionalFormalParameterDecls",
+                                "isTerminal": false
+                            },
+                            "alias": "+ Args"
+                        },
+                        "newSymbol": {
+                            "symbol": {
+                                "name": "FormalParameterDecls",
+                                "isTerminal": false
+                            }
+                        },
+                        "type": "OptionalBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": ")",
+                                "isTerminal": true
+                            }
+                        },
+                        "type": "SimpleBlock"
+                    }
+                ],
+                "type": "Group",
+                "generatedBy": {
+                    "symbol": {
+                        "symbol": {
+                            "name": "MemberDecl",
+                            "isTerminal": false
+                        }
+                    },
+                    "alternateSymbols": [
+                        {
+                            "symbol": {
+                                "name": "FieldDecl",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Declare a variable"
+                        },
+                        {
+                            "symbol": {
+                                "name": "MethodDecl",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Declare a method"
+                        },
+                        {
+                            "symbol": {
+                                "name": "ConstructorDecl",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Declare a constructor"
+                        },
+                        {
+                            "symbol": {
+                                "name": "ClassDecl",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Declare a class"
+                        }
+                    ],
+                    "selectedSymbol": 1,
+                    "type": "SelectionBlock"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Constructor",
+        "icon": "./Images/Toolbox/constructor.svg",
+        "blocks": [
+            {
+                "symbol": {
+                    "symbol": {
+                        "name": "ConstructorDecl",
+                        "isTerminal": false
+                    },
+                    "tooltip": "Declare a constructor"
+                },
+                "elems": [
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "OptionalModifiers",
+                                "isTerminal": false
+                            },
+                            "alias": "+ Modifiers",
+                            "tooltip": "Define the access and the linkage of the constructor"
+                        },
+                        "newSymbol": {
+                            "symbol": {
+                                "name": "Modifiers",
+                                "isTerminal": false
+                            }
+                        },
+                        "type": "OptionalBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "id",
+                                "isTerminal": true
+                            }
+                        },
+                        "type": "InputBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "(",
+                                "isTerminal": true
+                            }
+                        },
+                        "type": "SimpleBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "OptionalFormalParameterDecls",
+                                "isTerminal": false
+                            },
+                            "alias": "+ Args"
+                        },
+                        "newSymbol": {
+                            "symbol": {
+                                "name": "FormalParameterDecls",
+                                "isTerminal": false
+                            }
+                        },
+                        "type": "OptionalBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": ")",
+                                "isTerminal": true
+                            }
+                        },
+                        "type": "SimpleBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "{",
+                                "isTerminal": true
+                            }
+                        },
+                        "type": "SimpleBlock"
+                    },
+                    {
+                        "type": "NewLine"
+                    },
+                    {
+                        "type": "TabBlock"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "code...",
+                                "isTerminal": true
+                            }
+                        },
+                        "type": "SimpleBlock"
+                    },
+                    {
+                        "type": "NewLine"
+                    },
+                    {
+                        "symbol": {
+                            "symbol": {
+                                "name": "}",
+                                "isTerminal": true
+                            }
+                        },
+                        "type": "SimpleBlock"
+                    }
+                ],
+                "type": "Group",
+                "generatedBy": {
+                    "symbol": {
+                        "symbol": {
+                            "name": "MemberDecl",
+                            "isTerminal": false
+                        }
+                    },
+                    "alternateSymbols": [
+                        {
+                            "symbol": {
+                                "name": "FieldDecl",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Declare a variable"
+                        },
+                        {
+                            "symbol": {
+                                "name": "MethodDecl",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Declare a method"
+                        },
+                        {
+                            "symbol": {
+                                "name": "ConstructorDecl",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Declare a constructor"
+                        },
+                        {
+                            "symbol": {
+                                "name": "ClassDecl",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Declare a class"
+                        }
+                    ],
+                    "selectedSymbol": 2,
                     "type": "SelectionBlock"
                 }
             }
@@ -3085,8 +3107,8 @@ config.darkTheme = {
     "Toolbox": {
         "Toolbox Menu": {
             "BackgroundColor": "#333333",
-            "PaddingLeft": "20px",
-            "PaddingRight": "20px",
+            "PaddingLeft": "10px",
+            "PaddingRight": "10px",
             "PaddingTop": "20px",
             "PaddingBottom": "20px"
         },
@@ -3223,10 +3245,10 @@ config.darkTheme = {
     },
     "Source Text View Colors": {
         "class": "#C57991",
-        "id": "",
+        "id": "#ffffff",
         "extends": "#C57991",
         "implements": "#C57991",
-        "[ ]": "",
+        "[ ]": "#ffffff",
         "byte": "#C57991",
         "short": "#C57991",
         "char": "#C57991",
@@ -3235,10 +3257,10 @@ config.darkTheme = {
         "float": "#C57991",
         "double": "#C57991",
         "boolean": "#C57991",
-        ".": "",
-        "<": "",
-        ">": "",
-        "?": "",
+        ".": "#ffffff",
+        "<": "#ffffff",
+        ">": "#ffffff",
+        "?": "#ffffff",
         "super": "#C57991",
         "public": "#C57991",
         "protected": "#C57991",
@@ -3246,21 +3268,24 @@ config.darkTheme = {
         "abstract": "#C57991",
         "static": "#C57991",
         "native": "#C57991",
-        "(": "",
-        ")": "",
-        "{": "",
-        "}": "",
+        "(": "#ffffff",
+        ")": "#ffffff",
+        "{": "#ffffff",
+        "}": "#ffffff",
         "void": "#C57991",
         "final": "#C57991",
-        "code...": "",
-        "Type": "",
-        "BasicType": "",
-        "TypeArgument": "",
-        "WildcardType": "",
-        "AccessModifier": "",
-        "LinkageModifier": "",
-        "MemberDecl": "",
-        "ReturnType": ""
+        "code...": "#ffffff",
+        "Type": "#ffffff",
+        "BasicType": "#ffffff",
+        "TypeArgument": "#ffffff",
+        "WildcardType": "#ffffff",
+        "AccessModifier": "#ffffff",
+        "LinkageModifier": "#ffffff",
+        "MemberDecl": "#ffffff",
+        "ReturnType": "#ffffff",
+        "&": "#ffffff",
+        ",": "#ffffff",
+        ";": "#ffffff",
     },
     "Pretty Print": {
         "program": { "NewLine Between Blocks": true },
@@ -5280,8 +5305,8 @@ config.lightTheme = {
     "Toolbox": {
         "Toolbox Menu": {
             "BackgroundColor": "#1A506F",
-            "PaddingLeft": "20px",
-            "PaddingRight": "20px",
+            "PaddingLeft": "10px",
+            "PaddingRight": "10px",
             "PaddingTop": "20px",
             "PaddingBottom": "20px"
         },
@@ -5418,10 +5443,10 @@ config.lightTheme = {
     },
     "Source Text View Colors": {
         "class": "#0000FF",
-        "id": "",
+        "id": "#000000",
         "extends": "#0000FF",
         "implements": "#0000FF",
-        "[ ]": "",
+        "[ ]": "#000000",
         "byte": "#0000FF",
         "short": "#0000FF",
         "char": "#0000FF",
@@ -5430,10 +5455,10 @@ config.lightTheme = {
         "float": "#0000FF",
         "double": "#0000FF",
         "boolean": "#0000FF",
-        ".": "",
-        "<": "",
-        ">": "",
-        "?": "",
+        ".": "#000000",
+        "<": "#000000",
+        ">": "#000000",
+        "?": "#000000",
         "super": "#0000FF",
         "public": "#0000FF",
         "protected": "#0000FF",
@@ -5441,21 +5466,24 @@ config.lightTheme = {
         "abstract": "#0000FF",
         "static": "#0000FF",
         "native": "#0000FF",
-        "(": "",
-        ")": "",
-        "{": "",
-        "}": "",
+        "(": "#000000",
+        ")": "#000000",
+        "{": "#000000",
+        "}": "#000000",
         "void": "#0000FF",
         "final": "#0000FF",
-        "code...": "",
-        "Type": "",
-        "BasicType": "",
-        "TypeArgument": "",
-        "WildcardType": "",
-        "AccessModifier": "",
-        "LinkageModifier": "",
-        "MemberDecl": "",
-        "ReturnType": ""
+        "code...": "#000000",
+        "Type": "#000000",
+        "BasicType": "#000000",
+        "TypeArgument": "#000000",
+        "WildcardType": "#000000",
+        "AccessModifier": "#000000",
+        "LinkageModifier": "#000000",
+        "MemberDecl": "#000000",
+        "ReturnType": "#000000",
+        "&": "#000000",
+        ",": "#000000",
+        ";": "#000000",
     },
     "Pretty Print": {
         "program": { "NewLine Between Blocks": true },
