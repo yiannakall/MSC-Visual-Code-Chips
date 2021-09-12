@@ -413,7 +413,7 @@ export let config = {
         terminalTypes: [
             {
                 name: "id",
-                type: "IDENTIFIER"
+                type: "identifier"
             }
         ]
     },

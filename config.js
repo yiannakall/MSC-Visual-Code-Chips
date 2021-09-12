@@ -559,11 +559,11 @@ export let config = {
             }
         ],
         terminalTypes: [
-            { name: "INT_CONST", type: "INT", },
-            { name: "FLOAT_CONST", type: "FLOAT", },
-            { name: "CHAR_CONST", type: "CHAR", },
-            { name: "STRING_CONST", type: "STRING", },
-            { name: "IDENT", type: "IDENTIFIER" }
+            { name: "INT_CONST", type: "int", },
+            { name: "FLOAT_CONST", type: "float", },
+            { name: "CHAR_CONST", type: "char", },
+            { name: "STRING_CONST", type: "string", },
+            { name: "IDENT", type: "identifier" }
         ]
     },
     toolbox: [

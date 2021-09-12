@@ -1,0 +1,22 @@
+{
+  "name": "msc-visual-code-chips-grammar",
+  "version": "1.0.0",
+  "description": "A parser for Visual Programming Languages destined for CodeChips",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "jison ./src/parser.jison ./src/lexer.jisonlex -o ./build/parser.js",
+    "build:watch": "watch \"npm run build\" ./src -d"
+  },
+  "keywords": [
+    "CodeChips"
+  ],
+  "author": "Manos Agapakis",
+  "license": "ISC",
+  "dependencies": {
+    "jison": "^0.4.18"
+  },
+  "devDependencies": {
+    "watch": "^1.0.2"
+  }
+}

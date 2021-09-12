@@ -73,22 +73,22 @@ export class Editor {
     generationPathPopup;
 
     typeValidators = {
-        INT : (text) => {
+        int : (text) => {
             return Number.isInteger(Number(text));
         },
-        FLOAT: (text) => {
+        float: (text) => {
             return Number.isFinite(Number(text));
         },
-        CHAR: (text) => {
+        char: (text) => {
             return text.length === 1;
         },
-        STRING: (text) => {
+        string: (text) => {
             return true;
         },
-        BOOL: (text) => {
+        bool: (text) => {
             return text === 'true' || text === 'false';
         },
-        IDENTIFIER: (text) => {
+        identifier: (text) => {
             let matched = /[_A-Za-z]+[_A-Za-z0-9]*/g.exec(text);
             return matched && matched[0] === text;
         }
@@ -401,6 +401,9 @@ export class Editor {
                 composite[themeable.id] = {};
 
                 for (let prop of themeable.themeable.props){
+                    if (specific && !specific[themeable.id])
+                        console.log(symbol.name);
+                    
                     if (specific && specific[themeable.id][prop] !== '' && specific[themeable.id][prop] !== undefined)
                         composite[themeable.id][prop] = specific[themeable.id][prop];
                     else if (general[themeable.id][prop] !== '' && general[themeable.id][prop] !== undefined)

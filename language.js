@@ -70,13 +70,13 @@ export class Language {
     defs = new Map;                     // Map<GrammarSymbol, DefinitionRhs[]>
     
     static TerminalType = {
-        Static:         "STATIC",
-        Int:            "INT",
-        Bool:           "BOOL",
-        Char:           "CHAR",
-        String:         "STRING",
-        Float:          "FLOAT",
-        Identifier:     "IDENTIFIER",
+        Static:         "static",
+        Int:            "int",
+        Bool:           "bool",
+        Char:           "char",
+        String:         "string",
+        Float:          "float",
+        Identifier:     "identifier",
         Includes(type){
             return typeof type === 'string' && Object.values(this).includes(type);
         }
