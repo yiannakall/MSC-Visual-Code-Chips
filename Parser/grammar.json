@@ -334,7 +334,7 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "BOOL_CONST",
+                    "name": "BOOL_CONST_",
                     "alias": "boolean",
                     "tooltip": "One of true or false"
                 },
@@ -346,7 +346,7 @@
             ]
         },
         {
-            "name": "BOOL_CONST",
+            "name": "BOOL_CONST_",
             "any_of": [
                 {
                     "type": "terminal",
@@ -1174,28 +1174,6 @@
                     "alias": "arg"
                 }
             ]
-        }
-    ],
-    "terminalTypes": [
-        {
-            "name": "IDENT",
-            "type": "identifier"
-        },
-        {
-            "name": "INT_CONST",
-            "type": "int"
-        },
-        {
-            "name": "FLOAT_CONST",
-            "type": "float"
-        },
-        {
-            "name": "CHAR_CONST",
-            "type": "char"
-        },
-        {
-            "name": "STRING_CONST",
-            "type": "string"
         }
     ]
 }

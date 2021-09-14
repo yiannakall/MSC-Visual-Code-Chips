@@ -1,332 +1,343 @@
-define program as   non_terminal stmts
-define stmts as     list_of non_terminal stmt
-
-define stmt as any_of {
-    non_terminal if_stmt                : "Do something if a condition is true"
-    non_terminal if_else_stmt           : "Do something if a condition is true, else do something else"
-    non_terminal while_stmt             : "Do something while a condition is true"
-    non_terminal expr(expr_stmt)        : "A single expression as a statement"
-    non_terminal func_def_stmt          : "Define reusable code as a function"
-    non_terminal break_stmt             : "Exit from the current loop"
-    non_terminal continue_stmt          : "Continue to the next iteration of the current loop"
+non_terminal {
+    program
+    stmts
+    stmt
+    if_stmt if_else_stmt while_stmt expr func_def_stmt break_stmt continue_stmt
+    arith_expr rel_expr logical_expr assign_expr call_expr primary_expr
+    binary_arith_expr unary_minus
+    arith_op rel_op logical_binary_op
+    binary_logical_expr not_expr
+    BOOL_CONST_ ARRAY_CONST
+    input_output_call math_call string_method_call array_method_call user_function_call
+    ident_list expr_list element_list
+    array_method string_method
+    array_get array_insert array_push_back array_set array_size
+    string_append string_get_character string_get_substring string_set_character string_size
+    input_output_print input_output_input
+    math_pow math_sqrt math_round math_floor math_ceiling math_sin math_cos
 }
 
-define expr as any_of {
-    non_terminal arith_expr             : "Perform a mathematic operation"
-    non_terminal rel_expr               : "An operator that compares the two operands and returns true or false"
-    non_terminal logical_expr           : "An expression that evaluates to true or false"
-    non_terminal assign_expr            : "Set a variable's value"
-    non_terminal call_expr              : "Call a user-defined or built-in function/method"
-    non_terminal primary_expr           : "An identifier or a constant"
+terminal {
+    PLUS MINUS TIMES BY MODULO
+    GREATER LESS EQUAL_TO NOT_EQUAL_TO GREATER_EQUAL LESS_EQUAL
+    AND OR NOT
+    EQUALS
+    true false
+    IF ELSE WHILE FOR BREAK CONTINUE
+    CALL FUNCTION OF WITH
+    ARRAY "IN ARRAY"
+    get insert push_back set get_size
+    "IN STRING"
+    append get_character get_substring set_character
+    print input
+    pow sqrt round floor ceiling sin cos
 }
 
-define arith_expr as any_of {
-    non_terminal binary_arith_expr      : "An arithmetic expression with two operands"
-    non_terminal unary_minus            : "Negates the value of its operand"
+define program {
+    stmts
 }
 
-define binary_arith_expr as all_of {
-    non_terminal expr                   : "The first operand"
-    non_terminal arith_op               : "An arithmetic operator (e.g. +, -)"
-    non_terminal expr                   : "The second operand"
+define stmts {
+    list_of stmt
 }
 
-define unary_minus as all_of {
-    terminal        MINUS("-")
-    non_terminal    expr
+define stmt {
+    any_of {
+        if_stmt                : "Do something if a condition is true"
+        if_else_stmt           : "Do something if a condition is true, else do something else"
+        while_stmt             : "Do something while a condition is true"
+        expr(expr_stmt)        : "A single expression as a statement"
+        func_def_stmt          : "Define reusable code as a function"
+        break_stmt             : "Exit from the current loop"
+        continue_stmt          : "Continue to the next iteration of the current loop"
+    }
 }
 
-define arith_op as any_of {
-    terminal PLUS("+")                  : "Performs addition"
-    terminal MINUS("-")                 : "Performs subtraction"
-    terminal TIMES("*")                 : "Performs multipliction"
-    terminal BY("/")                    : "Performs division"
-    terminal MODULO("%")                : "Performs the modulo operation"
+define expr {
+    any_of {
+        arith_expr             : "Perform a mathematic operation"
+        rel_expr               : "An operator that compares the two operands and returns true or false"
+        logical_expr           : "An expression that evaluates to true or false"
+        assign_expr            : "Set a variable's value"
+        call_expr              : "Call a user-defined or built-in function/method"
+        primary_expr           : "An identifier or a constant"
+    }
 }
 
-define rel_expr as all_of {
-    non_terminal expr                   : "The first operand"
-    non_terminal rel_op                 : "A comparison operator that returns true or false (e.g <, >)"
-    non_terminal expr                   : "The second operand"
+define arith_expr {
+    any_of {
+        binary_arith_expr      : "An arithmetic expression with two operands"
+        unary_minus            : "Negates the value of its operand"
+    }
 }
 
-define rel_op as any_of {
-    terminal GREATER(">")               : "Returns true if the first operand is greater than the second operand, else returns false"
-    terminal LESS("<")                  : "Returns true if the first operand is less than the second operand, else returns false"
-    terminal EQUAL_TO("==")             : "Returns true if the first operand is equal to the second operand, else returns false"
-    terminal NOT_EQUAL_TO("!=")         : "Returns true if the first operand not equal to the second operand, else returns false"
-    terminal GREATER_EQUAL(">=")        : "Returns true if the first operand is greater than or equal to the second operand, else returns false"
-    terminal LESS_EQUAL("<=")           : "Returns true if the first operand is less than or equal to the second operand, else returns false"    
+define binary_arith_expr {
+    expr                   : "The first operand"
+    arith_op               : "An arithmetic operator (e.g. +, -)"
+    expr                   : "The second operand"
 }
 
-define logical_expr as any_of {
-    non_terminal binary_logical_expr    : "Performs a binary operation with two operands"
-    non_terminal not_expr               : "Performs logical negation. True becomes false and false becomes true"
+define unary_minus {
+    MINUS("-")
+    expr
 }
 
-define binary_logical_expr as all_of {
-    non_terminal expr                   : "The first operand"
-    non_terminal logical_binary_op      : "Performs a binary operation with two operands"
-    non_terminal expr                   : "The second operand"
+define arith_op {
+    any_of {
+        PLUS("+")                  : "Performs addition"
+        MINUS("-")                 : "Performs subtraction"
+        TIMES("*")                 : "Performs multipliction"
+        BY("/")                    : "Performs division"
+        MODULO("%")                : "Performs the modulo operation"
+    }
 }
 
-define logical_binary_op as any_of {
-    terminal AND                        : "Returns true if both operands are true, else returns false"
-    terminal OR                         : "Returns true if either operand is true, else returns false"
+define rel_expr {
+    expr                   : "The first operand"
+    rel_op                 : "A comparison operator that returns true or false (e.g <, >)"
+    expr                   : "The second operand"
 }
 
-define not_expr as all_of {
-    terminal        NOT                    : "Returns true if the operand is false, else returns false"
-    non_terminal    expr                   : "The operand"
+define rel_op {
+    any_of {
+        GREATER(">")               : "Returns true if the first operand is greater than the second operand, else returns false"
+        LESS("<")                  : "Returns true if the first operand is less than the second operand, else returns false"
+        EQUAL_TO("==")             : "Returns true if the first operand is equal to the second operand, else returns false"
+        NOT_EQUAL_TO("!=")         : "Returns true if the first operand not equal to the second operand, else returns false"
+        GREATER_EQUAL(">=")        : "Returns true if the first operand is greater than or equal to the second operand, else returns false"
+        LESS_EQUAL("<=")           : "Returns true if the first operand is less than or equal to the second operand, else returns false"    
+    }
 }
 
-define primary_expr as any_of {
-    terminal(identifier)        IDENT                  : "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
-    terminal(int)               INT_CONST              : "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
-    terminal(float)             FLOAT_CONST            : "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
-    terminal(char)              CHAR_CONST             : "One single character"
-    terminal(string)            STRING_CONST           : "Any sequence of characters or the empty sequence"
-    non_terminal                BOOL_CONST(boolean)    : "One of true or false"
-    non_terminal                ARRAY_CONST            : "An array of elements"
+define logical_expr {
+    any_of {
+        binary_logical_expr    : "Performs a binary operation with two operands"
+        not_expr               : "Performs logical negation. True becomes false and false becomes true"
+    }
 }
 
-define BOOL_CONST as any_of {
-    terminal true
-    terminal false
+define binary_logical_expr {
+    expr                   : "The first operand"
+    logical_binary_op      : "Performs a binary operation with two operands"
+    expr                   : "The second operand"
 }
 
-define call_expr as any_of {
-    non_terminal input_output_call      : "Use a built-in input/output function"
-    non_terminal math_call              : "Use a built-in math function"
-    non_terminal string_method_call     : "Use a built-in string method"
-    non_terminal array_method_call      : "Use a built-in array method"
-    non_terminal user_function_call     : "Use a user-defined function"
+define logical_binary_op {
+    any_of {
+        AND                        : "Returns true if both operands are true, else returns false"
+        OR                         : "Returns true if either operand is true, else returns false"
+    }
 }
 
-define ARRAY_CONST as all_of {
-    terminal        ARRAY
-    terminal        WITH
-    non_terminal    element_list
+define not_expr {
+    NOT                    : "Returns true if the operand is false, else returns false"
+    expr                   : "The operand"
 }
 
-define element_list as list_of non_terminal expr(element)
-
-define assign_expr as all_of {
-    terminal(identifier)        IDENT
-    terminal                    EQUALS("=")
-    non_terminal                expr
+define primary_expr {
+    any_of {
+        IDENT                   : "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+        INT_CONST               : "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
+        FLOAT_CONST             : "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
+        CHAR_CONST              : "One single character"
+        STRING_CONST            : "Any sequence of characters or the empty sequence"
+        BOOL_CONST_(boolean)    : "One of true or false"
+        ARRAY_CONST             : "An array of elements"
+    }
 }
 
-define func_def_stmt as all_of {
-    terminal                    FUNCTION
-    terminal(identifier)        IDENT(NAME)
-    terminal                    OF
-    non_terminal                ident_list
-    non_terminal                stmts
+define BOOL_CONST_ {
+    any_of {
+        true
+        false
+    }
 }
 
-define break_stmt as        terminal BREAK
-define continue_stmt as     terminal CONTINUE
-
-define user_function_call as all_of {
-    terminal                    CALL
-    terminal(identifier)        IDENT("FUNCTION NAME")
-    terminal                    WITH
-    non_terminal                expr_list
+define call_expr {
+    any_of {
+        input_output_call      : "Use a built-in input/output function"
+        math_call              : "Use a built-in math function"
+        string_method_call     : "Use a built-in string method"
+        array_method_call      : "Use a built-in array method"
+        user_function_call     : "Use a user-defined function"
+    }
 }
 
-define array_method_call as all_of {
-    terminal        "IN ARRAY"
-    non_terminal    expr(array)
-    terminal        CALL
-    non_terminal    array_method
+define ARRAY_CONST {
+    ARRAY WITH element_list
 }
 
-define array_method as any_of { 
-    non_terminal array_get(get)                 : "Get an element by its position in the array"
-    non_terminal array_insert(insert)           : "Insert an element at a position in the array. Elements that previously were at the position, or after it, are moved one place to the right"
-    non_terminal array_push_back(push_back)     : "Insert an element at the end of the array"
-    non_terminal array_set(set)                 : "Set (Replace) an element in a position of the array to a new character"
-    non_terminal array_size(get_size)           : "Get the count of elements in the array"
+define element_list {
+    list_of expr(element)
 }
 
-define array_get as all_of {
-    terminal        get
-    terminal        WITH
-    non_terminal    expr(index)
+define assign_expr {
+    IDENT EQUALS("=") expr
 }
 
-define array_insert as all_of {
-    terminal        insert
-    terminal        WITH
-    non_terminal    expr(index)
-    non_terminal    expr(element)
+define func_def_stmt {
+    FUNCTION IDENT(NAME) OF ident_list stmts
 }
 
-define array_push_back as all_of {
-    terminal        push_back
-    terminal        WITH
-    non_terminal    expr(element)
+define break_stmt {
+    BREAK
 }
 
-define array_set as all_of {
-    terminal set
-    terminal WITH
-    non_terminal expr(index)
-    non_terminal expr(element)
+define continue_stmt {
+    CONTINUE
 }
 
-define array_size as terminal get_size
-
-define string_method_call as all_of {
-    terminal        "IN STRING"
-    non_terminal    expr("string")
-    terminal        CALL
-    non_terminal    string_method
+define user_function_call {
+    CALL IDENT("FUNCTION NAME") WITH expr_list
 }
 
-define string_method as any_of {
-    non_terminal string_append(append)                          : "Append a string to the end (suffix) of the string"
-    non_terminal string_get_character(get_character)            : "Get the character at the specified position of the string"
-    non_terminal string_get_substring(get_substring)            : "Get a substring of a string, giving a start position and an end position"
-    non_terminal string_set_character(set_character)            : "Set (Replace) a character in a position of the string to a new character"
-    non_terminal string_size(get_size)                          : "Get the count of characters contained in the string"
+define array_method_call {
+    "IN ARRAY" expr(array) CALL array_method
 }
 
-define string_append as all_of {
-    terminal        append
-    terminal        WITH
-    non_terminal    expr("string")
+define array_method {
+    any_of { 
+        array_get(get)                 : "Get an element by its position in the array"
+        array_insert(insert)           : "Insert an element at a position in the array. Elements that previously were at the position, or after it, are moved one place to the right"
+        array_push_back(push_back)     : "Insert an element at the end of the array"
+        array_set(set)                 : "Set (Replace) an element in a position of the array to a new character"
+        array_size(get_size)           : "Get the count of elements in the array"
+    }
 }
 
-define string_get_character as all_of {
-    terminal        get_character
-    terminal        WITH
-    non_terminal    expr(index)
+define array_get {
+    get WITH expr(index)
 }
 
-define string_get_substring as all_of {
-    terminal        get_substring
-    terminal        WITH
-    non_terminal    expr(start_index)
-    non_terminal    expr(end_index)
+define array_insert {
+    insert WITH expr(index) expr(element)
 }
 
-define string_set_character as all_of {
-    terminal        set_character
-    terminal        WITH
-    non_terminal    expr(index)
-    non_terminal    expr(character)
+define array_push_back {
+    push_back WITH expr(element)
 }
 
-define string_size as terminal get_size
-
-define input_output_call as any_of {
-    non_terminal input_output_print(print)      : "Print the value of the given expression (text, number etc.)"
-    non_terminal input_output_input(input)      : "Prompt the user with a text message and get user-input"
+define array_set {
+    set WITH expr(index) expr(element)
 }
 
-define input_output_print as all_of {
-    terminal        CALL
-    terminal        print
-    terminal        WITH
-    non_terminal    expr_list
+define array_size {
+    get_size
 }
 
-define input_output_input as all_of {
-    terminal        CALL
-    terminal        input
-    terminal        WITH
-    non_terminal    expr(prompt_message)
+define string_method_call {
+    "IN STRING" expr("string") CALL string_method
 }
 
-define math_call as any_of {
-    non_terminal math_pow(pow)                      : "Raise a number into a power"
-    non_terminal math_sqrt(sqrt)                    : "Get the square root of a number"
-    non_terminal math_round(round)                  : "Get the nearset integer to the given number"
-    non_terminal math_floor(floor)                  : "Get the greatest integer less than or equal to the given number"
-    non_terminal math_ceiling(ceiling)              : "Get the least integer greater than or equal to the given number"
-    non_terminal math_sin(sin)                      : "Get the sin of the given angle in degrees"
-    non_terminal math_cos(cos)                      : "Get the cos of the given angle in degrees"
+define string_method {
+    any_of {
+        string_append(append)                          : "Append a string to the end (suffix) of the string"
+        string_get_character(get_character)            : "Get the character at the specified position of the string"
+        string_get_substring(get_substring)            : "Get a substring of a string, giving a start position and an end position"
+        string_set_character(set_character)            : "Set (Replace) a character in a position of the string to a new character"
+        string_size(get_size)                          : "Get the count of characters contained in the string"
+    }
 }
 
-define math_pow as all_of {
-    terminal        CALL
-    terminal        pow
-    terminal        WITH
-    non_terminal    expr(number)
-    non_terminal    expr(exponent)
+define string_append {
+    append WITH expr("string")
 }
 
-define math_sqrt as all_of {
-    terminal        CALL
-    terminal        sqrt
-    terminal        WITH
-    non_terminal    expr(number)
+define string_get_character {
+    get_character WITH expr(index)
 }
 
-define math_round as all_of {
-    terminal        CALL
-    terminal        round
-    terminal        WITH
-    non_terminal    expr(number)
+define string_get_substring {
+    get_substring WITH expr(start_index) expr(end_index)
 }
 
-define math_floor as all_of {
-    terminal        CALL
-    terminal        floor
-    terminal        WITH
-    non_terminal    expr(number)
+define string_set_character {
+    set_character WITH expr(index) expr(character)
 }
 
-define math_ceiling as all_of {
-    terminal        CALL
-    terminal        ceiling
-    terminal        WITH
-    non_terminal    expr(number)
+define string_size {
+    get_size
 }
 
-define math_sin as all_of {
-    terminal        CALL
-    terminal        sin
-    terminal        WITH
-    non_terminal    expr(number)
+define input_output_call {
+    any_of {
+        input_output_print(print)      : "Print the value of the given expression (text, number etc.)"
+        input_output_input(input)      : "Prompt the user with a text message and get user-input"
+    }
 }
 
-define math_cos as all_of {
-    terminal        CALL
-    terminal        cos
-    terminal        WITH
-    non_terminal    expr(number)
+define input_output_print {
+    CALL print WITH expr_list
 }
 
-define if_stmt as all_of {
-    terminal        IF
-    non_terminal    expr(condition_expr)
-    non_terminal    stmts(if_part)
+define input_output_input {
+    CALL input WITH expr(prompt_message)
 }
 
-define if_else_stmt as all_of {
-    terminal        IF
-    non_terminal    expr(condition_expr)
-    non_terminal    stmts(if_part)
-    terminal        ELSE
-    non_terminal    stmts(else_part)
+define math_call {
+    any_of {
+        math_pow(pow)                      : "Raise a number into a power"
+        math_sqrt(sqrt)                    : "Get the square root of a number"
+        math_round(round)                  : "Get the nearset integer to the given number"
+        math_floor(floor)                  : "Get the greatest integer less than or equal to the given number"
+        math_ceiling(ceiling)              : "Get the least integer greater than or equal to the given number"
+        math_sin(sin)                      : "Get the sin of the given angle in degrees"
+        math_cos(cos)                      : "Get the cos of the given angle in degrees"
+    }
 }
 
-define while_stmt as all_of {
-    terminal        WHILE
-    non_terminal    expr(condition_expr)
-    non_terminal    stmts(while_part)
+define math_pow {
+    CALL pow WITH expr(number) expr(exponent)
 }
 
-define for_stmt as all_of {
-    terminal        FOR
-    non_terminal    expr(initialization_expr)
-    non_terminal    expr(condition_expr)
-    non_terminal    expr(step_expr)
-    non_terminal    stmts(for_part)
+define math_sqrt {
+    CALL sqrt WITH expr(number)
 }
 
-define ident_list as list_of    terminal(identifier)    IDENT
-define expr_list as list_of     non_terminal            expr(arg)
+define math_round {
+    CALL round WITH expr(number)
+}
+
+define math_floor {
+    CALL floor WITH expr(number)
+}
+
+define math_ceiling {
+    CALL ceiling WITH expr(number)
+}
+
+define math_sin {
+    CALL sin WITH expr(number)
+}
+
+define math_cos {
+    CALL cos WITH expr(number)
+}
+
+define if_stmt {
+    IF expr(condition_expr) stmts(if_part)
+}
+
+define if_else_stmt {
+    IF expr(condition_expr) stmts(if_part) ELSE stmts(else_part)
+}
+
+define while_stmt {
+    WHILE expr(condition_expr) stmts(while_part)
+}
+
+define for_stmt {
+    FOR
+    expr(initialization_expr)
+    expr(condition_expr)
+    expr(step_expr)
+    stmts(for_part)
+}
+
+define ident_list {
+    list_of IDENT
+}
+
+define expr_list {
+    list_of expr(arg)
+}

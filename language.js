@@ -82,7 +82,23 @@ export class Language {
         }
     };
 
+    static predefinedTerminal2Type = {
+        IDENT:          Language.TerminalType.Identifier,
+        INT_CONST:      Language.TerminalType.Int,
+        FLOAT_CONST:    Language.TerminalType.Float,
+        CHAR_CONST:     Language.TerminalType.Char,
+        STRING_CONST:   Language.TerminalType.String,
+        BOOL_CONST:     Language.TerminalType.Bool
+    }
+
     terminalTypes = new Map;            // Map<GrammarSymbol, string>
+
+    constructor() {
+        for (let predefinedTerminal in Language.predefinedTerminal2Type){
+            let terminal = this.NewTerminal(predefinedTerminal);
+            this.SetTerminalType(terminal, Language.predefinedTerminal2Type[predefinedTerminal]);
+        }
+    }
 
     GetSymbol(str){
         return this.GetTerminal(str) || this.GetNonTerminal(str);
@@ -164,7 +180,7 @@ export class Language {
     static FromJson(languageJson){
         let lang = new Language;
 
-        if (!languageJson.definitions || !languageJson.terminalTypes){
+        if (!languageJson.definitions){
             assert(false, 'Incorrect json format for converting into Langauge');
             return undefined;
         }
@@ -202,17 +218,19 @@ export class Language {
             lang.SetSymbolDefinition(lhs, rhs);
         }
 
-        for (let t of languageJson.terminalTypes){
-            let symbol = lang.GetTerminal(t.name);
-            if (!symbol){
-                assert(false, `Trying to set type for terminal "${t.name}" but no such terminal exists`);
-                return undefined;
+        if (languageJson.terminalTypes){
+            for (let t of languageJson.terminalTypes){
+                let symbol = lang.GetTerminal(t.name);
+                if (!symbol){
+                    assert(false, `Trying to set type for terminal "${t.name}" but no such terminal exists`);
+                    return undefined;
+                }
+                if (!Language.TerminalType.Includes(t.type)){
+                    assert(false, `Terminal type "${t.type}" does not exist`);
+                    return undefined;
+                }
+                lang.SetTerminalType(symbol, t.type);
             }
-            if (!Language.TerminalType.Includes(t.type)){
-                assert(false, `Terminal type "${t.type}" does not exist`);
-                return undefined;
-            }
-            lang.SetTerminalType(symbol, t.type);
         }
 
         return lang;

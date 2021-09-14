@@ -158,12 +158,12 @@ export let config = {
                         type: "terminal", name: "STRING_CONST",
                         tooltip: "Any sequence of characters or the empty sequence"
                     },
-                    { type: "non_terminal", name: "BOOL_CONST", alias: "boolean", tooltip: "One of true or false" },
+                    { type: "non_terminal", name: "BOOL_CONST_", alias: "boolean", tooltip: "One of true or false" },
                     { type: "non_terminal", name: "ARRAY_CONST", tooltip: "An array of elements" }
                 ]
             },
             {
-                name: "BOOL_CONST",
+                name: "BOOL_CONST_",
                 any_of: [
                     { type: "terminal", name: "true" },
                     { type: "terminal", name: "false" }
@@ -557,13 +557,6 @@ export let config = {
                     { type: "non_terminal", name: "expr", alias: "arg", },
                 ]
             }
-        ],
-        terminalTypes: [
-            { name: "INT_CONST", type: "int", },
-            { name: "FLOAT_CONST", type: "float", },
-            { name: "CHAR_CONST", type: "char", },
-            { name: "STRING_CONST", type: "string", },
-            { name: "IDENT", type: "identifier" }
         ]
     },
     toolbox: [
@@ -2182,7 +2175,7 @@ export let config = {
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
-                                "name": "BOOL_CONST",
+                                "name": "BOOL_CONST_",
                                 "isTerminal": false
                             },
                             "alias": "boolean",
@@ -2250,7 +2243,7 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
-                                        "name": "BOOL_CONST",
+                                        "name": "BOOL_CONST_",
                                         "isTerminal": false
                                     },
                                     "alias": "boolean",
@@ -2391,7 +2384,7 @@ export let config = {
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
-                                "name": "BOOL_CONST",
+                                "name": "BOOL_CONST_",
                                 "isTerminal": false
                             },
                             "alias": "boolean",
@@ -2459,7 +2452,7 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
-                                        "name": "BOOL_CONST",
+                                        "name": "BOOL_CONST_",
                                         "isTerminal": false
                                     },
                                     "alias": "boolean",
@@ -5380,7 +5373,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "BOOL_CONST",
+                                    "name": "BOOL_CONST_",
                                     "isTerminal": false
                                 },
                                 "alias": "boolean",
@@ -5564,7 +5557,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "BOOL_CONST",
+                                    "name": "BOOL_CONST_",
                                     "isTerminal": false
                                 },
                                 "alias": "boolean",
@@ -9672,7 +9665,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "BOOL_CONST",
+                                    "name": "BOOL_CONST_",
                                     "isTerminal": false
                                 },
                                 "alias": "boolean",
@@ -11933,7 +11926,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "BOOL_CONST",
+                                    "name": "BOOL_CONST_",
                                     "isTerminal": false
                                 },
                                 "alias": "boolean",
@@ -15124,7 +15117,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "BOOL_CONST",
+                                    "name": "BOOL_CONST_",
                                     "isTerminal": false
                                 },
                                 "alias": "boolean",
@@ -16466,7 +16459,7 @@ config.darkTheme = {
                     "FontSize": ""
                 }
             },
-            "BOOL_CONST": {
+            "BOOL_CONST_": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -17868,7 +17861,7 @@ config.darkTheme = {
         "FLOAT_CONST": "#44C9B0",
         "CHAR_CONST": "#D15036",
         "STRING_CONST": "#D15036",
-        "BOOL_CONST": "#ffffff",
+        "BOOL_CONST_": "#ffffff",
         "true": "#C57991",
         "false": "#C57991",
         "BREAK": "#C57991",
@@ -18442,7 +18435,7 @@ config.lightTheme = {
                     "FontSize": ""
                 }
             },
-            "BOOL_CONST": {
+            "BOOL_CONST_": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -19843,7 +19836,7 @@ config.lightTheme = {
         "FLOAT_CONST": "#008052",
         "CHAR_CONST": "#A31515",
         "STRING_CONST": "#A31515",
-        "BOOL_CONST": "#000000",
+        "BOOL_CONST_": "#000000",
         "true": "#0000FF",
         "false": "#0000FF",
         "BREAK": "#0000FF",
@@ -20406,7 +20399,7 @@ config.colorfulTheme = {
                     "FontSize": ""
                 }
             },
-            "BOOL_CONST": {
+            "BOOL_CONST_": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -21902,7 +21895,7 @@ config.colorfulTheme = {
         "FLOAT_CONST": "#008052",
         "CHAR_CONST": "#A31515",
         "STRING_CONST": "#A31515",
-        "BOOL_CONST": "#000000",
+        "BOOL_CONST_": "#000000",
         "true": "#0000FF",
         "false": "#0000FF",
         "BREAK": "#0000FF",
@@ -22465,7 +22458,7 @@ config.darkColorfulTheme = {
                     "FontSize": ""
                 }
             },
-            "BOOL_CONST": {
+            "BOOL_CONST_": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -23961,7 +23954,7 @@ config.darkColorfulTheme = {
         "FLOAT_CONST": "#44C9B0",
         "CHAR_CONST": "#D15036",
         "STRING_CONST": "#D15036",
-        "BOOL_CONST": "#ffffff",
+        "BOOL_CONST_": "#ffffff",
         "true": "#C57991",
         "false": "#C57991",
         "BREAK": "#C57991",

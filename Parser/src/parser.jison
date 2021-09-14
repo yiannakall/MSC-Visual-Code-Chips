@@ -7,56 +7,66 @@
 
 %%
 
-program             : defs          { $$ = MP.ParseProgram($defs); }
+program             : defs                                          { $$ = MP.ParseProgram($defs); }
 ;
 
-defs                : def defs      { $$ = MP.ParseDefs($def, $defs); }
-                    | EOF           { $$ = MP.ParseDefs(); }
+defs                : tokendef defs                                 { $$ = $defs; }
+                    | def defs                                      { $$ = MP.ParseDefs($def, $defs); }
+                    | EOF                                           { $$ = MP.ParseDefs(); }
 ;
 
-def                 : DEFINE ident AS ALL_OF '{' items '}'      { $$ = MP.ParseDef($ident, $4, $items); }
-                    | DEFINE ident AS item                      { $$ = MP.ParseDef($ident, "all_of", $item); }
-                    | DEFINE ident AS ANY_OF '{' items '}'      { $$ = MP.ParseDef($ident, $4, $items); }
-                    | DEFINE ident AS LIST_OF '{' item '}'      { $$ = MP.ParseDef($ident, $4, $item); }
-                    | DEFINE ident AS LIST_OF item              { $$ = MP.ParseDef($ident, $4, $item); }
-                    | DEFINE ident AS OPTIONAL '{' item '}'     { $$ = MP.ParseDef($ident, $4, $item); }
-                    | DEFINE ident AS OPTIONAL item             { $$ = MP.ParseDef($ident, $4, $item); }
+tokendef            : item_type id                                  { MP.ParseTokenDef($item_type, [$id]); }
+                    | item_type '{' ids '}'                         { MP.ParseTokenDef($item_type, $ids); }
 ;
 
-ident               : ID
-                    | QUOTED_ID     { $$ = MP.ParseQuotedId($QUOTED_ID); }
+def                 : DEFINE id '{' ALL_OF '{' items '}' '}'        { $$ = MP.ParseDef($id, $ALL_OF, $items); }
+                    | DEFINE id '{' items '}'                       { $$ = MP.ParseDef($id, "all_of", $items); }
+                    | DEFINE id '{' ANY_OF '{' items '}' '}'        { $$ = MP.ParseDef($id, $ANY_OF, $items); }
+                    | DEFINE id '{' LIST_OF '{' item '}' '}'        { $$ = MP.ParseDef($id, $LIST_OF, $item); }
+                    | DEFINE id '{' LIST_OF item '}'                { $$ = MP.ParseDef($id, $LIST_OF, $item); }
+                    | DEFINE id '{' OPTIONAL '{' item '}' '}'       { $$ = MP.ParseDef($id, $OPTIONAL, $item); }
+                    | DEFINE id '{' OPTIONAL item '}'               { $$ = MP.ParseDef($id, $OPTIONAL, $item); }
 ;
 
-item                : item_type ident opt_alias opt_tooltip { $$ = MP.ParseItem($item_type, $ident, $opt_alias, $opt_tooltip); }
+id                  : SIMPLE_ID
+                    | QUOTED_ID                                     { $$ = MP.ParseQuotedId($QUOTED_ID); }
 ;
 
-item_type           : TERMINAL opt_terminal_type    { $$ = MP.ParseItemType($TERMINAL, $opt_terminal_type); }
-                    | NON_TERMINAL                  { $$ = MP.ParseItemType($NON_TERMINAL, null); }
+predefined_id       : IDENT
+                    | INT_CONST
+                    | FLOAT_CONST
+                    | CHAR_CONST
+                    | STRING_CONST
+                    | BOOL_CONST
 ;
 
-opt_terminal_type   : '(' terminal_type ')'     { $$ = $terminal_type; }
+ids                 : id opt_ids                                    { $$ = MP.ParseIds($id, $opt_ids); }
+;
+
+opt_ids             : id opt_ids                                    { $$ = MP.ParseOptIds($id, $opt_ids); }
+                    | /* empty */                                   { $$ = MP.ParseOptIds(); }
+;
+
+item                : item_type id opt_alias opt_tooltip            { $$ = MP.ParseItem($item_type, $id, $opt_alias, $opt_tooltip); }
+                    | id opt_alias opt_tooltip                      { $$ = MP.ParseItem(undefined , $id, $opt_alias, $opt_tooltip); }
+                    | predefined_id opt_alias opt_tooltip           { $$ = MP.ParseItem(undefined , $predefined_id, $opt_alias, $opt_tooltip); }
+;
+
+item_type           : TERMINAL
+                    | NON_TERMINAL
+;
+
+opt_alias           : '(' id ')'                                    { $$ = $id; }
                     | /* empty */
 ;
 
-terminal_type       : IDENTIFIER
-                    | INT
-                    | FLOAT
-                    | CHAR
-                    | STRING
-                    | BOOL
-;
-
-opt_alias           : '(' ident ')'     { $$ = $ident; }
+opt_tooltip         : ':' id                                        { $$ = $id; }
                     | /* empty */
 ;
 
-opt_tooltip         : ':' ident    { $$ = $ident; }
-                    | /* empty */
+items               : item opt_items                                { $$ = MP.ParseItems($item, $opt_items); }
 ;
 
-items               : item opt_items    { $$ = MP.ParseItems($item, $opt_items); }
-;
-
-opt_items           : item opt_items    { $$ = MP. ParseOptItems($item, $opt_items); }
-                    | /* empty */       { $$ = MP.ParseOptItems(); }
+opt_items           : item opt_items                                { $$ = MP.ParseOptItems($item, $opt_items); }
+                    | /* empty */                                   { $$ = MP.ParseOptItems(); }
 ;

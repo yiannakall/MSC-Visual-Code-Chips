@@ -1,18 +1,35 @@
 const fs = require('fs');
 
 class MParser {
-    terminalTypes = [];
+    types = {
+        /* predefined types */
+        IDENT:          'terminal',
+        INT_CONST:      'terminal',
+        FLOAT_CONST:    'terminal',
+        STRING_CONST:   'terminal',
+        CHAR_CONST:     'terminal',
+        BOOL_CONST:     'terminal'
+        /* more symbol types will be inserted while parsing */
+    };
     definitions;
 
     constructor(){}
 
     LanguageToJson(){
-        let language = {};
-
+        let language = { };
+        
         language.definitions    = this.definitions;
-        language.terminalTypes  = this.terminalTypes;
 
         return language;
+    }
+
+    SetType(name, type){
+        if (this.types[name]) {
+            if (this.types[name] !== type)
+                console.warn( `Warning: Trying to set type ${type} for ${name} when its type was previously set to ${this.types[name]}`);
+        }
+        else
+            this.types[name] = type;
     }
 
     ParseProgram(defs) {
@@ -33,6 +50,11 @@ class MParser {
         }
     }
     
+    ParseTokenDef(type, names){
+        for (let name of names)
+            this.SetType(name, type);
+    }
+
     ParseDef(name, defType, items){
         if (!Array.isArray(items))
             items = [items];
@@ -45,35 +67,43 @@ class MParser {
         return def;
     }
 
+    ParseIds(id, ids){
+        ids.unshift(id);
+        return ids;
+    }
+    
+    ParseOptIds(id, ids){
+        if (!id)
+            return [];
+        else{
+            ids.unshift(id);
+            return ids;
+        }
+    }
+
     ParseQuotedId(id){
         let escapedQuotes = /\\\"/g;
         return id.substring(1, id.length - 1).replace(escapedQuotes, "\"");
     }
     
     ParseItem(type, name, alias, tooltip){
-        let item = { };
-    
-        item.type = type.type;
-        item.name = name;
-        
-        if (alias)      item.alias = alias;
-        if (tooltip)    item.tooltip = tooltip;
-    
-        if (type.basicType){
-            let currentEntry = this.terminalTypes.find((entry) => entry.name === name);
-
-            if (currentEntry){
-                if (currentEntry.type !== type.basicType)
-                    console.warn( `Warning: Trying to set type ${type.basicType} for terminal ${name} when its type was previously set to ${currentEntry.type}`);
-            } else
-                this.terminalTypes.push({name, type: type.basicType});
+        if (type){
+            this.SetType(name, type);
+        }
+        else if (!this.types[name]){
+            console.warn( `Warning: Missing type for ${name}, assuming terminal`);
+            this.SetType(name, 'terminal');
         }
 
+        let item = {};
+
+        item.type = this.types[name];
+        item.name = name;
+
+        if (alias)      item.alias = alias;
+        if (tooltip)    item.tooltip = tooltip;
+
         return item;
-    }
-    
-    ParseItemType(type, basicType){
-        return { type, basicType };
     }
 
     ParseItems(item, items){
