@@ -5,10 +5,10 @@ export class ContextMenu {
     options;
 
     $contextMenu;
-    
     $openInnerMenu;
-
     $previouslyFocused;
+
+    onDestroy = () => {};
 
     static themeableIds = {
         OptionContainer: 'Option Container',
@@ -304,6 +304,9 @@ export class ContextMenu {
         let {name, shortcut, handler, options, disabled, needsFile} = option;
         assert(name && handler || name && options && !handler && !shortcut && !needsFile);
 
+        if (typeof options === 'function')      options = options();
+        if (typeof disabled === 'function')     disabled = disabled();
+
         let $option = $('<div/>').addClass('option');
         
         $option.append( $('<div/>').addClass('label').text(name) );
@@ -373,8 +376,13 @@ export class ContextMenu {
         this.$contextMenu = undefined;
         this.$openInnerMenu = undefined;
 
-        this.$previouslyFocused.focus();
+        this.$previouslyFocused?.focus();
         this.$previouslyFocused = undefined;
+
+        this.onDestroy();
     }
 
+    SetOnDestroy(f){
+        this.onDestroy = f;
+    }
 }

@@ -5,7 +5,16 @@
             "all_of": [
                 {
                     "type": "non_terminal",
-                    "name": "stmts"
+                    "name": "defs"
+                }
+            ]
+        },
+        {
+            "name": "defs",
+            "list_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "def"
                 }
             ]
         },
@@ -38,14 +47,14 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "expr_stmt",
-                    "tooltip": "A single expression as a statement"
+                    "name": "for_stmt",
+                    "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                 },
                 {
                     "type": "non_terminal",
-                    "name": "func_def_stmt",
-                    "tooltip": "Define reusable code as a function"
+                    "name": "expr",
+                    "alias": "expr_stmt",
+                    "tooltip": "A single expression as a statement"
                 },
                 {
                     "type": "non_terminal",
@@ -56,6 +65,25 @@
                     "type": "non_terminal",
                     "name": "continue_stmt",
                     "tooltip": "Continue to the next iteration of the current loop"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "return_stmt",
+                    "tooltip": "Return an expression as the result of the current function"
+                }
+            ]
+        },
+        {
+            "name": "def",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "stmt"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "func_def",
+                    "tooltip": "Define reusable code as a function"
                 }
             ]
         },
@@ -104,7 +132,7 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "unary_minus",
+                    "name": "unary_minus_expr",
                     "tooltip": "Negates the value of its operand"
                 }
             ]
@@ -130,11 +158,11 @@
             ]
         },
         {
-            "name": "unary_minus",
+            "name": "unary_minus_expr",
             "all_of": [
                 {
                     "type": "terminal",
-                    "name": "MINUS",
+                    "name": "UMINUS",
                     "alias": "-"
                 },
                 {
@@ -434,7 +462,7 @@
             ]
         },
         {
-            "name": "func_def_stmt",
+            "name": "func_def",
             "all_of": [
                 {
                     "type": "terminal",
@@ -474,6 +502,19 @@
                 {
                     "type": "terminal",
                     "name": "CONTINUE"
+                }
+            ]
+        },
+        {
+            "name": "return_stmt",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "RETURN"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr"
                 }
             ]
         },
@@ -692,12 +733,6 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "string_set_character",
-                    "alias": "set_character",
-                    "tooltip": "Set (Replace) a character in a position of the string to a new character"
-                },
-                {
-                    "type": "non_terminal",
                     "name": "string_size",
                     "alias": "get_size",
                     "tooltip": "Get the count of characters contained in the string"
@@ -760,29 +795,6 @@
                     "type": "non_terminal",
                     "name": "expr",
                     "alias": "end_index"
-                }
-            ]
-        },
-        {
-            "name": "string_set_character",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "set_character"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "index"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "character"
                 }
             ]
         },

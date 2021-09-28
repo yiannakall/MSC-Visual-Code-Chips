@@ -2,6 +2,9 @@ import { config as codeChipsConfig } from './config.js'
 import { CodeChips } from './CodeChips.js'
 import { config as javaClassesConfig } from './javaClassDef.js'
 
+import { ToJavascriptVisitor } from './Generators/ToJavascriptVisitor.js';
+import { AstHost } from './Generators/AstHost.js';
+
 $(document).ready(function () {
 
     $.fn.textWidth = function(text, font) {
@@ -31,6 +34,18 @@ $(document).ready(function () {
             }
         ),
     };
+
+    let toJs = (code) => {
+        let visitor = new ToJavascriptVisitor();
+        let host = new AstHost(visitor);
+        
+        host.Accept(code);
+    
+        return visitor.GetResult();
+    };
+
+    editors['Code Chips'].SetOnExecute( code => eval(toJs(code)) );
+    editors['Code Chips'].SetOnConvertToJs( code => toJs(code) );
 
     let themes = {
         'Code Chips': { 

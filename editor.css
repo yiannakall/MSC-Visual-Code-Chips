@@ -56,10 +56,6 @@ body{
     margin-right: 1ch !important;
 }
 
-/* .group.repetition-group.pure-text > :nth-last-child(2) {
-    margin-right: 0px !important;
-} */
-
 .group.repetition-group .repeat-button {
     display: flex;
     width: -moz-fit-content;
@@ -375,8 +371,25 @@ body{
     width: -webkit-fill-available;
     width: fill-available;
 
-    height: inherit;
+    height: 100%;
     display: flex;
+    flex-direction: column;
+    flex-flow: column;
+}
+
+.editor-toolbar-container {
+    max-height: 42px;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
+}
+
+.workspace-and-toolbox {
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
+    display: flex;
+    height: calc(100% - 42px);
 }
 
 .workspace{
@@ -394,14 +407,28 @@ body{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    height: 100%;
 }
 
-.workspace .code {
+.workspace .code, .workspace .js-code{
     width: 100%;
     height: 100%;
     box-sizing: border-box;
     padding: 20px 20px;
     overflow: auto;
+}
+
+.workspace .js-code {
+    resize: none;
+    outline: none;
+    border: none;
+    margin: 0;
+    display: none;
+
+    font-family: 'Roboto';
+    font-size: 14px;
+    color: #DADADA;
+    background-color: #1E1E1E;
 }
 
 .code > .fill {
@@ -416,7 +443,7 @@ body{
     background-color: transparent !important;
 }
 
-.context-menu-container {
+.editor-context-menu-container {
     position: absolute;
     width: -moz-fit-content;
     width: fit-content;
@@ -439,6 +466,172 @@ body{
 
 .selected.highlighted{
     border-color: #FFE34D !important;
+}
+
+/********************************* Editor Toolbar *********************************/
+
+.editor-toolbar {
+    display: flex;
+    align-items: center;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
+    padding: 0px 20px;
+    background-color: #2D2D2F;
+    user-select: none;
+}
+
+.editor-toolbar-title {
+    font-size: 22px;
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: -0.05em;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-right: 20px;
+}
+
+.editor-toolbar-context-menus {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.editor-toolbar-context-menus  .title{
+    padding: 10px 10px;
+    font-size: 18px;
+    color: #DADADA;
+    cursor:default;
+}
+
+.editor-toolbar-context-menus .title:hover{
+    background-color: #3E3E41;
+    color: white;
+}
+
+.editor-toolbar-context-menus .selected-title{
+    background-color: #3E3E41;
+    color: white;
+}
+
+.editor-toolbar-context-menus .context-menu-button {
+    position: relative;
+}
+
+.editor-toolbar-context-menus .context-menu-container {
+    position: absolute;
+    width: -moz-fit-content;
+    width: fit-content;
+    top: 100%;
+    left: 0;
+    z-index: 2;
+}
+
+.editor-toolbar-buttons {
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
+    height:fit-content;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.editor-toolbar-buttons > .separator {
+    height: 30px;
+    width: 2px;
+    background-color: #4B4B4E;
+}
+
+.editor-toolbar-button-category {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.editor-toolbar-button-category > .button {
+    border-radius: 5px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.editor-toolbar-button-category > .button:not(.disabled-button).selected-button {
+    background-color: #494974;
+}
+
+.editor-toolbar-button-category > .button.disabled-button {
+    opacity: 0.5;
+}
+
+.button:not(.selected-button):not(.disabled-button):hover {
+    background-color: #3E3E41;
+}
+
+.editor-toolbar-button-category > .button > div {
+    width: 22px;
+    height: 22px;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.editor-toolbar-undo-button {
+    -webkit-mask-image: url(./Images/EditorToolbar/undo.svg);
+    mask-image: url(./Images/EditorToolbar/undo.svg);
+    background-color: #75BEFF;
+}
+
+.button:not(.disabled-button):hover .editor-toolbar-undo-button {
+    background-color: #B3DBFF;
+}
+
+.editor-toolbar-redo-button {
+    -webkit-mask-image: url(./Images/EditorToolbar/redo.svg);
+    mask-image: url(./Images/EditorToolbar/redo.svg);
+    background-color: #75BEFF;
+}
+
+.button:not(.disabled-button):hover .editor-toolbar-redo-button{
+    background-color: #B3DBFF;
+}
+
+.editor-toolbar-blocks-button {
+    background-image: url(./Images/EditorToolbar/blocks.png);
+}
+
+.button:not(.selected-button):not(.disabled-button):hover .editor-toolbar-blocks-button {
+    background-image: url(./Images/EditorToolbar/blocks-hover.png);
+}
+
+.editor-toolbar-source-code-button {
+    -webkit-mask-image: url(./Images/EditorToolbar/source-code.svg);
+    mask-image: url(./Images/EditorToolbar/source-code.svg);
+    background-color: #CBCB41;
+}
+
+.button:not(.selected-button):not(.disabled-button):hover .editor-toolbar-source-code-button{
+    background-color: #FCFCAC;
+}
+
+.editor-toolbar-js-button {
+    -webkit-mask-image: url(./Images/EditorToolbar/js.svg);
+    mask-image: url(./Images/EditorToolbar/js.svg);
+    background-color: #CBCB41;
+}
+
+.button:not(.selected-button):not(.disabled-button):hover .editor-toolbar-js-button{
+    background-color: #FCFCAC;
+}
+
+.editor-toolbar-play-button {
+    -webkit-mask-image: url(./Images/EditorToolbar/play.svg);
+    mask-image: url(./Images/EditorToolbar/play.svg);
+    background-color: #6CAE6C;
+}
+
+.button:not(.disabled-button):hover .editor-toolbar-play-button {
+    background-color: #B3E5B3;
 }
 
 /********************************* Drop Placeholder *********************************/
@@ -1139,148 +1332,6 @@ body{
     background-color: #424242;
     border-radius: 4px;
     height: 10px;
-}
-
-/********************************* UNDO-REDO TOOLBAR *********************************/
-
-.editor-undo-redo-toolbar-container {
-    position: relative;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-    width: 100%;
-}
-
-.undo-redo-toolbar-container {
-    display: flex;
-    width: 100%;
-}
-
-.undo-redo-toolbar {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    position:relative;
-}
-
-.undo-redo-toolbar .undo-segment, .undo-redo-toolbar .redo-segment {
-    display: flex;
-    width: 50%;
-    align-items: center;
-    padding: 12px 15px;
-
-    cursor: pointer;
-    color: #C4C4C4;
-    font-size: 14px;
-    background-color: #252526;
-    gap: 15px;
-}
-
-.undo-redo-toolbar .undo-segment:hover, .undo-redo-toolbar .redo-segment:hover {
-    color: #ffffff;
-    background-color: #333333;
-}
-
-.undo-redo-toolbar .redo-segment {
-    flex-direction: row-reverse;
-}
-
-.undo-redo-toolbar .separator {
-    position: absolute;
-    width: 2px;
-    background-color: #333333;
-    height: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.undo-redo-toolbar .icon {
-    --webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: cover;
-    mask-repeat: no-repeat;
-    mask-size: cover;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 14px;
-    height: 14px;
-
-    
-    background-color: #75BEFF;
-}
-
-.undo-redo-toolbar .undo-segment .icon {
-    -webkit-mask-image: url(./Images/UndoRedoToolbar/undo.svg);
-    mask-image: url(./Images/UndoRedoToolbar/undo.svg);
-}
-
-.undo-redo-toolbar .redo-segment .icon {
-    -webkit-mask-image: url(./Images/UndoRedoToolbar/redo.svg);
-    mask-image: url(./Images/UndoRedoToolbar/redo.svg);
-}
-
-.undo-redo-toolbar .icon-container {
-    position: relative;
-}
-
-.undo-redo-toolbar .actions-left {
-    background-color: #FA3E3E;
-    border-radius: 3px;
-    padding: 1px 3px;
-    font-size: 10px;
-    color: #FCFCFC;
-}
-
-.undo-redo-toolbar .undo-segment .actions-left {
-    position: absolute;
-    margin-top: -8px;
-    right: -7px;
-}
-
-.undo-redo-toolbar .redo-segment .actions-left {
-    position: absolute;
-    margin-top: -8px;
-    left: -7px;
-}
-
-.undo-redo-toolbar .action-text {
-    display: flex;
-    justify-content: center;
- 
-    width: -moz-available;
-    width: -webkit-fill-available;
-    width: fill-available;
-
-    -webkit-user-select: none;        
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    color: inherit;
-}
-
-.undo-redo-toolbar-container .close-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    background-color: #094771;
-    cursor: pointer;
-}
-
-.undo-redo-toolbar-container .close-container:hover {
-    background-color: #0b5c92;
-}
-
-.undo-redo-toolbar-container .close {
-    --webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: cover;
-    mask-repeat: no-repeat;
-    mask-size: cover;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 14px;
-    height: 14px;
-    background-color: #C4C4C4;
-    -webkit-mask-image: url(./Images/UndoRedoToolbar/close.svg);
-    mask-image: url(./Images/UndoRedoToolbar/close.svg);
 }
 
 /* Editor Toast Messages */

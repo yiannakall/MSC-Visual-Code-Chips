@@ -1,560 +1,1191 @@
 export let config = {
     language: {
-        definitions: [
+        "definitions": [
             {
-                name: "program",
-                all_of: [
-                    { type: "non_terminal", name: "stmts" }
-                ]
-            },
-            {
-                name: "stmts",
-                list_of: [
-                    { type: "non_terminal", name: "stmt", },
-                ]
-            },
-            {
-                name: "stmt",
-                any_of: [
-                    { type: "non_terminal", name: "if_stmt", tooltip: "Do something if a condition is true" },
-                    { type: "non_terminal", name: "if_else_stmt", tooltip: "Do something if a condition is true, else do something else" },
-                    { type: "non_terminal", name: "while_stmt", tooltip: "Do something while a condition is true" },
-                    { type: "non_terminal", name: "for_stmt", tooltip: "Do something while a condition is true. Commonly used with a known number of iterations." },
-                    { type: "non_terminal", name: "expr", alias: "expr_stmt", tooltip: "A single expression as a statement" },
-                    { type: "non_terminal", name: "func_def_stmt", tooltip: "Define reusable code as a function" },
-                    { type: "non_terminal", name: "break_stmt", tooltip: "Exit from the current loop" },
-                    { type: "non_terminal", name: "continue_stmt", tooltip: "Continue to the next iteration of the current loop" },
-                ]
-            },
-            {
-                name: "expr",
-                any_of: [
-                    { type: "non_terminal", name: "arith_expr", tooltip: "Perform a mathematic operation" },
-                    { type: "non_terminal", name: "rel_expr", tooltip: "An operator that compares the two operands and returns true or false" },
-                    { type: "non_terminal", name: "logical_expr", tooltip: "An expression that evaluates to true or false" },
-                    { type: "non_terminal", name: "assign_expr", tooltip: "Set a variable's value" },
-                    { type: "non_terminal", name: "call_expr", tooltip: "Call a user-defined or built-in function/method" },
-                    { type: "non_terminal", name: "primary_expr", tooltip: "An identifier or a constant" },
-                ]
-            },
-            {
-                name: "arith_expr",
-                any_of: [
-                    { type: "non_terminal", name: "binary_arith_expr", tooltip: "An arithmetic expression with two operands" },
-                    { type: "non_terminal", name: "unary_minus", tooltip: "Negates the value of its operand" }
-                ]
-            },
-            {
-                name: "binary_arith_expr",
-                all_of: [
-                    { type: "non_terminal", name: "expr", tooltip: "The first operand" },
-                    { type: "non_terminal", name: "arith_op", tooltip: "An arithmetic operator (e.g. +, -)" },
-                    { type: "non_terminal", name: "expr", tooltip: "The second operand" },
-                ]
-            },
-            {
-                name: "unary_minus",
-                all_of: [
-                    { type: "terminal", name: "MINUS", alias: "-" },
-                    { type: "non_terminal", name: "expr" },
-                ]
-            },
-            {
-                name: "arith_op",
-                any_of: [
-                    { type: "terminal", name: "PLUS", alias: "+", tooltip: "Performs addition" },
-                    { type: "terminal", name: "MINUS", alias: "-", tooltip: "Performs subtraction" },
-                    { type: "terminal", name: "TIMES", alias: "*", tooltip: "Performs multiplication" },
-                    { type: "terminal", name: "BY", alias: "/", tooltip: "Performs division" },
-                    { type: "terminal", name: "MODULO", alias: "%", tooltip: "Performs the modulo operation" }
-                ]
-            },
-            {
-                name: "rel_expr",
-                all_of: [
-                    { type: "non_terminal", name: "expr", tooltip: "The first operand" },
-                    { type: "non_terminal", name: "rel_op", tooltip: "A comparison operator that returns true or false (e.g <, >)" },
-                    { type: "non_terminal", name: "expr", tooltip: "The second operand" },
-                ]
-            },
-            {
-                name: "rel_op",
-                any_of: [
+                "name": "program",
+                "all_of": [
                     {
-                        type: "terminal", name: "GREATER", alias: ">",
-                        tooltip: "Returns true if the first operand is greater than the second operand, else returns false"
-                    },
-                    {
-                        type: "terminal", name: "LESS", alias: "<",
-                        tooltip: "Returns true if the first operand is less than the second operand, else returns false"
-                    },
-                    {
-                        type: "terminal", name: "EQUAL_TO", alias: "==",
-                        tooltip: "Returns true if the first operand is equal to the second operand, else returns false"
-                    },
-                    {
-                        type: "terminal", name: "NOT_EQUAL_TO", alias: "!=",
-                        tooltip: "Returns true if the first operand not equal to the second operand, else returns false"
-                    },
-                    {
-                        type: "terminal", name: "GREATER_EQUAL", alias: ">=",
-                        tooltip: "Returns true if the first operand is greater than or equal to the second operand, else returns false"
-                    },
-                    {
-                        type: "terminal", name: "LESS_EQUAL", alias: "<=",
-                        tooltip: "Returns true if the first operand is less than or equal to the second operand, else returns false"
+                        "type": "non_terminal",
+                        "name": "defs"
                     }
                 ]
             },
             {
-                name: "logical_expr",
-                any_of: [
-                    { type: "non_terminal", name: "binary_logical_expr", tooltip: "Performs a binary operation with two operands" },
-                    { type: "non_terminal", name: "not_expr", tooltip: "Performs logical negation. True becomes false and false becomes true" }
-                ]
-            },
-            {
-                name: "binary_logical_expr",
-                all_of: [
-                    { type: "non_terminal", name: "expr", tooltip: "The first operand" },
-                    { type: "non_terminal", name: "logical_binary_op", tooltip: "Performs a binary operation with two operands" },
-                    { name: "expr", type: "non_terminal", tooltip: "The second operand" },
-                ]
-            },
-            {
-                name: "logical_binary_op",
-                any_of: [
-                    { type: "terminal", name: "AND", tooltip: "Returns true if both operands are true, else returns false" },
-                    { type: "terminal", name: "OR", tooltip: "Returns true if either operand is true, else returns false" }
-                ]
-            },
-            {
-                name: "not_expr",
-                all_of: [
-                    { type: "terminal", name: "NOT", tooltip: "Returns true if the operand is false, else returns false" },
-                    { type: "non_terminal", name: "expr", tooltip: "The operand" }
-                ]
-            },
-            {
-                name: "primary_expr",
-                any_of: [
+                "name": "defs",
+                "list_of": [
                     {
-                        type: "terminal", name: "IDENT",
-                        tooltip: "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                        "type": "non_terminal",
+                        "name": "def"
+                    }
+                ]
+            },
+            {
+                "name": "stmts",
+                "list_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "stmt"
+                    }
+                ]
+            },
+            {
+                "name": "stmt",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "if_stmt",
+                        "tooltip": "Do something if a condition is true"
                     },
                     {
-                        type: "terminal", name: "INT_CONST",
-                        tooltip: "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
+                        "type": "non_terminal",
+                        "name": "if_else_stmt",
+                        "tooltip": "Do something if a condition is true, else do something else"
                     },
                     {
-                        type: "terminal", name: "FLOAT_CONST",
-                        tooltip: "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
+                        "type": "non_terminal",
+                        "name": "while_stmt",
+                        "tooltip": "Do something while a condition is true"
                     },
                     {
-                        type: "terminal", name: "CHAR_CONST",
-                        tooltip: "One single character"
+                        "type": "non_terminal",
+                        "name": "for_stmt",
+                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
                     },
                     {
-                        type: "terminal", name: "STRING_CONST",
-                        tooltip: "Any sequence of characters or the empty sequence"
-                    },
-                    { type: "non_terminal", name: "BOOL_CONST_", alias: "boolean", tooltip: "One of true or false" },
-                    { type: "non_terminal", name: "ARRAY_CONST", tooltip: "An array of elements" }
-                ]
-            },
-            {
-                name: "BOOL_CONST_",
-                any_of: [
-                    { type: "terminal", name: "true" },
-                    { type: "terminal", name: "false" }
-                ]
-            },
-            {
-                name: "call_expr",
-                any_of: [
-                    { type: "non_terminal", name: "input_output_call", tooltip: "Use a built-in input/output function" },
-                    { type: "non_terminal", name: "math_call", tooltip: "Use a built-in math function" },
-                    { type: "non_terminal", name: "string_method_call", tooltip: "Use a built-in string method" },
-                    { type: "non_terminal", name: "array_method_call", tooltip: "Use a built-in array method" },
-                    { type: "non_terminal", name: "user_function_call", tooltip: "Use a user-defined function" },
-                ]
-            },
-            {
-                name: "ARRAY_CONST",
-                all_of: [
-                    { type: "terminal", name: "ARRAY", },
-                    { type: "terminal", name: "WITH", },
-                    { type: "non_terminal", name: "element_list", },
-                ]
-            },
-            {
-                name: 'element_list',
-                list_of: [
-                    { type: "terminal", name: "expr", alias: "element" }
-                ]
-            },
-            {
-                name: "assign_expr",
-                all_of: [
-                    { type: "terminal", name: "IDENT", },
-                    { type: "terminal", name: "EQUALS", alias: "=" },
-                    { type: "non_terminal", name: "expr" },
-                ]
-            },
-            {
-                name: "func_def_stmt",
-                all_of: [
-                    { type: "terminal", name: "FUNCTION", },
-                    { type: "terminal", name: "IDENT", alias: "NAME" },
-                    { type: "terminal", name: "OF", },
-                    { type: "non_terminal", name: "ident_list" },
-                    { type: "non_terminal", name: "stmts" },
-                ]
-            },
-            {
-                name: "break_stmt",
-                all_of: [
-                    { type: "terminal", name: "BREAK" }
-                ]
-            },
-            {
-                name: "continue_stmt",
-                all_of: [
-                    { type: "terminal", name: "CONTINUE" }
-                ]
-            },
-            {
-                name: "user_function_call",
-                all_of: [
-                    { type: "terminal", name: "CALL", },
-                    { type: "terminal", name: "IDENT", alias: "FUNCTION NAME" },
-                    { type: "terminal", name: "WITH", },
-                    { type: "non_terminal", name: "expr_list" },
-                ]
-            },
-            {
-                name: "array_method_call",
-                all_of: [
-                    { type: "terminal", name: "IN ARRAY", },
-                    { type: "non_terminal", name: "expr", alias: "array" },
-                    { type: "terminal", name: "CALL", },
-                    { type: "non_terminal", name: "array_method" },
-                ]
-            },
-            {
-                name: "array_method",
-                any_of: [
-                    { 
-                        type: "non_terminal", name: "array_get", alias: "get",
-                        tooltip: "Get an element by its position in the array"
-                    },
-                    { 
-                        type: "non_terminal", name: "array_insert", alias: "insert",
-                        tooltip:    `Insert an element at a position in the array. Elements that previously were
-                        at the position, or after it, are moved one place to the right`
-                    },
-                    { 
-                        type: "non_terminal", name: "array_push_back", alias: "push_back",                        
-                        tooltip: `Insert an element at the end of the array`
-                    },
-                    { 
-                        type: "non_terminal", name: "array_set", alias: "set",
-                        tooltip: "Set (Replace) an element in a position of the array to a new character"
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "expr_stmt",
+                        "tooltip": "A single expression as a statement"
                     },
                     {
-                        type: "non_terminal", name: "array_size", alias: "get_size",
-                        tooltip: "Get the count of elements in the array"
-                    },
-                ]
-            },
-            {
-                name: "array_get",
-                all_of: [
-                    { type: "terminal", name: "get" },
-                    { type: "terminal", name: "WITH" },
-                    { type: "non_terminal", name: "expr", alias: "index" },
-                ]
-            },
-            {
-                name: "array_insert",
-                all_of: [
-                    { type: "terminal", name: "insert" },
-                    { type: "terminal", name: "WITH" },
-                    { type: "non_terminal", name: "expr", alias: "index" },
-                    { type: "non_terminal", name: "expr", alias: "element" },
-                ]
-            },
-            {
-                name: "array_push_back",
-                all_of: [
-                    { type: "terminal", name: "push_back" },
-                    { type: "terminal", name: "WITH" },
-                    { type: "non_terminal", name: "expr", alias: "element" },
-                ]
-            },
-            {
-                name: "array_set",
-                all_of: [
-                    { type: "terminal", name: "set" },
-                    { type: "terminal", name: "WITH" },
-                    { type: "non_terminal", name: "expr", alias: "index" },
-                    { type: "non_terminal", name: "expr", alias: "element" },
-                ]
-            },
-            {
-                name: "array_size",
-                all_of: [
-                    { type: "terminal", name: "get_size" },
-                ]
-            },
-            {
-                name: "string_method_call",
-                all_of: [
-                    { type: "terminal", name: "IN STRING", },
-                    { type: "non_terminal", name: "expr", alias: "string" },
-                    { type: "terminal", name: "CALL", },
-                    { type: "non_terminal", name: "string_method" },
-                ]
-            },
-            {
-                name: "string_method",
-                any_of: [
-                    { 
-                        type: "non_terminal", name: "string_append", alias: "append",
-                        tooltip: "Append a string to the end (suffix) of the string"
+                        "type": "non_terminal",
+                        "name": "break_stmt",
+                        "tooltip": "Exit from the current loop"
                     },
                     {
-                        type: "non_terminal", name: "string_get_character", alias: "get_character",
-                        tooltip: "Get the character at the specified position of the string"
-                    },
-                    { 
-                        type: "non_terminal", name: "string_get_substring", alias: "get_substring",
-                        tooltip: "Get a substring of a string, giving a start position and an end position"
+                        "type": "non_terminal",
+                        "name": "continue_stmt",
+                        "tooltip": "Continue to the next iteration of the current loop"
                     },
                     {
-                        type: "non_terminal", name: "string_set_character", alias: "set_character",
-                        tooltip: "Set (Replace) a character in a position of the string to a new character"
+                        "type": "non_terminal",
+                        "name": "return_stmt",
+                        "tooltip": "Return an expression as the result of the current function"
+                    }
+                ]
+            },
+            {
+                "name": "def",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "stmt"
                     },
                     {
-                        type: "non_terminal", name: "string_size", alias: "get_size",
-                        tooltip: "Get the count of characters contained in the string"
-                    },
+                        "type": "non_terminal",
+                        "name": "func_def",
+                        "tooltip": "Define reusable code as a function"
+                    }
                 ]
             },
             {
-                name: "string_append",
-                all_of: [
-                    { type: "terminal", name: "append" },
-                    { type: "terminal", name: "WITH" },
-                    { type: "non_terminal", name: "expr", alias: "string" },
-                ]
-            },
-            {
-                name: "string_get_character",
-                all_of: [
-                    { type: "terminal", name: "get_character" },
-                    { type: "terminal", name: "WITH" },
-                    { type: "non_terminal", name: "expr", alias: "index" },
-                ]
-            },
-            {
-                name: "string_get_substring",
-                all_of: [
-                    { type: "terminal", name: "get_substring" },
-                    { type: "terminal", name: "WITH" },
-                    { type: "non_terminal", name: "expr", alias: "start_index" },
-                    { type: "non_terminal", name: "expr", alias: "end_index" },
-                ]
-            },
-            {
-                name: "string_set_character",
-                all_of: [
-                    { type: "terminal", name: "set_character" },
-                    { type: "terminal", name: "WITH" },
-                    { type: "non_terminal", name: "expr", alias: "index" },
-                    { type: "non_terminal", name: "expr", alias: "character" },
-                ]
-            },
-            {
-                name: "string_size",
-                all_of: [
-                    { type: "terminal", name: "get_size" },
-                ]
-            },
-            {
-                name: "input_output_call",
-                any_of: [
+                "name": "expr",
+                "any_of": [
                     {
-                        type: "non_terminal", name: "input_output_print", alias: "print",
-                        tooltip: "Print the value of the given expression (text, number etc.) "
+                        "type": "non_terminal",
+                        "name": "arith_expr",
+                        "tooltip": "Perform a mathematic operation"
                     },
                     {
-                        type: "non_terminal", name: "input_output_input", alias: "input",
-                        tooltip: "Prompt the user with a text message and get user-input"
-                    },
-                ]
-            },
-            {
-                name: "input_output_print",
-                all_of: [
-                    { type: "terminal", name: "CALL", },
-                    { type: "terminal", name: "print", },
-                    { type: "terminal", name: "WITH", },
-                    { type: "non_terminal", name: "expr_list" },
-                ]
-            },
-            {
-                name: "input_output_input",
-                all_of: [
-                    { type: "terminal", name: "CALL", },
-                    { type: "terminal", name: "input", },
-                    { type: "terminal", name: "WITH", },
-                    { type: "non_terminal", name: "expr", alias: "prompt_message" },
-                ]
-            },
-            {
-                name: "math_call",
-                any_of: [
-                    {
-                        type: "non_terminal", name: "math_pow", alias: "pow",
-                        tooltip: "Raise a number into a power"
+                        "type": "non_terminal",
+                        "name": "rel_expr",
+                        "tooltip": "An operator that compares the two operands and returns true or false"
                     },
                     {
-                        type: "non_terminal", name: "math_sqrt", alias: "sqrt",
-                        tooltip: "Get the square root of a number"
-                    },
-                    { 
-                        type: "non_terminal", name: "math_round", alias: "round",
-                        tooltip: "Get the nearset integer to the given number"
+                        "type": "non_terminal",
+                        "name": "logical_expr",
+                        "tooltip": "An expression that evaluates to true or false"
                     },
                     {
-                        type: "non_terminal", name: "math_floor", alias: "floor",
-                        tooltip: "Get the greatest integer less than or equal to the given number"
+                        "type": "non_terminal",
+                        "name": "assign_expr",
+                        "tooltip": "Set a variable's value"
                     },
                     {
-                        type: "non_terminal", name: "math_ceiling", alias: "ceiling",
-                        tooltip: "Get the least integer greater than or equal to the given number,"
+                        "type": "non_terminal",
+                        "name": "call_expr",
+                        "tooltip": "Call a user-defined or built-in function/method"
                     },
                     {
-                        type: "non_terminal", name: "math_sin", alias: "sin",
-                        tooltip: "Get the sin of the given angle in degrees"
+                        "type": "non_terminal",
+                        "name": "primary_expr",
+                        "tooltip": "An identifier or a constant"
+                    }
+                ]
+            },
+            {
+                "name": "arith_expr",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "binary_arith_expr",
+                        "tooltip": "An arithmetic expression with two operands"
                     },
                     {
-                        type: "non_terminal", name: "math_cos", alias: "cos",
-                        tooltip: "Get the cos of the given angle in degrees"
+                        "type": "non_terminal",
+                        "name": "unary_minus_expr",
+                        "tooltip": "Negates the value of its operand"
+                    }
+                ]
+            },
+            {
+                "name": "binary_arith_expr",
+                "all_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "tooltip": "The first operand"
                     },
+                    {
+                        "type": "non_terminal",
+                        "name": "arith_op",
+                        "tooltip": "An arithmetic operator (e.g. +, -)"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "tooltip": "The second operand"
+                    }
                 ]
             },
             {
-                name: "math_pow",
-                all_of: [
-                    { type: "terminal", name: "CALL", },
-                    { type: "terminal", name: "pow", },
-                    { type: "terminal", name: "WITH", },
-                    { type: "non_terminal", name: "expr", alias: "number" },
-                    { type: "non_terminal", name: "expr", alias: "exponent" },
+                "name": "unary_minus_expr",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "UMINUS",
+                        "alias": "-"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr"
+                    }
                 ]
             },
             {
-                name: "math_sqrt",
-                all_of: [
-                    { type: "terminal", name: "CALL", },
-                    { type: "terminal", name: "sqrt", },
-                    { type: "terminal", name: "WITH", },
-                    { type: "non_terminal", name: "expr", alias: "number" },
+                "name": "arith_op",
+                "any_of": [
+                    {
+                        "type": "terminal",
+                        "name": "PLUS",
+                        "alias": "+",
+                        "tooltip": "Performs addition"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "MINUS",
+                        "alias": "-",
+                        "tooltip": "Performs subtraction"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "TIMES",
+                        "alias": "*",
+                        "tooltip": "Performs multipliction"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "BY",
+                        "alias": "/",
+                        "tooltip": "Performs division"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "MODULO",
+                        "alias": "%",
+                        "tooltip": "Performs the modulo operation"
+                    }
                 ]
             },
             {
-                name: "math_round",
-                all_of: [
-                    { type: "terminal", name: "CALL", },
-                    { type: "terminal", name: "round", },
-                    { type: "terminal", name: "WITH", },
-                    { type: "non_terminal", name: "expr", alias: "number" },
+                "name": "rel_expr",
+                "all_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "tooltip": "The first operand"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "rel_op",
+                        "tooltip": "A comparison operator that returns true or false (e.g <, >)"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "tooltip": "The second operand"
+                    }
                 ]
             },
             {
-                name: "math_floor",
-                all_of: [
-                    { type: "terminal", name: "CALL", },
-                    { type: "terminal", name: "floor", },
-                    { type: "terminal", name: "WITH", },
-                    { type: "non_terminal", name: "expr", alias: "number" },
+                "name": "rel_op",
+                "any_of": [
+                    {
+                        "type": "terminal",
+                        "name": "GREATER",
+                        "alias": ">",
+                        "tooltip": "Returns true if the first operand is greater than the second operand, else returns false"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "LESS",
+                        "alias": "<",
+                        "tooltip": "Returns true if the first operand is less than the second operand, else returns false"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "EQUAL_TO",
+                        "alias": "==",
+                        "tooltip": "Returns true if the first operand is equal to the second operand, else returns false"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "NOT_EQUAL_TO",
+                        "alias": "!=",
+                        "tooltip": "Returns true if the first operand not equal to the second operand, else returns false"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "GREATER_EQUAL",
+                        "alias": ">=",
+                        "tooltip": "Returns true if the first operand is greater than or equal to the second operand, else returns false"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "LESS_EQUAL",
+                        "alias": "<=",
+                        "tooltip": "Returns true if the first operand is less than or equal to the second operand, else returns false"
+                    }
                 ]
             },
             {
-                name: "math_ceiling",
-                all_of: [
-                    { type: "terminal", name: "CALL", },
-                    { type: "terminal", name: "ceiling", },
-                    { type: "terminal", name: "WITH", },
-                    { type: "non_terminal", name: "expr", alias: "number" },
+                "name": "logical_expr",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "binary_logical_expr",
+                        "tooltip": "Performs a binary operation with two operands"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "not_expr",
+                        "tooltip": "Performs logical negation. True becomes false and false becomes true"
+                    }
                 ]
             },
             {
-                name: "math_sin",
-                all_of: [
-                    { type: "terminal", name: "CALL", },
-                    { type: "terminal", name: "sin", },
-                    { type: "terminal", name: "WITH", },
-                    { type: "non_terminal", name: "expr", alias: "number" },
+                "name": "binary_logical_expr",
+                "all_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "tooltip": "The first operand"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "logical_binary_op",
+                        "tooltip": "Performs a binary operation with two operands"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "tooltip": "The second operand"
+                    }
                 ]
             },
             {
-                name: "math_cos",
-                all_of: [
-                    { type: "terminal", name: "CALL", },
-                    { type: "terminal", name: "cos", },
-                    { type: "terminal", name: "WITH", },
-                    { type: "non_terminal", name: "expr", alias: "number" },
+                "name": "logical_binary_op",
+                "any_of": [
+                    {
+                        "type": "terminal",
+                        "name": "AND",
+                        "tooltip": "Returns true if both operands are true, else returns false"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "OR",
+                        "tooltip": "Returns true if either operand is true, else returns false"
+                    }
                 ]
             },
             {
-                name: "if_stmt",
-                all_of: [
-                    { type: "terminal", name: "IF" },
-                    { type: "non_terminal", alias: "condition_expr", name: "expr" },
-                    { type: "non_terminal", alias: "if_part", name: "stmts" },
+                "name": "not_expr",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "NOT",
+                        "tooltip": "Returns true if the operand is false, else returns false"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "tooltip": "The operand"
+                    }
                 ]
             },
             {
-                name: "if_else_stmt",
-                all_of: [
-                    { type: "terminal", name: "IF" },
-                    { type: "non_terminal", alias: "condition_expr", name: "expr" },
-                    { type: "non_terminal", alias: "if_part", name: "stmts" },
-                    { type: "terminal", name: "ELSE" },
-                    { type: "non_terminal", alias: "else_part", name: "stmts" },
+                "name": "primary_expr",
+                "any_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "INT_CONST",
+                        "tooltip": "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "FLOAT_CONST",
+                        "tooltip": "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "CHAR_CONST",
+                        "tooltip": "One single character"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "STRING_CONST",
+                        "tooltip": "Any sequence of characters or the empty sequence"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "BOOL_CONST_",
+                        "alias": "boolean",
+                        "tooltip": "One of true or false"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "ARRAY_CONST",
+                        "tooltip": "An array of elements"
+                    }
                 ]
             },
             {
-                name: "while_stmt",
-                all_of: [
-                    { type: "terminal", name: "WHILE" },
-                    { type: "non_terminal", alias: "condition_expr", name: "expr" },
-                    { type: "non_terminal", alias: "while_part", name: "stmts" },
+                "name": "BOOL_CONST_",
+                "any_of": [
+                    {
+                        "type": "terminal",
+                        "name": "true"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "false"
+                    }
                 ]
             },
             {
-                name: "for_stmt",
-                all_of: [
-                    { type: "terminal", name: "FOR" },
-                    { type: "non_terminal", alias: "initialization_expr", name: "expr" },
-                    { type: "non_terminal", alias: "condition_expr", name: "expr" },
-                    { type: "non_terminal", alias: "step_expr", name: "expr" },
-                    { type: "non_terminal", alias: "for_part", name: "stmts" },
+                "name": "call_expr",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "input_output_call",
+                        "tooltip": "Use a built-in input/output function"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "math_call",
+                        "tooltip": "Use a built-in math function"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "string_method_call",
+                        "tooltip": "Use a built-in string method"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "array_method_call",
+                        "tooltip": "Use a built-in array method"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "user_function_call",
+                        "tooltip": "Use a user-defined function"
+                    }
                 ]
             },
             {
-                name: "ident_list",
-                list_of: [
-                    { type: "terminal", name: "IDENT", },
+                "name": "ARRAY_CONST",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "ARRAY"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "element_list"
+                    }
                 ]
             },
             {
-                name: "expr_list",
-                list_of: [
-                    { type: "non_terminal", name: "expr", alias: "arg", },
+                "name": "element_list",
+                "list_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "element"
+                    }
+                ]
+            },
+            {
+                "name": "assign_expr",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IDENT"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "EQUALS",
+                        "alias": "="
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr"
+                    }
+                ]
+            },
+            {
+                "name": "func_def",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "FUNCTION"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "NAME"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "OF"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "ident_list"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "stmts"
+                    }
+                ]
+            },
+            {
+                "name": "break_stmt",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "BREAK"
+                    }
+                ]
+            },
+            {
+                "name": "continue_stmt",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "CONTINUE"
+                    }
+                ]
+            },
+            {
+                "name": "return_stmt",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "RETURN"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr"
+                    }
+                ]
+            },
+            {
+                "name": "user_function_call",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "FUNCTION NAME"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr_list"
+                    }
+                ]
+            },
+            {
+                "name": "array_method_call",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IN ARRAY"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "array"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "array_method"
+                    }
+                ]
+            },
+            {
+                "name": "array_method",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "array_get",
+                        "alias": "get",
+                        "tooltip": "Get an element by its position in the array"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "array_insert",
+                        "alias": "insert",
+                        "tooltip": "Insert an element at a position in the array. Elements that previously were at the position, or after it, are moved one place to the right"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "array_push_back",
+                        "alias": "push_back",
+                        "tooltip": "Insert an element at the end of the array"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "array_set",
+                        "alias": "set",
+                        "tooltip": "Set (Replace) an element in a position of the array to a new character"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "array_size",
+                        "alias": "get_size",
+                        "tooltip": "Get the count of elements in the array"
+                    }
+                ]
+            },
+            {
+                "name": "array_get",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "get"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "index"
+                    }
+                ]
+            },
+            {
+                "name": "array_insert",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "insert"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "index"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "element"
+                    }
+                ]
+            },
+            {
+                "name": "array_push_back",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "push_back"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "element"
+                    }
+                ]
+            },
+            {
+                "name": "array_set",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "set"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "index"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "element"
+                    }
+                ]
+            },
+            {
+                "name": "array_size",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "get_size"
+                    }
+                ]
+            },
+            {
+                "name": "string_method_call",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IN STRING"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "string"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "string_method"
+                    }
+                ]
+            },
+            {
+                "name": "string_method",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "string_append",
+                        "alias": "append",
+                        "tooltip": "Append a string to the end (suffix) of the string"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "string_get_character",
+                        "alias": "get_character",
+                        "tooltip": "Get the character at the specified position of the string"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "string_get_substring",
+                        "alias": "get_substring",
+                        "tooltip": "Get a substring of a string, giving a start position and an end position"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "string_size",
+                        "alias": "get_size",
+                        "tooltip": "Get the count of characters contained in the string"
+                    }
+                ]
+            },
+            {
+                "name": "string_append",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "append"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "string"
+                    }
+                ]
+            },
+            {
+                "name": "string_get_character",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "get_character"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "index"
+                    }
+                ]
+            },
+            {
+                "name": "string_get_substring",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "get_substring"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "start_index"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "end_index"
+                    }
+                ]
+            },
+            {
+                "name": "string_size",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "get_size"
+                    }
+                ]
+            },
+            {
+                "name": "input_output_call",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "input_output_print",
+                        "alias": "print",
+                        "tooltip": "Print the value of the given expression (text, number etc.)"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "input_output_input",
+                        "alias": "input",
+                        "tooltip": "Prompt the user with a text message and get user-input"
+                    }
+                ]
+            },
+            {
+                "name": "input_output_print",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "print"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr_list"
+                    }
+                ]
+            },
+            {
+                "name": "input_output_input",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "input"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "prompt_message"
+                    }
+                ]
+            },
+            {
+                "name": "math_call",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "math_pow",
+                        "alias": "pow",
+                        "tooltip": "Raise a number into a power"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "math_sqrt",
+                        "alias": "sqrt",
+                        "tooltip": "Get the square root of a number"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "math_round",
+                        "alias": "round",
+                        "tooltip": "Get the nearset integer to the given number"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "math_floor",
+                        "alias": "floor",
+                        "tooltip": "Get the greatest integer less than or equal to the given number"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "math_ceiling",
+                        "alias": "ceiling",
+                        "tooltip": "Get the least integer greater than or equal to the given number"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "math_sin",
+                        "alias": "sin",
+                        "tooltip": "Get the sin of the given angle in degrees"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "math_cos",
+                        "alias": "cos",
+                        "tooltip": "Get the cos of the given angle in degrees"
+                    }
+                ]
+            },
+            {
+                "name": "math_pow",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "pow"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "number"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "exponent"
+                    }
+                ]
+            },
+            {
+                "name": "math_sqrt",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "sqrt"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "number"
+                    }
+                ]
+            },
+            {
+                "name": "math_round",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "round"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "number"
+                    }
+                ]
+            },
+            {
+                "name": "math_floor",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "floor"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "number"
+                    }
+                ]
+            },
+            {
+                "name": "math_ceiling",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "ceiling"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "number"
+                    }
+                ]
+            },
+            {
+                "name": "math_sin",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "sin"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "number"
+                    }
+                ]
+            },
+            {
+                "name": "math_cos",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "cos"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "number"
+                    }
+                ]
+            },
+            {
+                "name": "if_stmt",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IF"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "condition_expr"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "stmts",
+                        "alias": "if_part"
+                    }
+                ]
+            },
+            {
+                "name": "if_else_stmt",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IF"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "condition_expr"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "stmts",
+                        "alias": "if_part"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "ELSE"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "stmts",
+                        "alias": "else_part"
+                    }
+                ]
+            },
+            {
+                "name": "while_stmt",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "WHILE"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "condition_expr"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "stmts",
+                        "alias": "while_part"
+                    }
+                ]
+            },
+            {
+                "name": "for_stmt",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "FOR"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "initialization_expr"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "condition_expr"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "step_expr"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "stmts",
+                        "alias": "for_part"
+                    }
+                ]
+            },
+            {
+                "name": "ident_list",
+                "list_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IDENT"
+                    }
+                ]
+            },
+            {
+                "name": "expr_list",
+                "list_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "arg"
+                    }
                 ]
             }
         ]
@@ -697,7 +1328,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -764,7 +1395,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -834,7 +1465,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "func_def_stmt",
+                                    "name": "func_def",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Define reusable code as a function"
@@ -989,7 +1620,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -1056,7 +1687,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -1151,7 +1782,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -1218,7 +1849,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -1288,7 +1919,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "func_def_stmt",
+                                    "name": "func_def",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Define reusable code as a function"
@@ -1443,7 +2074,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -1510,7 +2141,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -1580,7 +2211,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "func_def_stmt",
+                                    "name": "func_def",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Define reusable code as a function"
@@ -1843,7 +2474,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -1910,7 +2541,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -1980,7 +2611,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "func_def_stmt",
+                                    "name": "func_def",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Define reusable code as a function"
@@ -2056,7 +2687,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "func_def_stmt",
+                                    "name": "func_def",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Define reusable code as a function"
@@ -2134,7 +2765,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "func_def_stmt",
+                                    "name": "func_def",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Define reusable code as a function"
@@ -2360,7 +2991,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -2569,7 +3200,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -2874,7 +3505,7 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
-                                        "name": "func_def_stmt",
+                                        "name": "func_def",
                                         "isTerminal": false
                                     },
                                     "tooltip": "Define reusable code as a function"
@@ -3189,7 +3820,7 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
-                                        "name": "func_def_stmt",
+                                        "name": "func_def",
                                         "isTerminal": false
                                     },
                                     "tooltip": "Define reusable code as a function"
@@ -3504,7 +4135,7 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
-                                        "name": "func_def_stmt",
+                                        "name": "func_def",
                                         "isTerminal": false
                                     },
                                     "tooltip": "Define reusable code as a function"
@@ -3819,7 +4450,7 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
-                                        "name": "func_def_stmt",
+                                        "name": "func_def",
                                         "isTerminal": false
                                     },
                                     "tooltip": "Define reusable code as a function"
@@ -4134,7 +4765,7 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
-                                        "name": "func_def_stmt",
+                                        "name": "func_def",
                                         "isTerminal": false
                                     },
                                     "tooltip": "Define reusable code as a function"
@@ -4449,7 +5080,7 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
-                                        "name": "func_def_stmt",
+                                        "name": "func_def",
                                         "isTerminal": false
                                     },
                                     "tooltip": "Define reusable code as a function"
@@ -4755,7 +5386,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -5062,7 +5693,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -5288,7 +5919,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -5490,7 +6121,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -5674,7 +6305,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -5887,7 +6518,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "unary_minus",
+                                    "name": "unary_minus_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Negates the value of its operand"
@@ -5996,7 +6627,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -6209,7 +6840,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "unary_minus",
+                                    "name": "unary_minus_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Negates the value of its operand"
@@ -6318,7 +6949,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -6531,7 +7162,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "unary_minus",
+                                    "name": "unary_minus_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Negates the value of its operand"
@@ -6640,7 +7271,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -6853,7 +7484,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "unary_minus",
+                                    "name": "unary_minus_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Negates the value of its operand"
@@ -6962,7 +7593,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -7175,7 +7806,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "unary_minus",
+                                    "name": "unary_minus_expr",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Negates the value of its operand"
@@ -7284,7 +7915,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -7659,7 +8290,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -7981,7 +8612,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -8303,7 +8934,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -8625,7 +9256,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -8947,7 +9578,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -9269,7 +9900,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -9591,7 +10222,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -9782,7 +10413,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -9993,14 +10624,6 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "string_set_character",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "set_character",
-                                        "tooltip": "Set (Replace) a character in a position of the string to a new character"
-                                    },
-                                    {
-                                        "symbol": {
                                             "name": "string_size",
                                             "isTerminal": false
                                         },
@@ -10162,7 +10785,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -10373,14 +10996,6 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "string_set_character",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "set_character",
-                                        "tooltip": "Set (Replace) a character in a position of the string to a new character"
-                                    },
-                                    {
-                                        "symbol": {
                                             "name": "string_size",
                                             "isTerminal": false
                                         },
@@ -10542,7 +11157,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -10807,14 +11422,6 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "string_set_character",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "set_character",
-                                        "tooltip": "Set (Replace) a character in a position of the string to a new character"
-                                    },
-                                    {
-                                        "symbol": {
                                             "name": "string_size",
                                             "isTerminal": false
                                         },
@@ -10976,441 +11583,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
-                                            "isTerminal": false
-                                        },
-                                        "tooltip": "Define reusable code as a function"
-                                    }
-                                ],
-                                "selectedSymbol": 4,
-                                "type": "SelectionBlock"
-                            }
-                        }
-                    }
-                },
-                {
-                    "symbol": {
-                        "symbol": {
-                            "name": "string_method_call",
-                            "isTerminal": false
-                        },
-                        "tooltip": "Use a built-in string method"
-                    },
-                    "elems": [
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "IN STRING",
-                                    "isTerminal": true
-                                }
-                            },
-                            "type": "SimpleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "expr",
-                                    "isTerminal": false
-                                },
-                                "alias": "string"
-                            },
-                            "alternateSymbols": [
-                                {
-                                    "symbol": {
-                                        "name": "arith_expr",
-                                        "isTerminal": false
-                                    },
-                                    "tooltip": "Perform a mathematic operation"
-                                },
-                                {
-                                    "symbol": {
-                                        "name": "rel_expr",
-                                        "isTerminal": false
-                                    },
-                                    "tooltip": "An operator that compares the two operands and returns true or false"
-                                },
-                                {
-                                    "symbol": {
-                                        "name": "logical_expr",
-                                        "isTerminal": false
-                                    },
-                                    "tooltip": "An expression that evaluates to true or false"
-                                },
-                                {
-                                    "symbol": {
-                                        "name": "assign_expr",
-                                        "isTerminal": false
-                                    },
-                                    "tooltip": "Set a variable's value"
-                                },
-                                {
-                                    "symbol": {
-                                        "name": "call_expr",
-                                        "isTerminal": false
-                                    },
-                                    "tooltip": "Call a user-defined or built-in function/method"
-                                },
-                                {
-                                    "symbol": {
-                                        "name": "primary_expr",
-                                        "isTerminal": false
-                                    },
-                                    "tooltip": "An identifier or a constant"
-                                }
-                            ],
-                            "type": "SelectionBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "CALL",
-                                    "isTerminal": true
-                                }
-                            },
-                            "type": "SimpleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "string_set_character",
-                                    "isTerminal": false
-                                },
-                                "alias": "set_character",
-                                "tooltip": "Set (Replace) a character in a position of the string to a new character"
-                            },
-                            "elems": [
-                                {
-                                    "symbol": {
-                                        "symbol": {
-                                            "name": "set_character",
-                                            "isTerminal": true
-                                        }
-                                    },
-                                    "type": "SimpleBlock"
-                                },
-                                {
-                                    "symbol": {
-                                        "symbol": {
-                                            "name": "WITH",
-                                            "isTerminal": true
-                                        }
-                                    },
-                                    "type": "SimpleBlock"
-                                },
-                                {
-                                    "symbol": {
-                                        "symbol": {
-                                            "name": "expr",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "index"
-                                    },
-                                    "alternateSymbols": [
-                                        {
-                                            "symbol": {
-                                                "name": "arith_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Perform a mathematic operation"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "rel_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An operator that compares the two operands and returns true or false"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "logical_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An expression that evaluates to true or false"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "assign_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Set a variable's value"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "call_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Call a user-defined or built-in function/method"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "primary_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An identifier or a constant"
-                                        }
-                                    ],
-                                    "type": "SelectionBlock"
-                                },
-                                {
-                                    "symbol": {
-                                        "symbol": {
-                                            "name": "expr",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "character"
-                                    },
-                                    "alternateSymbols": [
-                                        {
-                                            "symbol": {
-                                                "name": "arith_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Perform a mathematic operation"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "rel_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An operator that compares the two operands and returns true or false"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "logical_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An expression that evaluates to true or false"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "assign_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Set a variable's value"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "call_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Call a user-defined or built-in function/method"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "primary_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An identifier or a constant"
-                                        }
-                                    ],
-                                    "type": "SelectionBlock"
-                                }
-                            ],
-                            "type": "Group",
-                            "generatedBy": {
-                                "symbol": {
-                                    "symbol": {
-                                        "name": "string_method",
-                                        "isTerminal": false
-                                    }
-                                },
-                                "alternateSymbols": [
-                                    {
-                                        "symbol": {
-                                            "name": "string_append",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "append",
-                                        "tooltip": "Append a string to the end (suffix) of the string"
-                                    },
-                                    {
-                                        "symbol": {
-                                            "name": "string_get_character",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "get_character",
-                                        "tooltip": "Get the character at the specified position of the string"
-                                    },
-                                    {
-                                        "symbol": {
-                                            "name": "string_get_substring",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "get_substring",
-                                        "tooltip": "Get a substring of a string, giving a start position and an end position"
-                                    },
-                                    {
-                                        "symbol": {
-                                            "name": "string_set_character",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "set_character",
-                                        "tooltip": "Set (Replace) a character in a position of the string to a new character"
-                                    },
-                                    {
-                                        "symbol": {
-                                            "name": "string_size",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "get_size",
-                                        "tooltip": "Get the count of characters contained in the string"
-                                    }
-                                ],
-                                "selectedSymbol": 3,
-                                "type": "SelectionBlock"
-                            }
-                        }
-                    ],
-                    "type": "Group",
-                    "generatedBy": {
-                        "symbol": {
-                            "symbol": {
-                                "name": "call_expr",
-                                "isTerminal": false
-                            },
-                            "tooltip": "Call a user-defined or built-in function/method"
-                        },
-                        "alternateSymbols": [
-                            {
-                                "symbol": {
-                                    "name": "input_output_call",
-                                    "isTerminal": false
-                                },
-                                "tooltip": "Use a built-in input/output function"
-                            },
-                            {
-                                "symbol": {
-                                    "name": "math_call",
-                                    "isTerminal": false
-                                },
-                                "tooltip": "Use a built-in math function"
-                            },
-                            {
-                                "symbol": {
-                                    "name": "string_method_call",
-                                    "isTerminal": false
-                                },
-                                "tooltip": "Use a built-in string method"
-                            },
-                            {
-                                "symbol": {
-                                    "name": "array_method_call",
-                                    "isTerminal": false
-                                },
-                                "tooltip": "Use a built-in array method"
-                            },
-                            {
-                                "symbol": {
-                                    "name": "user_function_call",
-                                    "isTerminal": false
-                                },
-                                "tooltip": "Use a user-defined function"
-                            }
-                        ],
-                        "selectedSymbol": 2,
-                        "type": "SelectionBlock",
-                        "generatedBy": {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "expr",
-                                    "isTerminal": false
-                                },
-                                "alias": "expr_stmt",
-                                "tooltip": "A single expression as a statement"
-                            },
-                            "alternateSymbols": [
-                                {
-                                    "symbol": {
-                                        "name": "arith_expr",
-                                        "isTerminal": false
-                                    },
-                                    "tooltip": "Perform a mathematic operation"
-                                },
-                                {
-                                    "symbol": {
-                                        "name": "rel_expr",
-                                        "isTerminal": false
-                                    },
-                                    "tooltip": "An operator that compares the two operands and returns true or false"
-                                },
-                                {
-                                    "symbol": {
-                                        "name": "logical_expr",
-                                        "isTerminal": false
-                                    },
-                                    "tooltip": "An expression that evaluates to true or false"
-                                },
-                                {
-                                    "symbol": {
-                                        "name": "assign_expr",
-                                        "isTerminal": false
-                                    },
-                                    "tooltip": "Set a variable's value"
-                                },
-                                {
-                                    "symbol": {
-                                        "name": "call_expr",
-                                        "isTerminal": false
-                                    },
-                                    "tooltip": "Call a user-defined or built-in function/method"
-                                },
-                                {
-                                    "symbol": {
-                                        "name": "primary_expr",
-                                        "isTerminal": false
-                                    },
-                                    "tooltip": "An identifier or a constant"
-                                }
-                            ],
-                            "selectedSymbol": 4,
-                            "type": "SelectionBlock",
-                            "generatedBy": {
-                                "symbol": {
-                                    "symbol": {
-                                        "name": "stmt",
-                                        "isTerminal": false
-                                    }
-                                },
-                                "alternateSymbols": [
-                                    {
-                                        "symbol": {
-                                            "name": "if_stmt",
-                                            "isTerminal": false
-                                        },
-                                        "tooltip": "Do something if a condition is true"
-                                    },
-                                    {
-                                        "symbol": {
-                                            "name": "if_else_stmt",
-                                            "isTerminal": false
-                                        },
-                                        "tooltip": "Do something if a condition is true, else do something else"
-                                    },
-                                    {
-                                        "symbol": {
-                                            "name": "while_stmt",
-                                            "isTerminal": false
-                                        },
-                                        "tooltip": "Do something while a condition is true"
-                                    },
-                                    {
-                                        "symbol": {
-                                            "name": "for_stmt",
-                                            "isTerminal": false
-                                        },
-                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
-                                    },
-                                    {
-                                        "symbol": {
-                                            "name": "expr",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "expr_stmt",
-                                        "tooltip": "A single expression as a statement"
-                                    },
-                                    {
-                                        "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -11545,14 +11718,6 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "string_set_character",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "set_character",
-                                        "tooltip": "Set (Replace) a character in a position of the string to a new character"
-                                    },
-                                    {
-                                        "symbol": {
                                             "name": "string_size",
                                             "isTerminal": false
                                         },
@@ -11714,7 +11879,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -12043,7 +12208,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -12423,7 +12588,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -12857,7 +13022,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -13237,7 +13402,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -13671,7 +13836,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -14105,7 +14270,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -14409,7 +14574,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -14761,7 +14926,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -15043,7 +15208,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -15234,7 +15399,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -15430,7 +15595,7 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
-                                        "name": "func_def_stmt",
+                                        "name": "func_def",
                                         "isTerminal": false
                                     },
                                     "tooltip": "Define reusable code as a function"
@@ -15450,7 +15615,7 @@ export let config = {
                 {
                     "symbol": {
                         "symbol": {
-                            "name": "func_def_stmt",
+                            "name": "func_def",
                             "isTerminal": false
                         },
                         "tooltip": "Define reusable code as a function"
@@ -15573,7 +15738,7 @@ export let config = {
                                         },
                                         {
                                             "symbol": {
-                                                "name": "func_def_stmt",
+                                                "name": "func_def",
                                                 "isTerminal": false
                                             },
                                             "tooltip": "Define reusable code as a function"
@@ -15640,7 +15805,7 @@ export let config = {
                                     },
                                     {
                                         "symbol": {
-                                            "name": "func_def_stmt",
+                                            "name": "func_def",
                                             "isTerminal": false
                                         },
                                         "tooltip": "Define reusable code as a function"
@@ -15710,7 +15875,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "func_def_stmt",
+                                    "name": "func_def",
                                     "isTerminal": false
                                 },
                                 "tooltip": "Define reusable code as a function"
@@ -15991,7 +16156,7 @@ export let config = {
                                 },
                                 {
                                     "symbol": {
-                                        "name": "func_def_stmt",
+                                        "name": "func_def",
                                         "isTerminal": false
                                     },
                                     "tooltip": "Define reusable code as a function"
@@ -16158,6 +16323,20 @@ config.darkTheme = {
             }
         },
         "Specific": {
+            "UMINUS": {
+                "Simple Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "#DCB962",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
             "MINUS": {
                 "Simple Block": {
                     "BackgroundColor": "transparent",
@@ -16560,6 +16739,32 @@ config.darkTheme = {
                     "BorderRadius": "10px"
                 }
             },
+            "return_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "RETURN": {
+                "Simple Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "#C57991",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
             "EQUALS": {
                 "Simple Block": {
                     "BackgroundColor": "transparent",
@@ -16828,7 +17033,7 @@ config.darkTheme = {
                     "BorderRadius": ""
                 }
             },
-            "func_def_stmt": {
+            "func_def": {
                 "Group Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -17056,7 +17261,7 @@ config.darkTheme = {
                     "BorderRadius": ""
                 }
             },
-            "unary_minus": {
+            "unary_minus_expr": {
                 "Group Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -17660,18 +17865,6 @@ config.darkTheme = {
                     "BorderRadius": ""
                 }
             },
-            "string_set_character": {
-                "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
-                    "BorderWidth": "",
-                    "BorderColor": "transparent",
-                    "BorderRadius": ""
-                }
-            }
         }
     },
     "Code Workspace": {
@@ -17842,6 +18035,7 @@ config.darkTheme = {
     "Source Text View Colors": {
         "(": "#ffffff",
         ")": "#ffffff",
+        "UMINUS": "#DCB962",
         "MINUS": "#DCB962",
         "PLUS": "#DCB962",
         "TIMES": "#DCB962",
@@ -17866,6 +18060,7 @@ config.darkTheme = {
         "false": "#C57991",
         "BREAK": "#C57991",
         "CONTINUE": "#C57991",
+        "RETURN": "#C57991",
         "EQUALS": "#DCB962",
         "FUNCTION": "#C57991",
         "OF": "#C57991",
@@ -17879,6 +18074,7 @@ config.darkTheme = {
         "FOR": "#C57991",
         ";": "#ffffff",
         "stmt": "#ffffff",
+        "def": "#ffffff",
         "expr": "#ffffff",
         "arith_expr": "#ffffff",
         "logical_expr": "#ffffff",
@@ -17898,11 +18094,11 @@ config.darkTheme = {
         "insert": "#ffffff",
         "push_back": "#ffffff",
         "set": "#ffffff",
-        "set_character": "#ffffff",
         "string_method": "#ffffff",
     },
     "Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
+        "defs":                 { "NewLine Between Blocks": true },
         "if_stmt":              [ "IF", "condition_expr", "$$_newline", "$$_tab", "if_part"],
         "if_else_stmt":         [ 
                                     "IF", "condition_expr", "$$_newline", "$$_tab", "if_part",
@@ -17910,13 +18106,19 @@ config.darkTheme = {
                                 ],
         "while_stmt":           [ "WHILE", "condition_expr", "$$_newline", "$$_tab", "while_part" ],
         "for_stmt":             [ "FOR", "initialization", "condition_expr", "step", "$$_newline", "$$_tab", "for_part" ],
-        "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
+        "func_def":             [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
         "ident_list":           { "NewLine Between Blocks": false },
         "expr_list":            { "NewLine Between Blocks": false },
         "element_list":         { "NewLine Between Blocks": false },
     },
     "Source Text Pretty Print": {
         "stmts": {
+            "Insert When Empty": [],
+            "Insert Before First Block": [],
+            "Insert Between Blocks": ["$$_newline"],
+            "Insert After Last Block": []
+        },
+        "defs": {
             "Insert When Empty": [],
             "Insert Before First Block": [],
             "Insert Between Blocks": ["$$_newline"],
@@ -17957,7 +18159,7 @@ config.darkTheme = {
                                             "FOR", "$$_(", "initialization_expr", "$$_;", "condition_expr", "$$_;", 
                                             "step_expr", "$$_)", "$$_{", "$$_newline", "$$_tab", "for_part", "$$_newline", "$$_}"
                                         ],
-        "func_def_stmt":                [
+        "func_def":                [
                                             "FUNCTION", "NAME", "OF", "$$_(", "ident_list", "$$_)", "$$_{",
                                             "$$_newline", "$$_tab", "stmts", "$$_newline", "$$_}"
                                         ],
@@ -17965,7 +18167,7 @@ config.darkTheme = {
         "assign_expr":                  [ "IDENT", "=", "expr" ],
         "user_function_call":           [ "CALL", "FUNCTION NAME", "WITH", "$$_(", "expr_list", "$$_)" ],
         "binary_arith_expr":            [ "$$_(", "expr", "arith_op", "expr", "$$_)" ],
-        "unary_minus":                  [ "-", "expr" ],
+        "unary_minus_expr":                  [ "-", "expr" ],
         "binary_logical_expr":          [ "$$_(", "expr", "logical_binary_op", "expr", "$$_)" ],
         "not_expr":                     [ "NOT", "expr" ],
         "ARRAY_CONST":                  [ "ARRAY", "WITH", "$$_(", "element_list", "$$_)" ],
@@ -17976,7 +18178,6 @@ config.darkTheme = {
         "string_append":                [ "append", "WITH", "$$_(", "string", "$$_)" ],
         "string_get_character":         [ "get_character", "WITH", "$$_(", "index", "$$_)" ],
         "string_get_substring":         [ "get_substring", "WITH", "$$_(", "start_index", "$$_,", "end_index", "$$_)" ],
-        "string_set_character":         [ "set_character", "WITH", "$$_(", "index", "$$_,", "character", "$$_)" ]
     }
 },
 
@@ -18134,6 +18335,20 @@ config.lightTheme = {
             }
         },
         "Specific": {
+            "UMINUS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "#0000FF",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
             "MINUS": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -18536,6 +18751,32 @@ config.lightTheme = {
                     "BorderRadius": "10px"
                 }
             },
+            "return_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "RETURN": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "#0000FF",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
             "EQUALS": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -18804,7 +19045,7 @@ config.lightTheme = {
                     "BorderRadius": ""
                 }
             },
-            "func_def_stmt": {
+            "func_def": {
                 "Group Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -19032,7 +19273,7 @@ config.lightTheme = {
                     "BorderRadius": ""
                 }
             },
-            "unary_minus": {
+            "unary_minus_expr": {
                 "Group Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -19636,18 +19877,6 @@ config.lightTheme = {
                     "BorderRadius": ""
                 }
             },
-            "string_set_character": {
-                "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
-                    "BorderWidth": "",
-                    "BorderColor": "transparent",
-                    "BorderRadius": ""
-                }
-            }
         }
     },
     "Code Workspace": {
@@ -19817,6 +20046,7 @@ config.lightTheme = {
     "Source Text View Colors": {
         "(": "#000000",
         ")": "#000000",
+        "UMINUS": "#000000",
         "MINUS": "#000000",
         "PLUS": "#000000",
         "TIMES": "#000000",
@@ -19841,6 +20071,7 @@ config.lightTheme = {
         "false": "#0000FF",
         "BREAK": "#0000FF",
         "CONTINUE": "#0000FF",
+        "RETURN": "#0000FF",
         "EQUALS": "#000000",
         "FUNCTION": "#0000FF",
         "OF": "#0000FF",
@@ -19854,6 +20085,7 @@ config.lightTheme = {
         "FOR": "#0000FF",
         ";": "#000000",
         "stmt": "#000000",
+        "def": "#000000",
         "expr": "#000000",
         "arith_expr": "#000000",
         "logical_expr": "#000000",
@@ -19873,7 +20105,6 @@ config.lightTheme = {
         "insert": "#000000",
         "push_back": "#000000",
         "set": "#000000",
-        "set_character": "#000000",
         "string_method": "#000000",
         "print": "#000000",
         "input": "#000000",
@@ -19887,6 +20118,7 @@ config.lightTheme = {
     },
     "Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
+        "defs":                 { "NewLine Between Blocks": true },
         "if_stmt":              [ "IF", "condition_expr", "$$_newline", "$$_tab", "if_part"],
         "if_else_stmt":         [ 
                                     "IF", "condition_expr", "$$_newline", "$$_tab", "if_part",
@@ -19894,13 +20126,19 @@ config.lightTheme = {
                                 ],
         "while_stmt":           [ "WHILE", "condition_expr", "$$_newline", "$$_tab", "while_part" ],
         "for_stmt":             [ "FOR", "initialization", "condition_expr", "step", "$$_newline", "$$_tab", "for_part" ],
-        "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
+        "func_def":             [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
         "ident_list":           { "NewLine Between Blocks": false },
         "expr_list":            { "NewLine Between Blocks": false },
         "element_list":         { "NewLine Between Blocks": false },
     },
     "Source Text Pretty Print": {
         "stmts": {
+            "Insert When Empty": [],
+            "Insert Before First Block": [],
+            "Insert Between Blocks": ["$$_newline"],
+            "Insert After Last Block": []
+        },
+        "defs": {
             "Insert When Empty": [],
             "Insert Before First Block": [],
             "Insert Between Blocks": ["$$_newline"],
@@ -19941,7 +20179,7 @@ config.lightTheme = {
                                             "FOR", "$$_(", "initialization_expr", "$$_;", "condition_expr", "$$_;", 
                                             "step_expr", "$$_)", "$$_{", "$$_newline", "$$_tab", "for_part", "$$_newline", "$$_}"
                                         ],
-        "func_def_stmt":                [
+        "func_def":                [
                                             "FUNCTION", "NAME", "OF", "$$_(", "ident_list", "$$_)", "$$_{",
                                             "$$_newline", "$$_tab", "stmts", "$$_newline", "$$_}"
                                         ],
@@ -19949,7 +20187,7 @@ config.lightTheme = {
         "assign_expr":                  [ "IDENT", "=", "expr" ],
         "user_function_call":               [ "CALL", "FUNCTION NAME", "WITH", "$$_(", "expr_list", "$$_)" ],
         "binary_arith_expr":            [ "$$_(", "expr", "arith_op", "expr", "$$_)" ],
-        "unary_minus":                  [ "-", "expr" ],
+        "unary_minus_expr":                  [ "-", "expr" ],
         "binary_logical_expr":             [ "$$_(", "expr", "logical_binary_op", "expr", "$$_)" ],
         "not_expr":                     [ "NOT", "expr" ],
         "ARRAY_CONST":                  [ "ARRAY", "WITH", "$$_(", "element_list", "$$_)" ],
@@ -19960,7 +20198,6 @@ config.lightTheme = {
         "string_append":                [ "append", "WITH", "$$_(", "string", "$$_)" ],
         "string_get_character":         [ "get_character", "WITH", "$$_(", "index", "$$_)" ],
         "string_get_substring":         [ "get_substring", "WITH", "$$_(", "start_index", "$$_,", "end_index", "$$_)" ],
-        "string_set_character":         [ "set_character", "WITH", "$$_(", "index", "$$_,", "character", "$$_)" ]
     }
 };
 
@@ -20098,6 +20335,20 @@ config.colorfulTheme = {
             }
         },
         "Specific": {
+            "UMINUS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
             "MINUS": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -20500,6 +20751,32 @@ config.colorfulTheme = {
                     "BorderRadius": ""
                 }
             },
+            "return_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "RETURN": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
             "EQUALS": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -20768,7 +21045,7 @@ config.colorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "func_def_stmt": {
+            "func_def": {
                 "Group Block": {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "10px",
@@ -20996,7 +21273,7 @@ config.colorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "unary_minus": {
+            "unary_minus_expr": {
                 "Group Block": {
                     "BackgroundColor": "#5B67A5",
                     "PaddingLeft": "",
@@ -21575,18 +21852,6 @@ config.colorfulTheme = {
                 }
             },
             "string_get_substring": {
-                "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "string_set_character": {
                 "Group Block": {
                     "BackgroundColor": "transparent",
                     "PaddingLeft": "0px",
@@ -21876,6 +22141,7 @@ config.colorfulTheme = {
     "Source Text View Colors": {
         "(": "#000000",
         ")": "#000000",
+        "UMINUS": "#000000",
         "MINUS": "#000000",
         "PLUS": "#000000",
         "TIMES": "#000000",
@@ -21900,6 +22166,7 @@ config.colorfulTheme = {
         "false": "#0000FF",
         "BREAK": "#0000FF",
         "CONTINUE": "#0000FF",
+        "RETURN": "#0000FF",
         "EQUALS": "#000000",
         "FUNCTION": "#0000FF",
         "OF": "#0000FF",
@@ -21913,6 +22180,7 @@ config.colorfulTheme = {
         "FOR": "#0000FF",
         ";": "#000000",
         "stmt": "#000000",
+        "def": "#000000",
         "expr": "#000000",
         "arith_expr": "#000000",
         "logical_expr": "#000000",
@@ -21932,7 +22200,6 @@ config.colorfulTheme = {
         "insert": "#000000",
         "push_back": "#000000",
         "set": "#000000",
-        "set_character": "#000000",
         "string_method": "#000000",
         "print": "#000000",
         "input": "#000000",
@@ -21946,6 +22213,7 @@ config.colorfulTheme = {
     },
     "Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
+        "defs":                 { "NewLine Between Blocks": true },
         "if_stmt":              [ "IF", "condition_expr", "$$_newline", "$$_tab", "if_part"],
         "if_else_stmt":         [ 
                                     "IF", "condition_expr", "$$_newline", "$$_tab", "if_part",
@@ -21953,13 +22221,19 @@ config.colorfulTheme = {
                                 ],
         "while_stmt":           [ "WHILE", "condition_expr", "$$_newline", "$$_tab", "while_part" ],
         "for_stmt":             [ "FOR", "initialization", "condition_expr", "step", "$$_newline", "$$_tab", "for_part" ],
-        "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
+        "func_def":             [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
         "ident_list":           { "NewLine Between Blocks": false },
         "expr_list":            { "NewLine Between Blocks": false },
         "element_list":         { "NewLine Between Blocks": false },
     },
     "Source Text Pretty Print": {
         "stmts": {
+            "Insert When Empty": [],
+            "Insert Before First Block": [],
+            "Insert Between Blocks": ["$$_newline"],
+            "Insert After Last Block": []
+        },
+        "defs": {
             "Insert When Empty": [],
             "Insert Before First Block": [],
             "Insert Between Blocks": ["$$_newline"],
@@ -22000,7 +22274,7 @@ config.colorfulTheme = {
                                             "FOR", "$$_(", "initialization_expr", "$$_;", "condition_expr", "$$_;", 
                                             "step_expr", "$$_)", "$$_{", "$$_newline", "$$_tab", "for_part", "$$_newline", "$$_}"
                                         ],
-        "func_def_stmt":                [
+        "func_def":                [
                                             "FUNCTION", "NAME", "OF", "$$_(", "ident_list", "$$_)", "$$_{",
                                             "$$_newline", "$$_tab", "stmts", "$$_newline", "$$_}"
                                         ],
@@ -22008,7 +22282,7 @@ config.colorfulTheme = {
         "assign_expr":                  [ "IDENT", "=", "expr" ],
         "user_function_call":               [ "CALL", "FUNCTION NAME", "WITH", "$$_(", "expr_list", "$$_)" ],
         "binary_arith_expr":            [ "$$_(", "expr", "arith_op", "expr", "$$_)" ],
-        "unary_minus":                  [ "-", "expr" ],
+        "unary_minus_expr":                  [ "-", "expr" ],
         "binary_logical_expr":             [ "$$_(", "expr", "logical_binary_op", "expr", "$$_)" ],
         "not_expr":                     [ "NOT", "expr" ],
         "ARRAY_CONST":                  [ "ARRAY", "WITH", "$$_(", "element_list", "$$_)" ],
@@ -22019,7 +22293,6 @@ config.colorfulTheme = {
         "string_append":                [ "append", "WITH", "$$_(", "string", "$$_)" ],
         "string_get_character":         [ "get_character", "WITH", "$$_(", "index", "$$_)" ],
         "string_get_substring":         [ "get_substring", "WITH", "$$_(", "start_index", "$$_,", "end_index", "$$_)" ],
-        "string_set_character":         [ "set_character", "WITH", "$$_(", "index", "$$_,", "character", "$$_)" ]
     }
 };
 
@@ -22157,6 +22430,20 @@ config.darkColorfulTheme = {
             }
         },
         "Specific": {
+            "UMINUS": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
             "MINUS": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -22559,6 +22846,32 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
+            "return_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "BorderWidth": "",
+                    "BorderColor": "#364D63",
+                    "BorderRadius": ""
+                }
+            },
+            "RETURN": {
+                "Simple Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
             "EQUALS": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -22827,7 +23140,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "func_def_stmt": {
+            "func_def": {
                 "Group Block": {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "10px",
@@ -23055,7 +23368,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "unary_minus": {
+            "unary_minus_expr": {
                 "Group Block": {
                     "BackgroundColor": "#5B67A5",
                     "PaddingLeft": "",
@@ -23645,18 +23958,6 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "string_set_character": {
-                "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
             "math_pow": {
                 "Group Block": {
                     "BackgroundColor": "#5B67A5",
@@ -23935,6 +24236,7 @@ config.darkColorfulTheme = {
     "Source Text View Colors": {
         "(": "#ffffff",
         ")": "#ffffff",
+        "UMINUS": "#DCB962",
         "MINUS": "#DCB962",
         "PLUS": "#DCB962",
         "TIMES": "#DCB962",
@@ -23959,6 +24261,7 @@ config.darkColorfulTheme = {
         "false": "#C57991",
         "BREAK": "#C57991",
         "CONTINUE": "#C57991",
+        "RETURN": "#C57991",
         "EQUALS": "#DCB962",
         "FUNCTION": "#C57991",
         "OF": "#C57991",
@@ -23972,6 +24275,7 @@ config.darkColorfulTheme = {
         "FOR": "#C57991",
         ";": "#ffffff",
         "stmt": "#ffffff",
+        "def": "#ffffff",
         "expr": "#ffffff",
         "arith_expr": "#ffffff",
         "logical_expr": "#ffffff",
@@ -23991,11 +24295,11 @@ config.darkColorfulTheme = {
         "insert": "#ffffff",
         "push_back": "#ffffff",
         "set": "#ffffff",
-        "set_character": "#ffffff",
         "string_method": "#ffffff",
     },
     "Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
+        "defs":                 { "NewLine Between Blocks": true },
         "if_stmt":              [ "IF", "condition_expr", "$$_newline", "$$_tab", "if_part"],
         "if_else_stmt":         [ 
                                     "IF", "condition_expr", "$$_newline", "$$_tab", "if_part",
@@ -24003,13 +24307,19 @@ config.darkColorfulTheme = {
                                 ],
         "while_stmt":           [ "WHILE", "condition_expr", "$$_newline", "$$_tab", "while_part" ],
         "for_stmt":             [ "FOR", "initialization", "condition_expr", "step", "$$_newline", "$$_tab", "for_part" ],
-        "func_def_stmt":        [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
+        "func_def":             [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
         "ident_list":           { "NewLine Between Blocks": false },
         "expr_list":            { "NewLine Between Blocks": false },
         "element_list":         { "NewLine Between Blocks": false },
     },
     "Source Text Pretty Print": {
         "stmts": {
+            "Insert When Empty": [],
+            "Insert Before First Block": [],
+            "Insert Between Blocks": ["$$_newline"],
+            "Insert After Last Block": []
+        },
+        "defs": {
             "Insert When Empty": [],
             "Insert Before First Block": [],
             "Insert Between Blocks": ["$$_newline"],
@@ -24050,7 +24360,7 @@ config.darkColorfulTheme = {
                                             "FOR", "$$_(", "initialization_expr", "$$_;", "condition_expr", "$$_;", 
                                             "step_expr", "$$_)", "$$_{", "$$_newline", "$$_tab", "for_part", "$$_newline", "$$_}"
                                         ],
-        "func_def_stmt":                [
+        "func_def":                [
                                             "FUNCTION", "NAME", "OF", "$$_(", "ident_list", "$$_)", "$$_{",
                                             "$$_newline", "$$_tab", "stmts", "$$_newline", "$$_}"
                                         ],
@@ -24058,7 +24368,7 @@ config.darkColorfulTheme = {
         "assign_expr":                  [ "IDENT", "=", "expr" ],
         "user_function_call":               [ "CALL", "FUNCTION NAME", "WITH", "$$_(", "expr_list", "$$_)" ],
         "binary_arith_expr":            [ "$$_(", "expr", "arith_op", "expr", "$$_)" ],
-        "unary_minus":                  [ "-", "expr" ],
+        "unary_minus_expr":                  [ "-", "expr" ],
         "binary_logical_expr":             [ "$$_(", "expr", "logical_binary_op", "expr", "$$_)" ],
         "not_expr":                     [ "NOT", "expr" ],
         "ARRAY_CONST":                  [ "ARRAY", "WITH", "$$_(", "element_list", "$$_)" ],
@@ -24069,6 +24379,5 @@ config.darkColorfulTheme = {
         "string_append":                [ "append", "WITH", "$$_(", "string", "$$_)" ],
         "string_get_character":         [ "get_character", "WITH", "$$_(", "index", "$$_)" ],
         "string_get_substring":         [ "get_substring", "WITH", "$$_(", "start_index", "$$_,", "end_index", "$$_)" ],
-        "string_set_character":         [ "set_character", "WITH", "$$_(", "index", "$$_,", "character", "$$_)" ]
     }
 };

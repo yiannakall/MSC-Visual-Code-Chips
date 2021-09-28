@@ -21,7 +21,6 @@ import { PasteCommand } from './EditorCommands/PasteCommand.js';
 import { DeleteCommand } from './EditorCommands/DeleteCommand.js';
 import { DeleteUntilPossibleCommand } from './EditorCommands/DeleteUntilPossibleCommand.js';
 import { DeleteAllCommand } from './EditorCommands/DeleteAllCommand.js';
-import { UndoRedoToolbar } from './UndoRedoToolbar/UndoRedoToolbar.js';
 import { DownloadAsFile } from '../Utils/Download.js';
 import { ToastMessage } from './EditorToastMessages/ToastMessage.js';
 import { RepetitionGroup } from './EditorElements/RepetitionGroup.js';
@@ -33,6 +32,10 @@ import { ApplyCssToStyle, Theme, Themeable, ThemeableProps } from './Theme.js';
 import { BeautifyCommand } from './EditorCommands/BeautifyCommand.js';
 import { ReduceCommand } from './EditorCommands/ReduceCommand.js';
 import { OptionalBlock } from './EditorElements/OptionalBlock.js';
+import { AstHost } from '../Generators/AstHost.js';
+import { ToJavascriptVisitor } from '../Generators/ToJavascriptVisitor.js';
+import { EditorToolbar } from './EditorToolbar.js';
+
 
 export class Editor {
 
@@ -51,12 +54,17 @@ export class Editor {
     clipboard;
     selected;
     
-    $undoRedoToolbarContainer;
-    undoToolbarVisible = false;
     undoToastMessageVisible = false;
     undoToastMessageDisabled = false;
     undoToastMessage;
-    undoToolbar;
+
+    editorToolbar;
+
+    static ViewMode = {
+        BlockView:      EditorElementViewMode.BlockView,
+        PureTextView:   EditorElementViewMode.PureTextView,
+        JsView:         'JsView'
+    }
 
     viewMode = EditorElementViewMode.BlockView;
 
@@ -215,6 +223,9 @@ export class Editor {
     static currId = 0;
     id;
 
+    onConvertToJs;
+    onExecute;
+
     constructor($container, language, toolboxInfo, themeJson){
         this.id = 'editor' + Editor.currId++;
 
@@ -230,7 +241,7 @@ export class Editor {
 
         this.SetUpToolbox_(toolboxInfo);
         this.SetWorkspace_DragAndDrop();
-        this.SetUpUndoToolbar_();
+        this.SetUpEditorToolbar_();
 
         this.Render();
         this.ApplyTheme();
@@ -348,7 +359,6 @@ export class Editor {
             },
             'Code Workspace': this.CreateCodeThemeStructure(),
             'Toolbox': this.toolbox.CreateThemeStructure(),
-            'Undo Redo Toolbar': UndoRedoToolbar.CreateThemeStructure(),
             'Context Menu': ContextMenu.CreateThemeStructure(),
             'Source Text View Colors': this.CreateSourceTextThemeStructure(),
             'Pretty Print': this.CreatePrettyPrintThemeStructure(true),
@@ -361,7 +371,6 @@ export class Editor {
     ApplyTheme() {
         this.ApplyCodeWorkspaceTheme(this.theme['Code Workspace']);
         this.toolbox.ApplyTheme(this.theme['Toolbox']);
-        this.undoToolbar.ApplyTheme(this.theme['Undo Redo Toolbar']);
 
         this.code.ForEachRec(elem => {
             elem.ApplyViewMode(this.viewMode);
@@ -401,9 +410,6 @@ export class Editor {
                 composite[themeable.id] = {};
 
                 for (let prop of themeable.themeable.props){
-                    if (specific && !specific[themeable.id])
-                        console.log(symbol.name);
-                    
                     if (specific && specific[themeable.id][prop] !== '' && specific[themeable.id][prop] !== undefined)
                         composite[themeable.id][prop] = specific[themeable.id][prop];
                     else if (general[themeable.id][prop] !== '' && general[themeable.id][prop] !== undefined)
@@ -453,27 +459,36 @@ export class Editor {
         this.$workspace = $('<div/>').addClass('workspace');
 
         this.$code = $('<div/>').addClass('code');
-        this.$contextMenuContainer = $('<div/>').addClass('context-menu-container');
-        this.$undoRedoToolbarContainer = $('<div/>').addClass('editor-undo-redo-toolbar-container');
+        this.$jsCode = $('<textarea readonly>').addClass('js-code');
+        this.$contextMenuContainer = $('<div/>').addClass('editor-context-menu-container');
         this.$toastMessages = $('<div/>').addClass('editor-toast-messages');
+        this.$workspaceAndToolbox = $('<div/>').addClass('workspace-and-toolbox');
+        this.$editorToolbarContainer = $('<div/>').addClass('editor-toolbar-container');
+
+        this.$editorToolbarContainer.click((e) => {
+            e.stopPropagation();
+
+            this.$contextMenuContainer.empty();
+        });
 
         this.$workspace.append(
-            this.$undoRedoToolbarContainer,
             this.$code,
+            this.$jsCode,
             this.$toastMessages,
             this.$contextMenuContainer
         );
+        this.$workspace.on('click', ()=> this.Select(undefined) );
 
         this.$toolboxspace = $('<div/>').addClass('toolboxspace');
+        
+        this.$workspaceAndToolbox.append(this.$toolboxspace, this.$workspace);
 
         this.$editor = $('<div/>').addClass('editor').attr('id', this.id);
-        this.$editor.append(this.$toolboxspace, this.$workspace);
+        this.$editor.append(this.$editorToolbarContainer, this.$workspaceAndToolbox);
         
         this.$editor.on('click', () => {
             this.$contextMenuContainer.empty();
-        });
-        this.$workspace.on('click', ()=> {
-            this.Select(undefined);
+            this.editorToolbar.CloseCurrentContextMenu();
         });
 
         this.$container.empty();
@@ -485,7 +500,7 @@ export class Editor {
         
         let EvHandler = (f) => {
             return () => {
-                if (this.viewMode === EditorElementViewMode.PureTextView)
+                if (this.viewMode !== EditorElementViewMode.BlockView)
                     return;
 
                 f();
@@ -514,22 +529,213 @@ export class Editor {
             .AddEventHandler( [Keys.CTRL, Keys.Z],                  EvHandler(() => this.EventHandler_Undo_()) )
             .AddEventHandler( [Keys.CTRL, Keys.Y],                  EvHandler(() => this.EventHandler_Redo_()) )
             .AddEventHandler( [Keys.CTRL, Keys.B],                  EvHandler(() => this.EventHandler_Beautify()) )
-            .AddEventHandler( [Keys.CTRL, Keys.M],                  () => this.EventHandler_ToggleViewMode() )
+            .AddEventHandler( [Keys.CTRL, Keys.Q],                  EvHandler(() => this.EventHandler_Execute()) )
         ;
     }
 
-    SetUpUndoToolbar_(){
-        this.undoToolbar = new UndoRedoToolbar(this.$undoRedoToolbarContainer);
-        this.undoToolbar.SetOnUndo( () => this.EventHandler_Undo_() );
-        this.undoToolbar.SetOnRedo( () => this.EventHandler_Redo_() );
-        
-        this.undoToolbar.SetOnShow(() => this.undoToolbarVisible = true );
+    SetUpEditorToolbar_(){
+        this.editorToolbar = new EditorToolbar(this.$editorToolbarContainer);
 
-        this.undoToolbar.SetOnHide(() => { 
-            this.undoToolbarVisible = false;
-            this.undoToastMessage?.Destroy();
-            this.undoToastMessageVisible = false;
-        });
+        this.editorToolbar.AddContextMenu('File', [
+            [
+                {
+                    name:       'Import Visual Code',
+                    shortcut:   'Ctrl+L',
+                    disabled:   () => this.viewMode !== EditorElementViewMode.BlockView,
+                    needsFile:  true,
+                    handler:    (files) => this.EventHandler_LoadCode_(files)
+                },
+                {
+                    name:       'Download Visual Code',
+                    shortcut:   'Ctrl+S',
+                    disabled:   () => this.viewMode !== EditorElementViewMode.BlockView,
+                    handler:    () => this.EventHandler_DownloadCode_()
+                }
+            ],
+        ]);
+        this.editorToolbar.AddContextMenu('Edit', [
+            [
+                {
+                    name:       'Undo',
+                    shortcut:   'Ctrl+Z',
+                    disabled:   () => this.viewMode !== EditorElementViewMode.BlockView || !this.commands.GetUndoSize(),
+                    handler:    () => this.EventHandler_Undo_()
+                },
+                {
+                    name:       'Redo',
+                    shortcut:   'Ctrl+Y',
+                    disabled:   () => this.viewMode !== EditorElementViewMode.BlockView || !this.commands.GetRedoSize(),
+                    handler:    () => this.EventHandler_Redo_()
+                },
+            ],
+            [
+                {
+                    name:       'Cut',
+                    shortcut:   'Ctrl+X',
+                    disabled:   () => !this.CanCut(this.selected),
+                    handler:    () => this.EventHandler_Cut_()
+                },
+                {
+                    name:       'Copy',
+                    shortcut:   'Ctrl+C',
+                    disabled:   () => !this.CanCopy(this.selected),
+                    handler:    () => this.EventHandler_Copy_()
+                },
+                {
+                    name:       'Paste',
+                    shortcut:   'Ctrl+V',
+                    disabled:   () => !this.CanPaste(this.clipboard, this.selected),
+                    handler:    () => this.EventHandler_Paste_()
+                }
+            ],
+            [
+                {
+                    name:       'Beautify',
+                    shortcut:   'Ctrl+B',
+                    disabled:   () => this.viewMode !== EditorElementViewMode.BlockView,
+                    handler:    () => this.EventHandler_Beautify()
+                }
+            ],
+            [
+                {
+                    name:       'Show Productions',
+                    shortcut:   'Ctrl+G',
+                    disabled:   () => !this.selected,
+                    handler:    () => {
+                                    this.EventHandler_ShowGenerationPath();
+                                }
+                },
+            ],
+            [
+                { 
+                    name:       'Indent',
+                    shortcut:   'Tab',
+                    disabled:   () => !this.selected,
+                    handler:    () => this.EventHandler_Indent_()
+                },
+                {
+                    name:       'Outdent',
+                    shortcut:   () => 'Shift+Tab',
+                    disabled:   () => !this.CanOutdent(this.selected),
+                    handler:    () => this.EventHandler_Outdent_()
+                },
+                {
+                    name:       'Place In New Line',
+                    shortcut:   'Enter',
+                    disabled:   () => !this.selected,
+                    handler:    () => this.EventHandler_NewLine_()
+                },
+            ],
+            [
+                {
+                    name:       'Delete',
+                    shortcut:   'Del',
+                    disabled:   () => !this.CanRemoveElem(this.selected),
+                    handler:    () => this.EventHandler_Delete_()
+                },
+                { 
+                    name:       'Delete Until Possible',
+                    shortcut:   'Alt+Del',
+                    disabled:   () => !this.CanRemoveElem(this.selected),
+                    handler:    () => this.EventHandler_DeleteUntilPossible_()
+                },
+                {
+                    name:       'Reduce To',
+                    disabled:   () => !this.CanReduceElem(this.selected),
+                    options:    () => {
+                                    if (this.CanReduceElem(this.selected)){
+                                        return  [
+                                            this.GetGeneratedBys(this.selected).map(generatedBy => {
+                                                return {
+                                                    name: generatedBy.GetSymbol().alias || generatedBy.GetSymbol().symbol.name,
+                                                    disabled: false,
+                                                    handler: () => this.ExecuteCommand( new ReduceCommand(this, this.selected, generatedBy) )
+                                                };
+                                            })
+                                        ];
+                                    }
+                                }
+                },
+                {
+                    name:       'Delete All',
+                    shortcut:   'Ctrl+A+Del',
+                    disabled:   () => this.viewMode !== EditorElementViewMode.BlockView,
+                    handler:    () => this.EventHandler_DeleteAll_()
+                }
+            ],
+        ]);
+        
+        this.editorToolbar.AddButtonCategory([
+            {
+                class:      'editor-toolbar-undo-button',
+                handler:    () => {
+                    this.EventHandler_Undo_();
+                },
+                tooltip:    'Undo'
+            },
+            {
+                class:      'editor-toolbar-redo-button',
+                handler:    () => {
+                    this.EventHandler_Redo_();
+                },
+                tooltip:    'Redo'
+            },
+        ]);
+
+        this.editorToolbar.AddButtonCategory(
+            [
+                {
+                    class:      'editor-toolbar-blocks-button',
+                    handler:    () => {
+                        this.EventHandler_EnterBlockView();
+
+                        if (this.commands.GetUndoSize())    this.editorToolbar.EnableButton('editor-toolbar-undo-button');
+                        if (this.commands.GetRedoSize())    this.editorToolbar.EnableButton('editor-toolbar-redo-button');
+                    
+                        if (this.onExecute) this.editorToolbar.EnableButton('editor-toolbar-play-button');
+                    },
+                    tooltip:    'Visual Programming',
+                    selected:   true,
+                },
+                {
+                    class:      'editor-toolbar-source-code-button',
+                    handler:    () => {
+                        this.EventHandler_EnterSourceCodeView();
+
+                        this.editorToolbar.DisableButton('editor-toolbar-undo-button');
+                        this.editorToolbar.DisableButton('editor-toolbar-redo-button');
+                        this.editorToolbar.DisableButton('editor-toolbar-play-button');                    
+                    },
+                    tooltip:    'See the source code'
+                },
+                {
+                    class:      'editor-toolbar-js-button',
+                    handler:    () => {
+                        this.EventHandler_Enter_JavascriptView();
+
+                        this.editorToolbar.DisableButton('editor-toolbar-undo-button');
+                        this.editorToolbar.DisableButton('editor-toolbar-redo-button');
+                    
+                        if (this.onExecute) this.editorToolbar.EnableButton('editor-toolbar-play-button');
+                    },
+                    tooltip:    'See the JavasSript corresponding to the visual code'
+                },
+            ],
+            true
+        );
+
+        this.editorToolbar.AddButtonCategory([
+            {
+                class:      'editor-toolbar-play-button',
+                handler:    () => {
+                    this.EventHandler_Execute();
+                },
+                tooltip:    'Run'
+            },
+        ]);
+
+        this.editorToolbar.DisableButton('editor-toolbar-undo-button');
+        this.editorToolbar.DisableButton('editor-toolbar-redo-button');
     }
 
     SetUpToolbox_(toolboxInfo){
@@ -550,19 +756,20 @@ export class Editor {
             this.Select(undefined);
             
             this.$contextMenuContainer.empty();
+            this.editorToolbar.CloseCurrentContextMenu();
 
             let contextMenu = new ContextMenu(this.$contextMenuContainer, [
                 [
                     {
                         name: 'Undo',
                         shortcut: 'Ctrl+Z',
-                        disabled: this.viewMode === EditorElementViewMode.PureTextView || !this.commands.GetUndoSize(),
+                        disabled: this.viewMode !== EditorElementViewMode.BlockView || !this.commands.GetUndoSize(),
                         handler: () => this.EventHandler_Undo_()
                     },
                     {
                         name: 'Redo',
                         shortcut: 'Ctrl+Y',
-                        disabled: this.viewMode === EditorElementViewMode.PureTextView || !this.commands.GetRedoSize(),
+                        disabled: this.viewMode !== EditorElementViewMode.BlockView || !this.commands.GetRedoSize(),
                         handler: () => this.EventHandler_Redo_()
                     },
                 ],
@@ -570,28 +777,22 @@ export class Editor {
                     {
                         name: 'Import Visual Code',
                         shortcut: 'Ctrl+L',
-                        disabled: this.viewMode === EditorElementViewMode.PureTextView,
+                        disabled: this.viewMode !== EditorElementViewMode.BlockView,
                         needsFile: true,
                         handler: (files) => this.EventHandler_LoadCode_(files)
                     },
                     {
                         name: 'Download Visual Code',
                         shortcut: 'Ctrl+S',
+                        disabled: this.viewMode !== EditorElementViewMode.BlockView,
                         handler: () => this.EventHandler_DownloadCode_()
-                    }
-                ],
-                [
-                    {
-                        name: this.viewMode === EditorElementViewMode.BlockView ? 'View Code As Text' : 'View Code As Blocks',
-                        shortcut: 'Ctrl+M',
-                        handler: () => this.EventHandler_ToggleViewMode()
                     }
                 ],
                 [
                     {
                         name: 'Beautify',
                         shortcut: 'Ctrl+B',
-                        disabled: this.viewMode === EditorElementViewMode.PureTextView,
+                        disabled: this.viewMode !== EditorElementViewMode.BlockView,
                         handler: () => this.EventHandler_Beautify()
                     }
                 ],
@@ -599,7 +800,7 @@ export class Editor {
                     {
                         name: 'Delete All',
                         shortcut: 'Ctrl+A+Del',
-                        disabled: this.viewMode === EditorElementViewMode.PureTextView,
+                        disabled: this.viewMode !== EditorElementViewMode.BlockView,
                         handler: () => this.EventHandler_DeleteAll_()
                     }
                 ],
@@ -660,7 +861,7 @@ export class Editor {
     }
 
     CanReduceElem(elem) {
-        return !!elem.GetGeneratedBy();
+        return !!(elem?.GetGeneratedBy());
     }
 
     GetGeneratedBys(elem){
@@ -687,6 +888,8 @@ export class Editor {
     SetWorkspace_DragAndDrop() {
         this.toolbox.SetElem_OnDragStart((e, elem) => {
             this.$contextMenuContainer.empty();
+            this.editorToolbar.CloseCurrentContextMenu();
+
             this.draggedElem = elem;
             this.FillDropPlaceholder(this.draggedElem);
             this.HighlightValidPasteTargets(this.draggedElem);
@@ -722,6 +925,7 @@ export class Editor {
         elem.SetDraggable(false);
         elem.SetOnClick(() => {
             this.$contextMenuContainer.empty();
+            this.editorToolbar.CloseCurrentContextMenu();
             this.Select(undefined);
         });
     }
@@ -921,6 +1125,7 @@ export class Editor {
     SetElem_OnClick_(elem){
         elem.SetOnClick((e, elem) => {
             this.$contextMenuContainer.empty();
+            this.editorToolbar.CloseCurrentContextMenu();
             e.stopPropagation();
             
             if (elem.GetType() === EditorElementTypes.OptionalBlock){
@@ -945,6 +1150,7 @@ export class Editor {
             e.stopPropagation();
 
             this.$contextMenuContainer.empty();
+            this.editorToolbar.CloseCurrentContextMenu();
 
             this.Select(elem);
 
@@ -973,10 +1179,9 @@ export class Editor {
                     {
                         name: 'Show Productions',
                         shortcut: 'Ctrl+G',
+                        disabled: !this.selected,
                         handler: () => {
-                            this.generationPathPopup?.Destroy();
-                            this.generationPathPopup = new GenerationPathPopup(this.$workspace, this.selected);
-                            this.generationPathPopup.Render();
+                            this.EventHandler_ShowGenerationPath();
                         }
                     },
                 ],
@@ -1128,6 +1333,8 @@ export class Editor {
 
         elem.SetOnDragStart((e, elem) => {
             this.$contextMenuContainer.empty();
+            this.editorToolbar.CloseCurrentContextMenu();
+            
             this.draggedElem = elem;
             this.FillDropPlaceholder(this.draggedElem);
             this.HighlightValidPasteTargets(this.draggedElem);
@@ -1337,7 +1544,7 @@ export class Editor {
     }
 
     CanPaste(source, dest){
-        return source !== dest && !!this.FindCommonPredecessor(source, dest);
+        return source && dest && source !== dest && !!this.FindCommonPredecessor(source, dest);
     }
 
     NavigateIn() {
@@ -1447,19 +1654,19 @@ export class Editor {
     pendingCommand;
 
     ExecuteCommand(command){
-        if (!this.undoToastMessageDisabled && !this.undoToastMessageVisible && this.undoToolbarVisible){
+        if (this.commands.GetRedoSize() && !this.undoToastMessageDisabled && !this.undoToastMessageVisible){
             this.pendingCommand = command;
             this.AppendUndoToastMessage();
             return;
         }
 
-        if (this.undoToastMessageDisabled && this.undoToolbarVisible)
-            this.undoToolbar.Hide();
-
         if (this.undoToastMessageVisible)
             this.pendingCommand = command;
-        else
+        else{
             this.commands.ExecuteAndAppend(command);
+            this.editorToolbar.EnableButton('editor-toolbar-undo-button');
+            this.editorToolbar.DisableButton('editor-toolbar-redo-button');
+        }
     }
 
     AppendUndoToastMessage(){
@@ -1467,33 +1674,35 @@ export class Editor {
 
         this.undoToastMessage = new ToastMessage({
             type: ToastMessage.Types.Information,
-            title: 'Leaving Undo/Redo mode',
-            explanation:    `To edit you have to leave Undo/Redo mode. After editting, redo won't be available for the actions that 
+            title: 'Redo will not be available',
+            explanation:    `After editting, the redo action will not be available for the commands that 
                             are currently on your redo history`,
             buttons: [
                 {
                     name: 'Ok',
                     handler: (toastMessage) => {
-                        this.undoToolbar.Hide();
                         this.undoToastMessageVisible = false;
                         toastMessage.Destroy();
 
                         if(this.pendingCommand){
                             this.commands.ExecuteAndAppend(this.pendingCommand);
                             this.pendingCommand = undefined;
+                            this.editorToolbar.EnableButton('editor-toolbar-undo-button');
+                            this.editorToolbar.DisableButton('editor-toolbar-redo-button');
                         }
                     }
                 },
                 {
                     name: 'Ok and don\'t show this again',
                     handler: (toastMessage) => { 
-                        this.undoToolbar.Hide();
                         this.undoToastMessageVisible = false, this.undoToastMessageDisabled = true; 
                         toastMessage.Destroy();
 
                         if(this.pendingCommand){
                             this.commands.ExecuteAndAppend(this.pendingCommand);
                             this.pendingCommand = undefined;
+                            this.editorToolbar.EnableButton('editor-toolbar-undo-button');
+                            this.editorToolbar.DisableButton('editor-toolbar-redo-button');
                         }
                     }
                 },
@@ -1513,17 +1722,6 @@ export class Editor {
         });
 
         this.AppendToastMessage(this.undoToastMessage);
-    }
-
-    UpdateUndoToolbar(){
-        this.undoToolbar.SetUndoNumber(this.commands.GetUndoSize());
-        this.undoToolbar.SetRedoNumber(this.commands.GetRedoSize());
-        
-        let undoCommand = this.commands.GetCurrentUndo();
-        this.undoToolbar.SetUndoDescription( undoCommand ? `Undo "${undoCommand.description}"` : '-' );
-
-        let redoCommand = this.commands.GetCurrentRedo();
-        this.undoToolbar.SetRedoDescription( redoCommand ? `Redo "${redoCommand.description}"` : '-' );
     }
     
     AppendToastMessage(toastMessage, expirationTime, expirationCb){
@@ -1755,65 +1953,161 @@ export class Editor {
 
     EventHandler_Undo_(){
         if (this.commands.GetUndoSize()){
-            this.undoToolbar.Show();
             this.commands.Undo();
-            this.UpdateUndoToolbar();
+
+            if (!this.commands.GetUndoSize()){
+                this.editorToolbar.DisableButton('editor-toolbar-undo-button');
+            }
+
+            this.editorToolbar.EnableButton('editor-toolbar-redo-button');
         }
     }
 
     EventHandler_Redo_(){
         if (this.commands.GetRedoSize()){
-            this.undoToolbar.Show();
             this.commands.Redo();
-            this.UpdateUndoToolbar();
+
+            if (!this.commands.GetRedoSize()){
+                this.editorToolbar.DisableButton('editor-toolbar-redo-button');
+            }
+
+            this.editorToolbar.EnableButton('editor-toolbar-undo-button');
         }
     }
 
     sourceTextPrettyPrintElements = [];
 
-    EventHandler_ToggleViewMode(){
-        this.viewMode === EditorElementViewMode.PureTextView ?
-            this.viewMode = EditorElementViewMode.BlockView :
-            this.viewMode = EditorElementViewMode.PureTextView;
+    EventHandler_EnterBlockView(){
+        if (this.viewMode === EditorElementViewMode.BlockView) return;
+        
+        this.ExitFromJavascriptView();
+
+        this.viewMode = EditorElementViewMode.BlockView;
 
         this.code.ForEachRec( elem => {
             if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab)
-                elem.GetWholeView().toggleClass('hidden');
+                elem.GetWholeView().removeClass('hidden');
         });
 
         if (this.theme['Source Text Pretty Print']){
-            if (this.viewMode === EditorElementViewMode.PureTextView){
-                
-                this.code.ForEachRec(
-                    elem => {
-                        let ppElems = this.ApplyPrettyPrint(
-                            elem,
-                            this.theme['Source Text Pretty Print'],
-                            EditorElementViewMode.PureTextView
-                        );
-
-                        if (ppElems)
-                            this.sourceTextPrettyPrintElements.push( ...ppElems.map(tupple => tupple.indentationChar) );
-                    }
-                );
-
-            }
-            else{
-
-                for (let ppElem of this.sourceTextPrettyPrintElements)
-                    ppElem.GetParent().RemoveElem(ppElem);
+            for (let ppElem of this.sourceTextPrettyPrintElements)
+                ppElem.GetParent().RemoveElem(ppElem);
             
-                this.sourceTextPrettyPrintElements = [];
-
-            }
+            this.sourceTextPrettyPrintElements = [];
         }
+
+        this.code.ForEachRec( elem => elem.ApplyViewMode(this.viewMode));
+    }
+
+    EventHandler_EnterSourceCodeView(){
+        if (this.viewMode === EditorElementViewMode.PureTextView) return;
         
+        this.ExitFromJavascriptView();
+        this.Select(undefined);
+
+        this.viewMode = EditorElementViewMode.PureTextView;
+
         this.code.ForEachRec( elem => {
-            elem.ApplyViewMode(this.viewMode);
+            if (elem.GetType() === EditorElementTypes.NewLine || elem.GetType() === EditorElementTypes.Tab)
+                elem.GetWholeView().addClass('hidden');
         });
+
+        if (this.theme['Source Text Pretty Print']){
+            this.code.ForEachRec(
+                elem => {
+                    let ppElems = this.ApplyPrettyPrint(
+                        elem,
+                        this.theme['Source Text Pretty Print'],
+                        EditorElementViewMode.PureTextView
+                    );
+
+                    if (ppElems)
+                        this.sourceTextPrettyPrintElements.push( ...ppElems.map(tupple => tupple.indentationChar) );
+                }
+            );
+        }
+
+        this.code.ForEachRec( elem => elem.ApplyViewMode(this.viewMode) );
+    }
+
+    EventHandler_Enter_JavascriptView(){
+        if (!this.onConvertToJs)                        return;
+        if (this.viewMode == Editor.ViewMode.JsView)    return;
+
+        this.EventHandler_EnterBlockView();
+
+        this.viewMode = Editor.ViewMode.JsView;
+
+        let code = EditorElementParser.FromJson( this.code.ToJsonRec(), (elem) => {
+            if (elem.GetType() === EditorElementTypes.Group || elem.GetType() === EditorElementTypes.RepetitionGroup){
+                elem.elems = elem.elems.filter(elem =>
+                    elem.GetType() !== EditorElementTypes.NewLine &&
+                    elem.GetType() !== EditorElementTypes.Tab
+                );
+            }
+        });
+
+        let js = this.onConvertToJs(code);
+
+        this.$code.hide();
+        this.$jsCode.show().val(js);
+    }
+
+    ExitFromJavascriptView(){
+        if (this.viewMode !== Editor.ViewMode.JsView) return;
+
+        this.$code.show();
+        this.$jsCode.hide().val('');
     }
 
     EventHandler_Beautify(){
         this.ExecuteCommand( new BeautifyCommand(this) );
+    }
+
+    SetOnExecute(f){
+        this.onExecute = f;
+    }
+
+    SetOnConvertToJs(f){
+        this.onConvertToJs = f;
+    }
+
+    EventHandler_Execute(){
+        if (this.onExecute){
+            let code = EditorElementParser.FromJson( this.code.ToJsonRec(), (elem) => {
+                if (elem.GetType() === EditorElementTypes.Group || elem.GetType() === EditorElementTypes.RepetitionGroup){
+                    elem.elems = elem.elems.filter(elem =>
+                        elem.GetType() !== EditorElementTypes.NewLine &&
+                        elem.GetType() !== EditorElementTypes.Tab
+                    );
+                }
+            });
+
+            this.onExecute(code);           
+        }
+    }
+
+    EventHandler_ShowGenerationPath() {
+        this.generationPathPopup?.Destroy();
+        this.generationPathPopup = new GenerationPathPopup(this.$workspace, this.selected);
+        
+        this.generationPathPopup.SetOnClose(() => {
+            this.editorToolbar.EnableButton('editor-toolbar-blocks-button');
+            this.editorToolbar.EnableButton('editor-toolbar-source-code-button');
+
+            if (this.commands.GetUndoSize())    this.editorToolbar.EnableButton('editor-toolbar-undo-button');
+            if (this.commands.GetRedoSize())    this.editorToolbar.EnableButton('editor-toolbar-redo-button');
+            if (this.onExecute)                 this.editorToolbar.EnableButton('editor-toolbar-play-button');
+            if (this.onConvertToJs)             this.editorToolbar.EnableButton('editor-toolbar-js-button');
+        });
+
+        this.editorToolbar.DisableButton('editor-toolbar-blocks-button');
+        this.editorToolbar.DisableButton('editor-toolbar-source-code-button');
+        this.editorToolbar.DisableButton('editor-toolbar-undo-button');
+        this.editorToolbar.DisableButton('editor-toolbar-redo-button');
+        this.editorToolbar.DisableButton('editor-toolbar-play-button');
+        this.editorToolbar.DisableButton('editor-toolbar-js-button');
+
+        this.generationPathPopup.Render();
     }
 }

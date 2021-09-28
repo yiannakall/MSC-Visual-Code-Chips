@@ -2,9 +2,11 @@ non_terminal {
     program
     stmts
     stmt
-    if_stmt if_else_stmt while_stmt expr func_def_stmt break_stmt continue_stmt
+    defs
+    def
+    if_stmt if_else_stmt while_stmt for_stmt expr func_def break_stmt continue_stmt return_stmt
     arith_expr rel_expr logical_expr assign_expr call_expr primary_expr
-    binary_arith_expr unary_minus
+    binary_arith_expr unary_minus_expr
     arith_op rel_op logical_binary_op
     binary_logical_expr not_expr
     BOOL_CONST_ ARRAY_CONST
@@ -12,29 +14,33 @@ non_terminal {
     ident_list expr_list element_list
     array_method string_method
     array_get array_insert array_push_back array_set array_size
-    string_append string_get_character string_get_substring string_set_character string_size
+    string_append string_get_character string_get_substring string_size
     input_output_print input_output_input
     math_pow math_sqrt math_round math_floor math_ceiling math_sin math_cos
 }
 
 terminal {
-    PLUS MINUS TIMES BY MODULO
+    PLUS MINUS TIMES BY MODULO UMINUS
     GREATER LESS EQUAL_TO NOT_EQUAL_TO GREATER_EQUAL LESS_EQUAL
     AND OR NOT
     EQUALS
     true false
-    IF ELSE WHILE FOR BREAK CONTINUE
+    IF ELSE WHILE FOR BREAK CONTINUE RETURN
     CALL FUNCTION OF WITH
     ARRAY "IN ARRAY"
     get insert push_back set get_size
     "IN STRING"
-    append get_character get_substring set_character
+    append get_character get_substring
     print input
     pow sqrt round floor ceiling sin cos
 }
 
 define program {
-    stmts
+    defs
+}
+
+define defs {
+    list_of def
 }
 
 define stmts {
@@ -43,95 +49,103 @@ define stmts {
 
 define stmt {
     any_of {
-        if_stmt                : "Do something if a condition is true"
-        if_else_stmt           : "Do something if a condition is true, else do something else"
-        while_stmt             : "Do something while a condition is true"
-        expr(expr_stmt)        : "A single expression as a statement"
-        func_def_stmt          : "Define reusable code as a function"
-        break_stmt             : "Exit from the current loop"
-        continue_stmt          : "Continue to the next iteration of the current loop"
+        if_stmt                 : "Do something if a condition is true"
+        if_else_stmt            : "Do something if a condition is true, else do something else"
+        while_stmt              : "Do something while a condition is true"
+        for_stmt              : "Do something while a condition is true. Commonly used with a known number of iterations."
+        expr(expr_stmt)         : "A single expression as a statement"
+        break_stmt              : "Exit from the current loop"
+        continue_stmt           : "Continue to the next iteration of the current loop"
+        return_stmt             : "Return an expression as the result of the current function"
+    }
+}
+
+define def {
+    any_of {
+        stmt
+        func_def           : "Define reusable code as a function"
     }
 }
 
 define expr {
     any_of {
-        arith_expr             : "Perform a mathematic operation"
-        rel_expr               : "An operator that compares the two operands and returns true or false"
-        logical_expr           : "An expression that evaluates to true or false"
-        assign_expr            : "Set a variable's value"
-        call_expr              : "Call a user-defined or built-in function/method"
-        primary_expr           : "An identifier or a constant"
+        arith_expr              : "Perform a mathematic operation"
+        rel_expr                : "An operator that compares the two operands and returns true or false"
+        logical_expr            : "An expression that evaluates to true or false"
+        assign_expr             : "Set a variable's value"
+        call_expr               : "Call a user-defined or built-in function/method"
+        primary_expr            : "An identifier or a constant"
     }
 }
 
 define arith_expr {
     any_of {
-        binary_arith_expr      : "An arithmetic expression with two operands"
-        unary_minus            : "Negates the value of its operand"
+        binary_arith_expr       : "An arithmetic expression with two operands"
+        unary_minus_expr             : "Negates the value of its operand"
     }
 }
 
 define binary_arith_expr {
-    expr                   : "The first operand"
-    arith_op               : "An arithmetic operator (e.g. +, -)"
-    expr                   : "The second operand"
+    expr                    : "The first operand"
+    arith_op                : "An arithmetic operator (e.g. +, -)"
+    expr                    : "The second operand"
 }
 
-define unary_minus {
-    MINUS("-")
+define unary_minus_expr {
+    UMINUS("-")
     expr
 }
 
 define arith_op {
     any_of {
-        PLUS("+")                  : "Performs addition"
-        MINUS("-")                 : "Performs subtraction"
-        TIMES("*")                 : "Performs multipliction"
-        BY("/")                    : "Performs division"
-        MODULO("%")                : "Performs the modulo operation"
+        PLUS("+")                   : "Performs addition"
+        MINUS("-")                  : "Performs subtraction"
+        TIMES("*")                  : "Performs multipliction"
+        BY("/")                     : "Performs division"
+        MODULO("%")                 : "Performs the modulo operation"
     }
 }
 
 define rel_expr {
-    expr                   : "The first operand"
-    rel_op                 : "A comparison operator that returns true or false (e.g <, >)"
-    expr                   : "The second operand"
+    expr                    : "The first operand"
+    rel_op                  : "A comparison operator that returns true or false (e.g <, >)"
+    expr                    : "The second operand"
 }
 
 define rel_op {
     any_of {
-        GREATER(">")               : "Returns true if the first operand is greater than the second operand, else returns false"
-        LESS("<")                  : "Returns true if the first operand is less than the second operand, else returns false"
-        EQUAL_TO("==")             : "Returns true if the first operand is equal to the second operand, else returns false"
-        NOT_EQUAL_TO("!=")         : "Returns true if the first operand not equal to the second operand, else returns false"
-        GREATER_EQUAL(">=")        : "Returns true if the first operand is greater than or equal to the second operand, else returns false"
-        LESS_EQUAL("<=")           : "Returns true if the first operand is less than or equal to the second operand, else returns false"    
+        GREATER(">")                : "Returns true if the first operand is greater than the second operand, else returns false"
+        LESS("<")                   : "Returns true if the first operand is less than the second operand, else returns false"
+        EQUAL_TO("==")              : "Returns true if the first operand is equal to the second operand, else returns false"
+        NOT_EQUAL_TO("!=")          : "Returns true if the first operand not equal to the second operand, else returns false"
+        GREATER_EQUAL(">=")         : "Returns true if the first operand is greater than or equal to the second operand, else returns false"
+        LESS_EQUAL("<=")            : "Returns true if the first operand is less than or equal to the second operand, else returns false"    
     }
 }
 
 define logical_expr {
     any_of {
-        binary_logical_expr    : "Performs a binary operation with two operands"
-        not_expr               : "Performs logical negation. True becomes false and false becomes true"
+        binary_logical_expr     : "Performs a binary operation with two operands"
+        not_expr                : "Performs logical negation. True becomes false and false becomes true"
     }
 }
 
 define binary_logical_expr {
-    expr                   : "The first operand"
-    logical_binary_op      : "Performs a binary operation with two operands"
-    expr                   : "The second operand"
+    expr                    : "The first operand"
+    logical_binary_op       : "Performs a binary operation with two operands"
+    expr                    : "The second operand"
 }
 
 define logical_binary_op {
     any_of {
-        AND                        : "Returns true if both operands are true, else returns false"
-        OR                         : "Returns true if either operand is true, else returns false"
+        AND                         : "Returns true if both operands are true, else returns false"
+        OR                          : "Returns true if either operand is true, else returns false"
     }
 }
 
 define not_expr {
-    NOT                    : "Returns true if the operand is false, else returns false"
-    expr                   : "The operand"
+    NOT                     : "Returns true if the operand is false, else returns false"
+    expr                    : "The operand"
 }
 
 define primary_expr {
@@ -155,11 +169,11 @@ define BOOL_CONST_ {
 
 define call_expr {
     any_of {
-        input_output_call      : "Use a built-in input/output function"
-        math_call              : "Use a built-in math function"
-        string_method_call     : "Use a built-in string method"
-        array_method_call      : "Use a built-in array method"
-        user_function_call     : "Use a user-defined function"
+        input_output_call       : "Use a built-in input/output function"
+        math_call               : "Use a built-in math function"
+        string_method_call      : "Use a built-in string method"
+        array_method_call       : "Use a built-in array method"
+        user_function_call      : "Use a user-defined function"
     }
 }
 
@@ -175,7 +189,7 @@ define assign_expr {
     IDENT EQUALS("=") expr
 }
 
-define func_def_stmt {
+define func_def {
     FUNCTION IDENT(NAME) OF ident_list stmts
 }
 
@@ -185,6 +199,11 @@ define break_stmt {
 
 define continue_stmt {
     CONTINUE
+}
+
+define return_stmt {
+    RETURN
+    expr
 }
 
 define user_function_call {
@@ -197,11 +216,11 @@ define array_method_call {
 
 define array_method {
     any_of { 
-        array_get(get)                 : "Get an element by its position in the array"
-        array_insert(insert)           : "Insert an element at a position in the array. Elements that previously were at the position, or after it, are moved one place to the right"
-        array_push_back(push_back)     : "Insert an element at the end of the array"
-        array_set(set)                 : "Set (Replace) an element in a position of the array to a new character"
-        array_size(get_size)           : "Get the count of elements in the array"
+        array_get(get)                  : "Get an element by its position in the array"
+        array_insert(insert)            : "Insert an element at a position in the array. Elements that previously were at the position, or after it, are moved one place to the right"
+        array_push_back(push_back)      : "Insert an element at the end of the array"
+        array_set(set)                  : "Set (Replace) an element in a position of the array to a new character"
+        array_size(get_size)            : "Get the count of elements in the array"
     }
 }
 
@@ -231,11 +250,10 @@ define string_method_call {
 
 define string_method {
     any_of {
-        string_append(append)                          : "Append a string to the end (suffix) of the string"
-        string_get_character(get_character)            : "Get the character at the specified position of the string"
-        string_get_substring(get_substring)            : "Get a substring of a string, giving a start position and an end position"
-        string_set_character(set_character)            : "Set (Replace) a character in a position of the string to a new character"
-        string_size(get_size)                          : "Get the count of characters contained in the string"
+        string_append(append)                           : "Get a new string with the argument string added to the end (suffix) of the original"
+        string_get_character(get_character)             : "Get the character at the specified position of the string"
+        string_get_substring(get_substring)             : "Get a substring of a string, giving a start position and an end position"
+        string_size(get_size)                           : "Get the count of characters contained in the string"
     }
 }
 
@@ -251,18 +269,14 @@ define string_get_substring {
     get_substring WITH expr(start_index) expr(end_index)
 }
 
-define string_set_character {
-    set_character WITH expr(index) expr(character)
-}
-
 define string_size {
     get_size
 }
 
 define input_output_call {
     any_of {
-        input_output_print(print)      : "Print the value of the given expression (text, number etc.)"
-        input_output_input(input)      : "Prompt the user with a text message and get user-input"
+        input_output_print(print)       : "Print the value of the given expression (text, number etc.)"
+        input_output_input(input)       : "Prompt the user with a text message and get user-input"
     }
 }
 
@@ -276,13 +290,13 @@ define input_output_input {
 
 define math_call {
     any_of {
-        math_pow(pow)                      : "Raise a number into a power"
-        math_sqrt(sqrt)                    : "Get the square root of a number"
-        math_round(round)                  : "Get the nearset integer to the given number"
-        math_floor(floor)                  : "Get the greatest integer less than or equal to the given number"
-        math_ceiling(ceiling)              : "Get the least integer greater than or equal to the given number"
-        math_sin(sin)                      : "Get the sin of the given angle in degrees"
-        math_cos(cos)                      : "Get the cos of the given angle in degrees"
+        math_pow(pow)                       : "Raise a number into a power"
+        math_sqrt(sqrt)                     : "Get the square root of a number"
+        math_round(round)                   : "Get the nearset integer to the given number"
+        math_floor(floor)                   : "Get the greatest integer less than or equal to the given number"
+        math_ceiling(ceiling)               : "Get the least integer greater than or equal to the given number"
+        math_sin(sin)                       : "Get the sin of the given angle in degrees"
+        math_cos(cos)                       : "Get the cos of the given angle in degrees"
     }
 }
 

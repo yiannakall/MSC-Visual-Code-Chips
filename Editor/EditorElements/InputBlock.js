@@ -140,6 +140,10 @@ export class InputBlock extends EditorElement {
         this.$input?.val(this.userInput_);
     }
 
+    GetText(){
+        return this.userInput_;
+    }
+
     SetOnInput(f){
         this.onInput = f;
     }

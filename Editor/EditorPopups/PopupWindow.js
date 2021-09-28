@@ -6,6 +6,8 @@ export class PopupWindow {
     
     title;
 
+    onClose;
+
     constructor($container, title){
         this.$container = $container;
         this.title = title;
@@ -40,7 +42,12 @@ export class PopupWindow {
         
         $headerBar.append($title, $buttons);
 
-        let $xButton = this.CreateHeaderButton_( 'close', () => this.Destroy() );
+        let $xButton = this.CreateHeaderButton_( 'close', () => {
+            this.Destroy();
+            
+            if (this.onClose)
+                this.onClose();
+        });
 
         $buttons.append($xButton);
 
@@ -64,6 +71,10 @@ export class PopupWindow {
     Destroy(){
         this.$popup?.remove();
         this.$popup = undefined;
+    }
+
+    SetOnClose(f){
+        this.onClose = f;
     }
 
 };
