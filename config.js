@@ -16186,6 +16186,18 @@ export let config = {
             "icon": "./Images/Toolbox/snipets.svg",
             "blocks": []
         }
+    ],
+    quickReplace: [
+        {
+            if_stmt:        ["if", "$$_condition", "$$_statements"],
+            if_else_stmt:   [ "if", "$$_condition", "$$_statements", "else", "statements" ],
+            while_stmt:     [ "while", "$$_condition", "$$_statements" ]
+        },
+        {
+            binary_arith_expr: ["$$_expr1", "op", "$$_expr2"],
+            binary_logical_expr: ["$$_expr1", "op", "$$_expr2"],
+            rel_expr: ["$$_expr1", "op", "$$_expr2"]
+        }
     ]
 };
 
@@ -18073,6 +18085,7 @@ config.darkTheme = {
         "WHILE": "#C57991",
         "FOR": "#C57991",
         ";": "#ffffff",
+        ",": "#ffffff",
         "stmt": "#ffffff",
         "def": "#ffffff",
         "expr": "#ffffff",
@@ -18186,7 +18199,7 @@ config.lightTheme = {
         "General": {
             "Group": {
                 "Group Block": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
                     "PaddingTop": "5px",
@@ -18198,7 +18211,7 @@ config.lightTheme = {
             },
             "RepetitionGroup": {
                 "Group Block": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
                     "PaddingTop": "5px",
@@ -18235,7 +18248,7 @@ config.lightTheme = {
             },
             "SimpleBlock": {
                 "Simple Block": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "4px",
                     "PaddingRight": "4px",
                     "PaddingTop": "5px",
@@ -18249,7 +18262,7 @@ config.lightTheme = {
             },
             "InputBlock": {
                 "Input Container": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "0px",
                     "PaddingRight": "0px",
                     "PaddingTop": "5px",
@@ -18259,7 +18272,7 @@ config.lightTheme = {
                     "BorderRadius": "10px"
                 },
                 "Input": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "0px",
                     "PaddingRight": "0px",
                     "PaddingTop": "0px",
@@ -18270,7 +18283,7 @@ config.lightTheme = {
             },
             "SelectionBlock": {
                 "Selection Block": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "2px",
                     "PaddingRight": "2px",
                     "PaddingTop": "5px",
@@ -18288,7 +18301,7 @@ config.lightTheme = {
                     "Height": "8px"
                 },
                 "Option Container": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "0",
                     "PaddingRight": "0",
                     "PaddingTop": "5px",
@@ -18697,7 +18710,7 @@ config.lightTheme = {
             },
             "true": {
                 "Simple Block": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
                     "PaddingTop": "5px",
@@ -18711,7 +18724,7 @@ config.lightTheme = {
             },
             "false": {
                 "Simple Block": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
                     "PaddingTop": "5px",
@@ -18725,7 +18738,7 @@ config.lightTheme = {
             },
             "BREAK": {
                 "Simple Block": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
                     "PaddingTop": "5px",
@@ -18739,7 +18752,7 @@ config.lightTheme = {
             },
             "CONTINUE": {
                 "Simple Block": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
                     "PaddingTop": "5px",
@@ -20084,6 +20097,7 @@ config.lightTheme = {
         "WHILE": "#0000FF",
         "FOR": "#0000FF",
         ";": "#000000",
+        ",": "#000000",
         "stmt": "#000000",
         "def": "#000000",
         "expr": "#000000",
@@ -20308,7 +20322,7 @@ config.colorfulTheme = {
                     "Height": "8px"
                 },
                 "Option Container": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "0",
                     "PaddingRight": "0",
                     "PaddingTop": "5px",
@@ -21161,13 +21175,13 @@ config.colorfulTheme = {
             },
             "rel_expr": {
                 "Group Block": {
-                    "BackgroundColor": "#5B80A5",
+                    "BackgroundColor": "#6C8DAE",
                     "PaddingLeft": "",
                     "PaddingRight": "",
                     "PaddingTop": "",
                     "PaddingBottom": "",
                     "BorderWidth": "",
-                    "BorderColor": "#364D63",
+                    "BorderColor": "#56718B",
                     "BorderRadius": ""
                 }
             },
@@ -21975,7 +21989,7 @@ config.colorfulTheme = {
     },
     "Code Workspace": {
         "Code Workspace": {
-            "BackgroundColor": "#FAFAFA"
+            "BackgroundColor": "#ffffff"
         },
         "Scrollbar": {
             "Width": "10px",
@@ -22063,7 +22077,7 @@ config.colorfulTheme = {
     },
     "Undo Redo Toolbar": {
         "Undo Button": {
-            "BackgroundColor": "#FAFAFA",
+            "BackgroundColor": "#ffffff",
             "FontColor": "black",
             "FontSize": "14px"
         },
@@ -22179,6 +22193,7 @@ config.colorfulTheme = {
         "WHILE": "#0000FF",
         "FOR": "#0000FF",
         ";": "#000000",
+        ",": "#000000",
         "stmt": "#000000",
         "def": "#000000",
         "expr": "#000000",
@@ -22403,7 +22418,7 @@ config.darkColorfulTheme = {
                     "Height": "8px"
                 },
                 "Option Container": {
-                    "BackgroundColor": "#FAFAFA",
+                    "BackgroundColor": "#ffffff",
                     "PaddingLeft": "1px",
                     "PaddingRight": "1px",
                     "PaddingTop": "5px",
@@ -23256,13 +23271,13 @@ config.darkColorfulTheme = {
             },
             "rel_expr": {
                 "Group Block": {
-                    "BackgroundColor": "#5B80A5",
+                    "BackgroundColor": "#6C8DAE",
                     "PaddingLeft": "",
                     "PaddingRight": "",
                     "PaddingTop": "",
                     "PaddingBottom": "",
                     "BorderWidth": "",
-                    "BorderColor": "#364D63",
+                    "BorderColor": "#56718B",
                     "BorderRadius": ""
                 }
             },
@@ -24274,6 +24289,7 @@ config.darkColorfulTheme = {
         "WHILE": "#C57991",
         "FOR": "#C57991",
         ";": "#ffffff",
+        ",": "#ffffff",
         "stmt": "#ffffff",
         "def": "#ffffff",
         "expr": "#ffffff",

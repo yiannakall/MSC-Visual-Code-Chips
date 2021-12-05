@@ -35,6 +35,7 @@ import { OptionalBlock } from './EditorElements/OptionalBlock.js';
 import { AstHost } from '../Generators/AstHost.js';
 import { ToJavascriptVisitor } from '../Generators/ToJavascriptVisitor.js';
 import { EditorToolbar } from './EditorToolbar.js';
+import { QuickReplaceCommand } from './EditorCommands/QuickReplaceCommand.js';
 
 
 export class Editor {
@@ -246,6 +247,9 @@ export class Editor {
         this.Render();
         this.ApplyTheme();
         console.log( this.CreateThemeStructure() );
+
+        this.productionPaths = this.language.ComputeReachabilityMatrix();
+        console.log(this.productionPaths);
     }
 
     IsCorrectTheme(theme){
@@ -447,6 +451,36 @@ export class Editor {
         this.theme = theme;
 
         return true;
+    }
+
+    quickReplace = {};
+
+    SetQuickReplace(quickReplace){
+        for (let interchangableSymbols of quickReplace){
+            for (let symbolName in interchangableSymbols){
+                let configDef = interchangableSymbols[symbolName];
+                let langDef = this.language.GetDefinition(symbolName);
+
+                if (langDef.symbols.length !== configDef.length){
+                    assert(false, `Wrong Quick Replace definition for ${symbolName}`);
+                    delete interchangableSymbols.symbolName;
+                }
+            }
+
+            for (let symbolName1 in interchangableSymbols){
+                if (!this.quickReplace[symbolName1])
+                    this.quickReplace[symbolName1] = {};
+
+                for (let symbolName2 in interchangableSymbols){
+                    if (symbolName1 !== symbolName2){
+                        this.quickReplace[symbolName1][symbolName2] =   [ 
+                            interchangableSymbols[symbolName1],
+                            interchangableSymbols[symbolName2]
+                        ];
+                    }
+                }
+            }
+        }
     }
 
     InitializeCode_(){
@@ -1154,84 +1188,119 @@ export class Editor {
 
             this.Select(elem);
 
-            let contextMenu = new ContextMenu(this.$contextMenuContainer, [
-                [
-                    {
-                        name: 'Cut',
-                        shortcut: 'Ctrl+X',
-                        disabled: !this.CanCut(this.selected),
-                        handler: () => this.EventHandler_Cut_()
-                    },
-                    {
-                        name: 'Copy',
-                        shortcut: 'Ctrl+C',
-                        disabled: !this.CanCopy(this.selected),
-                        handler: () => this.EventHandler_Copy_()
-                    },
-                    {
-                        name: 'Paste',
-                        shortcut: 'Ctrl+V',
-                        disabled: !this.CanPaste(this.clipboard, this.selected),
-                        handler: () => this.EventHandler_Paste_()
+            let category1 = [
+                {
+                    name: 'Cut',
+                    shortcut: 'Ctrl+X',
+                    disabled: !this.CanCut(this.selected),
+                    handler: () => this.EventHandler_Cut_()
+                },
+                {
+                    name: 'Copy',
+                    shortcut: 'Ctrl+C',
+                    disabled: !this.CanCopy(this.selected),
+                    handler: () => this.EventHandler_Copy_()
+                },
+                {
+                    name: 'Paste',
+                    shortcut: 'Ctrl+V',
+                    disabled: !this.CanPaste(this.clipboard, this.selected),
+                    handler: () => this.EventHandler_Paste_()
+                }
+            ];
+
+            let category2 = [
+                {
+                    name: 'Show Productions',
+                    shortcut: 'Ctrl+G',
+                    disabled: !this.selected,
+                    handler: () => {
+                        this.EventHandler_ShowGenerationPath();
                     }
-                ],
-                [
-                    {
-                        name: 'Show Productions',
-                        shortcut: 'Ctrl+G',
-                        disabled: !this.selected,
-                        handler: () => {
-                            this.EventHandler_ShowGenerationPath();
-                        }
-                    },
-                ],
-                [
-                    {
-                        name: 'Delete',
-                        shortcut: 'Del',
-                        disabled: !this.CanRemoveElem(this.selected),
-                        handler: () => this.EventHandler_Delete_()
-                    },
-                    { 
-                        name: 'Delete Until Possible',
-                        shortcut: 'Alt+Del',
-                        disabled: !this.CanRemoveElem(this.selected),
-                        handler: () => this.EventHandler_DeleteUntilPossible_()
-                    },
-                    {
-                        name: 'Reduce To',
-                        disabled: !this.CanReduceElem(this.selected),
-                        options: [
-                            this.GetGeneratedBys(elem)
-                                .map(generatedBy => {
-                                    return {
-                                        name: generatedBy.GetSymbol().alias || generatedBy.GetSymbol().symbol.name,
-                                        disabled: false,
-                                        handler: () => this.ExecuteCommand( new ReduceCommand(this, elem, generatedBy) )
-                                    };
-                                })
-                        ]
-                    },
-                ],
-                [
-                    { 
-                        name: 'Indent',
-                        shortcut: 'Tab',
-                        handler: () => this.EventHandler_Indent_()
-                    },
-                    {
-                        name: 'Outdent',
-                        shortcut: 'Shift+Tab',
-                        disabled: !this.CanOutdent(this.selected),
-                        handler: () => this.EventHandler_Outdent_()
-                    },
-                    {
-                        name: 'Place In New Line',
-                        shortcut: 'Enter',
-                        handler: () => this.EventHandler_NewLine_()
-                    },
-                ],
-            ]);
+                },
+            ]
+
+            let category3 = [
+                {
+                    name: 'Delete',
+                    shortcut: 'Del',
+                    disabled: !this.CanRemoveElem(this.selected),
+                    handler: () => this.EventHandler_Delete_()
+                },
+                { 
+                    name: 'Delete Until Possible',
+                    shortcut: 'Alt+Del',
+                    disabled: !this.CanRemoveElem(this.selected),
+                    handler: () => this.EventHandler_DeleteUntilPossible_()
+                },
+                {
+                    name: 'Reduce To',
+                    disabled: !this.CanReduceElem(this.selected),
+                    options: [
+                        this.GetGeneratedBys(elem)
+                            .map(generatedBy => {
+                                return {
+                                    name: generatedBy.GetSymbol().alias || generatedBy.GetSymbol().symbol.name,
+                                    disabled: false,
+                                    handler: () => this.ExecuteCommand( new ReduceCommand(this, elem, generatedBy) )
+                                };
+                            })
+                    ]
+                },
+            ];
+
+
+            let quickReplaceOptions = this.GetValidQuickReplacements(elem);
+
+            category3.push(
+                {
+                    name: 'Quick Replace With',
+                    disabled: !quickReplaceOptions.length,
+                    options: [
+                        quickReplaceOptions.map(symbolName => {
+                            return {
+                                name: symbolName,
+                                disabled: false,
+                                handler: () => this.ExecuteCommand(
+                                    new QuickReplaceCommand(
+                                        this,
+                                        elem,
+                                        this.CreateElem(
+                                            this.productionPaths
+                                                [(this.GetGeneratedBys(elem).pop() || elem).GetSymbol().symbol.name]
+                                                [symbolName]
+                                            .at(-1)
+                                            .Clone()
+                                        )
+                                    )
+                                )
+                            }
+                        })
+                    ]
+                }
+            );
+
+            let category4 = [
+                { 
+                    name: 'Indent',
+                    shortcut: 'Tab',
+                    handler: () => this.EventHandler_Indent_()
+                },
+                {
+                    name: 'Outdent',
+                    shortcut: 'Shift+Tab',
+                    disabled: !this.CanOutdent(this.selected),
+                    handler: () => this.EventHandler_Outdent_()
+                },
+                {
+                    name: 'Place In New Line',
+                    shortcut: 'Enter',
+                    handler: () => this.EventHandler_NewLine_()
+                },
+            ];
+
+            let options = [ category1, category2, category3, category4 ];
+            let contextMenu = new ContextMenu(this.$contextMenuContainer, options);
 
             contextMenu.Render();
             contextMenu.ApplyTheme(this.theme['Context Menu']);
@@ -1346,7 +1415,7 @@ export class Editor {
         });
 
         elem.SetOnDragEnter((e, elem) => {
-            if (this.FindCommonPredecessor(this.draggedElem, elem)){
+            if (this.CanPaste(this.draggedElem, elem)){
                 this.dropTarget = elem;
                 
                 this.RemoveDropPlaceholder();
@@ -1495,6 +1564,29 @@ export class Editor {
         return elem;
     }
 
+    CreateElemSequence(path){
+        let elem;
+
+        for (let i = 0; i < path.length; ++i){
+            let rhsSymbol = path[i];
+
+            if (!this.PeekElemType(rhsSymbol.symbol)) // the symbol does not exist as a block
+                continue;
+
+            let next = this.CreateElem(rhsSymbol);
+            
+            next.SetGeneratedBy( elem );
+            if (elem)
+                elem.SetSelectedSymbol(
+                    elem.GetAlternateSymbols().findIndex(sym=> rhsSymbol.symbol.name === sym.symbol.name)
+                );
+
+            elem = next;
+        }
+
+        return elem;
+    }
+
     CreateNewLine(){
         let nl = new NewLine();
         return nl;
@@ -1519,7 +1611,7 @@ export class Editor {
         this.Select(undefined);
 
         this.code.ForEachRec((elem) => {
-            if (this.FindCommonPredecessor(source, elem))
+            if (this.CanPaste(source, elem))
                 elem.GetCustomizableView().addClass('highlighted');
         });
     }
@@ -1528,23 +1620,29 @@ export class Editor {
         this.$code.find('.highlighted').removeClass('highlighted');
     }
 
-    FindCommonPredecessor(elem1, elem2){
-        if (!elem1?.GetSymbol || !elem2?.GetSymbol)
-            return null;
+    CanPaste(source, dest){
+        if (!source || !dest || source === dest)
+            return false;
 
-        for (let iter1 = elem1; iter1; iter1 = iter1.GetGeneratedBy()){
-            for (let iter2 = elem2; iter2; iter2 = iter2.GetGeneratedBy()){
-                let symbol1 = iter1.GetSymbol().symbol, symbol2 = iter2.GetSymbol().symbol;
-                if (symbol1.name === symbol2.name && symbol1.isTerminal === symbol2.isTerminal){
-                    return { elem1: iter1, elem2: iter2 };
-                }
-            }
-        }
-        return null;
+        if (!source?.GetSymbol || !dest?.GetSymbol)
+            return false;
+
+        let destRoot = this.GetGeneratedBys(dest).pop() || dest;
+
+        return !!this.productionPaths[destRoot.GetSymbol().symbol.name][source.GetSymbol().symbol.name];
     }
 
-    CanPaste(source, dest){
-        return source && dest && source !== dest && !!this.FindCommonPredecessor(source, dest);
+    GetValidQuickReplacements(elem){
+        let options = Object.keys(this.quickReplace[elem.GetSymbol().symbol.name] || {});
+        
+        return options.filter((option) => this.CanQuickReplace(elem, option));
+    }
+
+    CanQuickReplace(elem, replacementName){
+        let from = (this.GetGeneratedBys(elem).pop() || elem).GetSymbol().symbol.name;
+        let path = this.productionPaths[from][replacementName];
+        
+        return !!path;
     }
 
     NavigateIn() {

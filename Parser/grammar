@@ -52,7 +52,7 @@ define stmt {
         if_stmt                 : "Do something if a condition is true"
         if_else_stmt            : "Do something if a condition is true, else do something else"
         while_stmt              : "Do something while a condition is true"
-        for_stmt              : "Do something while a condition is true. Commonly used with a known number of iterations."
+        for_stmt                : "Do something while a condition is true. Commonly used with a known number of iterations."
         expr(expr_stmt)         : "A single expression as a statement"
         break_stmt              : "Exit from the current loop"
         continue_stmt           : "Continue to the next iteration of the current loop"

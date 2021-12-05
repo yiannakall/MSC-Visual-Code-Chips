@@ -22,7 +22,8 @@ $(document).ready(function () {
             {
                 languageJson:   codeChipsConfig.language,
                 themeJson:      codeChipsConfig.darkColorfulTheme,
-                toolboxJson:    codeChipsConfig.toolbox
+                toolboxJson:    codeChipsConfig.toolbox,
+                quickReplace:   codeChipsConfig.quickReplace
             }
         ),
         'Java Classes': CodeChips.Inject(
@@ -30,7 +31,8 @@ $(document).ready(function () {
             {
                 languageJson:   javaClassesConfig.language,
                 themeJson:      javaClassesConfig.darkTheme,
-                toolboxJson:    javaClassesConfig.toolbox
+                toolboxJson:    javaClassesConfig.toolbox,
+                quickReplace:   javaClassesConfig.quickReplace
             }
         ),
     };

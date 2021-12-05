@@ -291,6 +291,10 @@ export class SelectionBlock extends EditorElement {
         return this.symbol;
     }
 
+    GetAlternateSymbols(){
+        return this.alternateSymbols;
+    }
+
     SetEditable(editable){
         this.isEditable_ = !!editable;
     }

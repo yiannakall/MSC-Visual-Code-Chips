@@ -10,6 +10,7 @@ export class CodeChips {
             languageJson,
             themeJson,
             toolboxJson,
+            quickReplace
         }
     ){  
         let language = CodeChips.ParseLanguageJson_(languageJson);
@@ -19,6 +20,10 @@ export class CodeChips {
         }
         
         let editor = new Editor($container, language, toolboxJson, themeJson);
+
+        if (quickReplace){
+            editor.SetQuickReplace(quickReplace);
+        }
 
         return editor;
     }

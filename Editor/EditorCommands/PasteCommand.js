@@ -1,3 +1,4 @@
+import { AliasedGrammarSymbol } from "../../language.js";
 import { assert } from "../../Utils/Assert.js";
 import { EditorElementTypes } from "../EditorElements/EditorElement.js";
 import { EditorCommand } from "./EditorCommand.js";
@@ -5,6 +6,8 @@ import { EditorCommand } from "./EditorCommand.js";
 export class PasteCommand extends EditorCommand{
     source;
     dest;
+
+    pasteResult;
 
     destClone;
     newLine;
@@ -17,34 +20,57 @@ export class PasteCommand extends EditorCommand{
         }`);
 
         this.source = source, this.dest = dest;
+        
+        this.destRoot = this.editor.GetGeneratedBys(dest).pop() || dest;
     }
     
     Paste_(source, dest){
-        let preds = this.editor.FindCommonPredecessor(source, dest);
-        if (!preds) return false;
-
-        let {elem1: sourcePoint, elem2: destPoint} = preds;
+        let from = this.destRoot.GetSymbol().symbol.name, to = source.GetSymbol().symbol.name;
+        let path = this.editor.productionPaths[from][to];
         
-        sourcePoint.SetGeneratedBy(destPoint.GetGeneratedBy());
-        sourcePoint.GetSymbol().alias = destPoint.GetSymbol().alias;
+        if (!path){
+            assert(false);
+            return;
+        }
+
+        path = path.slice(0, path.length - 1); // everything but the last production step
+        path = path.map(rhsSymbol => rhsSymbol.Clone()); // blocks cannot have shared aliasedsymbols because of aliases and tooltips
+
+        let pathElem = this.editor.CreateElemSequence(path);
+
+        if (pathElem){
+            let root = this.editor.GetGeneratedBys(pathElem).pop() || pathElem;
+            root.GetSymbol().alias = this.destRoot.GetSymbol().alias;
+            root.GetSymbol().tooltip = this.destRoot.GetSymbol().tooltip;
+
+            pathElem.SetSelectedSymbol(
+                pathElem.GetAlternateSymbols().findIndex(sym=> to === sym.symbol.name)
+            );
+        }  
+
+        source.SetGeneratedBy(pathElem);
         dest.GetParent().InsertBeforeElem(dest, source);
         dest.GetParent().RemoveElem(dest);
 
-        return true;
+        return source;
+    }
+
+    GetPasteResult(){
+        return this.pasteResult;
     }
 
     Execute(){
-        let result = this.Paste_(this.source, this.dest);
-        assert(result);
+        this.pasteResult = this.Paste_(this.source, this.dest);
+        assert(this.pasteResult);
         
-        this.editor.Select(this.source);
+        this.editor.Select(this.pasteResult);
     }
 
     Undo(){
-        let parent = this.source.GetParent();
+        let parent = this.pasteResult.GetParent();
 
-        parent.InsertAfterElem(this.source, this.dest);
-        parent.RemoveElem(this.source);
+        parent.InsertAfterElem(this.pasteResult, this.dest);
+        parent.RemoveElem(this.pasteResult);
 
         this.editor.Select(this.dest);
     }
@@ -52,10 +78,10 @@ export class PasteCommand extends EditorCommand{
     Redo(){
         let parent = this.dest.GetParent();
 
-        parent.InsertBeforeElem(this.dest, this.source);
+        parent.InsertBeforeElem(this.dest, this.pasteResult);
         parent.RemoveElem(this.dest);
 
-        this.editor.Select(this.source);
+        this.editor.Select(this.pasteResult);
     }
     
 }

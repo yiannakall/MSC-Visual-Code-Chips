@@ -21,7 +21,7 @@ tokendef            : item_type id                                  { MP.ParseTo
 
 def                 : DEFINE id '{' ALL_OF '{' items '}' '}'        { $$ = MP.ParseDef($id, $ALL_OF, $items); }
                     | DEFINE id '{' items '}'                       { $$ = MP.ParseDef($id, "all_of", $items); }
-                    | DEFINE id '{' ANY_OF '{' items '}' '}'        { $$ = MP.ParseDef($id, $ANY_OF, $items); }
+                    | DEFINE id '{' ANY_OF '{' items '}' '}'        { $$ = MP.ParseDef($id, $ANY_OF, $items); }                    
                     | DEFINE id '{' LIST_OF '{' item '}' '}'        { $$ = MP.ParseDef($id, $LIST_OF, $item); }
                     | DEFINE id '{' LIST_OF item '}'                { $$ = MP.ParseDef($id, $LIST_OF, $item); }
                     | DEFINE id '{' OPTIONAL '{' item '}' '}'       { $$ = MP.ParseDef($id, $OPTIONAL, $item); }

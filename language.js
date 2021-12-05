@@ -243,4 +243,52 @@ export class Language {
     GetNonTerminals(){
         return this.nonTerminals;
     }
+
+    ComputeReachableSymbols(symbol){
+        let visited = {};
+        let paths = [];
+        let currPath = [];
+
+        let dfs = (rhsSymbol) => {
+            if (visited[rhsSymbol.symbol.name])     return;
+            else                                    visited[rhsSymbol.symbol.name] = true;
+
+            currPath.push(rhsSymbol), paths.push([...currPath]);
+
+            let def = this.GetDefinition(rhsSymbol.symbol);
+
+            if (def){
+                if (
+                    def.type === DefinitionRhs.Types.ANY_OF     || 
+                    def.type === DefinitionRhs.Types.OPTIONAL   ||
+                    def.type === DefinitionRhs.Types.ALL_OFF    && def.type === DefinitionRhs.Types.OPTIONAL
+                ){
+                    for (let rhsSymbol of def.symbols)
+                        dfs(rhsSymbol);
+                }
+            }
+
+            assert(rhsSymbol === currPath[currPath.length - 1]);
+            currPath.pop();
+        };
+
+        dfs(new AliasedGrammarSymbol(symbol));
+
+        return paths;
+    }
+
+    ComputeReachabilityMatrix(){
+        let m = {};
+
+        for (let symbol of [...this.nonTerminals, ...this.terminals]){
+            m[symbol.name] = {};
+
+            let paths = this.ComputeReachableSymbols(symbol);
+
+            for (let path of paths)
+                m[symbol.name][path[path.length - 1].symbol.name] = path;
+        }
+
+        return m;
+    }
 }
