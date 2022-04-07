@@ -27,7 +27,7 @@ terminal {
     ASSIGN PLUS_ASSIGN SUB_ASSIGN MULT_ASSIGN DIV_ASSIGN MOD_ASSIGN EXP_ASSIGN LEFT_SHIFT_ASSIGN RIGHT_SHIFT_ASSIGN UN_RIGHT_SHIFT_ASSIGN
     true false
     IF ELSE WHILE FOR BREAK CONTINUE RETURN
-    CALL FUNCTION OF WITH
+    CALL function OF WITH
     ARRAY "IN ARRAY"
     get insert push_back set get_size
     "IN STRING"
@@ -239,7 +239,7 @@ define assign_op {
 }
 
 define func_def {
-    FUNCTION IDENT(NAME) OF ident_list stmts
+    function IDENT(NAME) OF ident_list stmts
 }
 
 define break_stmt {

@@ -133,8 +133,8 @@ export let config = {
                     },
                     {
                         "type": "non_terminal",
-                        "name": "unary_minus_expr",
-                        "tooltip": "Negates the value of its operand"
+                        "name": "unary_expr",
+                        "tooltip": "Unary expression operator with single operand,either before or after the operator"
                     }
                 ]
             },
@@ -159,16 +159,93 @@ export let config = {
                 ]
             },
             {
-                "name": "unary_minus_expr",
-                "all_of": [
+                "name": "unary_expr",
+                "any_of": [
                     {
-                        "type": "terminal",
-                        "name": "UMINUS",
-                        "alias": "-"
+                        "type": "non_terminal",
+                        "name": "unary_expr_before",
+                        "tooltip": "The unary operator before the operand"
                     },
                     {
                         "type": "non_terminal",
-                        "name": "expr"
+                        "name": "unary_expr_after",
+                        "tooltip": "The unary operator after the operand"
+                    }
+                ]
+            },
+            {
+                "name": "unary_expr_after",
+                "all_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "tooltip": "The single operand"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "unary_op_af",
+                        "tooltip": "Unary operator with one operand"
+                    }
+                ]
+            },
+            {
+                "name": "unary_expr_before",
+                "all_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "unary_op_bf",
+                        "tooltip": "Unary operator with one operand"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "tooltip": "The single operand"
+                    }
+                ]
+            },
+            {
+                "name": "unary_op_af",
+                "any_of": [
+                    {
+                        "type": "terminal",
+                        "name": "PLUS_PLUS",
+                        "alias": "++",
+                        "tooltip": "Post-increament of the operand value by one"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "SUB_SUB",
+                        "alias": "--",
+                        "tooltip": "Post-decreament of the operand value by one"
+                    }
+                ]
+            },
+            {
+                "name": "unary_op_bf",
+                "any_of": [
+                    {
+                        "type": "terminal",
+                        "name": "UMINUS",
+                        "alias": "-",
+                        "tooltip": "Negates the value of its operand"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "UPLUS",
+                        "alias": "+",
+                        "tooltip": "Attempts to convert the operand to a number, if it is not already"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "PLUS_PLUS",
+                        "alias": "++",
+                        "tooltip": "Pre-increament of the operand value by one"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "SUB_SUB",
+                        "alias": "--",
+                        "tooltip": "Pre-decreament of the operand value by one"
                     }
                 ]
             },
@@ -183,19 +260,25 @@ export let config = {
                     },
                     {
                         "type": "terminal",
-                        "name": "MINUS",
+                        "name": "SUB",
                         "alias": "-",
                         "tooltip": "Performs subtraction"
                     },
                     {
                         "type": "terminal",
-                        "name": "TIMES",
+                        "name": "MULT",
                         "alias": "*",
                         "tooltip": "Performs multipliction"
                     },
                     {
                         "type": "terminal",
-                        "name": "BY",
+                        "name": "EXP",
+                        "alias": "**",
+                        "tooltip": "Performs Exponentation"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "DIV",
                         "alias": "/",
                         "tooltip": "Performs division"
                     },
@@ -250,9 +333,21 @@ export let config = {
                     },
                     {
                         "type": "terminal",
+                        "name": "EQUAL_VALUE_TYPE",
+                        "alias": "===",
+                        "tooltip": "Returns true if the first operand is equal and has the same type to the second operand, else returns false"
+                    },
+                    {
+                        "type": "terminal",
                         "name": "NOT_EQUAL_TO",
                         "alias": "!=",
                         "tooltip": "Returns true if the first operand not equal to the second operand, else returns false"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "NOT_EQUAL_VALUE_TYPE",
+                        "alias": "!==",
+                        "tooltip": "Returns true if the first operand not equal or has different type to the second operand, else returns false"
                     },
                     {
                         "type": "terminal",
@@ -309,11 +404,13 @@ export let config = {
                     {
                         "type": "terminal",
                         "name": "AND",
+                        "alias": "&&",
                         "tooltip": "Returns true if both operands are true, else returns false"
                     },
                     {
                         "type": "terminal",
                         "name": "OR",
+                        "alias": "||",
                         "tooltip": "Returns true if either operand is true, else returns false"
                     }
                 ]
@@ -324,6 +421,7 @@ export let config = {
                     {
                         "type": "terminal",
                         "name": "NOT",
+                        "alias": "!",
                         "tooltip": "Returns true if the operand is false, else returns false"
                     },
                     {
@@ -449,16 +547,83 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "IDENT"
-                    },
-                    {
-                        "type": "terminal",
-                        "name": "EQUALS",
-                        "alias": "="
+                        "name": "IDENT",
+                        "tooltip": "Left operand to be assigned"
                     },
                     {
                         "type": "non_terminal",
-                        "name": "expr"
+                        "name": "assign_op",
+                        "tooltip": "Assign operator, simple or with an operation "
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "tooltip": "Right operand"
+                    }
+                ]
+            },
+            {
+                "name": "assign_op",
+                "any_of": [
+                    {
+                        "type": "terminal",
+                        "name": "ASSIGN",
+                        "alias": "=",
+                        "tooltip": "Assigns the right operand to the left operand"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "PLUS_ASSIGN",
+                        "alias": "+=",
+                        "tooltip": "Sums up left and right operand values and assigns the result to the left operand"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "SUB_ASSIGN",
+                        "alias": "-=",
+                        "tooltip": "Subtract right operand value from the left operand value and assigns the result to the left operand"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "MULT_ASSIGN",
+                        "alias": "*=",
+                        "tooltip": "Multiply left and right operand values and assigns the result to the left operand"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "DIV_ASSIGN",
+                        "alias": "/=",
+                        "tooltip": "Divide left operand value by right operand value and assign the result to the left operand"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "MOD_ASSIGN",
+                        "alias": "%=",
+                        "tooltip": "Get the modulus of left operand divide by right operand and assign resulted modulus to the left operand"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "EXP_ASSIGN",
+                        "alias": "**=",
+                        "tooltip": "Raises the value of left operand to the power of the right operand and assign the result to the left operand"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "LEFT_SHIFT_ASSIGN",
+                        "alias": "<<=",
+                        "tooltip": "Moves the specified amount of bits(right operand) to the left and assigns the result to the left operand"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "RIGHT_SHIFT_ASSIGN",
+                        "alias": ">>=",
+                        "tooltip": "Moves the specified amount of bits(right operand) to the right and assigns the result to the left operand"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "UN_RIGHT_SHIFT_ASSIGN",
+                        "alias": ">>>=",
+                        "tooltip": "Unsigned -  moves the specified amount of bits to the right and assigns the result to the left operand"
                     }
                 ]
             },
@@ -467,7 +632,7 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "FUNCTION"
+                        "name": "function"
                     },
                     {
                         "type": "terminal",
@@ -718,7 +883,7 @@ export let config = {
                         "type": "non_terminal",
                         "name": "string_append",
                         "alias": "append",
-                        "tooltip": "Append a string to the end (suffix) of the string"
+                        "tooltip": "Get a new string with the argument string added to the end (suffix) of the original"
                     },
                     {
                         "type": "non_terminal",
