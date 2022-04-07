@@ -6,8 +6,9 @@ non_terminal {
     def
     if_stmt if_else_stmt while_stmt for_stmt expr func_def break_stmt continue_stmt return_stmt
     arith_expr rel_expr logical_expr assign_expr call_expr primary_expr
-    binary_arith_expr unary_minus_expr
-    arith_op rel_op logical_binary_op
+    binary_arith_expr unary_expr 
+    unary_expr_before unary_expr_after
+    arith_op rel_op logical_binary_op unary_op_af unary_op_bf assign_op
     binary_logical_expr not_expr
     BOOL_CONST_ ARRAY_CONST
     input_output_call math_call string_method_call array_method_call user_function_call
@@ -20,10 +21,10 @@ non_terminal {
 }
 
 terminal {
-    PLUS MINUS TIMES BY MODULO UMINUS
-    GREATER LESS EQUAL_TO NOT_EQUAL_TO GREATER_EQUAL LESS_EQUAL
+    PLUS SUB MULT EXP DIV MODULO UMINUS UPLUS PLUS_PLUS SUB_SUB
+    GREATER LESS EQUAL_TO EQUAL_VALUE_TYPE NOT_EQUAL_TO NOT_EQUAL_VALUE_TYPE GREATER_EQUAL LESS_EQUAL
     AND OR NOT
-    EQUALS
+    ASSIGN PLUS_ASSIGN SUB_ASSIGN MULT_ASSIGN DIV_ASSIGN MOD_ASSIGN EXP_ASSIGN LEFT_SHIFT_ASSIGN RIGHT_SHIFT_ASSIGN UN_RIGHT_SHIFT_ASSIGN
     true false
     IF ELSE WHILE FOR BREAK CONTINUE RETURN
     CALL FUNCTION OF WITH
@@ -81,7 +82,7 @@ define expr {
 define arith_expr {
     any_of {
         binary_arith_expr       : "An arithmetic expression with two operands"
-        unary_minus_expr             : "Negates the value of its operand"
+        unary_expr              : "Unary expression operator with single operand,either before or after the operator"
     }
 }
 
@@ -91,17 +92,46 @@ define binary_arith_expr {
     expr                    : "The second operand"
 }
 
-define unary_minus_expr {
-    UMINUS("-")
-    expr
+define unary_expr{
+    any_of {
+        unary_expr_before   :"The unary operator before the operand"
+        unary_expr_after    :"The unary operator after the operand"
+    }
+}
+
+define unary_expr_after {
+    expr                : "The single operand"
+    unary_op_af         : "Unary operator with one operand"
+}
+
+define unary_expr_before {
+    unary_op_bf         : "Unary operator with one operand"
+    expr                : "The single operand"
+}
+
+define unary_op_af {
+    any_of {
+        PLUS_PLUS("++")      : "Post-increament of the operand value by one"
+        SUB_SUB("--")        : "Post-decreament of the operand value by one"
+    }
+}
+
+define unary_op_bf {
+    any_of {
+        UMINUS("-")          : "Negates the value of its operand"
+        UPLUS("+")           : "Attempts to convert the operand to a number, if it is not already"
+        PLUS_PLUS("++")      : "Pre-increament of the operand value by one"
+        SUB_SUB("--")        : "Pre-decreament of the operand value by one"
+    }
 }
 
 define arith_op {
     any_of {
         PLUS("+")                   : "Performs addition"
-        MINUS("-")                  : "Performs subtraction"
-        TIMES("*")                  : "Performs multipliction"
-        BY("/")                     : "Performs division"
+        SUB("-")                    : "Performs subtraction"
+        MULT("*")                   : "Performs multipliction"
+        EXP("**")                   : "Performs Exponentation"
+        DIV("/")                    : "Performs division"
         MODULO("%")                 : "Performs the modulo operation"
     }
 }
@@ -117,7 +147,9 @@ define rel_op {
         GREATER(">")                : "Returns true if the first operand is greater than the second operand, else returns false"
         LESS("<")                   : "Returns true if the first operand is less than the second operand, else returns false"
         EQUAL_TO("==")              : "Returns true if the first operand is equal to the second operand, else returns false"
+        EQUAL_VALUE_TYPE("===")     : "Returns true if the first operand is equal and has the same type to the second operand, else returns false"   
         NOT_EQUAL_TO("!=")          : "Returns true if the first operand not equal to the second operand, else returns false"
+        NOT_EQUAL_VALUE_TYPE("!==") : "Returns true if the first operand not equal or has different type to the second operand, else returns false"
         GREATER_EQUAL(">=")         : "Returns true if the first operand is greater than or equal to the second operand, else returns false"
         LESS_EQUAL("<=")            : "Returns true if the first operand is less than or equal to the second operand, else returns false"    
     }
@@ -138,13 +170,13 @@ define binary_logical_expr {
 
 define logical_binary_op {
     any_of {
-        AND                         : "Returns true if both operands are true, else returns false"
-        OR                          : "Returns true if either operand is true, else returns false"
+        AND("&&")                         : "Returns true if both operands are true, else returns false"
+        OR("||")                          : "Returns true if either operand is true, else returns false"
     }
 }
 
 define not_expr {
-    NOT                     : "Returns true if the operand is false, else returns false"
+    NOT("!")                : "Returns true if the operand is false, else returns false"
     expr                    : "The operand"
 }
 
@@ -186,7 +218,24 @@ define element_list {
 }
 
 define assign_expr {
-    IDENT EQUALS("=") expr
+    IDENT                   :"Left operand to be assigned"
+    assign_op               :"Assign operator, simple or with an operation "
+    expr                    :"Right operand"
+}
+
+define assign_op {
+    any_of{
+        ASSIGN("=")                     :"Assigns the right operand to the left operand"            
+        PLUS_ASSIGN("+=")               :"Sums up left and right operand values and assigns the result to the left operand"
+        SUB_ASSIGN("-=")                :"Subtract right operand value from the left operand value and assigns the result to the left operand"
+        MULT_ASSIGN("*=")               :"Multiply left and right operand values and assigns the result to the left operand"
+        DIV_ASSIGN("/=")                :"Divide left operand value by right operand value and assign the result to the left operand"
+        MOD_ASSIGN("%=")                :"Get the modulus of left operand divide by right operand and assign resulted modulus to the left operand"
+        EXP_ASSIGN("**=")               :"Raises the value of left operand to the power of the right operand and assign the result to the left operand"
+        LEFT_SHIFT_ASSIGN("<<=")        :"Moves the specified amount of bits(right operand) to the left and assigns the result to the left operand"
+        RIGHT_SHIFT_ASSIGN(">>=")       :"Moves the specified amount of bits(right operand) to the right and assigns the result to the left operand"
+        UN_RIGHT_SHIFT_ASSIGN(">>>=")   :"Unsigned -  moves the specified amount of bits to the right and assigns the result to the left operand"
+    }
 }
 
 define func_def {
