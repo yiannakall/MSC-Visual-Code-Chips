@@ -88,7 +88,7 @@ define arith_expr {
 
 define binary_arith_expr {
     expr                    : "The first operand"
-    arith_op                : "An arithmetic operator (e.g. +, -)"
+    arith_op                : "An arithmetic operator(e.g. +, -)"
     expr                    : "The second operand"
 }
 
