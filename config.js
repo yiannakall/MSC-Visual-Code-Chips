@@ -149,7 +149,7 @@ export let config = {
                     {
                         "type": "non_terminal",
                         "name": "arith_op",
-                        "tooltip": "An arithmetic operator (e.g. +, -)"
+                        "tooltip": "An arithmetic operator(e.g. +, -)"
                     },
                     {
                         "type": "non_terminal",
@@ -461,19 +461,23 @@ export let config = {
                     },
                     {
                         "type": "non_terminal",
-                        "name": "BOOL_CONST_",
-                        "alias": "boolean",
+                        "name": "BOOLEAN",
                         "tooltip": "One of true or false"
                     },
                     {
                         "type": "non_terminal",
                         "name": "ARRAY_CONST",
                         "tooltip": "An array of elements"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "OBJECT_CONST",
+                        "tooltip": "Variable with many values as pairs (name:value)"
                     }
                 ]
             },
             {
-                "name": "BOOL_CONST_",
+                "name": "BOOLEAN",
                 "any_of": [
                     {
                         "type": "terminal",
@@ -539,6 +543,53 @@ export let config = {
                         "type": "non_terminal",
                         "name": "expr",
                         "alias": "element"
+                    }
+                ]
+            },
+            {
+                "name": "OBJECT_CONST",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "OBJECT"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "pair_element_list"
+                    }
+                ]
+            },
+            {
+                "name": "pair_element_list",
+                "list_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "pair_element"
+                    }
+                ]
+            },
+            {
+                "name": "pair_element",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "tooltip": "The identifier of the value"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": ":",
+                        "tooltip": "The pair"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "value",
+                        "tooltip": "The value of the property"
                     }
                 ]
             },
@@ -710,10 +761,6 @@ export let config = {
                 "name": "array_method_call",
                 "all_of": [
                     {
-                        "type": "terminal",
-                        "name": "IN ARRAY"
-                    },
-                    {
                         "type": "non_terminal",
                         "name": "expr",
                         "alias": "array"
@@ -746,19 +793,25 @@ export let config = {
                     {
                         "type": "non_terminal",
                         "name": "array_push_back",
-                        "alias": "push_back",
+                        "alias": "push",
                         "tooltip": "Insert an element at the end of the array"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "array_pop",
+                        "alias": "pop",
+                        "tooltip": "Returns the last element of the array"
                     },
                     {
                         "type": "non_terminal",
                         "name": "array_set",
                         "alias": "set",
-                        "tooltip": "Set (Replace) an element in a position of the array to a new character"
+                        "tooltip": "Modify an element in a position of the array to a new character"
                     },
                     {
                         "type": "non_terminal",
                         "name": "array_size",
-                        "alias": "get_size",
+                        "alias": "length",
                         "tooltip": "Get the count of elements in the array"
                     }
                 ]
@@ -809,7 +862,7 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "push_back"
+                        "name": "push"
                     },
                     {
                         "type": "terminal",
@@ -819,6 +872,15 @@ export let config = {
                         "type": "non_terminal",
                         "name": "expr",
                         "alias": "element"
+                    }
+                ]
+            },
+            {
+                "name": "array_pop",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "pop"
                     }
                 ]
             },
@@ -850,7 +912,7 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "get_size"
+                        "name": "length"
                     }
                 ]
             },
@@ -900,7 +962,7 @@ export let config = {
                     {
                         "type": "non_terminal",
                         "name": "string_size",
-                        "alias": "get_size",
+                        "alias": "lenght",
                         "tooltip": "Get the count of characters contained in the string"
                     }
                 ]
@@ -969,7 +1031,7 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "get_size"
+                        "name": "length"
                     }
                 ]
             },
