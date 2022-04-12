@@ -11,10 +11,11 @@ non_terminal {
     arith_op rel_op logical_binary_op unary_op_af unary_op_bf assign_op
     binary_logical_expr not_expr
     BOOLEAN ARRAY_CONST OBJECT_CONST
-    input_output_call math_call string_method_call array_method_call user_function_call
+    input_output_call math_call string_method_call array_method_call object_method_call user_function_call
     ident_list expr_list element_list pair_element_list pair_element
-    array_method string_method
+    array_method object_method string_method
     array_get array_insert array_push_back array_pop array_set array_size
+    object_get object_insert object_delete object_set object_size
     string_append string_get_character string_get_substring string_size
     input_output_print input_output_input
     math_pow math_sqrt math_round math_floor math_ceiling math_sin math_cos
@@ -27,10 +28,11 @@ terminal {
     ASSIGN PLUS_ASSIGN SUB_ASSIGN MULT_ASSIGN DIV_ASSIGN MOD_ASSIGN EXP_ASSIGN LEFT_SHIFT_ASSIGN RIGHT_SHIFT_ASSIGN UN_RIGHT_SHIFT_ASSIGN
     true false
     IF ELSE WHILE FOR BREAK CONTINUE RETURN
-    CALL function OF WITH
-    ARRAY
-    OBJECT ":"
+    CALL function "(" ")" WITH
+    ARRAY "[" "]"
+    OBJECT ":" "{" "}"
     get insert push pop set length
+    getP deleteP setP sizeP
     "IN STRING"
     append get_character get_substring
     print input
@@ -191,6 +193,7 @@ define primary_expr {
         BOOLEAN                 : "One of true or false"
         ARRAY_CONST             : "An array of elements"
         OBJECT_CONST            : "Variable with many values as pairs (name:value)"
+        func_def                : "Function definition as a value of an object"
     }
 }
 
@@ -207,12 +210,13 @@ define call_expr {
         math_call               : "Use a built-in math function"
         string_method_call      : "Use a built-in string method"
         array_method_call       : "Use a built-in array method"
+        object_method_call      : "Use a built-in object method"
         user_function_call      : "Use a user-defined function"
     }
 }
 
 define ARRAY_CONST {
-    ARRAY WITH element_list
+    "[" element_list "]"
 }
 
 define element_list {
@@ -220,7 +224,7 @@ define element_list {
 }
 
 define OBJECT_CONST {
-    OBJECT WITH pair_element_list
+    "{" pair_element_list "}"
 }
 
 define pair_element_list {
@@ -255,7 +259,7 @@ define assign_op {
 }
 
 define func_def {
-    function IDENT(NAME) OF ident_list stmts
+    function IDENT(NAME) "(" ident_list ")" "{" stmts "}"
 }
 
 define break_stmt {
@@ -279,6 +283,10 @@ define array_method_call {
     expr(array) CALL array_method
 }
 
+define object_method_call {
+    expr(object) CALL object_method
+}
+
 define array_method {
     any_of { 
         array_get(get)                  : "Get an element by its position in the array"
@@ -287,6 +295,15 @@ define array_method {
         array_pop(pop)                  : "Returns the last element of the array"
         array_set(set)                  : "Modify an element in a position of the array to a new character"
         array_size(length)              : "Get the count of elements in the array"
+    }
+}
+
+define object_method {
+    any_of { 
+        object_get(get)                 : "Get an element by its property name in the object e.g objectName.property"
+        object_delete(delete)           : "Delete a pair (property:value) by property name"
+        object_set(set)                 : "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
+        object_size(length)             : "Get the count of properties in the object"
     }
 }
 
@@ -314,6 +331,22 @@ define array_size {
     length
 }
 
+define object_get {
+    getP WITH expr(property)
+}
+
+define object_delete {
+    deleteP WITH expr(property)
+}
+
+define object_set {
+    setP WITH expr(property)
+}
+
+define object_size {
+    length
+}
+
 define string_method_call {
     "IN STRING" expr("string") CALL string_method
 }
@@ -323,7 +356,7 @@ define string_method {
         string_append(append)                           : "Get a new string with the argument string added to the end (suffix) of the original"
         string_get_character(get_character)             : "Get the character at the specified position of the string"
         string_get_substring(get_substring)             : "Get a substring of a string, giving a start position and an end position"
-        string_size(lenght)                           : "Get the count of characters contained in the string"
+        string_size(length)                           : "Get the count of characters contained in the string"
     }
 }
 
