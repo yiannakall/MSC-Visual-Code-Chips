@@ -514,6 +514,11 @@ export let config = {
                     },
                     {
                         "type": "non_terminal",
+                        "name": "object_method_call",
+                        "tooltip": "Use a built-in object method"
+                    },
+                    {
+                        "type": "non_terminal",
                         "name": "user_function_call",
                         "tooltip": "Use a user-defined function"
                     }
@@ -524,15 +529,15 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "ARRAY"
-                    },
-                    {
-                        "type": "terminal",
-                        "name": "WITH"
+                        "name": "["
                     },
                     {
                         "type": "non_terminal",
                         "name": "element_list"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "]"
                     }
                 ]
             },
@@ -551,15 +556,15 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "OBJECT"
-                    },
-                    {
-                        "type": "terminal",
-                        "name": "WITH"
+                        "name": "{"
                     },
                     {
                         "type": "non_terminal",
                         "name": "pair_element_list"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "}"
                     }
                 ]
             },
@@ -692,15 +697,27 @@ export let config = {
                     },
                     {
                         "type": "terminal",
-                        "name": "OF"
+                        "name": "("
                     },
                     {
                         "type": "non_terminal",
                         "name": "ident_list"
                     },
                     {
+                        "type": "terminal",
+                        "name": ")"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "{"
+                    },
+                    {
                         "type": "non_terminal",
                         "name": "stmts"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "}"
                     }
                 ]
             },
@@ -776,6 +793,24 @@ export let config = {
                 ]
             },
             {
+                "name": "object_method_call",
+                "all_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "object"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "CALL"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "object_method"
+                    }
+                ]
+            },
+            {
                 "name": "array_method",
                 "any_of": [
                     {
@@ -813,6 +848,35 @@ export let config = {
                         "name": "array_size",
                         "alias": "length",
                         "tooltip": "Get the count of elements in the array"
+                    }
+                ]
+            },
+            {
+                "name": "object_method",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "object_get",
+                        "alias": "get",
+                        "tooltip": "Get an element by its property name in the object e.g objectName.property"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "object_delete",
+                        "alias": "delete",
+                        "tooltip": "Delete a pair (property:value) by property name"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "object_set",
+                        "alias": "set",
+                        "tooltip": "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "object_size",
+                        "alias": "length",
+                        "tooltip": "Get the count of properties in the object"
                     }
                 ]
             },
@@ -917,6 +981,69 @@ export let config = {
                 ]
             },
             {
+                "name": "object_get",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "getP"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "property"
+                    }
+                ]
+            },
+            {
+                "name": "object_delete",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "deleteP"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "property"
+                    }
+                ]
+            },
+            {
+                "name": "object_set",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "setP"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "WITH"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "property"
+                    }
+                ]
+            },
+            {
+                "name": "object_size",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "length"
+                    }
+                ]
+            },
+            {
                 "name": "string_method_call",
                 "all_of": [
                     {
@@ -962,7 +1089,7 @@ export let config = {
                     {
                         "type": "non_terminal",
                         "name": "string_size",
-                        "alias": "lenght",
+                        "alias": "length",
                         "tooltip": "Get the count of characters contained in the string"
                     }
                 ]
