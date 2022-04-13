@@ -27,7 +27,8 @@ terminal {
     AND OR NOT
     ASSIGN PLUS_ASSIGN SUB_ASSIGN MULT_ASSIGN DIV_ASSIGN MOD_ASSIGN EXP_ASSIGN LEFT_SHIFT_ASSIGN RIGHT_SHIFT_ASSIGN UN_RIGHT_SHIFT_ASSIGN
     true false
-    IF ELSE WHILE FOR BREAK CONTINUE RETURN
+    ";"
+    if else while for break continue return
     CALL function "(" ")" WITH
     ARRAY "[" "]"
     OBJECT ":" "{" "}"
@@ -263,16 +264,17 @@ define func_def {
 }
 
 define break_stmt {
-    BREAK
+    break ";"
 }
 
 define continue_stmt {
-    CONTINUE
+    continue ";"
 }
 
 define return_stmt {
-    RETURN
+    return
     expr
+    ";"
 }
 
 define user_function_call {
@@ -356,7 +358,7 @@ define string_method {
         string_append(append)                           : "Get a new string with the argument string added to the end (suffix) of the original"
         string_get_character(get_character)             : "Get the character at the specified position of the string"
         string_get_substring(get_substring)             : "Get a substring of a string, giving a start position and an end position"
-        string_size(length)                           : "Get the count of characters contained in the string"
+        string_size(length)                             : "Get the count of characters contained in the string"
     }
 }
 
@@ -432,23 +434,23 @@ define math_cos {
 }
 
 define if_stmt {
-    IF expr(condition_expr) stmts(if_part)
+    if "(" expr(condition_expr) ")" "{" stmts(if_part) "}"
 }
 
 define if_else_stmt {
-    IF expr(condition_expr) stmts(if_part) ELSE stmts(else_part)
+    if "(" expr(condition_expr) ")" "{" stmts(if_part) "}" else "{" stmts(else_part) "}"
 }
 
 define while_stmt {
-    WHILE expr(condition_expr) stmts(while_part)
+    while "(" expr(condition_expr) ")" "{" stmts(while_part) "}"
 }
 
 define for_stmt {
-    FOR
-    expr(initialization_expr)
-    expr(condition_expr)
-    expr(step_expr)
-    stmts(for_part)
+    for "("
+    expr(initialization_expr) ";"
+    expr(condition_expr) ";"
+    expr(step_expr) ")"
+    "{" stmts(for_part) "}"
 }
 
 define ident_list {

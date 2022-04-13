@@ -473,6 +473,11 @@ export let config = {
                         "type": "non_terminal",
                         "name": "OBJECT_CONST",
                         "tooltip": "Variable with many values as pairs (name:value)"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "func_def",
+                        "tooltip": "Function definition as a value of an object"
                     }
                 ]
             },
@@ -726,7 +731,11 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "BREAK"
+                        "name": "break"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": ";"
                     }
                 ]
             },
@@ -735,7 +744,11 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "CONTINUE"
+                        "name": "continue"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": ";"
                     }
                 ]
             },
@@ -744,11 +757,15 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "RETURN"
+                        "name": "return"
                     },
                     {
                         "type": "non_terminal",
                         "name": "expr"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": ";"
                     }
                 ]
             },
@@ -1433,7 +1450,11 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "IF"
+                        "name": "if"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "("
                     },
                     {
                         "type": "non_terminal",
@@ -1441,9 +1462,21 @@ export let config = {
                         "alias": "condition_expr"
                     },
                     {
+                        "type": "terminal",
+                        "name": ")"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "{"
+                    },
+                    {
                         "type": "non_terminal",
                         "name": "stmts",
                         "alias": "if_part"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "}"
                     }
                 ]
             },
@@ -1452,12 +1485,24 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "IF"
+                        "name": "if"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "("
                     },
                     {
                         "type": "non_terminal",
                         "name": "expr",
                         "alias": "condition_expr"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": ")"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "{"
                     },
                     {
                         "type": "non_terminal",
@@ -1466,12 +1511,24 @@ export let config = {
                     },
                     {
                         "type": "terminal",
-                        "name": "ELSE"
+                        "name": "}"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "else"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "{"
                     },
                     {
                         "type": "non_terminal",
                         "name": "stmts",
                         "alias": "else_part"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "}"
                     }
                 ]
             },
@@ -1480,7 +1537,11 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "WHILE"
+                        "name": "while"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "("
                     },
                     {
                         "type": "non_terminal",
@@ -1488,9 +1549,21 @@ export let config = {
                         "alias": "condition_expr"
                     },
                     {
+                        "type": "terminal",
+                        "name": ")"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "{"
+                    },
+                    {
                         "type": "non_terminal",
                         "name": "stmts",
                         "alias": "while_part"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "}"
                     }
                 ]
             },
@@ -1499,7 +1572,11 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "FOR"
+                        "name": "for"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "("
                     },
                     {
                         "type": "non_terminal",
@@ -1507,9 +1584,17 @@ export let config = {
                         "alias": "initialization_expr"
                     },
                     {
+                        "type": "terminal",
+                        "name": ";"
+                    },
+                    {
                         "type": "non_terminal",
                         "name": "expr",
                         "alias": "condition_expr"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": ";"
                     },
                     {
                         "type": "non_terminal",
@@ -1517,9 +1602,21 @@ export let config = {
                         "alias": "step_expr"
                     },
                     {
+                        "type": "terminal",
+                        "name": ")"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "{"
+                    },
+                    {
                         "type": "non_terminal",
                         "name": "stmts",
                         "alias": "for_part"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "}"
                     }
                 ]
             },
