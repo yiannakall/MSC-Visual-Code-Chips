@@ -4,6 +4,7 @@ non_terminal {
     stmt
     defs
     def
+    variable types
     if_stmt if_else_stmt while_stmt for_stmt expr func_def break_stmt continue_stmt return_stmt
     arith_expr rel_expr logical_expr assign_expr call_expr primary_expr
     binary_arith_expr unary_expr 
@@ -37,7 +38,8 @@ terminal {
     "IN STRING"
     append get_character get_substring
     print input
-    pow sqrt round floor ceiling sin cos
+    pow sqrt round floor ceiling sin cos 
+    var let const " "
 }
 
 define program {
@@ -184,9 +186,22 @@ define not_expr {
     expr                    : "The operand"
 }
 
+define variable {
+    types IDENT
+}
+
+define types {
+    any_of {
+        " "             :"Without type. If the variable is not declared, it is automatically declared with var"
+        var             :"The scope of a var variable is functional scope"
+        let             :"The scope of a let variable is block scope"
+        const           :"The scope of a const variable is block scope"
+    }
+}
+
 define primary_expr {
     any_of {
-        IDENT                   : "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+        variable                : "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
         INT_CONST               : "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
         FLOAT_CONST             : "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
         CHAR_CONST              : "One single character"
@@ -260,7 +275,7 @@ define assign_op {
 }
 
 define func_def {
-    function IDENT(NAME) "(" ident_list ")" "{" stmts "}"
+    function IDENT(Name) "(" ident_list ")" "{" stmts "}"
 }
 
 define break_stmt {
@@ -278,7 +293,7 @@ define return_stmt {
 }
 
 define user_function_call {
-    CALL IDENT("FUNCTION NAME") WITH expr_list
+    CALL IDENT("Function Name") WITH expr_list
 }
 
 define array_method_call {
@@ -454,7 +469,7 @@ define for_stmt {
 }
 
 define ident_list {
-    list_of IDENT
+    list_of variable
 }
 
 define expr_list {

@@ -432,11 +432,50 @@ export let config = {
                 ]
             },
             {
-                "name": "primary_expr",
+                "name": "variable",
+                "all_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "types"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT"
+                    }
+                ]
+            },
+            {
+                "name": "types",
                 "any_of": [
                     {
                         "type": "terminal",
-                        "name": "IDENT",
+                        "name": " ",
+                        "alias": "NO_TYPE",
+                        "tooltip": "Without type. If the variable is not declared, it is automatically declared with var"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "var",
+                        "tooltip": "The scope of a var variable is functional scope"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "let",
+                        "tooltip": "The scope of a let variable is block scope"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "const",
+                        "tooltip": "The scope of a const variable is block scope"
+                    }
+                ]
+            },
+            {
+                "name": "primary_expr",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "variable",
                         "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                     },
                     {
@@ -698,7 +737,7 @@ export let config = {
                     {
                         "type": "terminal",
                         "name": "IDENT",
-                        "alias": "NAME"
+                        "alias": "Name"
                     },
                     {
                         "type": "terminal",
@@ -779,7 +818,7 @@ export let config = {
                     {
                         "type": "terminal",
                         "name": "IDENT",
-                        "alias": "FUNCTION NAME"
+                        "alias": "Function Name"
                     },
                     {
                         "type": "terminal",
@@ -1624,8 +1663,8 @@ export let config = {
                 "name": "ident_list",
                 "list_of": [
                     {
-                        "type": "terminal",
-                        "name": "IDENT"
+                        "type": "non_terminal",
+                        "name": "variable"
                     }
                 ]
             },
