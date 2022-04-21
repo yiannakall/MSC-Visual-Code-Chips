@@ -293,7 +293,7 @@ define return_stmt {
 }
 
 define user_function_call {
-    CALL IDENT("Function Name") WITH expr_list
+    IDENT("Function Name") "(" expr_list ")"
 }
 
 define array_method_call {

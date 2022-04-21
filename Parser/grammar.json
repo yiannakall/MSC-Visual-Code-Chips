@@ -811,20 +811,20 @@
             "all_of": [
                 {
                     "type": "terminal",
-                    "name": "CALL"
-                },
-                {
-                    "type": "terminal",
                     "name": "IDENT",
                     "alias": "Function Name"
                 },
                 {
                     "type": "terminal",
-                    "name": "WITH"
+                    "name": "("
                 },
                 {
                     "type": "non_terminal",
                     "name": "expr_list"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
                 }
             ]
         },

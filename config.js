@@ -450,7 +450,6 @@ export let config = {
                     {
                         "type": "terminal",
                         "name": " ",
-                        "alias": "NO_TYPE",
                         "tooltip": "Without type. If the variable is not declared, it is automatically declared with var"
                     },
                     {
@@ -813,20 +812,20 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "CALL"
-                    },
-                    {
-                        "type": "terminal",
                         "name": "IDENT",
                         "alias": "Function Name"
                     },
                     {
                         "type": "terminal",
-                        "name": "WITH"
+                        "name": "("
                     },
                     {
                         "type": "non_terminal",
                         "name": "expr_list"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": ")"
                     }
                 ]
             },
