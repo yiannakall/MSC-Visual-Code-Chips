@@ -433,6 +433,21 @@ export let config = {
             },
             {
                 "name": "variable",
+                "any_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "tooltip": "Without type. If the variable is not declared, it is automatically declared with var"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "ident_type",
+                        "tooltip": "Identifier with type"
+                    }
+                ]
+            },
+            {
+                "name": "ident_type",
                 "all_of": [
                     {
                         "type": "non_terminal",
@@ -440,18 +455,14 @@ export let config = {
                     },
                     {
                         "type": "terminal",
-                        "name": "IDENT"
+                        "name": "IDENT",
+                        "tooltip": "Select type of identifier"
                     }
                 ]
             },
             {
                 "name": "types",
                 "any_of": [
-                    {
-                        "type": "terminal",
-                        "name": " ",
-                        "tooltip": "Without type. If the variable is not declared, it is automatically declared with var"
-                    },
                     {
                         "type": "terminal",
                         "name": "var",
@@ -562,8 +573,13 @@ export let config = {
                     },
                     {
                         "type": "non_terminal",
-                        "name": "user_function_call",
-                        "tooltip": "Use a user-defined function"
+                        "name": "function_call",
+                        "tooltip": "Use a user-defined function as \"name(params);\""
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "object_function_call",
+                        "tooltip": "Use a function which is member of an object as \"object.function()\""
                     }
                 ]
             },
@@ -808,12 +824,12 @@ export let config = {
                 ]
             },
             {
-                "name": "user_function_call",
+                "name": "function_call",
                 "all_of": [
                     {
                         "type": "terminal",
                         "name": "IDENT",
-                        "alias": "Function Name"
+                        "alias": "function name"
                     },
                     {
                         "type": "terminal",
@@ -853,15 +869,46 @@ export let config = {
                     {
                         "type": "non_terminal",
                         "name": "expr",
-                        "alias": "object"
+                        "alias": "object name"
                     },
                     {
                         "type": "terminal",
-                        "name": "CALL"
+                        "name": "."
                     },
                     {
                         "type": "non_terminal",
                         "name": "object_method"
+                    }
+                ]
+            },
+            {
+                "name": "object_function_call",
+                "all_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "object name"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "."
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "function name"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "("
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr_list"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": ")"
                     }
                 ]
             },

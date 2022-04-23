@@ -4,7 +4,7 @@ non_terminal {
     stmt
     defs
     def
-    variable types
+    variable types ident_type
     if_stmt if_else_stmt while_stmt for_stmt expr func_def break_stmt continue_stmt return_stmt
     arith_expr rel_expr logical_expr assign_expr call_expr primary_expr
     binary_arith_expr unary_expr 
@@ -12,10 +12,10 @@ non_terminal {
     arith_op rel_op logical_binary_op unary_op_af unary_op_bf assign_op
     binary_logical_expr not_expr
     BOOLEAN ARRAY_CONST OBJECT_CONST
-    input_output_call math_call string_method_call array_method_call object_method_call user_function_call
+    input_output_call math_call string_method_call array_method_call object_method_call function_call object_function_call
     ident_list expr_list element_list pair_element_list pair_element
     array_method object_method string_method
-    array_get array_insert array_push_back array_pop array_set array_size
+    array_get array_insert array_push_back array_pop array_set array_size array_to_string array_join
     object_get object_insert object_delete object_set object_size
     string_append string_get_character string_get_substring string_size
     input_output_print input_output_input
@@ -33,13 +33,14 @@ terminal {
     CALL function "(" ")" WITH
     ARRAY "[" "]"
     OBJECT ":" "{" "}"
-    get insert push pop set length
+    get insert push pop set length toString
     getP deleteP setP sizeP
     "IN STRING"
     append get_character get_substring
     print input
     pow sqrt round floor ceiling sin cos 
     var let const " "
+    "."
 }
 
 define program {
@@ -176,8 +177,8 @@ define binary_logical_expr {
 
 define logical_binary_op {
     any_of {
-        AND("&&")                         : "Returns true if both operands are true, else returns false"
-        OR("||")                          : "Returns true if either operand is true, else returns false"
+        AND("&&")           : "Returns true if both operands are true, else returns false"
+        OR("||")            : "Returns true if either operand is true, else returns false"
     }
 }
 
@@ -187,12 +188,18 @@ define not_expr {
 }
 
 define variable {
-    types IDENT
+    any_of {
+        IDENT           :"Without type. If the variable is not declared, it is automatically declared with var"
+        ident_type      :"Identifier with type"
+    }
+}
+
+define ident_type {
+    types IDENT         :"Select type of identifier"
 }
 
 define types {
     any_of {
-        " "             :"Without type. If the variable is not declared, it is automatically declared with var"
         var             :"The scope of a var variable is functional scope"
         let             :"The scope of a let variable is block scope"
         const           :"The scope of a const variable is block scope"
@@ -227,7 +234,8 @@ define call_expr {
         string_method_call      : "Use a built-in string method"
         array_method_call       : "Use a built-in array method"
         object_method_call      : "Use a built-in object method"
-        user_function_call      : "Use a user-defined function"
+        function_call           : "Use a user-defined function as \"name(params);\""
+        object_function_call    : "Use a function which is member of an object as \"object.function()\""
     }
 }
 
@@ -292,16 +300,20 @@ define return_stmt {
     ";"
 }
 
-define user_function_call {
-    IDENT("Function Name") "(" expr_list ")"
+define function_call {
+    IDENT("function name") "(" expr_list ")"
 }
 
 define array_method_call {
-    expr(array) CALL array_method
+    IDENT(array) "." array_method "(" ")"
 }
 
 define object_method_call {
-    expr(object) CALL object_method
+    IDENT("object name") "." object_method
+}
+
+define object_function_call {
+    IDENT("object name") "." IDENT("function name") "(" expr_list ")"
 }
 
 define array_method {
@@ -312,6 +324,8 @@ define array_method {
         array_pop(pop)                  : "Returns the last element of the array"
         array_set(set)                  : "Modify an element in a position of the array to a new character"
         array_size(length)              : "Get the count of elements in the array"
+        array_to_string(toString)       : "Converts an array to a string of (comma separated) array values."
+        array_join(join)                : "The join method also joins all array elements into a string, you can specify the separator"
     }
 }
 
@@ -333,7 +347,7 @@ define array_insert {
 }
 
 define array_push_back {
-    push WITH expr(element)
+    push "(" expr(element) ")"
 }
 
 define array_pop {
@@ -346,6 +360,10 @@ define array_set {
 
 define array_size {
     length
+}
+
+define array_to_string {
+    toString
 }
 
 define object_get {
