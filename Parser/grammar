@@ -15,7 +15,7 @@ non_terminal {
     input_output_call math_call string_method_call array_method_call object_method_call function_call object_function_call
     ident_list expr_list element_list pair_element_list pair_element
     array_method object_method string_method
-    array_get array_insert array_push_back array_pop array_set array_size array_to_string array_join
+    array_get array_insert array_push_back array_pop array_set array_size array_join
     object_get object_insert object_delete object_set object_size
     string_append string_get_character string_get_substring string_size
     input_output_print input_output_input
@@ -33,7 +33,7 @@ terminal {
     CALL function "(" ")" WITH
     ARRAY "[" "]"
     OBJECT ":" "{" "}"
-    get insert push pop set length toString
+    get insert push pop set length
     getP deleteP setP sizeP
     "IN STRING"
     append get_character get_substring
@@ -324,7 +324,6 @@ define array_method {
         array_pop(pop)                  : "Returns the last element of the array"
         array_set(set)                  : "Modify an element in a position of the array to a new character"
         array_size(length)              : "Get the count of elements in the array"
-        array_to_string(toString)       : "Converts an array to a string of (comma separated) array values."
         array_join(join)                : "The join method also joins all array elements into a string, you can specify the separator"
     }
 }
@@ -360,10 +359,6 @@ define array_set {
 
 define array_size {
     length
-}
-
-define array_to_string {
-    toString
 }
 
 define object_get {

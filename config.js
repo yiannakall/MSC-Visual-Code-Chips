@@ -849,17 +849,25 @@ export let config = {
                 "name": "array_method_call",
                 "all_of": [
                     {
-                        "type": "non_terminal",
-                        "name": "expr",
+                        "type": "terminal",
+                        "name": "IDENT",
                         "alias": "array"
                     },
                     {
                         "type": "terminal",
-                        "name": "CALL"
+                        "name": "."
                     },
                     {
                         "type": "non_terminal",
                         "name": "array_method"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "("
+                    },
+                    {
+                        "type": "terminal",
+                        "name": ")"
                     }
                 ]
             },
@@ -867,8 +875,8 @@ export let config = {
                 "name": "object_method_call",
                 "all_of": [
                     {
-                        "type": "non_terminal",
-                        "name": "expr",
+                        "type": "terminal",
+                        "name": "IDENT",
                         "alias": "object name"
                     },
                     {
@@ -885,8 +893,8 @@ export let config = {
                 "name": "object_function_call",
                 "all_of": [
                     {
-                        "type": "non_terminal",
-                        "name": "expr",
+                        "type": "terminal",
+                        "name": "IDENT",
                         "alias": "object name"
                     },
                     {
@@ -950,6 +958,12 @@ export let config = {
                         "name": "array_size",
                         "alias": "length",
                         "tooltip": "Get the count of elements in the array"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "array_join",
+                        "alias": "join",
+                        "tooltip": "The join method also joins all array elements into a string, you can specify the separator"
                     }
                 ]
             },
@@ -1032,12 +1046,16 @@ export let config = {
                     },
                     {
                         "type": "terminal",
-                        "name": "WITH"
+                        "name": "("
                     },
                     {
                         "type": "non_terminal",
                         "name": "expr",
                         "alias": "element"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": ")"
                     }
                 ]
             },

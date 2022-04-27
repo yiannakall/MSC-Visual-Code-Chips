@@ -960,12 +960,6 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "array_to_string",
-                    "alias": "toString",
-                    "tooltip": "Converts an array to a string of (comma separated) array values."
-                },
-                {
-                    "type": "non_terminal",
                     "name": "array_join",
                     "alias": "join",
                     "tooltip": "The join method also joins all array elements into a string, you can specify the separator"
@@ -1102,14 +1096,6 @@
                 {
                     "type": "terminal",
                     "name": "length"
-                }
-            ]
-        },
-        {
-            "name": "array_to_string",
-            "all_of": [
-                {
-                    "name": "toString"
                 }
             ]
         },
