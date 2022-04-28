@@ -543,46 +543,6 @@
             ]
         },
         {
-            "name": "call_expr",
-            "any_of": [
-                {
-                    "type": "non_terminal",
-                    "name": "input_output_call",
-                    "tooltip": "Use a built-in input/output function"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "math_call",
-                    "tooltip": "Use a built-in math function"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "string_method_call",
-                    "tooltip": "Use a built-in string method"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "array_method_call",
-                    "tooltip": "Use a built-in array method"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "object_method_call",
-                    "tooltip": "Use a built-in object method"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "function_call",
-                    "tooltip": "Use a user-defined function as \"name(params);\""
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "object_function_call",
-                    "tooltip": "Use a function which is member of an object as \"object.function()\""
-                }
-            ]
-        },
-        {
             "name": "ARRAY_CONST",
             "all_of": [
                 {
@@ -823,12 +783,112 @@
             ]
         },
         {
-            "name": "function_call",
+            "name": "call_expr",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "math_call",
+                    "tooltip": "Use a built-in math function"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "string_method_call",
+                    "tooltip": "Use a built-in string method"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "array_method_call",
+                    "tooltip": "Use a built-in array method"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "object_method_call",
+                    "tooltip": "Use a built-in object method"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "object_function_call",
+                    "tooltip": "Use a function which is member of an object as \"object.function()\""
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "function_call",
+                    "tooltip": "Use a user-defined function as \"name(params);\""
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "print_call",
+                    "tooltip": "Use a built-in function to print the value of the given expression (text, number etc.)"
+                }
+            ]
+        },
+        {
+            "name": "math_call",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "math_abs",
+                    "alias": "abs",
+                    "tooltip": "Returns the absolute value of a number"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "math_pow",
+                    "alias": "pow",
+                    "tooltip": "pow(x,y) Returns base x to the exponent power y (that is, x^y)"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "math_sqrt",
+                    "alias": "sqrt",
+                    "tooltip": "Get the square root of a number"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "math_round",
+                    "alias": "round",
+                    "tooltip": "Get the nearest integer to the given number"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "math_floor",
+                    "alias": "floor",
+                    "tooltip": "Get the greatest integer less than or equal to the given number"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "math_ceil",
+                    "alias": "ceil",
+                    "tooltip": "Get the least integer greater than or equal to the given number"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "math_sin",
+                    "alias": "sin",
+                    "tooltip": "Get the sine of the given angle in degrees"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "math_cos",
+                    "alias": "cos",
+                    "tooltip": "Get the cosine of the given angle in degrees"
+                }
+            ]
+        },
+        {
+            "name": "math_abs",
             "all_of": [
                 {
                     "type": "terminal",
-                    "name": "IDENT",
-                    "alias": "function name"
+                    "name": "Math"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
+                {
+                    "type": "terminal",
+                    "name": "abs"
                 },
                 {
                     "type": "terminal",
@@ -836,7 +896,405 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "expr_list"
+                    "name": "expr",
+                    "alias": "value"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "math_pow",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "Math"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
+                {
+                    "type": "terminal",
+                    "name": "pow"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "number"
+                },
+                {
+                    "type": "terminal",
+                    "name": ","
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "exponent"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "math_sqrt",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "Math"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
+                {
+                    "type": "terminal",
+                    "name": "sqrt"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "number"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "math_round",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "Math"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
+                {
+                    "type": "terminal",
+                    "name": "round"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "number"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "math_floor",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "Math"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
+                {
+                    "type": "terminal",
+                    "name": "floor"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "number"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "math_ceil",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "Math"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
+                {
+                    "type": "terminal",
+                    "name": "ceil"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "number"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "math_sin",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "Math"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
+                {
+                    "type": "terminal",
+                    "name": "sin"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "number"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "math_cos",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "Math"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
+                {
+                    "type": "terminal",
+                    "name": "cos"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "number"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "string_method_call",
+            "all_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "string"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "string_method"
+                }
+            ]
+        },
+        {
+            "name": "string_method",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "string_concat",
+                    "alias": "concat",
+                    "tooltip": "Join two strings to one"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "string_upperCase",
+                    "alias": "toUpperCase",
+                    "tooltip": "A string is converted to upper case"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "string_lowCase",
+                    "alias": "toLowCase",
+                    "tooltip": "A string is converted to lower case"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "string_substring",
+                    "alias": "substring",
+                    "tooltip": "Get a substring of a string, giving a start position and an end position"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "string_size",
+                    "alias": "length",
+                    "tooltip": "Get the count of characters contained in the string"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "string_slice",
+                    "alias": "slice",
+                    "tooltip": "Extracts a part of a string and returns the extracted part in a new string, giving a start position and an end position"
+                }
+            ]
+        },
+        {
+            "name": "string_concat",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "concat"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "string2"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "string_upperCase",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "toUpperCase"
+                },
+                {
+                    "type": "terminal",
+                    "name": "()"
+                }
+            ]
+        },
+        {
+            "name": "string_lowCase",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "toLowerCase"
+                },
+                {
+                    "type": "terminal",
+                    "name": "()"
+                }
+            ]
+        },
+        {
+            "name": "string_substring",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "substring"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "start_index"
+                },
+                {
+                    "type": "terminal",
+                    "name": ","
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "end_index"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "string_size",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "length"
+                }
+            ]
+        },
+        {
+            "name": "string_slice",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "slice"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "start_index"
+                },
+                {
+                    "type": "terminal",
+                    "name": ","
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "end_index"
                 },
                 {
                     "type": "terminal",
@@ -850,7 +1308,7 @@
                 {
                     "type": "terminal",
                     "name": "IDENT",
-                    "alias": "array"
+                    "alias": "arrayName"
                 },
                 {
                     "type": "terminal",
@@ -859,14 +1317,177 @@
                 {
                     "type": "non_terminal",
                     "name": "array_method"
+                }
+            ]
+        },
+        {
+            "name": "array_method",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "array_get",
+                    "alias": "get",
+                    "tooltip": "Get an element by its position in the array"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "array_push",
+                    "alias": "push",
+                    "tooltip": "Insert an element at the end of the array"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "array_pop",
+                    "alias": "pop",
+                    "tooltip": "Returns the last element of the array"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "array_set",
+                    "alias": "set",
+                    "tooltip": "Modify an element in a position of the array to a new character"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "array_size",
+                    "alias": "length",
+                    "tooltip": "Get the count of elements in the array"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "array_join",
+                    "alias": "join",
+                    "tooltip": "The join method also joins all array elements into a string, you can specify the separator"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "array_to_string",
+                    "alias": "tostring",
+                    "tooltip": "Converts an array to a string of (comma separated) array values."
+                }
+            ]
+        },
+        {
+            "name": "array_get",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "["
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "index"
+                },
+                {
+                    "type": "terminal",
+                    "name": "]"
+                }
+            ]
+        },
+        {
+            "name": "array_push",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "push"
                 },
                 {
                     "type": "terminal",
                     "name": "("
                 },
                 {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "element"
+                },
+                {
                     "type": "terminal",
                     "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "array_pop",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "pop"
+                },
+                {
+                    "type": "terminal",
+                    "name": "()"
+                }
+            ]
+        },
+        {
+            "name": "array_set",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "set"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "index"
+                },
+                {
+                    "type": "terminal",
+                    "name": ","
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "element"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "array_size",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "length"
+                }
+            ]
+        },
+        {
+            "name": "array_join",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "join"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "seperator"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "array_to_string",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "tostring"
                 }
             ]
         },
@@ -885,6 +1506,115 @@
                 {
                     "type": "non_terminal",
                     "name": "object_method"
+                }
+            ]
+        },
+        {
+            "name": "object_method",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "object_get",
+                    "alias": "get",
+                    "tooltip": "Get an element by its property name in the object e.g objectName.property"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "object_delete",
+                    "alias": "delete",
+                    "tooltip": "Delete a pair (property:value) by property name"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "object_set",
+                    "alias": "set",
+                    "tooltip": "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "object_size",
+                    "alias": "length",
+                    "tooltip": "Get the count of properties in the object"
+                }
+            ]
+        },
+        {
+            "name": "object_get",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "["
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "property"
+                },
+                {
+                    "type": "terminal",
+                    "name": "]"
+                }
+            ]
+        },
+        {
+            "name": "object_delete",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "delete"
+                },
+                {
+                    "type": "terminal",
+                    "name": "["
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "property"
+                },
+                {
+                    "type": "terminal",
+                    "name": "]"
+                }
+            ]
+        },
+        {
+            "name": "object_set",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "set"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "value"
+                },
+                {
+                    "type": "terminal",
+                    "name": ","
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "property"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "object_size",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "length"
                 }
             ]
         },
@@ -920,128 +1650,12 @@
             ]
         },
         {
-            "name": "array_method",
-            "any_of": [
-                {
-                    "type": "non_terminal",
-                    "name": "array_get",
-                    "alias": "get",
-                    "tooltip": "Get an element by its position in the array"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "array_insert",
-                    "alias": "insert",
-                    "tooltip": "Insert an element at a position in the array. Elements that previously were at the position, or after it, are moved one place to the right"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "array_push_back",
-                    "alias": "push",
-                    "tooltip": "Insert an element at the end of the array"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "array_pop",
-                    "alias": "pop",
-                    "tooltip": "Returns the last element of the array"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "array_set",
-                    "alias": "set",
-                    "tooltip": "Modify an element in a position of the array to a new character"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "array_size",
-                    "alias": "length",
-                    "tooltip": "Get the count of elements in the array"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "array_join",
-                    "alias": "join",
-                    "tooltip": "The join method also joins all array elements into a string, you can specify the separator"
-                }
-            ]
-        },
-        {
-            "name": "object_method",
-            "any_of": [
-                {
-                    "type": "non_terminal",
-                    "name": "object_get",
-                    "alias": "get",
-                    "tooltip": "Get an element by its property name in the object e.g objectName.property"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "object_delete",
-                    "alias": "delete",
-                    "tooltip": "Delete a pair (property:value) by property name"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "object_set",
-                    "alias": "set",
-                    "tooltip": "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "object_size",
-                    "alias": "length",
-                    "tooltip": "Get the count of properties in the object"
-                }
-            ]
-        },
-        {
-            "name": "array_get",
+            "name": "function_call",
             "all_of": [
                 {
                     "type": "terminal",
-                    "name": "get"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "index"
-                }
-            ]
-        },
-        {
-            "name": "array_insert",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "insert"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "index"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "element"
-                }
-            ]
-        },
-        {
-            "name": "array_push_back",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "push"
+                    "name": "IDENT",
+                    "alias": "function name"
                 },
                 {
                     "type": "terminal",
@@ -1049,8 +1663,7 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "element"
+                    "name": "expr_list"
                 },
                 {
                     "type": "terminal",
@@ -1059,491 +1672,23 @@
             ]
         },
         {
-            "name": "array_pop",
+            "name": "print_call",
             "all_of": [
                 {
                     "type": "terminal",
-                    "name": "pop"
-                }
-            ]
-        },
-        {
-            "name": "array_set",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "set"
+                    "name": "console.log"
                 },
                 {
                     "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "index"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "element"
-                }
-            ]
-        },
-        {
-            "name": "array_size",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "length"
-                }
-            ]
-        },
-        {
-            "name": "object_get",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "getP"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "property"
-                }
-            ]
-        },
-        {
-            "name": "object_delete",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "deleteP"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "property"
-                }
-            ]
-        },
-        {
-            "name": "object_set",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "setP"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "property"
-                }
-            ]
-        },
-        {
-            "name": "object_size",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "length"
-                }
-            ]
-        },
-        {
-            "name": "string_method_call",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "IN STRING"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "string"
-                },
-                {
-                    "type": "terminal",
-                    "name": "CALL"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "string_method"
-                }
-            ]
-        },
-        {
-            "name": "string_method",
-            "any_of": [
-                {
-                    "type": "non_terminal",
-                    "name": "string_append",
-                    "alias": "append",
-                    "tooltip": "Get a new string with the argument string added to the end (suffix) of the original"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "string_get_character",
-                    "alias": "get_character",
-                    "tooltip": "Get the character at the specified position of the string"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "string_get_substring",
-                    "alias": "get_substring",
-                    "tooltip": "Get a substring of a string, giving a start position and an end position"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "string_size",
-                    "alias": "length",
-                    "tooltip": "Get the count of characters contained in the string"
-                }
-            ]
-        },
-        {
-            "name": "string_append",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "append"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "string"
-                }
-            ]
-        },
-        {
-            "name": "string_get_character",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "get_character"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "index"
-                }
-            ]
-        },
-        {
-            "name": "string_get_substring",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "get_substring"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "start_index"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "end_index"
-                }
-            ]
-        },
-        {
-            "name": "string_size",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "length"
-                }
-            ]
-        },
-        {
-            "name": "input_output_call",
-            "any_of": [
-                {
-                    "type": "non_terminal",
-                    "name": "input_output_print",
-                    "alias": "print",
-                    "tooltip": "Print the value of the given expression (text, number etc.)"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "input_output_input",
-                    "alias": "input",
-                    "tooltip": "Prompt the user with a text message and get user-input"
-                }
-            ]
-        },
-        {
-            "name": "input_output_print",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "CALL"
-                },
-                {
-                    "type": "terminal",
-                    "name": "print"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
+                    "name": "("
                 },
                 {
                     "type": "non_terminal",
                     "name": "expr_list"
-                }
-            ]
-        },
-        {
-            "name": "input_output_input",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "CALL"
                 },
                 {
                     "type": "terminal",
-                    "name": "input"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "prompt_message"
-                }
-            ]
-        },
-        {
-            "name": "math_call",
-            "any_of": [
-                {
-                    "type": "non_terminal",
-                    "name": "math_pow",
-                    "alias": "pow",
-                    "tooltip": "Raise a number into a power"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "math_sqrt",
-                    "alias": "sqrt",
-                    "tooltip": "Get the square root of a number"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "math_round",
-                    "alias": "round",
-                    "tooltip": "Get the nearset integer to the given number"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "math_floor",
-                    "alias": "floor",
-                    "tooltip": "Get the greatest integer less than or equal to the given number"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "math_ceiling",
-                    "alias": "ceiling",
-                    "tooltip": "Get the least integer greater than or equal to the given number"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "math_sin",
-                    "alias": "sin",
-                    "tooltip": "Get the sin of the given angle in degrees"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "math_cos",
-                    "alias": "cos",
-                    "tooltip": "Get the cos of the given angle in degrees"
-                }
-            ]
-        },
-        {
-            "name": "math_pow",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "CALL"
-                },
-                {
-                    "type": "terminal",
-                    "name": "pow"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "number"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "exponent"
-                }
-            ]
-        },
-        {
-            "name": "math_sqrt",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "CALL"
-                },
-                {
-                    "type": "terminal",
-                    "name": "sqrt"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "number"
-                }
-            ]
-        },
-        {
-            "name": "math_round",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "CALL"
-                },
-                {
-                    "type": "terminal",
-                    "name": "round"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "number"
-                }
-            ]
-        },
-        {
-            "name": "math_floor",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "CALL"
-                },
-                {
-                    "type": "terminal",
-                    "name": "floor"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "number"
-                }
-            ]
-        },
-        {
-            "name": "math_ceiling",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "CALL"
-                },
-                {
-                    "type": "terminal",
-                    "name": "ceiling"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "number"
-                }
-            ]
-        },
-        {
-            "name": "math_sin",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "CALL"
-                },
-                {
-                    "type": "terminal",
-                    "name": "sin"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "number"
-                }
-            ]
-        },
-        {
-            "name": "math_cos",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "CALL"
-                },
-                {
-                    "type": "terminal",
-                    "name": "cos"
-                },
-                {
-                    "type": "terminal",
-                    "name": "WITH"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "number"
+                    "name": ")"
                 }
             ]
         },

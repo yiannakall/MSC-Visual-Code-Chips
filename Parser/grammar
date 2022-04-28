@@ -12,14 +12,13 @@ non_terminal {
     arith_op rel_op logical_binary_op unary_op_af unary_op_bf assign_op
     binary_logical_expr not_expr
     BOOLEAN ARRAY_CONST OBJECT_CONST
-    input_output_call math_call string_method_call array_method_call object_method_call function_call object_function_call
     ident_list expr_list element_list pair_element_list pair_element
+    math_call string_method_call array_method_call object_method_call object_function_call function_call print_call
+    math_abs math_pow math_sqrt math_round math_floor math_ceil math_sin math_cos
     array_method object_method string_method
-    array_get array_insert array_push_back array_pop array_set array_size array_join
+    string_concat string_upperCase string_lowCase string_substring string_size string_slice
+    array_get array_push array_pop array_set array_size array_join array_to_string
     object_get object_insert object_delete object_set object_size
-    string_append string_get_character string_get_substring string_size
-    input_output_print input_output_input
-    math_pow math_sqrt math_round math_floor math_ceiling math_sin math_cos
 }
 
 terminal {
@@ -30,17 +29,16 @@ terminal {
     true false
     ";"
     if else while for break continue return
-    CALL function "(" ")" WITH
-    ARRAY "[" "]"
-    OBJECT ":" "{" "}"
-    get insert push pop set length
-    getP deleteP setP sizeP
-    "IN STRING"
-    append get_character get_substring
-    print input
-    pow sqrt round floor ceiling sin cos 
+    function "(" ")"
+    "[" "]"
+    ":" "{" "}"
+    "Math" "console.log"
+    abs pow sqrt round floor ceil sin cos 
+    push pop set join tostring
+    delete length
+    concat toUpperCase toLowerCase substring slice 
     var let const " "
-    "."
+    "." "," "()"
 }
 
 define program {
@@ -227,18 +225,6 @@ define BOOLEAN {
     }
 }
 
-define call_expr {
-    any_of {
-        input_output_call       : "Use a built-in input/output function"
-        math_call               : "Use a built-in math function"
-        string_method_call      : "Use a built-in string method"
-        array_method_call       : "Use a built-in array method"
-        object_method_call      : "Use a built-in object method"
-        function_call           : "Use a user-defined function as \"name(params);\""
-        object_function_call    : "Use a function which is member of an object as \"object.function()\""
-    }
-}
-
 define ARRAY_CONST {
     "[" element_list "]"
 }
@@ -300,32 +286,148 @@ define return_stmt {
     ";"
 }
 
-define function_call {
-    IDENT("function name") "(" expr_list ")"
+define call_expr {
+    any_of {
+        math_call               : "Use a built-in math function"
+        string_method_call      : "Use a built-in string method"
+        array_method_call       : "Use a built-in array method"
+        object_method_call      : "Use a built-in object method"
+        object_function_call    : "Use a function which is member of an object as \"object.function()\""
+        function_call           : "Use a user-defined function as \"name(params);\""
+        print_call              : "Use a built-in function to print the value of the given expression (text, number etc.)"
+    } 
+}
+
+define math_call {
+    any_of {
+        math_abs(abs)               : "Returns the absolute value of a number"
+        math_pow(pow)               : "pow(x,y) Returns base x to the exponent power y (that is, x^y)"
+        math_sqrt(sqrt)             : "Get the square root of a number"
+        math_round(round)           : "Get the nearest integer to the given number"
+        math_floor(floor)           : "Get the greatest integer less than or equal to the given number"
+        math_ceil(ceil)             : "Get the least integer greater than or equal to the given number"
+        math_sin(sin)               : "Get the sine of the given angle in degrees"
+        math_cos(cos)               : "Get the cosine of the given angle in degrees"
+    }
+}
+
+define math_abs {
+    "Math" "." abs "(" expr(value) ")"
+}
+
+define math_pow {
+    "Math" "." pow "(" expr(number) "," expr(exponent) ")"
+}
+
+define math_sqrt {
+    "Math" "." sqrt "(" expr(number) ")"
+}
+
+define math_round {
+    "Math" "." round "(" expr(number) ")"
+}
+
+define math_floor {
+    "Math" "." floor "(" expr(number) ")"
+}
+
+define math_ceil {
+    "Math" "." ceil "(" expr(number) ")"
+}
+
+define math_sin {
+    "Math" "." sin "(" expr(number) ")"
+}
+
+define math_cos {
+    "Math" "." cos "(" expr(number) ")"
+}
+
+define string_method_call {
+    expr("string") "." string_method
+}
+
+define string_method {
+    any_of {
+        string_concat(concat)                           : "Join two strings to one"
+        string_upperCase(toUpperCase)                   : "A string is converted to upper case"
+        string_lowCase(toLowCase)                       : "A string is converted to lower case"
+        string_substring(substring)                     : "Get a substring of a string, giving a start position and an end position"
+        string_size(length)                             : "Get the count of characters contained in the string"
+        string_slice(slice)                             : "Extracts a part of a string and returns the extracted part in a new string, giving a start position and an end position"
+    }
+}
+
+define string_concat {
+    concat "(" expr("string2") ")"
+}
+
+define string_upperCase {
+    toUpperCase "()"
+}
+
+define string_lowCase {
+    toLowerCase "()"
+}
+
+define string_substring {
+    substring "(" expr(start_index) "," expr(end_index) ")"
+}
+
+define string_size {
+    length
+}
+
+define string_slice {
+    slice "(" expr(start_index) "," expr(end_index) ")"
 }
 
 define array_method_call {
-    IDENT(array) "." array_method "(" ")"
-}
-
-define object_method_call {
-    IDENT("object name") "." object_method
-}
-
-define object_function_call {
-    IDENT("object name") "." IDENT("function name") "(" expr_list ")"
+    IDENT(arrayName) "." array_method
 }
 
 define array_method {
     any_of { 
         array_get(get)                  : "Get an element by its position in the array"
-        array_insert(insert)            : "Insert an element at a position in the array. Elements that previously were at the position, or after it, are moved one place to the right"
-        array_push_back(push)           : "Insert an element at the end of the array"
+        array_push(push)                : "Insert an element at the end of the array"
         array_pop(pop)                  : "Returns the last element of the array"
         array_set(set)                  : "Modify an element in a position of the array to a new character"
         array_size(length)              : "Get the count of elements in the array"
         array_join(join)                : "The join method also joins all array elements into a string, you can specify the separator"
+        array_to_string(tostring)       : "Converts an array to a string of (comma separated) array values."
     }
+}
+
+define array_get {
+    "[" primary_expr(index) "]"
+}
+
+define array_push {
+    push "(" expr(element) ")"
+}
+
+define array_pop {
+    pop "()"
+}
+
+define array_set {
+    set "(" expr(index) "," expr(element) ")"
+}
+
+define array_size {
+    length
+}
+
+define array_join {
+    join "(" primary_expr(seperator) ")"
+}
+
+define array_to_string {
+    tostring
+}
+
+define object_method_call {
+    IDENT("object name") "." object_method
 }
 
 define object_method {
@@ -337,128 +439,32 @@ define object_method {
     }
 }
 
-define array_get {
-    get WITH expr(index)
-}
-
-define array_insert {
-    insert WITH expr(index) expr(element)
-}
-
-define array_push_back {
-    push "(" expr(element) ")"
-}
-
-define array_pop {
-    pop
-}
-
-define array_set {
-    set WITH expr(index) expr(element)
-}
-
-define array_size {
-    length
-}
-
 define object_get {
-    getP WITH expr(property)
+    "[" expr(property) "]"
 }
 
 define object_delete {
-    deleteP WITH expr(property)
+    delete "[" expr(property) "]"
 }
 
 define object_set {
-    setP WITH expr(property)
+    set "(" expr(value) "," expr(property) ")"
 }
 
 define object_size {
     length
 }
 
-define string_method_call {
-    "IN STRING" expr("string") CALL string_method
+define object_function_call {
+    IDENT("object name") "." IDENT("function name") "(" expr_list ")"
 }
 
-define string_method {
-    any_of {
-        string_append(append)                           : "Get a new string with the argument string added to the end (suffix) of the original"
-        string_get_character(get_character)             : "Get the character at the specified position of the string"
-        string_get_substring(get_substring)             : "Get a substring of a string, giving a start position and an end position"
-        string_size(length)                             : "Get the count of characters contained in the string"
-    }
+define function_call {
+    IDENT("function name") "(" expr_list ")"
 }
 
-define string_append {
-    append WITH expr("string")
-}
-
-define string_get_character {
-    get_character WITH expr(index)
-}
-
-define string_get_substring {
-    get_substring WITH expr(start_index) expr(end_index)
-}
-
-define string_size {
-    length
-}
-
-define input_output_call {
-    any_of {
-        input_output_print(print)       : "Print the value of the given expression (text, number etc.)"
-        input_output_input(input)       : "Prompt the user with a text message and get user-input"
-    }
-}
-
-define input_output_print {
-    CALL print WITH expr_list
-}
-
-define input_output_input {
-    CALL input WITH expr(prompt_message)
-}
-
-define math_call {
-    any_of {
-        math_pow(pow)                       : "Raise a number into a power"
-        math_sqrt(sqrt)                     : "Get the square root of a number"
-        math_round(round)                   : "Get the nearset integer to the given number"
-        math_floor(floor)                   : "Get the greatest integer less than or equal to the given number"
-        math_ceiling(ceiling)               : "Get the least integer greater than or equal to the given number"
-        math_sin(sin)                       : "Get the sin of the given angle in degrees"
-        math_cos(cos)                       : "Get the cos of the given angle in degrees"
-    }
-}
-
-define math_pow {
-    CALL pow WITH expr(number) expr(exponent)
-}
-
-define math_sqrt {
-    CALL sqrt WITH expr(number)
-}
-
-define math_round {
-    CALL round WITH expr(number)
-}
-
-define math_floor {
-    CALL floor WITH expr(number)
-}
-
-define math_ceiling {
-    CALL ceiling WITH expr(number)
-}
-
-define math_sin {
-    CALL sin WITH expr(number)
-}
-
-define math_cos {
-    CALL cos WITH expr(number)
+define print_call {
+    "console.log" "(" expr_list ")"
 }
 
 define if_stmt {
