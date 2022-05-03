@@ -830,7 +830,7 @@ export let config = {
                         "type": "non_terminal",
                         "name": "math_abs",
                         "alias": "abs",
-                        "tooltip": "Returns the absolute value"
+                        "tooltip": "Returns the absolute value of a number"
                     },
                     {
                         "type": "non_terminal",
@@ -17076,7 +17076,7 @@ config.darkTheme = {
                     "BorderRadius": ""
                 }
             },
-            "TIMES": {
+            "MULT": {
                 "Simple Block": {
                     "BackgroundColor": "transparent",
                     "PaddingLeft": "",
@@ -17090,7 +17090,7 @@ config.darkTheme = {
                     "BorderRadius": ""
                 }
             },
-            "BY": {
+            "DIV": {
                 "Simple Block": {
                     "BackgroundColor": "transparent",
                     "PaddingLeft": "",
@@ -17422,7 +17422,7 @@ config.darkTheme = {
                     "BorderRadius": "10px"
                 }
             },
-            "BREAK": {
+            "break": {
                 "Simple Block": {
                     "BackgroundColor": "#1e1e1e",
                     "PaddingLeft": "10px",
@@ -17436,7 +17436,7 @@ config.darkTheme = {
                     "BorderRadius": "10px"
                 }
             },
-            "CONTINUE": {
+            "continue": {
                 "Simple Block": {
                     "BackgroundColor": "#1e1e1e",
                     "PaddingLeft": "10px",
@@ -23186,7 +23186,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "TIMES": {
+            "MULT": {
                 "Simple Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -23200,7 +23200,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "BY": {
+            "DIV": {
                 "Simple Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -23351,6 +23351,18 @@ config.darkColorfulTheme = {
                     "FontSize": "",
                     "BorderWidth": "",
                     "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "ident_type": {
+                "Group Block": {
+                    "BackgroundColor": "#A55B80",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "BorderWidth": "",
+                    "BorderColor": "#E1C7D2",
                     "BorderRadius": ""
                 }
             },
@@ -23532,21 +23544,19 @@ config.darkColorfulTheme = {
                     "BorderRadius": "5px"
                 }
             },
-            "BREAK": {
-                "Simple Block": {
+            "break_stmt": {
+                "Group Block": {
                     "BackgroundColor": "#5BA55B",
                     "PaddingLeft": "10px",
                     "PaddingRight": "10px",
                     "PaddingTop": "5px",
                     "PaddingBottom": "5px",
-                    "FontColor": "",
-                    "FontSize": "",
                     "BorderWidth": "",
                     "BorderColor": "#488448",
                     "BorderRadius": ""
                 }
             },
-            "CONTINUE": {
+            "break": {
                 "Simple Block": {
                     "BackgroundColor": "#5BA55B",
                     "PaddingLeft": "10px",
@@ -23556,7 +23566,33 @@ config.darkColorfulTheme = {
                     "FontColor": "",
                     "FontSize": "",
                     "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "continue_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#5BA55B",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "BorderWidth": "",
                     "BorderColor": "#488448",
+                    "BorderRadius": ""
+                }
+            },
+            "continue": {
+                "Simple Block": {
+                    "BackgroundColor": "#5BA55B",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
                     "BorderRadius": ""
                 }
             },
@@ -23572,7 +23608,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "RETURN": {
+            "return": {
                 "Simple Block": {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "",
@@ -23866,7 +23902,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "user_function_call": {
+            "function_call": {
                 "Group Block": {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "",
@@ -24082,7 +24118,19 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "unary_minus_expr": {
+            "unary_expr_before": {
+                "Group Block": {
+                    "BackgroundColor": "#5B67A5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#363D63",
+                    "BorderRadius": ""
+                }
+            },
+            "unary_expr_after": {
                 "Group Block": {
                     "BackgroundColor": "#5B67A5",
                     "PaddingLeft": "",
@@ -24327,20 +24375,6 @@ config.darkColorfulTheme = {
                     "BackgroundColor": ""
                 }
             },
-            "IN ARRAY": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
             "get": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -24355,7 +24389,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "insert": {
+            "push": {
                 "Simple Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -24369,7 +24403,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "push_back": {
+            "pop": {
                 "Simple Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -24397,7 +24431,35 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "get_size": {
+            "length": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "join": {
+                "Simple Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontColor": "",
+                    "FontSize": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "tostring": {
                 "Simple Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -24437,7 +24499,43 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
+            "object_method_call": {
+                "Group Block": {
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#5C4884",
+                    "BorderRadius": ""
+                }
+            },
+            "object_function_call": {
+                "Group Block": {
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#5C4884",
+                    "BorderRadius": ""
+                }
+            },
             "ARRAY_CONST": {
+                "Group Block": {
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#5C4884",
+                    "BorderRadius": ""
+                }
+            },
+            "OBJECT_CONST": {
                 "Group Block": {
                     "BackgroundColor": "#745BA5",
                     "PaddingLeft": "",
@@ -24506,7 +24604,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "array_insert": {
+            "array_push": {
                 "Group Block": {
                     "BackgroundColor": "transparent",
                     "PaddingLeft": "0px",
@@ -24518,7 +24616,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "array_push_back": {
+            "array_pop": {
                 "Group Block": {
                     "BackgroundColor": "transparent",
                     "PaddingLeft": "0px",
@@ -24542,7 +24640,173 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
+            "array_size": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "array_join": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "array_to_string": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "object_method": {
+                "Selection Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": "",
+                    "Gap": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Arrow": {
+                    "BackgroundColor": "",
+                    "Width": "",
+                    "Height": ""
+                },
+                "Option Container": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": ""
+                },
+                "Option": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "FontSize": "",
+                    "FontColor": ""
+                },
+                "Option On Hover": {
+                    "BackgroundColor": "",
+                    "FontColor": ""
+                },
+                "Option Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                }
+            },
+            "object_get": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "object_delete": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "transparent",
+                    "BorderRadius": ""
+                }
+            },
+            "object_set": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "object_size": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
             "element_list": {
+                "Group Block": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                },
+                "Button": {
+                    "BackgroundColor": "",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": ""
+                },
+                "Button Plus Sign": {
+                    "Width": "",
+                    "Height": "",
+                    "BackgroundColor": ""
+                },
+                "Button Tooltip": {
+                    "FontSize": "",
+                    "FontColor": "",
+                    "BackgroundColor": ""
+                },
+                "Button On Hover": {
+                    "BackgroundColor": ""
+                },
+                "Button Plus Sign On Hover": {
+                    "BackgroundColor": ""
+                }
+            },
+            "pair_element_list": {
                 "Group Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -24636,7 +24900,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "string_append": {
+            "string_concat": {
                 "Group Block": {
                     "BackgroundColor": "transparent",
                     "PaddingLeft": "0px",
@@ -24648,7 +24912,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "string_get_character": {
+            "string_upperCase": {
                 "Group Block": {
                     "BackgroundColor": "transparent",
                     "PaddingLeft": "0px",
@@ -24660,7 +24924,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "string_get_substring": {
+            "string_lowCase": {
                 "Group Block": {
                     "BackgroundColor": "transparent",
                     "PaddingLeft": "0px",
@@ -24669,6 +24933,54 @@ config.darkColorfulTheme = {
                     "PaddingBottom": "0px",
                     "BorderWidth": "",
                     "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_substring": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_size": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "string_slice": {
+                "Group Block": {
+                    "BackgroundColor": "transparent",
+                    "PaddingLeft": "0px",
+                    "PaddingRight": "0px",
+                    "PaddingTop": "0px",
+                    "PaddingBottom": "0px",
+                    "BorderWidth": "",
+                    "BorderColor": "",
+                    "BorderRadius": ""
+                }
+            },
+            "math_abs": {
+                "Group Block": {
+                    "BackgroundColor": "#5B67A5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#363D63",
                     "BorderRadius": ""
                 }
             },
@@ -24720,7 +25032,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "math_ceiling": {
+            "math_ceil": {
                 "Group Block": {
                     "BackgroundColor": "#5B67A5",
                     "PaddingLeft": "",
@@ -24756,19 +25068,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "input_output_print": {
-                "Group Block": {
-                    "BackgroundColor": "#995BA5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#7A4884",
-                    "BorderRadius": ""
-                }
-            },
-            "input_output_input": {
+            "print_call": {
                 "Group Block": {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "",
@@ -24951,15 +25251,21 @@ config.darkColorfulTheme = {
         "(": "#ffffff",
         ")": "#ffffff",
         "UMINUS": "#DCB962",
-        "MINUS": "#DCB962",
+        "UPLUS" : "#DCB962",
+        "PLUS_PLUS" : "#DCB962",
+        "SUB_SUB" : "#DCB962",
+        "SUB": "#DCB962",
         "PLUS": "#DCB962",
-        "TIMES": "#DCB962",
-        "BY": "#DCB962",
+        "MULT": "#DCB962",
+        "DIV": "#DCB962",
+        "EXP" : "#DCB962",
         "MODULO": "#DCB962",
         "GREATER": "#DCB962",
         "LESS": "#DCB962",
         "EQUAL_TO": "#DCB962",
+        "EQUAL_VALUE_TYPE": "#DCB962",
         "NOT_EQUAL_TO": "#DCB962",
+        "NOT_EQUAL_VALUE_TYPE": "#DCB962",
         "GREATER_EQUAL": "#DCB962",
         "LESS_EQUAL": "#DCB962",
         "AND": "#DCB962",
@@ -24973,9 +25279,9 @@ config.darkColorfulTheme = {
         "BOOL_CONST_": "#ffffff",
         "true": "#C57991",
         "false": "#C57991",
-        "BREAK": "#C57991",
-        "CONTINUE": "#C57991",
-        "RETURN": "#C57991",
+        "break": "#C57991",
+        "continue": "#C57991",
+        "return": "#C57991",
         "EQUALS": "#DCB962",
         "FUNCTION": "#C57991",
         "OF": "#C57991",
@@ -25015,14 +25321,14 @@ config.darkColorfulTheme = {
     "Pretty Print": {
         "stmts":                { "NewLine Between Blocks": true },
         "defs":                 { "NewLine Between Blocks": true },
-        "if_stmt":              [ "IF", "condition_expr", "$$_newline", "$$_tab", "if_part"],
+        "if_stmt":              [ "if","(", "condition_expr", ")", "$$_newline", "$$_tab", "if_part"],
         "if_else_stmt":         [ 
-                                    "IF", "condition_expr", "$$_newline", "$$_tab", "if_part",
+                                    "if", "(", "condition_expr", ")", "$$_newline", "$$_tab" ,"{", "if_part", "}",
                                     "$$_newline", "ELSE", "$$_newline", "$$_tab", "else_part"
                                 ],
-        "while_stmt":           [ "WHILE", "condition_expr", "$$_newline", "$$_tab", "while_part" ],
-        "for_stmt":             [ "FOR", "initialization", "condition_expr", "step", "$$_newline", "$$_tab", "for_part" ],
-        "func_def":             [ "FUNCTION", "NAME", "OF", "ident_list", "$$_newline", "$$_tab", "stmts" ],
+        "while_stmt":           [ "WHILE", "(", "condition_expr",")", "$$_newline", "$$_tab", "while_part" ],
+        "for_stmt":             [ "FOR", "(", "initialization",";", "condition_expr",";", "step",")", "$$_newline", "$$_tab", "for_part" ],
+        "func_def":             [ "function", "NAME", "(", "ident_list", ")", "$$_newline", "$$_tab", "stmts" ],
         "ident_list":           { "NewLine Between Blocks": false },
         "expr_list":            { "NewLine Between Blocks": false },
         "element_list":         { "NewLine Between Blocks": false },
@@ -25059,16 +25365,16 @@ config.darkColorfulTheme = {
             "Insert After Last Block": []
         },
         "if_stmt":                      [   
-                                            "IF", "$$_(", "condition_expr", "$$_)", "$$_{",
+                                            "if", "$$_(", "condition_expr", "$$_)", "$$_{",
                                             "$$_newline", "$$_tab", "if_part", "$$_newline", "$$_}"
                                         ],
         "if_else_stmt":                 [
-                                            "IF", "$$_(", "condition_expr", "$$_)", "$$_{",
+                                            "if", "$$_(", "condition_expr", "$$_)", "$$_{",
                                             "$$_newline", "$$_tab", "if_part", "$$_newline", "$$_}", "$$_newline",
-                                            "ELSE", "$$_{", "$$_newline", "$$_tab", "else_part", "$$_newline", "$$_}", 
+                                            "else", "$$_{", "$$_newline", "$$_tab", "else_part", "$$_newline", "$$_}", 
                                         ],
         "while_stmt":                   [ 
-                                            "WHILE", "$$_(", "condition_expr", "$$_)", "$$_{",
+                                            "while", "$$_(", "condition_expr", "$$_)", "$$_{",
                                             "$$_newline", "$$_tab", "while_part", "$$_newline", "$$_}",
                                         ],
         "for_stmt":                     [

@@ -273,11 +273,11 @@ define func_def {
 }
 
 define break_stmt {
-    break ";"
+    "break" ";"
 }
 
 define continue_stmt {
-    continue ";"
+    "continue" ";"
 }
 
 define return_stmt {
