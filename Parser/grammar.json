@@ -58,6 +58,11 @@
                 },
                 {
                     "type": "non_terminal",
+                    "name": "ternary_stmt",
+                    "tooltip": "A statement with ternary operator has a condition, then an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                },
+                {
+                    "type": "non_terminal",
                     "name": "break_stmt",
                     "tooltip": "Exit from the current loop"
                 },
@@ -1304,30 +1309,18 @@
         },
         {
             "name": "array_method_call",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "IDENT",
-                    "alias": "arrayName"
-                },
-                {
-                    "type": "terminal",
-                    "name": "."
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "array_method"
-                }
-            ]
-        },
-        {
-            "name": "array_method",
             "any_of": [
                 {
                     "type": "non_terminal",
                     "name": "array_get",
                     "alias": "get",
                     "tooltip": "Get an element by its position in the array"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "array_set",
+                    "alias": "set",
+                    "tooltip": "Modify an element in a position of the array to a new character"
                 },
                 {
                     "type": "non_terminal",
@@ -1340,12 +1333,6 @@
                     "name": "array_pop",
                     "alias": "pop",
                     "tooltip": "Returns the last element of the array"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "array_set",
-                    "alias": "set",
-                    "tooltip": "Modify an element in a position of the array to a new character"
                 },
                 {
                     "type": "non_terminal",
@@ -1372,6 +1359,11 @@
             "all_of": [
                 {
                     "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "arrayName"
+                },
+                {
+                    "type": "terminal",
                     "name": "["
                 },
                 {
@@ -1388,6 +1380,15 @@
         {
             "name": "array_push",
             "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "arrayName"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
                 {
                     "type": "terminal",
                     "name": "push"
@@ -1412,6 +1413,15 @@
             "all_of": [
                 {
                     "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "arrayName"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
+                {
+                    "type": "terminal",
                     "name": "pop"
                 },
                 {
@@ -1425,35 +1435,45 @@
             "all_of": [
                 {
                     "type": "terminal",
-                    "name": "set"
+                    "name": "IDENT",
+                    "alias": "arrayName"
                 },
                 {
                     "type": "terminal",
-                    "name": "("
+                    "name": "["
                 },
                 {
                     "type": "non_terminal",
-                    "name": "expr",
+                    "name": "primary_expr",
                     "alias": "index"
                 },
                 {
                     "type": "terminal",
-                    "name": ","
+                    "name": "]"
+                },
+                {
+                    "type": "terminal",
+                    "name": "="
                 },
                 {
                     "type": "non_terminal",
                     "name": "expr",
                     "alias": "element"
-                },
-                {
-                    "type": "terminal",
-                    "name": ")"
                 }
             ]
         },
         {
             "name": "array_size",
             "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "arrayName"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
                 {
                     "type": "terminal",
                     "name": "length"
@@ -1463,6 +1483,15 @@
         {
             "name": "array_join",
             "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "arrayName"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
                 {
                     "type": "terminal",
                     "name": "join"
@@ -1487,30 +1516,21 @@
             "all_of": [
                 {
                     "type": "terminal",
-                    "name": "tostring"
-                }
-            ]
-        },
-        {
-            "name": "object_method_call",
-            "all_of": [
-                {
-                    "type": "terminal",
                     "name": "IDENT",
-                    "alias": "object name"
+                    "alias": "arrayName"
                 },
                 {
                     "type": "terminal",
                     "name": "."
                 },
                 {
-                    "type": "non_terminal",
-                    "name": "object_method"
+                    "type": "terminal",
+                    "name": "tostring"
                 }
             ]
         },
         {
-            "name": "object_method",
+            "name": "object_method_call",
             "any_of": [
                 {
                     "type": "non_terminal",
@@ -1543,6 +1563,11 @@
             "all_of": [
                 {
                     "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "object name"
+                },
+                {
+                    "type": "terminal",
                     "name": "["
                 },
                 {
@@ -1565,6 +1590,11 @@
                 },
                 {
                     "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "object name"
+                },
+                {
+                    "type": "terminal",
                     "name": "["
                 },
                 {
@@ -1583,20 +1613,12 @@
             "all_of": [
                 {
                     "type": "terminal",
-                    "name": "set"
+                    "name": "IDENT",
+                    "alias": "object name"
                 },
                 {
                     "type": "terminal",
-                    "name": "("
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "value"
-                },
-                {
-                    "type": "terminal",
-                    "name": ","
+                    "name": "["
                 },
                 {
                     "type": "non_terminal",
@@ -1605,13 +1627,31 @@
                 },
                 {
                     "type": "terminal",
-                    "name": ")"
+                    "name": "]"
+                },
+                {
+                    "type": "terminal",
+                    "name": "="
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "value"
                 }
             ]
         },
         {
             "name": "object_size",
             "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "object name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
                 {
                     "type": "terminal",
                     "name": "length"
@@ -1864,6 +1904,34 @@
                 {
                     "type": "terminal",
                     "name": "}"
+                }
+            ]
+        },
+        {
+            "name": "ternary_stmt",
+            "all_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "condition_expr"
+                },
+                {
+                    "type": "terminal",
+                    "name": "?"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "exprIfTrue"
+                },
+                {
+                    "type": "terminal",
+                    "name": ":"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "exprIfFalse"
                 }
             ]
         },

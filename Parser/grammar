@@ -5,7 +5,7 @@ non_terminal {
     defs
     def
     variable types ident_type
-    if_stmt if_else_stmt while_stmt for_stmt expr func_def break_stmt continue_stmt return_stmt
+    if_stmt if_else_stmt while_stmt for_stmt expr func_def ternary_stmt break_stmt continue_stmt return_stmt
     arith_expr rel_expr logical_expr assign_expr call_expr primary_expr
     binary_arith_expr unary_expr 
     unary_expr_before unary_expr_after
@@ -15,7 +15,7 @@ non_terminal {
     ident_list expr_list element_list pair_element_list pair_element
     math_call string_method_call array_method_call object_method_call object_function_call function_call print_call
     math_abs math_pow math_sqrt math_round math_floor math_ceil math_sin math_cos
-    array_method object_method string_method
+    string_method
     string_concat string_upperCase string_lowCase string_substring string_size string_slice
     array_get array_push array_pop array_set array_size array_join array_to_string
     object_get object_insert object_delete object_set object_size
@@ -38,7 +38,7 @@ terminal {
     delete length
     concat toUpperCase toLowerCase substring slice 
     var let const " "
-    "." "," "()"
+    "." "," "()" "?" "="
 }
 
 define program {
@@ -60,6 +60,7 @@ define stmt {
         while_stmt              : "Do something while a condition is true"
         for_stmt                : "Do something while a condition is true. Commonly used with a known number of iterations."
         expr(expr_stmt)         : "A single expression as a statement"
+        ternary_stmt            : "A statement with ternary operator has a condition, then an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
         break_stmt              : "Exit from the current loop"
         continue_stmt           : "Continue to the next iteration of the current loop"
         return_stmt             : "Return an expression as the result of the current function"
@@ -383,15 +384,11 @@ define string_slice {
 }
 
 define array_method_call {
-    IDENT(arrayName) "." array_method
-}
-
-define array_method {
     any_of { 
         array_get(get)                  : "Get an element by its position in the array"
+        array_set(set)                  : "Modify an element in a position of the array to a new character"
         array_push(push)                : "Insert an element at the end of the array"
         array_pop(pop)                  : "Returns the last element of the array"
-        array_set(set)                  : "Modify an element in a position of the array to a new character"
         array_size(length)              : "Get the count of elements in the array"
         array_join(join)                : "The join method also joins all array elements into a string, you can specify the separator"
         array_to_string(tostring)       : "Converts an array to a string of (comma separated) array values."
@@ -399,38 +396,34 @@ define array_method {
 }
 
 define array_get {
-    "[" primary_expr(index) "]"
+    IDENT(arrayName) "[" primary_expr(index) "]"
 }
 
 define array_push {
-    push "(" expr(element) ")"
+    IDENT(arrayName) "." push "(" expr(element) ")"
 }
 
 define array_pop {
-    pop "()"
+    IDENT(arrayName) "." pop "()"
 }
 
 define array_set {
-    set "(" expr(index) "," expr(element) ")"
+    IDENT(arrayName)"[" primary_expr(index) "]" "=" expr(element)
 }
 
 define array_size {
-    length
+    IDENT(arrayName) "." length
 }
 
 define array_join {
-    join "(" primary_expr(seperator) ")"
+    IDENT(arrayName) "." join "(" primary_expr(seperator) ")"
 }
 
 define array_to_string {
-    tostring
+    IDENT(arrayName) "." tostring
 }
 
 define object_method_call {
-    IDENT("object name") "." object_method
-}
-
-define object_method {
     any_of { 
         object_get(get)                 : "Get an element by its property name in the object e.g objectName.property"
         object_delete(delete)           : "Delete a pair (property:value) by property name"
@@ -440,19 +433,19 @@ define object_method {
 }
 
 define object_get {
-    "[" expr(property) "]"
+    IDENT("object name") "[" expr(property) "]"
 }
 
 define object_delete {
-    delete "[" expr(property) "]"
+    delete IDENT("object name") "[" expr(property) "]"
 }
 
 define object_set {
-    set "(" expr(value) "," expr(property) ")"
+    IDENT("object name") "[" expr(property) "]" "=" expr(value)
 }
 
 define object_size {
-    length
+    IDENT("object name") "." length
 }
 
 define object_function_call {
@@ -485,6 +478,10 @@ define for_stmt {
     expr(condition_expr) ";"
     expr(step_expr) ")"
     "{" stmts(for_part) "}"
+}
+
+define ternary_stmt {
+    expr(condition_expr) "?" expr(exprIfTrue) ":" expr(exprIfFalse) 
 }
 
 define ident_list {

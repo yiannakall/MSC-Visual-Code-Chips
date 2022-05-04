@@ -59,6 +59,11 @@ export let config = {
                     },
                     {
                         "type": "non_terminal",
+                        "name": "ternary_stmt",
+                        "tooltip": "A statement with ternary operator has a condition, then an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                    },
+                    {
+                        "type": "non_terminal",
                         "name": "break_stmt",
                         "tooltip": "Exit from the current loop"
                     },
@@ -1305,30 +1310,18 @@ export let config = {
             },
             {
                 "name": "array_method_call",
-                "all_of": [
-                    {
-                        "type": "terminal",
-                        "name": "IDENT",
-                        "alias": "arrayName"
-                    },
-                    {
-                        "type": "terminal",
-                        "name": "."
-                    },
-                    {
-                        "type": "non_terminal",
-                        "name": "array_method"
-                    }
-                ]
-            },
-            {
-                "name": "array_method",
                 "any_of": [
                     {
                         "type": "non_terminal",
                         "name": "array_get",
                         "alias": "get",
                         "tooltip": "Get an element by its position in the array"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "array_set",
+                        "alias": "set",
+                        "tooltip": "Modify an element in a position of the array to a new character"
                     },
                     {
                         "type": "non_terminal",
@@ -1341,12 +1334,6 @@ export let config = {
                         "name": "array_pop",
                         "alias": "pop",
                         "tooltip": "Returns the last element of the array"
-                    },
-                    {
-                        "type": "non_terminal",
-                        "name": "array_set",
-                        "alias": "set",
-                        "tooltip": "Modify an element in a position of the array to a new character"
                     },
                     {
                         "type": "non_terminal",
@@ -1373,6 +1360,11 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "arrayName"
+                    },
+                    {
+                        "type": "terminal",
                         "name": "["
                     },
                     {
@@ -1389,6 +1381,15 @@ export let config = {
             {
                 "name": "array_push",
                 "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "arrayName"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "."
+                    },
                     {
                         "type": "terminal",
                         "name": "push"
@@ -1413,6 +1414,15 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "arrayName"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "."
+                    },
+                    {
+                        "type": "terminal",
                         "name": "pop"
                     },
                     {
@@ -1426,35 +1436,45 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "set"
+                        "name": "IDENT",
+                        "alias": "arrayName"
                     },
                     {
                         "type": "terminal",
-                        "name": "("
+                        "name": "["
                     },
                     {
                         "type": "non_terminal",
-                        "name": "expr",
+                        "name": "primary_expr",
                         "alias": "index"
                     },
                     {
                         "type": "terminal",
-                        "name": ","
+                        "name": "]"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "="
                     },
                     {
                         "type": "non_terminal",
                         "name": "expr",
                         "alias": "element"
-                    },
-                    {
-                        "type": "terminal",
-                        "name": ")"
                     }
                 ]
             },
             {
                 "name": "array_size",
                 "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "arrayName"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "."
+                    },
                     {
                         "type": "terminal",
                         "name": "length"
@@ -1464,6 +1484,15 @@ export let config = {
             {
                 "name": "array_join",
                 "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "arrayName"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "."
+                    },
                     {
                         "type": "terminal",
                         "name": "join"
@@ -1488,30 +1517,21 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "tostring"
-                    }
-                ]
-            },
-            {
-                "name": "object_method_call",
-                "all_of": [
-                    {
-                        "type": "terminal",
                         "name": "IDENT",
-                        "alias": "object name"
+                        "alias": "arrayName"
                     },
                     {
                         "type": "terminal",
                         "name": "."
                     },
                     {
-                        "type": "non_terminal",
-                        "name": "object_method"
+                        "type": "terminal",
+                        "name": "tostring"
                     }
                 ]
             },
             {
-                "name": "object_method",
+                "name": "object_method_call",
                 "any_of": [
                     {
                         "type": "non_terminal",
@@ -1544,6 +1564,11 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "object name"
+                    },
+                    {
+                        "type": "terminal",
                         "name": "["
                     },
                     {
@@ -1566,6 +1591,11 @@ export let config = {
                     },
                     {
                         "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "object name"
+                    },
+                    {
+                        "type": "terminal",
                         "name": "["
                     },
                     {
@@ -1584,20 +1614,12 @@ export let config = {
                 "all_of": [
                     {
                         "type": "terminal",
-                        "name": "set"
+                        "name": "IDENT",
+                        "alias": "object name"
                     },
                     {
                         "type": "terminal",
-                        "name": "("
-                    },
-                    {
-                        "type": "non_terminal",
-                        "name": "expr",
-                        "alias": "value"
-                    },
-                    {
-                        "type": "terminal",
-                        "name": ","
+                        "name": "["
                     },
                     {
                         "type": "non_terminal",
@@ -1606,13 +1628,31 @@ export let config = {
                     },
                     {
                         "type": "terminal",
-                        "name": ")"
+                        "name": "]"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "="
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "value"
                     }
                 ]
             },
             {
                 "name": "object_size",
                 "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "object name"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "."
+                    },
                     {
                         "type": "terminal",
                         "name": "length"
@@ -1865,6 +1905,34 @@ export let config = {
                     {
                         "type": "terminal",
                         "name": "}"
+                    }
+                ]
+            },
+            {
+                "name": "ternary_stmt",
+                "all_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "condition_expr"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "?"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "exprIfTrue"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": ":"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "expr",
+                        "alias": "exprIfFalse"
                     }
                 ]
             },
@@ -23664,7 +23732,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "CALL": {
+            "if": {
                 "Simple Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -23678,7 +23746,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "WITH": {
+            "else": {
                 "Simple Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -23692,7 +23760,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "IF": {
+            "while": {
                 "Simple Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -23706,35 +23774,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "ELSE": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "WHILE": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "FOR": {
+            "for": {
                 "Simple Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -23843,6 +23883,17 @@ config.darkColorfulTheme = {
                 }
             },
             "if_else_stmt": {
+                "Group Block": {
+                    "BackgroundColor": "#5B80A5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "BorderWidth": "",
+                    "BorderColor": "#364D63",
+                    "BorderRadius": ""
+                }
+            },"ternary_stmt": {
                 "Group Block": {
                     "BackgroundColor": "#5B80A5",
                     "PaddingLeft": "10px",
@@ -24487,30 +24538,6 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "array_method_call": {
-                "Group Block": {
-                    "BackgroundColor": "#745BA5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#5C4884",
-                    "BorderRadius": ""
-                }
-            },
-            "object_method_call": {
-                "Group Block": {
-                    "BackgroundColor": "#745BA5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#5C4884",
-                    "BorderRadius": ""
-                }
-            },
             "object_function_call": {
                 "Group Block": {
                     "BackgroundColor": "#745BA5",
@@ -24547,7 +24574,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "array_method": {
+            "array_method_call": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -24594,89 +24621,89 @@ config.darkColorfulTheme = {
             },
             "array_get": {
                 "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
-                    "BorderColor": "",
+                    "BorderColor": "#5C4884",
                     "BorderRadius": ""
                 }
             },
             "array_push": {
                 "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
-                    "BorderColor": "transparent",
+                    "BorderColor": "#5C4884",
                     "BorderRadius": ""
                 }
             },
             "array_pop": {
                 "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
-                    "BorderColor": "",
+                    "BorderColor": "#5C4884",
                     "BorderRadius": ""
                 }
             },
             "array_set": {
                 "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
-                    "BorderColor": "",
+                    "BorderColor": "#5C4884",
                     "BorderRadius": ""
                 }
             },
             "array_size": {
                 "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
-                    "BorderColor": "",
+                    "BorderColor": "#5C4884",
                     "BorderRadius": ""
                 }
             },
             "array_join": {
                 "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
-                    "BorderColor": "",
+                    "BorderColor": "#5C4884",
                     "BorderRadius": ""
                 }
             },
             "array_to_string": {
                 "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
-                    "BorderColor": "",
+                    "BorderColor": "#5C4884",
                     "BorderRadius": ""
                 }
             },
-            "object_method": {
+            "object_method_call": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -24723,49 +24750,49 @@ config.darkColorfulTheme = {
             },
             "object_get": {
                 "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
-                    "BorderColor": "",
+                    "BorderColor": "#5C4884",
                     "BorderRadius": ""
                 }
             },
             "object_delete": {
                 "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
-                    "BorderColor": "transparent",
+                    "BorderColor": "#5C4884",
                     "BorderRadius": ""
                 }
             },
             "object_set": {
                 "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
-                    "BorderColor": "",
+                    "BorderColor": "#5C4884",
                     "BorderRadius": ""
                 }
             },
             "object_size": {
                 "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
                     "BorderWidth": "",
-                    "BorderColor": "",
+                    "BorderColor": "#5C4884",
                     "BorderRadius": ""
                 }
             },
