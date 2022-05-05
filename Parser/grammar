@@ -19,6 +19,7 @@ non_terminal {
     string_concat string_upperCase string_lowCase string_substring string_size string_slice
     array_get array_push array_pop array_set array_size array_join array_to_string
     object_get object_insert object_delete object_set object_size
+    object_get_sq object_get_dot
 }
 
 terminal {
@@ -396,7 +397,7 @@ define array_method_call {
 }
 
 define array_get {
-    IDENT(arrayName) "[" primary_expr(index) "]"
+    IDENT(arrayName) "[" expr(index) "]"
 }
 
 define array_push {
@@ -408,7 +409,7 @@ define array_pop {
 }
 
 define array_set {
-    IDENT(arrayName)"[" primary_expr(index) "]" "=" expr(element)
+    IDENT(arrayName)"[" expr(index) "]" "=" expr(element)
 }
 
 define array_size {
@@ -416,7 +417,7 @@ define array_size {
 }
 
 define array_join {
-    IDENT(arrayName) "." join "(" primary_expr(seperator) ")"
+    IDENT(arrayName) "." join "(" expr(seperator) ")"
 }
 
 define array_to_string {
@@ -425,7 +426,7 @@ define array_to_string {
 
 define object_method_call {
     any_of { 
-        object_get(get)                 : "Get an element by its property name in the object e.g objectName.property"
+        object_get(get)                 : "Get an element by its property name in the object e.g objectName.property or objectName[property]"
         object_delete(delete)           : "Delete a pair (property:value) by property name"
         object_set(set)                 : "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
         object_size(length)             : "Get the count of properties in the object"
@@ -433,6 +434,17 @@ define object_method_call {
 }
 
 define object_get {
+    any_of{
+        object_get_dot                  : "Get with syntax objectName.property"
+        object_get_sq                   : "Get with syntax objectName[\"property\"]"
+    }
+}
+
+define object_get_dot {
+    IDENT("object name")"."expr(property)
+}
+
+define object_get_sq {
     IDENT("object name") "[" expr(property) "]"
 }
 

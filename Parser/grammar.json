@@ -1368,7 +1368,7 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "primary_expr",
+                    "name": "expr",
                     "alias": "index"
                 },
                 {
@@ -1444,7 +1444,7 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "primary_expr",
+                    "name": "expr",
                     "alias": "index"
                 },
                 {
@@ -1502,7 +1502,7 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "primary_expr",
+                    "name": "expr",
                     "alias": "seperator"
                 },
                 {
@@ -1536,7 +1536,7 @@
                     "type": "non_terminal",
                     "name": "object_get",
                     "alias": "get",
-                    "tooltip": "Get an element by its property name in the object e.g objectName.property"
+                    "tooltip": "Get an element by its property name in the object e.g objectName.property or objectName[property]"
                 },
                 {
                     "type": "non_terminal",
@@ -1560,6 +1560,40 @@
         },
         {
             "name": "object_get",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "object_get_dot",
+                    "tooltip": "Get with syntax objectName.property"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "object_get_sq",
+                    "tooltip": "Get with syntax objectName[\"property\"]"
+                }
+            ]
+        },
+        {
+            "name": "object_get_dot",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "object name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "."
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "property"
+                }
+            ]
+        },
+        {
+            "name": "object_get_sq",
             "all_of": [
                 {
                     "type": "terminal",
