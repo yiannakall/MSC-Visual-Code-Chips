@@ -12792,7 +12792,7 @@ export let config = {
                         "alternateSymbols": [
                             {
                                 "symbol": {
-                                    "name": "IDENT",
+                                    "name": "variable",
                                     "isTerminal": true
                                 },
                                 "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
@@ -12827,7 +12827,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "BOOL_CONST_",
+                                    "name": "BOOLEAN",
                                     "isTerminal": false
                                 },
                                 "alias": "boolean",
@@ -12839,7 +12839,15 @@ export let config = {
                                     "isTerminal": false
                                 },
                                 "tooltip": "An array of elements"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "OBJECT_CONST",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Variable with many values as pairs (name:value)"
                             }
+
                         ],
                         "selectedSymbol": 4,
                         "type": "SelectionBlock",
@@ -12968,15 +12976,6 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "IN STRING",
-                                    "isTerminal": true
-                                }
-                            },
-                            "type": "SimpleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
@@ -13031,7 +13030,7 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "CALL",
+                                    "name": ".",
                                     "isTerminal": true
                                 }
                             },
@@ -13040,17 +13039,17 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "string_append",
+                                    "name": "string_concat",
                                     "isTerminal": false
                                 },
-                                "alias": "append",
-                                "tooltip": "Append a string to the end (suffix) of the string"
+                                "alias": "concat",
+                                "tooltip": "Join two strings to one"
                             },
                             "elems": [
                                 {
                                     "symbol": {
                                         "symbol": {
-                                            "name": "append",
+                                            "name": "concat",
                                             "isTerminal": true
                                         }
                                     },
@@ -13059,7 +13058,7 @@ export let config = {
                                 {
                                     "symbol": {
                                         "symbol": {
-                                            "name": "WITH",
+                                            "name": "(",
                                             "isTerminal": true
                                         }
                                     },
@@ -13071,7 +13070,7 @@ export let config = {
                                             "name": "expr",
                                             "isTerminal": false
                                         },
-                                        "alias": "string"
+                                        "alias": "string2"
                                     },
                                     "alternateSymbols": [
                                         {
@@ -13118,6 +13117,15 @@ export let config = {
                                         }
                                     ],
                                     "type": "SelectionBlock"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": ")",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type": "SimpleBlock"
                                 }
                             ],
                             "type": "Group",
@@ -13131,26 +13139,34 @@ export let config = {
                                 "alternateSymbols": [
                                     {
                                         "symbol": {
-                                            "name": "string_append",
+                                            "name": "string_concat",
                                             "isTerminal": false
                                         },
-                                        "alias": "append",
-                                        "tooltip": "Append a string to the end (suffix) of the string"
+                                        "alias": "concat",
+                                        "tooltip": "Join two strings to one"
                                     },
                                     {
                                         "symbol": {
-                                            "name": "string_get_character",
+                                            "name": "string_upperCase",
                                             "isTerminal": false
                                         },
-                                        "alias": "get_character",
-                                        "tooltip": "Get the character at the specified position of the string"
+                                        "alias": "toUpperCase",
+                                        "tooltip": "A string is converted to upper case"
                                     },
                                     {
                                         "symbol": {
-                                            "name": "string_get_substring",
+                                            "name": "string_lowCase",
                                             "isTerminal": false
                                         },
-                                        "alias": "get_substring",
+                                        "alias": "toLowerCase",
+                                        "tooltip": "A string is converted to lower case"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_substring",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "substring",
                                         "tooltip": "Get a substring of a string, giving a start position and an end position"
                                     },
                                     {
@@ -13158,8 +13174,16 @@ export let config = {
                                             "name": "string_size",
                                             "isTerminal": false
                                         },
-                                        "alias": "get_size",
+                                        "alias": "length",
                                         "tooltip": "Get the count of characters contained in the string"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_slice",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "slice",
+                                        "tooltip": "Extracts a part of a string and returns the extracted part in a new string, giving a start position and an end position"
                                     }
                                 ],
                                 "selectedSymbol": 0,
@@ -13340,15 +13364,6 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "IN STRING",
-                                    "isTerminal": true
-                                }
-                            },
-                            "type": "SimpleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
@@ -13403,7 +13418,7 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "CALL",
+                                    "name": ".",
                                     "isTerminal": true
                                 }
                             },
@@ -13412,17 +13427,17 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "string_get_character",
+                                    "name": "string_upperCase",
                                     "isTerminal": false
                                 },
-                                "alias": "get_character",
-                                "tooltip": "Get the character at the specified position of the string"
+                                "alias": "toUpperCase",
+                                "tooltip": "A string is converted to upper case"
                             },
                             "elems": [
                                 {
                                     "symbol": {
                                         "symbol": {
-                                            "name": "get_character",
+                                            "name": "toUpperCase",
                                             "isTerminal": true
                                         }
                                     },
@@ -13431,66 +13446,12 @@ export let config = {
                                 {
                                     "symbol": {
                                         "symbol": {
-                                            "name": "WITH",
+                                            "name": "()",
                                             "isTerminal": true
                                         }
                                     },
                                     "type": "SimpleBlock"
                                 },
-                                {
-                                    "symbol": {
-                                        "symbol": {
-                                            "name": "expr",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "index"
-                                    },
-                                    "alternateSymbols": [
-                                        {
-                                            "symbol": {
-                                                "name": "arith_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Perform a mathematic operation"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "rel_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An operator that compares the two operands and returns true or false"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "logical_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An expression that evaluates to true or false"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "assign_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Set a variable's value"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "call_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Call a user-defined or built-in function/method"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "primary_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An identifier or a constant"
-                                        }
-                                    ],
-                                    "type": "SelectionBlock"
-                                }
                             ],
                             "type": "Group",
                             "generatedBy": {
@@ -13503,26 +13464,34 @@ export let config = {
                                 "alternateSymbols": [
                                     {
                                         "symbol": {
-                                            "name": "string_append",
+                                            "name": "string_concat",
                                             "isTerminal": false
                                         },
-                                        "alias": "append",
-                                        "tooltip": "Append a string to the end (suffix) of the string"
+                                        "alias": "concat",
+                                        "tooltip": "Join two strings to one"
                                     },
                                     {
                                         "symbol": {
-                                            "name": "string_get_character",
+                                            "name": "string_upperCase",
                                             "isTerminal": false
                                         },
-                                        "alias": "get_character",
-                                        "tooltip": "Get the character at the specified position of the string"
+                                        "alias": "toUpperCase",
+                                        "tooltip": "A string is converted to upper case"
                                     },
                                     {
                                         "symbol": {
-                                            "name": "string_get_substring",
+                                            "name": "string_lowCase",
                                             "isTerminal": false
                                         },
-                                        "alias": "get_substring",
+                                        "alias": "toLowerCase",
+                                        "tooltip": "A string is converted to lower case"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_substring",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "substring",
                                         "tooltip": "Get a substring of a string, giving a start position and an end position"
                                     },
                                     {
@@ -13530,8 +13499,16 @@ export let config = {
                                             "name": "string_size",
                                             "isTerminal": false
                                         },
-                                        "alias": "get_size",
+                                        "alias": "length",
                                         "tooltip": "Get the count of characters contained in the string"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_slice",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "slice",
+                                        "tooltip": "Extracts a part of a string and returns the extracted part in a new string, giving a start position and an end position"
                                     }
                                 ],
                                 "selectedSymbol": 1,
@@ -13712,12 +13689,328 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "IN STRING",
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "string"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": ".",
                                     "isTerminal": true
                                 }
                             },
                             "type": "SimpleBlock"
                         },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "string_lowCase",
+                                    "isTerminal": false
+                                },
+                                "alias": "toLowerCase",
+                                "tooltip": "A string is converted to lower case"
+                            },
+                            "elems": [
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "toLowerCase",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type": "SimpleBlock"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "()",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type": "SimpleBlock"
+                                },
+                            ],
+                            "type": "Group",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "string_method",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "string_concat",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "concat",
+                                        "tooltip": "Join two strings to one"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_upperCase",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "toUpperCase",
+                                        "tooltip": "A string is converted to upper case"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_lowCase",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "toLowerCase",
+                                        "tooltip": "A string is converted to lower case"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_substring",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "substring",
+                                        "tooltip": "Get a substring of a string, giving a start position and an end position"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_size",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "length",
+                                        "tooltip": "Get the count of characters contained in the string"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_slice",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "slice",
+                                        "tooltip": "Extracts a part of a string and returns the extracted part in a new string, giving a start position and an end position"
+                                    }
+                                ],
+                                "selectedSymbol": 1,
+                                "type": "SelectionBlock"
+                            }
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "call_expr",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Call a user-defined or built-in function/method"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "input_output_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in input/output function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "math_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in math function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in string method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "array_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in array method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "user_function_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            }
+                        ],
+                        "selectedSymbol": 2,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "string_method_call",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Use a built-in string method"
+                    },
+                    "elems": [
                         {
                             "symbol": {
                                 "symbol": {
@@ -13775,7 +14068,7 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "CALL",
+                                    "name": ".",
                                     "isTerminal": true
                                 }
                             },
@@ -13784,17 +14077,17 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "string_get_substring",
+                                    "name": "string_substring",
                                     "isTerminal": false
                                 },
-                                "alias": "get_substring",
+                                "alias": "substring",
                                 "tooltip": "Get a substring of a string, giving a start position and an end position"
                             },
                             "elems": [
                                 {
                                     "symbol": {
                                         "symbol": {
-                                            "name": "get_substring",
+                                            "name": "substring",
                                             "isTerminal": true
                                         }
                                     },
@@ -13803,7 +14096,7 @@ export let config = {
                                 {
                                     "symbol": {
                                         "symbol": {
-                                            "name": "WITH",
+                                            "name": "(",
                                             "isTerminal": true
                                         }
                                     },
@@ -13866,6 +14159,15 @@ export let config = {
                                 {
                                     "symbol": {
                                         "symbol": {
+                                            "name": ",",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type": "SimpleBlock"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
                                             "name": "expr",
                                             "isTerminal": false
                                         },
@@ -13916,7 +14218,16 @@ export let config = {
                                         }
                                     ],
                                     "type": "SelectionBlock"
-                                }
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": ")",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type": "SimpleBlock"
+                                },
                             ],
                             "type": "Group",
                             "generatedBy": {
@@ -13929,26 +14240,34 @@ export let config = {
                                 "alternateSymbols": [
                                     {
                                         "symbol": {
-                                            "name": "string_append",
+                                            "name": "string_concat",
                                             "isTerminal": false
                                         },
-                                        "alias": "append",
-                                        "tooltip": "Append a string to the end (suffix) of the string"
+                                        "alias": "concat",
+                                        "tooltip": "Join two strings to one"
                                     },
                                     {
                                         "symbol": {
-                                            "name": "string_get_character",
+                                            "name": "string_upperCase",
                                             "isTerminal": false
                                         },
-                                        "alias": "get_character",
-                                        "tooltip": "Get the character at the specified position of the string"
+                                        "alias": "toUpperCase",
+                                        "tooltip": "A string is converted to upper case"
                                     },
                                     {
                                         "symbol": {
-                                            "name": "string_get_substring",
+                                            "name": "string_lowCase",
                                             "isTerminal": false
                                         },
-                                        "alias": "get_substring",
+                                        "alias": "toLowerCase",
+                                        "tooltip": "A string is converted to lower case"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_substring",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "substring",
                                         "tooltip": "Get a substring of a string, giving a start position and an end position"
                                     },
                                     {
@@ -13956,8 +14275,16 @@ export let config = {
                                             "name": "string_size",
                                             "isTerminal": false
                                         },
-                                        "alias": "get_size",
+                                        "alias": "length",
                                         "tooltip": "Get the count of characters contained in the string"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_slice",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "slice",
+                                        "tooltip": "Extracts a part of a string and returns the extracted part in a new string, giving a start position and an end position"
                                     }
                                 ],
                                 "selectedSymbol": 2,
@@ -14138,12 +14465,308 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "IN STRING",
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "string"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": ".",
                                     "isTerminal": true
                                 }
                             },
                             "type": "SimpleBlock"
                         },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "string_size",
+                                    "isTerminal": true
+                                },
+                                "alias" : "length",
+                                "tooltip": "Get the count of characters contained in the string"
+                            },
+                            "type": "SimpleBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "string_method",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "string_concat",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "concat",
+                                        "tooltip": "Join two strings to one"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_upperCase",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "toUpperCase",
+                                        "tooltip": "A string is converted to upper case"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_lowCase",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "toLowerCase",
+                                        "tooltip": "A string is converted to lower case"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_substring",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "substring",
+                                        "tooltip": "Get a substring of a string, giving a start position and an end position"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_size",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "length",
+                                        "tooltip": "Get the count of characters contained in the string"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_slice",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "slice",
+                                        "tooltip": "Extracts a part of a string and returns the extracted part in a new string, giving a start position and an end position"
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "call_expr",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Call a user-defined or built-in function/method"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "input_output_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in input/output function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "math_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in math function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in string method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "array_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in array method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "user_function_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            }
+                        ],
+                        "selectedSymbol": 2,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "string_method_call",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Use a built-in string method"
+                    },
+                    "elems": [
                         {
                             "symbol": {
                                 "symbol": {
@@ -14201,7 +14824,7 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "CALL",
+                                    "name": ".",
                                     "isTerminal": true
                                 }
                             },
@@ -14210,11 +14833,159 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "get_size",
-                                    "isTerminal": true
-                                }
+                                    "name": "string_slice",
+                                    "isTerminal": false
+                                },
+                                "alias": "slice",
+                                "tooltip": "Extracts a part of a string and returns the extracted part in a new string, giving a start position and an end position"
                             },
-                            "type": "SimpleBlock",
+                            "elems": [
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "slice",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type": "SimpleBlock"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "(",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type": "SimpleBlock"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "start_index"
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "arith_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Perform a mathematic operation"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "rel_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "An operator that compares the two operands and returns true or false"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "logical_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "An expression that evaluates to true or false"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "assign_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Set a variable's value"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "call_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Call a user-defined or built-in function/method"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "primary_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "An identifier or a constant"
+                                        }
+                                    ],
+                                    "type": "SelectionBlock"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": ",",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type": "SimpleBlock"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "end_index"
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "arith_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Perform a mathematic operation"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "rel_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "An operator that compares the two operands and returns true or false"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "logical_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "An expression that evaluates to true or false"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "assign_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Set a variable's value"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "call_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Call a user-defined or built-in function/method"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "primary_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "An identifier or a constant"
+                                        }
+                                    ],
+                                    "type": "SelectionBlock"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": ")",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type": "SimpleBlock"
+                                },
+                            ],
+                            "type": "Group",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
@@ -14225,26 +14996,34 @@ export let config = {
                                 "alternateSymbols": [
                                     {
                                         "symbol": {
-                                            "name": "string_append",
+                                            "name": "string_concat",
                                             "isTerminal": false
                                         },
-                                        "alias": "append",
-                                        "tooltip": "Append a string to the end (suffix) of the string"
+                                        "alias": "concat",
+                                        "tooltip": "Join two strings to one"
                                     },
                                     {
                                         "symbol": {
-                                            "name": "string_get_character",
+                                            "name": "string_upperCase",
                                             "isTerminal": false
                                         },
-                                        "alias": "get_character",
-                                        "tooltip": "Get the character at the specified position of the string"
+                                        "alias": "toUpperCase",
+                                        "tooltip": "A string is converted to upper case"
                                     },
                                     {
                                         "symbol": {
-                                            "name": "string_get_substring",
+                                            "name": "string_lowCase",
                                             "isTerminal": false
                                         },
-                                        "alias": "get_substring",
+                                        "alias": "toLowerCase",
+                                        "tooltip": "A string is converted to lower case"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_substring",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "substring",
                                         "tooltip": "Get a substring of a string, giving a start position and an end position"
                                     },
                                     {
@@ -14252,11 +15031,19 @@ export let config = {
                                             "name": "string_size",
                                             "isTerminal": false
                                         },
-                                        "alias": "get_size",
+                                        "alias": "length",
                                         "tooltip": "Get the count of characters contained in the string"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "string_slice",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "slice",
+                                        "tooltip": "Extracts a part of a string and returns the extracted part in a new string, giving a start position and an end position"
                                     }
                                 ],
-                                "selectedSymbol": 4,
+                                "selectedSymbol": 2,
                                 "type": "SelectionBlock"
                             }
                         }
@@ -14440,16 +15227,7 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "ARRAY",
-                                    "isTerminal": true
-                                }
-                            },
-                            "type": "SimpleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
-                                    "name": "WITH",
+                                    "name": "[",
                                     "isTerminal": true
                                 }
                             },
@@ -14573,6 +15351,15 @@ export let config = {
                                 "type": "SelectionBlock"
                             },
                             "type": "RepetitionGroup"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "]",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
                         }
                     ],
                     "type": "Group",
@@ -14587,7 +15374,7 @@ export let config = {
                         "alternateSymbols": [
                             {
                                 "symbol": {
-                                    "name": "IDENT",
+                                    "name": "variable",
                                     "isTerminal": true
                                 },
                                 "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
@@ -14622,7 +15409,7 @@ export let config = {
                             },
                             {
                                 "symbol": {
-                                    "name": "BOOL_CONST_",
+                                    "name": "BOOLEAN",
                                     "isTerminal": false
                                 },
                                 "alias": "boolean",
@@ -14634,6 +15421,13 @@ export let config = {
                                     "isTerminal": false
                                 },
                                 "tooltip": "An array of elements"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "OBJECT_CONST",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Variable with many values as pairs (name:value)"
                             }
                         ],
                         "selectedSymbol": 6,
@@ -14763,19 +15557,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "IN ARRAY",
-                                    "isTerminal": true
-                                }
-                            },
-                            "type": "SimpleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "alias": "array"
+                                "alias": "arrayName"
                             },
                             "alternateSymbols": [
                                 {
@@ -14826,15 +15611,6 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "CALL",
-                                    "isTerminal": true
-                                }
-                            },
-                            "type": "SimpleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
                                     "name": "array_get",
                                     "isTerminal": false
                                 },
@@ -14845,16 +15621,7 @@ export let config = {
                                 {
                                     "symbol": {
                                         "symbol": {
-                                            "name": "get",
-                                            "isTerminal": true
-                                        }
-                                    },
-                                    "type": "SimpleBlock"
-                                },
-                                {
-                                    "symbol": {
-                                        "symbol": {
-                                            "name": "WITH",
+                                            "name": "[",
                                             "isTerminal": true
                                         }
                                     },
@@ -14913,13 +15680,22 @@ export let config = {
                                         }
                                     ],
                                     "type": "SelectionBlock"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "]",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type": "SimpleBlock"
                                 }
                             ],
                             "type": "Group",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
-                                        "name": "array_method",
+                                        "name": "array_method_call",
                                         "isTerminal": false
                                     }
                                 },
@@ -15143,19 +15919,10 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "IN ARRAY",
-                                    "isTerminal": true
-                                }
-                            },
-                            "type": "SimpleBlock"
-                        },
-                        {
-                            "symbol": {
-                                "symbol": {
                                     "name": "expr",
                                     "isTerminal": false
                                 },
-                                "alias": "array"
+                                "alias": "arrayName"
                             },
                             "alternateSymbols": [
                                 {
@@ -15206,7 +15973,7 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "CALL",
+                                    "name": ".",
                                     "isTerminal": true
                                 }
                             },
@@ -15215,17 +15982,17 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "array_insert",
+                                    "name": "array_push",
                                     "isTerminal": false
                                 },
-                                "alias": "insert",
-                                "tooltip": "Insert an element at a position in the array. Elements that previously were\n                        at the position, or after it, are moved one place to the right"
+                                "alias": "push",
+                                "tooltip": "Insert an element at the end of the array"
                             },
                             "elems": [
                                 {
                                     "symbol": {
                                         "symbol": {
-                                            "name": "insert",
+                                            "name": "push",
                                             "isTerminal": true
                                         }
                                     },
@@ -15234,7 +16001,7 @@ export let config = {
                                 {
                                     "symbol": {
                                         "symbol": {
-                                            "name": "WITH",
+                                            "name": "(",
                                             "isTerminal": true
                                         }
                                     },
@@ -15297,63 +16064,18 @@ export let config = {
                                 {
                                     "symbol": {
                                         "symbol": {
-                                            "name": "expr",
-                                            "isTerminal": false
-                                        },
-                                        "alias": "element"
-                                    },
-                                    "alternateSymbols": [
-                                        {
-                                            "symbol": {
-                                                "name": "arith_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Perform a mathematic operation"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "rel_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An operator that compares the two operands and returns true or false"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "logical_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An expression that evaluates to true or false"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "assign_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Set a variable's value"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "call_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "Call a user-defined or built-in function/method"
-                                        },
-                                        {
-                                            "symbol": {
-                                                "name": "primary_expr",
-                                                "isTerminal": false
-                                            },
-                                            "tooltip": "An identifier or a constant"
+                                            "name": ")",
+                                            "isTerminal": true
                                         }
-                                    ],
-                                    "type": "SelectionBlock"
+                                    },
+                                    "type": "SimpleBlock"
                                 }
                             ],
                             "type": "Group",
                             "generatedBy": {
                                 "symbol": {
                                     "symbol": {
-                                        "name": "array_method",
+                                        "name": "array_method_call",
                                         "isTerminal": false
                                     }
                                 },
@@ -17126,7 +17848,7 @@ export let config = {
                 {
                     "symbol": {
                         "symbol": {
-                            "name": "input_output_print",
+                            "name": "print_call",
                             "isTerminal": false
                         },
                         "alias": "print",
@@ -17136,7 +17858,7 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "CALL",
+                                    "name": "console.log",
                                     "isTerminal": true
                                 }
                             },
@@ -17145,7 +17867,7 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "print",
+                                    "name": ".",
                                     "isTerminal": true
                                 }
                             },
@@ -17154,7 +17876,7 @@ export let config = {
                         {
                             "symbol": {
                                 "symbol": {
-                                    "name": "WITH",
+                                    "name": "(",
                                     "isTerminal": true
                                 }
                             },
@@ -17278,13 +18000,23 @@ export let config = {
                                 "type": "SelectionBlock"
                             },
                             "type": "RepetitionGroup"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": ")",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
                         }
+
                     ],
                     "type": "Group",
                     "generatedBy": {
                         "symbol": {
                             "symbol": {
-                                "name": "input_output_call",
+                                "name": "print_call",
                                 "isTerminal": false
                             },
                             "tooltip": "Use a built-in input/output function"
