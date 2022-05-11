@@ -390,9 +390,9 @@ define array_method_call {
         array_set(set)                  : "Modify an element in a position of the array to a new character"
         array_push(push)                : "Insert an element at the end of the array"
         array_pop(pop)                  : "Returns the last element of the array"
-        array_size(length)              : "Get the count of elements in the array"
-        array_join(join)                : "The join method also joins all array elements into a string, you can specify the separator"
-        array_to_string(tostring)       : "Converts an array to a string of (comma separated) array values."
+        array_size(length)              : "Get the number of elements in the array"
+        array_join(join)                : "Joins all array elements into a string, you can specify the separator"
+        array_to_string(tostring)       : "Converts an array to a string of (comma separated) array values"
     }
 }
 
