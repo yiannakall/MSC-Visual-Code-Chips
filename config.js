@@ -18836,6 +18836,1676 @@ export let config = {
             ]
         },
         {
+            "name": "Object",
+            "icon": "./Images/Toolbox/array.svg",
+            "blocks": [
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "OBJECT_CONST",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Variable with many values as pairs (name:value)"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "variable",
+                                    "isTerminal": false
+                                },
+                                "alias" : "objectName"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "IDENT",
+                                        "isTerminal": true
+                                    },
+                                    "tooltip": "Without type. If the variable is not declared, it is automatically declared with var"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "ident_type",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Identifier with type"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "EQUALS",
+                                    "isTerminal": true
+                                },
+                                "alias": "="
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "{",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "pair_element_list",
+                                    "isTerminal": false
+                                }
+                            },
+                            "elems": [
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "IDENT",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type" : "InputBlock"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": ":",
+                                            "isTerminal": true
+                                        }
+                                    },
+                                    "type" : "SimpleBlock"
+                                },
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "value"
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "arith_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Perform a mathematic operation"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "rel_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "An operator that compares the two operands and returns true or false"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "logical_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "An expression that evaluates to true or false"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "assign_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Set a variable's value"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "call_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Call a user-defined or built-in function/method"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "primary_expr",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "An identifier or a constant"
+                                        }
+                                    ],
+                                    "type": "SelectionBlock"
+                                }
+                            ],
+                            "repetitiveElem": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "pair_element_list",
+                                        "isTerminal": false
+                                    },
+                                    "alias": "element"
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "arith_expr",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Perform a mathematic operation"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "rel_expr",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "An operator that compares the two operands and returns true or false"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "logical_expr",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "An expression that evaluates to true or false"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "assign_expr",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Set a variable's value"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "call_expr",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Call a user-defined or built-in function/method"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "primary_expr",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "An identifier or a constant"
+                                    }
+                                ],
+                                "type": "SelectionBlock"
+                            },
+                            "type": "RepetitionGroup"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "}",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        }
+
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "primary_expr",
+                                "isTerminal": false
+                            },
+                            "tooltip": "An identifier or a constant"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "variable",
+                                    "isTerminal": true
+                                },
+                                "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "INT_CONST",
+                                    "isTerminal": true
+                                },
+                                "tooltip": "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "FLOAT_CONST",
+                                    "isTerminal": true
+                                },
+                                "tooltip": "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "CHAR_CONST",
+                                    "isTerminal": true
+                                },
+                                "tooltip": "One single character"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "STRING_CONST",
+                                    "isTerminal": true
+                                },
+                                "tooltip": "Any sequence of characters or the empty sequence"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "BOOLEAN",
+                                    "isTerminal": false
+                                },
+                                "alias": "boolean",
+                                "tooltip": "One of true or false"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "ARRAY_CONST",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "An array of elements"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "OBJECT_CONST",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Variable with many values as pairs (name:value)"
+                            }
+                        ],
+                        "selectedSymbol": 6,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "selectedSymbol": 5,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "object_get_dot",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Get an element by its property name in the object"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": false
+                                },
+                                "alias": "objectName"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                
+                            "symbol": {
+                                "symbol": {
+                                    "name": ".",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "propertyName"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "call_expr",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Call a user-defined or built-in function/method"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "input_output_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in input/output function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "math_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in math function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in string method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "array_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in array method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "function_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            }
+                        ],
+                        "selectedSymbol": 3,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "object_get_sq",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Get an element by its property name in the object"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": false
+                                },
+                                "alias": "objectName"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                
+                            "symbol": {
+                                "symbol": {
+                                    "name": "[",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "propertyName"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        },
+                        {
+                
+                            "symbol": {
+                                "symbol": {
+                                    "name": "]",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "call_expr",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Call a user-defined or built-in function/method"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "input_output_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in input/output function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "math_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in math function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in string method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "array_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in array method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "function_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            }
+                        ],
+                        "selectedSymbol": 3,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "object_set",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": false
+                                },
+                                "alias": "objectName"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                
+                            "symbol": {
+                                "symbol": {
+                                    "name": "[",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "propertyName"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "]",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "EQUALS",
+                                    "isTerminal": true
+                                },
+                                "alias": "="
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "value"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "call_expr",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Call a user-defined or built-in function/method"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "input_output_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in input/output function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "math_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in math function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in string method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "array_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in array method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "function_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            }
+                        ],
+                        "selectedSymbol": 3,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "object_delete",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Delete a pair (property:value) by property name"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "delete",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": false
+                                },
+                                "alias": "objectName"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "[",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "propertyName"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "]",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "call_expr",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Call a user-defined or built-in function/method"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "input_output_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in input/output function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "math_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in math function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in string method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "array_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in array method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "user_function_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            }
+                        ],
+                        "selectedSymbol": 3,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "object_size",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Get the number of properties in the object"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": false
+                                },
+                                "alias": "objectName"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": ".",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "length",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "call_expr",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Call a user-defined or built-in function/method"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "input_output_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in input/output function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "math_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in math function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in string method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "array_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in array method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "user_function_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function"
+                            }
+                        ],
+                        "selectedSymbol": 3,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "func_def",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Define reusable code as a function"
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
             "name": "I/O",
             "icon": "./Images/Toolbox/io.svg",
             "blocks": [
@@ -27176,20 +28846,6 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "OF": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
             "if": {
                 "Simple Block": {
                     "BackgroundColor": "",
@@ -27423,7 +29079,7 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "type": {
+            "types": {
                 "Selection Block": {
                     "BackgroundColor": "",
                     "PaddingLeft": "",
@@ -28027,20 +29683,6 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
-            "ARRAY": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
             "object_function_call": {
                 "Group Block": {
                     "BackgroundColor": "#745BA5",
@@ -28383,6 +30025,18 @@ config.darkColorfulTheme = {
                 },
                 "Button Plus Sign On Hover": {
                     "BackgroundColor": ""
+                }
+            },
+            "pair_element": {
+                "Group Block": {
+                    "BackgroundColor": "#745BA5",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "BorderWidth": "",
+                    "BorderColor": "#5C4884",
+                    "BorderRadius": ""
                 }
             },
             "string_method": {
@@ -28866,14 +30520,15 @@ config.darkColorfulTheme = {
         "if_stmt":              [ "if","(", "condition_expr", ")", "$$_newline", "$$_tab", "if_part"],
         "if_else_stmt":         [ 
                                     "if", "(", "condition_expr", ")", "$$_newline", "$$_tab" ,"{", "if_part", "}",
-                                    "$$_newline", "ELSE", "$$_newline", "$$_tab", "else_part"
+                                    "$$_newline", "else", "$$_newline", "$$_tab", "else_part"
                                 ],
-        "while_stmt":           [ "WHILE", "(", "condition_expr",")", "$$_newline", "$$_tab", "while_part" ],
-        "for_stmt":             [ "FOR", "(", "initialization",";", "condition_expr",";", "step",")", "$$_newline", "$$_tab", "for_part" ],
+        "while_stmt":           [ "while", "(", "condition_expr",")", "$$_newline", "$$_tab", "while_part" ],
+        "for_stmt":             [ "for", "(", "initialization",";", "condition_expr",";", "step",")", "$$_newline", "$$_tab", "for_part" ],
         "func_def":             [ "function", "NAME", "(", "ident_list", ")", "$$_newline", "$$_tab", "stmts" ],
         "ident_list":           { "NewLine Between Blocks": false },
         "expr_list":            { "NewLine Between Blocks": false },
         "element_list":         { "NewLine Between Blocks": false },
+        "pair_element_list":    { "NewLine Between Blocks": false },
     },
     "Source Text Pretty Print": {
         "stmts": {
@@ -28920,19 +30575,19 @@ config.darkColorfulTheme = {
                                             "$$_newline", "$$_tab", "while_part", "$$_newline", "$$_}",
                                         ],
         "for_stmt":                     [
-                                            "FOR", "$$_(", "initialization_expr", "$$_;", "condition_expr", "$$_;", 
+                                            "for", "$$_(", "initialization_expr", "$$_;", "condition_expr", "$$_;", 
                                             "step_expr", "$$_)", "$$_{", "$$_newline", "$$_tab", "for_part", "$$_newline", "$$_}"
                                         ],
         "func_def":                [
-                                            "FUNCTION", "NAME", "OF", "$$_(", "ident_list", "$$_)", "$$_{",
+                                            "function", "name", "$$_(", "ident_list", "$$_)", "$$_{",
                                             "$$_newline", "$$_tab", "stmts", "$$_newline", "$$_}"
                                         ],
         "rel_expr":                     [ "$$_(", "expr", "rel_op", "expr", "$$_)" ],
         "assign_expr":                  [ "IDENT", "=", "expr" ],
-        "user_function_call":               [ "CALL", "FUNCTION NAME", "WITH", "$$_(", "expr_list", "$$_)" ],
+        "function_call":                [ "FUNCTION NAME", "$$_(", "expr_list", "$$_)" ],
         "binary_arith_expr":            [ "$$_(", "expr", "arith_op", "expr", "$$_)" ],
-        "unary_minus_expr":                  [ "-", "expr" ],
-        "binary_logical_expr":             [ "$$_(", "expr", "logical_binary_op", "expr", "$$_)" ],
+        "unary_minus_expr":             [ "-", "expr" ],
+        "binary_logical_expr":          [ "$$_(", "expr", "logical_binary_op", "expr", "$$_)" ],
         "not_expr":                     [ "NOT", "expr" ],
         "ARRAY_CONST":                  [ "ARRAY", "WITH", "$$_(", "element_list", "$$_)" ],
         "array_get":                    [ "get", "WITH", "$$_(", "index", "$$_)" ],
