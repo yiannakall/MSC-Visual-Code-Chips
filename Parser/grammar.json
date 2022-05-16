@@ -531,6 +531,11 @@
                     "type": "non_terminal",
                     "name": "func_def",
                     "tooltip": "Function definition as a value of an object"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "anonymous_func",
+                    "tooltip": "A function without a name"
                 }
             ]
         },
@@ -717,6 +722,39 @@
                     "type": "terminal",
                     "name": "IDENT",
                     "alias": "Name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "("
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "ident_list"
+                },
+                {
+                    "type": "terminal",
+                    "name": ")"
+                },
+                {
+                    "type": "terminal",
+                    "name": "{"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "stmts"
+                },
+                {
+                    "type": "terminal",
+                    "name": "}"
+                }
+            ]
+        },
+        {
+            "name": "anonymous_func",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "function"
                 },
                 {
                     "type": "terminal",
@@ -1338,19 +1376,19 @@
                     "type": "non_terminal",
                     "name": "array_size",
                     "alias": "length",
-                    "tooltip": "Get the count of elements in the array"
+                    "tooltip": "Get the number of elements in the array"
                 },
                 {
                     "type": "non_terminal",
                     "name": "array_join",
                     "alias": "join",
-                    "tooltip": "The join method also joins all array elements into a string, you can specify the separator"
+                    "tooltip": "Joins all array elements into a string, you can specify the separator"
                 },
                 {
                     "type": "non_terminal",
                     "name": "array_to_string",
                     "alias": "tostring",
-                    "tooltip": "Converts an array to a string of (comma separated) array values."
+                    "tooltip": "Converts an array to a string of (comma separated) array values"
                 }
             ]
         },

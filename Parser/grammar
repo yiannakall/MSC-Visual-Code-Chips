@@ -5,7 +5,8 @@ non_terminal {
     defs
     def
     variable types ident_type
-    if_stmt if_else_stmt while_stmt for_stmt expr func_def ternary_stmt break_stmt continue_stmt return_stmt
+    if_stmt if_else_stmt while_stmt for_stmt expr ternary_stmt break_stmt continue_stmt return_stmt
+    func_def anonymous_func
     arith_expr rel_expr logical_expr assign_expr call_expr primary_expr
     binary_arith_expr unary_expr 
     unary_expr_before unary_expr_after
@@ -217,6 +218,7 @@ define primary_expr {
         ARRAY_CONST             : "An array of elements"
         OBJECT_CONST            : "Variable with many values as pairs (name:value)"
         func_def                : "Function definition as a value of an object"
+        anonymous_func          : "A function without a name"
     }
 }
 
@@ -272,6 +274,10 @@ define assign_op {
 
 define func_def {
     function IDENT(Name) "(" ident_list ")" "{" stmts "}"
+}
+
+define anonymous_func {
+    function "(" ident_list ")" "{" stmts "}"
 }
 
 define break_stmt {
