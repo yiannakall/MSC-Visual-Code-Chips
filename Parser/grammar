@@ -54,7 +54,7 @@ define defs {
 define stmts {
     list_of stmt
 }
-
+ 
 define stmt {
     any_of {
         if_stmt                 : "Do something if a condition is true"
@@ -62,7 +62,7 @@ define stmt {
         while_stmt              : "Do something while a condition is true"
         for_stmt                : "Do something while a condition is true. Commonly used with a known number of iterations."
         expr(expr_stmt)         : "A single expression as a statement"
-        ternary_stmt            : "A statement with ternary operator has a condition, then an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+        ternary_stmt            : "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
         break_stmt              : "Exit from the current loop"
         continue_stmt           : "Continue to the next iteration of the current loop"
         return_stmt             : "Return an expression as the result of the current function"
@@ -72,7 +72,7 @@ define stmt {
 define def {
     any_of {
         stmt
-        func_def           : "Define reusable code as a function"
+        func_def                : "Define reusable code as a function"
     }
 }
 
@@ -95,59 +95,59 @@ define arith_expr {
 }
 
 define binary_arith_expr {
-    expr                    : "The first operand"
-    arith_op                : "An arithmetic operator(e.g. +, -)"
-    expr                    : "The second operand"
+    expr                        : "The first operand"
+    arith_op                    : "An arithmetic operator(e.g. +, -)"
+    expr                        : "The second operand"
 }
 
 define unary_expr{
     any_of {
-        unary_expr_before   :"The unary operator before the operand"
-        unary_expr_after    :"The unary operator after the operand"
+        unary_expr_before       :"The unary operator before the operand"
+        unary_expr_after        :"The unary operator after the operand"
     }
 }
 
 define unary_expr_after {
-    expr                : "The single operand"
-    unary_op_af         : "Unary operator with one operand"
+    expr                        : "The single operand"
+    unary_op_af                 : "Unary operator with one operand"
 }
 
 define unary_expr_before {
-    unary_op_bf         : "Unary operator with one operand"
-    expr                : "The single operand"
+    unary_op_bf                 : "Unary operator with one operand"
+    expr                        : "The single operand"
 }
 
 define unary_op_af {
     any_of {
-        PLUS_PLUS("++")      : "Post-increament of the operand value by one"
-        SUB_SUB("--")        : "Post-decreament of the operand value by one"
+        PLUS_PLUS("++")         : "Post-increament of the operand value by one"
+        SUB_SUB("--")           : "Post-decreament of the operand value by one"
     }
 }
 
 define unary_op_bf {
     any_of {
-        UMINUS("-")          : "Negates the value of its operand"
-        UPLUS("+")           : "Attempts to convert the operand to a number, if it is not already"
-        PLUS_PLUS("++")      : "Pre-increament of the operand value by one"
-        SUB_SUB("--")        : "Pre-decreament of the operand value by one"
+        UMINUS("-")             : "Negates the value of its operand"
+        UPLUS("+")              : "Attempts to convert the operand to a number, if it is not already"
+        PLUS_PLUS("++")         : "Pre-increament of the operand value by one"
+        SUB_SUB("--")           : "Pre-decreament of the operand value by one"
     }
 }
 
 define arith_op {
     any_of {
-        PLUS("+")                   : "Performs addition"
-        SUB("-")                    : "Performs subtraction"
-        MULT("*")                   : "Performs multipliction"
-        EXP("**")                   : "Performs Exponentation"
-        DIV("/")                    : "Performs division"
-        MODULO("%")                 : "Performs the modulo operation"
+        PLUS("+")               : "Performs addition"
+        SUB("-")                : "Performs subtraction"
+        MULT("*")               : "Performs multipliction"
+        EXP("**")               : "Performs Exponentation"
+        DIV("/")                : "Performs division"
+        MODULO("%")             : "Performs the modulo operation"
     }
 }
 
 define rel_expr {
-    expr                    : "The first operand"
-    rel_op                  : "A comparison operator that returns true or false (e.g <, >)"
-    expr                    : "The second operand"
+    expr                        : "The first operand"
+    rel_op                      : "A comparison operator that returns true or false (e.g <, >)"
+    expr                        : "The second operand"
 }
 
 define rel_op {
@@ -171,39 +171,39 @@ define logical_expr {
 }
 
 define binary_logical_expr {
-    expr                    : "The first operand"
-    logical_binary_op       : "Performs a binary operation with two operands"
-    expr                    : "The second operand"
+    expr                        : "The first operand"
+    logical_binary_op           : "Performs a binary operation with two operands"
+    expr                        : "The second operand"
 }
 
 define logical_binary_op {
     any_of {
-        AND("&&")           : "Returns true if both operands are true, else returns false"
-        OR("||")            : "Returns true if either operand is true, else returns false"
+        AND("&&")               : "Returns true if both operands are true, else returns false"
+        OR("||")                : "Returns true if either operand is true, else returns false"
     }
 }
 
 define not_expr {
-    NOT("!")                : "Returns true if the operand is false, else returns false"
-    expr                    : "The operand"
-}
+    NOT("!")                    : "Returns true if the operand is false, else returns false"
+    expr                        : "The operand"
+}   
 
 define variable {
     any_of {
-        IDENT           :"Without type. If the variable is not declared, it is automatically declared with var"
-        ident_type      :"Identifier with type"
+        IDENT                   :"Without type. If the variable is not declared, it is automatically declared with var"
+        ident_type              :"Identifier with type"
     }
 }
 
 define ident_type {
-    types IDENT         :"Select type of identifier"
+    types IDENT                 :"Select type of identifier"
 }
 
 define types {
     any_of {
-        var             :"The scope of a var variable is functional scope"
-        let             :"The scope of a let variable is block scope"
-        const           :"The scope of a const variable is block scope"
+        var                     :"The scope of a var variable is functional scope"
+        let                     :"The scope of a let variable is block scope"
+        const                   :"The scope of a const variable is block scope"
     }
 }
 
@@ -230,7 +230,7 @@ define BOOLEAN {
 }
 
 define ARRAY_CONST {
-    "[" element_list "]"
+    expr(arrayName) "=" "[" element_list "]"
 }
 
 define element_list {
@@ -238,7 +238,7 @@ define element_list {
 }
 
 define OBJECT_CONST {
-    "{" pair_element_list "}"
+    expr(objectName) "=" "{" pair_element_list "}"
 }
 
 define pair_element_list {
@@ -246,15 +246,15 @@ define pair_element_list {
 }
 
 define pair_element {
-    IDENT           : "The identifier of the value"
-    ":"             : "The pair"   
-    expr(value)     : "The value of the property"
+    IDENT                       : "The identifier of the value"
+    ":"                         : "The pair"   
+    expr(value)                 : "The value of the property"
 }
 
 define assign_expr {
-    IDENT                   :"Left operand to be assigned"
-    assign_op               :"Assign operator, simple or with an operation "
-    expr                    :"Right operand"
+    IDENT                       :"Left operand to be assigned"
+    assign_op                   :"Assign operator, simple or with an operation "
+    expr                        :"Right operand"
 }
 
 define assign_op {

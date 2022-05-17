@@ -59,7 +59,7 @@
                 {
                     "type": "non_terminal",
                     "name": "ternary_stmt",
-                    "tooltip": "A statement with ternary operator has a condition, then an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
                 },
                 {
                     "type": "non_terminal",
@@ -556,6 +556,15 @@
             "name": "ARRAY_CONST",
             "all_of": [
                 {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "arrayName"
+                },
+                {
+                    "type": "terminal",
+                    "name": "="
+                },
+                {
                     "type": "terminal",
                     "name": "["
                 },
@@ -582,6 +591,15 @@
         {
             "name": "OBJECT_CONST",
             "all_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "objectName"
+                },
+                {
+                    "type": "terminal",
+                    "name": "="
+                },
                 {
                     "type": "terminal",
                     "name": "{"
