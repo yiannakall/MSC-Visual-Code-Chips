@@ -881,6 +881,11 @@ export let config = {
                         "type": "non_terminal",
                         "name": "print_call",
                         "tooltip": "Use a built-in function to print the value of the given expression (text, number etc.)"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "type_of",
+                        "tooltip": "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
                     }
                 ]
             },
@@ -1820,6 +1825,19 @@ export let config = {
                     {
                         "type": "terminal",
                         "name": ")"
+                    }
+                ]
+            },
+            {
+                "name": "type_of",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "typeof"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "variable"
                     }
                 ]
             },
@@ -26809,6 +26827,278 @@ export let config = {
                 {
                     "symbol": {
                         "symbol": {
+                            "name": "type_of",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "typeof",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "variable",
+                                    "isTerminal": false
+                                }
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "IDENT",
+                                        "isTerminal": true
+                                    },
+                                    "tooltip": "Without type. If the variable is not declared, it is automatically declared with var"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "ident_type",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Identifier with type"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "call_expr",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Call a user-defined or built-in function/method"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "math_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in math function"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "string_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in string method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "array_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in array method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "object_method_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in object method"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "object_function_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a function which is member of an object as \"object.function()\""
+                            },
+                            {
+                                "symbol": {
+                                    "name": "function_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a user-defined function as \"name(params);\""
+                            },
+                            {
+                                "symbol": {
+                                    "name": "print_call",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Use a built-in function to print the value of the given expression (text, number etc.)"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "type_of",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
+                            }
+                        ],
+                        "selectedSymbol": 7,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "expr_stmt",
+                                "tooltip": "A single expression as a statement"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "arith_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Perform a mathematic operation"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "rel_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "logical_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "assign_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "call_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "primary_expr",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
+                                }
+                            ],
+                            "selectedSymbol": 4,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "ternary_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "break_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Exit from the current loop"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "continue_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Continue to the next iteration of the current loop"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "return_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Return an expression as the result of the current function"
+                                    }
+                                ],
+                                "selectedSymbol": 4,
+                                "type": "SelectionBlock",
+                                "generatedBy": {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "def",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "stmt",
+                                                "isTerminal": false
+                                            }
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "func_def",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Define reusable code as a function"
+                                        }
+                                    ],
+                                    "selectedSymbol": 0,
+                                    "type": "SelectionBlock"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
                             "name": "assign_expr",
                             "isTerminal": false
                         },
@@ -27216,7 +27506,7 @@ export let config = {
                                             "name": "variable",
                                             "isTerminal": false
                                         },
-                                        "alias" : "parameter"
+                                        "alias": "parameter"
                                     },
                                     "alternateSymbols": [
                                         {
@@ -27243,7 +27533,7 @@ export let config = {
                                         "name": "variable",
                                         "isTerminal": false
                                     },
-                                    "alias" : "parameter"
+                                    "alias": "parameter"
                                 },
                                 "alternateSymbols": [
                                     {
@@ -27528,7 +27818,7 @@ export let config = {
                                             "name": "variable",
                                             "isTerminal": false
                                         },
-                                        "alias" : "parameter"
+                                        "alias": "parameter"
                                     },
                                     "alternateSymbols": [
                                         {
@@ -27555,7 +27845,7 @@ export let config = {
                                         "name": "variable",
                                         "isTerminal": false
                                     },
-                                    "alias" : "parameter"
+                                    "alias": "parameter"
                                 },
                                 "alternateSymbols": [
                                     {
@@ -34875,6 +35165,18 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
+            "type_of": {
+                "Group Block": {
+                    "BackgroundColor": "#A55B80",
+                    "PaddingLeft": "10px",
+                    "PaddingRight": "10px",
+                    "PaddingTop": "5px",
+                    "PaddingBottom": "5px",
+                    "BorderWidth": "",
+                    "BorderColor": "#A55B80",
+                    "BorderRadius": ""
+                }
+            },
             "IDENT": {
                 "Input Container": {
                     "BackgroundColor": "#E1C7D2",
@@ -36888,33 +37190,32 @@ config.darkColorfulTheme = {
             "Insert After Last Block": []
         },
         "if_stmt":                      [   
-                                            "if", "condition_expr", "$$_)", "$$_{",
-                                            "$$_newline", "$$_tab", "if_part", "$$_newline", "$$_}"
+                                            "if","(", "condition_expr", ")" ,"{","$$_newline", "$$_tab", "if_part", "$$_newline", "}"
                                         ],
         "if_else_stmt":                 [
-                                            "if", "$$_(", "condition_expr", "$$_)", "$$_{",
-                                            "$$_newline", "$$_tab", "if_part", "$$_newline", "$$_}", "$$_newline",
-                                            "else", "$$_{", "$$_newline", "$$_tab", "else_part", "$$_newline", "$$_}", 
+                                            "if", "(", "condition_expr", ")", "{",
+                                            "$$_newline", "$$_tab", "if_part", "$$_newline", "}", "$$_newline",
+                                            "else", "{", "$$_newline", "$$_tab", "else_part", "$$_newline", "}", 
                                         ],
         "while_stmt":                   [ 
-                                            "while", "$$_(", "condition_expr", "$$_)", "$$_{",
-                                            "$$_newline", "$$_tab", "while_part", "$$_newline", "$$_}",
+                                            "while", "(", "condition_expr", ")", "{",
+                                            "$$_newline", "$$_tab", "while_part", "$$_newline", "}",
                                         ],
         "for_stmt":                     [
-                                            "for", "$$_(", "initialization_expr", "$$_;", "condition_expr", "$$_;", 
-                                            "step_expr", "$$_)", "$$_{", "$$_newline", "$$_tab", "for_part", "$$_newline", "$$_}"
+                                            "for", "(", "initialization_expr", ";", "condition_expr", ";", 
+                                            "step_expr", ")", "{", "$$_newline", "$$_tab", "for_part", "$$_newline", "}"
                                         ],
         "func_def":                     [
-                                            "function", "name", "$$_(", "ident_list", "$$_)", "$$_{",
-                                            "$$_newline", "$$_tab", "stmts", "$$_newline", "$$_}"
+                                            "function", "name", "(", "ident_list", ")", "{",
+                                            "$$_newline", "$$_tab", "stmts", "$$_newline", "}"
                                         ],
         "anonymous_func":               [
-                                            "function", "$$_(", "ident_list", "$$_)", "$$_{",
-                                            "$$_newline", "$$_tab", "stmts", "$$_newline", "$$_}"
+                                            "function", "(", "ident_list", ")", "{",
+                                            "$$_newline", "$$_tab", "stmts", "$$_newline", "}"
                                         ],
         "rel_expr":                     [ "$$_(", "expr", "rel_op", "expr", "$$_)" ],
         "assign_expr":                  [ "IDENT", "=", "expr" ],
-        "function_call":                [ "FUNCTION NAME", "$$_(", "expr_list", "$$_)" ],
+        "function_call":                [ "FUNCTION NAME", "(", "expr_list", ")" ],
         "binary_arith_expr":            [ "$$_(", "expr", "arith_op", "expr", "$$_)" ],
         "unary_minus_expr":             [ "-", "expr" ],
         "binary_logical_expr":          [ "$$_(", "expr", "logical_binary_op", "expr", "$$_)" ],

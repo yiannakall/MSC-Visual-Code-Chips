@@ -880,6 +880,11 @@
                     "type": "non_terminal",
                     "name": "print_call",
                     "tooltip": "Use a built-in function to print the value of the given expression (text, number etc.)"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "type_of",
+                    "tooltip": "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
                 }
             ]
         },
@@ -1819,6 +1824,19 @@
                 {
                     "type": "terminal",
                     "name": ")"
+                }
+            ]
+        },
+        {
+            "name": "type_of",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "typeof"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "variable"
                 }
             ]
         },

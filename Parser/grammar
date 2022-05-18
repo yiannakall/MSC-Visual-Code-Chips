@@ -21,6 +21,7 @@ non_terminal {
     array_get array_push array_pop array_set array_size array_join array_to_string
     object_get object_insert object_delete object_set object_size
     object_get_sq object_get_dot
+    type_of
 }
 
 terminal {
@@ -39,6 +40,7 @@ terminal {
     push pop set join tostring
     delete length
     concat toUpperCase toLowerCase substring slice 
+    typeof
     var let const " "
     "." "," "()" "?" "="
 }
@@ -303,6 +305,7 @@ define call_expr {
         object_function_call    : "Use a function which is member of an object as \"object.function()\""
         function_call           : "Use a user-defined function as \"name(params);\""
         print_call              : "Use a built-in function to print the value of the given expression (text, number etc.)"
+        type_of                  : "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
     } 
 }
 
@@ -476,6 +479,10 @@ define function_call {
 
 define print_call {
     "console.log" "(" expr_list ")"
+}
+
+define type_of {
+    "typeof" variable
 }
 
 define if_stmt {
