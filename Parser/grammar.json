@@ -648,8 +648,8 @@
             "name": "assign_expr",
             "all_of": [
                 {
-                    "type": "terminal",
-                    "name": "IDENT",
+                    "type": "non_terminal",
+                    "name": "variable",
                     "tooltip": "Left operand to be assigned"
                 },
                 {

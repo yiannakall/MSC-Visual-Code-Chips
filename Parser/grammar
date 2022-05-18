@@ -252,7 +252,7 @@ define pair_element {
 }
 
 define assign_expr {
-    IDENT                       :"Left operand to be assigned"
+    variable                    :"Left operand to be assigned"
     assign_op                   :"Assign operator, simple or with an operation "
     expr                        :"Right operand"
 }
