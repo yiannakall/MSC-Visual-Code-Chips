@@ -1822,8 +1822,8 @@
                     "name": "typeof"
                 },
                 {
-                    "type": "non_terminal",
-                    "name": "variable"
+                    "type": "terminal",
+                    "name": "IDENT"
                 }
             ]
         },
