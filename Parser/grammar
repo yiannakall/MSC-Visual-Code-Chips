@@ -75,6 +75,7 @@ define def {
     any_of {
         stmt
         func_def                : "Define reusable code as a function"
+        anonymous_func          : "A function without a name. Can be assigned to a variable"
     }
 }
 
@@ -97,59 +98,59 @@ define arith_expr {
 }
 
 define binary_arith_expr {
-    expr                        : "The first operand"
-    arith_op                    : "An arithmetic operator(e.g. +, -)"
-    expr                        : "The second operand"
+    expr                            : "The first operand"
+    arith_op                        : "An arithmetic operator(e.g. +, -)"
+    expr                            : "The second operand"
 }
 
 define unary_expr{
     any_of {
-        unary_expr_before       :"The unary operator before the operand"
-        unary_expr_after        :"The unary operator after the operand"
+        unary_expr_before           :"The unary operator before the operand"
+        unary_expr_after            :"The unary operator after the operand"
     }
 }
 
 define unary_expr_after {
-    expr                        : "The single operand"
-    unary_op_af                 : "Unary operator with one operand"
-}
+    expr                            : "The single operand"
+    unary_op_af                     : "Unary operator with one operand"
+}   
 
 define unary_expr_before {
-    unary_op_bf                 : "Unary operator with one operand"
-    expr                        : "The single operand"
+    unary_op_bf                     : "Unary operator with one operand"
+    expr                            : "The single operand"
 }
 
 define unary_op_af {
     any_of {
-        PLUS_PLUS("++")         : "Post-increament of the operand value by one"
-        SUB_SUB("--")           : "Post-decreament of the operand value by one"
+        PLUS_PLUS("++")             : "Post-increament of the operand value by one"
+        SUB_SUB("--")               : "Post-decreament of the operand value by one"
     }
 }
 
 define unary_op_bf {
     any_of {
-        UMINUS("-")             : "Negates the value of its operand"
-        UPLUS("+")              : "Attempts to convert the operand to a number, if it is not already"
-        PLUS_PLUS("++")         : "Pre-increament of the operand value by one"
-        SUB_SUB("--")           : "Pre-decreament of the operand value by one"
+        UMINUS("-")                 : "Negates the value of its operand"
+        UPLUS("+")                  : "Attempts to convert the operand to a number, if it is not already"
+        PLUS_PLUS("++")             : "Pre-increament of the operand value by one"
+        SUB_SUB("--")               : "Pre-decreament of the operand value by one"
     }
 }
 
 define arith_op {
     any_of {
-        PLUS("+")               : "Performs addition"
-        SUB("-")                : "Performs subtraction"
-        MULT("*")               : "Performs multipliction"
-        EXP("**")               : "Performs Exponentation"
-        DIV("/")                : "Performs division"
-        MODULO("%")             : "Performs the modulo operation"
+        PLUS("+")                   : "Performs addition"
+        SUB("-")                    : "Performs subtraction"
+        MULT("*")                   : "Performs multipliction"
+        EXP("**")                   : "Performs Exponentation"
+        DIV("/")                    : "Performs division"
+        MODULO("%")                 : "Performs the modulo operation"
     }
 }
 
 define rel_expr {
-    expr                        : "The first operand"
-    rel_op                      : "A comparison operator that returns true or false (e.g <, >)"
-    expr                        : "The second operand"
+    expr                            : "The first operand"
+    rel_op                          : "A comparison operator that returns true or false (e.g <, >)"
+    expr                            : "The second operand"
 }
 
 define rel_op {
@@ -167,60 +168,60 @@ define rel_op {
 
 define logical_expr {
     any_of {
-        binary_logical_expr     : "Performs a binary operation with two operands"
-        not_expr                : "Performs logical negation. True becomes false and false becomes true"
+        binary_logical_expr         : "Performs a binary operation with two operands"
+        not_expr                    : "Performs logical negation. True becomes false and false becomes true"
     }
 }
 
 define binary_logical_expr {
-    expr                        : "The first operand"
-    logical_binary_op           : "Performs a binary operation with two operands"
-    expr                        : "The second operand"
+    expr                            : "The first operand"
+    logical_binary_op               : "Performs a binary operation with two operands"
+    expr                            : "The second operand"
 }
 
 define logical_binary_op {
     any_of {
-        AND("&&")               : "Returns true if both operands are true, else returns false"
-        OR("||")                : "Returns true if either operand is true, else returns false"
+        AND("&&")                   : "Returns true if both operands are true, else returns false"
+        OR("||")                    : "Returns true if either operand is true, else returns false"
     }
 }
 
 define not_expr {
-    NOT("!")                    : "Returns true if the operand is false, else returns false"
-    expr                        : "The operand"
+    NOT("!")                        : "Returns true if the operand is false, else returns false"
+    expr                            : "The operand"
 }   
 
 define variable {
     any_of {
-        IDENT                   :"Without type. If the variable is not declared, it is automatically declared with var"
-        ident_type              :"Identifier with type"
+        IDENT                       :"Without type. If the variable is not declared, it is automatically declared with var"
+        ident_type                  :"Identifier with type"
     }
 }
 
 define ident_type {
-    types IDENT                 :"Select type of identifier"
+    types IDENT                     :"Select type of identifier"
 }
 
 define types {
     any_of {
-        var                     :"The scope of a var variable is functional scope"
-        let                     :"The scope of a let variable is block scope"
-        const                   :"The scope of a const variable is block scope"
+        var                         :"The scope of a var variable is functional scope"
+        let                         :"The scope of a let variable is block scope"
+        const                       :"The scope of a const variable is block scope"
     }
 }
 
 define primary_expr {
     any_of {
-        variable                : "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
-        INT_CONST               : "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
-        FLOAT_CONST             : "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
-        CHAR_CONST              : "One single character"
-        STRING_CONST            : "Any sequence of characters or the empty sequence"
-        BOOLEAN                 : "One of true or false"
-        ARRAY_CONST             : "An array of elements"
-        OBJECT_CONST            : "Variable with many values as pairs (name:value)"
-        func_def                : "Function definition as a value of an object"
-        anonymous_func          : "A function without a name"
+        variable                    : "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+        INT_CONST                   : "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
+        FLOAT_CONST                 : "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
+        CHAR_CONST                  : "One single character"
+        STRING_CONST                : "Any sequence of characters or the empty sequence"
+        BOOLEAN                     : "One of true or false"
+        ARRAY_CONST                 : "An array of elements"
+        OBJECT_CONST                : "Variable with many values as pairs (name:value)"
+        func_def                    : "Function definition as a value of an object"
+        anonymous_func              : "A function without a name"
     }
 }
 
@@ -232,7 +233,7 @@ define BOOLEAN {
 }
 
 define ARRAY_CONST {
-    expr(arrayName) "=" "[" element_list "]"
+    "[" element_list "]"
 }
 
 define element_list {
@@ -240,7 +241,7 @@ define element_list {
 }
 
 define OBJECT_CONST {
-    expr(objectName) "=" "{" pair_element_list "}"
+    "{" pair_element_list "}"
 }
 
 define pair_element_list {
@@ -248,15 +249,15 @@ define pair_element_list {
 }
 
 define pair_element {
-    IDENT                       : "The identifier of the value"
-    ":"                         : "The pair"   
-    expr(value)                 : "The value of the property"
+    IDENT                           : "The identifier of the value"
+    ":"                             : "The pair"   
+    expr(value)                     : "The value of the property"
 }
 
 define assign_expr {
-    variable                    :"Left operand to be assigned"
-    assign_op                   :"Assign operator, simple or with an operation "
-    expr                        :"Right operand"
+    primary_expr                    :"Left operand to be assigned"
+    assign_op                       :"Assign operator, simple or with an operation "
+    expr                            :"Right operand"
 }
 
 define assign_op {
@@ -510,7 +511,7 @@ define ternary_stmt {
 }
 
 define ident_list {
-    list_of variable
+    list_of IDENT
 }
 
 define expr_list {

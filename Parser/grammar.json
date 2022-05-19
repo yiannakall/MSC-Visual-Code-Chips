@@ -89,6 +89,11 @@
                     "type": "non_terminal",
                     "name": "func_def",
                     "tooltip": "Define reusable code as a function"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "anonymous_func",
+                    "tooltip": "A function without a name. Can be assigned to a variable"
                 }
             ]
         },
@@ -556,15 +561,6 @@
             "name": "ARRAY_CONST",
             "all_of": [
                 {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "arrayName"
-                },
-                {
-                    "type": "terminal",
-                    "name": "="
-                },
-                {
                     "type": "terminal",
                     "name": "["
                 },
@@ -591,15 +587,6 @@
         {
             "name": "OBJECT_CONST",
             "all_of": [
-                {
-                    "type": "non_terminal",
-                    "name": "expr",
-                    "alias": "objectName"
-                },
-                {
-                    "type": "terminal",
-                    "name": "="
-                },
                 {
                     "type": "terminal",
                     "name": "{"
@@ -649,7 +636,7 @@
             "all_of": [
                 {
                     "type": "non_terminal",
-                    "name": "variable",
+                    "name": "primary_expr",
                     "tooltip": "Left operand to be assigned"
                 },
                 {
@@ -2047,8 +2034,8 @@
             "name": "ident_list",
             "list_of": [
                 {
-                    "type": "non_terminal",
-                    "name": "variable"
+                    "type": "terminal",
+                    "name": "IDENT"
                 }
             ]
         },
