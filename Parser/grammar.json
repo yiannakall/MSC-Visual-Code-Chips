@@ -87,13 +87,8 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "func_def",
+                    "name": "func_definition",
                     "tooltip": "Define reusable code as a function"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "anonymous_func",
-                    "tooltip": "A function without a name. Can be assigned to a variable"
                 }
             ]
         },
@@ -498,6 +493,51 @@
                     "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
                 },
                 {
+                    "type": "non_terminal",
+                    "name": "consts",
+                    "tooltip": "All const values"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "object_get",
+                    "tooltip": "Get an element by its property name in the object"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "object_set",
+                    "tooltip": "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "array_get",
+                    "tooltip": "Get an element by its position in the array"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "array_set",
+                    "tooltip": "Modify an element in a position of the array to a new character"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "new_array",
+                    "tooltip": "Define a new array"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "new_object",
+                    "tooltip": "Define a new object"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "func_definition",
+                    "tooltip": "Function definition"
+                }
+            ]
+        },
+        {
+            "name": "consts",
+            "any_of": [
+                {
                     "type": "terminal",
                     "name": "INT_CONST",
                     "tooltip": "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
@@ -519,7 +559,7 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "BOOLEAN",
+                    "name": "BOOLEAN_CONST",
                     "tooltip": "One of true or false"
                 },
                 {
@@ -531,21 +571,11 @@
                     "type": "non_terminal",
                     "name": "OBJECT_CONST",
                     "tooltip": "Variable with many values as pairs (name:value)"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "func_def",
-                    "tooltip": "Function definition as a value of an object"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "anonymous_func",
-                    "tooltip": "A function without a name"
                 }
             ]
         },
         {
-            "name": "BOOLEAN",
+            "name": "BOOLEAN_CONST",
             "any_of": [
                 {
                     "type": "terminal",
@@ -554,6 +584,32 @@
                 {
                     "type": "terminal",
                     "name": "false"
+                }
+            ]
+        },
+        {
+            "name": "new_array",
+            "all_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "array name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "="
+                },
+                {
+                    "type": "terminal",
+                    "name": "["
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "element_list"
+                },
+                {
+                    "type": "terminal",
+                    "name": "]"
                 }
             ]
         },
@@ -581,6 +637,32 @@
                     "type": "non_terminal",
                     "name": "expr",
                     "alias": "element"
+                }
+            ]
+        },
+        {
+            "name": "new_object",
+            "all_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "expr",
+                    "alias": "object name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "="
+                },
+                {
+                    "type": "terminal",
+                    "name": "{"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "pair_element_list"
+                },
+                {
+                    "type": "terminal",
+                    "name": "}"
                 }
             ]
         },
@@ -717,7 +799,22 @@
             ]
         },
         {
-            "name": "func_def",
+            "name": "func_definition",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "named_func",
+                    "tooltip": "Define a named function"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "anonymous_func",
+                    "tooltip": "Define an anonymous function"
+                }
+            ]
+        },
+        {
+            "name": "named_func",
             "all_of": [
                 {
                     "type": "terminal",
@@ -726,7 +823,7 @@
                 {
                     "type": "terminal",
                     "name": "IDENT",
-                    "alias": "Name"
+                    "alias": "name"
                 },
                 {
                     "type": "terminal",
@@ -852,11 +949,6 @@
                     "type": "non_terminal",
                     "name": "object_method_call",
                     "tooltip": "Use a built-in object method"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "object_function_call",
-                    "tooltip": "Use a function which is member of an object as \"object.function()\""
                 },
                 {
                     "type": "non_terminal",
@@ -1741,7 +1833,32 @@
             ]
         },
         {
-            "name": "object_function_call",
+            "name": "callee",
+            "any_of": [
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "tooltip": "Name of a defined function"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "object_function",
+                    "tooltip": "Name of a function which is member of an object"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "array_function",
+                    "tooltip": "Name of a function which is member of an array"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "function_call",
+                    "tooltip": "To call nested functions"
+                }
+            ]
+        },
+        {
+            "name": "object_function",
             "all_of": [
                 {
                     "type": "terminal",
@@ -1756,18 +1873,29 @@
                     "type": "terminal",
                     "name": "IDENT",
                     "alias": "function name"
+                }
+            ]
+        },
+        {
+            "name": "array_function",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "array name"
                 },
                 {
                     "type": "terminal",
-                    "name": "("
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "expr_list"
+                    "name": "["
                 },
                 {
                     "type": "terminal",
-                    "name": ")"
+                    "name": "IDENT",
+                    "alias": "index"
+                },
+                {
+                    "type": "terminal",
+                    "name": "]"
                 }
             ]
         },
@@ -1775,8 +1903,8 @@
             "name": "function_call",
             "all_of": [
                 {
-                    "type": "terminal",
-                    "name": "IDENT",
+                    "type": "non_terminal",
+                    "name": "callee",
                     "alias": "function name"
                 },
                 {

@@ -4,17 +4,20 @@ non_terminal {
     stmt
     defs
     def
+    consts
     variable types ident_type
     if_stmt if_else_stmt while_stmt for_stmt expr ternary_stmt break_stmt continue_stmt return_stmt
-    func_def anonymous_func
+    func_definition named_func anonymous_func
+    new_array new_object
     arith_expr rel_expr logical_expr assign_expr call_expr primary_expr
     binary_arith_expr unary_expr 
     unary_expr_before unary_expr_after
     arith_op rel_op logical_binary_op unary_op_af unary_op_bf assign_op
     binary_logical_expr not_expr
-    BOOLEAN ARRAY_CONST OBJECT_CONST
+    BOOLEAN_CONST ARRAY_CONST OBJECT_CONST
     ident_list expr_list element_list pair_element_list pair_element
-    math_call string_method_call array_method_call object_method_call object_function_call function_call print_call
+    math_call string_method_call array_method_call object_method_call callee function_call print_call
+    object_function array_function
     math_abs math_pow math_sqrt math_round math_floor math_ceil math_sin math_cos
     string_method
     string_concat string_upperCase string_lowCase string_substring string_size string_slice
@@ -74,8 +77,7 @@ define stmt {
 define def {
     any_of {
         stmt
-        func_def                : "Define reusable code as a function"
-        anonymous_func          : "A function without a name. Can be assigned to a variable"
+        func_definition         : "Define reusable code as a function"
     }
 }
 
@@ -213,31 +215,50 @@ define types {
 define primary_expr {
     any_of {
         variable                    : "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+        consts                      : "All const values"
+        object_get                  : "Get an element by its property name in the object"
+        object_set                  : "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
+        array_get                   : "Get an element by its position in the array"
+        array_set                   : "Modify an element in a position of the array to a new character"
+        new_array                   : "Define a new array"
+        new_object                  : "Define a new object"
+        func_definition             : "Function definition"
+    }
+}
+
+define consts{
+    any_of {
         INT_CONST                   : "An integer is a positive, zero, or negative number that can be written without a fractional component (i.e. no decimal point places)"
         FLOAT_CONST                 : "A floating-point number is a rational number (i.e. includes numbers with decimal point places"
         CHAR_CONST                  : "One single character"
         STRING_CONST                : "Any sequence of characters or the empty sequence"
-        BOOLEAN                     : "One of true or false"
+        BOOLEAN_CONST               : "One of true or false"
         ARRAY_CONST                 : "An array of elements"
         OBJECT_CONST                : "Variable with many values as pairs (name:value)"
-        func_def                    : "Function definition as a value of an object"
-        anonymous_func              : "A function without a name"
     }
 }
 
-define BOOLEAN {
+define BOOLEAN_CONST {
     any_of {
         true
         false
     }
 }
 
+define new_array {
+    expr("array name") "=" "[" element_list "]"
+}
+ 
 define ARRAY_CONST {
     "[" element_list "]"
 }
 
 define element_list {
     list_of expr(element)
+}
+
+define new_object {
+    expr("object name") "=" "{" pair_element_list "}"
 }
 
 define OBJECT_CONST {
@@ -275,8 +296,15 @@ define assign_op {
     }
 }
 
-define func_def {
-    function IDENT(Name) "(" ident_list ")" "{" stmts "}"
+define func_definition{
+    any_of{
+        named_func                  :"Define a named function"
+        anonymous_func              :"Define an anonymous function"
+    }
+}
+
+define named_func {
+    function IDENT(name) "(" ident_list ")" "{" stmts "}"
 }
 
 define anonymous_func {
@@ -303,7 +331,6 @@ define call_expr {
         string_method_call      : "Use a built-in string method"
         array_method_call       : "Use a built-in array method"
         object_method_call      : "Use a built-in object method"
-        object_function_call    : "Use a function which is member of an object as \"object.function()\""
         function_call           : "Use a user-defined function as \"name(params);\""
         print_call              : "Use a built-in function to print the value of the given expression (text, number etc.)"
         type_of                  : "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
@@ -470,12 +497,25 @@ define object_size {
     IDENT("object name") "." length
 }
 
-define object_function_call {
-    IDENT("object name") "." IDENT("function name") "(" expr_list ")"
+define callee {
+    any_of {
+        IDENT                           :"Name of a defined function"
+        object_function                 :"Name of a function which is member of an object"
+        array_function                  :"Name of a function which is member of an array"
+        function_call                   :"To call nested functions"
+    }
+}
+
+define object_function {
+    IDENT("object name")"." IDENT("function name")
+}
+
+define array_function {
+    IDENT("array name")"[" IDENT(index) "]"
 }
 
 define function_call {
-    IDENT("function name") "(" expr_list ")"
+    callee("function name") "(" expr_list ")"
 }
 
 define print_call {
