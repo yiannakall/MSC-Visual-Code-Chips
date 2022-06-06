@@ -246,7 +246,7 @@ define BOOLEAN_CONST {
 }
 
 define new_array {
-    expr("array name") "=" "[" element_list "]"
+    expr("array name") ASSIGN("=") "[" element_list "]"
 }
  
 define ARRAY_CONST {
@@ -258,7 +258,7 @@ define element_list {
 }
 
 define new_object {
-    expr("object name") "=" "{" pair_element_list "}"
+    expr("object name") ASSIGN("=") "{" pair_element_list "}"
 }
 
 define OBJECT_CONST {

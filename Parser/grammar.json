@@ -597,7 +597,8 @@
                 },
                 {
                     "type": "terminal",
-                    "name": "="
+                    "name": "ASSIGN",
+                    "alias": "="
                 },
                 {
                     "type": "terminal",
@@ -650,7 +651,8 @@
                 },
                 {
                     "type": "terminal",
-                    "name": "="
+                    "name": "ASSIGN",
+                    "alias": "="
                 },
                 {
                     "type": "terminal",

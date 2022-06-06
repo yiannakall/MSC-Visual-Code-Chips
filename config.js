@@ -598,7 +598,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "="
+                      "name": "ASSIGN",
+                      "alias": "="
                   },
                   {
                       "type": "terminal",
@@ -651,7 +652,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "="
+                      "name": "ASSIGN",
+                      "alias": "="
                   },
                   {
                       "type": "terminal",
