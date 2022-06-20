@@ -436,5 +436,34 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push( `if (${code.expr}) {\n${code.stmts}\n${rBrace}` );
     }
 
+    Visit_IfElseStmt(elem){
+        let code = this.PopChildrenFromStack(elem, ['if', 'expr', 'stmts1', 'else', 'stmts2']);
+        
+        this.DecreaseTabs();
+
+        let rBrace = this.TabIn('}');
+        let else_ = this.TabIn('else');
+
+        this.stack.push( `if (${code.expr}) {\n${code.stmts1}\n${rBrace}\n${else_} {\n${code.stmts2}\n${rBrace}` );
+    }
+
+    Visit_WhileStmt(elem){
+        let code = this.PopChildrenFromStack(elem, ['while', 'expr', 'stmts']);
+
+        this.DecreaseTabs();
+        let rBrace = this.TabIn('}');
+
+        this.stack.push( `while (${code.expr}) {\n${code.stmts}\n${rBrace}` );
+    }
+
+    Visit_ForStmt(elem){
+        let code = this.PopChildrenFromStack(elem, ['for', 'init', 'condition', 'step', 'stmts']);
+
+        this.DecreaseTabs();
+        let rBrace = this.TabIn('}');
+
+        this.stack.push( `for (${code.init}; ${code.condition}; ${code.step}) {\n${code.stmts}\n${rBrace}` );
+    }
+
 }
 
