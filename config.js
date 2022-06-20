@@ -780,24 +780,6 @@ export let config = {
                       "name": "EXP_ASSIGN",
                       "alias": "**=",
                       "tooltip": "Raises the value of left operand to the power of the right operand and assign the result to the left operand"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "LEFT_SHIFT_ASSIGN",
-                      "alias": "<<=",
-                      "tooltip": "Moves the specified amount of bits(right operand) to the left and assigns the result to the left operand"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "RIGHT_SHIFT_ASSIGN",
-                      "alias": ">>=",
-                      "tooltip": "Moves the specified amount of bits(right operand) to the right and assigns the result to the left operand"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "UN_RIGHT_SHIFT_ASSIGN",
-                      "alias": ">>>=",
-                      "tooltip": "Unsigned -  moves the specified amount of bits to the right and assigns the result to the left operand"
                   }
               ]
           },
@@ -893,10 +875,6 @@ export let config = {
                   {
                       "type": "terminal",
                       "name": "break"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": ";"
                   }
               ]
           },
@@ -906,10 +884,6 @@ export let config = {
                   {
                       "type": "terminal",
                       "name": "continue"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": ";"
                   }
               ]
           },
@@ -923,10 +897,6 @@ export let config = {
                   {
                       "type": "non_terminal",
                       "name": "expr"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": ";"
                   }
               ]
           },
@@ -4327,32 +4297,11 @@ export let config = {
           {
             "symbol": {
               "symbol": {
-                "name": "break_stmt",
-                "isTerminal": false
-              },
-              "tooltip": "Exit from the current loop"
-            },
-            "elems": [
-              {
-                "symbol": {
-                  "symbol": {
-                    "name": "break",
-                    "isTerminal": true
-                  }
-                },
-                "type": "SimpleBlock"
-              },
-              {
-                "symbol": {
-                  "symbol": {
-                    "name": ";",
-                    "isTerminal": true
-                  }
-                },
-                "type": "SimpleBlock"
+                "name": "break",
+                "isTerminal": true
               }
-            ],
-            "type": "Group",
+            },
+            "type": "SimpleBlock",
             "generatedBy": {
               "symbol": {
                 "symbol": {
@@ -4444,7 +4393,7 @@ export let config = {
                   },
                   {
                     "symbol": {
-                      "name": "func_def",
+                      "name": "func_definition",
                       "isTerminal": false
                     },
                     "tooltip": "Define reusable code as a function"
@@ -4458,32 +4407,11 @@ export let config = {
           {
             "symbol": {
               "symbol": {
-                "name": "continue_stmt",
-                "isTerminal": false
-              },
-              "tooltip": "Continue to the next iteration of the current loop"
-            },
-            "elems": [
-              {
-                "symbol": {
-                  "symbol": {
-                    "name": "continue",
-                    "isTerminal": true
-                  }
-                },
-                "type": "SimpleBlock"
-              },
-              {
-                "symbol": {
-                  "symbol": {
-                    "name": ";",
-                    "isTerminal": true
-                  }
-                },
-                "type": "SimpleBlock"
+                "name": "continue",
+                "isTerminal": true
               }
-            ],
-            "type": "Group",
+            },
+            "type": "SimpleBlock",
             "generatedBy": {
               "symbol": {
                 "symbol": {
@@ -4575,7 +4503,7 @@ export let config = {
                   },
                   {
                     "symbol": {
-                      "name": "func_def",
+                      "name": "func_definition",
                       "isTerminal": false
                     },
                     "tooltip": "Define reusable code as a function"
