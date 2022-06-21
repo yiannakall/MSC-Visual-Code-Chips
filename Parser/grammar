@@ -517,7 +517,7 @@ define print_call {
 }
 
 define type_of {
-    "typeof" IDENT
+    typeof IDENT
 }
 
 define if_stmt {

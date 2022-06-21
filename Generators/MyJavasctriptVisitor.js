@@ -427,7 +427,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_TypeOf(elem) {}
 
     Visit_IfStmt(elem) {
-        let code = this.PopChildrenFromStack(elem, ['if', 'expr', 'stmts']);
+        let code = this.PopChildrenFromStack(elem, ['if','(', 'expr',')','{', 'stmts','}']);
         
         this.DecreaseTabs();
         
@@ -437,7 +437,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_IfElseStmt(elem){
-        let code = this.PopChildrenFromStack(elem, ['if', 'expr', 'stmts1', 'else', 'stmts2']);
+        let code = this.PopChildrenFromStack(elem, ['if','(', 'expr',')','{', 'stmts1','}', 'else','{', 'stmts2', '}']);
         
         this.DecreaseTabs();
 
@@ -448,7 +448,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_WhileStmt(elem){
-        let code = this.PopChildrenFromStack(elem, ['while', 'expr', 'stmts']);
+        let code = this.PopChildrenFromStack(elem, ['while','(', 'expr',')', '{', 'stmts', '}']);
 
         this.DecreaseTabs();
         let rBrace = this.TabIn('}');
@@ -457,7 +457,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_ForStmt(elem){
-        let code = this.PopChildrenFromStack(elem, ['for', 'init', 'condition', 'step', 'stmts']);
+        let code = this.PopChildrenFromStack(elem, ['for','(', 'init',';', 'condition',';', 'step',')','{', 'stmts','}']);
 
         this.DecreaseTabs();
         let rBrace = this.TabIn('}');
@@ -465,5 +465,180 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push( `for (${code.init}; ${code.condition}; ${code.step}) {\n${code.stmts}\n${rBrace}` );
     }
 
+    Visit_Expr(elem){
+        this.stack.push(
+            this.HandleSemicolon(elem, `0`)
+        );
+    }
+
+    Visit_TernaryStmt(elem){}
+
+    Visit_BreakStmt(elem) {
+        assert(false);
+    }
+
+    Visit_ContinueStmt(elem){
+        assert(false);
+    }
+
+    Visit_ReturnStmt(elem){
+        let code = this.PopChildrenFromStack(elem, ['return', 'expr']);
+
+        this.stack.push(`return ${code.expr};`);
+    }
+
+    Visit_FuncDef(elem){}
+
+    Visit_NamedFunc(elem){
+        let code = this.PopChildrenFromStack(elem, ['function', 'id', '(', 'params',')', '{', 'stmts', '}']);
+        let vars = this.TabIn( this.PopScopeVars() );
+
+        this.DecreaseTabs();
+        let rBrace = this.TabIn('}');
+
+        this.stack.push(`function ${code.id} (${code.params}) {\n${vars}\n${code.stmts}\n${rBrace}`);
+    }
+
+    Visit_AnonymousFunc(elem){
+        let code = this.PopChildrenFromStack(elem, ['function','(', 'params',')', '{', 'stmts', '}']);
+        let vars = this.TabIn( this.PopScopeVars() );
+
+        this.DecreaseTabs();
+        let rBrace = this.TabIn('}');
+
+        this.stack.push(`function (${code.params}) {\n${vars}\n${code.stmts}\n${rBrace}`);
+    }    
+    
+    Visit_NewArray(elem){}
+    Visit_NewObject(elem){}
+    Visit_ArithExpr(elem) {}
+    Visit_RelExpr(elem){}
+    Visit_LogicalExpr(elem){}
+    Visit_AssignExpr(elem){}
+    Visit_CallExpr(elem) {}
+    Visit_PrimaryExpr(elem){}
+    Visit_BinaryArithExpr(elem){}
+    Visit_UnaryExpr(elem){};
+    Visit_UnaryExprBefore(elem){}
+    Visit_UnaryExprAfter(elem){}
+    Visit_ArithOp(elem){}
+    Visit_RelOp(elem){}
+    Visit_LogicalBinaryOp(elem){}
+    Visit_UnaryOpAfter(elem){}
+    Visit_UnaryOpBefore(elem) {}
+    Visit_AssignOp(elem){}
+    Visit_BinaryLogicalExpr(elem){}
+    Visit_NotExpr(elem){}
+    Visit_BoolConst(elem){}
+    Visit_ArrayConst(elem){}
+    Visit_ObjectConst(elem){}
+    Visit_IdentList(elem){}
+    Visit_ExprList(elem){}
+    Visit_ElementList(elem){}
+    Visit_PairElementList(elem){}
+    Visit_PairElement(elem){}
+    Visit_MathCall(elem){}
+    Visit_StringMethodCall(elem){}
+    Visit_ArrayMethodCall(elem){}
+    Visit_ObjectMethodCall(elem){}
+    Visit_FunctionCall(elem){}
+    Visit_PrintCall(elem){}
+    Visit_Callee(elem){}
+    Visit_ObjectFunction(elem){}
+    Visit_ArrayFunction(elem){} 
+    Visit_MathAbs(elem){}
+    Visit_MathPow(elem){}
+    Visit_MathSqrt(elem){}
+    Visit_MathRound(elem){}
+    Visit_MathFloor(elem){}
+    Visit_MathCeil(elem){}
+    Visit_MathSin(elem){}
+    Visit_MathCos(elem){}
+    Visit_StringMethod(elem){}    
+    Visit_StringConcat(elem){}    
+    Visit_StringUpperCase(elem){}
+    Visit_StringLowCase(elem) {}
+    Visit_StringSubstring(elem){}
+    Visit_StringSize(elem){}
+    Visit_StringSlice(elem){}
+    Visit_ArrayGet(elem){}
+    Visit_ArrayPush(elem){}
+    Visit_ArrayPop(elem){}
+    Visit_ArraySet(elem){}
+    Visit_ArraySize(elem){}
+    Visit_ArrayJoin(elem){}
+    Visit_ArrayToString(elem){} 
+    Visit_ObjectGet(elem){}
+    Visit_ObjectInsert(elem){} 
+    Visit_ObjectDelete(elem){}    
+    Visit_ObjectSet(elem){}
+    Visit_ObjectSize(elem){}
+    Visit_ObjectGetSq(elem){}
+    Visit_ObjectGetDot(elem){}    
+    Visit_Ident(elem){}
+    Visit_IntConst(elem){}
+    Visit_FloatConst(elem){}
+    Visit_BoolConst(elem){}
+    Visit_CharConst(elem){}
+    Visit_StringConst(elem){}
+    Visit_PlusPlus(elem){}
+    Visit_SubSub(elem){}
+    Visit_Uminus(elem){}
+    Visit_Uplus(elem){}
+    Visit_Plus(elem){}
+    Visit_Sub(elem){}
+    Visit_Mult(elem){}
+    Visit_Div(elem){}
+    Visit_Exp(elem){}
+    Visit_Modulo(elem){}
+    Visit_Greater(elem){}
+    Visit_Less(elem){}
+    Visit_EqualTo(elem){}
+    Visit_EqualValueType(elem){}
+    Visit_NotEqualTo(elem){}
+    Visit_NotEqualValueType(elem){}
+    Visit_GreaterEqual(elem){}
+    Visit_LessEqual(elem){}
+    Visit_And(elem){}
+    Visit_Or(elem){}
+    Visit_Not(elem){}
+    Visit_Assign(elem){}   
+    Visit_PlusAssign(elem){}
+    Visit_SubAssign(elem){}
+    Visit_MultAssign(elem){}
+    Visit_DivAssign(elem){}
+    Visit_ModAssign(elem){}
+    Visit_ExpAssign(elem){}
+    Visit_True(elem){}
+    Visit_False(elem){}
+    Visit_Break(elem){}
+    Visit_Continue(elem){}
+    Visit_Return(elem){}
+    Visit_Abs(elem){}
+    Visit_Pow(elem){}
+    Visit_Sqrt(elem){}
+    Visit_Round(elem){}
+    Visit_Floor(elem){}
+    Visit_Ceiling(elem){}
+    Visit_Sin(elem){}
+    Visit_Cos(elem){}
+    Visit_Concats(elem){}
+    Visit_ToUpperCase(elem){}
+    Visit_ToLowerCase(elem){}
+    Visit_Substring(elem){}
+    Visit_StringLength(elem){}    
+    Visit_Slice(elem){}
+    Visit_Push(elem){}
+    Visit_Pop(elem){}
+    Visit_ArrayLength(elem){}
+    Visit_Join(elem){}
+    Visit_toString(elem){}
+    Visit_Delete(elem){}
+    Visit_ObjectLength(elem){}    
+    Visit_If(elem){}
+    Visit_Else(elem){}
+    Visit_While(elem){}
+    Visit_For(elem){}
+    Visit_Function(elem){}
 }
 
