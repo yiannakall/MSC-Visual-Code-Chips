@@ -230,7 +230,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'sqrt',                    elem => this.Visit_Sqrt(elem) );
         this.SetVisitor( 'round',                   elem => this.Visit_Round(elem) );
         this.SetVisitor( 'floor',                   elem => this.Visit_Floor(elem) );
-        this.SetVisitor( 'ceil',                    elem => this.Visit_Ceiling(elem) );
+        this.SetVisitor( 'ceil',                    elem => this.Visit_Ceil(elem) );
         this.SetVisitor( 'sin',                     elem => this.Visit_Sin(elem) );
         this.SetVisitor( 'cos',                     elem => this.Visit_Cos(elem) );
 
@@ -311,6 +311,78 @@ export class MyJavascriptVisitor extends AstVisitor {
             return code + ';'
         else
             return code;
+    }
+
+    ShouldParenthesize(outerOp, innerOp, innerOpPosition){
+        if (innerOp.precedence < outerOp.precedence)
+            return true;
+
+        if (innerOp.precedence == outerOp.precedence){
+            if (innerOp.assocParenthesis){
+                switch(innerOp.assocParenthesis){
+                    case 'always':
+                        return true;
+                    case 'never':
+                        return false;
+                    case 'when_different_ops':
+                        return innerOp !== outerOp;
+                    case 'when_same_ops':
+                        return innerOp === outerOp;
+                }
+            }
+
+            return innerOp.associativity !== innerOpPosition;
+        }
+
+        return false;
+    }
+
+    HandleBinaryExpr(elem){
+        let code = this.PopChildrenFromStack(elem, ['expr1', 'op', 'expr2']);
+
+        let elems = elem.GetElems();
+
+        let outerOp = this.ToOperator(elems[1]), op1 = this.GetChildOperator(elems[0]), op2 = this.GetChildOperator(elems[2]);
+
+        if ( op1 && this.ShouldParenthesize(outerOp, op1, 'left') )
+            code.expr1 = `(${code.expr1})`;
+        
+        if ( op2 && this.ShouldParenthesize(outerOp, op2, 'right') )
+            code.expr2 = `(${code.expr2})`;
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `${code.expr1} ${code.op} ${code.expr2}`)
+        );
+    }
+
+    HandleLeftUnaryExpr(elem){
+        let code = this.PopChildrenFromStack(elem, ['op', 'expr']);
+
+        let elems = elem.GetElems();
+
+        let outerOp = this.ToOperator(elems[0]), op = this.GetChildOperator(elems[1]);
+        
+        if ( op && this.ShouldParenthesize(outerOp, op, 'right') )
+            code.expr = `(${code.expr})`;
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `${code.op}${code.expr}`)
+        );
+    }
+
+    HandleRightUnaryExpr(elem){
+        let code = this.PopChildrenFromStack(elem, ['expr', 'op']);
+
+        let elems = elem.GetElems();
+
+        let outerOp = this.ToOperator(elems[0]), op = this.GetChildOperator(elems[1]);
+        
+        if ( op && this.ShouldParenthesize(outerOp, op, 'left') )
+            code.expr = `(${code.expr})`;
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `${code.op}${code.expr}`)
+        );
     }
 
     ToOperator(elem){
@@ -420,6 +492,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push( ';' );
     }
 
+    //edo
     Visit_Consts(elem) {}
     Visit_Variable(elem) {}
     Visit_Types(elem) {}
@@ -471,7 +544,11 @@ export class MyJavascriptVisitor extends AstVisitor {
         );
     }
 
-    Visit_TernaryStmt(elem){}
+    Visit_TernaryStmt(elem){
+        let code = this.PopChildrenFromStack(elem, ['expr', '?', 'expr1', ':', 'expr2']);
+
+        this.stack.push(`${code.expr} ? ${code.expr1} : ${code.expr2}`);
+    }
 
     Visit_BreakStmt(elem) {
         assert(false);
@@ -487,6 +564,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`return ${code.expr};`);
     }
 
+    //edo
     Visit_FuncDef(elem){}
 
     Visit_NamedFunc(elem){
@@ -509,35 +587,118 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`function (${code.params}) {\n${vars}\n${code.stmts}\n${rBrace}`);
     }    
     
+    //edo
     Visit_NewArray(elem){}
     Visit_NewObject(elem){}
-    Visit_ArithExpr(elem) {}
-    Visit_RelExpr(elem){}
-    Visit_LogicalExpr(elem){}
-    Visit_AssignExpr(elem){}
-    Visit_CallExpr(elem) {}
-    Visit_PrimaryExpr(elem){}
-    Visit_BinaryArithExpr(elem){}
-    Visit_UnaryExpr(elem){};
-    Visit_UnaryExprBefore(elem){}
-    Visit_UnaryExprAfter(elem){}
-    Visit_ArithOp(elem){}
-    Visit_RelOp(elem){}
-    Visit_LogicalBinaryOp(elem){}
-    Visit_UnaryOpAfter(elem){}
-    Visit_UnaryOpBefore(elem) {}
+
+    Visit_ArithExpr(elem) {
+        this.stack.push(
+            this.HandleSemicolon(elem, `0`)
+        );
+    }
+
+    Visit_RelExpr(elem){
+        this.HandleBinaryExpr(elem);
+    }
+
+    Visit_LogicalExpr(elem){
+        this.stack.push(
+            this.HandleSemicolon(elem, `0`)
+        );
+    }
+
+    Visit_AssignExpr(elem){
+        this.HandleBinaryExpr(elem);
+    }
+
+    Visit_CallExpr(elem) {
+        this.stack.push(
+            this.HandleSemicolon(elem, `0`)
+        );
+    }
+
+    Visit_PrimaryExpr(elem){
+        this.stack.push(
+            this.HandleSemicolon(elem, `0`)
+        );
+    }
+
+    Visit_BinaryArithExpr(elem){
+        this.HandleBinaryExpr(elem);
+    }
+
+    //edo
+    Visit_UnaryExpr(elem){}
+
+    Visit_UnaryExprBefore(elem){
+        this.HandleLeftUnaryExpr(elem);
+    }
+
+    Visit_UnaryExprAfter(elem){
+        this.HandleRightUnaryExpr(elem);
+    }
+
+    Visit_ArithOp(elem){
+        this.stack.push(`+`);
+    }
+
+    Visit_RelOp(elem){
+        this.stack.push(`>`);
+    }
+
+    Visit_LogicalBinaryOp(elem){
+        this.stack.push(`&&`);
+    }
+
+    Visit_UnaryOpAfter(elem){
+        this.stack.push(`++`);
+    }
+
+    Visit_UnaryOpBefore(elem){
+        this.stack.push(`-`);
+    }
+
+    //edo
     Visit_AssignOp(elem){}
     Visit_BinaryLogicalExpr(elem){}
     Visit_NotExpr(elem){}
-    Visit_BoolConst(elem){}
+
+    Visit_BoolConst(elem){
+        this.stack.push(
+            this.HandleSemicolon(elem, `false`)
+        );
+    }
+
+    //edo
     Visit_ArrayConst(elem){}
     Visit_ObjectConst(elem){}
-    Visit_IdentList(elem){}
-    Visit_ExprList(elem){}
-    Visit_ElementList(elem){}
+
+    Visit_IdentList(elem){
+        let code = this.PopChildrenFromStack(elem).join(', ');
+
+        this.stack.push(`${code}`);
+    }
+
+    
+    Visit_ExprList(elem){
+        let code = this.PopChildrenFromStack(elem).join(', ');
+        this.stack.push(`${code}`);
+    }
+
+    Visit_ElementList(elem){
+        let code = this.PopChildrenFromStack(elem).join(', ');
+        this.stack.push(`${code}`);
+    }
+
     Visit_PairElementList(elem){}
     Visit_PairElement(elem){}
-    Visit_MathCall(elem){}
+
+    Visit_MathCall(elem){
+        this.stack.push(
+            this.HandleSemicolon(elem, `0`)
+        );
+    }
+
     Visit_StringMethodCall(elem){}
     Visit_ArrayMethodCall(elem){}
     Visit_ObjectMethodCall(elem){}
@@ -574,71 +735,113 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_ObjectSet(elem){}
     Visit_ObjectSize(elem){}
     Visit_ObjectGetSq(elem){}
-    Visit_ObjectGetDot(elem){}    
+    Visit_ObjectGetDot(elem){}  
+    
+    /* terminals */
     Visit_Ident(elem){}
-    Visit_IntConst(elem){}
-    Visit_FloatConst(elem){}
-    Visit_BoolConst(elem){}
-    Visit_CharConst(elem){}
-    Visit_StringConst(elem){}
-    Visit_PlusPlus(elem){}
-    Visit_SubSub(elem){}
-    Visit_Uminus(elem){}
-    Visit_Uplus(elem){}
-    Visit_Plus(elem){}
-    Visit_Sub(elem){}
-    Visit_Mult(elem){}
-    Visit_Div(elem){}
-    Visit_Exp(elem){}
-    Visit_Modulo(elem){}
-    Visit_Greater(elem){}
-    Visit_Less(elem){}
-    Visit_EqualTo(elem){}
-    Visit_EqualValueType(elem){}
-    Visit_NotEqualTo(elem){}
-    Visit_NotEqualValueType(elem){}
-    Visit_GreaterEqual(elem){}
-    Visit_LessEqual(elem){}
-    Visit_And(elem){}
-    Visit_Or(elem){}
-    Visit_Not(elem){}
-    Visit_Assign(elem){}   
-    Visit_PlusAssign(elem){}
-    Visit_SubAssign(elem){}
-    Visit_MultAssign(elem){}
-    Visit_DivAssign(elem){}
-    Visit_ModAssign(elem){}
-    Visit_ExpAssign(elem){}
-    Visit_True(elem){}
-    Visit_False(elem){}
-    Visit_Break(elem){}
-    Visit_Continue(elem){}
-    Visit_Return(elem){}
-    Visit_Abs(elem){}
-    Visit_Pow(elem){}
-    Visit_Sqrt(elem){}
-    Visit_Round(elem){}
-    Visit_Floor(elem){}
-    Visit_Ceiling(elem){}
-    Visit_Sin(elem){}
-    Visit_Cos(elem){}
-    Visit_Concats(elem){}
-    Visit_ToUpperCase(elem){}
-    Visit_ToLowerCase(elem){}
-    Visit_Substring(elem){}
-    Visit_StringLength(elem){}    
-    Visit_Slice(elem){}
-    Visit_Push(elem){}
-    Visit_Pop(elem){}
-    Visit_ArrayLength(elem){}
-    Visit_Join(elem){}
-    Visit_toString(elem){}
-    Visit_Delete(elem){}
-    Visit_ObjectLength(elem){}    
-    Visit_If(elem){}
-    Visit_Else(elem){}
-    Visit_While(elem){}
-    Visit_For(elem){}
+
+    Visit_IntConst(elem){
+        let num = Number(elem.GetText());
+
+        if ( !Number.isInteger(num) )
+            num = 0;
+        
+        this.stack.push(num);
+    }
+
+    Visit_FloatConst(elem){
+        let num = Number(elem.GetText());
+
+        if ( !Number.isFinite(num) )
+            num = 0;
+        
+        this.stack.push(num);
+    }
+
+    Visit_BoolConst(elem){
+        let bool = elem.GetText();
+
+        if (bool !== 'false' && bool !== 'true')
+            bool = 'false';
+
+        this.stack.push(bool);
+    }
+
+    Visit_CharConst(elem){
+        let text = elem.GetText();
+
+        if      (text === '"')  text = '\\"';
+        else if (text === '\\') text = '\\\\';
+
+        this.stack.push(text);
+    }
+
+    Visit_StringConst(elem){
+        let quotes = /\"/g;
+        let backslashes = /\\/g;
+
+        let text = '"' + elem.GetText().replace(backslashes, '\\\\').replace(quotes, '\\"') + '"';
+
+        this.stack.push(text);
+    }
+
+    Visit_PlusPlus(elem)                    {this.stack.push('++');}
+    Visit_SubSub(elem)                      {this.stack.push('--');}
+    Visit_Uminus(elem)                      {this.stack.push('-');}
+    Visit_Uplus(elem)                       {this.stack.push('+');}
+    Visit_Plus(elem)                        {this.stack.push('+');}
+    Visit_Sub(elem)                         {this.stack.push('-');}
+    Visit_Mult(elem)                        {this.stack.push('*');}
+    Visit_Div(elem)                         {this.stack.push('/');}
+    Visit_Exp(elem)                         {this.stack.push('**');}
+    Visit_Modulo(elem)                      {this.stack.push('%');}
+    Visit_Greater(elem)                     {this.stack.push('>');}
+    Visit_Less(elem)                        {this.stack.push('<');}
+    Visit_EqualTo(elem)                     {this.stack.push('==');}
+    Visit_EqualValueType(elem)              {this.stack.push('===');}
+    Visit_NotEqualTo(elem)                  {this.stack.push('!=');}
+    Visit_NotEqualValueType(elem)           {this.stack.push('!==');}
+    Visit_GreaterEqual(elem)                {this.stack.push('>=');}
+    Visit_LessEqual(elem)                   {this.stack.push('<=');}
+    Visit_And(elem)                         {this.stack.push('&&');}
+    Visit_Or(elem)                          {this.stack.push('||');}
+    Visit_Not(elem)                         {this.stack.push('!');}
+    Visit_Assign(elem)                      {this.stack.push('=');}   
+    Visit_PlusAssign(elem)                  {this.stack.push('+=');}
+    Visit_SubAssign(elem)                   {this.stack.push('-=');}
+    Visit_MultAssign(elem)                  {this.stack.push('*=');}
+    Visit_DivAssign(elem)                   {this.stack.push('/=');}
+    Visit_ModAssign(elem)                   {this.stack.push('%=');}
+    Visit_ExpAssign(elem)                   {this.stack.push('**=');}
+    Visit_True(elem)                        {this.stack.push( this.HandleSemicolon(elem, 'true') ); }
+    Visit_False(elem)                       {this.stack.push( this.HandleSemicolon(elem, 'false') );}
+    Visit_Break(elem)                       {this.stack.push('break;'); }
+    Visit_Continue(elem)                    {this.stack.push('continue;')}
+    Visit_Return(elem)                      {this.stack.push('return');}
+    Visit_Abs(elem)                         {this.stack.push(null);}
+    Visit_Pow(elem)                         {this.stack.push(null);}
+    Visit_Sqrt(elem)                        {this.stack.push(null);}
+    Visit_Round(elem)                       {this.stack.push(null);}
+    Visit_Ceil(elem)                        {this.stack.push(null);}
+    Visit_Sin(elem)                         {this.stack.push(null);}
+    Visit_Cos(elem)                         {this.stack.push(null);}
+    Visit_Concats(elem)                     {this.stack.push(null);}
+    Visit_ToUpperCase(elem)                 {this.stack.push(null);}
+    Visit_ToLowerCase(elem)                 {this.stack.push(null);}
+    Visit_Substring(elem)                   {this.stack.push(null);}
+    Visit_StringLength(elem)                {}    
+    Visit_Slice(elem)                       {this.stack.push(null);}
+    Visit_Push(elem)                        {this.stack.push(null);}
+    Visit_Pop(elem)                         {this.stack.push(null);}
+    Visit_ArrayLength(elem)                 {}
+    Visit_Join(elem)                        {this.stack.push(null);}
+    Visit_toString(elem)                    {}
+    Visit_Delete(elem)                      {this.stack.push(null);}
+    Visit_ObjectLength(elem)                {}    
+    Visit_If(elem)                          {this.IncreaseTabs(); this.stack.push(null);}
+    Visit_Else(elem)                        {this.stack.push(null);}
+    Visit_While(elem)                       {this.IncreaseTabs(); this.stack.push(null);}
+    Visit_For(elem)                         {this.IncreaseTabs(); this.stack.push(null);}
     Visit_Function(elem){}
 }
 
