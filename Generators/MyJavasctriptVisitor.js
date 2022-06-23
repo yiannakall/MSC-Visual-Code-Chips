@@ -1,5 +1,5 @@
 import { AstVisitor } from "./AstVisitor";
-import {assert} from '../Utils/Assert.js';
+import { assert } from '../Utils/Assert.js';
 import { EditorElementTypes } from '../Editor/EditorElements/EditorElement.js';
 import { ReservedWords } from '../Utils/ReservedWords.js';
 
@@ -690,6 +690,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`${code}`);
     }
 
+    //edo
     Visit_PairElementList(elem){}
     Visit_PairElement(elem){}
 
@@ -699,22 +700,99 @@ export class MyJavascriptVisitor extends AstVisitor {
         );
     }
 
+    //edo
     Visit_StringMethodCall(elem){}
     Visit_ArrayMethodCall(elem){}
     Visit_ObjectMethodCall(elem){}
-    Visit_FunctionCall(elem){}
+
+    Visit_FunctionCall(elem){
+        let code = this.PopChildrenFromStack(elem, [ 'f', '(', 'args', ')']);
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `${code.f}(${code.args})`)
+        );
+    }
+
+    //edo
     Visit_PrintCall(elem){}
     Visit_Callee(elem){}
     Visit_ObjectFunction(elem){}
     Visit_ArrayFunction(elem){} 
-    Visit_MathAbs(elem){}
-    Visit_MathPow(elem){}
-    Visit_MathSqrt(elem){}
-    Visit_MathRound(elem){}
-    Visit_MathFloor(elem){}
-    Visit_MathCeil(elem){}
-    Visit_MathSin(elem){}
-    Visit_MathCos(elem){}
+
+    Visit_MathAbs(elem){
+        let code = this.PopChildrenFromStack(elem, ['Math', '.', 'abs', '(', 'number', ')']);
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math.abs(${code.number})`)
+        );
+    }
+
+    Visit_MathPow(elem){
+        let code = this.PopChildrenFromStack(elem, ['Math', '.', 'pow', '(', 'number', ',', 'exponent', ')']);
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math.pow(${code.number}, ${code.exponent})`)
+        );
+    }
+
+    Visit_MathSqrt(elem){
+        let code = this.PopChildrenFromStack(elem, ['Math', '.', 'sqrt', '(', 'number', ')']);
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math.sqrt(${code.number})`)
+        );
+    }
+
+    Visit_MathRound(elem){
+        let code = this.PopChildrenFromStack(elem, ['Math', '.', 'round', '(', 'number', ')']);
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math.round(${code.number})`)
+        );
+    }
+
+    Visit_MathFloor(elem){
+        let code = this.PopChildrenFromStack(elem, ['Math', '.', 'floor', '(', 'number', ')']);
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math.floor(${code.number})`)
+        );
+    }
+
+    Visit_MathCeil(elem){
+        let code = this.PopChildrenFromStack(elem, ['Math', '.', 'ceil', '(', 'number', ')']);
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math.ceil(${code.number})`)
+        );
+    }
+
+    Visit_MathSin(elem){
+        let code = this.PopChildrenFromStack(elem, ['Math','.', 'sin', '(', 'number', ')']);
+
+        let innerOp = this.GetChildOperator(elem.GetElems()[3]);
+        
+        if ( innerOp && this.ShouldParenthesize(this.operators.BY, innerOp, 'left') )
+            code.number = `(${code.number})`;
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math.sin(${code.number} / 180 * Math.PI)`)
+        );
+    }
+
+    Visit_MathCos(elem){
+        let code = this.PopChildrenFromStack(elem, ['Math','.', 'cos', '(', 'number', ')']);
+
+        let innerOp = this.GetChildOperator(elem.GetElems()[3]);
+        
+        if ( innerOp && this.ShouldParenthesize(this.operators.BY, innerOp, 'left') )
+            code.number = `(${code.number})`;
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math.cos(${code.number} / 180 * Math.PI)`)
+        );
+    }
+
     Visit_StringMethod(elem){}    
     Visit_StringConcat(elem){}    
     Visit_StringUpperCase(elem){}
@@ -842,6 +920,6 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_Else(elem)                        {this.stack.push(null);}
     Visit_While(elem)                       {this.IncreaseTabs(); this.stack.push(null);}
     Visit_For(elem)                         {this.IncreaseTabs(); this.stack.push(null);}
-    Visit_Function(elem){}
+    Visit_Function(elem)                    {}
 }
 
