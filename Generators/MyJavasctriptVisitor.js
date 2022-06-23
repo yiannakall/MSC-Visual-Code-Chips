@@ -176,7 +176,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'array_to_string',         elem => this.Visit_ArrayToString(elem) );
 
         this.SetVisitor( 'object_get',              elem => this.Visit_ObjectGet(elem) );
-        this.SetVisitor( 'object_insert',           elem => this.Visit_ObjectInsert(elem) );
         this.SetVisitor( 'object_delete',           elem => this.Visit_ObjectDelete(elem) );
         this.SetVisitor( 'object_set',              elem => this.Visit_ObjectSet(elem) );
         this.SetVisitor( 'object_size',             elem => this.Visit_ObjectSize(elem) );
@@ -658,10 +657,17 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`-`);
     }
 
-    //edo
-    Visit_AssignOp(elem){}
-    Visit_BinaryLogicalExpr(elem){}
-    Visit_NotExpr(elem){}
+    Visit_AssignOp(elem){
+        this.stack.push(`=`);
+    }
+
+    Visit_BinaryLogicalExpr(elem){
+        this.HandleBinaryExpr(elem);
+    }
+
+    Visit_NotExpr(elem){
+        this.HandleLeftUnaryExpr(elem);
+    }
 
     Visit_BoolConst(elem){
         this.stack.push(
@@ -669,9 +675,22 @@ export class MyJavascriptVisitor extends AstVisitor {
         );
     }
 
-    //edo
-    Visit_ArrayConst(elem){}
-    Visit_ObjectConst(elem){}
+    Visit_ArrayConst(elem){
+        let code = this.PopChildrenFromStack(elem, ['[', 'elements', ']']);
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `[${code.elements}]`)
+        );
+    }
+
+    //?? 
+    Visit_ObjectConst(elem){
+        let code = this.PopChildrenFromStack(elem, ['{', 'elements', '}']);
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `[${code.elements}]`)
+        );
+    }
 
     Visit_IdentList(elem){
         let code = this.PopChildrenFromStack(elem).join(', ');
@@ -679,7 +698,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`${code}`);
     }
 
-    
     Visit_ExprList(elem){
         let code = this.PopChildrenFromStack(elem).join(', ');
         this.stack.push(`${code}`);
@@ -690,9 +708,17 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`${code}`);
     }
 
-    //edo
-    Visit_PairElementList(elem){}
-    Visit_PairElement(elem){}
+    //??
+    Visit_PairElementList(elem){
+        let code = this.PopChildrenFromStack(elem).join(', ');
+        this.stack.push(`${code}`);
+    }
+
+    Visit_PairElement(elem){
+        let code = this.PopChildrenFromStack(elem, ['name', ':', 'value']);
+
+        this.stack.push(`${code.name} : ${code.value}`);
+    }
 
     Visit_MathCall(elem){
         this.stack.push(
@@ -793,6 +819,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         );
     }
 
+    //edo
     Visit_StringMethod(elem){}    
     Visit_StringConcat(elem){}    
     Visit_StringUpperCase(elem){}
@@ -800,20 +827,65 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_StringSubstring(elem){}
     Visit_StringSize(elem){}
     Visit_StringSlice(elem){}
-    Visit_ArrayGet(elem){}
-    Visit_ArrayPush(elem){}
-    Visit_ArrayPop(elem){}
-    Visit_ArraySet(elem){}
-    Visit_ArraySize(elem){}
-    Visit_ArrayJoin(elem){}
-    Visit_ArrayToString(elem){} 
+
+    Visit_ArrayGet(elem){
+        let code = this.PopChildrenFromStack(elem, ['array', '[', 'index' , ']']);
+        this.stack.push(`${code.array}[${code.index}]`);
+    }
+
+    Visit_ArrayPush(elem){
+        let code = this.PopChildrenFromStack(elem, ['array', '.', 'push', '(', 'element', ')']);
+        this.stack.push(`${code.array}.push(${code.element})`);
+    }
+
+    Visit_ArrayPop(elem){
+        let code = this.PopChildrenFromStack(elem, ['array', '.', 'pop', '()']);
+        this.stack.push(`${code.array}.pop()`);
+    }
+
+    Visit_ArraySet(elem){
+        let code = this.PopChildrenFromStack(elem, ['array', '[', 'index', ']', '=', 'element']);
+        this.stack.push(`${code.array}[${code.index}] = ${code.element}`);
+    }
+
+    Visit_ArraySize(elem){
+        assert(false);
+    }
+
+    Visit_ArrayJoin(elem){
+        let code = this.PopChildrenFromStack(elem, ['array', '.', 'join', '(', 'seperator', ')']);
+        this.stack.push(`${code.array}.join(${code.seperator})`);
+    }
+
+    //??
+    Visit_ArrayToString(elem){}
+
+    //??
     Visit_ObjectGet(elem){}
-    Visit_ObjectInsert(elem){} 
-    Visit_ObjectDelete(elem){}    
-    Visit_ObjectSet(elem){}
-    Visit_ObjectSize(elem){}
-    Visit_ObjectGetSq(elem){}
-    Visit_ObjectGetDot(elem){}  
+
+    Visit_ObjectDelete(elem){
+        let code = this.PopChildrenFromStack(elem, ['delete', 'object', '[', 'property', ']']);
+        this.stack.push(`delete${code.object}[${code.property}]`);
+    }  
+
+    Visit_ObjectSet(elem){
+        let code = this.PopChildrenFromStack(elem, ['object', '[', 'property', ']', '=', 'value']);
+        this.stack.push(`${code.object}[${code.property}] = ${code.value}`);
+    }
+
+    Visit_ObjectSize(elem){
+        assert(false);
+    }
+
+    Visit_ObjectGetSq(elem){
+        let code = this.PopChildrenFromStack(elem, ['object', '[', 'property' , ']']);
+        this.stack.push(`${code.object}[${code.property}]`);
+    }
+
+    Visit_ObjectGetDot(elem){
+        let code = this.PopChildrenFromStack(elem, ['object', '.', 'property' ]);
+        this.stack.push(`${code.object}.${code.property}`);
+    }  
     
     /* terminals */
     Visit_Ident(elem){}
