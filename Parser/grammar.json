@@ -601,16 +601,8 @@
                     "alias": "="
                 },
                 {
-                    "type": "terminal",
-                    "name": "["
-                },
-                {
                     "type": "non_terminal",
-                    "name": "element_list"
-                },
-                {
-                    "type": "terminal",
-                    "name": "]"
+                    "name": "ARRAY_CONST"
                 }
             ]
         },
@@ -655,16 +647,8 @@
                     "alias": "="
                 },
                 {
-                    "type": "terminal",
-                    "name": "{"
-                },
-                {
                     "type": "non_terminal",
-                    "name": "pair_element_list"
-                },
-                {
-                    "type": "terminal",
-                    "name": "}"
+                    "name": "OBJECT_CONST"
                 }
             ]
         },
@@ -1638,6 +1622,10 @@
                 {
                     "type": "terminal",
                     "name": "tostring"
+                },
+                {
+                    "type": "terminal",
+                    "name": "()"
                 }
             ]
         },

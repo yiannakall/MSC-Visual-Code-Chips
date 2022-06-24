@@ -602,16 +602,8 @@ export let config = {
                       "alias": "="
                   },
                   {
-                      "type": "terminal",
-                      "name": "["
-                  },
-                  {
                       "type": "non_terminal",
-                      "name": "element_list"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "]"
+                      "name": "ARRAY_CONST"
                   }
               ]
           },
@@ -656,16 +648,8 @@ export let config = {
                       "alias": "="
                   },
                   {
-                      "type": "terminal",
-                      "name": "{"
-                  },
-                  {
                       "type": "non_terminal",
-                      "name": "pair_element_list"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "}"
+                      "name": "OBJECT_CONST"
                   }
               ]
           },
@@ -1639,6 +1623,10 @@ export let config = {
                   {
                       "type": "terminal",
                       "name": "tostring"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "()"
                   }
               ]
           },
@@ -23781,6 +23769,15 @@ export let config = {
                   }
                 },
                 "type": "SimpleBlock"
+              },
+              {
+                "symbol": {
+                  "symbol": {
+                    "name": "()",
+                    "isTerminal": true
+                  }
+                },
+                "type": "SimpleBlock"
               }
             ],
             "type": "Group",
@@ -23891,13 +23888,6 @@ export let config = {
                   },
                   {
                     "symbol": {
-                      "name": "object_function_call",
-                      "isTerminal": false
-                    },
-                    "tooltip": "Use a function which is member of an object as \"object.function()\""
-                  },
-                  {
-                    "symbol": {
                       "name": "function_call",
                       "isTerminal": false
                     },
@@ -23909,6 +23899,13 @@ export let config = {
                       "isTerminal": false
                     },
                     "tooltip": "Use a built-in function to print the value of the given expression (text, number etc.)"
+                  },
+                  {
+                    "symbol": {
+                      "name": "type_of",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
                   }
                 ],
                 "selectedSymbol": 2,
@@ -24059,7 +24056,7 @@ export let config = {
                         },
                         {
                           "symbol": {
-                            "name": "func_def",
+                            "name": "func_definition",
                             "isTerminal": false
                           },
                           "tooltip": "Define reusable code as a function"

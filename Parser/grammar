@@ -30,7 +30,7 @@ terminal {
     PLUS SUB MULT EXP DIV MODULO UMINUS UPLUS PLUS_PLUS SUB_SUB
     GREATER LESS EQUAL_TO EQUAL_VALUE_TYPE NOT_EQUAL_TO NOT_EQUAL_VALUE_TYPE GREATER_EQUAL LESS_EQUAL
     AND OR NOT
-    ASSIGN PLUS_ASSIGN SUB_ASSIGN MULT_ASSIGN DIV_ASSIGN MOD_ASSIGN EXP_ASSIGN LEFT_SHIFT_ASSIGN RIGHT_SHIFT_ASSIGN UN_RIGHT_SHIFT_ASSIGN
+    ASSIGN PLUS_ASSIGN SUB_ASSIGN MULT_ASSIGN DIV_ASSIGN MOD_ASSIGN EXP_ASSIGN
     true false
     if else while for break continue return
     function "(" ")"
@@ -244,7 +244,7 @@ define BOOLEAN_CONST {
 }
 
 define new_array {
-    expr("array name") ASSIGN("=") "[" element_list "]"
+    expr("array name") ASSIGN("=") ARRAY_CONST
 }
  
 define ARRAY_CONST {
@@ -256,7 +256,7 @@ define element_list {
 }
 
 define new_object {
-    expr("object name") ASSIGN("=") "{" pair_element_list "}"
+    expr("object name") ASSIGN("=") OBJECT_CONST
 }
 
 define OBJECT_CONST {
@@ -452,7 +452,7 @@ define array_join {
 }
 
 define array_to_string {
-    IDENT(arrayName) "." tostring
+    IDENT(arrayName) "." tostring "()"
 }
 
 define object_method_call {
