@@ -612,7 +612,8 @@ export let config = {
               "all_of": [
                   {
                       "type": "terminal",
-                      "name": "["
+                      "name": "LSB",
+                      "alias": "["
                   },
                   {
                       "type": "non_terminal",
@@ -620,7 +621,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "]"
+                      "name": "RSB",
+                      "alias": "]"
                   }
               ]
           },
@@ -658,7 +660,8 @@ export let config = {
               "all_of": [
                   {
                       "type": "terminal",
-                      "name": "{"
+                      "name": "LB",
+                      "alias": "{"
                   },
                   {
                       "type": "non_terminal",
@@ -666,7 +669,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "}"
+                      "name": "RB",
+                      "alias": "}"
                   }
               ]
           },
@@ -689,7 +693,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ":",
+                      "name": "COLON",
+                      "alias": ":",
                       "tooltip": "The pair"
                   },
                   {
@@ -796,7 +801,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -804,11 +810,13 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   },
                   {
                       "type": "terminal",
-                      "name": "{"
+                      "name": "LB",
+                      "alias": "{"
                   },
                   {
                       "type": "non_terminal",
@@ -816,7 +824,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "}"
+                      "name": "RB",
+                      "alias": "}"
                   }
               ]
           },
@@ -829,7 +838,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -837,11 +847,13 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   },
                   {
                       "type": "terminal",
-                      "name": "{"
+                      "name": "LB",
+                      "alias": "{"
                   },
                   {
                       "type": "non_terminal",
@@ -849,7 +861,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "}"
+                      "name": "RB",
+                      "alias": "}"
                   }
               ]
           },
@@ -986,7 +999,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -994,7 +1008,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1003,7 +1018,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1016,7 +1032,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1024,16 +1041,13 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
                       "name": "expr",
                       "alias": "number"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": ","
                   },
                   {
                       "type": "non_terminal",
@@ -1042,7 +1056,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1055,7 +1070,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1063,7 +1079,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1072,7 +1089,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1085,7 +1103,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1093,7 +1112,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1102,7 +1122,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1115,7 +1136,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1123,7 +1145,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1132,7 +1155,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1145,7 +1169,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1153,7 +1178,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1162,7 +1188,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1175,7 +1202,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1183,7 +1211,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1192,7 +1221,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1205,7 +1235,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1213,7 +1244,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1222,7 +1254,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1236,7 +1269,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "non_terminal",
@@ -1294,7 +1328,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1303,7 +1338,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1316,7 +1352,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "()"
+                      "name": "PARENTH_CALL",
+                      "alias": "()"
                   }
               ]
           },
@@ -1329,7 +1366,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "()"
+                      "name": "PARENTH_CALL",
+                      "alias": "()"
                   }
               ]
           },
@@ -1342,16 +1380,13 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
                       "name": "expr",
                       "alias": "start_index"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": ","
                   },
                   {
                       "type": "non_terminal",
@@ -1360,7 +1395,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1382,16 +1418,13 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
                       "name": "expr",
                       "alias": "start_index"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": ","
                   },
                   {
                       "type": "non_terminal",
@@ -1400,7 +1433,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1461,7 +1495,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "["
+                      "name": "LSB",
+                      "alias": "["
                   },
                   {
                       "type": "non_terminal",
@@ -1470,7 +1505,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "]"
+                      "name": "RSB",
+                      "alias": "]"
                   }
               ]
           },
@@ -1484,7 +1520,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1492,7 +1529,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1501,7 +1539,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1515,7 +1554,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1523,7 +1563,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "()"
+                      "name": "PARENTH_CALL",
+                      "alias": "()"
                   }
               ]
           },
@@ -1537,7 +1578,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "["
+                      "name": "LSB",
+                      "alias": "["
                   },
                   {
                       "type": "non_terminal",
@@ -1546,11 +1588,13 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "]"
+                      "name": "RSB",
+                      "alias": "]"
                   },
                   {
                       "type": "terminal",
-                      "name": "="
+                      "name": "ASSIGN",
+                      "alias": "="
                   },
                   {
                       "type": "non_terminal",
@@ -1569,7 +1613,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1587,7 +1632,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1595,7 +1641,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1604,7 +1651,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1618,7 +1666,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1626,7 +1675,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "()"
+                      "name": "PARENTH_CALL",
+                      "alias": "()"
                   }
               ]
           },
@@ -1684,7 +1734,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "non_terminal",
@@ -1703,7 +1754,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "["
+                      "name": "LSB",
+                      "alias": "["
                   },
                   {
                       "type": "non_terminal",
@@ -1712,7 +1764,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "]"
+                      "name": "RSB",
+                      "alias": "]"
                   }
               ]
           },
@@ -1730,7 +1783,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "["
+                      "name": "LSB",
+                      "alias": "["
                   },
                   {
                       "type": "non_terminal",
@@ -1739,7 +1793,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "]"
+                      "name": "RSB",
+                      "alias": "]"
                   }
               ]
           },
@@ -1753,7 +1808,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "["
+                      "name": "LSB",
+                      "alias": "["
                   },
                   {
                       "type": "non_terminal",
@@ -1762,11 +1818,13 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "]"
+                      "name": "RSB",
+                      "alias": "]"
                   },
                   {
                       "type": "terminal",
-                      "name": "="
+                      "name": "ASSIGN",
+                      "alias": "="
                   },
                   {
                       "type": "non_terminal",
@@ -1785,7 +1843,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1828,7 +1887,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "."
+                      "name": "DOT",
+                      "alias": "."
                   },
                   {
                       "type": "terminal",
@@ -1847,7 +1907,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "["
+                      "name": "LSB",
+                      "alias": "["
                   },
                   {
                       "type": "terminal",
@@ -1856,7 +1917,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "]"
+                      "name": "RSB",
+                      "alias": "]"
                   }
               ]
           },
@@ -1870,7 +1932,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1878,7 +1941,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1891,7 +1955,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1899,7 +1964,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   }
               ]
           },
@@ -1925,7 +1991,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1934,11 +2001,13 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   },
                   {
                       "type": "terminal",
-                      "name": "{"
+                      "name": "LB",
+                      "alias": "{"
                   },
                   {
                       "type": "non_terminal",
@@ -1947,7 +2016,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "}"
+                      "name": "RB",
+                      "alias": "}"
                   }
               ]
           },
@@ -1960,7 +2030,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -1969,11 +2040,13 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   },
                   {
                       "type": "terminal",
-                      "name": "{"
+                      "name": "LB",
+                      "alias": "{"
                   },
                   {
                       "type": "non_terminal",
@@ -1982,7 +2055,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "}"
+                      "name": "RB",
+                      "alias": "}"
                   },
                   {
                       "type": "terminal",
@@ -1990,7 +2064,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "{"
+                      "name": "LB",
+                      "alias": "{"
                   },
                   {
                       "type": "non_terminal",
@@ -1999,7 +2074,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "}"
+                      "name": "RB",
+                      "alias": "}"
                   }
               ]
           },
@@ -2012,7 +2088,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -2021,11 +2098,13 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   },
                   {
                       "type": "terminal",
-                      "name": "{"
+                      "name": "LB",
+                      "alias": "{"
                   },
                   {
                       "type": "non_terminal",
@@ -2034,7 +2113,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "}"
+                      "name": "RB",
+                      "alias": "}"
                   }
               ]
           },
@@ -2047,7 +2127,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "("
+                      "name": "LP",
+                      "alias": "("
                   },
                   {
                       "type": "non_terminal",
@@ -2056,7 +2137,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ";"
+                      "name": "SEMICOLON",
+                      "alias": ";"
                   },
                   {
                       "type": "non_terminal",
@@ -2065,7 +2147,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ";"
+                      "name": "SEMICOLON",
+                      "alias": ";"
                   },
                   {
                       "type": "non_terminal",
@@ -2074,11 +2157,13 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ")"
+                      "name": "RP",
+                      "alias": ")"
                   },
                   {
                       "type": "terminal",
-                      "name": "{"
+                      "name": "LB",
+                      "alias": "{"
                   },
                   {
                       "type": "non_terminal",
@@ -2087,7 +2172,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "}"
+                      "name": "RB",
+                      "alias": "}"
                   }
               ]
           },
@@ -2101,7 +2187,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "?"
+                      "name": "QM",
+                      "alias": "?"
                   },
                   {
                       "type": "non_terminal",
@@ -2110,7 +2197,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": ":"
+                      "name": "COLON",
+                      "alias": ":"
                   },
                   {
                       "type": "non_terminal",

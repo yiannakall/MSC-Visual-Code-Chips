@@ -31,19 +31,17 @@ terminal {
     GREATER LESS EQUAL_TO EQUAL_VALUE_TYPE NOT_EQUAL_TO NOT_EQUAL_VALUE_TYPE GREATER_EQUAL LESS_EQUAL
     AND OR NOT
     ASSIGN PLUS_ASSIGN SUB_ASSIGN MULT_ASSIGN DIV_ASSIGN MOD_ASSIGN EXP_ASSIGN
+    LP RP LB RB LSB RSB COLON SEMICOLON DOT QM PARENTH_CALL
     true false
     if else while for break continue return
-    function "(" ")"
-    "[" "]"
-    ":" "{" "}"
+    function
     "Math" "console.log"
     abs pow sqrt round floor ceil sin cos 
     push pop set join tostring
     delete length
     concat toUpperCase toLowerCase substring slice 
     typeof
-    var let const " "
-    "." "," "()" "?" "=" ";"
+    var let const
 }
 
 define program {
@@ -248,7 +246,7 @@ define new_array {
 }
  
 define ARRAY_CONST {
-    "[" element_list "]"
+    LSB("[") element_list RSB("]")
 }
 
 define element_list {
@@ -260,7 +258,7 @@ define new_object {
 }
 
 define OBJECT_CONST {
-    "{" pair_element_list "}"
+    LB("{") pair_element_list RB("}")
 }
 
 define pair_element_list {
@@ -269,7 +267,7 @@ define pair_element_list {
 
 define pair_element {
     IDENT                           : "The identifier of the value"
-    ":"                             : "The pair"   
+    COLON(":")                      : "The pair"   
     expr(value)                     : "The value of the property"
 }
 
@@ -299,11 +297,11 @@ define func_definition{
 }
 
 define named_func {
-    function IDENT(name) "(" ident_list ")" "{" stmts "}"
+    function IDENT(name) LP("(") ident_list RP(")") LB("{") stmts RB("}")
 }
 
 define anonymous_func {
-    function "(" ident_list ")" "{" stmts "}"
+    function LP("(") ident_list RP(")") LB("{") stmts RB("}")
 }
 
 define break_stmt {
@@ -345,39 +343,39 @@ define math_call {
 }
 
 define math_abs {
-    "Math" "." abs "(" expr(value) ")"
+    "Math" DOT(".") abs LP("(") expr(value) RP(")")
 }
 
 define math_pow {
-    "Math" "." pow "(" expr(number) "," expr(exponent) ")"
+    "Math" DOT(".") pow LP("(") expr(number) expr(exponent) RP(")")
 }
 
 define math_sqrt {
-    "Math" "." sqrt "(" expr(number) ")"
+    "Math" DOT(".") sqrt LP("(") expr(number) RP(")")
 }
 
 define math_round {
-    "Math" "." round "(" expr(number) ")"
+    "Math" DOT(".") round LP("(") expr(number) RP(")")
 }
 
 define math_floor {
-    "Math" "." floor "(" expr(number) ")"
+    "Math" DOT(".") floor LP("(") expr(number) RP(")")
 }
 
 define math_ceil {
-    "Math" "." ceil "(" expr(number) ")"
+    "Math" DOT(".") ceil LP("(") expr(number) RP(")")
 }
 
 define math_sin {
-    "Math" "." sin "(" expr(number) ")"
+    "Math" DOT(".") sin LP("(") expr(number) RP(")")
 }
 
 define math_cos {
-    "Math" "." cos "(" expr(number) ")"
+    "Math" DOT(".") cos LP("(") expr(number) RP(")")
 }
 
 define string_method_call {
-    expr("string") "." string_method
+    expr("string") DOT(".") string_method
 }
 
 define string_method {
@@ -392,19 +390,19 @@ define string_method {
 }
 
 define string_concat {
-    concat "(" expr("string2") ")"
+    concat LP("(") expr("string2") RP(")")
 }
 
 define string_upperCase {
-    toUpperCase "()"
+    toUpperCase PARENTH_CALL("()")
 }
 
 define string_lowCase {
-    toLowerCase "()"
+    toLowerCase PARENTH_CALL("()")
 }
 
 define string_substring {
-    substring "(" expr(start_index) "," expr(end_index) ")"
+    substring LP("(") expr(start_index) expr(end_index) RP(")")
 }
 
 define string_size {
@@ -412,7 +410,7 @@ define string_size {
 }
 
 define string_slice {
-    slice "(" expr(start_index) "," expr(end_index) ")"
+    slice LP("(") expr(start_index)  expr(end_index) RP(")")
 }
 
 define array_method_call {
@@ -428,31 +426,31 @@ define array_method_call {
 }
 
 define array_get {
-    IDENT(arrayName) "[" expr(index) "]"
+    IDENT(arrayName) LSB("[") expr(index) RSB("]")
 }
 
 define array_push {
-    IDENT(arrayName) "." push "(" expr(element) ")"
+    IDENT(arrayName) DOT(".") push LP("(") expr(element) RP(")")
 }
 
 define array_pop {
-    IDENT(arrayName) "." pop "()"
+    IDENT(arrayName) DOT(".") pop PARENTH_CALL("()")
 }
 
 define array_set {
-    IDENT(arrayName)"[" expr(index) "]" "=" expr(element)
+    IDENT(arrayName) LSB("[") expr(index) RSB("]") ASSIGN("=") expr(element)
 }
 
 define array_size {
-    IDENT(arrayName) "." length
+    IDENT(arrayName) DOT(".") length
 }
 
 define array_join {
-    IDENT(arrayName) "." join "(" expr(seperator) ")"
+    IDENT(arrayName) DOT(".") join LP("(") expr(seperator) RP(")")
 }
 
 define array_to_string {
-    IDENT(arrayName) "." tostring "()"
+    IDENT(arrayName) DOT(".") tostring  PARENTH_CALL("()")
 }
 
 define object_method_call {
@@ -472,23 +470,23 @@ define object_get {
 }
 
 define object_get_dot {
-    IDENT("object name")"."expr(property)
+    IDENT("object name") DOT(".") expr(property)
 }
 
 define object_get_sq {
-    IDENT("object name") "[" expr(property) "]"
+    IDENT("object name") LSB("[") expr(property) RSB("]")
 }
 
 define object_delete {
-    delete IDENT("object name") "[" expr(property) "]"
+    delete IDENT("object name") LSB("[") expr(property) RSB("]")
 }
 
 define object_set {
-    IDENT("object name") "[" expr(property) "]" "=" expr(value)
+    IDENT("object name") LSB("[") expr(property) RSB("]") ASSIGN("=") expr(value)
 }
 
 define object_size {
-    IDENT("object name") "." length
+    IDENT("object name") DOT(".") length
 }
 
 define callee {
@@ -501,19 +499,19 @@ define callee {
 }
 
 define object_function {
-    IDENT("object name")"." IDENT("function name")
+    IDENT("object name") DOT(".") IDENT("function name")
 }
 
 define array_function {
-    IDENT("array name")"[" IDENT(index) "]"
+    IDENT("array name") LSB("[") IDENT(index) RSB("]")
 }
 
 define function_call {
-    callee("function name") "(" expr_list ")"
+    callee("function name") LP("(") expr_list RP(")")
 }
 
 define print_call {
-    "console.log" "(" expr_list ")"
+    "console.log" LP("(") expr_list RP(")")
 }
 
 define type_of {
@@ -521,27 +519,27 @@ define type_of {
 }
 
 define if_stmt {
-    if "(" expr(condition_expr) ")" "{" stmts(if_part) "}"
+    if LP("(") expr(condition_expr) RP(")") LB("{") stmts(if_part) RB("}")
 }
 
 define if_else_stmt {
-    if "(" expr(condition_expr) ")" "{" stmts(if_part) "}" else "{" stmts(else_part) "}"
+    if LP("(") expr(condition_expr) RP(")") LB("{") stmts(if_part) RB("}") else LB("{") stmts(else_part) RB("}")
 }
 
 define while_stmt {
-    while "(" expr(condition_expr) ")" "{" stmts(while_part) "}"
+    while LP("(") expr(condition_expr) RP(")") LB("{") stmts(while_part) RB("}")
 }
 
 define for_stmt {
-    for "("
-    expr(initialization_expr) ";"
-    expr(condition_expr) ";"
-    expr(step_expr) ")"
-    "{" stmts(for_part) "}"
+    for LP("(")
+    expr(initialization_expr) SEMICOLON(";")
+    expr(condition_expr) SEMICOLON(";")
+    expr(step_expr) RP(")")
+    LB("{") stmts(for_part) RB("}")
 }
 
 define ternary_stmt {
-    expr(condition_expr) "?" expr(exprIfTrue) ":" expr(exprIfFalse) 
+    expr(condition_expr) QM("?") expr(exprIfTrue) COLON(":") expr(exprIfFalse) 
 }
 
 define ident_list {
