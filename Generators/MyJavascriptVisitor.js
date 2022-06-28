@@ -226,7 +226,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'QM',                      elem => this.Visit_QuestionMark(elem) );
         this.SetVisitor( 'PARENTH_CALL',            elem => this.Visit_ParenthCall(elem) );
   
-
         this.SetVisitor( 'true',                    elem => this.Visit_True(elem) );
         this.SetVisitor( 'false',                   elem => this.Visit_False(elem) );
         this.SetVisitor( 'break',                   elem => this.Visit_Break(elem) );
@@ -474,6 +473,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_Stmts(elem) {
+        console.log("stmts");
         let childrenCode = this.PopChildrenFromStack(elem).map( stmt => this.TabIn(stmt) ).join('\n');
 
         if (elem.GetParent()){
@@ -515,13 +515,14 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_IfStmt(elem) {
-        let code = this.PopChildrenFromStack(elem, ['if','(', 'expr',')','{', 'stmts','}']);
-        
+        console.log("if");
+        let code = this.PopChildrenFromStack(elem, ['if','lp','expr','rp','lb','stmts','rb']);
+        console.log();
         this.DecreaseTabs();
         
         let rBrace = this.TabIn('}');
 
-        this.stack.push( `if ${code.expr} {\n${code.stmts}\n${rBrace}` );
+        this.stack.push( `${code.if} ${code.lp} ${code.expr} ${code.rp} ${code.lb}\n${code.stmts}\n${rBrace}` );
     }
 
     Visit_IfElseStmt(elem){
@@ -554,6 +555,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_Expr(elem){
+        console.log("expr");
         this.stack.push(
             this.HandleSemicolon(elem, `0`)
         );
@@ -819,77 +821,77 @@ export class MyJavascriptVisitor extends AstVisitor {
     } 
 
     Visit_MathAbs(elem){
-        // let code = this.PopChildrenFromStack(elem, ['Math', '.', 'abs', '(', 'number', ')']);
+        let code = this.PopChildrenFromStack(elem, ['Math', 'dot', 'abs', 'lp', 'number', 'rp']);
 
-        // this.stack.push(
-        //     this.HandleSemicolon(elem, `Math.abs(${code.number})`)
-        // );
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math ${code.dot} ${code.abs} ${code.lp} ${code.number} ${code.rp}`)
+        );
     }
 
     Visit_MathPow(elem){
-        // let code = this.PopChildrenFromStack(elem, ['Math', '.', 'pow', '(', 'number', ',', 'exponent', ')']);
+        let code = this.PopChildrenFromStack(elem, ['Math', 'dot', 'pow', 'lp', 'number', 'exponent', 'rp']);
 
-        // this.stack.push(
-        //     this.HandleSemicolon(elem, `Math.pow(${code.number}, ${code.exponent})`)
-        // );
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math ${code.dot} ${code.pow} ${code.lp} ${code.number}, ${code.exponent} ${code.rp}`)
+        );
     }
 
     Visit_MathSqrt(elem){
-        // let code = this.PopChildrenFromStack(elem, ['Math', '.', 'sqrt', '(', 'number', ')']);
+        let code = this.PopChildrenFromStack(elem, ['Math', 'dot', 'sqrt', 'lp', 'number', 'rp']);
 
-        // this.stack.push(
-        //     this.HandleSemicolon(elem, `Math.sqrt(${code.number})`)
-        // );
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math ${code.dot} ${code.sqrt} ${code.lp} ${code.number} ${code.rp}`)
+        );
     }
 
     Visit_MathRound(elem){
-        // let code = this.PopChildrenFromStack(elem, ['Math', '.', 'round', '(', 'number', ')']);
+        let code = this.PopChildrenFromStack(elem, ['Math', 'dot', 'round', 'lp', 'number', 'rp']);
 
-        // this.stack.push(
-        //     this.HandleSemicolon(elem, `Math.round(${code.number})`)
-        // );
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math ${code.dot} ${code.round} ${code.lp} ${code.number} ${code.rp}`)
+        );
     }
 
     Visit_MathFloor(elem){
-        // let code = this.PopChildrenFromStack(elem, ['Math', '.', 'floor', '(', 'number', ')']);
+        let code = this.PopChildrenFromStack(elem, ['Math', 'dot', 'floor', 'lp', 'number', 'rp']);
 
-        // this.stack.push(
-        //     this.HandleSemicolon(elem, `Math.floor(${code.number})`)
-        // );
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math ${code.dot} ${code.floor} ${code.lp} ${code.number} ${code.rp}`)
+        );
     }
 
     Visit_MathCeil(elem){
-        // let code = this.PopChildrenFromStack(elem, ['Math', '.', 'ceil', '(', 'number', ')']);
+        let code = this.PopChildrenFromStack(elem, ['Math', 'dot', 'ceil', 'lp', 'number', 'rp']);
 
-        // this.stack.push(
-        //     this.HandleSemicolon(elem, `Math.ceil(${code.number})`)
-        // );
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math ${code.dot} ${code.ceil} ${code.lp} ${code.number} ${code.rp}`)
+        );
     }
 
     Visit_MathSin(elem){
-        // let code = this.PopChildrenFromStack(elem, ['Math','.', 'sin', '(', 'number', ')']);
+        let code = this.PopChildrenFromStack(elem, ['Math','dot', 'sin', 'lp', 'number', 'rp']);
 
-        // let innerOp = this.GetChildOperator(elem.GetElems()[3]);
+        let innerOp = this.GetChildOperator(elem.GetElems()[4]);
         
-        // if ( innerOp && this.ShouldParenthesize(this.operators.BY, innerOp, 'left') )
-        //     code.number = `(${code.number})`;
+        if ( innerOp && this.ShouldParenthesize(this.operators.BY, innerOp, 'left') )
+            code.number = `(${code.number})`;
 
-        // this.stack.push(
-        //     this.HandleSemicolon(elem, `Math.sin(${code.number} / 180 * Math.PI)`)
-        // );
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math ${code.dot} ${code.sin} ${code.lp} ${code.number} / 180 * Math.PI ${code.rp}`)
+        );
     }
 
     Visit_MathCos(elem){
-        // let code = this.PopChildrenFromStack(elem, ['Math','.', 'cos', '(', 'number', ')']);
+        let code = this.PopChildrenFromStack(elem, ['Math','dot', 'cos', 'lp', 'number', 'rp']);
 
-        // let innerOp = this.GetChildOperator(elem.GetElems()[3]);
+        let innerOp = this.GetChildOperator(elem.GetElems()[4]);
         
-        // if ( innerOp && this.ShouldParenthesize(this.operators.BY, innerOp, 'left') )
-        //     code.number = `(${code.number})`;
+        if ( innerOp && this.ShouldParenthesize(this.operators.BY, innerOp, 'left') )
+            code.number = `(${code.number})`;
 
-        // this.stack.push(
-        //     this.HandleSemicolon(elem, `Math.cos(${code.number} / 180 * Math.PI)`)
-        // );
+        this.stack.push(
+            this.HandleSemicolon(elem, `Math ${code.dot} ${code.cos} ${code.lp} ${code.number} / 180 * Math.PI ${code.rp}`)
+        );
     }
 
     //??
@@ -1094,23 +1096,23 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_DivAssign(elem)                   {this.stack.push('/=');}
     Visit_ModAssign(elem)                   {this.stack.push('%=');}
     Visit_ExpAssign(elem)                   {this.stack.push('**=');}
-    Visit_LeftParenth(elem){}
-    Visit_RightParenth(elem){}
-    Visit_LeftBracket(elem) {}
-    Visit_RightBracket(elem) {}
-    Visit_LeftSquareBracket(elem) {}
-    Visit_RightSquareBracket(elem) {}
-    Visit_Colon(elem) {}
-    Visit_Semicolon(elem) {}
-    Visit_Dot(elem) {}
-    Visit_QuestionMark(elem) {}
-    Visit_ParenthCall(elem) {}
+    Visit_LeftParenth(elem)                 {this.stack.push('(');}
+    Visit_RightParenth(elem)                {this.stack.push(')');}
+    Visit_LeftBracket(elem)                 {this.stack.push('{');}
+    Visit_RightBracket(elem)                {this.stack.push('}');}
+    Visit_LeftSquareBracket(elem)           {this.stack.push('[');}
+    Visit_RightSquareBracket(elem)          {this.stack.push(']');}
+    Visit_Colon(elem)                       {this.stack.push(':');}
+    Visit_Semicolon(elem)                   {this.stack.push(';');}
+    Visit_Dot(elem)                         {this.stack.push('.');}
+    Visit_QuestionMark(elem)                {this.stack.push('?');}
+    Visit_ParenthCall(elem)                 {this.stack.push('()');}
     Visit_True(elem)                        {this.stack.push( this.HandleSemicolon(elem, 'true') ); }
     Visit_False(elem)                       {this.stack.push( this.HandleSemicolon(elem, 'false') );}
     Visit_Break(elem)                       {this.stack.push('break'); }
     Visit_Continue(elem)                    {this.stack.push('continue')}
     Visit_Return(elem)                      {this.stack.push('return');}
-    Visit_If(elem)                          {this.IncreaseTabs(); this.stack.push(null);}
+    Visit_If(elem)                          {this.IncreaseTabs(); this.stack.push('if');}
     Visit_Else(elem)                        {this.stack.push(null);}
     Visit_While(elem)                       {this.IncreaseTabs(); this.stack.push(null);}
     Visit_For(elem)                         {this.IncreaseTabs(); this.stack.push(null);}
@@ -1118,13 +1120,14 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_Var(elem)                         {this.stack.push('var');} //??      
     Visit_Let(elem)                         {this.stack.push('let');} //??
     Visit_Const(elem)                       {this.stack.push('const');} //??
-    Visit_Abs(elem)                         {this.stack.push(null);}
-    Visit_Pow(elem)                         {this.stack.push(null);}
-    Visit_Sqrt(elem)                        {this.stack.push(null);}
-    Visit_Round(elem)                       {this.stack.push(null);}
-    Visit_Ceil(elem)                        {this.stack.push(null);}
-    Visit_Sin(elem)                         {this.stack.push(null);}
-    Visit_Cos(elem)                         {this.stack.push(null);}
+    Visit_Abs(elem)                         {this.stack.push('abs');}
+    Visit_Pow(elem)                         {this.stack.push('pow');}
+    Visit_Sqrt(elem)                        {this.stack.push('sqrt');}
+    Visit_Round(elem)                       {this.stack.push('round');}
+    Visit_Floor(elem)                       {this.stack.push('floor')}
+    Visit_Ceil(elem)                        {this.stack.push('ceil');}
+    Visit_Sin(elem)                         {this.stack.push('sin');}
+    Visit_Cos(elem)                         {this.stack.push('cos');}
     Visit_Length(elem)                      {this.stack.push(null);} //??
     Visit_Concats(elem)                     {this.stack.push(null);}
     Visit_ToUpperCase(elem)                 {this.stack.push(null);}
