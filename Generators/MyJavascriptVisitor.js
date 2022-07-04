@@ -580,7 +580,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_NamedFunc(elem){
-        // let code = this.PopChildrenFromStack(elem, ['function', 'id', 'lp', 'params','rp', 'lb', 'stmts', 'rb']);
+        // let code = this.PopChildrenFromStack(elem, ['function', 'id', 'lp', 'params', 'rp', 'lb', 'stmts', 'rb']);
         // let vars = this.TabIn( this.PopScopeVars() );
 
         // this.DecreaseTabs();
@@ -608,11 +608,11 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_NewObject(elem){
-        // let code = this.PopChildrenFromStack(elem, ['object', '=', 'elements']);
+        let code = this.PopChildrenFromStack(elem, ['object', '=', 'elements']);
 
-        // this.stack.push(
-        //     this.HandleSemicolon(elem, `${code.object}=[${code.elements}]`)
-        // );
+        this.stack.push(
+            this.HandleSemicolon(elem, `${code.object}=${code.elements}`)
+        );
     }
 
     Visit_ArithExpr(elem) {
@@ -711,11 +711,11 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     //?? 
     Visit_ObjectConst(elem){
-        // let code = this.PopChildrenFromStack(elem, ['{', 'elements', '}']);
+        let code = this.PopChildrenFromStack(elem, ['{', 'elements', '}']);
 
-        // this.stack.push(
-        //     this.HandleSemicolon(elem, `[${code.elements}]`)
-        // );
+        this.stack.push(
+            this.HandleSemicolon(elem, `[${code.elements}]`)
+        );
     }
 
     Visit_IdentList(elem){
@@ -735,14 +735,14 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     //??
     Visit_PairElementList(elem){
-        // let code = this.PopChildrenFromStack(elem).join(', ');
-        // this.stack.push(`${code}`);
+        let code = this.PopChildrenFromStack(elem).join(', ');
+        this.stack.push(`${code}`);
     }
 
     Visit_PairElement(elem){
-        // let code = this.PopChildrenFromStack(elem, ['name', ':', 'value']);
+        let code = this.PopChildrenFromStack(elem, ['name', ':', 'value']);
 
-        // this.stack.push(`${code.name} : ${code.value}`);
+        this.stack.push(`${code.name} : ${code.value}`);
     }
 
     Visit_MathCall(elem){
@@ -922,71 +922,71 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_ArrayGet(elem){
-        // let code = this.PopChildrenFromStack(elem, ['array', '[', 'index' , ']']);
-        // this.stack.push(`${code.array}[${code.index}]`);
+        let code = this.PopChildrenFromStack(elem, ['array', 'lsb', 'index' , 'rsb']);
+        this.stack.push(`${code.array}${code.lsb}${code.index}${code.rsb}`);
     }
 
     Visit_ArrayPush(elem){
-        // let code = this.PopChildrenFromStack(elem, ['array', '.', 'push', '(', 'element', ')']);
-        // this.stack.push(`${code.array}.push(${code.element})`);
+        let code = this.PopChildrenFromStack(elem, ['array', 'dot', 'push', 'lp', 'element', 'rp']);
+        this.stack.push(`${code.array}${code.dot}push${code.lp}${code.element}${code.rp}`);
     }
 
     Visit_ArrayPop(elem){
-        // let code = this.PopChildrenFromStack(elem, ['array', '.', 'pop', '()']);
-        // this.stack.push(`${code.array}.pop()`);
+        let code = this.PopChildrenFromStack(elem, ['array', 'dot', 'pop', 'pc']);
+        this.stack.push(`${code.array}${code.dot}pop${code.pc}`);
     }
 
     Visit_ArraySet(elem){
-        // let code = this.PopChildrenFromStack(elem, ['array', '[', 'index', ']', '=', 'element']);
-        // this.stack.push(`${code.array}[${code.index}] = ${code.element}`);
+        let code = this.PopChildrenFromStack(elem, ['array', 'lsb', 'index', 'rsb', '=', 'element']);
+        this.stack.push(`${code.array}${code.lsb}${code.index}${code.rsb} = ${code.element}`);
     }
 
     //??
     Visit_ArraySize(elem){
-        // let code = this.PopChildrenFromStack(elem, ['array', '.', 'length']);
-        // this.stack.push(`${code.array}.length`);
+        let code = this.PopChildrenFromStack(elem, ['array', 'dot', 'length']);
+        this.stack.push(`${code.array}${code.dot}length`);
     }
 
     Visit_ArrayJoin(elem){
-        // let code = this.PopChildrenFromStack(elem, ['array', '.', 'join', '(', 'seperator', ')']);
-        // this.stack.push(`${code.array}.join(${code.seperator})`);
+        let code = this.PopChildrenFromStack(elem, ['array', 'dot', 'join', 'lp', 'seperator', 'rp']);
+        this.stack.push(`${code.array}${code.dot}join${code.lp}${code.seperator}${code.rp}`);
     }
 
     //??
     Visit_ArrayToString(elem){
-        // let code = this.PopChildrenFromStack(elem, ['array', '.', 'tostring', '()']);
-        // this.stack.push(`${code.array}.toString()`);
+        let code = this.PopChildrenFromStack(elem, ['array', 'dot', 'tostring', 'pc']);
+        this.stack.push(`${code.array}${code.dot}toString${code.pc}`);
     }
 
     //??
     Visit_ObjectGet(elem){
-        //this.stack.push(null);
+        this.stack.push(null);
     }
 
     Visit_ObjectDelete(elem){
-        // let code = this.PopChildrenFromStack(elem, ['delete', 'object', '[', 'property', ']']);
-        // this.stack.push(`delete${code.object}[${code.property}]`);
+        let code = this.PopChildrenFromStack(elem, ['delete', 'object', 'lsb', 'property', 'rsb']);
+        this.stack.push(`delete ${code.object}${code.lsb}${code.property}${code.rsb}`);
     }  
 
     Visit_ObjectSet(elem){
-        // let code = this.PopChildrenFromStack(elem, ['object', '[', 'property', ']', '=', 'value']);
-        // this.stack.push(`${code.object}[${code.property}] = ${code.value}`);
+        let code = this.PopChildrenFromStack(elem, ['object', 'lsb', 'property', 'rsb', '=', 'value']);
+        this.stack.push(`${code.object}${code.lsb}${code.property}${code.rsb} = ${code.value}`);
     }
 
     //??
     Visit_ObjectSize(elem){
-        // let code = this.PopChildrenFromStack(elem, ['object', '.', 'length']);
-        // this.stack.push(`${code.object}.length`);
+        let code = this.PopChildrenFromStack(elem, ['object', 'dot', 'length']);
+        this.stack.push(`${code.object}${code.dot}length`);
     }
 
     Visit_ObjectGetSq(elem){
-        // let code = this.PopChildrenFromStack(elem, ['object', '[', 'property' , ']']);
-        // this.stack.push(`${code.object}[${code.property}]`);
+        let code = this.PopChildrenFromStack(elem, ['object', 'lsb', 'property' , 'rsb']);
+        this.stack.push(`${code.object}${code.lsb}${code.property}${code.rsb}`);
     }
 
     Visit_ObjectGetDot(elem){
-        // let code = this.PopChildrenFromStack(elem, ['object', '.', 'property' ]);
-        // this.stack.push(`${code.object}.${code.property}`);
+        let code = this.PopChildrenFromStack(elem, ['object', 'dot', 'property' ]);
+        this.stack.push(`${code.object}${code.dot}${code.property}`);
     }  
     
     /* terminals */
@@ -1003,7 +1003,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         if (parent === 'named_func'){
             this.scopeStack[this.scopeStack.length - 2].funcs.push(id); // don't care about duplicates
         }
-        else if (parent === 'ident_list'){
+        else if (parent === 'ident_list' || parent === 'pair_element'){
             this.scopeStack[this.scopeStack.length - 1].args.push(id); // don't care about duplicates
         }
         else if (parent === 'ident_type'){
