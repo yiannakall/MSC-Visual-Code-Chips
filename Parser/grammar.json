@@ -504,18 +504,8 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "object_set",
-                    "tooltip": "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
-                },
-                {
-                    "type": "non_terminal",
                     "name": "array_get",
                     "tooltip": "Get an element by its position in the array"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "array_set",
-                    "tooltip": "Modify an element in a position of the array to a new character"
                 },
                 {
                     "type": "non_terminal",
@@ -1911,7 +1901,7 @@
                 },
                 {
                     "type": "terminal",
-                    "name": "IDENT",
+                    "name": "INT_CONST",
                     "alias": "index"
                 },
                 {
@@ -2210,8 +2200,8 @@
             "name": "ident_list",
             "list_of": [
                 {
-                    "type": "terminal",
-                    "name": "IDENT"
+                    "type": "non_terminal",
+                    "name": "variable"
                 }
             ]
         },

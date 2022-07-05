@@ -213,9 +213,7 @@ define primary_expr {
         variable                    : "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
         consts                      : "All const values"
         object_get                  : "Get an element by its property name in the object"
-        object_set                  : "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
         array_get                   : "Get an element by its position in the array"
-        array_set                   : "Modify an element in a position of the array to a new character"
         new_array                   : "Define a new array"
         new_object                  : "Define a new object"
         func_definition             : "Function definition"
@@ -503,7 +501,7 @@ define object_function {
 }
 
 define array_function {
-    IDENT("array name") LSB("[") IDENT(index) RSB("]")
+    IDENT("array name") LSB("[") INT_CONST(index) RSB("]")
 }
 
 define function_call {
@@ -543,7 +541,7 @@ define ternary_stmt {
 }
 
 define ident_list {
-    list_of IDENT
+    list_of variable
 }
 
 define expr_list {
