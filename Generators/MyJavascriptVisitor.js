@@ -186,8 +186,8 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'CHAR_CONST',              elem => this.Visit_CharConst(elem) );
         this.SetVisitor( 'STRING_CONST',            elem => this.Visit_StringConst(elem) );
 
-        this.SetVisitor( 'PLUSPLUS',                elem => this.Visit_PlusPlus(elem) );
-        this.SetVisitor( 'SUBSUB',                  elem => this.Visit_SubSub(elem) );
+        this.SetVisitor( 'PLUS_PLUS',               elem => this.Visit_PlusPlus(elem) );
+        this.SetVisitor( 'SUB_SUB',                 elem => this.Visit_SubSub(elem) );
         this.SetVisitor( 'UMINUS',                  elem => this.Visit_Uminus(elem) );
         this.SetVisitor( 'UPLUS',                   elem => this.Visit_Uplus(elem) );
         this.SetVisitor( 'PLUS',                    elem => this.Visit_Plus(elem) );
@@ -261,6 +261,10 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'join',                    elem => this.Visit_Join(elem) );
         this.SetVisitor( 'tostring',                elem => this.Visit_toString(elem) );
         this.SetVisitor( 'delete',                  elem => this.Visit_Delete(elem) );
+
+        this.SetVisitor( 'Math',                    elem => this.Visit_Math(elem) );
+        this.SetVisitor( 'typeof',                  elem => this.Visit_Typeof(elem) );
+        this.SetVisitor( 'console.log',             elem => this.Visit_Console(elem) );
     }
 
     HandleVarDeclaration(id){
@@ -509,7 +513,7 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     Visit_TypeOf(elem) {
         let code = this.PopChildrenFromStack(elem, ['typeof', 'item']);
-        this.stack.push(`typeof ${code.item}`);
+        this.stack.push(this.HandleSemicolon(elem, `${code.typeof}${code.item}`));
     }
 
     Visit_IfStmt(elem) {
@@ -708,12 +712,11 @@ export class MyJavascriptVisitor extends AstVisitor {
         );
     }
 
-    //?? 
     Visit_ObjectConst(elem){
         let code = this.PopChildrenFromStack(elem, ['{', 'elements', '}']);
 
         this.stack.push(
-            this.HandleSemicolon(elem, `[${code.elements}]`)
+            this.HandleSemicolon(elem, `{${code.elements}}`)
         );
     }
 
@@ -732,7 +735,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`${code}`);
     }
 
-    //??
     Visit_PairElementList(elem){
         let code = this.PopChildrenFromStack(elem).join(', ');
         this.stack.push(`${code}`);
@@ -785,10 +787,10 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     //?? na afiso window alert? 
     Visit_PrintCall(elem){
-        let code = this.PopChildrenFromStack(elem, ['console.log', 'lp', 'args', 'rp']);
+        let code = this.PopChildrenFromStack(elem, ['console', 'lp', 'args', 'rp']);
 
         this.stack.push(
-            this.HandleSemicolon(elem, `window.alert${code.lp}${code.args}${code.rp}`)
+            this.HandleSemicolon(elem, `${code.console}${code.lp}${code.args}${code.rp}`)
         );
     }
 
@@ -815,7 +817,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         let code = this.PopChildrenFromStack(elem, ['Math', 'dot', 'abs', 'lp', 'number', 'rp']);
 
         this.stack.push(
-            this.HandleSemicolon(elem, `Math${code.dot}${code.abs}${code.lp} ${code.number} ${code.rp}`)
+            this.HandleSemicolon(elem, `${code.Math}${code.dot}${code.abs}${code.lp} ${code.number} ${code.rp}`)
         );
     }
 
@@ -823,7 +825,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         let code = this.PopChildrenFromStack(elem, ['Math', 'dot', 'pow', 'lp', 'number', 'exponent', 'rp']);
 
         this.stack.push(
-            this.HandleSemicolon(elem, `Math${code.dot}${code.pow}${code.lp} ${code.number}, ${code.exponent} ${code.rp}`)
+            this.HandleSemicolon(elem, `${code.Math}${code.dot}${code.pow}${code.lp} ${code.number}, ${code.exponent} ${code.rp}`)
         );
     }
 
@@ -831,7 +833,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         let code = this.PopChildrenFromStack(elem, ['Math', 'dot', 'sqrt', 'lp', 'number', 'rp']);
 
         this.stack.push(
-            this.HandleSemicolon(elem, `Math${code.dot}${code.sqrt}${code.lp} ${code.number} ${code.rp}`)
+            this.HandleSemicolon(elem, `${code.Math}${code.dot}${code.sqrt}${code.lp} ${code.number} ${code.rp}`)
         );
     }
 
@@ -839,7 +841,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         let code = this.PopChildrenFromStack(elem, ['Math', 'dot', 'round', 'lp', 'number', 'rp']);
 
         this.stack.push(
-            this.HandleSemicolon(elem, `Math${code.dot}${code.round}${code.lp} ${code.number} ${code.rp}`)
+            this.HandleSemicolon(elem, `${code.Math}${code.dot}${code.round}${code.lp} ${code.number} ${code.rp}`)
         );
     }
 
@@ -847,7 +849,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         let code = this.PopChildrenFromStack(elem, ['Math', 'dot', 'floor', 'lp', 'number', 'rp']);
 
         this.stack.push(
-            this.HandleSemicolon(elem, `Math${code.dot}${code.floor}${code.lp} ${code.number} ${code.rp}`)
+            this.HandleSemicolon(elem, `${code.Math}${code.dot}${code.floor}${code.lp} ${code.number} ${code.rp}`)
         );
     }
 
@@ -855,7 +857,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         let code = this.PopChildrenFromStack(elem, ['Math', 'dot', 'ceil', 'lp', 'number', 'rp']);
 
         this.stack.push(
-            this.HandleSemicolon(elem, `Math${code.dot}${code.ceil}${code.lp} ${code.number} ${code.rp}`)
+            this.HandleSemicolon(elem, `${code.Math}${code.dot}${code.ceil}${code.lp} ${code.number} ${code.rp}`)
         );
     }
 
@@ -868,7 +870,7 @@ export class MyJavascriptVisitor extends AstVisitor {
             code.number = `(${code.number})`;
 
         this.stack.push(
-            this.HandleSemicolon(elem, `Math${code.dot}${code.sin}${code.lp} ${code.number} / 180 * Math.PI ${code.rp}`)
+            this.HandleSemicolon(elem, `${code.Math}${code.dot}${code.sin}${code.lp} ${code.number} / 180 * Math.PI ${code.rp}`)
         );
     }
 
@@ -881,7 +883,7 @@ export class MyJavascriptVisitor extends AstVisitor {
             code.number = `(${code.number})`;
 
         this.stack.push(
-            this.HandleSemicolon(elem, `Math${code.dot}${code.cos}${code.lp} ${code.number} / 180 * Math.PI ${code.rp}`)
+            this.HandleSemicolon(elem, `${code.Math}${code.dot}${code.cos}${code.lp} ${code.number} / 180 * Math.PI ${code.rp}`)
         );
     }
 
@@ -1139,5 +1141,9 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_Pop(elem)                         {this.stack.push('pop');}
     Visit_Join(elem)                        {this.stack.push('join');}
     Visit_toString(elem)                    {this.stack.push('toString');}
-    Visit_Delete(elem)                      {this.stack.push('delete');}   
+    Visit_Delete(elem)                      {this.stack.push('delete');} 
+
+    Visit_Math(elem)                        {this.stack.push('Math');}
+    Visit_Typeof(elem)                      {this.stack.push('typeof');}
+    Visit_Console(elem)                     {this.stack.push('window.alert')}
 }
