@@ -288,7 +288,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     PopChildrenFromStack(elem, resultKeys) {
-        let numChildren =   elem.GetElems().length;
+        let numChildren = elem.GetElems().length;
 
         if (resultKeys)
             assert(
@@ -403,11 +403,15 @@ export class MyJavascriptVisitor extends AstVisitor {
 
         /* handle operator placeholders */
         switch (op) {
-            case 'arith_op':            return this.operators.PLUS;
-            case 'rel_op':              return this.operators.GREATER;
-            case 'logical_binary_op':   return this.operators.AND;
-            case 'array_method':        return this.operators.MEMBER_ACCESS;
-            case 'string_method':       return this.operators.MEMBER_ACCESS;
+            case 'arith_op':                return this.operators.PLUS;
+            case 'unary_op_af':             return this.operators.PLUS_PLUS;
+            case 'unary_op_bf':             return this.operators.UMINUS;
+            case 'rel_op':                  return this.operators.GREATER;
+            case 'logical_binary_op':       return this.operators.AND;
+            case 'assign_op':               return this.operators.ASSIGN;
+            case 'array_method_call':       return this.operators.MEMBER_ACCESS;
+            case 'object_method_call':      return this.operators.MEMBER_ACCESS;
+            case 'string_method':           return this.operators.MEMBER_ACCESS;
         }
 
         return this.operators[op];
@@ -445,11 +449,15 @@ export class MyJavascriptVisitor extends AstVisitor {
             case 'array_pop':                   return this.operators.MEMBER_ACCESS;
             case 'array_push':                  return this.operators.MEMBER_ACCESS;
             case 'array_set':                   return this.operators.EQUALS;
+            case 'array_size':                  return this.operators.MEMBER_ACCESS;
+            case 'array_join':                  return this.operators.MEMBER_ACCESS;
+            case 'array_to_string':             return this.operators.MEMBER_ACCESS;
             
             case 'object_get_dot':              return this.operators.MEMBER_ACCESS;
             case 'object_get_sq':               return this.operators.MEMBER_ACCESS;
             case 'object_delete':               return this.operators.MEMBER_ACCESS;
             case 'object_set':                  return this.operators.EQUALS;
+            case 'object_size':                 return this.operators.MEMBER_ACCESS;
 
             case 'length':                      return this.operators.MEMBER_ACCESS;
 
@@ -457,11 +465,10 @@ export class MyJavascriptVisitor extends AstVisitor {
             case 'string_upperCase':            return this.operators.MEMBER_ACCESS;
             case 'string_lowCase':              return this.operators.MEMBER_ACCESS;
             case 'string_substring':            return this.operators.MEMBER_ACCESS;
+            case 'string_size':                 return this.operators.MEMBER_ACCESS;
             case 'string_slice':                return this.operators.MEMBER_ACCESS;
 
-            case 'array_method_call':           return this.ToOperator(elem.GetElems()[3]) || this.GetChildOperator(elem.GetElems()[3]);
-            case 'string_method_call':          return this.ToOperator(elem.GetElems()[3]) || this.GetChildOperator(elem.GetElems()[3]);
-            case 'object_method_call':          return this.ToOperator(elem.GetElems()[3]) || this.GetChildOperator(elem.GetElems()[3]);
+            case 'string_method_call':          return this.ToOperator(elem.GetElems()[2]) || this.GetChildOperator(elem.GetElems()[2]);        
         }
     }
 
@@ -502,9 +509,9 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push( ';' );
     }
 
-    Visit_Consts(elem)                  {this.stack.push('');} //??
-    Visit_Variable(elem)                {this.stack.push('');} //??
-    Visit_Types(elem)                   {this.stack.push('');} //??
+    Visit_Consts(elem)                  {this.stack.push('');}
+    Visit_Variable(elem)                {this.stack.push('');}
+    Visit_Types(elem)                   {this.stack.push('');}
 
     Visit_IdentType(elem) {
         let code = this.PopChildrenFromStack(elem, ['type', 'ident']);

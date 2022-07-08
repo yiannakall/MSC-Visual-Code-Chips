@@ -84,6 +84,7 @@ define expr {
         logical_expr            : "An expression that evaluates to true or false"
         assign_expr             : "Set a variable's value"
         call_expr               : "Call a user-defined or built-in function/method"
+        ternary_stmt            : "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
         primary_expr            : "An identifier or a constant"
     }
 }

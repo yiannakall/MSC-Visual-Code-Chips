@@ -123,6 +123,11 @@ export let config = {
                   },
                   {
                       "type": "non_terminal",
+                      "name": "ternary_stmt",
+                      "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                  },
+                  {
+                      "type": "non_terminal",
                       "name": "primary_expr",
                       "tooltip": "An identifier or a constant"
                   }
