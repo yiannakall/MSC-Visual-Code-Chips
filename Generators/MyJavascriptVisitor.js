@@ -413,7 +413,6 @@ export class MyJavascriptVisitor extends AstVisitor {
             case 'object_method_call':      return this.operators.MEMBER_ACCESS;
             case 'string_method':           return this.operators.MEMBER_ACCESS;
         }
-
         return this.operators[op];
     }
 
@@ -774,12 +773,10 @@ export class MyJavascriptVisitor extends AstVisitor {
         );
     }
 
-    //??
     Visit_ArrayMethodCall(elem){
         this.stack.push(null);
     }
 
-    //??
     Visit_ObjectMethodCall(elem){
         this.stack.push(null);
     }
@@ -801,19 +798,16 @@ export class MyJavascriptVisitor extends AstVisitor {
         );
     }
 
-    //??
     Visit_Callee(elem){
         this.stack.push(null);
     }
 
-    //??
     Visit_ObjectFunction(elem){
         let code = this.PopChildrenFromStack(elem, ['object', 'dot', 'function']);
 
         this.stack.push(`${code.object}${code.dot}${code.function}`);
     }
 
-    //??
     Visit_ArrayFunction(elem){
         let code = this.PopChildrenFromStack(elem, ['array', 'lsb', 'index', 'rsb']);
 
@@ -886,7 +880,7 @@ export class MyJavascriptVisitor extends AstVisitor {
 
         let innerOp = this.GetChildOperator(elem.GetElems()[4]);
         
-        if ( innerOp && this.ShouldParenthesize(this.operators.BY, innerOp, 'left') )
+        if ( innerOp && this.ShouldParenthesize(this.operators.MULT, innerOp, 'left') )
             code.number = `(${code.number})`;
 
         this.stack.push(
