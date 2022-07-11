@@ -926,6 +926,11 @@
                 },
                 {
                     "type": "non_terminal",
+                    "name": "input",
+                    "tooltip": "Use a built-in function to give input from a prompt"
+                },
+                {
+                    "type": "non_terminal",
                     "name": "type_of",
                     "tooltip": "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
                 }
@@ -1955,6 +1960,29 @@
                 {
                     "type": "non_terminal",
                     "name": "expr_list"
+                },
+                {
+                    "type": "terminal",
+                    "name": "RP",
+                    "alias": ")"
+                }
+            ]
+        },
+        {
+            "name": "input",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "prompt"
+                },
+                {
+                    "type": "terminal",
+                    "name": "LP",
+                    "alias": "("
+                },
+                {
+                    "type": "terminal",
+                    "name": "STRING_CONST"
                 },
                 {
                     "type": "terminal",

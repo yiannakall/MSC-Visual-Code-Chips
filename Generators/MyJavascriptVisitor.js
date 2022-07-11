@@ -143,6 +143,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'object_method_call',      elem => this.Visit_ObjectMethodCall(elem) );
         this.SetVisitor( 'function_call',           elem => this.Visit_FunctionCall(elem) );
         this.SetVisitor( 'print_call',              elem => this.Visit_PrintCall(elem) );
+        this.SetVisitor( 'input',                   elem => this.Visit_Input(elem) );
         this.SetVisitor( 'callee',                  elem => this.Visit_Callee(elem) );
         this.SetVisitor( 'object_function',         elem => this.Visit_ObjectFunction(elem) );
         this.SetVisitor( 'array_function',          elem => this.Visit_ArrayFunction(elem) );
@@ -265,6 +266,8 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'Math',                    elem => this.Visit_Math(elem) );
         this.SetVisitor( 'typeof',                  elem => this.Visit_Typeof(elem) );
         this.SetVisitor( 'console.log',             elem => this.Visit_Console(elem) );
+        this.SetVisitor( 'prompt',                  elem => this.Visit_Prompt(elem) );
+
     }
 
     HandleVarDeclaration(id){
@@ -801,6 +804,14 @@ export class MyJavascriptVisitor extends AstVisitor {
         );
     }
 
+    Visit_Input(elem){
+        let code = this.PopChildrenFromStack(elem,['prompt', 'lp', 'string', 'rp']);
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `${code.prompt}${code.lp}${code.string}${code.rp}`)
+        )
+    }
+
     //??
     Visit_Callee(elem){
         this.stack.push(null);
@@ -1152,5 +1163,6 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     Visit_Math(elem)                        {this.stack.push('Math');}
     Visit_Typeof(elem)                      {this.stack.push('typeof');}
-    Visit_Console(elem)                     {this.stack.push('window.alert')}
+    Visit_Console(elem)                     {this.stack.push('window.alert');}
+    Visit_Prompt(elem)                      {this.stack.push('prompt');}
 }
