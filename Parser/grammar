@@ -324,7 +324,7 @@ define call_expr {
         object_method_call      : "Use a built-in object method"
         function_call           : "Use a user-defined function as \"name(params);\""
         print_call              : "Use a built-in function to print the value of the given expression (text, number etc.)"
-        input                   : "Use a built-in function to give input from a prompt"
+        input                   : "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
         type_of                 : "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
     } 
 }
@@ -465,7 +465,7 @@ define object_method_call {
 define object_get {
     any_of{
         object_get_dot                  : "Get with syntax objectName.property"
-        object_get_sq                   : "Get with syntax objectName[\"property\"]"
+        object_get_sq                   : "Get with syntax objectName[\"property\"], property should be a string"
     }
 }
 
@@ -515,7 +515,7 @@ define print_call {
 }
 
 define input {
-    "prompt" LP("(") STRING_CONST RP(")")
+    "prompt" LP("(") STRING_CONST(prompt_message) RP(")")
 }
 
 define type_of {

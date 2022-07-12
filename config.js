@@ -928,7 +928,7 @@ export let config = {
                   {
                       "type": "non_terminal",
                       "name": "input",
-                      "tooltip": "Use a built-in function to give input from a prompt"
+                      "tooltip": "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
                   },
                   {
                       "type": "non_terminal",
@@ -1720,7 +1720,7 @@ export let config = {
                   {
                       "type": "non_terminal",
                       "name": "object_get_sq",
-                      "tooltip": "Get with syntax objectName[\"property\"]"
+                      "tooltip": "Get with syntax objectName[\"property\"], property should be a string"
                   }
               ]
           },
@@ -1983,7 +1983,8 @@ export let config = {
                   },
                   {
                       "type": "terminal",
-                      "name": "STRING_CONST"
+                      "name": "STRING_CONST",
+                      "alias": "prompt_message"
                   },
                   {
                       "type": "terminal",
@@ -25570,7 +25571,7 @@ export let config = {
                 "name": "object_get_sq",
                 "isTerminal": false
               },
-              "tooltip": "Get with syntax objectName[\"property\"]"
+              "tooltip": "Get with syntax objectName[\"property\"], property should be a string"
             },
             "elems": [
               {
@@ -25639,6 +25640,13 @@ export let config = {
                   },
                   {
                     "symbol": {
+                      "name": "ternary_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                  },
+                  {
+                    "symbol": {
                       "name": "primary_expr",
                       "isTerminal": false
                     },
@@ -25680,7 +25688,7 @@ export let config = {
                     "name": "object_get_sq",
                     "isTerminal": false
                   },
-                  "tooltip": "Get with syntax objectName[\"property\"]"
+                  "tooltip": "Get with syntax objectName[\"property\"], property should be a string"
                 }
               ],
               "selectedSymbol": 1,
@@ -25717,24 +25725,10 @@ export let config = {
                   },
                   {
                     "symbol": {
-                      "name": "object_set",
-                      "isTerminal": false
-                    },
-                    "tooltip": "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
-                  },
-                  {
-                    "symbol": {
                       "name": "array_get",
                       "isTerminal": false
                     },
                     "tooltip": "Get an element by its position in the array"
-                  },
-                  {
-                    "symbol": {
-                      "name": "array_set",
-                      "isTerminal": false
-                    },
-                    "tooltip": "Modify an element in a position of the array to a new character"
                   },
                   {
                     "symbol": {
@@ -25807,13 +25801,20 @@ export let config = {
                     },
                     {
                       "symbol": {
+                        "name": "ternary_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                    },
+                    {
+                      "symbol": {
                         "name": "primary_expr",
                         "isTerminal": false
                       },
                       "tooltip": "An identifier or a constant"
                     }
                   ],
-                  "selectedSymbol": 5,
+                  "selectedSymbol": 6,
                   "type": "SelectionBlock",
                   "generatedBy": {
                     "symbol": {
@@ -27380,7 +27381,7 @@ export let config = {
                 "name": "input",
                 "isTerminal": false
               },
-              "tooltip": "Use a built-in function to give input from a prompt"
+              "tooltip": "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
             },
             "elems": [
               {
@@ -27407,7 +27408,8 @@ export let config = {
                   "symbol": {
                     "name": "STRING_CONST",
                     "isTerminal": true
-                  }
+                  },
+                  "alias": "prompt_message"
                 },
                 "type": "InputBlock"
               },
@@ -27479,7 +27481,7 @@ export let config = {
                     "name": "input",
                     "isTerminal": false
                   },
-                  "tooltip": "Use a built-in function to give input from a prompt"
+                  "tooltip": "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
                 },
                 {
                   "symbol": {
@@ -27653,6 +27655,532 @@ export let config = {
                     "selectedSymbol": 0,
                     "type": "SelectionBlock"
                   }
+                }
+              }
+            }
+          },
+          {
+            "symbol": {
+              "symbol": {
+                "name": "assign_expr",
+                "isTerminal": false
+              },
+              "tooltip": "Set a variable's value"
+            },
+            "elems": [
+              {
+                "symbol": {
+                  "symbol": {
+                    "name": "variable",
+                    "isTerminal": false
+                  },
+                  "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                },
+                "alternateSymbols": [
+                  {
+                    "symbol": {
+                      "name": "IDENT",
+                      "isTerminal": true
+                    },
+                    "tooltip": "Without type. If the variable is not declared, it is automatically declared with var"
+                  },
+                  {
+                    "symbol": {
+                      "name": "ident_type",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Identifier with type"
+                  }
+                ],
+                "type": "SelectionBlock",
+                "generatedBy": {
+                  "symbol": {
+                    "symbol": {
+                      "name": "primary_expr",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Left operand to be assigned"
+                  },
+                  "alternateSymbols": [
+                    {
+                      "symbol": {
+                        "name": "variable",
+                        "isTerminal": false
+                      },
+                      "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                    },
+                    {
+                      "symbol": {
+                        "name": "consts",
+                        "isTerminal": false
+                      },
+                      "tooltip": "All const values"
+                    },
+                    {
+                      "symbol": {
+                        "name": "object_get",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Get an element by its property name in the object"
+                    },
+                    {
+                      "symbol": {
+                        "name": "array_get",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Get an element by its position in the array"
+                    },
+                    {
+                      "symbol": {
+                        "name": "new_array",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Define a new array"
+                    },
+                    {
+                      "symbol": {
+                        "name": "new_object",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Define a new object"
+                    },
+                    {
+                      "symbol": {
+                        "name": "func_definition",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Function definition"
+                    }
+                  ],
+                  "selectedSymbol": 0,
+                  "type": "SelectionBlock"
+                }
+              },
+              {
+                "symbol": {
+                  "symbol": {
+                    "name": "ASSIGN",
+                    "isTerminal": true
+                  },
+                  "alias": "=",
+                  "tooltip": "Assigns the right operand to the left operand"
+                },
+                "type": "SimpleBlock",
+                "generatedBy": {
+                  "symbol": {
+                    "symbol": {
+                      "name": "assign_op",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Assign operator, simple or with an operation "
+                  },
+                  "alternateSymbols": [
+                    {
+                      "symbol": {
+                        "name": "ASSIGN",
+                        "isTerminal": true
+                      },
+                      "alias": "=",
+                      "tooltip": "Assigns the right operand to the left operand"
+                    },
+                    {
+                      "symbol": {
+                        "name": "PLUS_ASSIGN",
+                        "isTerminal": true
+                      },
+                      "alias": "+=",
+                      "tooltip": "Sums up left and right operand values and assigns the result to the left operand"
+                    },
+                    {
+                      "symbol": {
+                        "name": "SUB_ASSIGN",
+                        "isTerminal": true
+                      },
+                      "alias": "-=",
+                      "tooltip": "Subtract right operand value from the left operand value and assigns the result to the left operand"
+                    },
+                    {
+                      "symbol": {
+                        "name": "MULT_ASSIGN",
+                        "isTerminal": true
+                      },
+                      "alias": "*=",
+                      "tooltip": "Multiply left and right operand values and assigns the result to the left operand"
+                    },
+                    {
+                      "symbol": {
+                        "name": "DIV_ASSIGN",
+                        "isTerminal": true
+                      },
+                      "alias": "/=",
+                      "tooltip": "Divide left operand value by right operand value and assign the result to the left operand"
+                    },
+                    {
+                      "symbol": {
+                        "name": "MOD_ASSIGN",
+                        "isTerminal": true
+                      },
+                      "alias": "%=",
+                      "tooltip": "Get the modulus of left operand divide by right operand and assign resulted modulus to the left operand"
+                    },
+                    {
+                      "symbol": {
+                        "name": "EXP_ASSIGN",
+                        "isTerminal": true
+                      },
+                      "alias": "**=",
+                      "tooltip": "Raises the value of left operand to the power of the right operand and assign the result to the left operand"
+                    }
+                  ],
+                  "selectedSymbol": 0,
+                  "type": "SelectionBlock"
+                }
+              },
+              {
+                "symbol": {
+                  "symbol": {
+                    "name": "input",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
+                },
+                "elems": [
+                  {
+                    "symbol": {
+                      "symbol": {
+                        "name": "prompt",
+                        "isTerminal": true
+                      }
+                    },
+                    "type": "SimpleBlock"
+                  },
+                  {
+                    "symbol": {
+                      "symbol": {
+                        "name": "LP",
+                        "isTerminal": true
+                      },
+                      "alias": "("
+                    },
+                    "type": "SimpleBlock"
+                  },
+                  {
+                    "symbol": {
+                      "symbol": {
+                        "name": "STRING_CONST",
+                        "isTerminal": true
+                      },
+                      "alias": "prompt_message"
+                    },
+                    "type": "InputBlock"
+                  },
+                  {
+                    "symbol": {
+                      "symbol": {
+                        "name": "RP",
+                        "isTerminal": true
+                      },
+                      "alias": ")"
+                    },
+                    "type": "SimpleBlock"
+                  }
+                ],
+                "type": "Group",
+                "generatedBy": {
+                  "symbol": {
+                    "symbol": {
+                      "name": "call_expr",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Call a user-defined or built-in function/method"
+                  },
+                  "alternateSymbols": [
+                    {
+                      "symbol": {
+                        "name": "math_call",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Use a built-in math function"
+                    },
+                    {
+                      "symbol": {
+                        "name": "string_method_call",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Use a built-in string method"
+                    },
+                    {
+                      "symbol": {
+                        "name": "array_method_call",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Use a built-in array method"
+                    },
+                    {
+                      "symbol": {
+                        "name": "object_method_call",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Use a built-in object method"
+                    },
+                    {
+                      "symbol": {
+                        "name": "function_call",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Use a user-defined function as \"name(params);\""
+                    },
+                    {
+                      "symbol": {
+                        "name": "print_call",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Use a built-in function to print the value of the given expression (text, number etc.)"
+                    },
+                    {
+                      "symbol": {
+                        "name": "input",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
+                    },
+                    {
+                      "symbol": {
+                        "name": "type_of",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
+                    }
+                  ],
+                  "selectedSymbol": 6,
+                  "type": "SelectionBlock",
+                  "generatedBy": {
+                    "symbol": {
+                      "symbol": {
+                        "name": "expr",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Right operand"
+                    },
+                    "alternateSymbols": [
+                      {
+                        "symbol": {
+                          "name": "arith_expr",
+                          "isTerminal": false
+                        },
+                        "tooltip": "Perform a mathematic operation"
+                      },
+                      {
+                        "symbol": {
+                          "name": "rel_expr",
+                          "isTerminal": false
+                        },
+                        "tooltip": "An operator that compares the two operands and returns true or false"
+                      },
+                      {
+                        "symbol": {
+                          "name": "logical_expr",
+                          "isTerminal": false
+                        },
+                        "tooltip": "An expression that evaluates to true or false"
+                      },
+                      {
+                        "symbol": {
+                          "name": "assign_expr",
+                          "isTerminal": false
+                        },
+                        "tooltip": "Set a variable's value"
+                      },
+                      {
+                        "symbol": {
+                          "name": "call_expr",
+                          "isTerminal": false
+                        },
+                        "tooltip": "Call a user-defined or built-in function/method"
+                      },
+                      {
+                        "symbol": {
+                          "name": "ternary_stmt",
+                          "isTerminal": false
+                        },
+                        "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                      },
+                      {
+                        "symbol": {
+                          "name": "primary_expr",
+                          "isTerminal": false
+                        },
+                        "tooltip": "An identifier or a constant"
+                      }
+                    ],
+                    "selectedSymbol": 4,
+                    "type": "SelectionBlock"
+                  }
+                }
+              }
+            ],
+            "type": "Group",
+            "generatedBy": {
+              "symbol": {
+                "symbol": {
+                  "name": "expr",
+                  "isTerminal": false
+                },
+                "alias": "expr_stmt",
+                "tooltip": "A single expression as a statement"
+              },
+              "alternateSymbols": [
+                {
+                  "symbol": {
+                    "name": "arith_expr",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Perform a mathematic operation"
+                },
+                {
+                  "symbol": {
+                    "name": "rel_expr",
+                    "isTerminal": false
+                  },
+                  "tooltip": "An operator that compares the two operands and returns true or false"
+                },
+                {
+                  "symbol": {
+                    "name": "logical_expr",
+                    "isTerminal": false
+                  },
+                  "tooltip": "An expression that evaluates to true or false"
+                },
+                {
+                  "symbol": {
+                    "name": "assign_expr",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Set a variable's value"
+                },
+                {
+                  "symbol": {
+                    "name": "call_expr",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Call a user-defined or built-in function/method"
+                },
+                {
+                  "symbol": {
+                    "name": "ternary_stmt",
+                    "isTerminal": false
+                  },
+                  "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                },
+                {
+                  "symbol": {
+                    "name": "primary_expr",
+                    "isTerminal": false
+                  },
+                  "tooltip": "An identifier or a constant"
+                }
+              ],
+              "selectedSymbol": 3,
+              "type": "SelectionBlock",
+              "generatedBy": {
+                "symbol": {
+                  "symbol": {
+                    "name": "stmt",
+                    "isTerminal": false
+                  }
+                },
+                "alternateSymbols": [
+                  {
+                    "symbol": {
+                      "name": "if_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Do something if a condition is true"
+                  },
+                  {
+                    "symbol": {
+                      "name": "if_else_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Do something if a condition is true, else do something else"
+                  },
+                  {
+                    "symbol": {
+                      "name": "while_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Do something while a condition is true"
+                  },
+                  {
+                    "symbol": {
+                      "name": "for_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                  },
+                  {
+                    "symbol": {
+                      "name": "expr",
+                      "isTerminal": false
+                    },
+                    "alias": "expr_stmt",
+                    "tooltip": "A single expression as a statement"
+                  },
+                  {
+                    "symbol": {
+                      "name": "ternary_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                  },
+                  {
+                    "symbol": {
+                      "name": "break_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Exit from the current loop"
+                  },
+                  {
+                    "symbol": {
+                      "name": "continue_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Continue to the next iteration of the current loop"
+                  },
+                  {
+                    "symbol": {
+                      "name": "return_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Return an expression as the result of the current function"
+                  }
+                ],
+                "selectedSymbol": 4,
+                "type": "SelectionBlock",
+                "generatedBy": {
+                  "symbol": {
+                    "symbol": {
+                      "name": "def",
+                      "isTerminal": false
+                    }
+                  },
+                  "alternateSymbols": [
+                    {
+                      "symbol": {
+                        "name": "stmt",
+                        "isTerminal": false
+                      }
+                    },
+                    {
+                      "symbol": {
+                        "name": "func_definition",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Define reusable code as a function"
+                    }
+                  ],
+                  "selectedSymbol": 0,
+                  "type": "SelectionBlock"
                 }
               }
             }

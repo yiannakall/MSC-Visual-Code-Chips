@@ -10,6 +10,7 @@ export class MyJavascriptVisitor extends AstVisitor {
        {
            args: [],
            vars: [],
+           decl_vars:[],
            funcs: []
        } 
     ];
@@ -273,8 +274,9 @@ export class MyJavascriptVisitor extends AstVisitor {
     HandleVarDeclaration(id){
         if (    
             !this.scopeStack.some(f =>
-                f.funcs.includes(id)    ||
-                f.vars.includes(id)     ||
+                f.funcs.includes(id)        ||
+                f.vars.includes(id)         ||
+                f.decl_vars.includes(id)    ||
                 f.args.includes(id)
             )
         )
@@ -413,6 +415,7 @@ export class MyJavascriptVisitor extends AstVisitor {
             case 'logical_binary_op':       return this.operators.AND;
             case 'assign_op':               return this.operators.ASSIGN;
             case 'array_method_call':       return this.operators.MEMBER_ACCESS;
+            case 'object_get_sq':           return this.operators.BRACE_MEMBER_ACCESS;
             case 'object_method_call':      return this.operators.MEMBER_ACCESS;
             case 'string_method':           return this.operators.MEMBER_ACCESS;
         }
@@ -512,9 +515,9 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push( ';' );
     }
 
-    Visit_Consts(elem)                  {this.stack.push('');}
-    Visit_Variable(elem)                {this.stack.push('');}
-    Visit_Types(elem)                   {this.stack.push('');}
+    Visit_Consts(elem)                  {this.stack.push(``);}
+    Visit_Variable(elem)                {this.stack.push(``);}
+    Visit_Types(elem)                   {this.stack.push(``);}
 
     Visit_IdentType(elem) {
         let code = this.PopChildrenFromStack(elem, ['type', 'ident']);
@@ -736,7 +739,12 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_ExprList(elem){
-        let code = this.PopChildrenFromStack(elem).join(', ');
+        let code;
+        if(elem.GetParent().GetSymbol().symbol.name === 'print_call'){
+            code = this.PopChildrenFromStack(elem).join(' + ');
+        } else {
+            code = this.PopChildrenFromStack(elem).join(', ');
+        }
         this.stack.push(`${code}`);
     }
 
@@ -777,12 +785,10 @@ export class MyJavascriptVisitor extends AstVisitor {
         );
     }
 
-    //??
     Visit_ArrayMethodCall(elem){
         this.stack.push(null);
     }
 
-    //??
     Visit_ObjectMethodCall(elem){
         this.stack.push(null);
     }
@@ -812,7 +818,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         )
     }
 
-    //??
     Visit_Callee(elem){
         this.stack.push(null);
     }
@@ -824,7 +829,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`${code.object}${code.dot}${code.function}`);
     }
 
-    //??
     Visit_ArrayFunction(elem){
         let code = this.PopChildrenFromStack(elem, ['array', 'lsb', 'index', 'rsb']);
 
@@ -960,7 +964,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`${code.array}${code.lsb}${code.index}${code.rsb} = ${code.element}`);
     }
 
-    //??
     Visit_ArraySize(elem){
         let code = this.PopChildrenFromStack(elem, ['array', 'dot', 'length']);
         this.stack.push(`${code.array}${code.dot}length`);
@@ -971,13 +974,11 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`${code.array}${code.dot}${code.join}${code.lp}${code.seperator}${code.rp}`);
     }
 
-    //??
     Visit_ArrayToString(elem){
         let code = this.PopChildrenFromStack(elem, ['array', 'dot', 'tostring', 'pc']);
         this.stack.push(`${code.array}${code.dot}${code.tostring}${code.pc}`);
     }
 
-    //??
     Visit_ObjectGet(elem){
         this.stack.push(null);
     }
@@ -992,10 +993,9 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`${code.object}${code.lsb}${code.property}${code.rsb} = ${code.value}`);
     }
 
-    //??
     Visit_ObjectSize(elem){
         let code = this.PopChildrenFromStack(elem, ['object', 'dot', 'length']);
-        this.stack.push(`${code.object}${code.dot}length`);
+        this.stack.push(` Object.keys(${code.object})${code.dot}length `);
     }
 
     Visit_ObjectGetSq(elem){
@@ -1026,7 +1026,7 @@ export class MyJavascriptVisitor extends AstVisitor {
             this.scopeStack[this.scopeStack.length - 1].args.push(id); // don't care about duplicates
         }
         else if (parent === 'ident_type'){
-            //
+            this.scopeStack[this.scopeStack.length - 1].decl_vars.push(id);
         }
         else
             this.HandleVarDeclaration(id);
@@ -1072,9 +1072,13 @@ export class MyJavascriptVisitor extends AstVisitor {
         let quotes = /\"/g;
         let backslashes = /\\/g;
 
-        let text = '"' + elem.GetText().replace(backslashes, '\\\\').replace(quotes, '\\"') + '"';
+        if (elem.GetText() != undefined) {
+            let text = '"' + elem.GetText().replace(backslashes, '\\\\').replace(quotes, '\\"') + '"';
 
-        this.stack.push(text);
+            this.stack.push(text);   
+        } else {
+            this.stack.push(` `);
+        }
     }
 
     Visit_PlusPlus(elem)                    {this.stack.push('++');}
@@ -1132,6 +1136,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.scopeStack.push({
             args:       [],
             vars:       [],
+            decl_vars:  [],
             funcs:      [],
         });
 

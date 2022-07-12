@@ -927,7 +927,7 @@
                 {
                     "type": "non_terminal",
                     "name": "input",
-                    "tooltip": "Use a built-in function to give input from a prompt"
+                    "tooltip": "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
                 },
                 {
                     "type": "non_terminal",
@@ -1719,7 +1719,7 @@
                 {
                     "type": "non_terminal",
                     "name": "object_get_sq",
-                    "tooltip": "Get with syntax objectName[\"property\"]"
+                    "tooltip": "Get with syntax objectName[\"property\"], property should be a string"
                 }
             ]
         },
@@ -1982,7 +1982,8 @@
                 },
                 {
                     "type": "terminal",
-                    "name": "STRING_CONST"
+                    "name": "STRING_CONST",
+                    "alias": "prompt_message"
                 },
                 {
                     "type": "terminal",
