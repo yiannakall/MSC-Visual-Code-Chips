@@ -145,6 +145,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'function_call',           elem => this.Visit_FunctionCall(elem) );
         this.SetVisitor( 'print_call',              elem => this.Visit_PrintCall(elem) );
         this.SetVisitor( 'input',                   elem => this.Visit_Input(elem) );
+        this.SetVisitor( 'key_press',               elem => this.Visit_KeyPress(elem) );
         this.SetVisitor( 'callee',                  elem => this.Visit_Callee(elem) );
         this.SetVisitor( 'object_function',         elem => this.Visit_ObjectFunction(elem) );
         this.SetVisitor( 'array_function',          elem => this.Visit_ArrayFunction(elem) );
@@ -770,7 +771,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         );
     }
 
-    //??
     Visit_StringMethodCall(elem){
         let code = this.PopChildrenFromStack(elem, ['string', 'dot', 'method_call']);
 
@@ -816,6 +816,10 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(
             this.HandleSemicolon(elem, `${code.prompt}${code.lp}${code.string}${code.rp}`)
         )
+    }
+
+    Visit_KeyPress(elem) {
+        this.stack.push()
     }
 
     Visit_Callee(elem){

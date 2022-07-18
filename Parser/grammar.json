@@ -504,6 +504,11 @@
                 },
                 {
                     "type": "non_terminal",
+                    "name": "keys",
+                    "tooltip": "All keyboard keys"
+                },
+                {
+                    "type": "non_terminal",
                     "name": "object_get",
                     "tooltip": "Get an element by its property name in the object"
                 },
@@ -928,6 +933,11 @@
                     "type": "non_terminal",
                     "name": "input",
                     "tooltip": "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "key_press",
+                    "tooltip": "Do something when a keyboard key of your choice is pressed"
                 },
                 {
                     "type": "non_terminal",
@@ -1989,6 +1999,90 @@
                     "type": "terminal",
                     "name": "RP",
                     "alias": ")"
+                }
+            ]
+        },
+        {
+            "name": "key_press",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "on_key_press"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "key"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "stmts",
+                    "alias": "event"
+                }
+            ]
+        },
+        {
+            "name": "keys",
+            "any_of": [
+                {
+                    "type": "terminal",
+                    "name": "Enter"
+                },
+                {
+                    "type": "terminal",
+                    "name": "Shift"
+                },
+                {
+                    "type": "terminal",
+                    "name": "Control"
+                },
+                {
+                    "type": "terminal",
+                    "name": "Alt"
+                },
+                {
+                    "type": "terminal",
+                    "name": "Tab"
+                },
+                {
+                    "type": "terminal",
+                    "name": "Cancel"
+                },
+                {
+                    "type": "terminal",
+                    "name": "Escape"
+                },
+                {
+                    "type": "terminal",
+                    "name": "PageUp"
+                },
+                {
+                    "type": "terminal",
+                    "name": "PageDown"
+                },
+                {
+                    "type": "terminal",
+                    "name": "End"
+                },
+                {
+                    "type": "terminal",
+                    "name": "Home"
+                },
+                {
+                    "type": "terminal",
+                    "name": "ArrowLeft"
+                },
+                {
+                    "type": "terminal",
+                    "name": "ArrowUp"
+                },
+                {
+                    "type": "terminal",
+                    "name": "ArrowRight"
+                },
+                {
+                    "type": "terminal",
+                    "name": "ArrowDown"
                 }
             ]
         },

@@ -505,6 +505,11 @@ export let config = {
                   },
                   {
                       "type": "non_terminal",
+                      "name": "keys",
+                      "tooltip": "All keyboard keys"
+                  },
+                  {
+                      "type": "non_terminal",
                       "name": "object_get",
                       "tooltip": "Get an element by its property name in the object"
                   },
@@ -929,6 +934,11 @@ export let config = {
                       "type": "non_terminal",
                       "name": "input",
                       "tooltip": "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "key_press",
+                      "tooltip": "Do something when a keyboard key of your choice is pressed"
                   },
                   {
                       "type": "non_terminal",
@@ -1990,6 +2000,90 @@ export let config = {
                       "type": "terminal",
                       "name": "RP",
                       "alias": ")"
+                  }
+              ]
+          },
+          {
+              "name": "key_press",
+              "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "on_key_press"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "primary_expr",
+                      "alias": "key"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "stmts",
+                      "alias": "event"
+                  }
+              ]
+          },
+          {
+              "name": "keys",
+              "any_of": [
+                  {
+                      "type": "terminal",
+                      "name": "Enter"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Shift"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Control"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Alt"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Tab"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Cancel"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Escape"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "PageUp"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "PageDown"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "End"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Home"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "ArrowLeft"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "ArrowUp"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "ArrowRight"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "ArrowDown"
                   }
               ]
           },
@@ -28184,6 +28278,497 @@ export let config = {
                 }
               }
             }
+          },
+          {
+            "symbol": {
+              "symbol": {
+                "name": "key_press",
+                "isTerminal": false
+              },
+              "tooltip": "Do something when a keyboard key of your choice is pressed"
+            },
+            "elems": [
+              {
+                "symbol": {
+                  "symbol": {
+                    "name": "on_key_press",
+                    "isTerminal": true
+                  }
+                },
+                "type": "SimpleBlock"
+              },
+              {
+                "symbol": {
+                  "symbol": {
+                    "name": "primary_expr",
+                    "isTerminal": false
+                  },
+                  "alias": "key"
+                },
+                "alternateSymbols": [
+                  {
+                    "symbol": {
+                      "name": "variable",
+                      "isTerminal": false
+                    },
+                    "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                  },
+                  {
+                    "symbol": {
+                      "name": "consts",
+                      "isTerminal": false
+                    },
+                    "tooltip": "All const values"
+                  },
+                  {
+                    "symbol": {
+                      "name": "keys",
+                      "isTerminal": false
+                    },
+                    "tooltip": "All keyboard keys"
+                  },
+                  {
+                    "symbol": {
+                      "name": "object_get",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Get an element by its property name in the object"
+                  },
+                  {
+                    "symbol": {
+                      "name": "array_get",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Get an element by its position in the array"
+                  },
+                  {
+                    "symbol": {
+                      "name": "new_array",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Define a new array"
+                  },
+                  {
+                    "symbol": {
+                      "name": "new_object",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Define a new object"
+                  },
+                  {
+                    "symbol": {
+                      "name": "func_definition",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Function definition"
+                  }
+                ],
+                "type": "SelectionBlock"
+              },
+              {
+                "symbol": {
+                  "symbol": {
+                    "name": "stmts",
+                    "isTerminal": false
+                  },
+                  "alias": "event"
+                },
+                "elems": [
+                  {
+                    "symbol": {
+                      "symbol": {
+                        "name": "stmt",
+                        "isTerminal": false
+                      }
+                    },
+                    "alternateSymbols": [
+                      {
+                        "symbol": {
+                          "name": "if_stmt",
+                          "isTerminal": false
+                        },
+                        "tooltip": "Do something if a condition is true"
+                      },
+                      {
+                        "symbol": {
+                          "name": "if_else_stmt",
+                          "isTerminal": false
+                        },
+                        "tooltip": "Do something if a condition is true, else do something else"
+                      },
+                      {
+                        "symbol": {
+                          "name": "while_stmt",
+                          "isTerminal": false
+                        },
+                        "tooltip": "Do something while a condition is true"
+                      },
+                      {
+                        "symbol": {
+                          "name": "for_stmt",
+                          "isTerminal": false
+                        },
+                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                      },
+                      {
+                        "symbol": {
+                          "name": "expr",
+                          "isTerminal": false
+                        },
+                        "alias": "expr_stmt",
+                        "tooltip": "A single expression as a statement"
+                      },
+                      {
+                        "symbol": {
+                          "name": "ternary_stmt",
+                          "isTerminal": false
+                        },
+                        "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                      },
+                      {
+                        "symbol": {
+                          "name": "break_stmt",
+                          "isTerminal": false
+                        },
+                        "tooltip": "Exit from the current loop"
+                      },
+                      {
+                        "symbol": {
+                          "name": "continue_stmt",
+                          "isTerminal": false
+                        },
+                        "tooltip": "Continue to the next iteration of the current loop"
+                      },
+                      {
+                        "symbol": {
+                          "name": "return_stmt",
+                          "isTerminal": false
+                        },
+                        "tooltip": "Return an expression as the result of the current function"
+                      }
+                    ],
+                    "type": "SelectionBlock"
+                  }
+                ],
+                "repetitiveElem": {
+                  "symbol": {
+                    "symbol": {
+                      "name": "stmt",
+                      "isTerminal": false
+                    }
+                  },
+                  "alternateSymbols": [
+                    {
+                      "symbol": {
+                        "name": "if_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Do something if a condition is true"
+                    },
+                    {
+                      "symbol": {
+                        "name": "if_else_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Do something if a condition is true, else do something else"
+                    },
+                    {
+                      "symbol": {
+                        "name": "while_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Do something while a condition is true"
+                    },
+                    {
+                      "symbol": {
+                        "name": "for_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                    },
+                    {
+                      "symbol": {
+                        "name": "expr",
+                        "isTerminal": false
+                      },
+                      "alias": "expr_stmt",
+                      "tooltip": "A single expression as a statement"
+                    },
+                    {
+                      "symbol": {
+                        "name": "ternary_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                    },
+                    {
+                      "symbol": {
+                        "name": "break_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Exit from the current loop"
+                    },
+                    {
+                      "symbol": {
+                        "name": "continue_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Continue to the next iteration of the current loop"
+                    },
+                    {
+                      "symbol": {
+                        "name": "return_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Return an expression as the result of the current function"
+                    }
+                  ],
+                  "type": "SelectionBlock"
+                },
+                "type": "RepetitionGroup"
+              }
+            ],
+            "type": "Group",
+            "generatedBy": {
+              "symbol": {
+                "symbol": {
+                  "name": "call_expr",
+                  "isTerminal": false
+                },
+                "tooltip": "Call a user-defined or built-in function/method"
+              },
+              "alternateSymbols": [
+                {
+                  "symbol": {
+                    "name": "math_call",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Use a built-in math function"
+                },
+                {
+                  "symbol": {
+                    "name": "string_method_call",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Use a built-in string method"
+                },
+                {
+                  "symbol": {
+                    "name": "array_method_call",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Use a built-in array method"
+                },
+                {
+                  "symbol": {
+                    "name": "object_method_call",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Use a built-in object method"
+                },
+                {
+                  "symbol": {
+                    "name": "function_call",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Use a user-defined function as \"name(params);\""
+                },
+                {
+                  "symbol": {
+                    "name": "print_call",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Use a built-in function to print the value of the given expression (text, number etc.)"
+                },
+                {
+                  "symbol": {
+                    "name": "input",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
+                },
+                {
+                  "symbol": {
+                    "name": "key_press",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Do something when a keyboard key of your choice is pressed"
+                },
+                {
+                  "symbol": {
+                    "name": "type_of",
+                    "isTerminal": false
+                  },
+                  "tooltip": "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
+                }
+              ],
+              "selectedSymbol": 7,
+              "type": "SelectionBlock",
+              "generatedBy": {
+                "symbol": {
+                  "symbol": {
+                    "name": "expr",
+                    "isTerminal": false
+                  },
+                  "alias": "expr_stmt",
+                  "tooltip": "A single expression as a statement"
+                },
+                "alternateSymbols": [
+                  {
+                    "symbol": {
+                      "name": "arith_expr",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Perform a mathematic operation"
+                  },
+                  {
+                    "symbol": {
+                      "name": "rel_expr",
+                      "isTerminal": false
+                    },
+                    "tooltip": "An operator that compares the two operands and returns true or false"
+                  },
+                  {
+                    "symbol": {
+                      "name": "logical_expr",
+                      "isTerminal": false
+                    },
+                    "tooltip": "An expression that evaluates to true or false"
+                  },
+                  {
+                    "symbol": {
+                      "name": "assign_expr",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Set a variable's value"
+                  },
+                  {
+                    "symbol": {
+                      "name": "call_expr",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Call a user-defined or built-in function/method"
+                  },
+                  {
+                    "symbol": {
+                      "name": "ternary_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                  },
+                  {
+                    "symbol": {
+                      "name": "primary_expr",
+                      "isTerminal": false
+                    },
+                    "tooltip": "An identifier or a constant"
+                  }
+                ],
+                "selectedSymbol": 4,
+                "type": "SelectionBlock",
+                "generatedBy": {
+                  "symbol": {
+                    "symbol": {
+                      "name": "stmt",
+                      "isTerminal": false
+                    }
+                  },
+                  "alternateSymbols": [
+                    {
+                      "symbol": {
+                        "name": "if_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Do something if a condition is true"
+                    },
+                    {
+                      "symbol": {
+                        "name": "if_else_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Do something if a condition is true, else do something else"
+                    },
+                    {
+                      "symbol": {
+                        "name": "while_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Do something while a condition is true"
+                    },
+                    {
+                      "symbol": {
+                        "name": "for_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                    },
+                    {
+                      "symbol": {
+                        "name": "expr",
+                        "isTerminal": false
+                      },
+                      "alias": "expr_stmt",
+                      "tooltip": "A single expression as a statement"
+                    },
+                    {
+                      "symbol": {
+                        "name": "ternary_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                    },
+                    {
+                      "symbol": {
+                        "name": "break_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Exit from the current loop"
+                    },
+                    {
+                      "symbol": {
+                        "name": "continue_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Continue to the next iteration of the current loop"
+                    },
+                    {
+                      "symbol": {
+                        "name": "return_stmt",
+                        "isTerminal": false
+                      },
+                      "tooltip": "Return an expression as the result of the current function"
+                    }
+                  ],
+                  "selectedSymbol": 4,
+                  "type": "SelectionBlock",
+                  "generatedBy": {
+                    "symbol": {
+                      "symbol": {
+                        "name": "def",
+                        "isTerminal": false
+                      }
+                    },
+                    "alternateSymbols": [
+                      {
+                        "symbol": {
+                          "name": "stmt",
+                          "isTerminal": false
+                        }
+                      },
+                      {
+                        "symbol": {
+                          "name": "func_definition",
+                          "isTerminal": false
+                        },
+                        "tooltip": "Define reusable code as a function"
+                      }
+                    ],
+                    "selectedSymbol": 0,
+                    "type": "SelectionBlock"
+                  }
+                }
+              }
+            }
           }
         ]
       },
@@ -40988,6 +41573,18 @@ config.darkColorfulTheme = {
                   "BorderColor": "#7A4884",
                   "BorderRadius": ""
               }
+          },
+          "key_press": {
+            "Group Block": {
+                "BackgroundColor": "#a5805b",
+                "PaddingLeft": "",
+                "PaddingRight": "",
+                "PaddingTop": "",
+                "PaddingBottom": "",
+                "BorderWidth": "",
+                "BorderColor": "#a5805b",
+                "BorderRadius": ""
+            }
           },
         }
     },

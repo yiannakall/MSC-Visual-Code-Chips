@@ -16,7 +16,8 @@ non_terminal {
     binary_logical_expr not_expr
     BOOLEAN_CONST ARRAY_CONST OBJECT_CONST
     ident_list expr_list element_list pair_element_list pair_element
-    math_call string_method_call array_method_call object_method_call function_call print_call input callee
+    math_call string_method_call array_method_call object_method_call function_call print_call input key_press callee
+    keys
     object_function array_function
     math_abs math_pow math_sqrt math_round math_floor math_ceil math_sin math_cos
     string_method
@@ -42,6 +43,7 @@ terminal {
     concat toUpperCase toLowerCase substring slice 
     typeof
     var let const
+    "on_key_press" PageUp PageDown End Home ArrowLeft ArrowUp ArrowRight ArrowDown Enter Shift Control Alt Tab Cancel Escape
 }
 
 define program {
@@ -213,6 +215,7 @@ define primary_expr {
     any_of {
         variable                    : "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
         consts                      : "All const values"
+        keys                        : "All keyboard keys"
         object_get                  : "Get an element by its property name in the object"
         array_get                   : "Get an element by its position in the array"
         new_array                   : "Define a new array"
@@ -325,6 +328,7 @@ define call_expr {
         function_call           : "Use a user-defined function as \"name(params);\""
         print_call              : "Use a built-in function to print the value of the given expression (text, number etc.)"
         input                   : "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
+        key_press               : "Do something when a keyboard key of your choice is pressed"
         type_of                 : "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
     } 
 }
@@ -516,6 +520,74 @@ define print_call {
 
 define input {
     "prompt" LP("(") STRING_CONST(prompt_message) RP(")")
+}
+
+define key_press {
+    "on_key_press" primary_expr("key") stmts("event")
+}
+
+define keys {
+    any_of {
+        Backspace
+        Tab
+        Enter
+        ShiftLeft
+        Controlleft
+        AltLeft
+        Pause
+        CapsLock
+        Escape
+        Space
+        Numpad9 
+        Numpad3
+        Numpad1
+        Numpad7
+        ArrowLeft
+        ArrowUp 
+        ArrowRight
+        ArrowDown
+        Numpad0
+        NumpadDecimal
+        Digit0
+        Digit1
+        Digit2
+        Digit3
+        Digit4
+        Digit5
+        Digit6
+        Digit7
+        Digit8
+        Digit9
+        Period
+        Semicolon
+        Backquote
+        Equal
+        KeyA
+        KeyB
+        KeyC
+        KeyD
+        KeyE
+        KeyF
+        KeyG
+        KeyH
+        KeyI
+        KeyJ
+        KeyK
+        KeyL
+        KeyM
+        KeyN
+        KeyO
+        KeyR
+        KeyS
+        KeyT
+        KeyU
+        KeyV
+        KeyW
+        KeyX
+        KeyY
+        KeyZ
+        
+    }
 }
 
 define type_of {
