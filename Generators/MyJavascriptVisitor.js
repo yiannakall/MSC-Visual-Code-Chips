@@ -269,6 +269,21 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'typeof',                  elem => this.Visit_Typeof(elem) );
         this.SetVisitor( 'console.log',             elem => this.Visit_Console(elem) );
         this.SetVisitor( 'prompt',                  elem => this.Visit_Prompt(elem) );
+        this.SetVisitor( 'on_key_press',            elem => this.Visit_OnKey(elem) );
+
+        this.SetVisitor( 'Escape',                  elem => this.Visit_Escape(elem) );
+        this.SetVisitor( 'F1',                      elem => this.Visit_F1(elem) );
+        this.SetVisitor( 'F2',                      elem => this.Visit_F2(elem) );
+        this.SetVisitor( 'F3',                      elem => this.Visit_F3(elem) );
+        this.SetVisitor( 'F4',                      elem => this.Visit_F4(elem) );
+        this.SetVisitor( 'F5',                      elem => this.Visit_F5(elem) );
+        this.SetVisitor( 'F6',                      elem => this.Visit_F6(elem) );
+        this.SetVisitor( 'F7',                      elem => this.Visit_F7(elem) );
+        this.SetVisitor( 'F8',                      elem => this.Visit_F8(elem) );
+        this.SetVisitor( 'F9',                      elem => this.Visit_F9(elem) );
+        this.SetVisitor( 'ScrollLock',              elem => this.Visit_ScrollLock(elem) );
+        this.SetVisitor( 'Pause',                   elem => this.Visit_Pause(elem) );
+        this.SetVisitor( 'Insert',                  elem => this.Visit_Insert(elem) );
 
     }
 
@@ -819,14 +834,24 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_KeyPress(elem) {
-        this.stack.push()
+
+        let code = this.PopChildrenFromStack(elem, ['on_key_press', 'key', 'stmts']);
+
+        this.stack.push(`window.addEventListener('keydown', (event) => {
+            var name = event.key;
+            var code = event.code;
+            window.alert(code);
+            if (code === '${code.key}') {
+              window.alert("Key code Value");
+            } 
+        }, false); `);
+        console.log("hello");
     }
 
     Visit_Callee(elem){
         this.stack.push(null);
     }
 
-    //??
     Visit_ObjectFunction(elem){
         let code = this.PopChildrenFromStack(elem, ['object', 'dot', 'function']);
 
@@ -1174,4 +1199,5 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_Typeof(elem)                      {this.stack.push('typeof');}
     Visit_Console(elem)                     {this.stack.push('window.alert');}
     Visit_Prompt(elem)                      {this.stack.push('prompt');}
+    Visit_OnKey(elem)                       {this.stack.push('');}
 }

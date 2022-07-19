@@ -43,7 +43,13 @@ terminal {
     concat toUpperCase toLowerCase substring slice 
     typeof
     var let const
-    "on_key_press" PageUp PageDown End Home ArrowLeft ArrowUp ArrowRight ArrowDown Enter Shift Control Alt Tab Cancel Escape
+    "on_key_press"
+    Escape F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 ScrollLock Pause Insert
+    Backquote Digit0 Digit1 Digit2 Digit3 Digit4 Digit5 Digit6 Digit7 Digit8 Digit9 Minus Equal Backspace End Home
+    Tab BracketLeft BracketRight Backslash CapsLock Semicolon Quote Enter ShiftLeft Comma Period Slash ShiftRight
+    ControlLeft OSLeft AltLeft Space AltRight ContextMenu ControlRight Delete PageUp PageDown ArrowLeft ArrowUp ArrowRight ArrowDown
+    KeyA KeyB KeyC KeyD KeyE KeyF KeyG KeyH KeyI KeyJ KeyK KeyL KeyM KeyN KeyO KeyR KeyS KeyT KeyU KeyV KeyW KeyX KeyY KeyZ
+    Numpad0 Numpad1 Numpad2 Numpad3 Numpad4 Numpad5 Numpad6 Numpad7 Numpad8 Numpad9 NumpadMultiply NumpadAdd NumpadDecimal NumpadSubstract NumpadDivide NumLock
 }
 
 define program {
@@ -90,6 +96,7 @@ define expr {
         primary_expr            : "An identifier or a constant"
     }
 }
+
 
 define arith_expr {
     any_of {
@@ -528,106 +535,12 @@ define key_press {
 
 define keys {
     any_of {
-        Backspace
-        Tab
-        Enter
-        ShiftLeft
-        Controlleft
-        AltLeft
-        Pause
-        CapsLock
-        Escape
-        Space
-        Numpad9 
-        Numpad3
-        Numpad1
-        Numpad7
-        ArrowLeft
-        ArrowUp 
-        ArrowRight
-        ArrowDown
-        Numpad0
-        NumpadDecimal
-        Digit0
-        Digit1
-        Digit2
-        Digit3
-        Digit4
-        Digit5
-        Digit6
-        Digit7
-        Digit8
-        Digit9
-        Period
-        Semicolon
-        Backquote
-        Equal
-        KeyA
-        KeyB
-        KeyC
-        KeyD
-        KeyE
-        KeyF
-        KeyG
-        KeyH
-        KeyI
-        KeyJ
-        KeyK
-        KeyL
-        KeyM
-        KeyN
-        KeyO
-        KeyR
-        KeyS
-        KeyT
-        KeyU
-        KeyV
-        KeyW
-        KeyX
-        KeyY
-        KeyZ
-        Numpad0
-        Numpad1
-        Numpad2
-        Numpad3
-        Numpad4
-        Numpad5
-        Numpad6
-        Numpad7
-        Numpad8
-        Numpad9
-        NumpadMultiply
-        NumpadAdd
-        NumpadDecimal
-        NumpadSubstract
-        NumpadDecimal
-        NumpadDivide
-        F1
-        F2
-        F3
-        F4
-        F5
-        F6
-        F7
-        F8
-        F9
-        F10
-        F11
-        F12
-        NumLock
-        BracketLeft
-        BracketRight
-        Backquote
-        Backslash
-        Quote
-        Minus
-        VolumeMute
-        VolumeDown
-        VolumeUp
-        Comma
-        Period
-        Slash
-        Space
+        Escape F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 ScrollLock Pause Insert
+        Backquote Digit0 Digit1 Digit2 Digit3 Digit4 Digit5 Digit6 Digit7 Digit8 Digit9 Minus Equal Backspace End Home
+        Tab BracketLeft BracketRight Backslash CapsLock Semicolon Quote Enter ShiftLeft Comma Period Slash ShiftRight
+        ControlLeft OSLeft AltLeft Space AltRight ContextMenu ControlRight Delete PageUp PageDown ArrowLeft ArrowUp ArrowRight ArrowDown
+        KeyA KeyB KeyC KeyD KeyE KeyF KeyG KeyH KeyI KeyJ KeyK KeyL KeyM KeyN KeyO KeyR KeyS KeyT KeyU KeyV KeyW KeyX KeyY KeyZ
+        Numpad0 Numpad1 Numpad2 Numpad3 Numpad4 Numpad5 Numpad6 Numpad7 Numpad8 Numpad9 NumpadMultiply NumpadAdd NumpadDecimal NumpadSubstract NumpadDivide NumLock
     }
 }
 

@@ -2027,39 +2027,123 @@ export let config = {
               "any_of": [
                   {
                       "type": "terminal",
-                      "name": "Enter"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "Shift"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "Control"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "Alt"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "Tab"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "Cancel"
-                  },
-                  {
-                      "type": "terminal",
                       "name": "Escape"
                   },
                   {
                       "type": "terminal",
-                      "name": "PageUp"
+                      "name": "F1"
                   },
                   {
                       "type": "terminal",
-                      "name": "PageDown"
+                      "name": "F2"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "F3"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "F4"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "F5"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "F6"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "F7"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "F8"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "F9"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "F10"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "F11"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "F12"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "ScrollLock"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Pause"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Insert"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Backquote"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Digit0"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Digit1"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Digit2"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Digit3"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Digit4"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Digit5"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Digit6"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Digit7"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Digit8"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Digit9"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Minus"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Equal"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Backspace"
                   },
                   {
                       "type": "terminal",
@@ -2068,6 +2152,98 @@ export let config = {
                   {
                       "type": "terminal",
                       "name": "Home"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Tab"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "BracketLeft"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "BracketRight"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Backslash"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "CapsLock"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Semicolon"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Quote"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Enter"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "ShiftLeft"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Comma"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Period"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Slash"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "ShiftRight"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "ControlLeft"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "OSLeft"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "AltLeft"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Space"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "AltRight"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "ContextMenu"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "ControlRight"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Delete"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "PageUp"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "PageDown"
                   },
                   {
                       "type": "terminal",
@@ -2084,6 +2260,166 @@ export let config = {
                   {
                       "type": "terminal",
                       "name": "ArrowDown"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyA"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyB"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyC"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyD"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyE"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyF"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyG"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyH"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyI"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyJ"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyK"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyL"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyM"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyN"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyO"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyR"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyS"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyT"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyU"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyV"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyW"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyX"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyY"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "KeyZ"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Numpad0"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Numpad1"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Numpad2"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Numpad3"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Numpad4"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Numpad5"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Numpad6"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Numpad7"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Numpad8"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "Numpad9"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "NumpadMultiply"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "NumpadAdd"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "NumpadDecimal"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "NumpadSubstract"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "NumpadDivide"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "NumLock"
                   }
               ]
           },
@@ -28363,6 +28699,7 @@ export let config = {
                     "tooltip": "Function definition"
                   }
                 ],
+                "selectedSymbol": 2,
                 "type": "SelectionBlock"
               },
               {
