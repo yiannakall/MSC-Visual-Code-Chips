@@ -42060,13 +42060,13 @@ config.darkColorfulTheme = {
           },
           "key_press": {
             "Group Block": {
-                "BackgroundColor": "#a55b5b",
+                "BackgroundColor": "#995BA5",
                 "PaddingLeft": "",
                 "PaddingRight": "",
                 "PaddingTop": "",
                 "PaddingBottom": "",
                 "BorderWidth": "",
-                "BorderColor": "#a55b5b",
+                "BorderColor": "#995BA5",
                 "BorderRadius": ""
             }
           },
