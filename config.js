@@ -30008,6 +30008,13 @@ export let config = {
                   },
                   {
                     "symbol": {
+                      "name": "keys",
+                      "isTerminal": false
+                    },
+                    "tooltip": "All keyboard keys"
+                  },
+                  {
+                    "symbol": {
                       "name": "object_get",
                       "isTerminal": false
                     },
@@ -30170,6 +30177,13 @@ export let config = {
                   },
                   {
                     "symbol": {
+                      "name": "ternary_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                  },
+                  {
+                    "symbol": {
                       "name": "primary_expr",
                       "isTerminal": false
                     },
@@ -30224,6 +30238,13 @@ export let config = {
                     "isTerminal": false
                   },
                   "tooltip": "Call a user-defined or built-in function/method"
+                },
+                {
+                  "symbol": {
+                    "name": "ternary_stmt",
+                    "isTerminal": false
+                  },
+                  "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
                 },
                 {
                   "symbol": {
@@ -30369,6 +30390,13 @@ export let config = {
                       "isTerminal": false
                     },
                     "tooltip": "All const values"
+                  },
+                  {
+                    "symbol": {
+                      "name": "keys",
+                      "isTerminal": false
+                    },
+                    "tooltip": "All keyboard keys"
                   },
                   {
                     "symbol": {
@@ -30534,6 +30562,13 @@ export let config = {
                   },
                   {
                     "symbol": {
+                      "name": "ternary_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                  },
+                  {
+                    "symbol": {
                       "name": "primary_expr",
                       "isTerminal": false
                     },
@@ -30588,6 +30623,13 @@ export let config = {
                     "isTerminal": false
                   },
                   "tooltip": "Call a user-defined or built-in function/method"
+                },
+                {
+                  "symbol": {
+                    "name": "ternary_stmt",
+                    "isTerminal": false
+                  },
+                  "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
                 },
                 {
                   "symbol": {
@@ -30733,6 +30775,13 @@ export let config = {
                       "isTerminal": false
                     },
                     "tooltip": "All const values"
+                  },
+                  {
+                    "symbol": {
+                      "name": "keys",
+                      "isTerminal": false
+                    },
+                    "tooltip": "All keyboard keys"
                   },
                   {
                     "symbol": {
@@ -30898,6 +30947,13 @@ export let config = {
                   },
                   {
                     "symbol": {
+                      "name": "ternary_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                  },
+                  {
+                    "symbol": {
                       "name": "primary_expr",
                       "isTerminal": false
                     },
@@ -30952,6 +31008,13 @@ export let config = {
                     "isTerminal": false
                   },
                   "tooltip": "Call a user-defined or built-in function/method"
+                },
+                {
+                  "symbol": {
+                    "name": "ternary_stmt",
+                    "isTerminal": false
+                  },
+                  "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
                 },
                 {
                   "symbol": {
@@ -31097,6 +31160,13 @@ export let config = {
                       "isTerminal": false
                     },
                     "tooltip": "All const values"
+                  },
+                  {
+                    "symbol": {
+                      "name": "keys",
+                      "isTerminal": false
+                    },
+                    "tooltip": "All keyboard keys"
                   },
                   {
                     "symbol": {
@@ -31262,6 +31332,13 @@ export let config = {
                   },
                   {
                     "symbol": {
+                      "name": "ternary_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                  },
+                  {
+                    "symbol": {
                       "name": "primary_expr",
                       "isTerminal": false
                     },
@@ -31316,6 +31393,13 @@ export let config = {
                     "isTerminal": false
                   },
                   "tooltip": "Call a user-defined or built-in function/method"
+                },
+                {
+                  "symbol": {
+                    "name": "ternary_stmt",
+                    "isTerminal": false
+                  },
+                  "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
                 },
                 {
                   "symbol": {
@@ -31461,6 +31545,13 @@ export let config = {
                       "isTerminal": false
                     },
                     "tooltip": "All const values"
+                  },
+                  {
+                    "symbol": {
+                      "name": "keys",
+                      "isTerminal": false
+                    },
+                    "tooltip": "All keyboard keys"
                   },
                   {
                     "symbol": {
@@ -31626,6 +31717,13 @@ export let config = {
                   },
                   {
                     "symbol": {
+                      "name": "ternary_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                  },
+                  {
+                    "symbol": {
                       "name": "primary_expr",
                       "isTerminal": false
                     },
@@ -31680,6 +31778,13 @@ export let config = {
                     "isTerminal": false
                   },
                   "tooltip": "Call a user-defined or built-in function/method"
+                },
+                {
+                  "symbol": {
+                    "name": "ternary_stmt",
+                    "isTerminal": false
+                  },
+                  "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
                 },
                 {
                   "symbol": {
@@ -31825,6 +31930,13 @@ export let config = {
                       "isTerminal": false
                     },
                     "tooltip": "All const values"
+                  },
+                  {
+                    "symbol": {
+                      "name": "keys",
+                      "isTerminal": false
+                    },
+                    "tooltip": "All keyboard keys"
                   },
                   {
                     "symbol": {
@@ -31990,6 +32102,13 @@ export let config = {
                   },
                   {
                     "symbol": {
+                      "name": "ternary_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                  },
+                  {
+                    "symbol": {
                       "name": "primary_expr",
                       "isTerminal": false
                     },
@@ -32044,6 +32163,13 @@ export let config = {
                     "isTerminal": false
                   },
                   "tooltip": "Call a user-defined or built-in function/method"
+                },
+                {
+                  "symbol": {
+                    "name": "ternary_stmt",
+                    "isTerminal": false
+                  },
+                  "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
                 },
                 {
                   "symbol": {
@@ -32189,6 +32315,13 @@ export let config = {
                       "isTerminal": false
                     },
                     "tooltip": "All const values"
+                  },
+                  {
+                    "symbol": {
+                      "name": "keys",
+                      "isTerminal": false
+                    },
+                    "tooltip": "All keyboard keys"
                   },
                   {
                     "symbol": {
@@ -32354,6 +32487,13 @@ export let config = {
                   },
                   {
                     "symbol": {
+                      "name": "ternary_stmt",
+                      "isTerminal": false
+                    },
+                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                  },
+                  {
+                    "symbol": {
                       "name": "primary_expr",
                       "isTerminal": false
                     },
@@ -32408,6 +32548,13 @@ export let config = {
                     "isTerminal": false
                   },
                   "tooltip": "Call a user-defined or built-in function/method"
+                },
+                {
+                  "symbol": {
+                    "name": "ternary_stmt",
+                    "isTerminal": false
+                  },
+                  "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
                 },
                 {
                   "symbol": {
@@ -41913,13 +42060,13 @@ config.darkColorfulTheme = {
           },
           "key_press": {
             "Group Block": {
-                "BackgroundColor": "#a5805b",
+                "BackgroundColor": "#a55b5b",
                 "PaddingLeft": "",
                 "PaddingRight": "",
                 "PaddingTop": "",
                 "PaddingBottom": "",
                 "BorderWidth": "",
-                "BorderColor": "#a5805b",
+                "BorderColor": "#a55b5b",
                 "BorderRadius": ""
             }
           },

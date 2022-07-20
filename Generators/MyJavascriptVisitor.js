@@ -281,9 +281,103 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'F7',                      elem => this.Visit_F7(elem) );
         this.SetVisitor( 'F8',                      elem => this.Visit_F8(elem) );
         this.SetVisitor( 'F9',                      elem => this.Visit_F9(elem) );
+        this.SetVisitor( 'F10',                     elem => this.Visit_F10(elem) );
+        this.SetVisitor( 'F11',                     elem => this.Visit_F11(elem) );
+        this.SetVisitor( 'F12',                     elem => this.Visit_F12(elem) );
         this.SetVisitor( 'ScrollLock',              elem => this.Visit_ScrollLock(elem) );
         this.SetVisitor( 'Pause',                   elem => this.Visit_Pause(elem) );
         this.SetVisitor( 'Insert',                  elem => this.Visit_Insert(elem) );
+
+        this.SetVisitor( 'Backquote',               elem => this.Visit_Backquote(elem) );
+        this.SetVisitor( 'Digit0',                  elem => this.Visit_Digit0(elem) );
+        this.SetVisitor( 'Digit1',                  elem => this.Visit_Digit1(elem) );
+        this.SetVisitor( 'Digit2',                  elem => this.Visit_Digit2(elem) );
+        this.SetVisitor( 'Digit3',                  elem => this.Visit_Digit3(elem) );
+        this.SetVisitor( 'Digit4',                  elem => this.Visit_Digit4(elem) );
+        this.SetVisitor( 'Digit5',                  elem => this.Visit_Digit5(elem) );
+        this.SetVisitor( 'Digit6',                  elem => this.Visit_Digit6(elem) );
+        this.SetVisitor( 'Digit7',                  elem => this.Visit_Digit7(elem) );
+        this.SetVisitor( 'Digit8',                  elem => this.Visit_Digit8(elem) );
+        this.SetVisitor( 'Digit9',                  elem => this.Visit_Digit9(elem) );
+        this.SetVisitor( 'Minus',                   elem => this.Visit_Minus(elem) );
+        this.SetVisitor( 'Equal',                   elem => this.Visit_Equal(elem) );
+        this.SetVisitor( 'Backspace',               elem => this.Visit_Backspace(elem) );
+        this.SetVisitor( 'End',                     elem => this.Visit_End(elem) );
+        this.SetVisitor( 'Home',                    elem => this.Visit_Home(elem) );
+
+        this.SetVisitor( 'Tab',                     elem => this.Visit_Tab(elem) );
+        this.SetVisitor( 'BracketLeft',             elem => this.Visit_BracketLeft(elem) );
+        this.SetVisitor( 'BracketRight',            elem => this.Visit_BracketRight(elem) );
+        this.SetVisitor( 'Backslash',               elem => this.Visit_Backslash(elem) );
+        this.SetVisitor( 'CapsLock',                elem => this.Visit_CapsLock(elem) );
+        this.SetVisitor( 'Semicolon',               elem => this.Visit_Semicolon(elem) );
+        this.SetVisitor( 'Quote',                   elem => this.Visit_Quote(elem) );
+        this.SetVisitor( 'Enter',                   elem => this.Visit_Enter(elem) );
+        this.SetVisitor( 'ShiftLeft',               elem => this.Visit_ShiftLeft(elem) );
+        this.SetVisitor( 'Comma',                   elem => this.Visit_Comma(elem) );
+        this.SetVisitor( 'Period',                  elem => this.Visit_Period(elem) );
+        this.SetVisitor( 'Slash',                   elem => this.Visit_Slash(elem) );
+        this.SetVisitor( 'ShiftRight',              elem => this.Visit_ShiftRight(elem) );
+
+        this.SetVisitor( 'ControlLeft',             elem => this.Visit_ControlLeft(elem) );
+        this.SetVisitor( 'OSLeft',                  elem => this.Visit_OSLeft(elem) );
+        this.SetVisitor( 'AltLeft',                 elem => this.Visit_AltLeft(elem) );
+        this.SetVisitor( 'Space',                   elem => this.Visit_Space(elem) );
+        this.SetVisitor( 'AltRight',                elem => this.Visit_AltRight(elem) );
+        this.SetVisitor( 'ContextMenu',             elem => this.Visit_ContextMenu(elem) );
+        this.SetVisitor( 'ControlRight',            elem => this.Visit_ControlRight(elem) );
+        this.SetVisitor( 'Delete',                  elem => this.Visit_Delete(elem) );
+        this.SetVisitor( 'PageUp',                  elem => this.Visit_PageUp(elem) );
+        this.SetVisitor( 'PageDown',                elem => this.Visit_PageDown(elem) );
+        this.SetVisitor( 'ArrowLeft',               elem => this.Visit_ArrowLeft(elem) );
+        this.SetVisitor( 'ArrowUp',                 elem => this.Visit_ArrowUp(elem) );
+        this.SetVisitor( 'ArrowRight',              elem => this.Visit_ArrowRight(elem) );
+        this.SetVisitor( 'ArrowDown',               elem => this.Visit_ArrowDown(elem) );
+
+        this.SetVisitor( 'KeyA',                    elem => this.Visit_KeyA(elem) );
+        this.SetVisitor( 'KeyB',                    elem => this.Visit_KeyB(elem) );
+        this.SetVisitor( 'KeyC',                    elem => this.Visit_KeyC(elem) );
+        this.SetVisitor( 'KeyD',                    elem => this.Visit_KeyD(elem) );
+        this.SetVisitor( 'KeyE',                    elem => this.Visit_KeyE(elem) );
+        this.SetVisitor( 'KeyF',                    elem => this.Visit_KeyF(elem) );
+        this.SetVisitor( 'KeyG',                    elem => this.Visit_KeyG(elem) );
+        this.SetVisitor( 'KeyH',                    elem => this.Visit_KeyH(elem) );
+        this.SetVisitor( 'KeyI',                    elem => this.Visit_KeyI(elem) );
+        this.SetVisitor( 'KeyJ',                    elem => this.Visit_KeyJ(elem) );
+        this.SetVisitor( 'KeyK',                    elem => this.Visit_KeyK(elem) );
+        this.SetVisitor( 'KeyL',                    elem => this.Visit_KeyL(elem) );
+        this.SetVisitor( 'KeyM',                    elem => this.Visit_KeyM(elem) );
+        this.SetVisitor( 'KeyN',                    elem => this.Visit_KeyN(elem) );
+        this.SetVisitor( 'KeyO',                    elem => this.Visit_KeyO(elem) );
+        this.SetVisitor( 'KeyP',                    elem => this.Visit_KeyP(elem) );
+        this.SetVisitor( 'KeyQ',                    elem => this.Visit_KeyQ(elem) );
+        this.SetVisitor( 'KeyR',                    elem => this.Visit_KeyR(elem) );
+        this.SetVisitor( 'KeyS',                    elem => this.Visit_KeyS(elem) );
+        this.SetVisitor( 'KeyT',                    elem => this.Visit_KeyT(elem) );
+        this.SetVisitor( 'KeyU',                    elem => this.Visit_KeyU(elem) );
+        this.SetVisitor( 'KeyV',                    elem => this.Visit_KeyV(elem) );
+        this.SetVisitor( 'KeyW',                    elem => this.Visit_KeyW(elem) );
+        this.SetVisitor( 'KeyX',                    elem => this.Visit_KeyX(elem) );
+        this.SetVisitor( 'KeyY',                    elem => this.Visit_KeyY(elem) );
+        this.SetVisitor( 'KeyZ',                    elem => this.Visit_KeyZ(elem) );
+
+        this.SetVisitor( 'Numpad0',                 elem => this.Visit_Numpad0(elem) );
+        this.SetVisitor( 'Numpad1',                 elem => this.Visit_Numpad1(elem) );
+        this.SetVisitor( 'Numpad2',                 elem => this.Visit_Numpad2(elem) );
+        this.SetVisitor( 'Numpad3',                 elem => this.Visit_Numpad3(elem) );
+        this.SetVisitor( 'Numpad4',                 elem => this.Visit_Numpad4(elem) );
+        this.SetVisitor( 'Numpad5',                 elem => this.Visit_Numpad5(elem) );
+        this.SetVisitor( 'Numpad6',                 elem => this.Visit_Numpad6(elem) );
+        this.SetVisitor( 'Numpad7',                 elem => this.Visit_Numpad7(elem) );
+        this.SetVisitor( 'Numpad8',                 elem => this.Visit_Numpad8(elem) );
+        this.SetVisitor( 'Numpad9',                 elem => this.Visit_Numpad9(elem) );
+        this.SetVisitor( 'NumpadMultiply',          elem => this.Visit_NumpadMultiply(elem) );
+        this.SetVisitor( 'NumpadAdd',               elem => this.Visit_NumpadAdd(elem) );
+        this.SetVisitor( 'NumpadDecimal',           elem => this.Visit_NumpadDecimal(elem) );
+        this.SetVisitor( 'NumpadSubstract',         elem => this.Visit_NumpadSubstract(elem) );
+        this.SetVisitor( 'NumpadDivide',            elem => this.Visit_NumpadDivide(elem) );
+        this.SetVisitor( 'NumLock',                 elem => this.Visit_NumLock(elem) );
+
 
     }
 
@@ -834,18 +928,14 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_KeyPress(elem) {
-
         let code = this.PopChildrenFromStack(elem, ['on_key_press', 'key', 'stmts']);
 
         this.stack.push(`window.addEventListener('keydown', (event) => {
-            var name = event.key;
             var code = event.code;
-            window.alert(code);
             if (code === '${code.key}') {
-              window.alert("Key code Value");
+                ${code.stmts}
             } 
         }, false); `);
-        console.log("hello");
     }
 
     Visit_Callee(elem){
@@ -1199,5 +1289,107 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_Typeof(elem)                      {this.stack.push('typeof');}
     Visit_Console(elem)                     {this.stack.push('window.alert');}
     Visit_Prompt(elem)                      {this.stack.push('prompt');}
-    Visit_OnKey(elem)                       {this.stack.push('');}
+    Visit_OnKey(elem)                       {this.stack.push('0');}
+
+    Visit_Escape(elem)                      {this.stack.push('Escape');}
+    Visit_F1(elem)                          {this.stack.push('F1');}
+    Visit_F2(elem)                          {this.stack.push('F2');}
+    Visit_F3(elem)                          {this.stack.push('F3');}
+    Visit_F4(elem)                          {this.stack.push('F4');}
+    Visit_F5(elem)                          {this.stack.push('F5');}
+    Visit_F6(elem)                          {this.stack.push('F6');}
+    Visit_F7(elem)                          {this.stack.push('F7');}
+    Visit_F8(elem)                          {this.stack.push('F8');}
+    Visit_F9(elem)                          {this.stack.push('F9');}
+    Visit_F10(elem)                         {this.stack.push('F10');}
+    Visit_F11(elem)                         {this.stack.push('F11');}
+    Visit_F12(elem)                         {this.stack.push('F12');}
+    Visit_ScrollLock(elem)                  {this.stack.push('ScrollLock');}
+    Visit_Pause(elem)                       {this.stack.push('Pause');}
+    Visit_Insert(elem)                      {this.stack.push('Insert');}
+    Visit_Backquote(elem)                   {this.stack.push('Backquote');}
+    Visit_Digit0(elem)                      {this.stack.push('Digit0');}
+    Visit_Digit1(elem)                      {this.stack.push('Digit1');}
+    Visit_Digit2(elem)                      {this.stack.push('Digit2');}
+    Visit_Digit3(elem)                      {this.stack.push('Digit3');}
+    Visit_Digit4(elem)                      {this.stack.push('Digit4');}
+    Visit_Digit5(elem)                      {this.stack.push('Digit5');}
+    Visit_Digit6(elem)                      {this.stack.push('Digit6');}
+    Visit_Digit7(elem)                      {this.stack.push('Digit7');}
+    Visit_Digit8(elem)                      {this.stack.push('Digit8');}
+    Visit_Digit9(elem)                      {this.stack.push('Digit9');}   
+    Visit_Minus(elem)                       {this.stack.push('Minus');}
+    Visit_Equal(elem)                       {this.stack.push('Equal');}
+    Visit_Backspace(elem)                   {this.stack.push('Backspace');}
+    Visit_End(elem)                         {this.stack.push('End');}
+    Visit_Home(elem)                        {this.stack.push('Home');}
+    Visit_Tab(elem)                         {this.stack.push('Tab');}
+    Visit_BracketLeft(elem)                 {this.stack.push('BracketLeft');}
+    Visit_BracketRight(elem)                {this.stack.push('BracketRight');}
+    Visit_Backslash(elem)                   {this.stack.push('Backslash');}
+    Visit_CapsLock(elem)                    {this.stack.push('CapsLock');}
+    Visit_Semicolon(elem)                   {this.stack.push('Semicolon');}
+    Visit_Quote(elem)                       {this.stack.push('Quote');}
+    Visit_Enter(elem)                       {this.stack.push('Enter');}
+    Visit_ShiftLeft(elem)                   {this.stack.push('ShiftLeft');}
+    Visit_Comma(elem)                       {this.stack.push('Comma');}
+    Visit_Period(elem)                      {this.stack.push('Period');}
+    Visit_Slash(elem)                       {this.stack.push('Slash');}
+    Visit_ShiftRight(elem)                  {this.stack.push('ShiftRight');}
+    Visit_ControlLeft(elem)                 {this.stack.push('ControlLeft');}
+    Visit_OSLeft(elem)                      {this.stack.push('OSLeft');}
+    Visit_AltLeft(elem)                     {this.stack.push('AltLeft');}
+    Visit_Space(elem)                       {this.stack.push('Space');}
+    Visit_AltRight(elem)                    {this.stack.push('AltRight');}
+    Visit_ContextMenu(elem)                 {this.stack.push('ContextMenu');}
+    Visit_ControlRight(elem)                {this.stack.push('ControlRight');}
+    Visit_Delete(elem)                      {this.stack.push('Delete');}
+    Visit_PageUp(elem)                      {this.stack.push('PageUp');}
+    Visit_PageDown(elem)                    {this.stack.push('PageDown');}
+    Visit_ArrowLeft(elem)                   {this.stack.push('ArrowLeft');}
+    Visit_ArrowUp(elem)                     {this.stack.push('ArrowUp');}
+    Visit_ArrowRight(elem)                  {this.stack.push('ArrowRight');}
+    Visit_ArrowDown(elem)                   {this.stack.push('ArrowDown');}
+    Visit_KeyA(elem)                        {this.stack.push('KeyA');}
+    Visit_KeyB(elem)                        {this.stack.push('KeyB');}
+    Visit_KeyC(elem)                        {this.stack.push('KeyC');}
+    Visit_KeyD(elem)                        {this.stack.push('KeyD');}
+    Visit_KeyE(elem)                        {this.stack.push('KeyE');}
+    Visit_KeyF(elem)                        {this.stack.push('KeyF');}
+    Visit_KeyG(elem)                        {this.stack.push('KeyG');}
+    Visit_KeyH(elem)                        {this.stack.push('KeyH');}
+    Visit_KeyI(elem)                        {this.stack.push('KeyI');}
+    Visit_KeyJ(elem)                        {this.stack.push('KeyJ');}
+    Visit_KeyK(elem)                        {this.stack.push('KeyK');}
+    Visit_KeyL(elem)                        {this.stack.push('KeyL');}
+    Visit_KeyM(elem)                        {this.stack.push('KeyM');}
+    Visit_KeyN(elem)                        {this.stack.push('KeyN');}
+    Visit_KeyO(elem)                        {this.stack.push('KeyO');}
+    Visit_KeyP(elem)                        {this.stack.push('KeyP');}
+    Visit_KeyQ(elem)                        {this.stack.push('KeyQ');}
+    Visit_KeyR(elem)                        {this.stack.push('KeyR');}
+    Visit_KeyS(elem)                        {this.stack.push('KeyS');}
+    Visit_KeyT(elem)                        {this.stack.push('KeyT');}
+    Visit_KeyU(elem)                        {this.stack.push('KeyU');}
+    Visit_KeyV(elem)                        {this.stack.push('KeyV');}
+    Visit_KeyW(elem)                        {this.stack.push('KeyW');}
+    Visit_KeyX(elem)                        {this.stack.push('KeyX');}
+    Visit_KeyY(elem)                        {this.stack.push('KeyY');}
+    Visit_KeyZ(elem)                        {this.stack.push('KeyZ');}
+    Visit_Numpad0(elem)                     {this.stack.push('Numpad0');}
+    Visit_Numpad1(elem)                     {this.stack.push('Numpad1');}
+    Visit_Numpad2(elem)                     {this.stack.push('Numpad2');}
+    Visit_Numpad3(elem)                     {this.stack.push('Numpad3');}
+    Visit_Numpad4(elem)                     {this.stack.push('Numpad4');}
+    Visit_Numpad5(elem)                     {this.stack.push('Numpad5');}
+    Visit_Numpad6(elem)                     {this.stack.push('Numpad6');}
+    Visit_Numpad7(elem)                     {this.stack.push('Numpad7');}
+    Visit_Numpad8(elem)                     {this.stack.push('Numpad8');}
+    Visit_Numpad9(elem)                     {this.stack.push('Numpad9');}
+    Visit_NumpadMultiply(elem)              {this.stack.push('NumpadMultiply');}
+    Visit_NumpadAdd(elem)                   {this.stack.push('NumpadAdd');}
+    Visit_NumpadDecimal(elem)               {this.stack.push('NumpadDecimal');}
+    Visit_NumpadSubstract(elem)             {this.stack.push('NumpadSubstract');}
+    Visit_NumpadDivide(elem)                {this.stack.push('NumpadDivide');}
+    Visit_NumLock(elem)                     {this.stack.push('NumLock');}
 }
