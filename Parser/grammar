@@ -16,8 +16,8 @@ non_terminal {
     binary_logical_expr not_expr
     BOOLEAN_CONST ARRAY_CONST OBJECT_CONST
     ident_list expr_list element_list pair_element_list pair_element
-    math_call string_method_call array_method_call object_method_call function_call print_call input key_press callee
-    keys
+    math_call string_method_call array_method_call object_method_call function_call print_call input callee
+    key_event add_key_press remove_key_press keys
     object_function array_function
     math_abs math_pow math_sqrt math_round math_floor math_ceil math_sin math_cos
     string_method
@@ -43,7 +43,7 @@ terminal {
     concat toUpperCase toLowerCase substring slice 
     typeof
     var let const
-    "on_key_press"
+    "add_on_key_press" "remove_on_key_press"
     Escape F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 ScrollLock Pause Insert
     Backquote Digit0 Digit1 Digit2 Digit3 Digit4 Digit5 Digit6 Digit7 Digit8 Digit9 Minus Equal Backspace End Home
     Tab BracketLeft BracketRight Backslash CapsLock Semicolon Quote Enter ShiftLeft Comma Period Slash ShiftRight
@@ -335,7 +335,7 @@ define call_expr {
         function_call           : "Use a user-defined function as \"name(params);\""
         print_call              : "Use a built-in function to print the value of the given expression (text, number etc.)"
         input                   : "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
-        key_press               : "Do something when a keyboard key of your choice is pressed"
+        key_event               : "Do something when a keyboard key of your choice is pressed"
         type_of                 : "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
     } 
 }
@@ -529,8 +529,19 @@ define input {
     "prompt" LP("(") STRING_CONST(prompt_message) RP(")")
 }
 
-define key_press {
-    "on_key_press" primary_expr("key") stmts("event")
+define key_event {
+    any_of{
+        add_key_press               : "Do something when a keyboard key of your choice is pressed"
+        remove_key_press            : "Remove the event listener from a key, you should have assigned it to a variable"
+    }
+}
+
+define add_key_press {
+    "add_on_key_press" primary_expr("key") stmts("event")
+}
+
+define remove_key_press {
+    "remove_on_key_press" primary_expr("listener")
 }
 
 define keys {

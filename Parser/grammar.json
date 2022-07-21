@@ -936,7 +936,7 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "key_press",
+                    "name": "key_event",
                     "tooltip": "Do something when a keyboard key of your choice is pressed"
                 },
                 {
@@ -2003,11 +2003,26 @@
             ]
         },
         {
-            "name": "key_press",
+            "name": "key_event",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "add_key_press",
+                    "tooltip": "Do something when a keyboard key of your choice is pressed"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "remove_key_press",
+                    "tooltip": "Remove the event listener from a key, you should have assigned it to a variable"
+                }
+            ]
+        },
+        {
+            "name": "add_key_press",
             "all_of": [
                 {
                     "type": "terminal",
-                    "name": "on_key_press"
+                    "name": "add_on_key_press"
                 },
                 {
                     "type": "non_terminal",
@@ -2018,6 +2033,20 @@
                     "type": "non_terminal",
                     "name": "stmts",
                     "alias": "event"
+                }
+            ]
+        },
+        {
+            "name": "remove_key_press",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "remove_on_key_press"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "listener"
                 }
             ]
         },
