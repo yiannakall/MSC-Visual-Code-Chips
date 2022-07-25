@@ -938,7 +938,7 @@ export let config = {
                   {
                       "type": "non_terminal",
                       "name": "key_event",
-                      "tooltip": "Do something when a keyboard key of your choice is pressed"
+                      "tooltip": "Add and remove event listener for a key of your choice"
                   },
                   {
                       "type": "non_terminal",

@@ -42,7 +42,7 @@ terminal {
     delete length
     concat toUpperCase toLowerCase substring slice 
     typeof
-    var let const gei
+    var let const
     "add_on_key_press" "remove_on_key_press"
     Escape F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 ScrollLock Pause Insert
     Backquote Digit0 Digit1 Digit2 Digit3 Digit4 Digit5 Digit6 Digit7 Digit8 Digit9 Minus Equal Backspace End Home
@@ -335,7 +335,7 @@ define call_expr {
         function_call           : "Use a user-defined function as \"name(params);\""
         print_call              : "Use a built-in function to print the value of the given expression (text, number etc.)"
         input                   : "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
-        key_event               : "Do something when a keyboard key of your choice is pressed"
+        key_event               : "Add and remove event listener for a key of your choice"
         type_of                 : "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
     } 
 }
