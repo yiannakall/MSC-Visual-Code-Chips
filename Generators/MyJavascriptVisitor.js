@@ -2,6 +2,7 @@ import { AstVisitor } from "./AstVisitor.js";
 import { assert } from '../Utils/Assert.js';
 import { EditorElementTypes } from '../Editor/EditorElements/EditorElement.js';
 import { ReservedWords } from '../Utils/ReservedWords.js';
+import { PopupWindow } from "../Editor/EditorPopups/PopupWindow.js";
 
 export class MyJavascriptVisitor extends AstVisitor {
 
@@ -597,6 +598,8 @@ export class MyJavascriptVisitor extends AstVisitor {
             assert(false, 'stack is either empty or contains more than 1 element');
     }
 
+
+
     Visit_Program(elem) {
         assert(false);
     }
@@ -914,7 +917,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     //?? na afiso window alert? 
     Visit_PrintCall(elem){
         let code = this.PopChildrenFromStack(elem, ['console', 'lp', 'args', 'rp']);
-
+        popUp.document.write('geia');
         this.stack.push(
             this.HandleSemicolon(elem, `${code.console}${code.lp}${code.args}${code.rp}`)
         );
@@ -1299,7 +1302,7 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     Visit_Math(elem)                        {this.stack.push('Math');}
     Visit_Typeof(elem)                      {this.stack.push('typeof');}
-    Visit_Console(elem)                     {this.stack.push('window.alert');}
+    Visit_Console(elem)                     {this.stack.push(``);}
     Visit_Prompt(elem)                      {this.stack.push('prompt');}
     Visit_AddOnKey(elem)                    {this.stack.push('0');}
     Visit_RemoveOnKey(elem)                 {this.stack.push('0');}
@@ -1406,3 +1409,4 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_NumpadDivide(elem)                {this.stack.push('NumpadDivide');}
     Visit_NumLock(elem)                     {this.stack.push('NumLock');}
 }
+
