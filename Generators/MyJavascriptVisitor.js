@@ -398,7 +398,7 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     PopScopeVars(){
         let vars = this.scopeStack.pop().vars.join(', ');
-
+console.log("geia");
         if (vars)
             vars = `var ${vars};\n`;
 
