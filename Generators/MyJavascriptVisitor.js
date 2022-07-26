@@ -917,7 +917,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     //?? na afiso window alert? 
     Visit_PrintCall(elem){
         let code = this.PopChildrenFromStack(elem, ['console', 'lp', 'args', 'rp']);
-        popUp.document.write('geia');
+
         this.stack.push(
             this.HandleSemicolon(elem, `${code.console}${code.lp}${code.args}${code.rp}`)
         );
@@ -941,7 +941,7 @@ export class MyJavascriptVisitor extends AstVisitor {
                     ${code.stmts}
                 } 
             };
-            window.addEventListener('keydown', f_listener, false);
+            document.getElementById('PopUp').addEventListener('keydown', f_listener, false);
             return f_listener;
         })();
     `);
@@ -1302,7 +1302,7 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     Visit_Math(elem)                        {this.stack.push('Math');}
     Visit_Typeof(elem)                      {this.stack.push('typeof');}
-    Visit_Console(elem)                     {this.stack.push(``);}
+    Visit_Console(elem)                     {this.stack.push(`document.getElementById('PopUpText').append`);}
     Visit_Prompt(elem)                      {this.stack.push('prompt');}
     Visit_AddOnKey(elem)                    {this.stack.push('0');}
     Visit_RemoveOnKey(elem)                 {this.stack.push('0');}

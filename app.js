@@ -37,10 +37,8 @@ $(document).ready(function () {
         ),
     };
 
-    var popUp;
-    function popup(mylink) { 
-        popUp = window.open(mylink, 'Console', 'left=1000, top=500,menubar=no, width=400,height=200,scrollbars=yes'); 
-        popUp.document.write('kalimera\n');
+    function popup() {
+        document.getElementById('PopUp').style.display ='block';
     }
     
     let toJs = (code) => {
@@ -52,7 +50,7 @@ $(document).ready(function () {
         return visitor.GetResult();
     };
 
-    editors['Code Chips'].SetOnExecute(code => {eval(popup(this) + toJs(code))});
+    editors['Code Chips'].SetOnExecute(code => {eval(popup() + toJs(code))});
     editors['Code Chips'].SetOnConvertToJs(code => toJs(code));
 
     let themes = {
