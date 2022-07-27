@@ -37,8 +37,52 @@ $(document).ready(function () {
         ),
     };
 
+
+
     function popup() {
-        document.getElementById('PopUp').style.display ='block';
+        var elem = document.createElement('div');
+        elem.style.cssText = 'position: absolute; width:400px; height:200px; left: 1000px; top: 500px; padding: 10px; background-color:rgb(221, 219, 219); text-align: justify; font-size:12px;';
+        elem.tabIndex = '0';
+        elem.id = 'PopUp';
+        console.log(elem.id)
+
+        var h = document.createElement('h1');
+        h.style.cssText = 'font-family:Roboto; top: 0px; text-align:center';
+        h.innerHTML = 'Output';
+
+        var butt = document.createElement('button');
+        butt.style.cssText = 'position:absolute; top:28px; right:10px';
+        butt.type = "button";
+        butt.onclick = function(){
+            document.getElementById('PopUp').style.display = 'none'
+        }
+        
+        var im = document.createElement('img');
+        im.style.height = "10px";
+        im.src = "/Images/Crystal_button_cancel.svg.png";
+        butt.appendChild(im)
+        
+        var run = document.createElement('span')
+        run.style.cssText = 'font-family:Roboto; font-size:17px;'
+        run.innerHTML = "Program is running..<br>"
+        
+        elem.appendChild(h);
+        elem.appendChild(butt);
+        elem.appendChild(run);
+        document.body.appendChild(elem);
+       
+        //     <span id="PopUpText" style="font-family:Roboto; font-size:15px;"></SPAN>
+        // </DIV>
+    }
+
+    function closePopUp() {
+        console.log("geoa")
+        $('#PopUp').hide();
+        //document.getElementById('PopUpText').innerHTML ='';
+    }
+
+    function output(args) {
+        document.getElementById("PopUpText").innerHTML += '<br>'+ args;
     }
     
     let toJs = (code) => {

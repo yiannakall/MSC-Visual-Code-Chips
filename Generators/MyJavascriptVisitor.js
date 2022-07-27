@@ -933,17 +933,14 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     Visit_AddKeyPress(elem) {
         let code = this.PopChildrenFromStack(elem, ['on_key_press', 'key', 'stmts']);
+        $('#PopUp').focus();
 
-        this.stack.push(`(() => {
-            let f_listener = (event) => {
-                const code = event.code;
-                if (code === '${code.key}') {
-                    ${code.stmts}
-                } 
-            };
-            document.getElementById('PopUp').addEventListener('keydown', f_listener, false);
-            return f_listener;
-        })();
+        this.stack.push(`$('#PopUp').on('keydown',function(event) {
+            const code = event.code;
+            if (code === '${code.key}') {
+                ${code.stmts}
+            } 
+        });
     `);
     }
 
@@ -1302,7 +1299,7 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     Visit_Math(elem)                        {this.stack.push('Math');}
     Visit_Typeof(elem)                      {this.stack.push('typeof');}
-    Visit_Console(elem)                     {this.stack.push(`document.getElementById('PopUpText').append`);}
+    Visit_Console(elem)                     {this.stack.push(`output`);}
     Visit_Prompt(elem)                      {this.stack.push('prompt');}
     Visit_AddOnKey(elem)                    {this.stack.push('0');}
     Visit_RemoveOnKey(elem)                 {this.stack.push('0');}
