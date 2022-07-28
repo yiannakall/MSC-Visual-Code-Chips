@@ -37,6 +37,64 @@ $(document).ready(function () {
         ),
     };
 
+
+    var popupNum = 1;
+    function popup() {
+        var elem = document.createElement('div');
+        elem.style.cssText = 'border-radius: 25px; position: absolute; width:400px; height:200px; left: 1000px; top: 500px; padding: 10px; background-color:rgb(221, 219, 219); text-align: justify; font-size:12px;';
+        elem.tabIndex = '0';
+        elem.id = 'PopUp' + popupNum;
+
+        var h = document.createElement('h1');
+        h.style.cssText = 'font-family:Roboto; top: 0px; text-align:center';
+        h.innerHTML = 'Output ' +popupNum;
+
+        var butt = document.createElement('button');
+        butt.style.cssText = 'position:absolute; top:28px; right:10px';
+        butt.type = "button";
+        butt.id = popupNum;
+        butt.onclick = function(){ $('#'+'PopUp' + butt.id).hide();}
+        
+        var im = document.createElement('img');
+        im.style.height = "10px";
+        im.src = "/Images/Crystal_button_cancel.svg.png";
+        im.style.color = "black";
+        butt.appendChild(im)
+        
+        var run = document.createElement('span')
+        run.style.cssText = 'font-family:Roboto; font-size:17px;'
+        run.innerHTML = "Program is running..<br>"
+
+        var text = document.createElement('span')
+        text.style.cssText = 'font-family:Roboto; font-size:15px;'
+        text.id = 'PopUpText' + popupNum;
+        
+        elem.appendChild(h);
+        elem.appendChild(butt);
+        elem.appendChild(run);
+        elem.appendChild(text);
+        document.body.appendChild(elem);
+        popupNum++;
+    }
+
+    function output(args) {
+        var pName = 'PopUpText' + (popupNum-1)
+        var content = '<br>'+ args
+        $('#'+pName).html(content)
+    }
+    
+    function addOnKey(key,stmts){
+        var popName = 'PopUp'+popupNum-1;
+        $('#'+ popName).focus();
+
+        $('#'+ popName).on('keydown',function(event) {
+            const code = event.code;
+            if (code === key) {
+                stmts
+            } 
+        })
+    }
+
     let toJs = (code) => {
         let visitor = new MyJavascriptVisitor();
         let host = new AstHost(visitor);
@@ -46,8 +104,8 @@ $(document).ready(function () {
         return visitor.GetResult();
     };
 
-    editors['Code Chips'].SetOnExecute( code => eval(toJs(code)) );
-    editors['Code Chips'].SetOnConvertToJs( code => toJs(code) );
+    editors['Code Chips'].SetOnExecute(code => {eval(popup() + toJs(code))});
+    editors['Code Chips'].SetOnConvertToJs(code => toJs(code));
 
     let themes = {
         'Code Chips': { 

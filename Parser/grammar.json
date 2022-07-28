@@ -926,6 +926,19 @@
                 },
                 {
                     "type": "non_terminal",
+<<<<<<< HEAD
+=======
+                    "name": "input",
+                    "tooltip": "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "key_event",
+                    "tooltip": "Add and remove event listener for a key of your choice"
+                },
+                {
+                    "type": "non_terminal",
+>>>>>>> 4bc357e44a62295e45b7c447ec8584a99ab22fe5
                     "name": "type_of",
                     "tooltip": "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
                 }

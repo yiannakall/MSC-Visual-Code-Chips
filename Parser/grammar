@@ -324,7 +324,9 @@ define call_expr {
         object_method_call      : "Use a built-in object method"
         function_call           : "Use a user-defined function as \"name(params);\""
         print_call              : "Use a built-in function to print the value of the given expression (text, number etc.)"
-        type_of                  : "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
+        input                   : "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
+        key_event               : "Add and remove event listener for a key of your choice"
+        type_of                 : "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
     } 
 }
 

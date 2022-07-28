@@ -2,6 +2,7 @@ import { AstVisitor } from "./AstVisitor.js";
 import { assert } from '../Utils/Assert.js';
 import { EditorElementTypes } from '../Editor/EditorElements/EditorElement.js';
 import { ReservedWords } from '../Utils/ReservedWords.js';
+import { PopupWindow } from "../Editor/EditorPopups/PopupWindow.js";
 
 export class MyJavascriptVisitor extends AstVisitor {
 
@@ -280,7 +281,6 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     PopScopeVars(){
         let vars = this.scopeStack.pop().vars.join(', ');
-
         if (vars)
             vars = `var ${vars};\n`;
 
@@ -477,6 +477,8 @@ export class MyJavascriptVisitor extends AstVisitor {
         else 
             assert(false, 'stack is either empty or contains more than 1 element');
     }
+
+
 
     Visit_Program(elem) {
         assert(false);
@@ -793,9 +795,27 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_PrintCall(elem){
         let code = this.PopChildrenFromStack(elem, ['console', 'lp', 'args', 'rp']);
 
+        this.stack.push(`${code.console}${code.lp}${code.args}${code.rp}`);
+    }
+
+    Visit_Input(elem){
+        let code = this.PopChildrenFromStack(elem,['prompt', 'lp', 'string', 'rp']);
+
         this.stack.push(
-            this.HandleSemicolon(elem, `${code.console}${code.lp}${code.args}${code.rp}`)
-        );
+            this.HandleSemicolon(elem, `${code.prompt}${code.lp}${code.string}${code.rp}`)
+        )
+    }
+
+    Visit_AddKeyPress(elem) {
+        let code = this.PopChildrenFromStack(elem, ['keypress', 'key', 'stmts']);
+
+        this.stack.push(`${code.keypress}("${code.key}", ${code.stmts})`)
+    }
+
+    Visit_RemoveKeyPress(elem){
+        let code = this.PopChildrenFromStack(elem, ['on_key_press', 'listener']);
+
+        this.stack.push(`window.removeEventListener('keydown',${code.listener},false)`);
     }
 
     Visit_Callee(elem){
@@ -1146,5 +1166,111 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     Visit_Math(elem)                        {this.stack.push('Math');}
     Visit_Typeof(elem)                      {this.stack.push('typeof');}
-    Visit_Console(elem)                     {this.stack.push('window.alert')}
+    Visit_Console(elem)                     {this.stack.push(`output`);}
+    Visit_Prompt(elem)                      {this.stack.push('prompt');}
+    Visit_AddOnKey(elem)                    {this.stack.push('addOnKey');}
+    Visit_RemoveOnKey(elem)                 {this.stack.push('0');}
+
+    Visit_Escape(elem)                      {this.stack.push('Escape');}
+    Visit_F1(elem)                          {this.stack.push('F1');}
+    Visit_F2(elem)                          {this.stack.push('F2');}
+    Visit_F3(elem)                          {this.stack.push('F3');}
+    Visit_F4(elem)                          {this.stack.push('F4');}
+    Visit_F5(elem)                          {this.stack.push('F5');}
+    Visit_F6(elem)                          {this.stack.push('F6');}
+    Visit_F7(elem)                          {this.stack.push('F7');}
+    Visit_F8(elem)                          {this.stack.push('F8');}
+    Visit_F9(elem)                          {this.stack.push('F9');}
+    Visit_F10(elem)                         {this.stack.push('F10');}
+    Visit_F11(elem)                         {this.stack.push('F11');}
+    Visit_F12(elem)                         {this.stack.push('F12');}
+    Visit_ScrollLock(elem)                  {this.stack.push('ScrollLock');}
+    Visit_Pause(elem)                       {this.stack.push('Pause');}
+    Visit_Insert(elem)                      {this.stack.push('Insert');}
+    Visit_Backquote(elem)                   {this.stack.push('Backquote');}
+    Visit_Digit0(elem)                      {this.stack.push('Digit0');}
+    Visit_Digit1(elem)                      {this.stack.push('Digit1');}
+    Visit_Digit2(elem)                      {this.stack.push('Digit2');}
+    Visit_Digit3(elem)                      {this.stack.push('Digit3');}
+    Visit_Digit4(elem)                      {this.stack.push('Digit4');}
+    Visit_Digit5(elem)                      {this.stack.push('Digit5');}
+    Visit_Digit6(elem)                      {this.stack.push('Digit6');}
+    Visit_Digit7(elem)                      {this.stack.push('Digit7');}
+    Visit_Digit8(elem)                      {this.stack.push('Digit8');}
+    Visit_Digit9(elem)                      {this.stack.push('Digit9');}   
+    Visit_Minus(elem)                       {this.stack.push('Minus');}
+    Visit_Equal(elem)                       {this.stack.push('Equal');}
+    Visit_Backspace(elem)                   {this.stack.push('Backspace');}
+    Visit_End(elem)                         {this.stack.push('End');}
+    Visit_Home(elem)                        {this.stack.push('Home');}
+    Visit_Tab(elem)                         {this.stack.push('Tab');}
+    Visit_BracketLeft(elem)                 {this.stack.push('BracketLeft');}
+    Visit_BracketRight(elem)                {this.stack.push('BracketRight');}
+    Visit_Backslash(elem)                   {this.stack.push('Backslash');}
+    Visit_CapsLock(elem)                    {this.stack.push('CapsLock');}
+    Visit_Semicolon(elem)                   {this.stack.push('Semicolon');}
+    Visit_Quote(elem)                       {this.stack.push('Quote');}
+    Visit_Enter(elem)                       {this.stack.push('Enter');}
+    Visit_ShiftLeft(elem)                   {this.stack.push('ShiftLeft');}
+    Visit_Comma(elem)                       {this.stack.push('Comma');}
+    Visit_Period(elem)                      {this.stack.push('Period');}
+    Visit_Slash(elem)                       {this.stack.push('Slash');}
+    Visit_ShiftRight(elem)                  {this.stack.push('ShiftRight');}
+    Visit_ControlLeft(elem)                 {this.stack.push('ControlLeft');}
+    Visit_OSLeft(elem)                      {this.stack.push('OSLeft');}
+    Visit_AltLeft(elem)                     {this.stack.push('AltLeft');}
+    Visit_Space(elem)                       {this.stack.push('Space');}
+    Visit_AltRight(elem)                    {this.stack.push('AltRight');}
+    Visit_ContextMenu(elem)                 {this.stack.push('ContextMenu');}
+    Visit_ControlRight(elem)                {this.stack.push('ControlRight');}
+    Visit_Delete(elem)                      {this.stack.push('Delete');}
+    Visit_PageUp(elem)                      {this.stack.push('PageUp');}
+    Visit_PageDown(elem)                    {this.stack.push('PageDown');}
+    Visit_ArrowLeft(elem)                   {this.stack.push('ArrowLeft');}
+    Visit_ArrowUp(elem)                     {this.stack.push('ArrowUp');}
+    Visit_ArrowRight(elem)                  {this.stack.push('ArrowRight');}
+    Visit_ArrowDown(elem)                   {this.stack.push('ArrowDown');}
+    Visit_KeyA(elem)                        {this.stack.push('KeyA');}
+    Visit_KeyB(elem)                        {this.stack.push('KeyB');}
+    Visit_KeyC(elem)                        {this.stack.push('KeyC');}
+    Visit_KeyD(elem)                        {this.stack.push('KeyD');}
+    Visit_KeyE(elem)                        {this.stack.push('KeyE');}
+    Visit_KeyF(elem)                        {this.stack.push('KeyF');}
+    Visit_KeyG(elem)                        {this.stack.push('KeyG');}
+    Visit_KeyH(elem)                        {this.stack.push('KeyH');}
+    Visit_KeyI(elem)                        {this.stack.push('KeyI');}
+    Visit_KeyJ(elem)                        {this.stack.push('KeyJ');}
+    Visit_KeyK(elem)                        {this.stack.push('KeyK');}
+    Visit_KeyL(elem)                        {this.stack.push('KeyL');}
+    Visit_KeyM(elem)                        {this.stack.push('KeyM');}
+    Visit_KeyN(elem)                        {this.stack.push('KeyN');}
+    Visit_KeyO(elem)                        {this.stack.push('KeyO');}
+    Visit_KeyP(elem)                        {this.stack.push('KeyP');}
+    Visit_KeyQ(elem)                        {this.stack.push('KeyQ');}
+    Visit_KeyR(elem)                        {this.stack.push('KeyR');}
+    Visit_KeyS(elem)                        {this.stack.push('KeyS');}
+    Visit_KeyT(elem)                        {this.stack.push('KeyT');}
+    Visit_KeyU(elem)                        {this.stack.push('KeyU');}
+    Visit_KeyV(elem)                        {this.stack.push('KeyV');}
+    Visit_KeyW(elem)                        {this.stack.push('KeyW');}
+    Visit_KeyX(elem)                        {this.stack.push('KeyX');}
+    Visit_KeyY(elem)                        {this.stack.push('KeyY');}
+    Visit_KeyZ(elem)                        {this.stack.push('KeyZ');}
+    Visit_Numpad0(elem)                     {this.stack.push('Numpad0');}
+    Visit_Numpad1(elem)                     {this.stack.push('Numpad1');}
+    Visit_Numpad2(elem)                     {this.stack.push('Numpad2');}
+    Visit_Numpad3(elem)                     {this.stack.push('Numpad3');}
+    Visit_Numpad4(elem)                     {this.stack.push('Numpad4');}
+    Visit_Numpad5(elem)                     {this.stack.push('Numpad5');}
+    Visit_Numpad6(elem)                     {this.stack.push('Numpad6');}
+    Visit_Numpad7(elem)                     {this.stack.push('Numpad7');}
+    Visit_Numpad8(elem)                     {this.stack.push('Numpad8');}
+    Visit_Numpad9(elem)                     {this.stack.push('Numpad9');}
+    Visit_NumpadMultiply(elem)              {this.stack.push('NumpadMultiply');}
+    Visit_NumpadAdd(elem)                   {this.stack.push('NumpadAdd');}
+    Visit_NumpadDecimal(elem)               {this.stack.push('NumpadDecimal');}
+    Visit_NumpadSubstract(elem)             {this.stack.push('NumpadSubstract');}
+    Visit_NumpadDivide(elem)                {this.stack.push('NumpadDivide');}
+    Visit_NumLock(elem)                     {this.stack.push('NumLock');}
 }
+
