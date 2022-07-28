@@ -918,9 +918,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_PrintCall(elem){
         let code = this.PopChildrenFromStack(elem, ['console', 'lp', 'args', 'rp']);
 
-        this.stack.push(
-            this.HandleSemicolon(elem, `${code.console}${code.lp}${code.args}${code.rp}`)
-        );
+        this.stack.push(`${code.console}${code.lp}${code.args}${code.rp}`);
     }
 
     Visit_Input(elem){
@@ -932,16 +930,9 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_AddKeyPress(elem) {
-        let code = this.PopChildrenFromStack(elem, ['on_key_press', 'key', 'stmts']);
-        $('#PopUp').focus();
+        let code = this.PopChildrenFromStack(elem, ['keypress', 'key', 'stmts']);
 
-        this.stack.push(`$('#PopUp').on('keydown',function(event) {
-            const code = event.code;
-            if (code === '${code.key}') {
-                ${code.stmts}
-            } 
-        });
-    `);
+        this.stack.push(`${code.keypress}("${code.key}", ${code.stmts})`)
     }
 
     Visit_RemoveKeyPress(elem){
@@ -1301,7 +1292,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_Typeof(elem)                      {this.stack.push('typeof');}
     Visit_Console(elem)                     {this.stack.push(`output`);}
     Visit_Prompt(elem)                      {this.stack.push('prompt');}
-    Visit_AddOnKey(elem)                    {this.stack.push('0');}
+    Visit_AddOnKey(elem)                    {this.stack.push('addOnKey');}
     Visit_RemoveOnKey(elem)                 {this.stack.push('0');}
 
     Visit_Escape(elem)                      {this.stack.push('Escape');}
