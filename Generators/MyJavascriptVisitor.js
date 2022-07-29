@@ -932,7 +932,11 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_AddKeyPress(elem) {
         let code = this.PopChildrenFromStack(elem, ['keypress', 'key', 'stmts']);
 
-        this.stack.push(`${code.keypress}("${code.key}", ${code.stmts})`)
+        this.stack.push(`$('#'+ popName).on('keydown',function(event) {
+            const code = event.code;
+            if (code === key) {
+                stmts
+            } ${code.keypress}("${code.key}", ${code.stmts})`)
     }
 
     Visit_RemoveKeyPress(elem){
