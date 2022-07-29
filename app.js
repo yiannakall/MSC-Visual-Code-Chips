@@ -79,7 +79,7 @@ $(document).ready(function () {
 
     function output(args) {
         var pName = 'PopUpText' + (popupNum-1)
-        var content = '<br>'+ args
+        var content = '<br>'+ args;
         $('#'+pName).html(content)
     }
     
