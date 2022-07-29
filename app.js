@@ -75,7 +75,6 @@ $(document).ready(function () {
         elem.appendChild(text);
         document.body.appendChild(elem);
         popupNum++;
-        console.log("hi");
     }
 
     function output(args) {
