@@ -5,6 +5,7 @@ import { config as javaClassesConfig } from './javaClassDef.js'
 import { MyJavascriptVisitor } from './Generators/MyJavascriptVisitor.js';
 import { AstHost } from './Generators/AstHost.js';
 
+var popupNum = 1;
 $(document).ready(function () {
 
     $.fn.textWidth = function (text, font) {
@@ -38,10 +39,9 @@ $(document).ready(function () {
     };
 
 
-    var popupNum = 1;
     function popup() {
         var elem = document.createElement('div');
-        elem.style.cssText = 'border-radius: 25px; position: absolute; width:400px; height:200px; left: 1000px; top: 500px; padding: 10px; background-color:rgb(221, 219, 219); text-align: justify; font-size:12px;';
+        elem.style.cssText = 'overflow: auto; border-radius: 25px; position: absolute; width:400px; height:200px; left: 50%; top: 50%; padding: 10px; background-color:rgb(221, 219, 219); text-align: justify; font-size:12px;';
         elem.tabIndex = '0';
         elem.id = 'PopUp' + popupNum;
 
@@ -58,7 +58,7 @@ $(document).ready(function () {
         var im = document.createElement('img');
         im.style.height = "10px";
         im.src = "/Images/Crystal_button_cancel.svg.png";
-        im.style.color = "black";
+        im.style.filter= "grayscale(100%)"
         butt.appendChild(im)
         
         var run = document.createElement('span')
@@ -68,7 +68,34 @@ $(document).ready(function () {
         var text = document.createElement('span')
         text.style.cssText = 'font-family:Roboto; font-size:15px;'
         text.id = 'PopUpText' + popupNum;
-        
+
+        var isMouseDown,initX,initY,height = elem.offsetHeight,width = elem.offsetWidth;
+
+        elem.addEventListener('mousedown', function(e) {
+            isMouseDown = true;
+            document.body.classList.add('no-select');
+            initX = e.offsetX;
+            initY = e.offsetY;
+        })
+
+        document.addEventListener('mousemove', function(e) {
+            if (isMouseDown) {
+                var cx = e.clientX - initX,
+                    cy = e.clientY - initY;
+                if (cx < 0) { cx = 0;}
+                if (cy < 0) { cy = 0; }
+                if (window.innerWidth - e.clientX + initX < width) { cx = window.innerWidth - width;}
+                if (e.clientY > window.innerHeight - height+ initY) {cy = window.innerHeight - height;}
+                elem.style.left = cx + 'px';
+                elem.style.top = cy + 'px';
+            }
+        })
+
+        elem.addEventListener('mouseup', function() {
+            isMouseDown = false;
+            document.body.classList.remove('no-select');
+        })
+
         elem.appendChild(h);
         elem.appendChild(butt);
         elem.appendChild(run);
@@ -79,24 +106,13 @@ $(document).ready(function () {
 
     function output(args) {
         var pName = 'PopUpText' + (popupNum-1)
-        var content = '<br>'+ args
+        var prev = $('#'+pName).html()
+        var content = prev + '<br>'+ args;
         $('#'+pName).html(content)
     }
     
-    function addOnKey(key,stmts){
-        var popName = 'PopUp'+popupNum-1;
-        $('#'+ popName).focus();
-
-        $('#'+ popName).on('keydown',function(event) {
-            const code = event.code;
-            if (code === key) {
-                stmts
-            } 
-        })
-    }
-
     let toJs = (code) => {
-        let visitor = new MyJavascriptVisitor();
+        let visitor = new MyJavascriptVisitor(popupNum);
         let host = new AstHost(visitor);
 
         host.Accept(code);
