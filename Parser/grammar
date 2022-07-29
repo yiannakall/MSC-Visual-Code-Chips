@@ -16,8 +16,7 @@ non_terminal {
     binary_logical_expr not_expr
     BOOLEAN_CONST ARRAY_CONST OBJECT_CONST
     ident_list expr_list element_list pair_element_list pair_element
-    math_call string_method_call array_method_call object_method_call function_call print_call input callee
-    key_event add_key_press remove_key_press keys
+    math_call string_method_call array_method_call object_method_call function_call print_call callee
     object_function array_function
     math_abs math_pow math_sqrt math_round math_floor math_ceil math_sin math_cos
     string_method
@@ -36,20 +35,13 @@ terminal {
     true false
     if else while for break continue return
     function
-    "Math" "console.log" "prompt"
+    "Math" "console.log"
     abs pow sqrt round floor ceil sin cos 
     push pop set join tostring
     delete length
     concat toUpperCase toLowerCase substring slice 
     typeof
     var let const
-    "add_on_key_press" "remove_on_key_press"
-    Escape F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 ScrollLock Pause Insert
-    Backquote Digit0 Digit1 Digit2 Digit3 Digit4 Digit5 Digit6 Digit7 Digit8 Digit9 Minus Equal Backspace End Home
-    Tab BracketLeft BracketRight Backslash CapsLock Semicolon Quote Enter ShiftLeft Comma Period Slash ShiftRight
-    ControlLeft OSLeft AltLeft Space AltRight ContextMenu ControlRight Delete PageUp PageDown ArrowLeft ArrowUp ArrowRight ArrowDown
-    KeyA KeyB KeyC KeyD KeyE KeyF KeyG KeyH KeyI KeyJ KeyK KeyL KeyM KeyN KeyO KeyR KeyS KeyT KeyU KeyV KeyW KeyX KeyY KeyZ
-    Numpad0 Numpad1 Numpad2 Numpad3 Numpad4 Numpad5 Numpad6 Numpad7 Numpad8 Numpad9 NumpadMultiply NumpadAdd NumpadDecimal NumpadSubstract NumpadDivide NumLock
 }
 
 define program {
@@ -96,7 +88,6 @@ define expr {
         primary_expr            : "An identifier or a constant"
     }
 }
-
 
 define arith_expr {
     any_of {
@@ -222,7 +213,6 @@ define primary_expr {
     any_of {
         variable                    : "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
         consts                      : "All const values"
-        keys                        : "All keyboard keys"
         object_get                  : "Get an element by its property name in the object"
         array_get                   : "Get an element by its position in the array"
         new_array                   : "Define a new array"
@@ -476,7 +466,7 @@ define object_method_call {
 define object_get {
     any_of{
         object_get_dot                  : "Get with syntax objectName.property"
-        object_get_sq                   : "Get with syntax objectName[\"property\"], property should be a string"
+        object_get_sq                   : "Get with syntax objectName[\"property\"]"
     }
 }
 
@@ -523,36 +513,6 @@ define function_call {
 
 define print_call {
     "console.log" LP("(") expr_list RP(")")
-}
-
-define input {
-    "prompt" LP("(") STRING_CONST(prompt_message) RP(")")
-}
-
-define key_event {
-    any_of{
-        add_key_press               : "Do something when a keyboard key of your choice is pressed"
-        remove_key_press            : "Remove the event listener from a key, you should have assigned it to a variable"
-    }
-}
-
-define add_key_press {
-    "add_on_key_press" primary_expr("key") stmts("event")
-}
-
-define remove_key_press {
-    "remove_on_key_press" primary_expr("listener")
-}
-
-define keys {
-    any_of {
-        Escape F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 ScrollLock Pause Insert
-        Backquote Digit0 Digit1 Digit2 Digit3 Digit4 Digit5 Digit6 Digit7 Digit8 Digit9 Minus Equal Backspace End Home
-        Tab BracketLeft BracketRight Backslash CapsLock Semicolon Quote Enter ShiftLeft Comma Period Slash ShiftRight
-        ControlLeft OSLeft AltLeft Space AltRight ContextMenu ControlRight Delete PageUp PageDown ArrowLeft ArrowUp ArrowRight ArrowDown
-        KeyA KeyB KeyC KeyD KeyE KeyF KeyG KeyH KeyI KeyJ KeyK KeyL KeyM KeyN KeyO KeyR KeyS KeyT KeyU KeyV KeyW KeyX KeyY KeyZ
-        Numpad0 Numpad1 Numpad2 Numpad3 Numpad4 Numpad5 Numpad6 Numpad7 Numpad8 Numpad9 NumpadMultiply NumpadAdd NumpadDecimal NumpadSubstract NumpadDivide NumLock
-    }
 }
 
 define type_of {

@@ -11,7 +11,6 @@ export class MyJavascriptVisitor extends AstVisitor {
        {
            args: [],
            vars: [],
-           decl_vars:[],
            funcs: []
        } 
     ];
@@ -53,7 +52,6 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     currTabs = 0;
     currTabStr = '';
-    day = new Date().toLocaleString('en-GB', { timeZone: 'Europe/Athens' });
 
     IncreaseTabs(){
         this.currTabs++;
@@ -146,9 +144,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'object_method_call',      elem => this.Visit_ObjectMethodCall(elem) );
         this.SetVisitor( 'function_call',           elem => this.Visit_FunctionCall(elem) );
         this.SetVisitor( 'print_call',              elem => this.Visit_PrintCall(elem) );
-        this.SetVisitor( 'input',                   elem => this.Visit_Input(elem) );
-        this.SetVisitor( 'add_key_press',           elem => this.Visit_AddKeyPress(elem) );
-        this.SetVisitor( 'remove_key_press',        elem => this.Visit_RemoveKeyPress(elem) );
         this.SetVisitor( 'callee',                  elem => this.Visit_Callee(elem) );
         this.SetVisitor( 'object_function',         elem => this.Visit_ObjectFunction(elem) );
         this.SetVisitor( 'array_function',          elem => this.Visit_ArrayFunction(elem) );
@@ -271,126 +266,13 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'Math',                    elem => this.Visit_Math(elem) );
         this.SetVisitor( 'typeof',                  elem => this.Visit_Typeof(elem) );
         this.SetVisitor( 'console.log',             elem => this.Visit_Console(elem) );
-        this.SetVisitor( 'prompt',                  elem => this.Visit_Prompt(elem) );
-        this.SetVisitor( 'add_on_key_press',        elem => this.Visit_AddOnKey(elem) );
-        this.SetVisitor( 'remove_on_key_press',     elem => this.Visit_RemoveOnKey(elem) ); 
-
-        this.SetVisitor( 'Escape',                  elem => this.Visit_Escape(elem) );
-        this.SetVisitor( 'F1',                      elem => this.Visit_F1(elem) );
-        this.SetVisitor( 'F2',                      elem => this.Visit_F2(elem) );
-        this.SetVisitor( 'F3',                      elem => this.Visit_F3(elem) );
-        this.SetVisitor( 'F4',                      elem => this.Visit_F4(elem) );
-        this.SetVisitor( 'F5',                      elem => this.Visit_F5(elem) );
-        this.SetVisitor( 'F6',                      elem => this.Visit_F6(elem) );
-        this.SetVisitor( 'F7',                      elem => this.Visit_F7(elem) );
-        this.SetVisitor( 'F8',                      elem => this.Visit_F8(elem) );
-        this.SetVisitor( 'F9',                      elem => this.Visit_F9(elem) );
-        this.SetVisitor( 'F10',                     elem => this.Visit_F10(elem) );
-        this.SetVisitor( 'F11',                     elem => this.Visit_F11(elem) );
-        this.SetVisitor( 'F12',                     elem => this.Visit_F12(elem) );
-        this.SetVisitor( 'ScrollLock',              elem => this.Visit_ScrollLock(elem) );
-        this.SetVisitor( 'Pause',                   elem => this.Visit_Pause(elem) );
-        this.SetVisitor( 'Insert',                  elem => this.Visit_Insert(elem) );
-
-        this.SetVisitor( 'Backquote',               elem => this.Visit_Backquote(elem) );
-        this.SetVisitor( 'Digit0',                  elem => this.Visit_Digit0(elem) );
-        this.SetVisitor( 'Digit1',                  elem => this.Visit_Digit1(elem) );
-        this.SetVisitor( 'Digit2',                  elem => this.Visit_Digit2(elem) );
-        this.SetVisitor( 'Digit3',                  elem => this.Visit_Digit3(elem) );
-        this.SetVisitor( 'Digit4',                  elem => this.Visit_Digit4(elem) );
-        this.SetVisitor( 'Digit5',                  elem => this.Visit_Digit5(elem) );
-        this.SetVisitor( 'Digit6',                  elem => this.Visit_Digit6(elem) );
-        this.SetVisitor( 'Digit7',                  elem => this.Visit_Digit7(elem) );
-        this.SetVisitor( 'Digit8',                  elem => this.Visit_Digit8(elem) );
-        this.SetVisitor( 'Digit9',                  elem => this.Visit_Digit9(elem) );
-        this.SetVisitor( 'Minus',                   elem => this.Visit_Minus(elem) );
-        this.SetVisitor( 'Equal',                   elem => this.Visit_Equal(elem) );
-        this.SetVisitor( 'Backspace',               elem => this.Visit_Backspace(elem) );
-        this.SetVisitor( 'End',                     elem => this.Visit_End(elem) );
-        this.SetVisitor( 'Home',                    elem => this.Visit_Home(elem) );
-
-        this.SetVisitor( 'Tab',                     elem => this.Visit_Tab(elem) );
-        this.SetVisitor( 'BracketLeft',             elem => this.Visit_BracketLeft(elem) );
-        this.SetVisitor( 'BracketRight',            elem => this.Visit_BracketRight(elem) );
-        this.SetVisitor( 'Backslash',               elem => this.Visit_Backslash(elem) );
-        this.SetVisitor( 'CapsLock',                elem => this.Visit_CapsLock(elem) );
-        this.SetVisitor( 'Semicolon',               elem => this.Visit_Semicolon(elem) );
-        this.SetVisitor( 'Quote',                   elem => this.Visit_Quote(elem) );
-        this.SetVisitor( 'Enter',                   elem => this.Visit_Enter(elem) );
-        this.SetVisitor( 'ShiftLeft',               elem => this.Visit_ShiftLeft(elem) );
-        this.SetVisitor( 'Comma',                   elem => this.Visit_Comma(elem) );
-        this.SetVisitor( 'Period',                  elem => this.Visit_Period(elem) );
-        this.SetVisitor( 'Slash',                   elem => this.Visit_Slash(elem) );
-        this.SetVisitor( 'ShiftRight',              elem => this.Visit_ShiftRight(elem) );
-
-        this.SetVisitor( 'ControlLeft',             elem => this.Visit_ControlLeft(elem) );
-        this.SetVisitor( 'OSLeft',                  elem => this.Visit_OSLeft(elem) );
-        this.SetVisitor( 'AltLeft',                 elem => this.Visit_AltLeft(elem) );
-        this.SetVisitor( 'Space',                   elem => this.Visit_Space(elem) );
-        this.SetVisitor( 'AltRight',                elem => this.Visit_AltRight(elem) );
-        this.SetVisitor( 'ContextMenu',             elem => this.Visit_ContextMenu(elem) );
-        this.SetVisitor( 'ControlRight',            elem => this.Visit_ControlRight(elem) );
-        this.SetVisitor( 'Delete',                  elem => this.Visit_Delete(elem) );
-        this.SetVisitor( 'PageUp',                  elem => this.Visit_PageUp(elem) );
-        this.SetVisitor( 'PageDown',                elem => this.Visit_PageDown(elem) );
-        this.SetVisitor( 'ArrowLeft',               elem => this.Visit_ArrowLeft(elem) );
-        this.SetVisitor( 'ArrowUp',                 elem => this.Visit_ArrowUp(elem) );
-        this.SetVisitor( 'ArrowRight',              elem => this.Visit_ArrowRight(elem) );
-        this.SetVisitor( 'ArrowDown',               elem => this.Visit_ArrowDown(elem) );
-
-        this.SetVisitor( 'KeyA',                    elem => this.Visit_KeyA(elem) );
-        this.SetVisitor( 'KeyB',                    elem => this.Visit_KeyB(elem) );
-        this.SetVisitor( 'KeyC',                    elem => this.Visit_KeyC(elem) );
-        this.SetVisitor( 'KeyD',                    elem => this.Visit_KeyD(elem) );
-        this.SetVisitor( 'KeyE',                    elem => this.Visit_KeyE(elem) );
-        this.SetVisitor( 'KeyF',                    elem => this.Visit_KeyF(elem) );
-        this.SetVisitor( 'KeyG',                    elem => this.Visit_KeyG(elem) );
-        this.SetVisitor( 'KeyH',                    elem => this.Visit_KeyH(elem) );
-        this.SetVisitor( 'KeyI',                    elem => this.Visit_KeyI(elem) );
-        this.SetVisitor( 'KeyJ',                    elem => this.Visit_KeyJ(elem) );
-        this.SetVisitor( 'KeyK',                    elem => this.Visit_KeyK(elem) );
-        this.SetVisitor( 'KeyL',                    elem => this.Visit_KeyL(elem) );
-        this.SetVisitor( 'KeyM',                    elem => this.Visit_KeyM(elem) );
-        this.SetVisitor( 'KeyN',                    elem => this.Visit_KeyN(elem) );
-        this.SetVisitor( 'KeyO',                    elem => this.Visit_KeyO(elem) );
-        this.SetVisitor( 'KeyP',                    elem => this.Visit_KeyP(elem) );
-        this.SetVisitor( 'KeyQ',                    elem => this.Visit_KeyQ(elem) );
-        this.SetVisitor( 'KeyR',                    elem => this.Visit_KeyR(elem) );
-        this.SetVisitor( 'KeyS',                    elem => this.Visit_KeyS(elem) );
-        this.SetVisitor( 'KeyT',                    elem => this.Visit_KeyT(elem) );
-        this.SetVisitor( 'KeyU',                    elem => this.Visit_KeyU(elem) );
-        this.SetVisitor( 'KeyV',                    elem => this.Visit_KeyV(elem) );
-        this.SetVisitor( 'KeyW',                    elem => this.Visit_KeyW(elem) );
-        this.SetVisitor( 'KeyX',                    elem => this.Visit_KeyX(elem) );
-        this.SetVisitor( 'KeyY',                    elem => this.Visit_KeyY(elem) );
-        this.SetVisitor( 'KeyZ',                    elem => this.Visit_KeyZ(elem) );
-
-        this.SetVisitor( 'Numpad0',                 elem => this.Visit_Numpad0(elem) );
-        this.SetVisitor( 'Numpad1',                 elem => this.Visit_Numpad1(elem) );
-        this.SetVisitor( 'Numpad2',                 elem => this.Visit_Numpad2(elem) );
-        this.SetVisitor( 'Numpad3',                 elem => this.Visit_Numpad3(elem) );
-        this.SetVisitor( 'Numpad4',                 elem => this.Visit_Numpad4(elem) );
-        this.SetVisitor( 'Numpad5',                 elem => this.Visit_Numpad5(elem) );
-        this.SetVisitor( 'Numpad6',                 elem => this.Visit_Numpad6(elem) );
-        this.SetVisitor( 'Numpad7',                 elem => this.Visit_Numpad7(elem) );
-        this.SetVisitor( 'Numpad8',                 elem => this.Visit_Numpad8(elem) );
-        this.SetVisitor( 'Numpad9',                 elem => this.Visit_Numpad9(elem) );
-        this.SetVisitor( 'NumpadMultiply',          elem => this.Visit_NumpadMultiply(elem) );
-        this.SetVisitor( 'NumpadAdd',               elem => this.Visit_NumpadAdd(elem) );
-        this.SetVisitor( 'NumpadDecimal',           elem => this.Visit_NumpadDecimal(elem) );
-        this.SetVisitor( 'NumpadSubstract',         elem => this.Visit_NumpadSubstract(elem) );
-        this.SetVisitor( 'NumpadDivide',            elem => this.Visit_NumpadDivide(elem) );
-        this.SetVisitor( 'NumLock',                 elem => this.Visit_NumLock(elem) );
-
-
     }
 
     HandleVarDeclaration(id){
         if (    
             !this.scopeStack.some(f =>
-                f.funcs.includes(id)        ||
-                f.vars.includes(id)         ||
-                f.decl_vars.includes(id)    ||
+                f.funcs.includes(id)    ||
+                f.vars.includes(id)     ||
                 f.args.includes(id)
             )
         )
@@ -528,11 +410,9 @@ export class MyJavascriptVisitor extends AstVisitor {
             case 'logical_binary_op':       return this.operators.AND;
             case 'assign_op':               return this.operators.ASSIGN;
             case 'array_method_call':       return this.operators.MEMBER_ACCESS;
-            case 'object_get_sq':           return this.operators.BRACE_MEMBER_ACCESS;
             case 'object_method_call':      return this.operators.MEMBER_ACCESS;
             case 'string_method':           return this.operators.MEMBER_ACCESS;
         }
-
         return this.operators[op];
     }
 
@@ -618,8 +498,8 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_Defs(elem) {
         let childrenCode = this.PopChildrenFromStack(elem).map( stmt => this.TabIn(stmt) ).join('\n');
         let vars = this.TabIn( this.PopScopeVars() );
-        this.stack.push("// Javascript Code generated by Code Chips at "+ this.day + "\n\n" 
-                        + vars + childrenCode);
+
+        this.stack.push(vars + childrenCode);
     }
 
     Visit_Stmt(elem) {
@@ -630,9 +510,9 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push( ';' );
     }
 
-    Visit_Consts(elem)                  {this.stack.push(``);}
-    Visit_Variable(elem)                {this.stack.push(``);}
-    Visit_Types(elem)                   {this.stack.push(``);}
+    Visit_Consts(elem)                  {this.stack.push('');}
+    Visit_Variable(elem)                {this.stack.push('');}
+    Visit_Types(elem)                   {this.stack.push('');}
 
     Visit_IdentType(elem) {
         let code = this.PopChildrenFromStack(elem, ['type', 'ident']);
@@ -682,6 +562,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_Expr(elem){
+        console.log("expr");
         this.stack.push(
             this.HandleSemicolon(elem, `0`)
         );
@@ -853,12 +734,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_ExprList(elem){
-        let code;
-        if(elem.GetParent().GetSymbol().symbol.name === 'print_call'){
-            code = this.PopChildrenFromStack(elem).join(' + ');
-        } else {
-            code = this.PopChildrenFromStack(elem).join(', ');
-        }
+        let code = this.PopChildrenFromStack(elem).join(', ');
         this.stack.push(`${code}`);
     }
 
@@ -884,6 +760,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         );
     }
 
+    //??
     Visit_StringMethodCall(elem){
         let code = this.PopChildrenFromStack(elem, ['string', 'dot', 'method_call']);
 
@@ -1027,7 +904,7 @@ export class MyJavascriptVisitor extends AstVisitor {
 
         let innerOp = this.GetChildOperator(elem.GetElems()[4]);
         
-        if ( innerOp && this.ShouldParenthesize(this.operators.BY, innerOp, 'left') )
+        if ( innerOp && this.ShouldParenthesize(this.operators.MULT, innerOp, 'left') )
             code.number = `(${code.number})`;
 
         this.stack.push(
@@ -1090,6 +967,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`${code.array}${code.lsb}${code.index}${code.rsb} = ${code.element}`);
     }
 
+    //??
     Visit_ArraySize(elem){
         let code = this.PopChildrenFromStack(elem, ['array', 'dot', 'length']);
         this.stack.push(`${code.array}${code.dot}length`);
@@ -1100,11 +978,13 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`${code.array}${code.dot}${code.join}${code.lp}${code.seperator}${code.rp}`);
     }
 
+    //??
     Visit_ArrayToString(elem){
         let code = this.PopChildrenFromStack(elem, ['array', 'dot', 'tostring', 'pc']);
         this.stack.push(`${code.array}${code.dot}${code.tostring}${code.pc}`);
     }
 
+    //??
     Visit_ObjectGet(elem){
         this.stack.push(null);
     }
@@ -1119,9 +999,10 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(`${code.object}${code.lsb}${code.property}${code.rsb} = ${code.value}`);
     }
 
+    //??
     Visit_ObjectSize(elem){
         let code = this.PopChildrenFromStack(elem, ['object', 'dot', 'length']);
-        this.stack.push(` Object.keys(${code.object})${code.dot}length `);
+        this.stack.push(`${code.object}${code.dot}length`);
     }
 
     Visit_ObjectGetSq(elem){
@@ -1152,7 +1033,7 @@ export class MyJavascriptVisitor extends AstVisitor {
             this.scopeStack[this.scopeStack.length - 1].args.push(id); // don't care about duplicates
         }
         else if (parent === 'ident_type'){
-            this.scopeStack[this.scopeStack.length - 1].decl_vars.push(id);
+            //
         }
         else
             this.HandleVarDeclaration(id);
@@ -1198,13 +1079,9 @@ export class MyJavascriptVisitor extends AstVisitor {
         let quotes = /\"/g;
         let backslashes = /\\/g;
 
-        if (elem.GetText() != undefined) {
-            let text = '"' + elem.GetText().replace(backslashes, '\\\\').replace(quotes, '\\"') + '"';
+        let text = '"' + elem.GetText().replace(backslashes, '\\\\').replace(quotes, '\\"') + '"';
 
-            this.stack.push(text);   
-        } else {
-            this.stack.push(` `);
-        }
+        this.stack.push(text);
     }
 
     Visit_PlusPlus(elem)                    {this.stack.push('++');}
@@ -1262,7 +1139,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.scopeStack.push({
             args:       [],
             vars:       [],
-            decl_vars:  [],
             funcs:      [],
         });
 

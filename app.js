@@ -7,7 +7,7 @@ import { AstHost } from './Generators/AstHost.js';
 
 $(document).ready(function () {
 
-    $.fn.textWidth = function (text, font) {
+    $.fn.textWidth = function(text, font) {
         if (!$.fn.textWidth.fakeEl) $.fn.textWidth.fakeEl = $('<span>').hide().appendTo(document.body);
         var htmlText = text || this.val() || this.text();
         htmlText = $.fn.textWidth.fakeEl.text(htmlText).html(); //encode to Html
@@ -18,21 +18,21 @@ $(document).ready(function () {
 
     let editors = {
         'Code Chips': CodeChips.Inject(
-            $('#injection-div2'),
+            $('#injection-div2'), 
             {
-                languageJson: codeChipsConfig.language,
-                themeJson: codeChipsConfig.darkColorfulTheme,
-                toolboxJson: codeChipsConfig.toolbox,
-                quickReplace: codeChipsConfig.quickReplace
+                languageJson:   codeChipsConfig.language,
+                themeJson:      codeChipsConfig.darkColorfulTheme,
+                toolboxJson:    codeChipsConfig.toolbox,
+                quickReplace:   codeChipsConfig.quickReplace
             }
         ),
         'Java Classes': CodeChips.Inject(
-            $('#injection-div1'),
+            $('#injection-div1'), 
             {
-                languageJson: javaClassesConfig.language,
-                themeJson: javaClassesConfig.darkTheme,
-                toolboxJson: javaClassesConfig.toolbox,
-                quickReplace: javaClassesConfig.quickReplace
+                languageJson:   javaClassesConfig.language,
+                themeJson:      javaClassesConfig.darkTheme,
+                toolboxJson:    javaClassesConfig.toolbox,
+                quickReplace:   javaClassesConfig.quickReplace
             }
         ),
     };
@@ -99,9 +99,9 @@ $(document).ready(function () {
     let toJs = (code) => {
         let visitor = new MyJavascriptVisitor();
         let host = new AstHost(visitor);
-
+        
         host.Accept(code);
-
+    
         return visitor.GetResult();
     };
 
@@ -109,21 +109,21 @@ $(document).ready(function () {
     editors['Code Chips'].SetOnConvertToJs(code => toJs(code));
 
     let themes = {
-        'Code Chips': {
-            'Dark Colorful Theme': codeChipsConfig.darkColorfulTheme,
-            'Light Colorful Theme': codeChipsConfig.colorfulTheme,
-            'Dark Theme': codeChipsConfig.darkTheme,
-            'Light Theme': codeChipsConfig.lightTheme
+        'Code Chips': { 
+            'Dark Colorful Theme':      codeChipsConfig.darkColorfulTheme, 
+            'Light Colorful Theme':     codeChipsConfig.colorfulTheme, 
+            'Dark Theme':               codeChipsConfig.darkTheme,
+            'Light Theme':              codeChipsConfig.lightTheme
         },
         'Java Classes': {
-            'Dark Theme': javaClassesConfig.darkTheme,
-            'Light Theme': javaClassesConfig.lightTheme
+            'Dark Theme':               javaClassesConfig.darkTheme,
+            'Light Theme':              javaClassesConfig.lightTheme
         }
     };
 
     let selectedThemes = {
-        'Code Chips': 'Dark Colorful Theme',
-        'Java Classes': 'Dark Theme'
+        'Code Chips':       'Dark Colorful Theme',
+        'Java Classes':     'Dark Theme'
     };
 
     let curr = 'Code Chips';
@@ -133,8 +133,8 @@ $(document).ready(function () {
 
     editors['Java Classes'].$container.toggle();
 
-    $('#language-selection').on('change', function () {
-        editors[curr].$container.toggle();
+    $('#language-selection').on('change', function() {
+        editors[curr].$container.toggle(); 
         curr = this.value;
         editors[curr].$container.toggle();
 
@@ -146,7 +146,7 @@ $(document).ready(function () {
         $('#theme-selection').val(selectedThemes[curr]);
     });
 
-    $('#theme-selection').on('change', function () {
+    $('#theme-selection').on('change', function() {
         editors[curr].SetTheme(themes[curr][this.value]);
         editors[curr].ApplyTheme();
         selectedThemes[curr] = this.value;
