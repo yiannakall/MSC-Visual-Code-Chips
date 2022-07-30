@@ -316,7 +316,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'BracketRight',            elem => this.Visit_BracketRight(elem) );
         this.SetVisitor( 'Backslash',               elem => this.Visit_Backslash(elem) );
         this.SetVisitor( 'CapsLock',                elem => this.Visit_CapsLock(elem) );
-        this.SetVisitor( 'Semicolon',               elem => this.Visit_Semicolon(elem) );
+        this.SetVisitor( 'Semicolon',               elem => this.Visit_SemicolonKey(elem) );
         this.SetVisitor( 'Quote',                   elem => this.Visit_Quote(elem) );
         this.SetVisitor( 'Enter',                   elem => this.Visit_Enter(elem) );
         this.SetVisitor( 'ShiftLeft',               elem => this.Visit_ShiftLeft(elem) );
@@ -1344,7 +1344,7 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_BracketRight(elem)                {this.stack.push('BracketRight');}
     Visit_Backslash(elem)                   {this.stack.push('Backslash');}
     Visit_CapsLock(elem)                    {this.stack.push('CapsLock');}
-    Visit_Semicolon(elem)                   {this.stack.push('Semicolon');}
+    Visit_SemicolonKey(elem)                {this.stack.push('Semicolon');}
     Visit_Quote(elem)                       {this.stack.push('Quote');}
     Visit_Enter(elem)                       {this.stack.push('Enter');}
     Visit_ShiftLeft(elem)                   {this.stack.push('ShiftLeft');}

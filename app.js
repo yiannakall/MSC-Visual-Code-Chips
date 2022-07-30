@@ -50,7 +50,7 @@ $(document).ready(function () {
         h.innerHTML = 'Output ' +popupNum;
 
         var butt = document.createElement('button');
-        butt.style.cssText = 'position:absolute; top:28px; right:10px';
+        butt.style.cssText = 'border-radius:5px; position:absolute; top:28px; right:10px';
         butt.type = "button";
         butt.id = popupNum;
         butt.onclick = function(){ $('#'+'PopUp' + butt.id).hide();}
