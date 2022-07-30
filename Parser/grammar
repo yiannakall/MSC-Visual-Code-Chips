@@ -2,6 +2,7 @@ non_terminal {
     program
     stmts
     stmt
+    snipets
     defs
     def
     consts
@@ -84,6 +85,7 @@ define def {
         func_definition         : "Define reusable code as a function"
     }
 }
+
 
 define expr {
     any_of {
