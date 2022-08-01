@@ -1883,6 +1883,11 @@
                     "type": "non_terminal",
                     "name": "function_call",
                     "tooltip": "To call nested functions"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "func_definition",
+                    "tooltip": "To call a function, the time you define it"
                 }
             ]
         },

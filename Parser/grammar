@@ -508,6 +508,7 @@ define callee {
         object_function                 :"Name of a function which is member of an object"
         array_function                  :"Name of a function which is member of an array"
         function_call                   :"To call nested functions"
+        func_definition                 :"To call a function, the time you define it"
     }
 }
 

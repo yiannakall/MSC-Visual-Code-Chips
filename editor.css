@@ -406,7 +406,7 @@ body{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    height: 118.5%;
+    height: 100%;
 }
 
 .workspace .code, .workspace .js-code{
@@ -851,7 +851,7 @@ body{
     gap: 25px;
 
     box-sizing: border-box;
-    height: 118.5%;
+    height: 100%;
 }
 
 .toolbox-blocks > .fill {
