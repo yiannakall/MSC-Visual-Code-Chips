@@ -600,8 +600,6 @@ export class MyJavascriptVisitor extends AstVisitor {
             assert(false, 'stack is either empty or contains more than 1 element');
     }
 
-
-
     Visit_Program(elem) {
         assert(false);
     }
