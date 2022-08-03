@@ -311,15 +311,6 @@ function random(low, hi) {
     return Math.floor(Math.random() * (hi - low + 1) + low);
 }
 
-function repeat(n, action) {
-    for (var count = 1; count <= n; count++)
-        action();
-}
-
-function animate(f, ms) {
-    return setInterval(f, ms);
-}
-
 function setFont(font) {
     imageContext.font = font;
 }

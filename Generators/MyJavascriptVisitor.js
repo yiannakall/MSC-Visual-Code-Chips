@@ -396,9 +396,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'write_msg',               elem => this.Visit_WriteMsg(elem) );
         this.SetVisitor( 'random_int',              elem => this.Visit_RandomInt(elem) );
         this.SetVisitor( 'set_redraw',              elem => this.Visit_SetRedraw(elem) );
-        this.SetVisitor( 'repeat_action',           elem => this.Visit_RepeatAction(elem) );
         this.SetVisitor( 'set_wrap',                elem => this.Visit_SetWrap(elem) );
-        this.SetVisitor( 'animate_turtle',          elem => this.Visit_AnimateTurtle(elem) );
         this.SetVisitor( 'shapes',                  elem => this.Visit_Shapes(elem) );
 
         this.SetVisitor( 'forward',                 elem => this.Visit_Forward(elem) );
@@ -416,11 +414,10 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'write',                   elem => this.Visit_Write(elem) );
         this.SetVisitor( 'random',                  elem => this.Visit_Random(elem) );
         this.SetVisitor( 'hide_turtle',             elem => this.Visit_HideTurtle(elem) );
+        this.SetVisitor( 'show_turtle',             elem => this.Visit_ShowTurtle(elem) );
         this.SetVisitor( 'redrawOnMove',            elem => this.Visit_RedrawOnMove(elem) );
         this.SetVisitor( 'draw',                    elem => this.Visit_Draw(elem) );
-        this.SetVisitor( 'repeat',                  elem => this.Visit_Repeat(elem) );
         this.SetVisitor( 'wrap',                    elem => this.Visit_Wrap(elem) );
-        this.SetVisitor( 'animate',                 elem => this.Visit_Animate(elem) );
 
         this.SetVisitor( 'triangle',                elem => this.Visit_Triangle(elem) );
         this.SetVisitor( 'circle',                  elem => this.Visit_Circle(elem) );
@@ -1458,13 +1455,93 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_NumpadDivide(elem)                {this.stack.push('NumpadDivide');}
     Visit_NumLock(elem)                     {this.stack.push('NumLock');}
 
-    Visit_ShowTurtle(elem)                  {this.stack.push('showTurtle()');}
-    Visit_ForwardTurtle(elem)               {
+    Visit_ForwardTurtle(elem){
         let code = this.PopChildrenFromStack(elem, ['forward', 'dist']);
-        this.stack.push(`${code.forward}(${code.dist})`);
+        this.stack.push(`${code.forward}(${code.dist});`);
     }
 
+    Visit_TurnRight(elem){
+        let code = this.PopChildrenFromStack(elem, ['right', 'angle']);
+        this.stack.push(`${code.right}(${code.angle});`);
+    }
+
+    Visit_TurnLeft(elem){
+        let code = this.PopChildrenFromStack(elem, ['left', 'angle']);
+        this.stack.push(`${code.left}(${code.angle});`);
+    }
+
+    Visit_GotoPosition(elem){
+        let code = this.PopChildrenFromStack(elem, ['goto', 'x','y']);
+        this.stack.push(`${code.goto}(${code.x} , ${code.y});`);
+    }
+
+    Visit_DefineAngle(elem){
+        let code = this.PopChildrenFromStack(elem, ['angleP', 'angle']);
+        this.stack.push(`${code.angleP}(${code.angle});`);
+    }
+
+    Visit_DefineWidthLine(elem){
+        let code = this.PopChildrenFromStack(elem, ['widthP', 'width']);
+        this.stack.push(`${code.widthP}(${code.width});`);
+    }
+
+    Visit_DefineTurtleShape(elem){
+        let code = this.PopChildrenFromStack(elem, ['shape', 's']);
+        this.stack.push(`${code.shape}(${code.s});`);
+    }
+
+    Visit_ChangeColor(elem){
+        let code = this.PopChildrenFromStack(elem, ['colour', 'r','g','b','a']);
+        this.stack.push(`${code.colour}(${code.r}, ${code.g}, ${code.b}, ${code.a});`);
+    }
+
+    Visit_WriteMsg(elem){
+        let code = this.PopChildrenFromStack(elem, ['write', 'msg']);
+        this.stack.push(`${code.write}(${code.msg});`);
+    }
+
+    Visit_RandomInt(elem){
+        let code = this.PopChildrenFromStack(elem, ['random', 'low', 'high']);
+        this.stack.push(`${code.radnom}(${code.low}, ${code.high});`);
+    }
+
+    Visit_SetRedraw(elem){
+        let code = this.PopChildrenFromStack(elem, ['redraw', 'bool']);
+        this.stack.push(`${code.redraw}(${code.bool});`);
+    }
+
+    Visit_SetWrap(elem){
+        let code = this.PopChildrenFromStack(elem, ['wrap', 'bool']);
+        this.stack.push(`${code.wrap}(${code.bool});`);
+    }
+
+    Visit_Shapes(elem)                      {this.stack.push(``);}
+
     Visit_Forward(elem)                     {this.stack.push('forward');}
+    Visit_Right(elem)                       {this.stack.push('right');}
+    Visit_Left(elem)                        {this.stack.push('left');}
+    Visit_Goto(elem)                        {this.stack.push('goto')}
+    Visit_Clear(elem)                       {this.stack.push('clear();');}
+    Visit_PenUp(elem)                       {this.stack.push('penup();');}
+    Visit_PenDown(elem)                     {this.stack.push('pendown();');}
+    Visit_Reset(elem)                       {this.stack.push('reset();')}
+    Visit_Angle(elem)                       {this.stack.push('angle');}
+    Visit_Width(elem)                       {this.stack.push('width');}
+    Visit_Shape(elem)                       {this.stack.push('shape');}
+    Visit_Colour(elem)                      {this.stack.push('colour')}
+    Visit_Write(elem)                       {this.stack.push('write');}
+    Visit_Random(elem)                      {this.stack.push('random');}
+    Visit_HideTurtle(elem)                  {this.stack.push('hideTurtle();');}
+    Visit_ShowTurtle(elem)                  {this.stack.push('showTurtle();');}
+    Visit_RedrawOnMove(elem)                {this.stack.push('redrawOnMove');}    
+    Visit_Draw(elem)                        {this.stack.push('draw();')}
+    Visit_Wrap(elem)                        {this.stack.push('wrap');}
+
+    Visit_Triangle(elem)                    {this.stack.push('"triangle"');}
+    Visit_Circle(elem)                      {this.stack.push('"circle"');}
+    Visit_Square(elem)                      {this.stack.push('"square"');}
+    Visit_Turtle(elem)                      {this.stack.push('"turtle"');}
 }
+
 
 
