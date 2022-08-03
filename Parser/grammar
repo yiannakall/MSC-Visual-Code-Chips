@@ -26,6 +26,9 @@ non_terminal {
     array_get array_push array_pop array_set array_size array_join array_to_string
     object_get object_insert object_delete object_set object_size
     object_get_sq object_get_dot
+    turtle_functions 
+    forward_turtle turn_right turn_left goto_position define_angle define_widthline define_turtleshape change_color write_msg random_int set_redraw repeat_action set_wrap animate_turtle 
+    shapes
 }
 
 terminal {
@@ -51,7 +54,9 @@ terminal {
     ControlLeft OSLeft AltLeft Space AltRight ContextMenu ControlRight Delete PageUp PageDown ArrowLeft ArrowUp ArrowRight ArrowDown
     KeyA KeyB KeyC KeyD KeyE KeyF KeyG KeyH KeyI KeyJ KeyK KeyL KeyM KeyN KeyO KeyR KeyS KeyT KeyU KeyV KeyW KeyX KeyY KeyZ
     Numpad0 Numpad1 Numpad2 Numpad3 Numpad4 Numpad5 Numpad6 Numpad7 Numpad8 Numpad9 NumpadMultiply NumpadAdd NumpadDecimal NumpadSubstract NumpadDivide NumLock
-}
+    forward right left goto clear penup pendown reset angle width shape colour write random hide_turtle show_turtle redrawOnMove draw repeat wrap animate
+    triangle circle square turtle  
+}  
 
 define program {
     defs
@@ -73,6 +78,7 @@ define stmt {
         for_stmt                : "Do something while a condition is true. Commonly used with a known number of iterations."
         expr(expr_stmt)         : "A single expression as a statement"
         ternary_stmt            : "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+        turtle_functions        : "Build-in functions to move the turtle in the virtual canvas"
         break_stmt              : "Exit from the current loop"
         continue_stmt           : "Continue to the next iteration of the current loop"
         return_stmt             : "Return an expression as the result of the current function"
@@ -592,4 +598,95 @@ define ident_list {
 
 define expr_list {
     list_of expr(arg)
+}
+
+define turtle_functions {
+    any_of{
+        forward_turtle                                              : "Moves the turtle forward by the specified amount,allowing for possible wrap-around at the boundaries of the canvas"
+        turn_right                                                  : "Turns the turtle right by an angle in degrees"
+        turn_left                                                   : "Turns the turtle left by an angle in degrees"
+        goto_position                                               : "Move the turtle to position x,y (don't drwa on the way there)"
+        clear                                                       : "Clear the display, don't move the turtle"
+        penup                                                       : "Picks up the turtle's pen so as not to draw line"
+        pendown                                                     : "Puts down the turtle's pen so as to draw line"
+        reset                                                       : "Reset the whole system, clear the display and move turtle back to start position"
+        define_angle                                                : "Set the angle of the turtle in degrees"
+        define_widthline                                            : "Set the width of the line"
+        define_turtleshape                                          : "Set the turtle draw shape, currently supports triangle (default), circle, square and turtle"
+        change_color                                                : "Set the colour of the line using RGB values in the range 0 - 255"                                   
+        write_msg                                                   : "Write some text at the turtle position"            
+        random_int                                                  : "Generate a random integer between low and high"
+        hide_turtle                                                 : "Hide the turtle from the canvas"
+        show_turtle                                                 : "Display the turtle in the canvas"
+        set_redraw                                                  : "Turn on/off redrawing"
+        draw                                                        : "Draw the turtle and the current image"
+        repeat_action                                               : "Repeat an action n times"
+        set_wrap                                                    : "Turn edge wrapping on/off"
+        animate_turtle                                              : "IDK"
+    }
+}
+
+define forward_turtle {
+    forward INT_CONST("distance")                                               : "Moves the turtle forward by the specified amount,allowing for possible wrap-around at the boundaries of the canvas"
+}
+
+define turn_right {
+    right primary_expr("angle")                                                 : "Turns the turtle right by an angle in degrees"
+}
+
+define turn_left {
+    left primary_expr("angle")                                                  : "Turns the turtle left by an angle in degrees"
+}
+
+define goto_position {
+    goto primary_expr("x") primary_expr("y")                                    : "Move the turtle to position x,y (don't drwa on the way there)"
+}
+
+define define_angle {
+    angle primary_expr("angle")                                                 : "Set the angle of the turtle in degrees"
+}
+
+define define_widthline {
+    width primary_expr("width")                                                 : "Set the width of the line"
+}
+
+define define_turtleshape {
+    shape shapes                                                                : "Set the turtle draw shape, currently supports triangle (default), circle, square and turtle"
+}
+
+define shapes {
+    any_of {
+        triangle
+        circle
+        square
+        turtle
+    }
+}
+
+define change_color {
+    colour INT_CONST("r") INT_CONST("g") INT_CONST("b") INT_CONST("a")          : "Set the colour of the line using RGB values in the range 0 - 255"   
+}
+
+define write_msg {
+    write STRING_CONST("msg")                                                   : "Write some text at the turtle position"   
+}   
+
+define random_int {
+    random INT_CONST("low") INT_CONST("high")                                   : "Generate a random integer between low and high"
+}
+
+define set_redraw{
+    redrawOnMove BOOLEAN_CONST("on/off")                                        : "Turn on/off redrawing"
+}
+
+define repeat_action {
+    repeat INT_CONST(n) turtle_functions("action")                              : "Repeat an action n times"
+}
+
+define set_wrap {
+    wrap BOOLEAN_CONST("on/off")                                                : "Turn edge wrapping on/off"
+}
+
+define animate_turtle {
+    animate turtle_functions("action") primary_expr("ms")                       : "IDK"
 }

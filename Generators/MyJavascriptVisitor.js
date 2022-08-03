@@ -101,6 +101,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'while_stmt',              elem => this.Visit_WhileStmt(elem) );
         this.SetVisitor( 'for_stmt',                elem => this.Visit_ForStmt(elem) );
         this.SetVisitor( 'expr',                    elem => this.Visit_Expr(elem) );
+        this.SetVisitor( 'turtle_functions',        elem => this.Visit_TurtleFunc(elem) );
         this.SetVisitor( 'ternary_stmt',            elem => this.Visit_TernaryStmt(elem));
         this.SetVisitor( 'break_stmt',              elem => this.Visit_BreakStmt(elem) );
         this.SetVisitor( 'continue_stmt',           elem => this.Visit_ContinueStmt(elem) );
@@ -384,7 +385,47 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'NumpadDivide',            elem => this.Visit_NumpadDivide(elem) );
         this.SetVisitor( 'NumLock',                 elem => this.Visit_NumLock(elem) );
 
+        this.SetVisitor( 'forward_turtle',          elem => this.Visit_ForwardTurtle(elem) );
+        this.SetVisitor( 'turn_right',              elem => this.Visit_TurnRight(elem) );
+        this.SetVisitor( 'turn_left',               elem => this.Visit_TurnLeft(elem) );
+        this.SetVisitor( 'goto_position',           elem => this.Visit_GotoPosition(elem) );
+        this.SetVisitor( 'define_angle',            elem => this.Visit_DefineAngle(elem) );
+        this.SetVisitor( 'define_widthline',        elem => this.Visit_DefineWidthLine(elem) );
+        this.SetVisitor( 'define_turtleshape',      elem => this.Visit_DefineTurtleShape(elem) );
+        this.SetVisitor( 'change_color',            elem => this.Visit_ChangeColor(elem) );
+        this.SetVisitor( 'write_msg',               elem => this.Visit_WriteMsg(elem) );
+        this.SetVisitor( 'random_int',              elem => this.Visit_RandomInt(elem) );
+        this.SetVisitor( 'set_redraw',              elem => this.Visit_SetRedraw(elem) );
+        this.SetVisitor( 'repeat_action',           elem => this.Visit_RepeatAction(elem) );
+        this.SetVisitor( 'set_wrap',                elem => this.Visit_SetWrap(elem) );
+        this.SetVisitor( 'animate_turtle',          elem => this.Visit_AnimateTurtle(elem) );
+        this.SetVisitor( 'shapes',                  elem => this.Visit_Shapes(elem) );
 
+        this.SetVisitor( 'forward',                 elem => this.Visit_Forward(elem) );
+        this.SetVisitor( 'right',                   elem => this.Visit_Right(elem) );
+        this.SetVisitor( 'left',                    elem => this.Visit_Left(elem) );
+        this.SetVisitor( 'goto',                    elem => this.Visit_Goto(elem) );
+        this.SetVisitor( 'clear',                   elem => this.Visit_Clear(elem) );
+        this.SetVisitor( 'penup',                   elem => this.Visit_PenUp(elem) );
+        this.SetVisitor( 'pendown',                 elem => this.Visit_PenDown(elem) );
+        this.SetVisitor( 'reset',                   elem => this.Visit_Reset(elem) );
+        this.SetVisitor( 'angle',                   elem => this.Visit_Angle(elem) );
+        this.SetVisitor( 'width',                   elem => this.Visit_Width(elem) );
+        this.SetVisitor( 'shape',                   elem => this.Visit_Shape(elem) );
+        this.SetVisitor( 'colour',                  elem => this.Visit_Colour(elem) );
+        this.SetVisitor( 'write',                   elem => this.Visit_Write(elem) );
+        this.SetVisitor( 'random',                  elem => this.Visit_Random(elem) );
+        this.SetVisitor( 'hide_turtle',             elem => this.Visit_HideTurtle(elem) );
+        this.SetVisitor( 'redrawOnMove',            elem => this.Visit_RedrawOnMove(elem) );
+        this.SetVisitor( 'draw',                    elem => this.Visit_Draw(elem) );
+        this.SetVisitor( 'repeat',                  elem => this.Visit_Repeat(elem) );
+        this.SetVisitor( 'wrap',                    elem => this.Visit_Wrap(elem) );
+        this.SetVisitor( 'animate',                 elem => this.Visit_Animate(elem) );
+
+        this.SetVisitor( 'triangle',                elem => this.Visit_Triangle(elem) );
+        this.SetVisitor( 'circle',                  elem => this.Visit_Circle(elem) );
+        this.SetVisitor( 'square',                  elem => this.Visit_Square(elem) );
+        this.SetVisitor( 'turtle',                  elem => this.Visit_Turtle(elem) );
     }
 
     HandleVarDeclaration(id){
@@ -685,6 +726,10 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.stack.push(
             this.HandleSemicolon(elem, `0`)
         );
+    }
+
+    Visit_TurtleFunc(elem) {
+        this.stack.push(``);
     }
 
     Visit_TernaryStmt(elem){
@@ -1412,5 +1457,14 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_NumpadSubstract(elem)             {this.stack.push('NumpadSubstract');}
     Visit_NumpadDivide(elem)                {this.stack.push('NumpadDivide');}
     Visit_NumLock(elem)                     {this.stack.push('NumLock');}
+
+    Visit_ShowTurtle(elem)                  {this.stack.push('showTurtle()');}
+    Visit_ForwardTurtle(elem)               {
+        let code = this.PopChildrenFromStack(elem, ['forward', 'dist']);
+        this.stack.push(`${code.forward}(${code.dist})`);
+    }
+
+    Visit_Forward(elem)                     {this.stack.push('forward');}
 }
+
 

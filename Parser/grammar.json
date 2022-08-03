@@ -63,6 +63,11 @@
                 },
                 {
                     "type": "non_terminal",
+                    "name": "turtle_functions",
+                    "tooltip": "Build-in functions to move the turtle in the virtual canvas"
+                },
+                {
+                    "type": "non_terminal",
                     "name": "break_stmt",
                     "tooltip": "Exit from the current loop"
                 },
@@ -2710,6 +2715,381 @@
                     "type": "non_terminal",
                     "name": "expr",
                     "alias": "arg"
+                }
+            ]
+        },
+        {
+            "name": "turtle_functions",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "forward_turtle",
+                    "tooltip": "Moves the turtle forward by the specified amount,allowing for possible wrap-around at the boundaries of the canvas"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "turn_right",
+                    "tooltip": "Turns the turtle right by an angle in degrees"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "turn_left",
+                    "tooltip": "Turns the turtle left by an angle in degrees"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "goto_position",
+                    "tooltip": "Move the turtle to position x,y (don't drwa on the way there)"
+                },
+                {
+                    "type": "terminal",
+                    "name": "clear",
+                    "tooltip": "Clear the display, don't move the turtle"
+                },
+                {
+                    "type": "terminal",
+                    "name": "penup",
+                    "tooltip": "Picks up the turtle's pen so as not to draw line"
+                },
+                {
+                    "type": "terminal",
+                    "name": "pendown",
+                    "tooltip": "Puts down the turtle's pen so as to draw line"
+                },
+                {
+                    "type": "terminal",
+                    "name": "reset",
+                    "tooltip": "Reset the whole system, clear the display and move turtle back to start position"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "define_angle",
+                    "tooltip": "Set the angle of the turtle in degrees"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "define_widthline",
+                    "tooltip": "Set the width of the line"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "define_turtleshape",
+                    "tooltip": "Set the turtle draw shape, currently supports triangle (default), circle, square and turtle"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "change_color",
+                    "tooltip": "Set the colour of the line using RGB values in the range 0 - 255"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "write_msg",
+                    "tooltip": "Write some text at the turtle position"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "random_int",
+                    "tooltip": "Generate a random integer between low and high"
+                },
+                {
+                    "type": "terminal",
+                    "name": "hide_turtle",
+                    "tooltip": "Hide the turtle from the canvas"
+                },
+                {
+                    "type": "terminal",
+                    "name": "show_turtle",
+                    "tooltip": "Display the turtle in the canvas"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "set_redraw",
+                    "tooltip": "Turn on/off redrawing"
+                },
+                {
+                    "type": "terminal",
+                    "name": "draw",
+                    "tooltip": "Draw the turtle and the current image"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "repeat_action",
+                    "tooltip": "Repeat an action n times"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "set_wrap",
+                    "tooltip": "Turn edge wrapping on/off"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "animate_turtle",
+                    "tooltip": "IDK"
+                }
+            ]
+        },
+        {
+            "name": "forward_turtle",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "forward"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "distance",
+                    "tooltip": "Moves the turtle forward by the specified amount,allowing for possible wrap-around at the boundaries of the canvas"
+                }
+            ]
+        },
+        {
+            "name": "turn_right",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "right"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "angle",
+                    "tooltip": "Turns the turtle right by an angle in degrees"
+                }
+            ]
+        },
+        {
+            "name": "turn_left",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "left"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "angle",
+                    "tooltip": "Turns the turtle left by an angle in degrees"
+                }
+            ]
+        },
+        {
+            "name": "goto_position",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "goto"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y",
+                    "tooltip": "Move the turtle to position x,y (don't drwa on the way there)"
+                }
+            ]
+        },
+        {
+            "name": "define_angle",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "angle"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "angle",
+                    "tooltip": "Set the angle of the turtle in degrees"
+                }
+            ]
+        },
+        {
+            "name": "define_widthline",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "width"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "width",
+                    "tooltip": "Set the width of the line"
+                }
+            ]
+        },
+        {
+            "name": "define_turtleshape",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "shape"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "shapes",
+                    "tooltip": "Set the turtle draw shape, currently supports triangle (default), circle, square and turtle"
+                }
+            ]
+        },
+        {
+            "name": "shapes",
+            "any_of": [
+                {
+                    "type": "terminal",
+                    "name": "triangle"
+                },
+                {
+                    "type": "terminal",
+                    "name": "circle"
+                },
+                {
+                    "type": "terminal",
+                    "name": "square"
+                },
+                {
+                    "type": "terminal",
+                    "name": "turtle"
+                }
+            ]
+        },
+        {
+            "name": "change_color",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "colour"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "r"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "g"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "b"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "a",
+                    "tooltip": "Set the colour of the line using RGB values in the range 0 - 255"
+                }
+            ]
+        },
+        {
+            "name": "write_msg",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "write"
+                },
+                {
+                    "type": "terminal",
+                    "name": "STRING_CONST",
+                    "alias": "msg",
+                    "tooltip": "Write some text at the turtle position"
+                }
+            ]
+        },
+        {
+            "name": "random_int",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "random"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "low"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "high",
+                    "tooltip": "Generate a random integer between low and high"
+                }
+            ]
+        },
+        {
+            "name": "set_redraw",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "redrawOnMove"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "BOOLEAN_CONST",
+                    "alias": "on/off",
+                    "tooltip": "Turn on/off redrawing"
+                }
+            ]
+        },
+        {
+            "name": "repeat_action",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "repeat"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "n"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "turtle_functions",
+                    "alias": "action",
+                    "tooltip": "Repeat an action n times"
+                }
+            ]
+        },
+        {
+            "name": "set_wrap",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "wrap"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "BOOLEAN_CONST",
+                    "alias": "on/off",
+                    "tooltip": "Turn edge wrapping on/off"
+                }
+            ]
+        },
+        {
+            "name": "animate_turtle",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "animate"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "turtle_functions",
+                    "alias": "action"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "ms",
+                    "tooltip": "IDK"
                 }
             ]
         }
