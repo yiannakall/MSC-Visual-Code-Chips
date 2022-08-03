@@ -120,7 +120,7 @@ $(document).ready(function () {
         return visitor.GetResult();
     };
 
-    editors['Code Chips'].SetOnExecute(code => {eval(popup() + toJs(code))});
+    editors['Code Chips'].SetOnExecute(code => { popup(); eval(toJs(code)); });
     editors['Code Chips'].SetOnConvertToJs(code => toJs(code));
 
     let themes = {
