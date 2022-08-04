@@ -315,48 +315,6 @@ function setFont(font) {
     imageContext.font = font;
 }
 
-//////////////////
-// UI code below//
-//////////////////
-
-// Navigate command history
-var commandList = [];
-var currentCommand = 0;
-
-// Moves up and down in command history
-// document.getElementById("command").addEventListener("keydown", (e) => {
-//     if (e.key == "ArrowUp") {
-//         currentCommand--;
-//         if (currentCommand < 0) currentCommand = 0;
-//         document.getElementById("command").value = commandList[currentCommand];
-//     } else if (e.key == "ArrowDown") {
-//         currentCommand++;
-//         if (currentCommand > commandList.length) currentCommand = commandList.length;
-//         var command = commandList[currentCommand] == undefined ? "" : commandList[currentCommand];
-//         document.getElementById("command").value = command;
-//     }
-// }, false);
-
-// Execute the program when the command box is changed
-// (when the user presses enter)
-// document.querySelector('#command').addEventListener('change', function() {
-//     var commandText = this.value;
-//     commandList.push(commandText);
-//     var definitionsText = document.querySelector('#definitions').value;
-//     try {
-//         // execute any code in the definitions box
-//         eval(definitionsText);
-//         // execute the code in the command box
-//         eval(commandText);
-//     } catch (e) {
-//         alert('Exception thrown:\n' + e);
-//         throw e;
-//     } finally {
-//         // clear the command box
-//         this.value = '';
-//     }
-// });
-
 document.querySelector('#resetButton').addEventListener('click', function() {
     reset();
 });

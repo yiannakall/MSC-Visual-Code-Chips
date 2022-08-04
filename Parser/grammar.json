@@ -52,19 +52,24 @@
                 },
                 {
                     "type": "non_terminal",
+                    "name": "repeat_stmt",
+                    "tooltip": "Repeat the stmts, certain times"
+                },
+                {
+                    "type": "non_terminal",
                     "name": "expr",
                     "alias": "expr_stmt",
                     "tooltip": "A single expression as a statement"
                 },
                 {
                     "type": "non_terminal",
-                    "name": "ternary_stmt",
-                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                    "name": "turtle_functions",
+                    "tooltip": "Build-in functions to move the turtle in the virtual canvas"
                 },
                 {
                     "type": "non_terminal",
-                    "name": "turtle_functions",
-                    "tooltip": "Build-in functions to move the turtle in the virtual canvas"
+                    "name": "ternary_stmt",
+                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
                 },
                 {
                     "type": "non_terminal",
@@ -2813,18 +2818,8 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "repeat_action",
-                    "tooltip": "Repeat an action n times"
-                },
-                {
-                    "type": "non_terminal",
                     "name": "set_wrap",
                     "tooltip": "Turn edge wrapping on/off"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "animate_turtle",
-                    "tooltip": "IDK"
                 }
             ]
         },
@@ -3039,26 +3034,6 @@
             ]
         },
         {
-            "name": "repeat_action",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "repeat"
-                },
-                {
-                    "type": "terminal",
-                    "name": "INT_CONST",
-                    "alias": "n"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "turtle_functions",
-                    "alias": "action",
-                    "tooltip": "Repeat an action n times"
-                }
-            ]
-        },
-        {
             "name": "set_wrap",
             "all_of": [
                 {
@@ -3074,22 +3049,21 @@
             ]
         },
         {
-            "name": "animate_turtle",
+            "name": "repeat_stmt",
             "all_of": [
                 {
                     "type": "terminal",
-                    "name": "animate"
+                    "name": "repeat"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "times"
                 },
                 {
                     "type": "non_terminal",
-                    "name": "turtle_functions",
-                    "alias": "action"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "primary_expr",
-                    "alias": "ms",
-                    "tooltip": "IDK"
+                    "name": "stmts",
+                    "tooltip": "Repeat the stmts, certain times"
                 }
             ]
         }

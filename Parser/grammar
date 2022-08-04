@@ -29,6 +29,7 @@ non_terminal {
     turtle_functions 
     forward_turtle turn_right turn_left goto_position define_angle define_widthline define_turtleshape change_color write_msg random_int set_redraw set_wrap
     shapes
+    repeat_stmt
 }
 
 terminal {
@@ -56,6 +57,7 @@ terminal {
     Numpad0 Numpad1 Numpad2 Numpad3 Numpad4 Numpad5 Numpad6 Numpad7 Numpad8 Numpad9 NumpadMultiply NumpadAdd NumpadDecimal NumpadSubstract NumpadDivide NumLock
     forward right left goto clear penup pendown reset angle width shape colour write random hide_turtle show_turtle redrawOnMove draw wrap
     triangle circle square turtle  
+    repeat
 }  
 
 define program {
@@ -76,9 +78,10 @@ define stmt {
         if_else_stmt            : "Do something if a condition is true, else do something else"
         while_stmt              : "Do something while a condition is true"
         for_stmt                : "Do something while a condition is true. Commonly used with a known number of iterations."
+        repeat_stmt             : "Repeat the stmts, certain times"
         expr(expr_stmt)         : "A single expression as a statement"
-        ternary_stmt            : "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
         turtle_functions        : "Build-in functions to move the turtle in the virtual canvas"
+        ternary_stmt            : "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
         break_stmt              : "Exit from the current loop"
         continue_stmt           : "Continue to the next iteration of the current loop"
         return_stmt             : "Return an expression as the result of the current function"
@@ -679,4 +682,8 @@ define set_redraw{
 
 define set_wrap {
     wrap BOOLEAN_CONST("on/off")                                                : "Turn edge wrapping on/off"
+}
+
+define repeat_stmt {
+    repeat INT_CONST("times") stmts                                             : "Repeat the stmts, certain times"
 }

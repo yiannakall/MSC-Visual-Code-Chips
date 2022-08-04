@@ -3,6 +3,7 @@ import { assert } from '../Utils/Assert.js';
 import { EditorElementTypes } from '../Editor/EditorElements/EditorElement.js';
 import { ReservedWords } from '../Utils/ReservedWords.js';
 import { PopupWindow } from "../Editor/EditorPopups/PopupWindow.js";
+import { ToJavascriptVisitor } from "./ToJavascriptVisitor.js";
 
 export class MyJavascriptVisitor extends AstVisitor {
 
@@ -100,6 +101,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'if_else_stmt',            elem => this.Visit_IfElseStmt(elem) );
         this.SetVisitor( 'while_stmt',              elem => this.Visit_WhileStmt(elem) );
         this.SetVisitor( 'for_stmt',                elem => this.Visit_ForStmt(elem) );
+        this.SetVisitor( 'repeat_stmt',             elem => this.Visit_RepeatStmt(elem));
         this.SetVisitor( 'expr',                    elem => this.Visit_Expr(elem) );
         this.SetVisitor( 'turtle_functions',        elem => this.Visit_TurtleFunc(elem) );
         this.SetVisitor( 'ternary_stmt',            elem => this.Visit_TernaryStmt(elem));
@@ -423,6 +425,8 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'circle',                  elem => this.Visit_Circle(elem) );
         this.SetVisitor( 'square',                  elem => this.Visit_Square(elem) );
         this.SetVisitor( 'turtle',                  elem => this.Visit_Turtle(elem) );
+
+        this.SetVisitor( 'repeat',                  elem => this.Visit_Repeat(elem) );
     }
 
     HandleVarDeclaration(id){
@@ -679,7 +683,7 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     Visit_TypeOf(elem) {
         let code = this.PopChildrenFromStack(elem, ['typeof', 'item']);
-        this.stack.push(this.HandleSemicolon(elem, `${code.typeof}${code.item}`));
+        this.stack.push(this.HandleSemicolon(elem, `${code.typeof} ${code.item}`));
     }
 
     Visit_IfStmt(elem) {
@@ -717,6 +721,16 @@ export class MyJavascriptVisitor extends AstVisitor {
         let rBrace = this.TabIn('}');
 
         this.stack.push( `${code.for} ${code.lp} ${code.init} ${code.semi} ${code.condition} ${code.semi} ${code.step}${code.rp} ${code.lb} \n${code.stmts}\n${rBrace}` );
+    }
+
+    Visit_RepeatStmt(elem) {
+        let code = this.PopChildrenFromStack(elem, ['repeat', 'times','stmts']);
+
+        this.stack.push(`(() => {
+        for(let i=0; i<${code.times}; i++){
+            ${code.stmts}
+        }
+    })();`)
     }
 
     Visit_Expr(elem){
@@ -1502,7 +1516,7 @@ element.removeEventListener('keypress',${code.listener},false);`);
 
     Visit_RandomInt(elem){
         let code = this.PopChildrenFromStack(elem, ['random', 'low', 'high']);
-        this.stack.push(`${code.radnom}(${code.low}, ${code.high});`);
+        this.stack.push(`${code.random}(${code.low}, ${code.high});`);
     }
 
     Visit_SetRedraw(elem){
@@ -1541,6 +1555,7 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_Circle(elem)                      {this.stack.push('"circle"');}
     Visit_Square(elem)                      {this.stack.push('"square"');}
     Visit_Turtle(elem)                      {this.stack.push('"turtle"');}
+    Visit_Repeat(elem)                      {this.stack.push(``);}
 }
 
 

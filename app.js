@@ -104,6 +104,43 @@ $(document).ready(function () {
         popupNum++;
     }
 
+    function turtle_canvas(){
+
+        if(document.querySelector('#wrap')==null){
+            $(document.body).append('<div id="wrap" style="position:absolute; width:fit-content; left: 70%; top: 50%;margin:0 auto; border-radius:25px; border:solid 1px rgb(221, 219, 219)"> <h1 style="font-family:Roboto; color:white">Javascript Turtle Graphics</h1> <div id="midcolumn" style="left:0%; width:35%;"><button id="resetButton" style="font-family:Roboto;">Reset</button><br><br><canvas id="turtlecanvas" width="400" height="300" style="border-radius:25px; background:#fff;"></canvas><canvas id="imagecanvas" width="400" height="300" style="border-radius:25px; display:none"></canvas></div> </div>');
+            const element = document.querySelector('#wrap');
+    
+            var isMouseDown,initX,initY,height = element.offsetHeight,width = element.offsetWidth;
+    
+            element.addEventListener('mousedown', function(e) {
+                isMouseDown = true;
+                document.body.classList.add('no-select');
+                initX = e.offsetX;
+                initY = e.offsetY;
+            })
+    
+            document.addEventListener('mousemove', function(e) {
+                if (isMouseDown) {
+                    var cx = e.clientX - initX,
+                        cy = e.clientY - initY;
+                    if (cx < 0) { cx = 0;}
+                    if (cy < 0) { cy = 0; }
+                    if (window.innerWidth - e.clientX + initX < width) { cx = window.innerWidth - width;}
+                    if (e.clientY > window.innerHeight - height+ initY) {cy = window.innerHeight - height;}
+                    element.style.left = cx + 'px';
+                    element.style.top = cy + 'px';
+                }
+            })
+    
+            element.addEventListener('mouseup', function() {
+                isMouseDown = false;
+                document.body.classList.remove('no-select');
+            })
+    
+            $(document.body).append('<script type="text/javascript" src="turtle.js"></script>');
+        }
+    }
+
     function output(args) {
         var pName = 'PopUpText' + (popupNum-1)
         var prev = $('#'+pName).html()
@@ -120,7 +157,7 @@ $(document).ready(function () {
         return visitor.GetResult();
     };
 
-    editors['Code Chips'].SetOnExecute(code => { popup(); eval(toJs(code)); });
+    editors['Code Chips'].SetOnExecute(code => { popup(); turtle_canvas(); eval(toJs(code)); });
     editors['Code Chips'].SetOnConvertToJs(code => toJs(code));
 
     let themes = {
