@@ -143,13 +143,14 @@ $(document).ready(function () {
 
     function output(color,...args) {
         var pName = 'PopUpText' + (popupNum-1);
-        $('#'+pName).css("color", color);
-        var prev = $('#'+pName).html();
-        var content = prev + '<br>';
+        var content = '<br>';
+
         for(let i=0; i<args.length; i++){
             content += args[i] + " ";
         }
-        $('#'+pName).html(content);
+        
+        document.getElementById(pName).style.color = color;
+        document.getElementById(pName).innerHTML += content;
     }
 
 
