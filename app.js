@@ -141,13 +141,18 @@ $(document).ready(function () {
         }
     }
 
-    function output(args) {
-        var pName = 'PopUpText' + (popupNum-1)
-        var prev = $('#'+pName).html()
-        var content = prev + '<br>'+ args;
-        $('#'+pName).html(content)
+    function output(color,...args) {
+        var pName = 'PopUpText' + (popupNum-1);
+        $('#'+pName).css("color", color);
+        var prev = $('#'+pName).html();
+        var content = prev + '<br>';
+        for(let i=0; i<args.length; i++){
+            content += args[i] + " ";
+        }
+        $('#'+pName).html(content);
     }
-    
+
+
     let toJs = (code) => {
         let visitor = new MyJavascriptVisitor(popupNum);
         let host = new AstHost(visitor);

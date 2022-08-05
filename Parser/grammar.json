@@ -1978,6 +1978,10 @@
                     "name": "console.log"
                 },
                 {
+                    "type": "non_terminal",
+                    "name": "color"
+                },
+                {
                     "type": "terminal",
                     "name": "LP",
                     "alias": "("
@@ -1990,6 +1994,43 @@
                     "type": "terminal",
                     "name": "RP",
                     "alias": ")"
+                }
+            ]
+        },
+        {
+            "name": "color",
+            "any_of": [
+                {
+                    "type": "terminal",
+                    "name": "red"
+                },
+                {
+                    "type": "terminal",
+                    "name": "green"
+                },
+                {
+                    "type": "terminal",
+                    "name": "yellow"
+                },
+                {
+                    "type": "terminal",
+                    "name": "black"
+                },
+                {
+                    "type": "terminal",
+                    "name": "blue"
+                },
+                {
+                    "type": "terminal",
+                    "name": "white"
+                },
+                {
+                    "type": "terminal",
+                    "name": "cyan"
+                },
+                {
+                    "type": "terminal",
+                    "name": "magenta"
                 }
             ]
         },

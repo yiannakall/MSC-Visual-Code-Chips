@@ -28,7 +28,7 @@ non_terminal {
     object_get_sq object_get_dot
     turtle_functions 
     forward_turtle turn_right turn_left goto_position define_angle define_widthline define_turtleshape change_color write_msg random_int set_redraw set_wrap
-    shapes
+    shapes color
     repeat_stmt
 }
 
@@ -58,6 +58,7 @@ terminal {
     forward right left goto clear penup pendown reset angle width shape colour write random hide_turtle show_turtle redrawOnMove draw wrap
     triangle circle square turtle  
     repeat
+    red green yellow black blue white cyan magenta
 }  
 
 define program {
@@ -534,7 +535,21 @@ define function_call {
 }
 
 define print_call {
-    "console.log" LP("(") expr_list RP(")")
+    "console.log" color LP("(") expr_list RP(")")
+}
+
+define color {
+    any_of{
+        red
+        green
+        yellow
+        black
+        blue
+        white
+        cyan
+        magenta 
+    }
+
 }
 
 define input {
