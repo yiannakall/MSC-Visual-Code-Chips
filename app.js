@@ -148,8 +148,7 @@ $(document).ready(function () {
         for(let i=0; i<args.length; i++){
             content += args[i] + " ";
         }
-        
-        document.getElementById(pName).style.color = color;
+
         document.getElementById(pName).innerHTML += content;
     }
 

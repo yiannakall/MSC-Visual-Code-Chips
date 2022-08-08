@@ -151,7 +151,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'object_method_call',      elem => this.Visit_ObjectMethodCall(elem) );
         this.SetVisitor( 'function_call',           elem => this.Visit_FunctionCall(elem) );
         this.SetVisitor( 'print_call',              elem => this.Visit_PrintCall(elem) );
-        this.SetVisitor( 'color',                   elem => this.Visit_Color(elem) );
         this.SetVisitor( 'input',                   elem => this.Visit_Input(elem) );
         this.SetVisitor( 'add_key_press',           elem => this.Visit_AddKeyPress(elem) );
         this.SetVisitor( 'remove_key_press',        elem => this.Visit_RemoveKeyPress(elem) );
@@ -428,15 +427,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'turtle',                  elem => this.Visit_Turtle(elem) );
 
         this.SetVisitor( 'repeat',                  elem => this.Visit_Repeat(elem) );
-
-        this.SetVisitor( 'red',                     elem => this.Visit_Red(elem) );
-        this.SetVisitor( 'green',                   elem => this.Visit_Green(elem) );
-        this.SetVisitor( 'yellow',                  elem => this.Visit_Yellow(elem) );
-        this.SetVisitor( 'black',                   elem => this.Visit_Black(elem) );
-        this.SetVisitor( 'blue',                    elem => this.Visit_Blue(elem) );
-        this.SetVisitor( 'white',                   elem => this.Visit_White(elem) );
-        this.SetVisitor( 'cyan',                    elem => this.Visit_Cyan(elem) );
-        this.SetVisitor( 'magenta',                 elem => this.Visit_Magenta(elem) );
     }
 
     HandleVarDeclaration(id){
@@ -736,11 +726,14 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_RepeatStmt(elem) {
         let code = this.PopChildrenFromStack(elem, ['repeat', 'times','stmts']);
 
+        this.DecreaseTabs();
+        let rBrace = this.TabIn('}');
+
         this.stack.push(`(() => {
         for(let i=0; i<${code.times}; i++){
             ${code.stmts}
         }
-    })();`)
+${rBrace})();`)
     }
 
     Visit_Expr(elem){
@@ -981,15 +974,11 @@ export class MyJavascriptVisitor extends AstVisitor {
     }
 
     Visit_PrintCall(elem){
-        let code = this.PopChildrenFromStack(elem, ['console','color', 'lp', 'args', 'rp']);
+        let code = this.PopChildrenFromStack(elem, ['console', 'lp', 'args', 'rp']);
 
         this.stack.push(
-            this.HandleSemicolon(elem, `${code.console}${code.lp}${code.color}, ${code.args}${code.rp}`)
+            this.HandleSemicolon(elem, `${code.console}${code.lp}${code.args}${code.rp}`)
         );
-    }
-
-    Visit_Color(elem){
-        this.stack.push(`"black"`);
     }
 
     Visit_Input(elem){
@@ -1569,16 +1558,7 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_Circle(elem)                      {this.stack.push('"circle"');}
     Visit_Square(elem)                      {this.stack.push('"square"');}
     Visit_Turtle(elem)                      {this.stack.push('"turtle"');}
-    Visit_Repeat(elem)                      {this.stack.push(``);}
-
-    Visit_Red(elem)                         {this.stack.push(`"red"`);}
-    Visit_Green(elem)                       {this.stack.push(`"green"`);}
-    Visit_Yellow(elem)                      {this.stack.push(`"yellow"`);}
-    Visit_Black(elem)                       {this.stack.push(`"black"`);}
-    Visit_Blue(elem)                        {this.stack.push(`"blue"`);}
-    Visit_White(elem)                       {this.stack.push(`"white"`);}
-    Visit_Cyan(elem)                        {this.stack.push(`"cyan"`);}
-    Visit_Magenta(elem)                     {this.stack.push(`"magenta"`);}
+    Visit_Repeat(elem)                      {this.IncreaseTabs(); this.stack.push(``);}
 }
 
 
