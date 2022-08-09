@@ -141,7 +141,7 @@ $(document).ready(function () {
         }
     }
 
-    function output(color,...args) {
+    function output(...args) {
         var pName = 'PopUpText' + (popupNum-1);
         var content = '<br>';
 
@@ -152,6 +152,16 @@ $(document).ready(function () {
         document.getElementById(pName).innerHTML += content;
     }
 
+    function repeat(times, ...entoles){
+        let n;
+        (() => {
+            for(let i=0; i<times; i++){
+                for(n=0; n<entoles.length; n++){
+                    entoles[i];
+                }
+            }
+        })();
+    }
 
     let toJs = (code) => {
         let visitor = new MyJavascriptVisitor(popupNum);
