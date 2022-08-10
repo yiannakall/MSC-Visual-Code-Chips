@@ -152,16 +152,16 @@ $(document).ready(function () {
         document.getElementById(pName).innerHTML += content;
     }
 
-    function repeat(times, ...entoles){
-        let n;
-        (() => {
-            for(let i=0; i<times; i++){
-                for(n=0; n<entoles.length; n++){
-                    entoles[i];
-                }
-            }
-        })();
-    }
+    // function repeat(times, ...entoles){
+    //     let n;
+    //     (() => {
+    //         for(let i=0; i<times; i++){
+    //             for(n=0; n<entoles.length; n++){
+    //                 entoles[i];
+    //             }
+    //         }
+    //     })();
+    // }
 
     let toJs = (code) => {
         let visitor = new MyJavascriptVisitor(popupNum);

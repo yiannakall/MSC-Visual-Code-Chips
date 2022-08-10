@@ -726,16 +726,14 @@ export class MyJavascriptVisitor extends AstVisitor {
     Visit_RepeatStmt(elem) {
         let code = this.PopChildrenFromStack(elem, ['repeat', 'times','stmts']);
 
-        // this.DecreaseTabs();
-        // let rBrace = this.TabIn('}');
-        // let forrBrace = this.TabIn('}');
+        this.DecreaseTabs();
+        let rBrace = this.TabIn('}');
 
-        this.stack.push(`repeat(${code.times}, ${code.stmts})`)
-//         this.stack.push( `(() => {
-//         for(let i=0; i<${code.times}; i++){
-// ${code.stmts}
-// ${forrBrace}
-// ${rBrace})();`)
+        this.stack.push( `(() => {
+        for(let i=0; i<${code.times}; i++){
+            ${code.stmts}
+        }
+${rBrace})();`)
     }
 
     Visit_Expr(elem){
@@ -1560,8 +1558,5 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_Circle(elem)                      {this.stack.push('"circle"');}
     Visit_Square(elem)                      {this.stack.push('"square"');}
     Visit_Turtle(elem)                      {this.stack.push('"turtle"');}
-    Visit_Repeat(elem)                      {this.stack.push(``);}
+    Visit_Repeat(elem)                      {this.IncreaseTabs(); this.stack.push(``);}
 }
-
-
-
