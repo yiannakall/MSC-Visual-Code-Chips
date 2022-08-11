@@ -107,7 +107,7 @@ $(document).ready(function () {
     function turtle_canvas(){
 
         if(document.querySelector('#wrap')==null){
-            $(document.body).append('<div id="wrap" style="position:absolute; width:fit-content; left: 70%; top: 50%;margin:0 auto; border-radius:25px; border:solid 1px rgb(221, 219, 219)"> <h1 style="font-family:Roboto; color:white">Javascript Turtle Graphics</h1> <div id="midcolumn" style="left:0%; width:35%;"><button id="resetButton" style="font-family:Roboto;">Reset</button><br><br><canvas id="turtlecanvas" width="400" height="300" style="border-radius:25px; background:#fff;"></canvas><canvas id="imagecanvas" width="400" height="300" style="border-radius:25px; display:none"></canvas></div> </div>');
+            $(document.body).append('<div id="wrap" style="position:absolute; width:fit-content; left: 70%; top: 50%;margin:0 auto; border-radius:25px; border:solid 1px rgb(221, 219, 219)"> <h1 style="font-family:Roboto; text-align:center; color:white">JavaScript Turtle</h1> <div id="midcolumn" style="left:0%; width:35%;"><button id="resetButton" style="font-family:Roboto;">Reset</button><br><br><canvas id="turtlecanvas" width="400" height="300" style="border-radius:25px; background:#fff;"></canvas><canvas id="imagecanvas" width="400" height="300" style="border-radius:25px; display:none"></canvas></div> </div>');
             const element = document.querySelector('#wrap');
     
             var isMouseDown,initX,initY,height = element.offsetHeight,width = element.offsetWidth;
@@ -141,27 +141,17 @@ $(document).ready(function () {
         }
     }
 
-    function output(...args) {
+    function output(color,...args) {
         var pName = 'PopUpText' + (popupNum-1);
+        var prev = $('#'+pName).html()
         var content = '<br>';
 
         for(let i=0; i<args.length; i++){
             content += args[i] + " ";
         }
 
-        document.getElementById(pName).innerHTML += content;
+        $('#'+pName).html(prev + '<span style="color:' +color + '">' + content + '</span>');
     }
-
-    // function repeat(times, ...entoles){
-    //     let n;
-    //     (() => {
-    //         for(let i=0; i<times; i++){
-    //             for(n=0; n<entoles.length; n++){
-    //                 entoles[i];
-    //             }
-    //         }
-    //     })();
-    // }
 
     let toJs = (code) => {
         let visitor = new MyJavascriptVisitor(popupNum);

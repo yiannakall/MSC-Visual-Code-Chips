@@ -28,7 +28,7 @@ non_terminal {
     object_get_sq object_get_dot
     turtle_functions 
     forward_turtle turn_right turn_left goto_position define_angle define_widthline define_turtleshape change_color write_msg random_int set_redraw set_wrap
-    shapes
+    shapes color
     repeat_stmt
 }
 
@@ -58,6 +58,7 @@ terminal {
     forward right left goto clear penup pendown reset angle width shape colour write random hide_turtle show_turtle redrawOnMove draw wrap
     triangle circle square turtle  
     repeat
+    black red blue green yellow cyan magenta
 }  
 
 define program {
@@ -74,45 +75,45 @@ define stmts {
  
 define stmt {
     any_of {
-        if_stmt                 : "Do something if a condition is true"
-        if_else_stmt            : "Do something if a condition is true, else do something else"
-        while_stmt              : "Do something while a condition is true"
-        for_stmt                : "Do something while a condition is true. Commonly used with a known number of iterations."
-        repeat_stmt             : "Repeat the stmts, certain times"
-        expr(expr_stmt)         : "A single expression as a statement"
-        turtle_functions        : "Build-in functions to move the turtle in the virtual canvas"
-        ternary_stmt            : "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
-        break_stmt              : "Exit from the current loop"
-        continue_stmt           : "Continue to the next iteration of the current loop"
-        return_stmt             : "Return an expression as the result of the current function"
+        if_stmt                     : "Do something if a condition is true"
+        if_else_stmt                : "Do something if a condition is true, else do something else"
+        while_stmt                  : "Do something while a condition is true"
+        for_stmt                    : "Do something while a condition is true. Commonly used with a known number of iterations."
+        repeat_stmt                 : "Repeat the stmts, certain times"
+        expr(expr_stmt)             : "A single expression as a statement"
+        turtle_functions            : "Build-in functions to move the turtle in the virtual canvas"
+        ternary_stmt                : "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+        break_stmt                  : "Exit from the current loop"
+        continue_stmt               : "Continue to the next iteration of the current loop"
+        return_stmt                 : "Return an expression as the result of the current function"
     }
 }
 
 define def {
     any_of {
         stmt
-        func_definition         : "Define reusable code as a function"
+        func_definition             : "Define reusable code as a function"
     }
 }
 
 
 define expr {
     any_of {
-        arith_expr              : "Perform a mathematic operation"
-        rel_expr                : "An operator that compares the two operands and returns true or false"
-        logical_expr            : "An expression that evaluates to true or false"
-        assign_expr             : "Set a variable's value"
-        call_expr               : "Call a user-defined or built-in function/method"
-        ternary_stmt            : "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
-        primary_expr            : "An identifier or a constant"
+        arith_expr                  : "Perform a mathematic operation"
+        rel_expr                    : "An operator that compares the two operands and returns true or false"
+        logical_expr                : "An expression that evaluates to true or false"
+        assign_expr                 : "Set a variable's value"
+        call_expr                   : "Call a user-defined or built-in function/method"
+        ternary_stmt                : "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+        primary_expr                : "An identifier or a constant"
     }
 }
 
 
 define arith_expr {
     any_of {
-        binary_arith_expr       : "An arithmetic expression with two operands"
-        unary_expr              : "Unary expression operator with single operand,either before or after the operator"
+        binary_arith_expr           : "An arithmetic expression with two operands"
+        unary_expr                  : "Unary expression operator with single operand,either before or after the operator"
     }
 }
 
@@ -160,7 +161,7 @@ define arith_op {
         PLUS("+")                   : "Performs addition"
         SUB("-")                    : "Performs subtraction"
         MULT("*")                   : "Performs multipliction"
-        EXP("**")                   : "Performs Exponentation"
+        EXP("**")                   : "Performs exponentation"
         DIV("/")                    : "Performs division"
         MODULO("%")                 : "Performs the modulo operation"
     }
@@ -212,7 +213,7 @@ define not_expr {
 
 define variable {
     any_of {
-        IDENT                       :"Without type. If the variable is not declared, it is automatically declared with var"
+        IDENT                       :"Identifier without type. If the variable is not declared, it is automatically declared with var"
         ident_type                  :"Identifier with type"
     }
 }
@@ -234,11 +235,11 @@ define primary_expr {
         variable                    : "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
         consts                      : "All const values"
         keys                        : "All keyboard keys"
-        object_get                  : "Get an element by its property name in the object"
-        array_get                   : "Get an element by its position in the array"
+        object_get                  : "Get an element of an object by its property name"
+        array_get                   : "Get an element of an array by its position"
         new_array                   : "Define a new array"
         new_object                  : "Define a new object"
-        func_definition             : "Function definition"
+        func_definition             : "Define reusable code as a function"
     }
 }
 
@@ -311,8 +312,8 @@ define assign_op {
 
 define func_definition{
     any_of{
-        named_func                  :"Define a named function"
-        anonymous_func              :"Define an anonymous function"
+        named_func                      :"Define a named function"
+        anonymous_func                  :"Define an anonymous function"
     }
 }
 
@@ -339,28 +340,28 @@ define return_stmt {
 
 define call_expr {
     any_of {
-        math_call               : "Use a built-in math function"
-        string_method_call      : "Use a built-in string method"
-        array_method_call       : "Use a built-in array method"
-        object_method_call      : "Use a built-in object method"
-        function_call           : "Use a user-defined function as \"name(params);\""
-        print_call              : "Use a built-in function to print the value of the given expression (text, number etc.)"
-        input                   : "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
-        key_event               : "Add and remove event listener for a key of your choice"
-        type_of                 : "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
+        math_call                       : "Use a built-in math function"
+        string_method_call              : "Use a built-in string method"
+        array_method_call               : "Use a built-in array method"
+        object_method_call              : "Use a built-in object method"
+        function_call                   : "Use a user-defined function as \"name(params);\""
+        print_call                      : "Use a built-in function to print the value of the given expression (text, number etc.)"
+        input                           : "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
+        key_event                       : "Add and remove event listener for a key of your choice"
+        type_of                         : "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
     } 
 }
 
 define math_call {
     any_of {
-        math_abs(abs)               : "Returns the absolute value of a number"
-        math_pow(pow)               : "pow(x,y) Returns base x to the exponent power y (that is, x^y)"
-        math_sqrt(sqrt)             : "Get the square root of a number"
-        math_round(round)           : "Get the nearest integer to the given number"
-        math_floor(floor)           : "Get the greatest integer less than or equal to the given number"
-        math_ceil(ceil)             : "Get the least integer greater than or equal to the given number"
-        math_sin(sin)               : "Get the sine of the given angle in degrees"
-        math_cos(cos)               : "Get the cosine of the given angle in degrees"
+        math_abs(abs)                   : "Returns the absolute value of a number"
+        math_pow(pow)                   : "Returns base x to the exponent power y (that is, x^y)"
+        math_sqrt(sqrt)                 : "Get the square root of a number"
+        math_round(round)               : "Get the nearest integer to the given number"
+        math_floor(floor)               : "Get the greatest integer less than or equal to the given number"
+        math_ceil(ceil)                 : "Get the least integer greater than or equal to the given number"
+        math_sin(sin)                   : "Get the sine of the given angle in degrees"
+        math_cos(cos)                   : "Get the cosine of the given angle in degrees"
     }
 }
 
@@ -438,7 +439,7 @@ define string_slice {
 define array_method_call {
     any_of { 
         array_get(get)                  : "Get an element by its position in the array"
-        array_set(set)                  : "Modify an element in a position of the array to a new character"
+        array_set(set)                  : "Modify an element in a position of the array to a new value"
         array_push(push)                : "Insert an element at the end of the array"
         array_pop(pop)                  : "Returns the last element of the array"
         array_size(length)              : "Get the number of elements in the array"
@@ -479,7 +480,7 @@ define object_method_call {
     any_of { 
         object_get(get)                 : "Get an element by its property name in the object e.g objectName.property or objectName[property]"
         object_delete(delete)           : "Delete a pair (property:value) by property name"
-        object_set(set)                 : "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
+        object_set(set)                 : "Modify a value by its property name in the object to a new value. If the property does not exist,the pair (property:value) will be added in the object"
         object_size(length)             : "Get the count of properties in the object"
     }
 }
@@ -534,7 +535,7 @@ define function_call {
 }
 
 define print_call {
-    "console.log" LP("(") expr_list RP(")")
+    "console.log" color LP("(") expr_list RP(")")
 }
 
 define input {
@@ -605,25 +606,25 @@ define expr_list {
 
 define turtle_functions {
     any_of{
-        forward_turtle                                              : "Moves the turtle forward by the specified amount,allowing for possible wrap-around at the boundaries of the canvas"
-        turn_right                                                  : "Turns the turtle right by an angle in degrees"
-        turn_left                                                   : "Turns the turtle left by an angle in degrees"
-        goto_position                                               : "Move the turtle to position x,y (don't drwa on the way there)"
-        clear                                                       : "Clear the display, don't move the turtle"
-        penup                                                       : "Picks up the turtle's pen so as not to draw line"
-        pendown                                                     : "Puts down the turtle's pen so as to draw line"
-        reset                                                       : "Reset the whole system, clear the display and move turtle back to start position"
-        define_angle                                                : "Set the angle of the turtle in degrees"
-        define_widthline                                            : "Set the width of the line"
-        define_turtleshape                                          : "Set the turtle draw shape, currently supports triangle (default), circle, square and turtle"
-        change_color                                                : "Set the colour of the line using RGB values in the range 0 - 255"                                   
-        write_msg                                                   : "Write some text at the turtle position"            
-        random_int                                                  : "Generate a random integer between low and high"
-        hide_turtle                                                 : "Hide the turtle from the canvas"
-        show_turtle                                                 : "Display the turtle in the canvas"
-        set_redraw                                                  : "Turn on/off redrawing"
-        draw                                                        : "Draw the turtle and the current image"
-        set_wrap                                                    : "Turn edge wrapping on/off"
+        forward_turtle                            : "Moves the turtle forward by the specified amount,allowing for possible wrap-around at the boundaries of the canvas"
+        turn_right                                : "Turns the turtle right by an angle in degrees"
+        turn_left                                 : "Turns the turtle left by an angle in degrees"
+        goto_position                             : "Move the turtle to position x,y (don't drwa on the way there)"
+        clear                                     : "Clear the display, don't move the turtle"
+        penup                                     : "Picks up the turtle's pen so as not to draw line"
+        pendown                                   : "Puts down the turtle's pen so as to draw line"
+        reset                                     : "Reset the whole system, clear the display and move turtle back to start position"
+        define_angle                              : "Set the angle of the turtle in degrees"
+        define_widthline                          : "Set the width of the line"
+        define_turtleshape                        : "Set the turtle draw shape, currently supports triangle (default), circle, square and turtle"
+        change_color                              : "Set the colour of the line using RGB values in the range 0 - 255"                                   
+        write_msg                                 : "Write some text at the turtle position"            
+        random_int                                : "Generate a random integer between low and high"
+        hide_turtle                               : "Hide the turtle from the canvas"
+        show_turtle                               : "Display the turtle in the canvas"
+        set_redraw                                : "Turn on/off redrawing"
+        draw                                      : "Draw the turtle and the current image"
+        set_wrap                                  : "Turn edge wrapping on/off"
     }
 }
 
@@ -687,3 +688,16 @@ define set_wrap {
 define repeat_stmt {
     repeat INT_CONST("times") stmts                                             : "Repeat the stmts, certain times"
 }
+
+define color {
+    any_of {
+        black
+        red 
+        blue 
+        green 
+        yellow 
+        cyan 
+        magenta
+    }
+}
+    

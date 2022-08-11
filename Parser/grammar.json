@@ -293,7 +293,7 @@
                     "type": "terminal",
                     "name": "EXP",
                     "alias": "**",
-                    "tooltip": "Performs Exponentation"
+                    "tooltip": "Performs exponentation"
                 },
                 {
                     "type": "terminal",
@@ -456,7 +456,7 @@
                 {
                     "type": "terminal",
                     "name": "IDENT",
-                    "tooltip": "Without type. If the variable is not declared, it is automatically declared with var"
+                    "tooltip": "Identifier without type. If the variable is not declared, it is automatically declared with var"
                 },
                 {
                     "type": "non_terminal",
@@ -520,12 +520,12 @@
                 {
                     "type": "non_terminal",
                     "name": "object_get",
-                    "tooltip": "Get an element by its property name in the object"
+                    "tooltip": "Get an element of an object by its property name"
                 },
                 {
                     "type": "non_terminal",
                     "name": "array_get",
-                    "tooltip": "Get an element by its position in the array"
+                    "tooltip": "Get an element of an array by its position"
                 },
                 {
                     "type": "non_terminal",
@@ -540,7 +540,7 @@
                 {
                     "type": "non_terminal",
                     "name": "func_definition",
-                    "tooltip": "Function definition"
+                    "tooltip": "Define reusable code as a function"
                 }
             ]
         },
@@ -969,7 +969,7 @@
                     "type": "non_terminal",
                     "name": "math_pow",
                     "alias": "pow",
-                    "tooltip": "pow(x,y) Returns base x to the exponent power y (that is, x^y)"
+                    "tooltip": "Returns base x to the exponent power y (that is, x^y)"
                 },
                 {
                     "type": "non_terminal",
@@ -1470,7 +1470,7 @@
                     "type": "non_terminal",
                     "name": "array_set",
                     "alias": "set",
-                    "tooltip": "Modify an element in a position of the array to a new character"
+                    "tooltip": "Modify an element in a position of the array to a new value"
                 },
                 {
                     "type": "non_terminal",
@@ -1718,7 +1718,7 @@
                     "type": "non_terminal",
                     "name": "object_set",
                     "alias": "set",
-                    "tooltip": "Modify a value by its property name in the object to a new value. If the property does not exist,the pair property:value will be added in the object"
+                    "tooltip": "Modify a value by its property name in the object to a new value. If the property does not exist,the pair (property:value) will be added in the object"
                 },
                 {
                     "type": "non_terminal",
@@ -1976,6 +1976,10 @@
                 {
                     "type": "terminal",
                     "name": "console.log"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "color"
                 },
                 {
                     "type": "terminal",
@@ -3064,6 +3068,39 @@
                     "type": "non_terminal",
                     "name": "stmts",
                     "tooltip": "Repeat the stmts, certain times"
+                }
+            ]
+        },
+        {
+            "name": "color",
+            "any_of": [
+                {
+                    "type": "terminal",
+                    "name": "black"
+                },
+                {
+                    "type": "terminal",
+                    "name": "red"
+                },
+                {
+                    "type": "terminal",
+                    "name": "blue"
+                },
+                {
+                    "type": "terminal",
+                    "name": "green"
+                },
+                {
+                    "type": "terminal",
+                    "name": "yellow"
+                },
+                {
+                    "type": "terminal",
+                    "name": "cyan"
+                },
+                {
+                    "type": "terminal",
+                    "name": "magenta"
                 }
             ]
         }

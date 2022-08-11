@@ -108,7 +108,7 @@ function draw() {
         turtleContext.fill();
         turtleContext.restore();
     }
-    turtleContext.drawImage(imageCanvas, 0, 0, 300, 300, 0, 0, 300, 300);
+    turtleContext.drawImage(imageCanvas, 0, 0, 400, 300, 0, 0, 400, 300);
 }
 
 // clear the display, don't move the turtle

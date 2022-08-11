@@ -427,6 +427,16 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'turtle',                  elem => this.Visit_Turtle(elem) );
 
         this.SetVisitor( 'repeat',                  elem => this.Visit_Repeat(elem) );
+
+        this.SetVisitor( 'color',                   elem => this.Visit_Color(elem) );
+        this.SetVisitor( 'black',                   elem => this.Visit_Black(elem) );
+        this.SetVisitor( 'red',                     elem => this.Visit_Red(elem) );
+        this.SetVisitor( 'blue',                    elem => this.Visit_Blue(elem) );
+        this.SetVisitor( 'green',                   elem => this.Visit_Green(elem) );
+        this.SetVisitor( 'yellow',                  elem => this.Visit_Yellow(elem) );
+        this.SetVisitor( 'cyan',                    elem => this.Visit_Cyan(elem) );
+        this.SetVisitor( 'magenta',                 elem => this.Visit_Magenta(elem) );
+
     }
 
     HandleVarDeclaration(id){
@@ -974,10 +984,10 @@ ${rBrace})();`)
     }
 
     Visit_PrintCall(elem){
-        let code = this.PopChildrenFromStack(elem, ['console', 'lp', 'args', 'rp']);
+        let code = this.PopChildrenFromStack(elem, ['console','color', 'lp', 'args', 'rp']);
 
         this.stack.push(
-            this.HandleSemicolon(elem, `${code.console}${code.lp}${code.args}${code.rp}`)
+            this.HandleSemicolon(elem, `${code.console}${code.lp}${code.color},${code.args}${code.rp}`)
         );
     }
 
@@ -1559,4 +1569,13 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_Square(elem)                      {this.stack.push('"square"');}
     Visit_Turtle(elem)                      {this.stack.push('"turtle"');}
     Visit_Repeat(elem)                      {this.IncreaseTabs(); this.stack.push(``);}
+
+    Visit_Color(elem)                       {this.stack.push('"black"');}
+    Visit_Black(elem)                       {this.stack.push('"black"');}
+    Visit_Red(elem)                         {this.stack.push('"red"');}
+    Visit_Blue(elem)                        {this.stack.push('"blue"');}
+    Visit_Green(elem)                       {this.stack.push('"green"');}
+    Visit_Yellow(elem)                      {this.stack.push('"yellow"');}
+    Visit_Cyan(elem)                        {this.stack.push('"cyan"');}
+    Visit_Magenta(elem)                     {this.stack.push('"magenta"');}
 }
