@@ -277,6 +277,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'typeof',                  elem => this.Visit_Typeof(elem) );
         this.SetVisitor( 'console.log',             elem => this.Visit_Console(elem) );
         this.SetVisitor( 'prompt',                  elem => this.Visit_Prompt(elem) );
+        this.SetVisitor( 'output_color',            elem => this.Visit_OutputColor(elem) );
         this.SetVisitor( 'add_on_key_press',        elem => this.Visit_AddOnKey(elem) );
         this.SetVisitor( 'remove_on_key_press',     elem => this.Visit_RemoveOnKey(elem) ); 
 
@@ -427,6 +428,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'turtle',                  elem => this.Visit_Turtle(elem) );
 
         this.SetVisitor( 'repeat',                  elem => this.Visit_Repeat(elem) );
+        this.SetVisitor( 'change_output_color',     elem => this.Visit_ChangeOutputColor(elem) );
 
         this.SetVisitor( 'color',                   elem => this.Visit_Color(elem) );
         this.SetVisitor( 'black',                   elem => this.Visit_Black(elem) );
@@ -436,6 +438,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'yellow',                  elem => this.Visit_Yellow(elem) );
         this.SetVisitor( 'cyan',                    elem => this.Visit_Cyan(elem) );
         this.SetVisitor( 'magenta',                 elem => this.Visit_Magenta(elem) );
+        this.SetVisitor( 'rgb_color',               elem => this.Visit_RgbColor(elem) );
 
     }
 
@@ -988,6 +991,14 @@ ${rBrace})();`)
 
         this.stack.push(
             this.HandleSemicolon(elem, `${code.console}${code.lp}${code.color},${code.args}${code.rp}`)
+        );
+    }
+
+    Visit_OutputColor(elem){
+        let code = this.PopChildrenFromStack(elem, ['changCol','color']);
+
+        this.stack.push(
+            this.HandleSemicolon(elem, `ChangeOutputColor(${code.color})`)
         );
     }
 
@@ -1569,6 +1580,7 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_Square(elem)                      {this.stack.push('"square"');}
     Visit_Turtle(elem)                      {this.stack.push('"turtle"');}
     Visit_Repeat(elem)                      {this.IncreaseTabs(); this.stack.push(``);}
+    Visit_ChangeOutputColor(elem)           {this.stack.push(``);}
 
     Visit_Color(elem)                       {this.stack.push('"black"');}
     Visit_Black(elem)                       {this.stack.push('"black"');}
@@ -1578,4 +1590,9 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_Yellow(elem)                      {this.stack.push('"yellow"');}
     Visit_Cyan(elem)                        {this.stack.push('"cyan"');}
     Visit_Magenta(elem)                     {this.stack.push('"magenta"');}
+
+    Visit_RgbColor(elem){
+        let code = this.PopChildrenFromStack(elem, ['r','g','b','a']);
+        this.stack.push(`"rgba(${code.r}, ${code.g}, ${code.b}, ${code.a})"`);
+    }
 }

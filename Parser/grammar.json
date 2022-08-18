@@ -941,6 +941,11 @@
                 },
                 {
                     "type": "non_terminal",
+                    "name": "output_color",
+                    "tooltip": "Change the color of the text in the output console"
+                },
+                {
+                    "type": "non_terminal",
                     "name": "input",
                     "tooltip": "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
                 },
@@ -1994,6 +1999,20 @@
                     "type": "terminal",
                     "name": "RP",
                     "alias": ")"
+                }
+            ]
+        },
+        {
+            "name": "output_color",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change_output_color"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "color",
+                    "tooltip": "Change the color of the text in the output console"
                 }
             ]
         },
@@ -3101,6 +3120,37 @@
                 {
                     "type": "terminal",
                     "name": "magenta"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "rgb_color",
+                    "tooltip": "Define the color as rgb"
+                }
+            ]
+        },
+        {
+            "name": "rgb_color",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "r"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "g"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "b"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "a",
+                    "tooltip": "Set the color using RGB values in the range 0 - 255"
                 }
             ]
         }

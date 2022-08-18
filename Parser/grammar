@@ -28,7 +28,7 @@ non_terminal {
     object_get_sq object_get_dot
     turtle_functions 
     forward_turtle turn_right turn_left goto_position define_angle define_widthline define_turtleshape change_color write_msg random_int set_redraw set_wrap
-    shapes color
+    shapes color rgb_color output_color
     repeat_stmt
 }
 
@@ -57,7 +57,7 @@ terminal {
     Numpad0 Numpad1 Numpad2 Numpad3 Numpad4 Numpad5 Numpad6 Numpad7 Numpad8 Numpad9 NumpadMultiply NumpadAdd NumpadDecimal NumpadSubstract NumpadDivide NumLock
     forward right left goto clear penup pendown reset angle width shape colour write random hide_turtle show_turtle redrawOnMove draw wrap
     triangle circle square turtle  
-    repeat
+    repeat change_output_color
     black red blue green yellow cyan magenta
 }  
 
@@ -346,6 +346,7 @@ define call_expr {
         object_method_call              : "Use a built-in object method"
         function_call                   : "Use a user-defined function as \"name(params);\""
         print_call                      : "Use a built-in function to print the value of the given expression (text, number etc.)"
+        output_color                    : "Change the color of the text in the output console"
         input                           : "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
         key_event                       : "Add and remove event listener for a key of your choice"
         type_of                         : "Typeof operator returns the data type of a variable e.g function,string,number,boolean,object"
@@ -538,6 +539,10 @@ define print_call {
     "console.log" color LP("(") expr_list RP(")")
 }
 
+define output_color {
+    change_output_color color       : "Change the color of the text in the output console"
+}
+
 define input {
     "prompt" LP("(") STRING_CONST(prompt_message) RP(")")
 }
@@ -698,6 +703,10 @@ define color {
         yellow 
         cyan 
         magenta
+        rgb_color                                                               : "Define the color as rgb"
     }
 }
     
+define rgb_color {
+    INT_CONST("r") INT_CONST("g") INT_CONST("b") INT_CONST("a")                 : "Set the color using RGB values in the range 0 - 255"   
+}

@@ -942,6 +942,11 @@ export let config = {
                   },
                   {
                       "type": "non_terminal",
+                      "name": "output_color",
+                      "tooltip": "Change the color of the text in the output console"
+                  },
+                  {
+                      "type": "non_terminal",
                       "name": "input",
                       "tooltip": "Displays a dialog box that prompts the user for input, you should assign it to a variable so as you can use it later"
                   },
@@ -1995,6 +2000,20 @@ export let config = {
                       "type": "terminal",
                       "name": "RP",
                       "alias": ")"
+                  }
+              ]
+          },
+          {
+              "name": "output_color",
+              "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "change_output_color"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "color",
+                      "tooltip": "Change the color of the text in the output console"
                   }
               ]
           },
@@ -3102,6 +3121,37 @@ export let config = {
                   {
                       "type": "terminal",
                       "name": "magenta"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "rgb_color",
+                      "tooltip": "Define the color as rgb"
+                  }
+              ]
+          },
+          {
+              "name": "rgb_color",
+              "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "INT_CONST",
+                      "alias": "r"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "INT_CONST",
+                      "alias": "g"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "INT_CONST",
+                      "alias": "b"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "INT_CONST",
+                      "alias": "a",
+                      "tooltip": "Set the color using RGB values in the range 0 - 255"
                   }
               ]
           }
@@ -28422,6 +28472,13 @@ export let config = {
                       "name": "magenta",
                       "isTerminal": true
                     }
+                  },
+                  {
+                    "symbol": {
+                      "name": "rgb_color",
+                      "isTerminal": false
+                    },
+                    "tooltip": "Define the color as rgb"
                   }
                 ],
                 "type": "SelectionBlock"
@@ -52241,7 +52298,31 @@ config.darkColorfulTheme = {
                 "BorderRadius": ""
             }
         },
+        "rgb_color": {
+          "Group Block": {
+              "BackgroundColor": "transparent",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "BorderRadius": ""
+          }
+      },
+      "output_color": {
+        "Group Block": {
+            "BackgroundColor": "#995BA5",
+            "PaddingLeft": "",
+            "PaddingRight": "",
+            "PaddingTop": "",
+            "PaddingBottom": "",
+            "BorderWidth": "",
+            "BorderColor": "#7A4884",
+            "BorderRadius": ""
         }
+    },
+      }
     },
     "Code Workspace": {
         "Code Workspace": {

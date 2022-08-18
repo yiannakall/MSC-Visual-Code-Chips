@@ -150,7 +150,14 @@ $(document).ready(function () {
             content += args[i] + " ";
         }
 
-        $('#'+pName).html(prev + '<span style="color:' +color + '">' + content + '</span>');
+        $('#'+pName).html(prev + '<span style="color:' + color + '">' + content + '</span>');
+    }
+
+    function ChangeOutputColor(color){
+        var pName = 'PopUpText' + (popupNum-1);
+        var prev = $('#'+pName).html()
+        $('#'+pName).html('<span style="color:' + color + '">' + prev + '</span>');
+        //document.getElementById(pName).style.color = color;
     }
 
     let toJs = (code) => {
