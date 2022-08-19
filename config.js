@@ -42846,6 +42846,66 @@ export let config = {
                       {
                         "symbol": {
                           "symbol": {
+                            "name": "color",
+                            "isTerminal": false
+                          }
+                        },
+                        "alternateSymbols": [
+                          {
+                            "symbol": {
+                              "name": "black",
+                              "isTerminal": true
+                            }
+                          },
+                          {
+                            "symbol": {
+                              "name": "red",
+                              "isTerminal": true
+                            }
+                          },
+                          {
+                            "symbol": {
+                              "name": "blue",
+                              "isTerminal": true
+                            }
+                          },
+                          {
+                            "symbol": {
+                              "name": "green",
+                              "isTerminal": true
+                            }
+                          },
+                          {
+                            "symbol": {
+                              "name": "yellow",
+                              "isTerminal": true
+                            }
+                          },
+                          {
+                            "symbol": {
+                              "name": "cyan",
+                              "isTerminal": true
+                            }
+                          },
+                          {
+                            "symbol": {
+                              "name": "magenta",
+                              "isTerminal": true
+                            }
+                          },
+                          {
+                            "symbol": {
+                              "name": "rgb_color",
+                              "isTerminal": false
+                            },
+                            "tooltip": "Define the color as rgb"
+                          }
+                        ],
+                        "type": "SelectionBlock"
+                      },
+                      {
+                        "symbol": {
+                          "symbol": {
                             "name": "LP",
                             "isTerminal": true
                           },
@@ -42867,7 +42927,7 @@ export let config = {
                                 "name": "array_get",
                                 "isTerminal": false
                               },
-                              "tooltip": "Get an element by its position in the array"
+                              "tooltip": "Get an element of an array by its position"
                             },
                             "elems": [
                               {
@@ -42893,171 +42953,63 @@ export let config = {
                               {
                                 "symbol": {
                                   "symbol": {
-                                    "name": "IDENT",
-                                    "isTerminal": true
+                                    "name": "expr",
+                                    "isTerminal": false
                                   },
-                                  "tooltip": "Without type. If the variable is not declared, it is automatically declared with var"
+                                  "alias": "index"
                                 },
-                                "userInput_": "i",
-                                "type": "InputBlock",
-                                "generatedBy": {
-                                  "symbol": {
+                                "alternateSymbols": [
+                                  {
                                     "symbol": {
-                                      "name": "variable",
+                                      "name": "arith_expr",
                                       "isTerminal": false
                                     },
-                                    "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                                    "tooltip": "Perform a mathematic operation"
                                   },
-                                  "alternateSymbols": [
-                                    {
-                                      "symbol": {
-                                        "name": "IDENT",
-                                        "isTerminal": true
-                                      },
-                                      "tooltip": "Without type. If the variable is not declared, it is automatically declared with var"
-                                    },
-                                    {
-                                      "symbol": {
-                                        "name": "ident_type",
-                                        "isTerminal": false
-                                      },
-                                      "tooltip": "Identifier with type"
-                                    }
-                                  ],
-                                  "selectedSymbol": 0,
-                                  "type": "SelectionBlock",
-                                  "generatedBy": {
+                                  {
                                     "symbol": {
-                                      "symbol": {
-                                        "name": "primary_expr",
-                                        "isTerminal": false
-                                      },
-                                      "tooltip": "An identifier or a constant"
+                                      "name": "rel_expr",
+                                      "isTerminal": false
                                     },
-                                    "alternateSymbols": [
-                                      {
-                                        "symbol": {
-                                          "name": "variable",
-                                          "isTerminal": false
-                                        },
-                                        "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
-                                      },
-                                      {
-                                        "symbol": {
-                                          "name": "consts",
-                                          "isTerminal": false
-                                        },
-                                        "tooltip": "All const values"
-                                      },
-                                      {
-                                        "symbol": {
-                                          "name": "keys",
-                                          "isTerminal": false
-                                        },
-                                        "tooltip": "All keyboard keys"
-                                      },
-                                      {
-                                        "symbol": {
-                                          "name": "object_get",
-                                          "isTerminal": false
-                                        },
-                                        "tooltip": "Get an element by its property name in the object"
-                                      },
-                                      {
-                                        "symbol": {
-                                          "name": "array_get",
-                                          "isTerminal": false
-                                        },
-                                        "tooltip": "Get an element by its position in the array"
-                                      },
-                                      {
-                                        "symbol": {
-                                          "name": "new_array",
-                                          "isTerminal": false
-                                        },
-                                        "tooltip": "Define a new array"
-                                      },
-                                      {
-                                        "symbol": {
-                                          "name": "new_object",
-                                          "isTerminal": false
-                                        },
-                                        "tooltip": "Define a new object"
-                                      },
-                                      {
-                                        "symbol": {
-                                          "name": "func_definition",
-                                          "isTerminal": false
-                                        },
-                                        "tooltip": "Function definition"
-                                      }
-                                    ],
-                                    "selectedSymbol": 0,
-                                    "type": "SelectionBlock",
-                                    "generatedBy": {
-                                      "symbol": {
-                                        "symbol": {
-                                          "name": "expr",
-                                          "isTerminal": false
-                                        },
-                                        "alias": "index"
-                                      },
-                                      "alternateSymbols": [
-                                        {
-                                          "symbol": {
-                                            "name": "arith_expr",
-                                            "isTerminal": false
-                                          },
-                                          "tooltip": "Perform a mathematic operation"
-                                        },
-                                        {
-                                          "symbol": {
-                                            "name": "rel_expr",
-                                            "isTerminal": false
-                                          },
-                                          "tooltip": "An operator that compares the two operands and returns true or false"
-                                        },
-                                        {
-                                          "symbol": {
-                                            "name": "logical_expr",
-                                            "isTerminal": false
-                                          },
-                                          "tooltip": "An expression that evaluates to true or false"
-                                        },
-                                        {
-                                          "symbol": {
-                                            "name": "assign_expr",
-                                            "isTerminal": false
-                                          },
-                                          "tooltip": "Set a variable's value"
-                                        },
-                                        {
-                                          "symbol": {
-                                            "name": "call_expr",
-                                            "isTerminal": false
-                                          },
-                                          "tooltip": "Call a user-defined or built-in function/method"
-                                        },
-                                        {
-                                          "symbol": {
-                                            "name": "ternary_stmt",
-                                            "isTerminal": false
-                                          },
-                                          "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
-                                        },
-                                        {
-                                          "symbol": {
-                                            "name": "primary_expr",
-                                            "isTerminal": false
-                                          },
-                                          "tooltip": "An identifier or a constant"
-                                        }
-                                      ],
-                                      "selectedSymbol": 6,
-                                      "type": "SelectionBlock"
-                                    }
+                                    "tooltip": "An operator that compares the two operands and returns true or false"
+                                  },
+                                  {
+                                    "symbol": {
+                                      "name": "logical_expr",
+                                      "isTerminal": false
+                                    },
+                                    "tooltip": "An expression that evaluates to true or false"
+                                  },
+                                  {
+                                    "symbol": {
+                                      "name": "assign_expr",
+                                      "isTerminal": false
+                                    },
+                                    "tooltip": "Set a variable's value"
+                                  },
+                                  {
+                                    "symbol": {
+                                      "name": "call_expr",
+                                      "isTerminal": false
+                                    },
+                                    "tooltip": "Call a user-defined or built-in function/method"
+                                  },
+                                  {
+                                    "symbol": {
+                                      "name": "ternary_stmt",
+                                      "isTerminal": false
+                                    },
+                                    "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                                  },
+                                  {
+                                    "symbol": {
+                                      "name": "primary_expr",
+                                      "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier or a constant"
                                   }
-                                }
+                                ],
+                                "type": "SelectionBlock"
                               },
                               {
                                 "symbol": {
@@ -43106,14 +43058,14 @@ export let config = {
                                     "name": "object_get",
                                     "isTerminal": false
                                   },
-                                  "tooltip": "Get an element by its property name in the object"
+                                  "tooltip": "Get an element of an object by its property name"
                                 },
                                 {
                                   "symbol": {
                                     "name": "array_get",
                                     "isTerminal": false
                                   },
-                                  "tooltip": "Get an element by its position in the array"
+                                  "tooltip": "Get an element of an array by its position"
                                 },
                                 {
                                   "symbol": {
@@ -43134,7 +43086,7 @@ export let config = {
                                     "name": "func_definition",
                                     "isTerminal": false
                                   },
-                                  "tooltip": "Function definition"
+                                  "tooltip": "Define reusable code as a function"
                                 }
                               ],
                               "selectedSymbol": 4,
@@ -43329,6 +43281,13 @@ export let config = {
                             "isTerminal": false
                           },
                           "tooltip": "Use a built-in function to print the value of the given expression (text, number etc.)"
+                        },
+                        {
+                          "symbol": {
+                            "name": "output_color",
+                            "isTerminal": false
+                          },
+                          "tooltip": "Change the color of the text in the output console"
                         },
                         {
                           "symbol": {

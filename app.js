@@ -157,7 +157,6 @@ $(document).ready(function () {
         var pName = 'PopUpText' + (popupNum-1);
         var prev = $('#'+pName).html()
         $('#'+pName).html('<span style="color:' + color + '">' + prev + '</span>');
-        //document.getElementById(pName).style.color = color;
     }
 
     let toJs = (code) => {

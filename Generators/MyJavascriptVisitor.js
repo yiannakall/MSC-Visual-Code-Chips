@@ -691,7 +691,7 @@ export class MyJavascriptVisitor extends AstVisitor {
 
     Visit_IdentType(elem) {
         let code = this.PopChildrenFromStack(elem, ['type', 'ident']);
-        this.stack.push(`${code.type} ${code.ident}`);
+        this.stack.push(this.HandleSemicolon(elem, `${code.type} ${code.ident}`));
     } 
 
     Visit_TypeOf(elem) {
@@ -750,9 +750,14 @@ ${rBrace})();`)
     }
 
     Visit_Expr(elem){
-        this.stack.push(
-            this.HandleSemicolon(elem, `0`)
-        );
+        let parent = elem.GetParent().GetSymbol().symbol.name;
+        
+        if(parent === 'element_list'){
+            this.stack.push(``);
+        }else {
+            this.stack.push( this.HandleSemicolon(elem, `0`)); 
+        }
+
     }
 
     Visit_TurtleFunc(elem) {
