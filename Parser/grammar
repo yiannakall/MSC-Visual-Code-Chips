@@ -57,7 +57,7 @@ terminal {
     Numpad0 Numpad1 Numpad2 Numpad3 Numpad4 Numpad5 Numpad6 Numpad7 Numpad8 Numpad9 NumpadMultiply NumpadAdd NumpadDecimal NumpadSubstract NumpadDivide NumLock
     forward right left goto clear penup pendown reset angle width shape colour write random hide_turtle show_turtle redrawOnMove draw wrap
     triangle circle square turtle  
-    repeat change_output_color
+    repeat set_console_color
     black red blue green yellow cyan magenta
 }  
 
@@ -488,8 +488,8 @@ define object_method_call {
 
 define object_get {
     any_of{
-        object_get_dot                  : "Get with syntax objectName.property"
-        object_get_sq                   : "Get with syntax objectName[\"property\"], property should be a string"
+        object_get_dot                  : "Get with syntax objectName.property, property as ident"
+        object_get_sq                   : "Get with syntax objectName[\"property\"], property as string"
     }
 }
 
@@ -540,7 +540,7 @@ define print_call {
 }
 
 define output_color {
-    change_output_color color       : "Change the color of the text in the output console"
+    set_console_color color       : "Change the color of the text in the output console"
 }
 
 define input {

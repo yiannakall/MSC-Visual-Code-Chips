@@ -1739,12 +1739,12 @@
                 {
                     "type": "non_terminal",
                     "name": "object_get_dot",
-                    "tooltip": "Get with syntax objectName.property"
+                    "tooltip": "Get with syntax objectName.property, property as ident"
                 },
                 {
                     "type": "non_terminal",
                     "name": "object_get_sq",
-                    "tooltip": "Get with syntax objectName[\"property\"], property should be a string"
+                    "tooltip": "Get with syntax objectName[\"property\"], property as string"
                 }
             ]
         },
@@ -2007,7 +2007,7 @@
             "all_of": [
                 {
                     "type": "terminal",
-                    "name": "change_output_color"
+                    "name": "set_console_color"
                 },
                 {
                     "type": "non_terminal",

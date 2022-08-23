@@ -6,6 +6,9 @@ import { MyJavascriptVisitor } from './Generators/MyJavascriptVisitor.js';
 import { AstHost } from './Generators/AstHost.js';
 
 var popupNum = 1;
+var OutputColor; 
+var flagColor = 0;
+
 $(document).ready(function () {
 
     $.fn.textWidth = function (text, font) {
@@ -102,6 +105,7 @@ $(document).ready(function () {
         elem.appendChild(text);
         document.body.appendChild(elem);
         popupNum++;
+        flagColor = 0;
     }
 
     function turtle_canvas(){
@@ -142,6 +146,13 @@ $(document).ready(function () {
     }
 
     function output(color,...args) {
+        var mycolor; 
+        if(flagColor == 1){
+            mycolor = OutputColor;
+        } else {
+            mycolor = color;
+        }
+
         var pName = 'PopUpText' + (popupNum-1);
         var prev = $('#'+pName).html()
         var content = '<br>';
@@ -150,13 +161,12 @@ $(document).ready(function () {
             content += args[i] + " ";
         }
 
-        $('#'+pName).html(prev + '<span style="color:' + color + '">' + content + '</span>');
+        $('#'+pName).html(prev + '<span style="color:' + mycolor + '">' + content + '</span>');
     }
 
-    function ChangeOutputColor(color){
-        var pName = 'PopUpText' + (popupNum-1);
-        var prev = $('#'+pName).html()
-        $('#'+pName).html('<span style="color:' + color + '">' + prev + '</span>');
+    function SetOutputColor(color){
+        OutputColor = color;
+        flagColor = 1;
     }
 
     let toJs = (code) => {

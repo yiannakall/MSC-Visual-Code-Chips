@@ -428,7 +428,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'turtle',                  elem => this.Visit_Turtle(elem) );
 
         this.SetVisitor( 'repeat',                  elem => this.Visit_Repeat(elem) );
-        this.SetVisitor( 'change_output_color',     elem => this.Visit_ChangeOutputColor(elem) );
+        this.SetVisitor( 'set_console_color',       elem => this.Visit_ChangeOutputColor(elem) );
 
         this.SetVisitor( 'color',                   elem => this.Visit_Color(elem) );
         this.SetVisitor( 'black',                   elem => this.Visit_Black(elem) );
@@ -1000,10 +1000,10 @@ ${rBrace})();`)
     }
 
     Visit_OutputColor(elem){
-        let code = this.PopChildrenFromStack(elem, ['changCol','color']);
+        let code = this.PopChildrenFromStack(elem, ['setCol','color']);
 
         this.stack.push(
-            this.HandleSemicolon(elem, `ChangeOutputColor(${code.color})`)
+            this.HandleSemicolon(elem, `SetOutputColor(${code.color})`)
         );
     }
 
