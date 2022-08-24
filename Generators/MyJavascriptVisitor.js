@@ -389,6 +389,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'NumLock',                 elem => this.Visit_NumLock(elem) );
 
         this.SetVisitor( 'forward_turtle',          elem => this.Visit_ForwardTurtle(elem) );
+        this.SetVisitor( 'backward_turtle',         elem => this.Visit_BackwardTurtle(elem) );
         this.SetVisitor( 'turn_right',              elem => this.Visit_TurnRight(elem) );
         this.SetVisitor( 'turn_left',               elem => this.Visit_TurnLeft(elem) );
         this.SetVisitor( 'goto_position',           elem => this.Visit_GotoPosition(elem) );
@@ -400,9 +401,12 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'random_int',              elem => this.Visit_RandomInt(elem) );
         this.SetVisitor( 'set_redraw',              elem => this.Visit_SetRedraw(elem) );
         this.SetVisitor( 'set_wrap',                elem => this.Visit_SetWrap(elem) );
+        this.SetVisitor( 'set_sleep',               elem => this.Visit_SetSleep(elem) );
+        this.SetVisitor( 'animation',               elem => this.Visit_AnimateTurtle(elem) );
         this.SetVisitor( 'shapes',                  elem => this.Visit_Shapes(elem) );
 
         this.SetVisitor( 'forward',                 elem => this.Visit_Forward(elem) );
+        this.SetVisitor( 'backward',                elem => this.Visit_Backward(elem) );
         this.SetVisitor( 'right',                   elem => this.Visit_Right(elem) );
         this.SetVisitor( 'left',                    elem => this.Visit_Left(elem) );
         this.SetVisitor( 'goto',                    elem => this.Visit_Goto(elem) );
@@ -421,6 +425,8 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'redrawOnMove',            elem => this.Visit_RedrawOnMove(elem) );
         this.SetVisitor( 'draw',                    elem => this.Visit_Draw(elem) );
         this.SetVisitor( 'wrap',                    elem => this.Visit_Wrap(elem) );
+        this.SetVisitor( 'sleep',                   elem => this.Visit_Sleep(elem) );
+        this.SetVisitor( 'animate',                 elem => this.Visit_Animate(elem) );
 
         this.SetVisitor( 'triangle',                elem => this.Visit_Triangle(elem) );
         this.SetVisitor( 'circle',                  elem => this.Visit_Circle(elem) );
@@ -1503,6 +1509,11 @@ element.removeEventListener('keypress',${code.listener},false);`);
         this.stack.push(`${code.forward}(${code.dist});`);
     }
 
+    Visit_BackwardTurtle(elem){
+        let code = this.PopChildrenFromStack(elem, ['backward', 'dist']);
+        this.stack.push(`${code.backward}(${code.dist});`);
+    }
+
     Visit_TurnRight(elem){
         let code = this.PopChildrenFromStack(elem, ['right', 'angle']);
         this.stack.push(`${code.right}(${code.angle});`);
@@ -1558,9 +1569,20 @@ element.removeEventListener('keypress',${code.listener},false);`);
         this.stack.push(`${code.wrap}(${code.bool});`);
     }
 
+    Visit_SetSleep(elem){
+        let code = this.PopChildrenFromStack(elem, ['sleep', 'ms']);
+        this.stack.push(`${code.sleep}(${code.ms});`);
+    }
+
+    Visit_AnimateTurtle(elem) {
+        let code = this.PopChildrenFromStack(elem, ['animate', 'func', 'ms']);
+        this.stack.push(`${code.animate}(${code.func}, ${code.ms});`);
+    }
+
     Visit_Shapes(elem)                      {this.stack.push(``);}
 
     Visit_Forward(elem)                     {this.stack.push('forward');}
+    Visit_Backward(elem)                    {this.stack.push('backward');}
     Visit_Right(elem)                       {this.stack.push('right');}
     Visit_Left(elem)                        {this.stack.push('left');}
     Visit_Goto(elem)                        {this.stack.push('goto')}
@@ -1579,6 +1601,8 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_RedrawOnMove(elem)                {this.stack.push('redrawOnMove');}    
     Visit_Draw(elem)                        {this.stack.push('draw();')}
     Visit_Wrap(elem)                        {this.stack.push('wrap');}
+    Visit_Sleep(elem)                       {this.stack.push('sleep');}
+    Visit_Animate(elem)                     {this.stack.push('animate');}
 
     Visit_Triangle(elem)                    {this.stack.push('"triangle"');}
     Visit_Circle(elem)                      {this.stack.push('"circle"');}

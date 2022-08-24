@@ -204,6 +204,13 @@ function forward(distance) {
     drawIf();
 }
 
+//move the turtle backward, allowing for possible wrap-around
+function backward(distance) {
+    right (180);
+    forward (distance);
+    right (180);
+  }
+
 // turn edge wrapping on/off
 function wrap(bool) {
     turtle.wrap = bool;
@@ -309,6 +316,32 @@ function colour(r, g, b, a) {
 // Generate a random integer between low and hi
 function random(low, hi) {
     return Math.floor(Math.random() * (hi - low + 1) + low);
+}
+
+function animate(f, ms) {
+    return setInterval(f, ms);
+}
+
+function sleep(ms) {
+    var start = new Date().getTime();
+    var limit = 1000 * 60 * 1; // set maximum time to 1 minute
+    var i = 0;
+    for (i = 0; i < limit; i += 1) {
+      if ((new Date().getTime() - start) > ms) {
+        break;
+      }
+    }
+}
+
+var timeouts = []; //array of time out IDs started with the delay function
+
+function delay(f, ms) {
+    timeouts.push (setTimeout(function () {
+        timeouts.pop(); // pop the current timer
+        f();
+        if (errorFound)
+          stop()
+      }, ms));
 }
 
 function setFont(font) {

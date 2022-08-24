@@ -2756,6 +2756,11 @@
                 },
                 {
                     "type": "non_terminal",
+                    "name": "backward_turtle",
+                    "tooltip": "Moves the turtle backward, allowing for possible wrap-around"
+                },
+                {
+                    "type": "non_terminal",
                     "name": "turn_right",
                     "tooltip": "Turns the turtle right by an angle in degrees"
                 },
@@ -2843,6 +2848,16 @@
                     "type": "non_terminal",
                     "name": "set_wrap",
                     "tooltip": "Turn edge wrapping on/off"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "set_sleep",
+                    "tooltip": "Just wait in place for a number of milliseconds"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "animation",
+                    "tooltip": "Call the same function over and over at a fixed period of time"
                 }
             ]
         },
@@ -2854,10 +2869,25 @@
                     "name": "forward"
                 },
                 {
-                    "type": "terminal",
-                    "name": "INT_CONST",
+                    "type": "non_terminal",
+                    "name": "primary_expr",
                     "alias": "distance",
                     "tooltip": "Moves the turtle forward by the specified amount,allowing for possible wrap-around at the boundaries of the canvas"
+                }
+            ]
+        },
+        {
+            "name": "backward_turtle",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "backward"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "distance",
+                    "tooltip": "Moves the turtle backward, allowing for possible wrap-around"
                 }
             ]
         },
@@ -3068,6 +3098,41 @@
                     "name": "BOOLEAN_CONST",
                     "alias": "on/off",
                     "tooltip": "Turn edge wrapping on/off"
+                }
+            ]
+        },
+        {
+            "name": "set_sleep",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "sleep"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "ms",
+                    "tooltip": "Just wait in place for a number of milliseconds"
+                }
+            ]
+        },
+        {
+            "name": "animation",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "animate"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "function"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "ms",
+                    "tooltip": "Call the same function over and over at a fixed period of time"
                 }
             ]
         },
