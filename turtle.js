@@ -325,7 +325,7 @@ function animate(f, ms) {
 var timeouts = []; //array of time out IDs started with the delay function
 
 function delay(f, ms) {
-    timeouts.push (setTimeout(function () {
+    timeouts.push(setTimeout(function () {
         timeouts.pop(); // pop the current timer
         f();
       }, ms));
