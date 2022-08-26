@@ -2851,13 +2851,18 @@
                 },
                 {
                     "type": "non_terminal",
-                    "name": "set_sleep",
-                    "tooltip": "Just wait in place for a number of milliseconds"
+                    "name": "set_delay",
+                    "tooltip": "Call a function once after a period of time"
                 },
                 {
                     "type": "non_terminal",
                     "name": "animation",
                     "tooltip": "Call the same function over and over at a fixed period of time"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "set_delay_interval",
+                    "tooltip": "Set an interval to delay all the turtle functions"
                 }
             ]
         },
@@ -3102,17 +3107,22 @@
             ]
         },
         {
-            "name": "set_sleep",
+            "name": "set_delay",
             "all_of": [
                 {
                     "type": "terminal",
-                    "name": "sleep"
+                    "name": "delay"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "function"
                 },
                 {
                     "type": "non_terminal",
                     "name": "primary_expr",
                     "alias": "ms",
-                    "tooltip": "Just wait in place for a number of milliseconds"
+                    "tooltip": "Call a function once after a period of time"
                 }
             ]
         },
@@ -3133,6 +3143,21 @@
                     "name": "primary_expr",
                     "alias": "ms",
                     "tooltip": "Call the same function over and over at a fixed period of time"
+                }
+            ]
+        },
+        {
+            "name": "set_delay_interval",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "delay_interval"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "ms",
+                    "tooltip": "Set an interval to delay all the turtle functions"
                 }
             ]
         },

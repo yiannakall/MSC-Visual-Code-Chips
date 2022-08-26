@@ -27,7 +27,7 @@ non_terminal {
     object_get object_insert object_delete object_set object_size
     object_get_sq object_get_dot
     turtle_functions 
-    forward_turtle backward_turtle turn_right turn_left goto_position define_angle define_widthline define_turtleshape change_color write_msg random_int set_redraw set_wrap  set_sleep animation
+    forward_turtle backward_turtle turn_right turn_left goto_position define_angle define_widthline define_turtleshape change_color write_msg random_int set_redraw set_wrap set_delay animation set_delay_interval
     shapes color rgb_color output_color
     repeat_stmt
 }
@@ -55,7 +55,7 @@ terminal {
     ControlLeft OSLeft AltLeft Space AltRight ContextMenu ControlRight Delete PageUp PageDown ArrowLeft ArrowUp ArrowRight ArrowDown
     KeyA KeyB KeyC KeyD KeyE KeyF KeyG KeyH KeyI KeyJ KeyK KeyL KeyM KeyN KeyO KeyR KeyS KeyT KeyU KeyV KeyW KeyX KeyY KeyZ
     Numpad0 Numpad1 Numpad2 Numpad3 Numpad4 Numpad5 Numpad6 Numpad7 Numpad8 Numpad9 NumpadMultiply NumpadAdd NumpadDecimal NumpadSubstract NumpadDivide NumLock
-    forward  backward right left goto clear penup pendown reset angle width shape colour write random hide_turtle show_turtle redrawOnMove draw wrap sleep animate
+    forward  backward right left goto clear penup pendown reset angle width shape colour write random hide_turtle show_turtle redrawOnMove draw wrap delay animate delay_interval
     triangle circle square turtle  
     repeat set_console_color
     black red blue green yellow cyan magenta
@@ -631,8 +631,9 @@ define turtle_functions {
         set_redraw                                : "Turn on/off redrawing"
         draw                                      : "Draw the turtle and the current image"
         set_wrap                                  : "Turn edge wrapping on/off"
-        set_sleep                                 : "Just wait in place for a number of milliseconds"
+        set_delay                                 : "Call a function once after a period of time"
         animation                                 : "Call the same function over and over at a fixed period of time"
+        set_delay_interval                        : "Set an interval to delay all the turtle functions"
     }
 }
 
@@ -697,12 +698,16 @@ define set_wrap {
     wrap BOOLEAN_CONST("on/off")                                                : "Turn edge wrapping on/off"
 }
 
-define set_sleep {
-    sleep primary_expr("ms")                                                    : "Just wait in place for a number of milliseconds"
+define set_delay {
+    delay IDENT("function") primary_expr("ms")                                  : "Call a function once after a period of time"
 }
 
 define animation {
     animate IDENT("function") primary_expr("ms")                                :"Call the same function over and over at a fixed period of time"
+}
+
+define set_delay_interval {
+    delay_interval primary_expr("ms")                                                : "Set an interval to delay all the turtle functions"
 }
 
 define repeat_stmt {

@@ -141,6 +141,7 @@ $(document).ready(function () {
                 document.body.classList.remove('no-select');
             })
     
+            $(document.body).append('<script type="text/javascript" src="myturtle.js"></script>');
             $(document.body).append('<script type="text/javascript" src="turtle.js"></script>');
         }
     }
