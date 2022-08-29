@@ -322,13 +322,10 @@ function animate(f, ms) {
     return setInterval(f, ms);
 }
 
-var timeouts = []; //array of time out IDs started with the delay function
-
 function delay(f, ms) {
-    timeouts.push(setTimeout(function () {
-        timeouts.pop(); // pop the current timer
+    setTimeout(function () {
         f();
-      }, ms));
+    }, ms);
 }
 
 function setFont(font) {

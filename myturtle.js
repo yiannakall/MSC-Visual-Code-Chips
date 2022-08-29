@@ -22,13 +22,9 @@ function turtle_reset() {
 // Trace the forward motion of the turtle
 function turtle_forward(distance) {
     if(DelayInterval == 0) {
-        console.log("zero")
         forward(distance);
     } else {
-        function myfunc(){
-            forward(distance);
-        }
-        delay(myfunc,DelayInterval);
+        setTimeout(forward,DelayInterval,distance);
     }
 }
 
@@ -69,13 +65,9 @@ function turtle_pendown() {
 // turn right by an angle in degrees
 function turtle_right(angle) {
     if(DelayInterval == 0) {
-        console.log("zero")
         right(angle);
     } else {
-        function myfunc(){
-            right(angle);
-        }
-        delay(myfunc,DelayInterval);
+        setTimeout(right,DelayInterval,angle);
     }
 }
 
