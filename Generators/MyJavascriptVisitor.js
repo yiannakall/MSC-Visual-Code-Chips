@@ -939,11 +939,8 @@ ${rBrace})();`)
 
     Visit_ExprList(elem){
         let code;
-        if(elem.GetParent().GetSymbol().symbol.name === 'print_call'){
-            code = this.PopChildrenFromStack(elem).join(' , ');
-        } else {
-            code = this.PopChildrenFromStack(elem).join(', ');
-        }
+        code = this.PopChildrenFromStack(elem).join(', ');
+        
         this.stack.push(`${code}`);
     }
 
@@ -1239,7 +1236,6 @@ element.removeEventListener('keypress',${code.listener},false);`);
         this.stack.push(`${code.object}${code.dot}${code.property}`);
     }  
     
-    /* terminals */
     Visit_Ident(elem){
         let id = elem.GetText() || '$$id';
         
@@ -1508,27 +1504,27 @@ element.removeEventListener('keypress',${code.listener},false);`);
 
     Visit_ForwardTurtle(elem){
         let code = this.PopChildrenFromStack(elem, ['forward', 'dist']);
-        this.stack.push(`${code.forward}(${code.dist});`);
+        this.stack.push(`await ${code.forward}(${code.dist});`);
     }
 
     Visit_BackwardTurtle(elem){
         let code = this.PopChildrenFromStack(elem, ['backward', 'dist']);
-        this.stack.push(`${code.backward}(${code.dist});`);
+        this.stack.push(`await ${code.backward}(${code.dist});`);
     }
 
     Visit_TurnRight(elem){
         let code = this.PopChildrenFromStack(elem, ['right', 'angle']);
-        this.stack.push(`${code.right}(${code.angle});`);
+        this.stack.push(`await ${code.right}(${code.angle});`);
     }
 
     Visit_TurnLeft(elem){
         let code = this.PopChildrenFromStack(elem, ['left', 'angle']);
-        this.stack.push(`${code.left}(${code.angle});`);
+        this.stack.push(`await ${code.left}(${code.angle});`);
     }
 
     Visit_GotoPosition(elem){
         let code = this.PopChildrenFromStack(elem, ['goto', 'x','y']);
-        this.stack.push(`${code.goto}(${code.x} , ${code.y});`);
+        this.stack.push(`await ${code.goto}(${code.x} , ${code.y});`);
     }
 
     Visit_DefineAngle(elem){
@@ -1583,7 +1579,7 @@ element.removeEventListener('keypress',${code.listener},false);`);
 
     Visit_SetDelayInterval(elem){
         let code = this.PopChildrenFromStack(elem, ['delayinterv', 'ms']);
-        this.stack.push(`setDelay(${code.ms});`);
+        this.stack.push(`turtle_setDelay(${code.ms});`);
     }
 
     Visit_Shapes(elem)                      {this.stack.push(``);}
@@ -1606,7 +1602,7 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_HideTurtle(elem)                  {this.stack.push('turtle_hideTurtle();');}
     Visit_ShowTurtle(elem)                  {this.stack.push('turtle_showTurtle();');}
     Visit_RedrawOnMove(elem)                {this.stack.push('turtle_redrawOnMove');}    
-    Visit_Draw(elem)                        {this.stack.push('turtle_draw();')}
+    Visit_Draw(elem)                        {this.stack.push('await turtle_draw();')}
     Visit_Wrap(elem)                        {this.stack.push('turtle_wrap');}
     Visit_Delay(elem)                       {this.stack.push('turtle_delay');}
     Visit_Animate(elem)                     {this.stack.push('turtle_animate');}
