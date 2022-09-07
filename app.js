@@ -170,7 +170,7 @@ $(document).ready(function () {
         flagColor = 1;
     }
 
-    let toJs = (code) => {
+    let toJs = async (code) => {
         let visitor = new MyJavascriptVisitor(popupNum);
         let host = new AstHost(visitor);
 
