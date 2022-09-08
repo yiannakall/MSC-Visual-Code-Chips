@@ -318,10 +318,6 @@ function random(low, hi) {
     return Math.floor(Math.random() * (hi - low + 1) + low);
 }
 
-function animate(f, ms) {
-    return setInterval(f, ms);
-}
-
 function delay(f, ms) {
     setTimeout(function () {
         f();

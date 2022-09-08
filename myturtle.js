@@ -1,12 +1,4 @@
-var DelayInterval = 0; 
-const sleep = (delay) => new Promise((resolve) => setTimeout(resolve,delay));
-
-function turtle_setDelay(ms){
-    DelayInterval = ms;
-}
-
-async function turtle_draw() {
-    await sleep(DelayInterval);
+function turtle_draw() {
     draw();
 }
 
@@ -18,13 +10,11 @@ function turtle_reset() {
     reset();
 }
 
-async function turtle_forward(distance) {
-    await sleep(DelayInterval);
+function turtle_forward(distance) {
     forward(distance);
 }
 
-async function turtle_backward(distance) {
-    await sleep(DelayInterval);
+function turtle_backward (distance) {
     backward(distance);
 }
 
@@ -52,18 +42,15 @@ function turtle_pendown() {
     pendown();
 }
 
-async function turtle_right(angle) {
-    await sleep(DelayInterval);
+function turtle_right(angle) {
     right(angle);
 }
 
-async function turtle_left(angle) {
-    await sleep(DelayInterval);
+function turtle_left(angle) {
     left(angle);
 }
 
-async function turtle_goto(x, y) {
-    await sleep(DelayInterval);
+function turtle_goto(x, y) {
     goto(x,y);
 }
 
@@ -79,8 +66,7 @@ function turtle_write(msg) {
     write(msg);
 }
 
-
-async function turtle_shape(s) {
+function turtle_shape(s) {
     shape(s);
 }
 
@@ -90,10 +76,6 @@ function turtle_colour(r, g, b, a) {
 
 function turtle_random(low, hi) {
     random(low,hi);
-}
-
-function turtle_animate(f, ms) {
-    animate(f,ms);
 }
 
 function turtle_delay(f, ms) {

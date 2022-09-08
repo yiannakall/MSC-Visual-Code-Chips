@@ -2853,16 +2853,6 @@
                     "type": "non_terminal",
                     "name": "set_delay",
                     "tooltip": "Call a function once after a period of time"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "animation",
-                    "tooltip": "Call the same function over and over at a fixed period of time"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "set_delay_interval",
-                    "tooltip": "Set an interval to delay all the turtle functions"
                 }
             ]
         },
@@ -3123,41 +3113,6 @@
                     "name": "primary_expr",
                     "alias": "ms",
                     "tooltip": "Call a function once after a period of time"
-                }
-            ]
-        },
-        {
-            "name": "animation",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "animate"
-                },
-                {
-                    "type": "terminal",
-                    "name": "IDENT",
-                    "alias": "function"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "primary_expr",
-                    "alias": "ms",
-                    "tooltip": "Call the same function over and over at a fixed period of time"
-                }
-            ]
-        },
-        {
-            "name": "set_delay_interval",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "delay_interval"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "primary_expr",
-                    "alias": "ms",
-                    "tooltip": "Set an interval to delay all the turtle functions"
                 }
             ]
         },
