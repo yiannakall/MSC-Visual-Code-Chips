@@ -2,8 +2,6 @@ import { AstVisitor } from "./AstVisitor.js";
 import { assert } from '../Utils/Assert.js';
 import { EditorElementTypes } from '../Editor/EditorElements/EditorElement.js';
 import { ReservedWords } from '../Utils/ReservedWords.js';
-import { PopupWindow } from "../Editor/EditorPopups/PopupWindow.js";
-import { ToJavascriptVisitor } from "./ToJavascriptVisitor.js";
 
 export class MyJavascriptVisitor extends AstVisitor {
 
@@ -746,11 +744,11 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.DecreaseTabs();
         let rBrace = this.TabIn('}');
 
-        this.stack.push( `{
+        this.stack.push( `(() => {
         for(let i=0; i<${code.times}; i++){
             ${code.stmts}
         }
-${rBrace}`)
+${rBrace})();`)
     }
 
     Visit_Expr(elem){
