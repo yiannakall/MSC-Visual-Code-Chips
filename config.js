@@ -48980,1643 +48980,2351 @@ config.colorfulTheme = {
             }
         },
         "Specific": {
-            "UMINUS": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "MINUS": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "PLUS": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "TIMES": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "BY": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "MODULO": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "GREATER": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "LESS": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "EQUAL_TO": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "NOT_EQUAL_TO": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "GREATER_EQUAL": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "LESS_EQUAL": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "AND": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "OR": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "NOT": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "IDENT": {
-                "Input Container": {
-                    "BackgroundColor": "#E1C7D2",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Input": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": ""
-                }
-            },
-            "INT_CONST": {
-                "Input Container": {
-                    "BackgroundColor": "#C7C9E1",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Input": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": ""
-                }
-            },
-            "FLOAT_CONST": {
-                "Input Container": {
-                    "BackgroundColor": "#C7C9E1",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Input": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": ""
-                }
-            },
-            "CHAR_CONST": {
-                "Input Container": {
-                    "BackgroundColor": "#C7E1D7",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Input": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": ""
-                }
-            },
-            "STRING_CONST": {
-                "Input Container": {
-                    "BackgroundColor": "#C7E1D7",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Input": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": ""
-                }
-            },
-            "BOOL_CONST_": {
-                "Selection Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": "",
-                    "Gap": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Arrow": {
-                    "BackgroundColor": "",
-                    "Width": "",
-                    "Height": ""
-                },
-                "Option Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": ""
-                },
-                "Option": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": ""
-                },
-                "Option On Hover": {
-                    "BackgroundColor": "",
-                    "FontColor": ""
-                },
-                "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                }
-            },
-            "true": {
-                "Simple Block": {
-                    "BackgroundColor": "#BDCCDB",
-                    "PaddingLeft": "10px",
-                    "PaddingRight": "10px",
-                    "PaddingTop": "5px",
-                    "PaddingBottom": "5px",
-                    "FontColor": "#000000",
-                    "FontSize": "",
-                    "BorderWidth": "1px",
-                    "BorderColor": "transparent",
-                    "BorderRadius": "5px"
-                }
-            },
-            "false": {
-                "Simple Block": {
-                    "BackgroundColor": "#BDCCDB",
-                    "PaddingLeft": "10px",
-                    "PaddingRight": "10px",
-                    "PaddingTop": "5px",
-                    "PaddingBottom": "5px",
-                    "FontColor": "#000000",
-                    "FontSize": "",
-                    "BorderWidth": "1px",
-                    "BorderColor": "transparent",
-                    "BorderRadius": "5px"
-                }
-            },
-            "BREAK": {
-                "Simple Block": {
-                    "BackgroundColor": "#5BA55B",
-                    "PaddingLeft": "10px",
-                    "PaddingRight": "10px",
-                    "PaddingTop": "5px",
-                    "PaddingBottom": "5px",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#488448",
-                    "BorderRadius": ""
-                }
-            },
-            "CONTINUE": {
-                "Simple Block": {
-                    "BackgroundColor": "#5BA55B",
-                    "PaddingLeft": "10px",
-                    "PaddingRight": "10px",
-                    "PaddingTop": "5px",
-                    "PaddingBottom": "5px",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#488448",
-                    "BorderRadius": ""
-                }
-            },
-            "return_stmt": {
-                "Group Block": {
-                    "BackgroundColor": "#995BA5",
-                    "PaddingLeft": "10px",
-                    "PaddingRight": "10px",
-                    "PaddingTop": "5px",
-                    "PaddingBottom": "5px",
-                    "BorderWidth": "",
-                    "BorderColor": "#7A4884",
-                    "BorderRadius": ""
-                }
-            },
-            "RETURN": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "EQUALS": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "FUNCTION": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "OF": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "CALL": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "WITH": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "IF": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "ELSE": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "WHILE": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "FOR": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "stmts": {
-                "Group Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Button": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": ""
-                },
-                "Button Plus Sign": {
-                    "Width": "",
-                    "Height": "",
-                    "BackgroundColor": ""
-                },
-                "Button Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                },
-                "Button On Hover": {
-                    "BackgroundColor": ""
-                },
-                "Button Plus Sign On Hover": {
-                    "BackgroundColor": ""
-                }
-            },
-            "stmt": {
-                "Selection Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": "",
-                    "Gap": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Arrow": {
-                    "BackgroundColor": "",
-                    "Width": "",
-                    "Height": ""
-                },
-                "Option Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": ""
-                },
-                "Option": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": ""
-                },
-                "Option On Hover": {
-                    "BackgroundColor": "",
-                    "FontColor": ""
-                },
-                "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                }
-            },
-            "if_stmt": {
-                "Group Block": {
-                    "BackgroundColor": "#5B80A5",
-                    "PaddingLeft": "10px",
-                    "PaddingRight": "10px",
-                    "PaddingTop": "5px",
-                    "PaddingBottom": "5px",
-                    "BorderWidth": "",
-                    "BorderColor": "#364D63",
-                    "BorderRadius": ""
-                }
-            },
-            "if_else_stmt": {
-                "Group Block": {
-                    "BackgroundColor": "#5B80A5",
-                    "PaddingLeft": "10px",
-                    "PaddingRight": "10px",
-                    "PaddingTop": "5px",
-                    "PaddingBottom": "5px",
-                    "BorderWidth": "",
-                    "BorderColor": "#364D63",
-                    "BorderRadius": ""
-                }
-            },
-            "while_stmt": {
-                "Group Block": {
-                    "BackgroundColor": "#5BA55B",
-                    "PaddingLeft": "10px",
-                    "PaddingRight": "10px",
-                    "PaddingTop": "5px",
-                    "PaddingBottom": "5px",
-                    "BorderWidth": "",
-                    "BorderColor": "#488448",
-                    "BorderRadius": ""
-                }
-            },
-            "for_stmt": {
-                "Group Block": {
-                    "BackgroundColor": "#5BA55B",
-                    "PaddingLeft": "10px",
-                    "PaddingRight": "10px",
-                    "PaddingTop": "5px",
-                    "PaddingBottom": "5px",
-                    "BorderWidth": "",
-                    "BorderColor": "#488448",
-                    "BorderRadius": ""
-                }
-            },
-            "assign_expr": {
-                "Group Block": {
-                    "BackgroundColor": "#A55B80",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#844866",
-                    "BorderRadius": ""
-                }
-            },
-            "func_def": {
-                "Group Block": {
-                    "BackgroundColor": "#995BA5",
-                    "PaddingLeft": "10px",
-                    "PaddingRight": "10px",
-                    "PaddingTop": "5px",
-                    "PaddingBottom": "5px",
-                    "BorderWidth": "",
-                    "BorderColor": "#7A4884",
-                    "BorderRadius": ""
-                }
-            },
-            "user_function_call": {
-                "Group Block": {
-                    "BackgroundColor": "#995BA5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#7A4884",
-                    "BorderRadius": ""
-                }
-            },
-            "expr": {
-                "Selection Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": "",
-                    "Gap": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Arrow": {
-                    "BackgroundColor": "",
-                    "Width": "",
-                    "Height": ""
-                },
-                "Option Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": ""
-                },
-                "Option": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": ""
-                },
-                "Option On Hover": {
-                    "BackgroundColor": "",
-                    "FontColor": ""
-                },
-                "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                }
-            },
-            "arith_expr": {
-                "Selection Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": "",
-                    "Gap": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Arrow": {
-                    "BackgroundColor": "",
-                    "Width": "",
-                    "Height": ""
-                },
-                "Option Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": ""
-                },
-                "Option": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": ""
-                },
-                "Option On Hover": {
-                    "BackgroundColor": "",
-                    "FontColor": ""
-                },
-                "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                }
-            },
-            "rel_expr": {
-                "Group Block": {
-                    "BackgroundColor": "#6C8DAE",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#56718B",
-                    "BorderRadius": ""
-                }
-            },
-            "logical_expr": {
-                "Selection Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": "",
-                    "Gap": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Arrow": {
-                    "BackgroundColor": "",
-                    "Width": "",
-                    "Height": ""
-                },
-                "Option Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": ""
-                },
-                "Option": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": ""
-                },
-                "Option On Hover": {
-                    "BackgroundColor": "",
-                    "FontColor": ""
-                },
-                "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                }
-            },
-            "primary_expr": {
-                "Selection Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": "",
-                    "Gap": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Arrow": {
-                    "BackgroundColor": "",
-                    "Width": "",
-                    "Height": ""
-                },
-                "Option Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": ""
-                },
-                "Option": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": ""
-                },
-                "Option On Hover": {
-                    "BackgroundColor": "",
-                    "FontColor": ""
-                },
-                "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                }
-            },
-            "binary_arith_expr": {
-                "Group Block": {
-                    "BackgroundColor": "#5B67A5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#363D63",
-                    "BorderRadius": ""
-                }
-            },
-            "unary_minus_expr": {
-                "Group Block": {
-                    "BackgroundColor": "#5B67A5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#363D63",
-                    "BorderRadius": ""
-                }
-            },
-            "arith_op": {
-                "Selection Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": "",
-                    "Gap": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Arrow": {
-                    "BackgroundColor": "",
-                    "Width": "",
-                    "Height": ""
-                },
-                "Option Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": ""
-                },
-                "Option": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": ""
-                },
-                "Option On Hover": {
-                    "BackgroundColor": "",
-                    "FontColor": ""
-                },
-                "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                }
-            },
-            "rel_op": {
-                "Selection Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": "",
-                    "Gap": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Arrow": {
-                    "BackgroundColor": "",
-                    "Width": "",
-                    "Height": ""
-                },
-                "Option Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": ""
-                },
-                "Option": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": ""
-                },
-                "Option On Hover": {
-                    "BackgroundColor": "",
-                    "FontColor": ""
-                },
-                "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                }
-            },
-            "binary_logical_expr": {
-                "Group Block": {
-                    "BackgroundColor": "#5B80A5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#364D63",
-                    "BorderRadius": ""
-                }
-            },
-            "not_expr": {
-                "Group Block": {
-                    "BackgroundColor": "#5B80A5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#364D63",
-                    "BorderRadius": ""
-                }
-            },
-            "logical_binary_op": {
-                "Selection Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": "",
-                    "Gap": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Arrow": {
-                    "BackgroundColor": "",
-                    "Width": "",
-                    "Height": ""
-                },
-                "Option Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": ""
-                },
-                "Option": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": ""
-                },
-                "Option On Hover": {
-                    "BackgroundColor": "",
-                    "FontColor": ""
-                },
-                "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                }
-            },
-            "ident_list": {
-                "Group Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Button": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": ""
-                },
-                "Button Plus Sign": {
-                    "Width": "",
-                    "Height": "",
-                    "BackgroundColor": ""
-                },
-                "Button Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                },
-                "Button On Hover": {
-                    "BackgroundColor": ""
-                },
-                "Button Plus Sign On Hover": {
-                    "BackgroundColor": ""
-                }
-            },
-            "expr_list": {
-                "Group Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Button": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": ""
-                },
-                "Button Plus Sign": {
-                    "Width": "",
-                    "Height": "",
-                    "BackgroundColor": ""
-                },
-                "Button Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                },
-                "Button On Hover": {
-                    "BackgroundColor": ""
-                },
-                "Button Plus Sign On Hover": {
-                    "BackgroundColor": ""
-                }
-            },
-            "IN ARRAY": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "get": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "insert": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "push_back": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "set": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "get_size": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "ARRAY": {
-                "Simple Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontColor": "",
-                    "FontSize": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "array_method_call": {
-                "Group Block": {
-                    "BackgroundColor": "#745BA5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#5C4884",
-                    "BorderRadius": ""
-                }
-            },
-            "ARRAY_CONST": {
-                "Group Block": {
-                    "BackgroundColor": "#745BA5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#5C4884",
-                    "BorderRadius": ""
-                }
-            },
-            "array_method": {
-                "Selection Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": "",
-                    "Gap": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Arrow": {
-                    "BackgroundColor": "",
-                    "Width": "",
-                    "Height": ""
-                },
-                "Option Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": ""
-                },
-                "Option": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": ""
-                },
-                "Option On Hover": {
-                    "BackgroundColor": "",
-                    "FontColor": ""
-                },
-                "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                }
-            },
-            "array_get": {
-                "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "array_insert": {
-                "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
-                    "BorderWidth": "",
-                    "BorderColor": "transparent",
-                    "BorderRadius": ""
-                }
-            },
-            "array_push_back": {
-                "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "array_set": {
-                "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "element_list": {
-                "Group Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Button": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": ""
-                },
-                "Button Plus Sign": {
-                    "Width": "",
-                    "Height": "",
-                    "BackgroundColor": ""
-                },
-                "Button Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                },
-                "Button On Hover": {
-                    "BackgroundColor": ""
-                },
-                "Button Plus Sign On Hover": {
-                    "BackgroundColor": ""
-                }
-            },
-            "string_method": {
-                "Selection Block": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": "",
-                    "Gap": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                },
-                "Arrow": {
-                    "BackgroundColor": "",
-                    "Width": "",
-                    "Height": ""
-                },
-                "Option Container": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": ""
-                },
-                "Option": {
-                    "BackgroundColor": "",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "FontSize": "",
-                    "FontColor": ""
-                },
-                "Option On Hover": {
-                    "BackgroundColor": "",
-                    "FontColor": ""
-                },
-                "Option Tooltip": {
-                    "FontSize": "",
-                    "FontColor": "",
-                    "BackgroundColor": ""
-                }
-            },
-            "string_method_call": {
-                "Group Block": {
-                    "BackgroundColor": "#5BA58C",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "string_append": {
-                "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "string_get_character": {
-                "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "string_get_substring": {
-                "Group Block": {
-                    "BackgroundColor": "transparent",
-                    "PaddingLeft": "0px",
-                    "PaddingRight": "0px",
-                    "PaddingTop": "0px",
-                    "PaddingBottom": "0px",
-                    "BorderWidth": "",
-                    "BorderColor": "",
-                    "BorderRadius": ""
-                }
-            },
-            "math_pow": {
-                "Group Block": {
-                    "BackgroundColor": "#5B67A5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#363D63",
-                    "BorderRadius": ""
-                }
-            },
-            "math_sqrt": {
-                "Group Block": {
-                    "BackgroundColor": "#5B67A5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#363D63",
-                    "BorderRadius": ""
-                }
-            },
-            "math_round": {
-                "Group Block": {
-                    "BackgroundColor": "#5B67A5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#363D63",
-                    "BorderRadius": ""
-                }
-            },
-            "math_floor": {
-                "Group Block": {
-                    "BackgroundColor": "#5B67A5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#363D63",
-                    "BorderRadius": ""
-                }
-            },
-            "math_ceiling": {
-                "Group Block": {
-                    "BackgroundColor": "#5B67A5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#363D63",
-                    "BorderRadius": ""
-                }
-            },
-            "math_sin": {
-                "Group Block": {
-                    "BackgroundColor": "#5B67A5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#363D63",
-                    "BorderRadius": ""
-                }
-            },
-            "math_cos": {
-                "Group Block": {
-                    "BackgroundColor": "#5B67A5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#363D63",
-                    "BorderRadius": ""
-                }
-            },
-            "input_output_print": {
-                "Group Block": {
-                    "BackgroundColor": "#995BA5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#7A4884",
-                    "BorderRadius": ""
-                }
-            },
-            "input_output_input": {
-                "Group Block": {
-                    "BackgroundColor": "#995BA5",
-                    "PaddingLeft": "",
-                    "PaddingRight": "",
-                    "PaddingTop": "",
-                    "PaddingBottom": "",
-                    "BorderWidth": "",
-                    "BorderColor": "#7A4884",
-                    "BorderRadius": ""
-                }
-            },
+          "UMINUS": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "MINUS": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "PLUS": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "MULT": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "DIV": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "MODULO": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "GREATER": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "LESS": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "EQUAL_TO": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "NOT_EQUAL_TO": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "GREATER_EQUAL": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "LESS_EQUAL": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "AND": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "OR": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "NOT": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "ident_type": {
+              "Group Block": {
+                  "BackgroundColor": "#A55B80",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#A55B80",
+                  "BorderRadius": ""
+              }
+          },
+          "type_of": {
+              "Group Block": {
+                  "BackgroundColor": "#A55B80",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#A55B80",
+                  "BorderRadius": ""
+              }
+          },
+          "IDENT": {
+              "Input Container": {
+                  "BackgroundColor": "#E1C7D2",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Input": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": ""
+              }
+          },
+          "INT_CONST": {
+              "Input Container": {
+                  "BackgroundColor": "#C7C9E1",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Input": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": ""
+              }
+          },
+          "FLOAT_CONST": {
+              "Input Container": {
+                  "BackgroundColor": "#C7C9E1",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Input": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": ""
+              }
+          },
+          "CHAR_CONST": {
+              "Input Container": {
+                  "BackgroundColor": "#C7E1D7",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Input": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": ""
+              }
+          },
+          "STRING_CONST": {
+              "Input Container": {
+                  "BackgroundColor": "#C7E1D7",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Input": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": ""
+              }
+          },
+          "BOOL_CONST_": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "true": {
+              "Simple Block": {
+                  "BackgroundColor": "#BDCCDB",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "FontColor": "#000000",
+                  "FontSize": "",
+                  "BorderWidth": "1px",
+                  "BorderColor": "transparent",
+                  "BorderRadius": "5px"
+              }
+          },
+          "false": {
+              "Simple Block": {
+                  "BackgroundColor": "#BDCCDB",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "FontColor": "#000000",
+                  "FontSize": "",
+                  "BorderWidth": "1px",
+                  "BorderColor": "transparent",
+                  "BorderRadius": "5px"
+              }
+          },
+          "break_stmt": {
+              "Group Block": {
+                  "BackgroundColor": "#FFA500",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#488448",
+                  "BorderRadius": ""
+              }
+          },
+          "break": {
+              "Simple Block": {
+                  "BackgroundColor": "#FFA500",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "continue_stmt": {
+              "Group Block": {
+                  "BackgroundColor": "#FFA500",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#488448",
+                  "BorderRadius": ""
+              }
+          },
+          "continue": {
+              "Simple Block": {
+                  "BackgroundColor": "#FFA500",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "return_stmt": {
+              "Group Block": {
+                  "BackgroundColor": "#995BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#364D63",
+                  "BorderRadius": ""
+              }
+          },
+          "return": {
+              "Simple Block": {
+                  "BackgroundColor": "#995BA5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "EQUALS": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "FUNCTION": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "if": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "else": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "while": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "for": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "stmts": {
+              "Group Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Button": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": ""
+              },
+              "Button Plus Sign": {
+                  "Width": "",
+                  "Height": "",
+                  "BackgroundColor": ""
+              },
+              "Button Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              },
+              "Button On Hover": {
+                  "BackgroundColor": ""
+              },
+              "Button Plus Sign On Hover": {
+                  "BackgroundColor": ""
+              }
+          },
+          "stmt": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "if_stmt": {
+              "Group Block": {
+                  "BackgroundColor": "#5B80A5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#364D63",
+                  "BorderRadius": ""
+              }
+          },
+          "if_else_stmt": {
+              "Group Block": {
+                  "BackgroundColor": "#5B80A5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#364D63",
+                  "BorderRadius": ""
+              }
+          },"ternary_stmt": {
+              "Group Block": {
+                  "BackgroundColor": "#5B80A5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#364D63",
+                  "BorderRadius": ""
+              }
+          },
+          "while_stmt": {
+              "Group Block": {
+                  "BackgroundColor": "#5BA55B",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#488448",
+                  "BorderRadius": ""
+              }
+          },
+          "for_stmt": {
+              "Group Block": {
+                  "BackgroundColor": "#5BA55B",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#488448",
+                  "BorderRadius": ""
+              }
+          },
+          "assign_expr": {
+              "Group Block": {
+                  "BackgroundColor": "#A55B80",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#844866",
+                  "BorderRadius": ""
+              }
+          },
+          "named_func": {
+              "Group Block": {
+                  "BackgroundColor": "#995BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#7A4884",
+                  "BorderRadius": ""
+              }
+          },
+          "anonymous_func": {
+              "Group Block": {
+                  "BackgroundColor": "#995BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#7A4884",
+                  "BorderRadius": ""
+              }
+          },
+          "function_call": {
+              "Group Block": {
+                  "BackgroundColor": "#995BA5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#7A4884",
+                  "BorderRadius": ""
+              }
+          },
+          "object_function": {
+            "Group Block": {
+                "BackgroundColor": "#995BA5",
+                "PaddingLeft": "",
+                "PaddingRight": "",
+                "PaddingTop": "",
+                "PaddingBottom": "",
+                "BorderWidth": "",
+                "BorderColor": "#7A4884",
+                "BorderRadius": ""
+            }
+          },
+          "array_function": {
+            "Group Block": {
+                "BackgroundColor": "#995BA5",
+                "PaddingLeft": "",
+                "PaddingRight": "",
+                "PaddingTop": "",
+                "PaddingBottom": "",
+                "BorderWidth": "",
+                "BorderColor": "#7A4884",
+                "BorderRadius": ""
+            }
+          },
+          "types": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "expr": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "arith_expr": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "rel_expr": {
+              "Group Block": {
+                  "BackgroundColor": "#6C8DAE",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#56718B",
+                  "BorderRadius": ""
+              }
+          },
+          "logical_expr": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "primary_expr": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "binary_arith_expr": {
+              "Group Block": {
+                  "BackgroundColor": "#5B67A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#363D63",
+                  "BorderRadius": ""
+              }
+          },
+          "unary_expr_before": {
+              "Group Block": {
+                  "BackgroundColor": "#5B67A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#363D63",
+                  "BorderRadius": ""
+              }
+          },
+          "unary_expr_after": {
+              "Group Block": {
+                  "BackgroundColor": "#5B67A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#363D63",
+                  "BorderRadius": ""
+              }
+          },
+          "arith_op": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "rel_op": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "binary_logical_expr": {
+              "Group Block": {
+                  "BackgroundColor": "#5B80A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#364D63",
+                  "BorderRadius": ""
+              }
+          },
+          "not_expr": {
+              "Group Block": {
+                  "BackgroundColor": "#5B80A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#364D63",
+                  "BorderRadius": ""
+              }
+          },
+          "logical_binary_op": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "ident_list": {
+              "Group Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Button": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": ""
+              },
+              "Button Plus Sign": {
+                  "Width": "",
+                  "Height": "",
+                  "BackgroundColor": ""
+              },
+              "Button Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              },
+              "Button On Hover": {
+                  "BackgroundColor": ""
+              },
+              "Button Plus Sign On Hover": {
+                  "BackgroundColor": ""
+              }
+          },
+          "expr_list": {
+              "Group Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Button": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": ""
+              },
+              "Button Plus Sign": {
+                  "Width": "",
+                  "Height": "",
+                  "BackgroundColor": ""
+              },
+              "Button Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              },
+              "Button On Hover": {
+                  "BackgroundColor": ""
+              },
+              "Button Plus Sign On Hover": {
+                  "BackgroundColor": ""
+              }
+          },
+          "get": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "push": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "pop": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "set": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "length": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "join": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "tostring": {
+              "Simple Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontColor": "",
+                  "FontSize": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "object_function_call": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "new_array": {
+            "Group Block": {
+                "BackgroundColor": "#745BA5",
+                "PaddingLeft": "",
+                "PaddingRight": "",
+                "PaddingTop": "",
+                "PaddingBottom": "",
+                "BorderWidth": "",
+                "BorderColor": "#5C4884",
+                "BorderRadius": ""
+            }
+        },
+          "ARRAY_CONST": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "new_object": {
+            "Group Block": {
+                "BackgroundColor": "#745BA5",
+                "PaddingLeft": "",
+                "PaddingRight": "",
+                "PaddingTop": "",
+                "PaddingBottom": "",
+                "BorderWidth": "",
+                "BorderColor": "#5C4884",
+                "BorderRadius": ""
+            }
+        },
+          "OBJECT_CONST": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "array_method_call": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "array_get": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "array_push": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "array_pop": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "array_set": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "array_size": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "array_join": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "array_to_string": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "object_method_call": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "object_get_dot": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "object_get_sq": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "object_delete": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "object_set": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "object_size": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "element_list": {
+              "Group Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Button": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": ""
+              },
+              "Button Plus Sign": {
+                  "Width": "",
+                  "Height": "",
+                  "BackgroundColor": ""
+              },
+              "Button Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              },
+              "Button On Hover": {
+                  "BackgroundColor": ""
+              },
+              "Button Plus Sign On Hover": {
+                  "BackgroundColor": ""
+              }
+          },
+          "pair_element_list": {
+              "Group Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Button": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": ""
+              },
+              "Button Plus Sign": {
+                  "Width": "",
+                  "Height": "",
+                  "BackgroundColor": ""
+              },
+              "Button Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              },
+              "Button On Hover": {
+                  "BackgroundColor": ""
+              },
+              "Button Plus Sign On Hover": {
+                  "BackgroundColor": ""
+              }
+          },
+          "pair_element": {
+              "Group Block": {
+                  "BackgroundColor": "#745BA5",
+                  "PaddingLeft": "10px",
+                  "PaddingRight": "10px",
+                  "PaddingTop": "5px",
+                  "PaddingBottom": "5px",
+                  "BorderWidth": "",
+                  "BorderColor": "#5C4884",
+                  "BorderRadius": ""
+              }
+          },
+          "string_method": {
+              "Selection Block": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": "",
+                  "Gap": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              },
+              "Arrow": {
+                  "BackgroundColor": "",
+                  "Width": "",
+                  "Height": ""
+              },
+              "Option Container": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": ""
+              },
+              "Option": {
+                  "BackgroundColor": "",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "FontSize": "",
+                  "FontColor": ""
+              },
+              "Option On Hover": {
+                  "BackgroundColor": "",
+                  "FontColor": ""
+              },
+              "Option Tooltip": {
+                  "FontSize": "",
+                  "FontColor": "",
+                  "BackgroundColor": ""
+              }
+          },
+          "string_method_call": {
+              "Group Block": {
+                  "BackgroundColor": "#5BA58C",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "string_concat": {
+              "Group Block": {
+                  "BackgroundColor": "transparent",
+                  "PaddingLeft": "0px",
+                  "PaddingRight": "0px",
+                  "PaddingTop": "0px",
+                  "PaddingBottom": "0px",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "string_upperCase": {
+              "Group Block": {
+                  "BackgroundColor": "transparent",
+                  "PaddingLeft": "0px",
+                  "PaddingRight": "0px",
+                  "PaddingTop": "0px",
+                  "PaddingBottom": "0px",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "string_lowCase": {
+              "Group Block": {
+                  "BackgroundColor": "transparent",
+                  "PaddingLeft": "0px",
+                  "PaddingRight": "0px",
+                  "PaddingTop": "0px",
+                  "PaddingBottom": "0px",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "string_substring": {
+              "Group Block": {
+                  "BackgroundColor": "transparent",
+                  "PaddingLeft": "0px",
+                  "PaddingRight": "0px",
+                  "PaddingTop": "0px",
+                  "PaddingBottom": "0px",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "string_size": {
+              "Group Block": {
+                  "BackgroundColor": "transparent",
+                  "PaddingLeft": "0px",
+                  "PaddingRight": "0px",
+                  "PaddingTop": "0px",
+                  "PaddingBottom": "0px",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "string_slice": {
+              "Group Block": {
+                  "BackgroundColor": "transparent",
+                  "PaddingLeft": "0px",
+                  "PaddingRight": "0px",
+                  "PaddingTop": "0px",
+                  "PaddingBottom": "0px",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "BorderRadius": ""
+              }
+          },
+          "math_abs": {
+              "Group Block": {
+                  "BackgroundColor": "#5B67A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#363D63",
+                  "BorderRadius": ""
+              }
+          },
+          "math_pow": {
+              "Group Block": {
+                  "BackgroundColor": "#5B67A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#363D63",
+                  "BorderRadius": ""
+              }
+          },
+          "math_sqrt": {
+              "Group Block": {
+                  "BackgroundColor": "#5B67A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#363D63",
+                  "BorderRadius": ""
+              }
+          },
+          "math_round": {
+              "Group Block": {
+                  "BackgroundColor": "#5B67A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#363D63",
+                  "BorderRadius": ""
+              }
+          },
+          "math_floor": {
+              "Group Block": {
+                  "BackgroundColor": "#5B67A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#363D63",
+                  "BorderRadius": ""
+              }
+          },
+          "math_ceil": {
+              "Group Block": {
+                  "BackgroundColor": "#5B67A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#363D63",
+                  "BorderRadius": ""
+              }
+          },
+          "math_sin": {
+              "Group Block": {
+                  "BackgroundColor": "#5B67A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#363D63",
+                  "BorderRadius": ""
+              }
+          },
+          "math_cos": {
+              "Group Block": {
+                  "BackgroundColor": "#5B67A5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#363D63",
+                  "BorderRadius": ""
+              }
+          },
+          "print_call": {
+              "Group Block": {
+                  "BackgroundColor": "#995BA5",
+                  "PaddingLeft": "",
+                  "PaddingRight": "",
+                  "PaddingTop": "",
+                  "PaddingBottom": "",
+                  "BorderWidth": "",
+                  "BorderColor": "#7A4884",
+                  "BorderRadius": ""
+              }
+          },
+          "input": {
+            "Group Block": {
+                "BackgroundColor": "#995BA5",
+                "PaddingLeft": "",
+                "PaddingRight": "",
+                "PaddingTop": "",
+                "PaddingBottom": "",
+                "BorderWidth": "",
+                "BorderColor": "#7A4884",
+                "BorderRadius": ""
+            }
+        },
+        "add_key_press": {
+          "Group Block": {
+              "BackgroundColor": "#995BA5",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#995BA5",
+              "BorderRadius": ""
+          }
+        },
+        "remove_key_press": {
+          "Group Block": {
+              "BackgroundColor": "#995BA5",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#995BA5",
+              "BorderRadius": ""
+          }
+        },
+        "forward_turtle": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "backward_turtle": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "turn_right": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "turn_left": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "goto_position": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "clear": {
+          "Simple Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "penup": {
+          "Simple Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "pendown": {
+          "Simple Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "reset": {
+          "Simple Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "define_angle": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "define_widthline": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "define_turtleshape": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "change_color": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "write_msg": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "random_int": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "hide_turtle": {
+          "Simple Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "show_turtle": {
+          "Simple Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "set_redraw": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "draw": {
+          "Simple Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "repeat_action": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "set_wrap": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "set_delay": {
+          "Group Block": {
+              "BackgroundColor": "#846649",
+              "PaddingLeft": "",
+              "PaddingRight": "",
+              "PaddingTop": "",
+              "PaddingBottom": "",
+              "BorderWidth": "",
+              "BorderColor": "#846649",
+              "BorderRadius": ""
+          }
+        },
+        "repeat_stmt": {
+          "Group Block": {
+              "BackgroundColor": "#5BA55B",
+              "PaddingLeft": "10px",
+              "PaddingRight": "10px",
+              "PaddingTop": "5px",
+              "PaddingBottom": "5px",
+              "BorderWidth": "",
+              "BorderColor": "#488448",
+              "BorderRadius": ""
+          }
+      },
+      "rgb_color": {
+        "Group Block": {
+            "BackgroundColor": "transparent",
+            "PaddingLeft": "",
+            "PaddingRight": "",
+            "PaddingTop": "",
+            "PaddingBottom": "",
+            "BorderWidth": "",
+            "BorderColor": "",
+            "BorderRadius": ""
         }
+    },
+    "output_color": {
+      "Group Block": {
+          "BackgroundColor": "#995BA5",
+          "PaddingLeft": "",
+          "PaddingRight": "",
+          "PaddingTop": "",
+          "PaddingBottom": "",
+          "BorderWidth": "",
+          "BorderColor": "#7A4884",
+          "BorderRadius": ""
+      }
+  },
+    }
     },
     "Code Workspace": {
         "Code Workspace": {

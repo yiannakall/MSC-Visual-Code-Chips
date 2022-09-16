@@ -111,8 +111,29 @@ $(document).ready(function () {
     function turtle_canvas(){
 
         if(document.querySelector('#wrap')==null){
-            $(document.body).append('<div id="wrap" style="position:absolute; width:fit-content; left: 70%; top: 50%;margin:0 auto; border-radius:25px; border:solid 1px rgb(221, 219, 219)"> <h1 style="font-family:Roboto; text-align:center; color:white">JavaScript Turtle</h1> <div id="midcolumn" style="left:0%; width:35%;"><button id="resetButton" style="font-family:Roboto;">Reset</button><br><br><canvas id="turtlecanvas" width="400" height="300" style="border-radius:25px; background:#fff;"></canvas><canvas id="imagecanvas" width="400" height="300" style="border-radius:25px; display:none"></canvas></div> </div>');
+            $(document.body).append('<div id="wrap" style="position:absolute; height: fit-content; width:fit-content; left:70%; top:50%; background-color:white; border-radius:25px; border:solid 1px rgb(221, 219, 219)">'
+                + '<h1 style="font-family:Roboto; margin:1; text-align:center; color:black">Turtle</h1>'
+                + '<div id="midcolumn" style="width:fit-content;">'
+                    +' <button id="resetButton" style="font-family:Roboto; position:absolute; right:2%">Reset</button><br><br> '
+                    + '<canvas id="turtlecanvas" width="400" height="300" style="border-radius:25px; background:#fff;"></canvas>'
+                    + '<canvas id="imagecanvas" width="400" height="300" style="border-radius:25px; display:none"></canvas></div>' 
+                + '</div>');
+            
+            //exit button
+            var butt = document.createElement('button');
+            butt.style.cssText = 'border-radius:5px; position:absolute; top:28px; right:10px';
+            butt.type = "button";
+            butt.onclick = function(){ $('#wrap').hide();}
+
+            var im = document.createElement('img');
+            im.style.height = "10px";
+            im.src = "/Images/Crystal_button_cancel.svg.png";
+            im.style.filter= "grayscale(100%)"
+            butt.appendChild(im)
+
             const element = document.querySelector('#wrap');
+
+            element.appendChild(butt)
     
             var isMouseDown,initX,initY,height = element.offsetHeight,width = element.offsetWidth;
     
@@ -144,6 +165,10 @@ $(document).ready(function () {
             $(document.body).append('<script type="text/javascript" src="myturtle.js"></script>');
             $(document.body).append('<script type="text/javascript" src="turtle.js"></script>');
         }
+
+        turtle_reset();
+        $('#wrap').show();
+        
     }
 
     function output(color,...args) {
