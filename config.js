@@ -2533,7 +2533,7 @@ export let config = {
                   {
                       "type": "non_terminal",
                       "name": "stmts",
-                      "alias": "if_part"
+                      "alias": "if_part (on true)"
                   },
                   {
                       "type": "terminal",
@@ -2572,7 +2572,7 @@ export let config = {
                   {
                       "type": "non_terminal",
                       "name": "stmts",
-                      "alias": "if_part"
+                      "alias": "if_part (on true)"
                   },
                   {
                       "type": "terminal",
@@ -2591,7 +2591,7 @@ export let config = {
                   {
                       "type": "non_terminal",
                       "name": "stmts",
-                      "alias": "else_part"
+                      "alias": "else_part (on false)"
                   },
                   {
                       "type": "terminal",
@@ -3328,7 +3328,7 @@ export let config = {
                     "name": "stmts",
                     "isTerminal": false
                   },
-                  "alias": "if_part"
+                  "alias": "if_part (on true)"
                 },
                 "elems": [
                   {
@@ -3740,7 +3740,7 @@ export let config = {
                     "name": "stmts",
                     "isTerminal": false
                   },
-                  "alias": "if_part"
+                  "alias": "if_part (on true)"
                 },
                 "elems": [
                   {
@@ -3954,7 +3954,7 @@ export let config = {
                     "name": "stmts",
                     "isTerminal": false
                   },
-                  "alias": "else_part"
+                  "alias": "else_part (on true)"
                 },
                 "elems": [
                   {
