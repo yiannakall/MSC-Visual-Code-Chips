@@ -111,17 +111,17 @@ $(document).ready(function () {
     function turtle_canvas(){
 
         if(document.querySelector('#wrap')==null){
-            $(document.body).append('<div id="wrap" style="position:absolute; height: fit-content; width:fit-content; left:70%; top:50%; background-color:white; border-radius:25px; border:solid 1px rgb(221, 219, 219)">'
-                + '<h1 style="font-family:Roboto; margin:1; text-align:center; color:black">Turtle</h1>'
+            $(document.body).append('<div id="wrap" style="position:absolute; left:70%; top:50%; background-color:white; border-radius:25px; border:solid 1px rgb(221, 219, 219)">'
+                + '<h1 style="font-family:Roboto; margin: 0; margin-top: 2%; text-align:center; color:black">Turtle</h1>'
+                +' <button id="resetButton" style="font-family:Roboto; position:absolute; border-radius: 5px; top:5%; right:10%">Reset</button>'
                 + '<div id="midcolumn" style="width:fit-content;">'
-                    +' <button id="resetButton" style="font-family:Roboto; position:absolute; right:2%">Reset</button><br><br> '
                     + '<canvas id="turtlecanvas" width="400" height="300" style="border-radius:25px; background:#fff;"></canvas>'
-                    + '<canvas id="imagecanvas" width="400" height="300" style="border-radius:25px; display:none"></canvas></div>' 
+                    + '<canvas id="imagecanvas" width="400" height="300" style="border-radius:25px; display:none"></canvas> </div>' 
                 + '</div>');
             
             //exit button
             var butt = document.createElement('button');
-            butt.style.cssText = 'border-radius:5px; position:absolute; top:28px; right:10px';
+            butt.style.cssText = 'border-radius:5px; position:absolute; top:5%; right:2%';
             butt.type = "button";
             butt.onclick = function(){ $('#wrap').hide();}
 
@@ -135,7 +135,7 @@ $(document).ready(function () {
 
             element.appendChild(butt)
     
-            var isMouseDown,initX,initY,height = element.offsetHeight,width = element.offsetWidth;
+            var isMouseDown,initX,initY,height = element.offsetHeight, width = element.offsetWidth;
     
             element.addEventListener('mousedown', function(e) {
                 isMouseDown = true;
