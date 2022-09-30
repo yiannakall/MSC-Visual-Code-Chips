@@ -173,7 +173,6 @@ $(document).ready(function () {
 
     function output(color,...args) {
         var mycolor; 
-        
         if(flagColor == 1){
             mycolor = OutputColor;
         } else {
