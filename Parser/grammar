@@ -32,10 +32,11 @@ non_terminal {
     repeat_stmt
     widgets create_element change_attribute add_event_handler
     new_window new_button new_textarea new_textfield new_checkbox new_dropdown options
-    change_button change_textfield change_textarea
+    change_button change_textfield change_textarea change_checkbox
     button_disabled button_text button_color button_width button_height button_position
     textfield_width textfield_position textfield_value textfield_maxlength
     textarea_width textarea_position textarea_rows textarea_cols textarea_maxlength
+    checkbox_position checkbox_text checkbox_checked
 }
 
 terminal {
@@ -66,7 +67,7 @@ terminal {
     repeat set_console_color
     black red blue green yellow cyan magenta
     on window button textarea textfield checkbox dropdown
-    change disable text background new_width new_height max rows cols
+    change disable text background new_width new_height max rows cols checked
 }  
 
 define program {
@@ -783,6 +784,7 @@ define change_attribute{
         change_button                                                           : "Change an attribute of a created button"
         change_textfield                                                        : "Change an attribute of a created textfield"
         change_textarea                                                         : "Change an attribute of a created textarea"
+        change_checkbox                                                         : "Change an attribute of a crated checkbox"
     }
 }
 
@@ -813,6 +815,14 @@ define change_textarea {
         textarea_rows                                                           : "Define the rows of the textarea"
         textarea_cols                                                           : "Define the columns of the textarea"
         textarea_maxlength                                                      : "Define the max length of the text of the textarea"
+    }
+}
+
+define change_checkbox {
+    any_of {
+        checkbox_position                                                       : "Define the position of the checkbox"
+        checkbox_text                                                           : "Define the text of the checkbox"
+        checkbox_checked                                                        : "Define if the checkbox will be checked or not"
     }
 }
 
@@ -874,4 +884,16 @@ define textarea_cols {
 
 define textarea_maxlength {
     change IDENT("textarea_name") max INT_CONST("maxlength")                    : "Define the max length of the text of the textarea"
+}
+
+define checkbox_position {
+    change IDENT("checkbox_name") on primary_expr("x") primary_expr("y")        : "Define the position of the checkbox"
+}
+
+define checkbox_text {
+    change IDENT("checkbox_name") text primary_expr("text")                     : "Define the text of the checkbox"
+}
+
+define checkbox_checked {
+    change IDENT("checkbox_name") checked BOOLEAN_CONST                         :"Define if the checkbox will be checked or not"
 }

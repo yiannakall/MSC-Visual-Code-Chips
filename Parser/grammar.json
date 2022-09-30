@@ -3498,6 +3498,11 @@
                     "type": "non_terminal",
                     "name": "change_textarea",
                     "tooltip": "Change an attribute of a created textarea"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "change_checkbox",
+                    "tooltip": "Change an attribute of a crated checkbox"
                 }
             ]
         },
@@ -3588,6 +3593,26 @@
                     "type": "non_terminal",
                     "name": "textarea_maxlength",
                     "tooltip": "Define the max length of the text of the textarea"
+                }
+            ]
+        },
+        {
+            "name": "change_checkbox",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "checkbox_position",
+                    "tooltip": "Define the position of the checkbox"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "checkbox_text",
+                    "tooltip": "Define the text of the checkbox"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "checkbox_checked",
+                    "tooltip": "Define if the checkbox will be checked or not"
                 }
             ]
         },
@@ -3962,6 +3987,82 @@
                     "name": "INT_CONST",
                     "alias": "maxlength",
                     "tooltip": "Define the max length of the text of the textarea"
+                }
+            ]
+        },
+        {
+            "name": "checkbox_position",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "checkbox_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "on"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y",
+                    "tooltip": "Define the position of the checkbox"
+                }
+            ]
+        },
+        {
+            "name": "checkbox_text",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "checkbox_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "text"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "text",
+                    "tooltip": "Define the text of the checkbox"
+                }
+            ]
+        },
+        {
+            "name": "checkbox_checked",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "checkbox_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "checked"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "BOOLEAN_CONST",
+                    "tooltip": "Define if the checkbox will be checked or not"
                 }
             ]
         }

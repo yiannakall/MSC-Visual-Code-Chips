@@ -50,10 +50,11 @@ function new_checkbox(name,x,y,text){
     if(document.querySelector('#'+name)!=null){
         $('#'+name).remove();
     }
-    const Lname = 'label'+checkboxes;
+
+    //const Lname = 'label'+checkboxes;
     const label = document.createElement("label");
-    label.id = Lname;
-    label.htmlFor = "CheckId"+ checkboxes;
+    //label.id = Lname;
+    label.htmlFor = name;
     label.innerHTML = text;
 
     const checkbox = document.createElement("input");
@@ -131,4 +132,12 @@ function change_position(name,x,y){
 
 function change_maxLength(name,max){
     document.getElementById(name).maxLength = max;
+}
+
+function change_checkbox_text(name,text){
+
+}
+
+function change_checkbox_checked(name,value){
+    document.getElementById(name).checked = value;
 }

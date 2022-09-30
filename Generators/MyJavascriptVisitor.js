@@ -463,6 +463,8 @@ export class MyJavascriptVisitor extends AstVisitor {
 
         this.SetVisitor( 'change_button',           elem => this.Visit_ChangeButton(elem) );
         this.SetVisitor( 'change_textfield',        elem => this.Visit_ChangeTextfield(elem) );
+        this.SetVisitor( 'change_textarea',         elem => this.Visit_ChangeTextarea(elem) );
+        this.SetVisitor( 'change_checkbox',         elem => this.Visit_ChangeCheckbox(elem) );
 
         this.SetVisitor( 'button_disabled',         elem => this.Visit_ButtonDisabled(elem) );
         this.SetVisitor( 'button_text',             elem => this.Visit_ButtonText(elem) );
@@ -482,6 +484,10 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'textarea_cols',           elem => this.Visit_TextareaRows(elem) );
         this.SetVisitor( 'textarea_maxlength',      elem => this.Visit_TextareaMaxlenght(elem) );
 
+        this.SetVisitor( 'checkbox_position',       elem => this.Visit_CheckboxPosition(elem) );
+        this.SetVisitor( 'checkbox_text',           elem => this.Visit_CheckboxText(elem) );
+        this.SetVisitor( 'checkbox_checked',        elem => this.Visit_CheckboxChecked(elem) );
+
         this.SetVisitor( 'change',                  elem => this.Visit_Change(elem) );
         this.SetVisitor( 'disable',                 elem => this.Visit_Disable(elem) );
         this.SetVisitor( 'text',                    elem => this.Visit_Text(elem) );
@@ -491,6 +497,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'max',                     elem => this.Visit_Max(elem) );
         this.SetVisitor( 'rows',                    elem => this.Visit_Rows(elem) );
         this.SetVisitor( 'cols',                    elem => this.Visit_Cols(elem) );
+        this.SetVisitor( 'checked',                 elem => this.Visit_Checked(elem) );
 
     }
 
@@ -1710,6 +1717,8 @@ element.removeEventListener('keypress',${code.listener},false);`);
 
     Visit_ChangeButton(elem)                {this.stack.push(``);}
     Visit_ChangeTextfield(elem)             {this.stack.push(``);}
+    Visit_ChangeTextarea(elem)              {this.stack.push(``);}
+    Visit_ChangeCheckbox(elem)              {this.stack.push(``);}
   
     Visit_ButtonDisabled(elem) {
         let code = this.PopChildrenFromStack(elem, ['change','name','disable','value']);
@@ -1786,6 +1795,21 @@ element.removeEventListener('keypress',${code.listener},false);`);
         this.stack.push(`change_maxLength("${code.name}",${code.maxlenght});`)
     }
 
+    Visit_CheckboxPosition(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','on','x','y']);
+        this.stack.push(`change_position("${code.name}",${code.x},${code.y});`)
+    }
+
+    Visit_CheckboxText(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','text','value']);
+        this.stack.push(`change_checkbox_text("${code.name}",${code.value});`)
+    }
+
+    Visit_CheckboxChecked(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','checked','value']);
+        this.stack.push(`change_checkbox_checked("${code.name}",${code.value});`)
+    }
+
     Visit_Change(elem)                      {this.stack.push(``);}
     Visit_Disable(elem)                     {this.stack.push(``);}
     Visit_Text(elem)                        {this.stack.push(``);}
@@ -1795,4 +1819,5 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_Max(elem)                         {this.stack.push(``);}
     Visit_Rows(elem)                        {this.stack.push(``);}
     Visit_Cols(elem)                        {this.stack.push(``);}
+    Visit_Checked(elem)                     {this.stack.push(``);}
 }
