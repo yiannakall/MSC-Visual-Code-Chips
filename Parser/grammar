@@ -30,6 +30,12 @@ non_terminal {
     forward_turtle backward_turtle turn_right turn_left goto_position define_angle define_widthline define_turtleshape change_color write_msg random_int set_redraw set_wrap set_delay
     shapes color rgb_color output_color
     repeat_stmt
+    widgets create_element change_attribute add_event_handler
+    new_window new_button new_textarea new_textfield new_checkbox new_dropdown options
+    change_button change_textfield change_textarea
+    button_disabled button_text button_color button_width button_height button_position
+    textfield_width textfield_position textfield_value textfield_maxlength
+    textarea_width textarea_position textarea_rows textarea_cols textarea_maxlength
 }
 
 terminal {
@@ -59,6 +65,8 @@ terminal {
     triangle circle square turtle  
     repeat set_console_color
     black red blue green yellow cyan magenta
+    on window button textarea textfield checkbox dropdown
+    change disable text background new_width new_height max rows cols
 }  
 
 define program {
@@ -82,6 +90,7 @@ define stmt {
         repeat_stmt                 : "Repeat the stmts, certain times"
         expr(expr_stmt)             : "A single expression as a statement"
         turtle_functions            : "Build-in functions to move the turtle in the virtual canvas"
+        widgets                     : "Create,change and add event handlers to ui elements such as buttons, textfields etc"
         ternary_stmt                : "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
         break_stmt                  : "Exit from the current loop"
         continue_stmt               : "Continue to the next iteration of the current loop"
@@ -719,4 +728,150 @@ define color {
     
 define rgb_color {
     INT_CONST("r") INT_CONST("g") INT_CONST("b") INT_CONST("a")                 : "Set the color using RGB values in the range 0 - 255"   
+}
+
+define widgets {
+    any_of {
+        create_element                                                          : "Add a new element at the widgets window"
+        change_attribute                                                        : "Change an attribute of a created element"
+    }
+}
+
+define create_element {
+    any_of {
+        new_window                                                              : "Initialize new window on position (x,y) with certain width and height "                                                                                              
+        new_button                                                              : "Initialize new button on position (x,y) with certain width,height and text on it" 
+        new_textfield                                                           : "Initialize new textfield on position (x,y) with certain width "
+        new_textarea                                                            : "Initialize new textarea on position (x,y) with certain width and height"
+        new_checkbox                                                            : "Initialize new checkbox on position (x,y)"
+        new_dropdown                                                            : "Initialize new dropdown on position (x,y)"
+    }
+}
+
+define new_window {
+    window IDENT("window_name") on primary_expr("x") primary_expr("y") primary_expr("width") primary_expr("height") 
+}
+
+define new_button {
+    button IDENT("button_name") on primary_expr("x") primary_expr("y") primary_expr("width") primary_expr("height") primary_expr("text")
+}
+
+define new_textfield {
+    textfield IDENT("textfield_name") on primary_expr("x") primary_expr("y") primary_expr("width")
+}
+
+define new_textarea {
+    textarea IDENT("textarea_name") on primary_expr("x") primary_expr("y") primary_expr("width") primary_expr("height") 
+}
+
+define new_checkbox {
+    checkbox IDENT("checkbox_name") on primary_expr("x") primary_expr("y") primary_expr("text")
+}
+
+define new_dropdown {
+    dropdown IDENT("dropdown_name") on primary_expr("x") primary_expr("y") options
+}
+
+define options {
+    list_of {
+        STRING_CONST("option")
+    }
+}
+
+define change_attribute{
+    any_of {
+        change_button                                                           : "Change an attribute of a created button"
+        change_textfield                                                        : "Change an attribute of a created textfield"
+        change_textarea                                                         : "Change an attribute of a created textarea"
+    }
+}
+
+define change_button {
+    any_of {
+        button_disabled                                                         : "Specifies that a button should be disabled or not"
+        button_text                                                             : "Change the text on the button"
+        button_color                                                            : "Define the background color of the button"
+        button_width                                                            : "Define the width of the button"
+        button_height                                                           : "Define the height of the button"
+        button_position                                                         : "Define the position of the button"
+    }
+}
+
+define change_textfield {
+    any_of {
+        textfield_width                                                         : "Define the width of the textfield"
+        textfield_position                                                      : "Define the position of the textfield"
+        textfield_value                                                         : "Define the default value of the textfield"
+        textfield_maxlength                                                     : "Define the max length of the value of the textfield"
+    }
+}
+
+define change_textarea {
+    any_of {
+        textarea_width                                                          : "Define the width of the textarea"
+        textarea_position                                                       : "Define the position of the textarea"
+        textarea_rows                                                           : "Define the rows of the textarea"
+        textarea_cols                                                           : "Define the columns of the textarea"
+        textarea_maxlength                                                      : "Define the max length of the text of the textarea"
+    }
+}
+
+define button_disabled {
+    change IDENT("button_name") disable BOOLEAN_CONST                           : "Specifies that a button should be disabled or not"
+}
+
+define button_text {
+    change IDENT("button_name") text primary_expr("text")                       : "Change the text on the button"
+}
+
+define button_color {
+    change IDENT("button_name") background primary_expr("color")                : "Define the background color of the button"
+}
+
+define button_width {
+    change IDENT("button_name") new_width primary_expr("width")                 : "Define the width of the button"
+}
+
+define button_height {
+    change IDENT("button_name") new_height primary_expr("height")               : "Define the height of the button"
+}
+
+define button_position {
+    change IDENT("button_name") on primary_expr("x") primary_expr("y")          : "Define the position of the button"
+}
+
+define textfield_width {
+    change IDENT("textfield_name") new_width primary_expr("width")              : "Define the width of the textfield"
+}
+
+define textfield_position {
+    change IDENT("textfield_name") on primary_expr("x") primary_expr("y")       : "Define the position of the textfield"
+}
+
+define textfield_value {
+    change IDENT("textfield_name") text primary_expr("text")                    : "Define the default value of the textfield"                       
+}
+
+define textfield_maxlength {
+    change IDENT("textfield_name") max INT_CONST("maxlength")                   : "Define the max lenght of the value of the textfield"
+}
+
+define textarea_width {
+    change IDENT("textarea_name") new_width primary_expr("width")               : "Define the width of the textarea"
+}  
+
+define textarea_position {
+    change IDENT("textarea_name") on primary_expr("x") primary_expr("y")        : "Define the position of the textarea"
+}
+
+define textarea_rows {
+    change IDENT("textarea_name") rows primary_expr("rows")                     : "Define the rows of the textarea"
+}    
+
+define textarea_cols {
+    change IDENT("textarea_name") cols primary_expr("cols")                     : "Define the cols of the textarea"
+}    
+
+define textarea_maxlength {
+    change IDENT("textarea_name") max INT_CONST("maxlength")                    : "Define the max length of the text of the textarea"
 }

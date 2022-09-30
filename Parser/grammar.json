@@ -68,6 +68,11 @@
                 },
                 {
                     "type": "non_terminal",
+                    "name": "widgets",
+                    "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                },
+                {
+                    "type": "non_terminal",
                     "name": "ternary_stmt",
                     "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
                 },
@@ -3196,6 +3201,767 @@
                     "name": "INT_CONST",
                     "alias": "a",
                     "tooltip": "Set the color using RGB values in the range 0 - 255"
+                }
+            ]
+        },
+        {
+            "name": "widgets",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "create_element",
+                    "tooltip": "Add a new element at the widgets window"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "change_attribute",
+                    "tooltip": "Change an attribute of a created element"
+                }
+            ]
+        },
+        {
+            "name": "create_element",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "new_window",
+                    "tooltip": "Initialize new window on position (x,y) with certain width and height "
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "new_button",
+                    "tooltip": "Initialize new button on position (x,y) with certain width,height and text on it"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "new_textfield",
+                    "tooltip": "Initialize new textfield on position (x,y) with certain width "
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "new_textarea",
+                    "tooltip": "Initialize new textarea on position (x,y) with certain width and height"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "new_checkbox",
+                    "tooltip": "Initialize new checkbox on position (x,y)"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "new_dropdown",
+                    "tooltip": "Initialize new dropdown on position (x,y)"
+                }
+            ]
+        },
+        {
+            "name": "new_window",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "window"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "window_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "on"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "width"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "height"
+                }
+            ]
+        },
+        {
+            "name": "new_button",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "button"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "button_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "on"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "width"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "height"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "text"
+                }
+            ]
+        },
+        {
+            "name": "new_textfield",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "textfield"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "textfield_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "on"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "width"
+                }
+            ]
+        },
+        {
+            "name": "new_textarea",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "textarea"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "textarea_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "on"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "width"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "height"
+                }
+            ]
+        },
+        {
+            "name": "new_checkbox",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "checkbox"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "checkbox_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "on"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "text"
+                }
+            ]
+        },
+        {
+            "name": "new_dropdown",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "dropdown"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "dropdown_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "on"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "options"
+                }
+            ]
+        },
+        {
+            "name": "options",
+            "list_of": [
+                {
+                    "type": "terminal",
+                    "name": "STRING_CONST",
+                    "alias": "option"
+                }
+            ]
+        },
+        {
+            "name": "change_attribute",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "change_button",
+                    "tooltip": "Change an attribute of a created button"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "change_textfield",
+                    "tooltip": "Change an attribute of a created textfield"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "change_textarea",
+                    "tooltip": "Change an attribute of a created textarea"
+                }
+            ]
+        },
+        {
+            "name": "change_button",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "button_disabled",
+                    "tooltip": "Specifies that a button should be disabled or not"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "button_text",
+                    "tooltip": "Change the text on the button"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "button_color",
+                    "tooltip": "Define the background color of the button"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "button_width",
+                    "tooltip": "Define the width of the button"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "button_height",
+                    "tooltip": "Define the height of the button"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "button_position",
+                    "tooltip": "Define the position of the button"
+                }
+            ]
+        },
+        {
+            "name": "change_textfield",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "textfield_width",
+                    "tooltip": "Define the width of the textfield"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "textfield_position",
+                    "tooltip": "Define the position of the textfield"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "textfield_value",
+                    "tooltip": "Define the default value of the textfield"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "textfield_maxlength",
+                    "tooltip": "Define the max length of the value of the textfield"
+                }
+            ]
+        },
+        {
+            "name": "change_textarea",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "textarea_width",
+                    "tooltip": "Define the width of the textarea"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "textarea_position",
+                    "tooltip": "Define the position of the textarea"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "textarea_rows",
+                    "tooltip": "Define the rows of the textarea"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "textarea_cols",
+                    "tooltip": "Define the columns of the textarea"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "textarea_maxlength",
+                    "tooltip": "Define the max length of the text of the textarea"
+                }
+            ]
+        },
+        {
+            "name": "button_disabled",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "button_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "disable"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "BOOLEAN_CONST",
+                    "tooltip": "Specifies that a button should be disabled or not"
+                }
+            ]
+        },
+        {
+            "name": "button_text",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "button_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "text"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "text",
+                    "tooltip": "Change the text on the button"
+                }
+            ]
+        },
+        {
+            "name": "button_color",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "button_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "background"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "color",
+                    "tooltip": "Define the background color of the button"
+                }
+            ]
+        },
+        {
+            "name": "button_width",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "button_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "new_width"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "width",
+                    "tooltip": "Define the width of the button"
+                }
+            ]
+        },
+        {
+            "name": "button_height",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "button_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "new_height"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "height",
+                    "tooltip": "Define the height of the button"
+                }
+            ]
+        },
+        {
+            "name": "button_position",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "button_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "on"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y",
+                    "tooltip": "Define the position of the button"
+                }
+            ]
+        },
+        {
+            "name": "textfield_width",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "textfield_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "new_width"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "width",
+                    "tooltip": "Define the width of the textfield"
+                }
+            ]
+        },
+        {
+            "name": "textfield_position",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "textfield_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "on"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y",
+                    "tooltip": "Define the position of the textfield"
+                }
+            ]
+        },
+        {
+            "name": "textfield_value",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "textfield_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "text"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "text",
+                    "tooltip": "Define the default value of the textfield"
+                }
+            ]
+        },
+        {
+            "name": "textfield_maxlength",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "textfield_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "max"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "maxlength",
+                    "tooltip": "Define the max lenght of the value of the textfield"
+                }
+            ]
+        },
+        {
+            "name": "textarea_width",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "textarea_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "new_width"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "width",
+                    "tooltip": "Define the width of the textarea"
+                }
+            ]
+        },
+        {
+            "name": "textarea_position",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "textarea_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "on"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y",
+                    "tooltip": "Define the position of the textarea"
+                }
+            ]
+        },
+        {
+            "name": "textarea_rows",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "textarea_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "rows"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "rows",
+                    "tooltip": "Define the rows of the textarea"
+                }
+            ]
+        },
+        {
+            "name": "textarea_cols",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "textarea_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "cols"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "cols",
+                    "tooltip": "Define the cols of the textarea"
+                }
+            ]
+        },
+        {
+            "name": "textarea_maxlength",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "textarea_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "max"
+                },
+                {
+                    "type": "terminal",
+                    "name": "INT_CONST",
+                    "alias": "maxlength",
+                    "tooltip": "Define the max length of the text of the textarea"
                 }
             ]
         }

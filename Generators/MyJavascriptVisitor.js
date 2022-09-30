@@ -442,6 +442,56 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'magenta',                 elem => this.Visit_Magenta(elem) );
         this.SetVisitor( 'rgb_color',               elem => this.Visit_RgbColor(elem) );
 
+        this.SetVisitor( 'widgets',                 elem => this.Visit_Widgets(elem) );
+        this.SetVisitor( 'create_element',          elem => this.Visit_CreateElement(elem) );
+        this.SetVisitor( 'change_attribute',        elem => this.Visit_ChangeAttribute(elem) );
+
+        this.SetVisitor( 'new_window',              elem => this.Visit_NewWindow(elem) );
+        this.SetVisitor( 'new_button',              elem => this.Visit_NewButton(elem) );
+        this.SetVisitor( 'new_textfield',           elem => this.Visit_NewTextfield(elem) );
+        this.SetVisitor( 'new_textarea',            elem => this.Visit_NewTextarea(elem) );
+        this.SetVisitor( 'new_checkbox',            elem => this.Visit_NewCheckbox(elem) );
+        this.SetVisitor( 'new_dropdown',            elem => this.Visit_NewDropdown(elem) );
+        this.SetVisitor( 'on',                      elem => this.Visit_On(elem) );
+        this.SetVisitor( 'options',                 elem => this.Visit_Options(elem) );
+        this.SetVisitor( 'window',                  elem => this.Visit_Window(elem) );
+        this.SetVisitor( 'button',                  elem => this.Visit_Button(elem) );
+        this.SetVisitor( 'textfield',               elem => this.Visit_Textfield(elem) );
+        this.SetVisitor( 'textarea',                elem => this.Visit_Textarea(elem) );
+        this.SetVisitor( 'checkbox',                elem => this.Visit_Checkbox(elem) );
+        this.SetVisitor( 'dropdown',                elem => this.Visit_Dropdown(elem) );
+
+        this.SetVisitor( 'change_button',           elem => this.Visit_ChangeButton(elem) );
+        this.SetVisitor( 'change_textfield',        elem => this.Visit_ChangeTextfield(elem) );
+
+        this.SetVisitor( 'button_disabled',         elem => this.Visit_ButtonDisabled(elem) );
+        this.SetVisitor( 'button_text',             elem => this.Visit_ButtonText(elem) );
+        this.SetVisitor( 'button_color',            elem => this.Visit_ButtonColor(elem) );
+        this.SetVisitor( 'button_width',            elem => this.Visit_ButtonWidth(elem) );
+        this.SetVisitor( 'button_height',           elem => this.Visit_ButtonHeight(elem) );
+        this.SetVisitor( 'button_position',         elem => this.Visit_ButtonPosition(elem) );
+
+        this.SetVisitor( 'textfield_width',         elem => this.Visit_TextfieldWidth(elem) );
+        this.SetVisitor( 'textfield_position',      elem => this.Visit_TextfieldPosition(elem) );
+        this.SetVisitor( 'textfield_value',         elem => this.Visit_TextfieldValue(elem) );
+        this.SetVisitor( 'textfield_maxlength',     elem => this.Visit_TextfieldMaxlenght(elem) );
+
+        this.SetVisitor( 'textarea_width',          elem => this.Visit_TextareaWidth(elem) );
+        this.SetVisitor( 'textarea_position',       elem => this.Visit_TextareaPosition(elem) );
+        this.SetVisitor( 'textarea_rows',           elem => this.Visit_TextareaCols(elem) );
+        this.SetVisitor( 'textarea_cols',           elem => this.Visit_TextareaRows(elem) );
+        this.SetVisitor( 'textarea_maxlength',      elem => this.Visit_TextareaMaxlenght(elem) );
+
+        this.SetVisitor( 'change',                  elem => this.Visit_Change(elem) );
+        this.SetVisitor( 'disable',                 elem => this.Visit_Disable(elem) );
+        this.SetVisitor( 'text',                    elem => this.Visit_Text(elem) );
+        this.SetVisitor( 'new_width',               elem => this.Visit_NewWidth(elem) );
+        this.SetVisitor( 'new_height',              elem => this.Visit_NewHeight(elem) );
+        this.SetVisitor( 'background',              elem => this.Visit_Background(elem) );
+        this.SetVisitor( 'max',                     elem => this.Visit_Max(elem) );
+        this.SetVisitor( 'rows',                    elem => this.Visit_Rows(elem) );
+        this.SetVisitor( 'cols',                    elem => this.Visit_Cols(elem) );
+
     }
 
     HandleVarDeclaration(id){
@@ -1609,4 +1659,140 @@ element.removeEventListener('keypress',${code.listener},false);`);
         let code = this.PopChildrenFromStack(elem, ['r','g','b','a']);
         this.stack.push(`"rgba(${code.r}, ${code.g}, ${code.b}, ${code.a})"`);
     }
+
+    //WIDGETS
+    Visit_Widgets(elem)                     {this.stack.push(``);}
+    Visit_CreateElement(elem)               {this.stack.push(``);}
+    Visit_ChangeAttribute(elem)             {this.stack.push(``);}
+
+    //!!!!
+    Visit_NewWindow(elem)                   {this.stack.push(``);}
+    
+    Visit_NewButton(elem){
+        let code = this.PopChildrenFromStack(elem, ['button','name','on','x','y','w','h','text']);
+        this.stack.push(`new_button("${code.name}",${code.x}, ${code.y}, ${code.w}, ${code.h}, ${code.text});`);
+    }
+    
+    Visit_NewTextfield(elem) {
+        let code = this.PopChildrenFromStack(elem, ['textfield','name','on','x','y','w']);
+        this.stack.push(`new_textfield("${code.name}",${code.x}, ${code.y}, ${code.w});`);
+    }
+
+    Visit_NewTextarea(elem) {
+        let code = this.PopChildrenFromStack(elem, ['textarea','name','on','x','y','w','h']);
+        this.stack.push(`new_textarea("${code.name}",${code.x}, ${code.y}, ${code.w},${code.h});`);
+    }
+
+    Visit_NewCheckbox(elem){
+        let code = this.PopChildrenFromStack(elem, ['textarea','name','on','x','y','text']);
+        this.stack.push(`new_checkbox("${code.name}",${code.x}, ${code.y},${code.text});`)
+    }
+
+    Visit_NewDropdown(elem){
+        let code = this.PopChildrenFromStack(elem, ['dropdown','name','on','x','y','options']);
+        this.stack.push(`new_dropdown("${code.name}",${code.x}, ${code.y},${code.options});`)
+    }
+
+    Visit_On(elem)                          {this.stack.push(``);}
+
+    Visit_Options(elem){
+        let code;
+        code = this.PopChildrenFromStack(elem).join(', ');
+        this.stack.push(`${code}`);
+    }
+
+    Visit_Window(elem)                      {this.stack.push(``);}
+    Visit_Button(elem)                      {this.stack.push(``);}
+    Visit_Textfield(elem)                   {this.stack.push(``);}
+    Visit_Textarea(elem)                    {this.stack.push(``);}
+    Visit_Checkbox(elem)                    {this.stack.push(``);}
+    Visit_Dropdown(elem)                    {this.stack.push(``);}
+
+    Visit_ChangeButton(elem)                {this.stack.push(``);}
+    Visit_ChangeTextfield(elem)             {this.stack.push(``);}
+  
+    Visit_ButtonDisabled(elem) {
+        let code = this.PopChildrenFromStack(elem, ['change','name','disable','value']);
+        this.stack.push(`change_button_disable("${code.name}",${code.value});`)
+    }
+
+    Visit_ButtonText(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','text','value']);
+        this.stack.push(`change_button_text("${code.name}",${code.value});`)
+    }
+
+    Visit_ButtonColor(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','background','value']);
+        this.stack.push(`change_button_color("${code.name}",${code.value});`)
+    }
+
+    Visit_ButtonWidth(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','w','value']);
+        this.stack.push(`change_width("${code.name}",${code.value});`)
+    }
+
+    Visit_ButtonHeight(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','h','value']);
+        this.stack.push(`change_height("${code.name}",${code.value});`)
+    }
+
+    Visit_ButtonPosition(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','on','x','y']);
+        this.stack.push(`change_position("${code.name}",${code.x},${code.y});`)
+    }
+
+    Visit_TextfieldWidth(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','w','value']);
+        this.stack.push(`change_width("${code.name}",${code.value});`)
+    }
+
+    Visit_TextfieldPosition(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','on','x','y']);
+        this.stack.push(`change_position("${code.name}",${code.x},${code.y});`)
+    }
+
+    Visit_TextfieldValue(elem) {
+        let code = this.PopChildrenFromStack(elem, ['change','name','text','value']);
+        this.stack.push(`change_textfield_value("${code.name}",${code.value});`)
+    }
+
+    Visit_TextfieldMaxlenght(elem) {
+        let code = this.PopChildrenFromStack(elem, ['change','name','max','maxlenght']);
+        this.stack.push(`change_textfield_max("${code.name}",${code.maxlenght});`)
+    }
+
+    Visit_TextareaWidth(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','w','value']);
+        this.stack.push(`change_width("${code.name}",${code.value});`)
+    } 
+
+    Visit_TextareaPosition(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','on','x','y']);
+        this.stack.push(`change_position("${code.name}",${code.x},${code.y});`)
+    }
+
+    Visit_TextareaCols(elem) {
+        let code = this.PopChildrenFromStack(elem, ['change','name','rows','value']);
+        this.stack.push(`change_rows("${code.name}",${code.value});`)
+    }
+
+    Visit_TextareaRows(elem) {
+        let code = this.PopChildrenFromStack(elem, ['change','name','cols','value']);
+        this.stack.push(`change_cols("${code.name}",${code.value});`)
+    }
+
+    Visit_TextareaMaxlenght(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','max','maxlenght']);
+        this.stack.push(`change_maxLength("${code.name}",${code.maxlenght});`)
+    }
+
+    Visit_Change(elem)                      {this.stack.push(``);}
+    Visit_Disable(elem)                     {this.stack.push(``);}
+    Visit_Text(elem)                        {this.stack.push(``);}
+    Visit_NewWidth(elem)                    {this.stack.push(``);}
+    Visit_NewHeight(elem)                   {this.stack.push(``);}
+    Visit_Background(elem)                  {this.stack.push(``);}
+    Visit_Max(elem)                         {this.stack.push(``);}
+    Visit_Rows(elem)                        {this.stack.push(``);}
+    Visit_Cols(elem)                        {this.stack.push(``);}
 }

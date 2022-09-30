@@ -171,6 +171,63 @@ $(document).ready(function () {
         
     }
 
+    function window() {
+
+        if(document.querySelector('#window')==null){
+
+            $(document.body).append('<div id="window" style="position:absolute; left:20%; top:50%; width:500px; height:300px; background-color:white; border-radius:25px; border:solid 1px rgb(221, 219, 219)">'
+            + '<h1 style="font-family:Roboto; margin: 0; margin-top: 2%; text-align:center; color:black">Window</h1>'
+            + '</div>');
+
+            //exit button
+            var butt = document.createElement('button');
+            butt.style.cssText = 'border-radius:5px; position:absolute; top:5%; right:2%';
+            butt.type = "button";
+            butt.onclick = function(){ $('#window').hide();}
+
+            var im = document.createElement('img');
+            im.style.height = "10px";
+            im.src = "/Images/Crystal_button_cancel.svg.png";
+            im.style.filter= "grayscale(100%)"
+            butt.appendChild(im)
+
+            const element = document.querySelector('#window');
+
+            element.appendChild(butt);
+
+            var isMouseDown,initX,initY,height = element.offsetHeight, width = element.offsetWidth;
+        
+            element.addEventListener('mousedown', function(e) {
+                isMouseDown = true;
+                document.body.classList.add('no-select');
+                initX = e.offsetX;
+                initY = e.offsetY;
+            })
+
+            document.addEventListener('mousemove', function(e) {
+                if (isMouseDown) {
+                    var cx = e.clientX - initX,
+                        cy = e.clientY - initY;
+                    if (cx < 0) { cx = 0;}
+                    if (cy < 0) { cy = 0; }
+                    if (window.innerWidth - e.clientX + initX < width) { cx = window.innerWidth - width;}
+                    if (e.clientY > window.innerHeight - height+ initY) {cy = window.innerHeight - height;}
+                    element.style.left = cx + 'px';
+                    element.style.top = cy + 'px';
+                }
+            })
+
+            element.addEventListener('mouseup', function() {
+                isMouseDown = false;
+                document.body.classList.remove('no-select');
+            })
+
+            $(document.body).append('<script type="text/javascript" src="widgets.js"></script>');
+        }
+        
+        $('#window').show();
+    }
+
     function output(color,...args) {
         var mycolor; 
         if(flagColor == 1){
@@ -204,7 +261,7 @@ $(document).ready(function () {
         return visitor.GetResult();
     };
 
-    editors['Code Chips'].SetOnExecute(code => { popup(); turtle_canvas(); eval(toJs(code)); });
+    editors['Code Chips'].SetOnExecute(code => { popup(); turtle_canvas(); window(); eval(toJs(code)); });
     editors['Code Chips'].SetOnConvertToJs(code => toJs(code));
 
     let themes = {
