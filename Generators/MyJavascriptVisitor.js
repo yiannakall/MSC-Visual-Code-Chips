@@ -465,6 +465,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'change_textfield',        elem => this.Visit_ChangeTextfield(elem) );
         this.SetVisitor( 'change_textarea',         elem => this.Visit_ChangeTextarea(elem) );
         this.SetVisitor( 'change_checkbox',         elem => this.Visit_ChangeCheckbox(elem) );
+        this.SetVisitor( 'change_dropdown',         elem => this.Visit_ChangeDropdown(elem) );
 
         this.SetVisitor( 'button_disabled',         elem => this.Visit_ButtonDisabled(elem) );
         this.SetVisitor( 'button_text',             elem => this.Visit_ButtonText(elem) );
@@ -488,6 +489,10 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'checkbox_text',           elem => this.Visit_CheckboxText(elem) );
         this.SetVisitor( 'checkbox_checked',        elem => this.Visit_CheckboxChecked(elem) );
 
+        this.SetVisitor( 'dropdown_position',       elem => this.Visit_DropdownPosition(elem) );
+        this.SetVisitor( 'dropdown_multiple',       elem => this.Visit_DropdownMultiple(elem) );
+        this.SetVisitor( 'dropdown_add_option',     elem => this.Visit_DropdownAddOption(elem) );
+
         this.SetVisitor( 'change',                  elem => this.Visit_Change(elem) );
         this.SetVisitor( 'disable',                 elem => this.Visit_Disable(elem) );
         this.SetVisitor( 'text',                    elem => this.Visit_Text(elem) );
@@ -498,7 +503,8 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'rows',                    elem => this.Visit_Rows(elem) );
         this.SetVisitor( 'cols',                    elem => this.Visit_Cols(elem) );
         this.SetVisitor( 'checked',                 elem => this.Visit_Checked(elem) );
-
+        this.SetVisitor( 'multiple',                elem => this.Visit_Multiple(elem) );
+        this.SetVisitor( 'new_option',              elem => this.Visit_NewOption(elem) );
     }
 
     HandleVarDeclaration(id){
@@ -1719,6 +1725,7 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_ChangeTextfield(elem)             {this.stack.push(``);}
     Visit_ChangeTextarea(elem)              {this.stack.push(``);}
     Visit_ChangeCheckbox(elem)              {this.stack.push(``);}
+    Visit_ChangeDropdown(elem)              {this.stack.push(``);}
   
     Visit_ButtonDisabled(elem) {
         let code = this.PopChildrenFromStack(elem, ['change','name','disable','value']);
@@ -1797,7 +1804,7 @@ element.removeEventListener('keypress',${code.listener},false);`);
 
     Visit_CheckboxPosition(elem){
         let code = this.PopChildrenFromStack(elem, ['change','name','on','x','y']);
-        this.stack.push(`change_position("${code.name}",${code.x},${code.y});`)
+        this.stack.push(`change_position("Container${code.name}",${code.x},${code.y});`)
     }
 
     Visit_CheckboxText(elem){
@@ -1810,6 +1817,21 @@ element.removeEventListener('keypress',${code.listener},false);`);
         this.stack.push(`change_checkbox_checked("${code.name}",${code.value});`)
     }
 
+    Visit_DropdownPosition(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','on','x','y']);
+        this.stack.push(`change_position("${code.name}",${code.x},${code.y});`)
+    }
+
+    Visit_DropdownMultiple(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','multiple','value']);
+        this.stack.push(`change_dropdown_multiple("${code.name}",${code.value});`)
+    }
+
+    Visit_DropdownAddOption(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','new_option','option']);
+        this.stack.push(`add_dropdown_option("${code.name}",${code.option});`)
+    }
+
     Visit_Change(elem)                      {this.stack.push(``);}
     Visit_Disable(elem)                     {this.stack.push(``);}
     Visit_Text(elem)                        {this.stack.push(``);}
@@ -1820,4 +1842,6 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_Rows(elem)                        {this.stack.push(``);}
     Visit_Cols(elem)                        {this.stack.push(``);}
     Visit_Checked(elem)                     {this.stack.push(``);}
+    Visit_Multiple(elem)                    {this.stack.push(``);}
+    Visit_NewOption(elem)                   {this.stack.push(``);}
 }

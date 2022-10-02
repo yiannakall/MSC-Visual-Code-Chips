@@ -3503,7 +3503,12 @@ export let config = {
                   {
                       "type": "non_terminal",
                       "name": "change_checkbox",
-                      "tooltip": "Change an attribute of a crated checkbox"
+                      "tooltip": "Change an attribute of a created checkbox"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "change_dropdown",
+                      "tooltip": "Change an attribute of a created dropdown"
                   }
               ]
           },
@@ -3614,6 +3619,26 @@ export let config = {
                       "type": "non_terminal",
                       "name": "checkbox_checked",
                       "tooltip": "Define if the checkbox will be checked or not"
+                  }
+              ]
+          },
+          {
+              "name": "change_dropdown",
+              "any_of": [
+                  {
+                      "type": "non_terminal",
+                      "name": "dropdown_position",
+                      "tooltip": "Define the position of the dropdown"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "dropdown_multiple",
+                      "tooltip": "Define that multiple options can be selected at once"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "dropdown_add_option",
+                      "tooltip": "Add one more option in the dropdown"
                   }
               ]
           },
@@ -4064,6 +4089,82 @@ export let config = {
                       "type": "non_terminal",
                       "name": "BOOLEAN_CONST",
                       "tooltip": "Define if the checkbox will be checked or not"
+                  }
+              ]
+          },
+          {
+              "name": "dropdown_position",
+              "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "change"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "dropdown_name"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "on"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "primary_expr",
+                      "alias": "x"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "primary_expr",
+                      "alias": "y",
+                      "tooltip": "Define the position of the dropdown"
+                  }
+              ]
+          },
+          {
+              "name": "dropdown_multiple",
+              "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "change"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "dropdown_name"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "multiple"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "BOOLEAN_CONST",
+                      "tooltip": "Define that multiple options can be selected at once"
+                  }
+              ]
+          },
+          {
+              "name": "dropdown_add_option",
+              "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "change"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "dropdown_name"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "new_option"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "STRING_CONST",
+                      "alias": "option",
+                      "tooltip": "Add one more option in the dropdown"
                   }
               ]
           }
@@ -55272,6 +55373,42 @@ config.darkColorfulTheme = {
       }
     },
     "checkbox_checked": {
+      "Group Block": {
+          "BackgroundColor": "#995BA5",
+          "PaddingLeft": "",
+          "PaddingRight": "",
+          "PaddingTop": "",
+          "PaddingBottom": "",
+          "BorderWidth": "",
+          "BorderColor": "#7A4884",
+          "BorderRadius": ""
+      }
+    },
+    "dropdown_position": {
+      "Group Block": {
+          "BackgroundColor": "#995BA5",
+          "PaddingLeft": "",
+          "PaddingRight": "",
+          "PaddingTop": "",
+          "PaddingBottom": "",
+          "BorderWidth": "",
+          "BorderColor": "#7A4884",
+          "BorderRadius": ""
+      }
+    },
+    "dropdown_multiple": {
+      "Group Block": {
+          "BackgroundColor": "#995BA5",
+          "PaddingLeft": "",
+          "PaddingRight": "",
+          "PaddingTop": "",
+          "PaddingBottom": "",
+          "BorderWidth": "",
+          "BorderColor": "#7A4884",
+          "BorderRadius": ""
+      }
+    },
+    "dropdown_add_option": {
       "Group Block": {
           "BackgroundColor": "#995BA5",
           "PaddingLeft": "",

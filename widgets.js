@@ -51,9 +51,7 @@ function new_checkbox(name,x,y,text){
         $('#'+name).remove();
     }
 
-    //const Lname = 'label'+checkboxes;
     const label = document.createElement("label");
-    //label.id = Lname;
     label.htmlFor = name;
     label.innerHTML = text;
 
@@ -67,6 +65,7 @@ function new_checkbox(name,x,y,text){
     container.style.top = y + "%";
     container.appendChild(label);
     container.appendChild(checkbox);
+    container.id = "Container" + name;
     
     document.getElementById("window").appendChild(container); 
 }
@@ -82,7 +81,7 @@ function new_dropdown(name,x,y,...options){
     dropdown.style.top = y + "%";
 
     for(let i=0; i<options.length; i++){
-        var option = document.createElement("option");
+        const option = document.createElement("option");
         option.text = options[i];
         dropdown.appendChild(option);
     }
@@ -140,4 +139,14 @@ function change_checkbox_text(name,text){
 
 function change_checkbox_checked(name,value){
     document.getElementById(name).checked = value;
+}
+
+function change_dropdown_multiple(name,value){
+    document.getElementById(name).multiple = value;
+}
+
+function add_dropdown_option(name,option) {
+    const new_option = document.createElement("option");
+    new_option.text = option;
+    $('#'+name).append(new_option);
 }

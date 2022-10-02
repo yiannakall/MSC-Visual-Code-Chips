@@ -32,11 +32,12 @@ non_terminal {
     repeat_stmt
     widgets create_element change_attribute add_event_handler
     new_window new_button new_textarea new_textfield new_checkbox new_dropdown options
-    change_button change_textfield change_textarea change_checkbox
+    change_button change_textfield change_textarea change_checkbox change_dropdown
     button_disabled button_text button_color button_width button_height button_position
     textfield_width textfield_position textfield_value textfield_maxlength
     textarea_width textarea_position textarea_rows textarea_cols textarea_maxlength
     checkbox_position checkbox_text checkbox_checked
+    dropdown_position dropdown_multiple dropdown_add_option
 }
 
 terminal {
@@ -67,7 +68,7 @@ terminal {
     repeat set_console_color
     black red blue green yellow cyan magenta
     on window button textarea textfield checkbox dropdown
-    change disable text background new_width new_height max rows cols checked
+    change disable text background new_width new_height max rows cols checked multiple new_option
 }  
 
 define program {
@@ -784,7 +785,8 @@ define change_attribute{
         change_button                                                           : "Change an attribute of a created button"
         change_textfield                                                        : "Change an attribute of a created textfield"
         change_textarea                                                         : "Change an attribute of a created textarea"
-        change_checkbox                                                         : "Change an attribute of a crated checkbox"
+        change_checkbox                                                         : "Change an attribute of a created checkbox"
+        change_dropdown                                                         : "Change an attribute of a created dropdown"
     }
 }
 
@@ -823,6 +825,14 @@ define change_checkbox {
         checkbox_position                                                       : "Define the position of the checkbox"
         checkbox_text                                                           : "Define the text of the checkbox"
         checkbox_checked                                                        : "Define if the checkbox will be checked or not"
+    }
+}
+
+define change_dropdown {
+    any_of {
+        dropdown_position                                                       : "Define the position of the dropdown"
+        dropdown_multiple                                                       : "Define that multiple options can be selected at once"
+        dropdown_add_option                                                     : "Add one more option in the dropdown"
     }
 }
 
@@ -896,4 +906,16 @@ define checkbox_text {
 
 define checkbox_checked {
     change IDENT("checkbox_name") checked BOOLEAN_CONST                         :"Define if the checkbox will be checked or not"
+}
+
+define dropdown_position {
+    change IDENT("dropdown_name") on primary_expr("x") primary_expr("y")        :"Define the position of the dropdown"
+}
+
+define dropdown_multiple {
+    change IDENT("dropdown_name") multiple BOOLEAN_CONST                        :"Define that multiple options can be selected at once"
+}
+
+define dropdown_add_option {
+    change IDENT("dropdown_name") new_option STRING_CONST("option")             :"Add one more option in the dropdown"
 }
