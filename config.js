@@ -3298,6 +3298,11 @@ export let config = {
               "all_of": [
                   {
                       "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "parent_window"
+                  },
+                  {
+                      "type": "terminal",
                       "name": "button"
                   },
                   {
@@ -3341,6 +3346,11 @@ export let config = {
               "all_of": [
                   {
                       "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "parent_window"
+                  },
+                  {
+                      "type": "terminal",
                       "name": "textfield"
                   },
                   {
@@ -3372,6 +3382,11 @@ export let config = {
           {
               "name": "new_textarea",
               "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "parent_window"
+                  },
                   {
                       "type": "terminal",
                       "name": "textarea"
@@ -3412,6 +3427,11 @@ export let config = {
               "all_of": [
                   {
                       "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "parent_window"
+                  },
+                  {
+                      "type": "terminal",
                       "name": "checkbox"
                   },
                   {
@@ -3443,6 +3463,11 @@ export let config = {
           {
               "name": "new_dropdown",
               "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "parent_window"
+                  },
                   {
                       "type": "terminal",
                       "name": "dropdown"
@@ -3577,6 +3602,11 @@ export let config = {
               "any_of": [
                   {
                       "type": "non_terminal",
+                      "name": "textarea_height",
+                      "tooltip": "Define the height of the textarea"
+                  },
+                  {
+                      "type": "non_terminal",
                       "name": "textarea_width",
                       "tooltip": "Define the width of the textarea"
                   },
@@ -3584,16 +3614,6 @@ export let config = {
                       "type": "non_terminal",
                       "name": "textarea_position",
                       "tooltip": "Define the position of the textarea"
-                  },
-                  {
-                      "type": "non_terminal",
-                      "name": "textarea_rows",
-                      "tooltip": "Define the rows of the textarea"
-                  },
-                  {
-                      "type": "non_terminal",
-                      "name": "textarea_cols",
-                      "tooltip": "Define the columns of the textarea"
                   },
                   {
                       "type": "non_terminal",
@@ -3892,6 +3912,30 @@ export let config = {
               ]
           },
           {
+              "name": "textarea_height",
+              "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "change"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "textarea_name"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "new_height"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "primary_expr",
+                      "alias": "height",
+                      "tooltip": "Define the height of the textarea"
+                  }
+              ]
+          },
+          {
               "name": "textarea_width",
               "all_of": [
                   {
@@ -3941,54 +3985,6 @@ export let config = {
                       "name": "primary_expr",
                       "alias": "y",
                       "tooltip": "Define the position of the textarea"
-                  }
-              ]
-          },
-          {
-              "name": "textarea_rows",
-              "all_of": [
-                  {
-                      "type": "terminal",
-                      "name": "change"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "IDENT",
-                      "alias": "textarea_name"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "rows"
-                  },
-                  {
-                      "type": "non_terminal",
-                      "name": "primary_expr",
-                      "alias": "rows",
-                      "tooltip": "Define the rows of the textarea"
-                  }
-              ]
-          },
-          {
-              "name": "textarea_cols",
-              "all_of": [
-                  {
-                      "type": "terminal",
-                      "name": "change"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "IDENT",
-                      "alias": "textarea_name"
-                  },
-                  {
-                      "type": "terminal",
-                      "name": "cols"
-                  },
-                  {
-                      "type": "non_terminal",
-                      "name": "primary_expr",
-                      "alias": "cols",
-                      "tooltip": "Define the cols of the textarea"
                   }
               ]
           },
@@ -55288,6 +55284,18 @@ config.darkColorfulTheme = {
           "BorderRadius": ""
       }
     },
+    "textarea_height": {
+      "Group Block": {
+          "BackgroundColor": "#995BA5",
+          "PaddingLeft": "",
+          "PaddingRight": "",
+          "PaddingTop": "",
+          "PaddingBottom": "",
+          "BorderWidth": "",
+          "BorderColor": "#7A4884",
+          "BorderRadius": ""
+      }
+    },
     "textarea_width": {
       "Group Block": {
           "BackgroundColor": "#995BA5",
@@ -55301,30 +55309,6 @@ config.darkColorfulTheme = {
       }
     },
     "textarea_position": {
-      "Group Block": {
-          "BackgroundColor": "#995BA5",
-          "PaddingLeft": "",
-          "PaddingRight": "",
-          "PaddingTop": "",
-          "PaddingBottom": "",
-          "BorderWidth": "",
-          "BorderColor": "#7A4884",
-          "BorderRadius": ""
-      }
-    },
-    "textarea_rows": {
-      "Group Block": {
-          "BackgroundColor": "#995BA5",
-          "PaddingLeft": "",
-          "PaddingRight": "",
-          "PaddingTop": "",
-          "PaddingBottom": "",
-          "BorderWidth": "",
-          "BorderColor": "#7A4884",
-          "BorderRadius": ""
-      }
-    },
-    "textarea_cols": {
       "Group Block": {
           "BackgroundColor": "#995BA5",
           "PaddingLeft": "",

@@ -1,5 +1,60 @@
 //Create Elements
-function new_button(name,x,y,w,h,text) {
+function new_window(name,x,y,width,height) {
+
+    if(document.querySelector('#'+name)!=null){
+        $('#'+name).remove();
+    }
+
+    $(document.body).append('<div id="' +name +'" style="position:absolute; left:'+x +'%; top:'+ y+ '%; width:'+width +'px; height:'+ height +'px; background-color:white; border-radius:25px; border:solid 1px rgb(221, 219, 219)">'
+    + '<h1 style="font-family:Roboto; margin: 0; margin-top: 2%; text-align:center; color:black">Window</h1>'
+    + '</div>');
+
+    //exit button
+    var butt = document.createElement('button');
+    butt.style.cssText = 'border-radius:5px; position:absolute; top:5%; right:2%';
+    butt.type = "button";
+    butt.onclick = function(){ $('#'+name).hide();}
+
+    var im = document.createElement('img');
+    im.style.height = "10px";
+    im.src = "/Images/Crystal_button_cancel.svg.png";
+    im.style.filter= "grayscale(100%)"
+    butt.appendChild(im)
+
+    const element = document.querySelector('#'+name);
+
+    element.appendChild(butt);
+
+    var isMouseDown,initX,initY,height = element.offsetHeight, width = element.offsetWidth;
+
+    element.addEventListener('mousedown', function(e) {
+        isMouseDown = true;
+        document.body.classList.add('no-select');
+        initX = e.offsetX;
+        initY = e.offsetY;
+    })
+
+    document.addEventListener('mousemove', function(e) {
+        if (isMouseDown) {
+            var cx = e.clientX - initX,
+                cy = e.clientY - initY;
+            if (cx < 0) { cx = 0;}
+            if (cy < 0) { cy = 0; }
+            if (window.innerWidth - e.clientX + initX < width) { cx = window.innerWidth - width;}
+            if (e.clientY > window.innerHeight - height+ initY) {cy = window.innerHeight - height;}
+            element.style.left = cx + 'px';
+            element.style.top = cy + 'px';
+        }
+    })
+
+    element.addEventListener('mouseup', function() {
+        isMouseDown = false;
+        document.body.classList.remove('no-select');
+    })
+
+}
+
+function new_button(parent,name,x,y,w,h,text) {
     if(document.querySelector('#'+name)!=null){
         $('#'+name).remove();
     }
@@ -12,12 +67,12 @@ function new_button(name,x,y,w,h,text) {
     butt.style.top = y + "%";
     butt.type = "button";
     butt.innerHTML = text;
-    document.getElementById("window").appendChild(butt);
+    document.getElementById(parent).appendChild(butt);
     //butt.onclick = function(){ $('#window').hide();}
 
 }
 
-function new_textfield(name,x,y,w){
+function new_textfield(parent,name,x,y,w){
     if(document.querySelector('#'+name)!=null){
         $('#'+name).remove();
     }
@@ -28,11 +83,11 @@ function new_textfield(name,x,y,w){
     textfield.style.left = x +"%";
     textfield.style.top = y + "%";
     textfield.type = "text";
-    document.getElementById("window").appendChild(textfield);
+    document.getElementById(parent).appendChild(textfield);
     
 }
 
-function new_textarea(name,x,y,w,h){
+function new_textarea(parent,name,x,y,w,h){
     if(document.querySelector('#'+name)!=null){
         $('#'+name).remove();
     }
@@ -43,15 +98,16 @@ function new_textarea(name,x,y,w,h){
     textarea.style.height = h + "px";
     textarea.style.left = x +"%";
     textarea.style.top = y + "%";
-    document.getElementById("window").appendChild(textarea);
+    document.getElementById(parent).appendChild(textarea);
 }
 
-function new_checkbox(name,x,y,text){
-    if(document.querySelector('#'+name)!=null){
-        $('#'+name).remove();
+function new_checkbox(parent,name,x,y,text){
+    if(document.querySelector('#Container'+name)!=null){
+        $('#Container'+name).remove();
     }
 
     const label = document.createElement("label");
+    label.id = "Label" + name;
     label.htmlFor = name;
     label.innerHTML = text;
 
@@ -67,10 +123,10 @@ function new_checkbox(name,x,y,text){
     container.appendChild(checkbox);
     container.id = "Container" + name;
     
-    document.getElementById("window").appendChild(container); 
+    document.getElementById(parent).appendChild(container); 
 }
 
-function new_dropdown(name,x,y,...options){
+function new_dropdown(parent,name,x,y,...options){
     if(document.querySelector('#'+name)!=null){
         $('#'+name).remove();
     }
@@ -85,7 +141,7 @@ function new_dropdown(name,x,y,...options){
         option.text = options[i];
         dropdown.appendChild(option);
     }
-    document.getElementById("window").appendChild(dropdown); 
+    document.getElementById(parent).appendChild(dropdown); 
 }
 
 //Change Button Attributes
@@ -104,15 +160,6 @@ function change_button_color(name,color){
 //Change Textfield Attributes
 function change_textfield_value(name,value){
     document.getElementById(name).value = value;
-}
-
-//Change Textarea Attributes 
-function change_rows(name,rows){
-    document.getElementById(name).rows = rows;
-}
-
-function change_cols(name,cols){
-    document.getElementById(name).cols = cols;
 }
 
 //General for change attributes
@@ -134,7 +181,7 @@ function change_maxLength(name,max){
 }
 
 function change_checkbox_text(name,text){
-
+    document.getElementById(name).innerHTML = text;
 }
 
 function change_checkbox_checked(name,value){

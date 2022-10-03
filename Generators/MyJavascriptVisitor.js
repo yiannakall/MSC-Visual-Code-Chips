@@ -479,10 +479,9 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'textfield_value',         elem => this.Visit_TextfieldValue(elem) );
         this.SetVisitor( 'textfield_maxlength',     elem => this.Visit_TextfieldMaxlenght(elem) );
 
+        this.SetVisitor( 'textarea_height',         elem => this.Visit_TextareaHeight(elem) );
         this.SetVisitor( 'textarea_width',          elem => this.Visit_TextareaWidth(elem) );
         this.SetVisitor( 'textarea_position',       elem => this.Visit_TextareaPosition(elem) );
-        this.SetVisitor( 'textarea_rows',           elem => this.Visit_TextareaCols(elem) );
-        this.SetVisitor( 'textarea_cols',           elem => this.Visit_TextareaRows(elem) );
         this.SetVisitor( 'textarea_maxlength',      elem => this.Visit_TextareaMaxlenght(elem) );
 
         this.SetVisitor( 'checkbox_position',       elem => this.Visit_CheckboxPosition(elem) );
@@ -500,8 +499,6 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'new_height',              elem => this.Visit_NewHeight(elem) );
         this.SetVisitor( 'background',              elem => this.Visit_Background(elem) );
         this.SetVisitor( 'max',                     elem => this.Visit_Max(elem) );
-        this.SetVisitor( 'rows',                    elem => this.Visit_Rows(elem) );
-        this.SetVisitor( 'cols',                    elem => this.Visit_Cols(elem) );
         this.SetVisitor( 'checked',                 elem => this.Visit_Checked(elem) );
         this.SetVisitor( 'multiple',                elem => this.Visit_Multiple(elem) );
         this.SetVisitor( 'new_option',              elem => this.Visit_NewOption(elem) );
@@ -1679,31 +1676,34 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_ChangeAttribute(elem)             {this.stack.push(``);}
 
     //!!!!
-    Visit_NewWindow(elem)                   {this.stack.push(``);}
+    Visit_NewWindow(elem) {
+        let code = this.PopChildrenFromStack(elem, ['window','name','on','x','y','w','h']);
+        this.stack.push(`new_window("${code.name}",${code.x}, ${code.y}, ${code.w}, ${code.h});`);
+    }
     
     Visit_NewButton(elem){
-        let code = this.PopChildrenFromStack(elem, ['button','name','on','x','y','w','h','text']);
-        this.stack.push(`new_button("${code.name}",${code.x}, ${code.y}, ${code.w}, ${code.h}, ${code.text});`);
+        let code = this.PopChildrenFromStack(elem, ['parent','button','name','on','x','y','w','h','text']);
+        this.stack.push(`new_button("${code.parent}","${code.name}",${code.x}, ${code.y}, ${code.w}, ${code.h}, ${code.text});`);
     }
     
     Visit_NewTextfield(elem) {
-        let code = this.PopChildrenFromStack(elem, ['textfield','name','on','x','y','w']);
-        this.stack.push(`new_textfield("${code.name}",${code.x}, ${code.y}, ${code.w});`);
+        let code = this.PopChildrenFromStack(elem, ['parent','textfield','name','on','x','y','w']);
+        this.stack.push(`new_textfield("${code.parent}","${code.name}",${code.x}, ${code.y}, ${code.w});`);
     }
 
     Visit_NewTextarea(elem) {
-        let code = this.PopChildrenFromStack(elem, ['textarea','name','on','x','y','w','h']);
-        this.stack.push(`new_textarea("${code.name}",${code.x}, ${code.y}, ${code.w},${code.h});`);
+        let code = this.PopChildrenFromStack(elem, ['parent','textarea','name','on','x','y','w','h']);
+        this.stack.push(`new_textarea("${code.parent}","${code.name}",${code.x}, ${code.y}, ${code.w},${code.h});`);
     }
 
     Visit_NewCheckbox(elem){
-        let code = this.PopChildrenFromStack(elem, ['textarea','name','on','x','y','text']);
-        this.stack.push(`new_checkbox("${code.name}",${code.x}, ${code.y},${code.text});`)
+        let code = this.PopChildrenFromStack(elem, ['parent','textarea','name','on','x','y','text']);
+        this.stack.push(`new_checkbox("${code.parent}","${code.name}",${code.x}, ${code.y},${code.text});`)
     }
 
     Visit_NewDropdown(elem){
-        let code = this.PopChildrenFromStack(elem, ['dropdown','name','on','x','y','options']);
-        this.stack.push(`new_dropdown("${code.name}",${code.x}, ${code.y},${code.options});`)
+        let code = this.PopChildrenFromStack(elem, ['parent','dropdown','name','on','x','y','options']);
+        this.stack.push(`new_dropdown("${code.parent}","${code.name}",${code.x}, ${code.y},${code.options});`)
     }
 
     Visit_On(elem)                          {this.stack.push(``);}
@@ -1774,7 +1774,12 @@ element.removeEventListener('keypress',${code.listener},false);`);
 
     Visit_TextfieldMaxlenght(elem) {
         let code = this.PopChildrenFromStack(elem, ['change','name','max','maxlenght']);
-        this.stack.push(`change_textfield_max("${code.name}",${code.maxlenght});`)
+        this.stack.push(`change_maxLength("${code.name}",${code.maxlenght});`)
+    }
+
+    Visit_TextareaHeight(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','h','value']);
+        this.stack.push(`change_height("${code.name}",${code.value});`)
     }
 
     Visit_TextareaWidth(elem){
@@ -1785,16 +1790,6 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_TextareaPosition(elem){
         let code = this.PopChildrenFromStack(elem, ['change','name','on','x','y']);
         this.stack.push(`change_position("${code.name}",${code.x},${code.y});`)
-    }
-
-    Visit_TextareaCols(elem) {
-        let code = this.PopChildrenFromStack(elem, ['change','name','rows','value']);
-        this.stack.push(`change_rows("${code.name}",${code.value});`)
-    }
-
-    Visit_TextareaRows(elem) {
-        let code = this.PopChildrenFromStack(elem, ['change','name','cols','value']);
-        this.stack.push(`change_cols("${code.name}",${code.value});`)
     }
 
     Visit_TextareaMaxlenght(elem){
@@ -1809,7 +1804,7 @@ element.removeEventListener('keypress',${code.listener},false);`);
 
     Visit_CheckboxText(elem){
         let code = this.PopChildrenFromStack(elem, ['change','name','text','value']);
-        this.stack.push(`change_checkbox_text("${code.name}",${code.value});`)
+        this.stack.push(`change_checkbox_text("Label${code.name}",${code.value});`)
     }
 
     Visit_CheckboxChecked(elem){
@@ -1839,8 +1834,6 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_NewHeight(elem)                   {this.stack.push(``);}
     Visit_Background(elem)                  {this.stack.push(``);}
     Visit_Max(elem)                         {this.stack.push(``);}
-    Visit_Rows(elem)                        {this.stack.push(``);}
-    Visit_Cols(elem)                        {this.stack.push(``);}
     Visit_Checked(elem)                     {this.stack.push(``);}
     Visit_Multiple(elem)                    {this.stack.push(``);}
     Visit_NewOption(elem)                   {this.stack.push(``);}

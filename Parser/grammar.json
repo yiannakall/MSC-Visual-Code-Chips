@@ -3297,6 +3297,11 @@
             "all_of": [
                 {
                     "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "parent_window"
+                },
+                {
+                    "type": "terminal",
                     "name": "button"
                 },
                 {
@@ -3340,6 +3345,11 @@
             "all_of": [
                 {
                     "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "parent_window"
+                },
+                {
+                    "type": "terminal",
                     "name": "textfield"
                 },
                 {
@@ -3371,6 +3381,11 @@
         {
             "name": "new_textarea",
             "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "parent_window"
+                },
                 {
                     "type": "terminal",
                     "name": "textarea"
@@ -3411,6 +3426,11 @@
             "all_of": [
                 {
                     "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "parent_window"
+                },
+                {
+                    "type": "terminal",
                     "name": "checkbox"
                 },
                 {
@@ -3442,6 +3462,11 @@
         {
             "name": "new_dropdown",
             "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "parent_window"
+                },
                 {
                     "type": "terminal",
                     "name": "dropdown"
@@ -3576,6 +3601,11 @@
             "any_of": [
                 {
                     "type": "non_terminal",
+                    "name": "textarea_height",
+                    "tooltip": "Define the height of the textarea"
+                },
+                {
+                    "type": "non_terminal",
                     "name": "textarea_width",
                     "tooltip": "Define the width of the textarea"
                 },
@@ -3583,16 +3613,6 @@
                     "type": "non_terminal",
                     "name": "textarea_position",
                     "tooltip": "Define the position of the textarea"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "textarea_rows",
-                    "tooltip": "Define the rows of the textarea"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "textarea_cols",
-                    "tooltip": "Define the columns of the textarea"
                 },
                 {
                     "type": "non_terminal",
@@ -3891,6 +3911,30 @@
             ]
         },
         {
+            "name": "textarea_height",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "textarea_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "new_height"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "height",
+                    "tooltip": "Define the height of the textarea"
+                }
+            ]
+        },
+        {
             "name": "textarea_width",
             "all_of": [
                 {
@@ -3940,54 +3984,6 @@
                     "name": "primary_expr",
                     "alias": "y",
                     "tooltip": "Define the position of the textarea"
-                }
-            ]
-        },
-        {
-            "name": "textarea_rows",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "change"
-                },
-                {
-                    "type": "terminal",
-                    "name": "IDENT",
-                    "alias": "textarea_name"
-                },
-                {
-                    "type": "terminal",
-                    "name": "rows"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "primary_expr",
-                    "alias": "rows",
-                    "tooltip": "Define the rows of the textarea"
-                }
-            ]
-        },
-        {
-            "name": "textarea_cols",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "change"
-                },
-                {
-                    "type": "terminal",
-                    "name": "IDENT",
-                    "alias": "textarea_name"
-                },
-                {
-                    "type": "terminal",
-                    "name": "cols"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "primary_expr",
-                    "alias": "cols",
-                    "tooltip": "Define the cols of the textarea"
                 }
             ]
         },

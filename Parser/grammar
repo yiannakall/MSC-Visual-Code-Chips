@@ -35,7 +35,7 @@ non_terminal {
     change_button change_textfield change_textarea change_checkbox change_dropdown
     button_disabled button_text button_color button_width button_height button_position
     textfield_width textfield_position textfield_value textfield_maxlength
-    textarea_width textarea_position textarea_rows textarea_cols textarea_maxlength
+    textarea_height textarea_width textarea_position textarea_maxlength
     checkbox_position checkbox_text checkbox_checked
     dropdown_position dropdown_multiple dropdown_add_option
 }
@@ -68,7 +68,7 @@ terminal {
     repeat set_console_color
     black red blue green yellow cyan magenta
     on window button textarea textfield checkbox dropdown
-    change disable text background new_width new_height max rows cols checked multiple new_option
+    change disable text background new_width new_height max checked multiple new_option
 }  
 
 define program {
@@ -755,23 +755,23 @@ define new_window {
 }
 
 define new_button {
-    button IDENT("button_name") on primary_expr("x") primary_expr("y") primary_expr("width") primary_expr("height") primary_expr("text")
+    IDENT("parent_window") button IDENT("button_name") on primary_expr("x") primary_expr("y") primary_expr("width") primary_expr("height") primary_expr("text")
 }
 
 define new_textfield {
-    textfield IDENT("textfield_name") on primary_expr("x") primary_expr("y") primary_expr("width")
+    IDENT("parent_window") textfield IDENT("textfield_name") on primary_expr("x") primary_expr("y") primary_expr("width")
 }
 
 define new_textarea {
-    textarea IDENT("textarea_name") on primary_expr("x") primary_expr("y") primary_expr("width") primary_expr("height") 
+    IDENT("parent_window") textarea IDENT("textarea_name") on primary_expr("x") primary_expr("y") primary_expr("width") primary_expr("height") 
 }
 
 define new_checkbox {
-    checkbox IDENT("checkbox_name") on primary_expr("x") primary_expr("y") primary_expr("text")
+    IDENT("parent_window") checkbox IDENT("checkbox_name") on primary_expr("x") primary_expr("y") primary_expr("text")
 }
 
 define new_dropdown {
-    dropdown IDENT("dropdown_name") on primary_expr("x") primary_expr("y") options
+    IDENT("parent_window") dropdown IDENT("dropdown_name") on primary_expr("x") primary_expr("y") options
 }
 
 define options {
@@ -812,10 +812,9 @@ define change_textfield {
 
 define change_textarea {
     any_of {
+        textarea_height                                                         : "Define the height of the textarea"
         textarea_width                                                          : "Define the width of the textarea"
         textarea_position                                                       : "Define the position of the textarea"
-        textarea_rows                                                           : "Define the rows of the textarea"
-        textarea_cols                                                           : "Define the columns of the textarea"
         textarea_maxlength                                                      : "Define the max length of the text of the textarea"
     }
 }
@@ -876,21 +875,17 @@ define textfield_maxlength {
     change IDENT("textfield_name") max INT_CONST("maxlength")                   : "Define the max lenght of the value of the textfield"
 }
 
+define textarea_height {
+    change IDENT("textarea_name") new_height primary_expr("height")             : "Define the height of the textarea"
+}
+
 define textarea_width {
     change IDENT("textarea_name") new_width primary_expr("width")               : "Define the width of the textarea"
 }  
 
 define textarea_position {
     change IDENT("textarea_name") on primary_expr("x") primary_expr("y")        : "Define the position of the textarea"
-}
-
-define textarea_rows {
-    change IDENT("textarea_name") rows primary_expr("rows")                     : "Define the rows of the textarea"
-}    
-
-define textarea_cols {
-    change IDENT("textarea_name") cols primary_expr("cols")                     : "Define the cols of the textarea"
-}    
+}  
 
 define textarea_maxlength {
     change IDENT("textarea_name") max INT_CONST("maxlength")                    : "Define the max length of the text of the textarea"
