@@ -32,12 +32,14 @@ non_terminal {
     repeat_stmt
     widgets create_element change_attribute add_event_handler
     new_window new_button new_textarea new_textfield new_checkbox new_dropdown options
-    change_button change_textfield change_textarea change_checkbox change_dropdown
+    change_window change_button change_textfield change_textarea change_checkbox change_dropdown
+    window_width window_height window_color
     button_disabled button_text button_color button_width button_height button_position
     textfield_width textfield_position textfield_value textfield_maxlength
     textarea_height textarea_width textarea_position textarea_maxlength
     checkbox_position checkbox_text checkbox_checked
     dropdown_position dropdown_multiple dropdown_add_option
+    button_event checkbox_event
 }
 
 terminal {
@@ -69,6 +71,7 @@ terminal {
     black red blue green yellow cyan magenta
     on window button textarea textfield checkbox dropdown
     change disable text background new_width new_height max checked multiple new_option
+    on_press on_select
 }  
 
 define program {
@@ -736,6 +739,7 @@ define widgets {
     any_of {
         create_element                                                          : "Add a new element at the widgets window"
         change_attribute                                                        : "Change an attribute of a created element"
+        add_event_handler                                                       : "Add event handler on a created element in the window"
     }
 }
 
@@ -782,11 +786,20 @@ define options {
 
 define change_attribute{
     any_of {
+        change_window                                                           : "Change an attribute of a created window"
         change_button                                                           : "Change an attribute of a created button"
         change_textfield                                                        : "Change an attribute of a created textfield"
         change_textarea                                                         : "Change an attribute of a created textarea"
         change_checkbox                                                         : "Change an attribute of a created checkbox"
         change_dropdown                                                         : "Change an attribute of a created dropdown"
+    }
+}
+
+define change_window{
+    any_of {
+        window_width                                                            : "Define the width of the window"
+        window_height                                                           : "Define the height of the window"
+        window_color                                                            : "Define the background color of the window"
     }
 }
 
@@ -833,6 +846,18 @@ define change_dropdown {
         dropdown_multiple                                                       : "Define that multiple options can be selected at once"
         dropdown_add_option                                                     : "Add one more option in the dropdown"
     }
+}
+
+define window_width {
+    change IDENT("window_name") new_width primary_expr("width")                 : "Define the width of the window"
+}
+
+define window_height {
+    change IDENT("window_name") new_height primary_expr("height")               : "Define the height of the window"
+}
+
+define window_color {
+    change IDENT("window_name") background primary_expr("color")                : "Define the background color of the window"
 }
 
 define button_disabled {
@@ -900,17 +925,32 @@ define checkbox_text {
 }
 
 define checkbox_checked {
-    change IDENT("checkbox_name") checked BOOLEAN_CONST                         :"Define if the checkbox will be checked or not"
+    change IDENT("checkbox_name") checked BOOLEAN_CONST                         : "Define if the checkbox will be checked or not"
 }
 
 define dropdown_position {
-    change IDENT("dropdown_name") on primary_expr("x") primary_expr("y")        :"Define the position of the dropdown"
+    change IDENT("dropdown_name") on primary_expr("x") primary_expr("y")        : "Define the position of the dropdown"
 }
 
 define dropdown_multiple {
-    change IDENT("dropdown_name") multiple BOOLEAN_CONST                        :"Define that multiple options can be selected at once"
+    change IDENT("dropdown_name") multiple BOOLEAN_CONST                        : "Define that multiple options can be selected at once"
 }
 
 define dropdown_add_option {
-    change IDENT("dropdown_name") new_option STRING_CONST("option")             :"Add one more option in the dropdown"
+    change IDENT("dropdown_name") new_option STRING_CONST("option")             : "Add one more option in the dropdown"
+}
+
+define add_event_handler {
+    any_of {
+        button_event                                                            : "Add an event handler when pressing a button"
+        checkbox_event                                                          : "Add an event handler when selecting a checkbox"
+    }
+}
+
+define button_event {
+    on_press IDENT("button_name") stmts                                         : "Add an event handler when pressing a button"
+}
+
+define checkbox_event {
+    on_select IDENT("checkbox_name") stmts                                      : "Add an event handler when selecting a checkbox"
 }

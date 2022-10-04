@@ -153,10 +153,6 @@ function change_button_text(name,text){
     document.getElementById(name).innerHTML = text;
 }
 
-function change_button_color(name,color){
-    document.getElementById(name).style.background = color;
-}
-
 //Change Textfield Attributes
 function change_textfield_value(name,value){
     document.getElementById(name).value = value;
@@ -169,6 +165,10 @@ function change_width(name,width){
 
 function change_height(name,height){
     document.getElementById(name).style.height = height + "px";
+}
+
+function change_color(name,color){
+    document.getElementById(name).style.background = color;
 }
 
 function change_position(name,x,y){
@@ -196,4 +196,14 @@ function add_dropdown_option(name,option) {
     const new_option = document.createElement("option");
     new_option.text = option;
     $('#'+name).append(new_option);
+}
+
+
+//Event Handlers
+function add_button_event(name,stmts){
+    document.getElementById(name).onclick = stmts;
+}
+
+function add_checkbox_event(name,stmts){
+    document.getElementById(name).onclick = stmts;
 }

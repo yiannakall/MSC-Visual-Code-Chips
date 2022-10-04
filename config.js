@@ -3217,6 +3217,11 @@ export let config = {
                       "type": "non_terminal",
                       "name": "change_attribute",
                       "tooltip": "Change an attribute of a created element"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "add_event_handler",
+                      "tooltip": "Add event handler on a created element in the window"
                   }
               ]
           },
@@ -3512,6 +3517,11 @@ export let config = {
               "any_of": [
                   {
                       "type": "non_terminal",
+                      "name": "change_window",
+                      "tooltip": "Change an attribute of a created window"
+                  },
+                  {
+                      "type": "non_terminal",
                       "name": "change_button",
                       "tooltip": "Change an attribute of a created button"
                   },
@@ -3534,6 +3544,26 @@ export let config = {
                       "type": "non_terminal",
                       "name": "change_dropdown",
                       "tooltip": "Change an attribute of a created dropdown"
+                  }
+              ]
+          },
+          {
+              "name": "change_window",
+              "any_of": [
+                  {
+                      "type": "non_terminal",
+                      "name": "window_width",
+                      "tooltip": "Define the width of the window"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "window_height",
+                      "tooltip": "Define the height of the window"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "window_color",
+                      "tooltip": "Define the background color of the window"
                   }
               ]
           },
@@ -3659,6 +3689,78 @@ export let config = {
                       "type": "non_terminal",
                       "name": "dropdown_add_option",
                       "tooltip": "Add one more option in the dropdown"
+                  }
+              ]
+          },
+          {
+              "name": "window_width",
+              "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "change"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "window_name"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "new_width"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "primary_expr",
+                      "alias": "width",
+                      "tooltip": "Define the width of the window"
+                  }
+              ]
+          },
+          {
+              "name": "window_height",
+              "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "change"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "window_name"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "new_height"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "primary_expr",
+                      "alias": "height",
+                      "tooltip": "Define the height of the window"
+                  }
+              ]
+          },
+          {
+              "name": "window_color",
+              "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "change"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "window_name"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "background"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "primary_expr",
+                      "alias": "color",
+                      "tooltip": "Define the background color of the window"
                   }
               ]
           },
@@ -4161,6 +4263,59 @@ export let config = {
                       "name": "STRING_CONST",
                       "alias": "option",
                       "tooltip": "Add one more option in the dropdown"
+                  }
+              ]
+          },
+          {
+              "name": "add_event_handler",
+              "any_of": [
+                  {
+                      "type": "non_terminal",
+                      "name": "button_event",
+                      "tooltip": "Add an event handler when pressing a button"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "checkbox_event",
+                      "tooltip": "Add an event handler when selecting a checkbox"
+                  }
+              ]
+          },
+          {
+              "name": "button_event",
+              "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "on_press"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "button_name"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "stmts",
+                      "tooltip": "Add an event handler when pressing a button"
+                  }
+              ]
+          },
+          {
+              "name": "checkbox_event",
+              "all_of": [
+                  {
+                      "type": "terminal",
+                      "name": "on_select"
+                  },
+                  {
+                      "type": "terminal",
+                      "name": "IDENT",
+                      "alias": "checkbox_name"
+                  },
+                  {
+                      "type": "non_terminal",
+                      "name": "stmts",
+                      "tooltip": "Add an event handler when selecting a checkbox"
                   }
               ]
           }
@@ -55164,6 +55319,42 @@ config.darkColorfulTheme = {
           "BorderRadius": ""
       }
     },
+    "window_width": {
+      "Group Block": {
+          "BackgroundColor": "#995BA5",
+          "PaddingLeft": "",
+          "PaddingRight": "",
+          "PaddingTop": "",
+          "PaddingBottom": "",
+          "BorderWidth": "",
+          "BorderColor": "#7A4884",
+          "BorderRadius": ""
+      }
+    },
+    "window_height": {
+      "Group Block": {
+          "BackgroundColor": "#995BA5",
+          "PaddingLeft": "",
+          "PaddingRight": "",
+          "PaddingTop": "",
+          "PaddingBottom": "",
+          "BorderWidth": "",
+          "BorderColor": "#7A4884",
+          "BorderRadius": ""
+      }
+    },
+    "window_color": {
+      "Group Block": {
+          "BackgroundColor": "#995BA5",
+          "PaddingLeft": "",
+          "PaddingRight": "",
+          "PaddingTop": "",
+          "PaddingBottom": "",
+          "BorderWidth": "",
+          "BorderColor": "#7A4884",
+          "BorderRadius": ""
+      }
+    },
     "button_disabled": {
       "Group Block": {
           "BackgroundColor": "#995BA5",
@@ -55393,6 +55584,30 @@ config.darkColorfulTheme = {
       }
     },
     "dropdown_add_option": {
+      "Group Block": {
+          "BackgroundColor": "#995BA5",
+          "PaddingLeft": "",
+          "PaddingRight": "",
+          "PaddingTop": "",
+          "PaddingBottom": "",
+          "BorderWidth": "",
+          "BorderColor": "#7A4884",
+          "BorderRadius": ""
+      }
+    },
+    "button_event": {
+      "Group Block": {
+          "BackgroundColor": "#995BA5",
+          "PaddingLeft": "",
+          "PaddingRight": "",
+          "PaddingTop": "",
+          "PaddingBottom": "",
+          "BorderWidth": "",
+          "BorderColor": "#7A4884",
+          "BorderRadius": ""
+      }
+    },
+    "checkbox_event": {
       "Group Block": {
           "BackgroundColor": "#995BA5",
           "PaddingLeft": "",
