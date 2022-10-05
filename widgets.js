@@ -68,8 +68,6 @@ function new_button(parent,name,x,y,w,h,text) {
     butt.type = "button";
     butt.innerHTML = text;
     document.getElementById(parent).appendChild(butt);
-    //butt.onclick = function(){ $('#window').hide();}
-
 }
 
 function new_textfield(parent,name,x,y,w){
@@ -84,7 +82,6 @@ function new_textfield(parent,name,x,y,w){
     textfield.style.top = y + "%";
     textfield.type = "text";
     document.getElementById(parent).appendChild(textfield);
-    
 }
 
 function new_textarea(parent,name,x,y,w,h){
@@ -144,7 +141,7 @@ function new_dropdown(parent,name,x,y,...options){
     document.getElementById(parent).appendChild(dropdown); 
 }
 
-//Change Button Attributes
+//Change Attributes
 function change_button_disable(name,value){
     document.getElementById(name).disabled = value;
 }
@@ -153,12 +150,10 @@ function change_button_text(name,text){
     document.getElementById(name).innerHTML = text;
 }
 
-//Change Textfield Attributes
 function change_textfield_value(name,value){
     document.getElementById(name).value = value;
 }
 
-//General for change attributes
 function change_width(name,width){
     document.getElementById(name).style.width = width + "px";
 }
@@ -197,7 +192,6 @@ function add_dropdown_option(name,option) {
     new_option.text = option;
     $('#'+name).append(new_option);
 }
-
 
 //Event Handlers
 function add_button_event(name,stmts){
