@@ -745,12 +745,12 @@ define widgets {
 
 define create_element {
     any_of {
-        new_window                                                              : "Initialize new window on position (x,y) with certain width and height "                                                                                              
-        new_button                                                              : "Initialize new button on position (x,y) with certain width,height and text on it" 
-        new_textfield                                                           : "Initialize new textfield on position (x,y) with certain width "
-        new_textarea                                                            : "Initialize new textarea on position (x,y) with certain width and height"
-        new_checkbox                                                            : "Initialize new checkbox on position (x,y)"
-        new_dropdown                                                            : "Initialize new dropdown on position (x,y)"
+        new_window                                                              : "Create new window on position (x,y) with certain width and height "                                                                                              
+        new_button                                                              : "Create new button on position (x,y) with certain width,height and text on it" 
+        new_textfield                                                           : "Create new textfield on position (x,y) with certain width "
+        new_textarea                                                            : "Create new textarea on position (x,y) with certain width and height"
+        new_checkbox                                                            : "Create new checkbox on position (x,y)"
+        new_dropdown                                                            : "Create new dropdown on position (x,y)"
     }
 }
 

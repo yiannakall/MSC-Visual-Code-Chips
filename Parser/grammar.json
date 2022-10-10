@@ -3230,32 +3230,32 @@
                 {
                     "type": "non_terminal",
                     "name": "new_window",
-                    "tooltip": "Initialize new window on position (x,y) with certain width and height "
+                    "tooltip": "Create new window on position (x,y) with certain width and height "
                 },
                 {
                     "type": "non_terminal",
                     "name": "new_button",
-                    "tooltip": "Initialize new button on position (x,y) with certain width,height and text on it"
+                    "tooltip": "Create new button on position (x,y) with certain width,height and text on it"
                 },
                 {
                     "type": "non_terminal",
                     "name": "new_textfield",
-                    "tooltip": "Initialize new textfield on position (x,y) with certain width "
+                    "tooltip": "Create new textfield on position (x,y) with certain width "
                 },
                 {
                     "type": "non_terminal",
                     "name": "new_textarea",
-                    "tooltip": "Initialize new textarea on position (x,y) with certain width and height"
+                    "tooltip": "Create new textarea on position (x,y) with certain width and height"
                 },
                 {
                     "type": "non_terminal",
                     "name": "new_checkbox",
-                    "tooltip": "Initialize new checkbox on position (x,y)"
+                    "tooltip": "Create new checkbox on position (x,y)"
                 },
                 {
                     "type": "non_terminal",
                     "name": "new_dropdown",
-                    "tooltip": "Initialize new dropdown on position (x,y)"
+                    "tooltip": "Create new dropdown on position (x,y)"
                 }
             ]
         },
