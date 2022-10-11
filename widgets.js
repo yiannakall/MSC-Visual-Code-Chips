@@ -99,12 +99,12 @@ function new_textarea(parent,name,x,y,w,h){
 }
 
 function new_checkbox(parent,name,x,y,text){
-    if(document.querySelector('#Container'+name)!=null){
-        $('#Container'+name).remove();
+    if(document.querySelector('#Checkbox'+name)!=null){
+        $('#Checkbox'+name).remove();
     }
 
     const label = document.createElement("label");
-    label.id = "Label" + name;
+    label.id = "CheckboxLabel" + name;
     label.htmlFor = name;
     label.innerHTML = text;
 
@@ -118,7 +118,7 @@ function new_checkbox(parent,name,x,y,text){
     container.style.top = y + "%";
     container.appendChild(label);
     container.appendChild(checkbox);
-    container.id = "Container" + name;
+    container.id = "Checkbox" + name;
     
     document.getElementById(parent).appendChild(container); 
 }
@@ -139,6 +139,31 @@ function new_dropdown(parent,name,x,y,...options){
         dropdown.appendChild(option);
     }
     document.getElementById(parent).appendChild(dropdown); 
+}
+
+function new_slider(parent,name,x,y,text){
+    if(document.querySelector('#Slider'+name)!=null){
+        $('#Slider'+name).remove();
+    }
+
+    const label = document.createElement("label");
+    label.id = "SliderLabel" + name;
+    label.htmlFor = name;
+    label.innerHTML = text;
+
+    const slider = document.createElement('input');
+    slider.type = "range"; 
+    slider.id = name;
+
+    const container = document.createElement("div");
+    container.style.position = 'absolute';
+    container.style.left = x +"%";
+    container.style.top = y + "%";
+    container.appendChild(label);
+    container.appendChild(slider);
+    container.id = "Slider" + name;
+    
+    document.getElementById(parent).appendChild(container); 
 }
 
 //Change Attributes
@@ -191,6 +216,18 @@ function add_dropdown_option(name,option) {
     const new_option = document.createElement("option");
     new_option.text = option;
     $('#'+name).append(new_option);
+}
+
+function change_slider_label(name,value){
+    document.getElementById(name).innerHTML = value;
+}
+
+function change_slider_min(name,min){
+    document.getElementById(name).min = min;
+}
+
+function change_slider_max(name,max){
+    document.getElementById(name).max = max;
 }
 
 //Event Handlers

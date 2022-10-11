@@ -453,6 +453,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'new_textarea',            elem => this.Visit_NewTextarea(elem) );
         this.SetVisitor( 'new_checkbox',            elem => this.Visit_NewCheckbox(elem) );
         this.SetVisitor( 'new_dropdown',            elem => this.Visit_NewDropdown(elem) );
+        this.SetVisitor( 'new_slider',              elem => this.Visit_NewSlider(elem) );
         this.SetVisitor( 'on',                      elem => this.Visit_On(elem) );
         this.SetVisitor( 'options',                 elem => this.Visit_Options(elem) );
         this.SetVisitor( 'window',                  elem => this.Visit_Window(elem) );
@@ -461,6 +462,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'textarea',                elem => this.Visit_Textarea(elem) );
         this.SetVisitor( 'checkbox',                elem => this.Visit_Checkbox(elem) );
         this.SetVisitor( 'dropdown',                elem => this.Visit_Dropdown(elem) );
+        this.SetVisitor( 'slider',                  elem => this.Visit_Slider(elem) );
 
         this.SetVisitor( 'change_window',           elem => this.Visit_ChangeWindow(elem ) );
         this.SetVisitor( 'change_button',           elem => this.Visit_ChangeButton(elem) );
@@ -468,6 +470,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'change_textarea',         elem => this.Visit_ChangeTextarea(elem) );
         this.SetVisitor( 'change_checkbox',         elem => this.Visit_ChangeCheckbox(elem) );
         this.SetVisitor( 'change_dropdown',         elem => this.Visit_ChangeDropdown(elem) );
+        this.SetVisitor( 'change_slider',           elem => this.Visit_ChangeSlider(elem) );
 
         this.SetVisitor( 'window_width',            elem => this.Visit_WindowWidth(elem) );
         this.SetVisitor( 'window_height',           elem => this.Visit_WindowHeight(elem) );
@@ -498,22 +501,29 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'dropdown_multiple',       elem => this.Visit_DropdownMultiple(elem) );
         this.SetVisitor( 'dropdown_add_option',     elem => this.Visit_DropdownAddOption(elem) );
 
+        this.SetVisitor( 'slider_position',         elem => this.Visit_SliderPosition(elem) );
+        this.SetVisitor( 'slider_label',            elem => this.Visit_SliderLabel(elem) );
+        this.SetVisitor( 'slider_min',              elem => this.Visit_SliderMin(elem) );
+        this.SetVisitor( 'slider_max',              elem => this.Visit_SliderMax(elem) );
+
         this.SetVisitor( 'button_event',            elem => this.Visit_ButtonEvent(elem) );
         this.SetVisitor( 'checkbox_event',          elem => this.Visit_CheckboxEvent(elem) );
 
         this.SetVisitor( 'change',                  elem => this.Visit_Change(elem) );
         this.SetVisitor( 'disable',                 elem => this.Visit_Disable(elem) );
         this.SetVisitor( 'text',                    elem => this.Visit_Text(elem) );
+        this.SetVisitor( 'label',                   elem => this.Visit_Label(elem) );
         this.SetVisitor( 'new_width',               elem => this.Visit_NewWidth(elem) );
         this.SetVisitor( 'new_height',              elem => this.Visit_NewHeight(elem) );
         this.SetVisitor( 'background',              elem => this.Visit_Background(elem) );
-        this.SetVisitor( 'max',                     elem => this.Visit_Max(elem) );
         this.SetVisitor( 'checked',                 elem => this.Visit_Checked(elem) );
         this.SetVisitor( 'multiple',                elem => this.Visit_Multiple(elem) );
         this.SetVisitor( 'new_option',              elem => this.Visit_NewOption(elem) );
+        this.SetVisitor( 'min',                     elem => this.Visit_Min(elem) );
+        this.SetVisitor( 'max',                     elem => this.Visit_Max(elem) );
         this.SetVisitor( 'on_press',                elem => this.Visit_OnPress(elem) );
         this.SetVisitor( 'on_select',               elem => this.Visit_OnSelect(elem) );
-
+        
     }
 
     HandleVarDeclaration(id){
@@ -1719,6 +1729,11 @@ element.removeEventListener('keypress',${code.listener},false);`);
         this.stack.push(`new_dropdown("${code.parent}","${code.name}",${code.x}, ${code.y},${code.options});`)
     }
 
+    Visit_NewSlider(elem){
+        let code = this.PopChildrenFromStack(elem, ['parent','slider','name','on','x','y','label']);
+        this.stack.push(`new_slider("${code.parent}","${code.name}",${code.x}, ${code.y},${code.label});`)
+    }
+
     Visit_On(elem)                          {this.stack.push(``);}
 
     Visit_Options(elem){
@@ -1733,6 +1748,7 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_Textarea(elem)                    {this.stack.push(``);}
     Visit_Checkbox(elem)                    {this.stack.push(``);}
     Visit_Dropdown(elem)                    {this.stack.push(``);}
+    Visit_Slider(elem)                      {this.stack.push(``);}
 
     //Change Attributes
     Visit_ChangeWindow(elem)                {this.stack.push(``);}
@@ -1741,6 +1757,7 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_ChangeTextarea(elem)              {this.stack.push(``);}
     Visit_ChangeCheckbox(elem)              {this.stack.push(``);}
     Visit_ChangeDropdown(elem)              {this.stack.push(``);}
+    Visit_ChangeSlider(elem)                {this.stack.push(``);}
 
     Visit_WindowWidth(elem) {
         let code = this.PopChildrenFromStack(elem, ['change','name','w','value']);
@@ -1829,12 +1846,12 @@ element.removeEventListener('keypress',${code.listener},false);`);
 
     Visit_CheckboxPosition(elem){
         let code = this.PopChildrenFromStack(elem, ['change','name','on','x','y']);
-        this.stack.push(`change_position("Container${code.name}",${code.x},${code.y});`)
+        this.stack.push(`change_position("Checkbox${code.name}",${code.x},${code.y});`)
     }
 
     Visit_CheckboxText(elem){
         let code = this.PopChildrenFromStack(elem, ['change','name','text','value']);
-        this.stack.push(`change_checkbox_text("Label${code.name}",${code.value});`)
+        this.stack.push(`change_checkbox_text("CheckboxLabel${code.name}",${code.value});`)
     }
 
     Visit_CheckboxChecked(elem){
@@ -1855,6 +1872,26 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_DropdownAddOption(elem){
         let code = this.PopChildrenFromStack(elem, ['change','name','new_option','option']);
         this.stack.push(`add_dropdown_option("${code.name}",${code.option});`)
+    }
+
+    Visit_SliderPosition(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','on','x','y']);
+        this.stack.push(`change_position("Slider${code.name}",${code.x},${code.y});`)
+    }
+
+    Visit_SliderLabel(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','label','value']);
+        this.stack.push(`change_slider_label("SliderLabel${code.name}",${code.value});`)
+    }
+
+    Visit_SliderMin(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','min','minvalue']);
+        this.stack.push(`change_slider_min("${code.name}",${code.minvalue});`)
+    }
+
+    Visit_SliderMax(elem){
+        let code = this.PopChildrenFromStack(elem, ['change','name','max','maxvalue']);
+        this.stack.push(`change_slider_max("${code.name}",${code.maxvalue});`)
     }
 
     //Event Handlers
@@ -1878,13 +1915,16 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_Change(elem)                      {this.stack.push(``);}
     Visit_Disable(elem)                     {this.stack.push(``);}
     Visit_Text(elem)                        {this.stack.push(``);}
+    Visit_Label(elem)                       {this.stack.push(``);}
     Visit_NewWidth(elem)                    {this.stack.push(``);}
     Visit_NewHeight(elem)                   {this.stack.push(``);}
     Visit_Background(elem)                  {this.stack.push(``);}
-    Visit_Max(elem)                         {this.stack.push(``);}
     Visit_Checked(elem)                     {this.stack.push(``);}
     Visit_Multiple(elem)                    {this.stack.push(``);}
     Visit_NewOption(elem)                   {this.stack.push(``);}
+    Visit_Min(elem)                         {this.stack.push(``);}
+    Visit_Max(elem)                         {this.stack.push(``);}
     Visit_OnPress(elem)                     {this.stack.push(``);}
     Visit_OnSelect(elem)                    {this.stack.push(``);}
 }
+

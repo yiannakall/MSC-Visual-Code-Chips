@@ -3257,6 +3257,11 @@ export let config = {
                         "type": "non_terminal",
                         "name": "new_dropdown",
                         "tooltip": "Create new dropdown on position (x,y)"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "new_slider",
+                        "tooltip": "Create new slider on position (x,y)"
                     }
                 ]
             },
@@ -3503,6 +3508,44 @@ export let config = {
                 ]
             },
             {
+                "name": "new_slider",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "parent_window"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "slider"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "slider_name"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "on"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "primary_expr",
+                        "alias": "x"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "primary_expr",
+                        "alias": "y"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "primary_expr",
+                        "alias": "label"
+                    }
+                ]
+            },
+            {
                 "name": "options",
                 "list_of": [
                     {
@@ -3544,6 +3587,11 @@ export let config = {
                         "type": "non_terminal",
                         "name": "change_dropdown",
                         "tooltip": "Change an attribute of a created dropdown"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "change_slider",
+                        "tooltip": "Change an attribute of a created slider"
                     }
                 ]
             },
@@ -3689,6 +3737,31 @@ export let config = {
                         "type": "non_terminal",
                         "name": "dropdown_add_option",
                         "tooltip": "Add one more option in the dropdown"
+                    }
+                ]
+            },
+            {
+                "name": "change_slider",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "slider_position",
+                        "tooltip": "Define the position of the slider"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "slider_label",
+                        "tooltip": "Define/Change the label of the slider"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "slider_min",
+                        "tooltip": "Define the min value of the slider"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "slider_max",
+                        "tooltip": "Define the max value of the slider"
                     }
                 ]
             },
@@ -4263,6 +4336,107 @@ export let config = {
                         "name": "STRING_CONST",
                         "alias": "option",
                         "tooltip": "Add one more option in the dropdown"
+                    }
+                ]
+            },
+            {
+                "name": "slider_position",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "change"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "slider_name"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "on"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "primary_expr",
+                        "alias": "x"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "primary_expr",
+                        "alias": "y",
+                        "tooltip": "Define the position of the slider"
+                    }
+                ]
+            },
+            {
+                "name": "slider_label",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "change"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "slider_name"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "label"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "primary_expr",
+                        "alias": "label",
+                        "tooltip": "Define/Change the label of the slider"
+                    }
+                ]
+            },
+            {
+                "name": "slider_min",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "change"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "slider_name"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "min"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "primary_expr",
+                        "alias": "min",
+                        "tooltip": "Define the min value of the slider"
+                    }
+                ]
+            },
+            {
+                "name": "slider_max",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "change"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "slider_name"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "max"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "primary_expr",
+                        "alias": "max",
+                        "tooltip": "Define the max value of the slider"
                     }
                 ]
             },
@@ -46569,6 +46743,478 @@ export let config = {
                 {
                     "symbol": {
                         "symbol": {
+                            "name": "new_slider",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Create new slider on position (x,y)"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "alias": "parent_window"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "slider",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "alias": "slider_name"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "on",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "x"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "variable",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "consts",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All const values"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "keys",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All keyboard keys"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "object_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an object by its property name"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an array by its position"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_array",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new array"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_object",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new object"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_definition",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "y"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "variable",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "consts",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All const values"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "keys",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All keyboard keys"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "object_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an object by its property name"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an array by its position"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_array",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new array"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_object",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new object"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_definition",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "label"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "variable",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "consts",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All const values"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "keys",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All keyboard keys"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "object_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an object by its property name"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an array by its position"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_array",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new array"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_object",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new object"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_definition",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "create_element",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Add a new element at the widgets window"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "new_window",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Create new window on position (x,y) with certain width and height "
+                            },
+                            {
+                                "symbol": {
+                                    "name": "new_button",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Create new button on position (x,y) with certain width,height and text on it"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "new_textfield",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Create new textfield on position (x,y) with certain width "
+                            },
+                            {
+                                "symbol": {
+                                    "name": "new_textarea",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Create new textarea on position (x,y) with certain width and height"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "new_checkbox",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Create new checkbox on position (x,y)"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "new_dropdown",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Create new dropdown on position (x,y)"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "new_slider",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Create new slider on position (x,y)"
+                            }
+                        ],
+                        "selectedSymbol": 6,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "widgets",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "create_element",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Add a new element at the widgets window"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_attribute",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created element"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "add_event_handler",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Add event handler on a created element in the window"
+                                }
+                            ],
+                            "selectedSymbol": 0,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "repeat_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Repeat the stmts, certain times"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "turtle_functions",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Build-in functions to move the turtle in the virtual canvas"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "widgets",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "ternary_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "break_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Exit from the current loop"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "continue_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Continue to the next iteration of the current loop"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "return_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Return an expression as the result of the current function"
+                                    }
+                                ],
+                                "selectedSymbol": 7,
+                                "type": "SelectionBlock",
+                                "generatedBy": {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "def",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "stmt",
+                                                "isTerminal": false
+                                            }
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "func_definition",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Define reusable code as a function"
+                                        }
+                                    ],
+                                    "selectedSymbol": 0,
+                                    "type": "SelectionBlock"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
                             "name": "window_width",
                             "isTerminal": false
                         },
@@ -54761,6 +55407,1546 @@ export let config = {
                                 }
                             ],
                             "selectedSymbol": 5,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "widgets",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "create_element",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Add a new element at the widgets window"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "change_attribute",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Change an attribute of a created element"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "add_event_handler",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Add event handler on a created element in the window"
+                                    }
+                                ],
+                                "selectedSymbol": 1,
+                                "type": "SelectionBlock",
+                                "generatedBy": {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "stmt",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "if_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something if a condition is true"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "if_else_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something if a condition is true, else do something else"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "while_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something while a condition is true"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "for_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "repeat_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Repeat the stmts, certain times"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "expr",
+                                                "isTerminal": false
+                                            },
+                                            "alias": "expr_stmt",
+                                            "tooltip": "A single expression as a statement"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "turtle_functions",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Build-in functions to move the turtle in the virtual canvas"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "widgets",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "ternary_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "break_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Exit from the current loop"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "continue_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Continue to the next iteration of the current loop"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "return_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Return an expression as the result of the current function"
+                                        }
+                                    ],
+                                    "selectedSymbol": 7,
+                                    "type": "SelectionBlock",
+                                    "generatedBy": {
+                                        "symbol": {
+                                            "symbol": {
+                                                "name": "def",
+                                                "isTerminal": false
+                                            }
+                                        },
+                                        "alternateSymbols": [
+                                            {
+                                                "symbol": {
+                                                    "name": "stmt",
+                                                    "isTerminal": false
+                                                }
+                                            },
+                                            {
+                                                "symbol": {
+                                                    "name": "func_definition",
+                                                    "isTerminal": false
+                                                },
+                                                "tooltip": "Define reusable code as a function"
+                                            }
+                                        ],
+                                        "selectedSymbol": 0,
+                                        "type": "SelectionBlock"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "slider_position",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Define the position of the slider"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "change",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "alias": "slider_name"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "on",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "x"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "variable",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "consts",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All const values"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "keys",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All keyboard keys"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "object_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an object by its property name"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an array by its position"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_array",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new array"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_object",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new object"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_definition",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "y",
+                                "tooltip": "Define the position of the slider"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "variable",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "consts",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All const values"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "keys",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All keyboard keys"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "object_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an object by its property name"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an array by its position"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_array",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new array"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_object",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new object"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_definition",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "change_slider",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Change an attribute of a created slider"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "slider_position",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define the position of the slider"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "slider_label",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define/Change the label of the slider"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "slider_min",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define the min value of the slider"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "slider_max",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define the max value of the slider"
+                            }
+                        ],
+                        "selectedSymbol": 0,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "change_attribute",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Change an attribute of a created element"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "change_window",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created window"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_button",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created button"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_textfield",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created textfield"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_textarea",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created textarea"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_checkbox",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created checkbox"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_dropdown",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created dropdown"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_slider",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created slider"
+                                }
+                            ],
+                            "selectedSymbol": 6,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "widgets",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "create_element",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Add a new element at the widgets window"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "change_attribute",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Change an attribute of a created element"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "add_event_handler",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Add event handler on a created element in the window"
+                                    }
+                                ],
+                                "selectedSymbol": 1,
+                                "type": "SelectionBlock",
+                                "generatedBy": {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "stmt",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "if_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something if a condition is true"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "if_else_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something if a condition is true, else do something else"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "while_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something while a condition is true"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "for_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "repeat_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Repeat the stmts, certain times"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "expr",
+                                                "isTerminal": false
+                                            },
+                                            "alias": "expr_stmt",
+                                            "tooltip": "A single expression as a statement"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "turtle_functions",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Build-in functions to move the turtle in the virtual canvas"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "widgets",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "ternary_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "break_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Exit from the current loop"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "continue_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Continue to the next iteration of the current loop"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "return_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Return an expression as the result of the current function"
+                                        }
+                                    ],
+                                    "selectedSymbol": 7,
+                                    "type": "SelectionBlock",
+                                    "generatedBy": {
+                                        "symbol": {
+                                            "symbol": {
+                                                "name": "def",
+                                                "isTerminal": false
+                                            }
+                                        },
+                                        "alternateSymbols": [
+                                            {
+                                                "symbol": {
+                                                    "name": "stmt",
+                                                    "isTerminal": false
+                                                }
+                                            },
+                                            {
+                                                "symbol": {
+                                                    "name": "func_definition",
+                                                    "isTerminal": false
+                                                },
+                                                "tooltip": "Define reusable code as a function"
+                                            }
+                                        ],
+                                        "selectedSymbol": 0,
+                                        "type": "SelectionBlock"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "slider_label",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Define/Change the label of the slider"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "change",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "alias": "slider_name"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "label",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "label",
+                                "tooltip": "Define/Change the label of the slider"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "variable",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "consts",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All const values"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "keys",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All keyboard keys"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "object_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an object by its property name"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an array by its position"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_array",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new array"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_object",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new object"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_definition",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "change_slider",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Change an attribute of a created slider"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "slider_position",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define the position of the slider"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "slider_label",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define/Change the label of the slider"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "slider_min",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define the min value of the slider"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "slider_max",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define the max value of the slider"
+                            }
+                        ],
+                        "selectedSymbol": 1,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "change_attribute",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Change an attribute of a created element"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "change_window",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created window"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_button",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created button"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_textfield",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created textfield"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_textarea",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created textarea"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_checkbox",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created checkbox"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_dropdown",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created dropdown"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_slider",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created slider"
+                                }
+                            ],
+                            "selectedSymbol": 6,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "widgets",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "create_element",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Add a new element at the widgets window"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "change_attribute",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Change an attribute of a created element"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "add_event_handler",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Add event handler on a created element in the window"
+                                    }
+                                ],
+                                "selectedSymbol": 1,
+                                "type": "SelectionBlock",
+                                "generatedBy": {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "stmt",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "if_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something if a condition is true"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "if_else_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something if a condition is true, else do something else"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "while_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something while a condition is true"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "for_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "repeat_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Repeat the stmts, certain times"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "expr",
+                                                "isTerminal": false
+                                            },
+                                            "alias": "expr_stmt",
+                                            "tooltip": "A single expression as a statement"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "turtle_functions",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Build-in functions to move the turtle in the virtual canvas"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "widgets",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "ternary_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "break_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Exit from the current loop"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "continue_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Continue to the next iteration of the current loop"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "return_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Return an expression as the result of the current function"
+                                        }
+                                    ],
+                                    "selectedSymbol": 7,
+                                    "type": "SelectionBlock",
+                                    "generatedBy": {
+                                        "symbol": {
+                                            "symbol": {
+                                                "name": "def",
+                                                "isTerminal": false
+                                            }
+                                        },
+                                        "alternateSymbols": [
+                                            {
+                                                "symbol": {
+                                                    "name": "stmt",
+                                                    "isTerminal": false
+                                                }
+                                            },
+                                            {
+                                                "symbol": {
+                                                    "name": "func_definition",
+                                                    "isTerminal": false
+                                                },
+                                                "tooltip": "Define reusable code as a function"
+                                            }
+                                        ],
+                                        "selectedSymbol": 0,
+                                        "type": "SelectionBlock"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "slider_min",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Define the min value of the slider"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "change",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "alias": "slider_name"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "min",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "min",
+                                "tooltip": "Define the min value of the slider"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "variable",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "consts",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All const values"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "keys",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All keyboard keys"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "object_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an object by its property name"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an array by its position"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_array",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new array"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_object",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new object"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_definition",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "change_slider",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Change an attribute of a created slider"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "slider_position",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define the position of the slider"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "slider_label",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define/Change the label of the slider"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "slider_min",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define the min value of the slider"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "slider_max",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define the max value of the slider"
+                            }
+                        ],
+                        "selectedSymbol": 2,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "change_attribute",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Change an attribute of a created element"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "change_window",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created window"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_button",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created button"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_textfield",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created textfield"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_textarea",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created textarea"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_checkbox",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created checkbox"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_dropdown",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created dropdown"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_slider",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created slider"
+                                }
+                            ],
+                            "selectedSymbol": 6,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "widgets",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "create_element",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Add a new element at the widgets window"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "change_attribute",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Change an attribute of a created element"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "add_event_handler",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Add event handler on a created element in the window"
+                                    }
+                                ],
+                                "selectedSymbol": 1,
+                                "type": "SelectionBlock",
+                                "generatedBy": {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "stmt",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "if_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something if a condition is true"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "if_else_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something if a condition is true, else do something else"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "while_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something while a condition is true"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "for_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "repeat_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Repeat the stmts, certain times"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "expr",
+                                                "isTerminal": false
+                                            },
+                                            "alias": "expr_stmt",
+                                            "tooltip": "A single expression as a statement"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "turtle_functions",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Build-in functions to move the turtle in the virtual canvas"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "widgets",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "ternary_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "break_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Exit from the current loop"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "continue_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Continue to the next iteration of the current loop"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "return_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Return an expression as the result of the current function"
+                                        }
+                                    ],
+                                    "selectedSymbol": 7,
+                                    "type": "SelectionBlock",
+                                    "generatedBy": {
+                                        "symbol": {
+                                            "symbol": {
+                                                "name": "def",
+                                                "isTerminal": false
+                                            }
+                                        },
+                                        "alternateSymbols": [
+                                            {
+                                                "symbol": {
+                                                    "name": "stmt",
+                                                    "isTerminal": false
+                                                }
+                                            },
+                                            {
+                                                "symbol": {
+                                                    "name": "func_definition",
+                                                    "isTerminal": false
+                                                },
+                                                "tooltip": "Define reusable code as a function"
+                                            }
+                                        ],
+                                        "selectedSymbol": 0,
+                                        "type": "SelectionBlock"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "slider_max",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Define the max value of the slider"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "change",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "alias": "slider_name"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "max",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "primary_expr",
+                                    "isTerminal": false
+                                },
+                                "alias": "max",
+                                "tooltip": "Define the max value of the slider"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "variable",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "An identifier starting with _ or a uppercase/lowercase letter following by 0 or more characters that can be _ numbers lowercase/uppercase letters"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "consts",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All const values"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "keys",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "All keyboard keys"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "object_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an object by its property name"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "array_get",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Get an element of an array by its position"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_array",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new array"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "new_object",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define a new object"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "func_definition",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Define reusable code as a function"
+                                }
+                            ],
+                            "type": "SelectionBlock"
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "change_slider",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Change an attribute of a created slider"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "slider_position",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define the position of the slider"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "slider_label",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define/Change the label of the slider"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "slider_min",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define the min value of the slider"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "slider_max",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Define the max value of the slider"
+                            }
+                        ],
+                        "selectedSymbol": 3,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "change_attribute",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Change an attribute of a created element"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "change_window",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created window"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_button",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created button"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_textfield",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created textfield"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_textarea",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created textarea"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_checkbox",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created checkbox"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_dropdown",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created dropdown"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_slider",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created slider"
+                                }
+                            ],
+                            "selectedSymbol": 6,
                             "type": "SelectionBlock",
                             "generatedBy": {
                                 "symbol": {
@@ -64727,6 +66913,18 @@ config.colorfulTheme = {
                     "BorderRadius": ""
                 }
             },
+            "new_slider": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
             "window_width": {
                 "Group Block": {
                     "BackgroundColor": "#995BA5",
@@ -64992,6 +67190,54 @@ config.colorfulTheme = {
                 }
             },
             "dropdown_add_option": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "slider_position": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "slider_label": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "slider_min": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "slider_max": {
                 "Group Block": {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "",
@@ -67903,6 +70149,18 @@ config.darkColorfulTheme = {
                     "BorderRadius": ""
                 }
             },
+            "new_slider": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
             "window_width": {
                 "Group Block": {
                     "BackgroundColor": "#995BA5",
@@ -68168,6 +70426,54 @@ config.darkColorfulTheme = {
                 }
             },
             "dropdown_add_option": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "slider_position": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "slider_label": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "slider_min": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "slider_max": {
                 "Group Block": {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "",

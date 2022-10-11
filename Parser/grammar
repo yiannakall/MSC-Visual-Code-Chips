@@ -31,14 +31,15 @@ non_terminal {
     shapes color rgb_color output_color
     repeat_stmt
     widgets create_element change_attribute add_event_handler
-    new_window new_button new_textarea new_textfield new_checkbox new_dropdown options
-    change_window change_button change_textfield change_textarea change_checkbox change_dropdown
+    new_window new_button new_textarea new_textfield new_checkbox new_dropdown new_slider options
+    change_window change_button change_textfield change_textarea change_checkbox change_dropdown change_slider
     window_width window_height window_color
     button_disabled button_text button_color button_width button_height button_position
     textfield_width textfield_position textfield_value textfield_maxlength
     textarea_height textarea_width textarea_position textarea_maxlength
     checkbox_position checkbox_text checkbox_checked
     dropdown_position dropdown_multiple dropdown_add_option
+    slider_position slider_label slider_min slider_max
     button_event checkbox_event
 }
 
@@ -69,8 +70,8 @@ terminal {
     triangle circle square turtle  
     repeat set_console_color
     black red blue green yellow cyan magenta
-    on window button textarea textfield checkbox dropdown
-    change disable text background new_width new_height max checked multiple new_option
+    on window button textarea textfield checkbox dropdown slider
+    change disable text label background new_width new_height checked multiple new_option min max
     on_press on_select
 }  
 
@@ -751,6 +752,7 @@ define create_element {
         new_textarea                                                            : "Create new textarea on position (x,y) with certain width and height"
         new_checkbox                                                            : "Create new checkbox on position (x,y)"
         new_dropdown                                                            : "Create new dropdown on position (x,y)"
+        new_slider                                                              : "Create new slider on position (x,y)"
     }
 }
 
@@ -778,6 +780,10 @@ define new_dropdown {
     IDENT("parent_window") dropdown IDENT("dropdown_name") on primary_expr("x") primary_expr("y") options
 }
 
+define new_slider {
+    IDENT("parent_window") slider IDENT("slider_name") on primary_expr("x") primary_expr("y") primary_expr("label")
+}
+
 define options {
     list_of {
         STRING_CONST("option")
@@ -792,6 +798,7 @@ define change_attribute{
         change_textarea                                                         : "Change an attribute of a created textarea"
         change_checkbox                                                         : "Change an attribute of a created checkbox"
         change_dropdown                                                         : "Change an attribute of a created dropdown"
+        change_slider                                                           : "Change an attribute of a created slider"
     }
 }
 
@@ -846,6 +853,16 @@ define change_dropdown {
         dropdown_multiple                                                       : "Define that multiple options can be selected at once"
         dropdown_add_option                                                     : "Add one more option in the dropdown"
     }
+}
+
+define change_slider {
+    any_of {
+        slider_position                                                         : "Define the position of the slider"
+        slider_label                                                            : "Define/Change the label of the slider"
+        slider_min                                                              : "Define the min value of the slider"
+        slider_max                                                              : "Define the max value of the slider"
+    }
+
 }
 
 define window_width {
@@ -938,6 +955,22 @@ define dropdown_multiple {
 
 define dropdown_add_option {
     change IDENT("dropdown_name") new_option STRING_CONST("option")             : "Add one more option in the dropdown"
+}
+
+define slider_position {
+    change IDENT("slider_name") on primary_expr("x") primary_expr("y")          : "Define the position of the slider"
+}
+
+define slider_label {
+    change IDENT("slider_name") label primary_expr("label")                     : "Define/Change the label of the slider"
+}
+
+define slider_min {
+    change IDENT("slider_name") min primary_expr("min")                         : "Define the min value of the slider"
+}
+
+define slider_max {
+    change IDENT("slider_name") max primary_expr("max")                         : "Define the max value of the slider"
 }
 
 define add_event_handler {

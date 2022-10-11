@@ -3256,6 +3256,11 @@
                     "type": "non_terminal",
                     "name": "new_dropdown",
                     "tooltip": "Create new dropdown on position (x,y)"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "new_slider",
+                    "tooltip": "Create new slider on position (x,y)"
                 }
             ]
         },
@@ -3502,6 +3507,44 @@
             ]
         },
         {
+            "name": "new_slider",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "parent_window"
+                },
+                {
+                    "type": "terminal",
+                    "name": "slider"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "slider_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "on"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "label"
+                }
+            ]
+        },
+        {
             "name": "options",
             "list_of": [
                 {
@@ -3543,6 +3586,11 @@
                     "type": "non_terminal",
                     "name": "change_dropdown",
                     "tooltip": "Change an attribute of a created dropdown"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "change_slider",
+                    "tooltip": "Change an attribute of a created slider"
                 }
             ]
         },
@@ -3688,6 +3736,31 @@
                     "type": "non_terminal",
                     "name": "dropdown_add_option",
                     "tooltip": "Add one more option in the dropdown"
+                }
+            ]
+        },
+        {
+            "name": "change_slider",
+            "any_of": [
+                {
+                    "type": "non_terminal",
+                    "name": "slider_position",
+                    "tooltip": "Define the position of the slider"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "slider_label",
+                    "tooltip": "Define/Change the label of the slider"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "slider_min",
+                    "tooltip": "Define the min value of the slider"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "slider_max",
+                    "tooltip": "Define the max value of the slider"
                 }
             ]
         },
@@ -4262,6 +4335,107 @@
                     "name": "STRING_CONST",
                     "alias": "option",
                     "tooltip": "Add one more option in the dropdown"
+                }
+            ]
+        },
+        {
+            "name": "slider_position",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "slider_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "on"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "x"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "y",
+                    "tooltip": "Define the position of the slider"
+                }
+            ]
+        },
+        {
+            "name": "slider_label",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "slider_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "label"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "label",
+                    "tooltip": "Define/Change the label of the slider"
+                }
+            ]
+        },
+        {
+            "name": "slider_min",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "slider_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "min"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "min",
+                    "tooltip": "Define the min value of the slider"
+                }
+            ]
+        },
+        {
+            "name": "slider_max",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "change"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "slider_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "max"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "primary_expr",
+                    "alias": "max",
+                    "tooltip": "Define the max value of the slider"
                 }
             ]
         },
