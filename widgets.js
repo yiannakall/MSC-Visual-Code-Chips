@@ -81,6 +81,7 @@ function new_textfield(parent,name,x,y,w){
     textfield.style.left = x +"%";
     textfield.style.top = y + "%";
     textfield.type = "text";
+    textfield.onmousedown = (e) => e.stopPropagation();
     document.getElementById(parent).appendChild(textfield);
 }
 
@@ -95,6 +96,7 @@ function new_textarea(parent,name,x,y,w,h){
     textarea.style.height = h + "px";
     textarea.style.left = x +"%";
     textarea.style.top = y + "%";
+    textarea.onmousedown = (e) => e.stopPropagation();
     document.getElementById(parent).appendChild(textarea);
 }
 
@@ -119,6 +121,7 @@ function new_checkbox(parent,name,x,y,text){
     container.appendChild(label);
     container.appendChild(checkbox);
     container.id = "Checkbox" + name;
+    container.onmousedown = (e) => e.stopPropagation();
     
     document.getElementById(parent).appendChild(container); 
 }
@@ -132,6 +135,7 @@ function new_dropdown(parent,name,x,y,...options){
     dropdown.style.position = 'absolute';
     dropdown.style.left = x +"%";
     dropdown.style.top = y + "%";
+    dropdown.onmousedown = (e) => e.stopPropagation();
 
     for(let i=0; i<options.length; i++){
         const option = document.createElement("option");
@@ -162,6 +166,7 @@ function new_slider(parent,name,x,y,text){
     container.appendChild(label);
     container.appendChild(slider);
     container.id = "Slider" + name;
+    container.onmousedown = (e) => e.stopPropagation();
     
     document.getElementById(parent).appendChild(container); 
 }
