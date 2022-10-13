@@ -40,7 +40,7 @@ non_terminal {
     checkbox_position checkbox_text checkbox_checked
     dropdown_position dropdown_multiple dropdown_add_option
     slider_position slider_label slider_min slider_max
-    button_event checkbox_event
+    button_event checkbox_event dropdown_event
 }
 
 terminal {
@@ -977,6 +977,7 @@ define add_event_handler {
     any_of {
         button_event                                                            : "Add an event handler when pressing a button"
         checkbox_event                                                          : "Add an event handler when selecting a checkbox"
+        dropdown_event                                                          : "Add an event handler when selecting a specific dropdown option"
     }
 }
 
@@ -986,4 +987,8 @@ define button_event {
 
 define checkbox_event {
     on_select IDENT("checkbox_name") stmts                                      : "Add an event handler when selecting a checkbox"
+}
+
+define dropdown_event {
+    on_select IDENT("dropdown_name") IDENT("dropdown_option") stmts             : "Add an event handler when selecting a specific dropdown option"
 }

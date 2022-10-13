@@ -508,6 +508,7 @@ export class MyJavascriptVisitor extends AstVisitor {
 
         this.SetVisitor( 'button_event',            elem => this.Visit_ButtonEvent(elem) );
         this.SetVisitor( 'checkbox_event',          elem => this.Visit_CheckboxEvent(elem) );
+        this.SetVisitor( 'dropdown_event',          elem => this.Visit_DropdownEvent(elem) );
 
         this.SetVisitor( 'change',                  elem => this.Visit_Change(elem) );
         this.SetVisitor( 'disable',                 elem => this.Visit_Disable(elem) );
@@ -1907,6 +1908,14 @@ element.removeEventListener('keypress',${code.listener},false);`);
         let code = this.PopChildrenFromStack(elem, ['on_select','name','stmts']);
 
         this.stack.push(`add_checkbox_event("${code.name}",function(){
+        ${code.stmts}
+    });`)
+    }
+
+    Visit_DropdownEvent(elem) {
+        let code = this.PopChildrenFromStack(elem, ['on_select','name','option','stmts']);
+
+        this.stack.push(`add_dropdown_event("${code.name}","${code.option}",function(){
         ${code.stmts}
     });`)
     }

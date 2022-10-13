@@ -4451,6 +4451,11 @@
                     "type": "non_terminal",
                     "name": "checkbox_event",
                     "tooltip": "Add an event handler when selecting a checkbox"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "dropdown_event",
+                    "tooltip": "Add an event handler when selecting a specific dropdown option"
                 }
             ]
         },
@@ -4489,6 +4494,30 @@
                     "type": "non_terminal",
                     "name": "stmts",
                     "tooltip": "Add an event handler when selecting a checkbox"
+                }
+            ]
+        },
+        {
+            "name": "dropdown_event",
+            "all_of": [
+                {
+                    "type": "terminal",
+                    "name": "on_select"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "dropdown_name"
+                },
+                {
+                    "type": "terminal",
+                    "name": "IDENT",
+                    "alias": "dropdown_option"
+                },
+                {
+                    "type": "non_terminal",
+                    "name": "stmts",
+                    "tooltip": "Add an event handler when selecting a specific dropdown option"
                 }
             ]
         }

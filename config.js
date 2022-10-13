@@ -4452,6 +4452,11 @@ export let config = {
                         "type": "non_terminal",
                         "name": "checkbox_event",
                         "tooltip": "Add an event handler when selecting a checkbox"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "dropdown_event",
+                        "tooltip": "Add an event handler when selecting a specific dropdown option"
                     }
                 ]
             },
@@ -4490,6 +4495,30 @@ export let config = {
                         "type": "non_terminal",
                         "name": "stmts",
                         "tooltip": "Add an event handler when selecting a checkbox"
+                    }
+                ]
+            },
+            {
+                "name": "dropdown_event",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "on_select"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "dropdown_name"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "dropdown_option"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "stmts",
+                        "tooltip": "Add an event handler when selecting a specific dropdown option"
                     }
                 ]
             }
@@ -67273,6 +67302,18 @@ config.colorfulTheme = {
                     "BorderRadius": ""
                 }
             },
+            "dropdown_event": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
         }
     },
     "Code Workspace": {
@@ -70498,6 +70539,18 @@ config.darkColorfulTheme = {
                 }
             },
             "checkbox_event": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "dropdown_event": {
                 "Group Block": {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "",

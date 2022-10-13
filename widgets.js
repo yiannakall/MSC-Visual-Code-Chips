@@ -67,6 +67,7 @@ function new_button(parent,name,x,y,w,h,text) {
     butt.style.top = y + "%";
     butt.type = "button";
     butt.innerHTML = text;
+    butt.onmousedown = (e) => e.stopPropagation();
     document.getElementById(parent).appendChild(butt);
 }
 
@@ -242,4 +243,9 @@ function add_button_event(name,stmts){
 
 function add_checkbox_event(name,stmts){
     document.getElementById(name).onclick = stmts;
+}
+
+function add_dropdown_event(name,option,stmts){
+    let op = $('#'+name +':selected').text();
+    console.log(op)
 }
