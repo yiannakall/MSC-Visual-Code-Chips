@@ -446,6 +446,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'create_element',          elem => this.Visit_CreateElement(elem) );
         this.SetVisitor( 'change_attribute',        elem => this.Visit_ChangeAttribute(elem) );
         this.SetVisitor( 'add_event_handler',       elem => this.Visit_AddEventHandler(elem) );
+        this.SetVisitor( 'get_element_value',       elem => this.Visit_GetElementValue(elem) );
 
         this.SetVisitor( 'new_window',              elem => this.Visit_NewWindow(elem) );
         this.SetVisitor( 'new_button',              elem => this.Visit_NewButton(elem) );
@@ -510,6 +511,10 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'checkbox_event',          elem => this.Visit_CheckboxEvent(elem) );
         this.SetVisitor( 'dropdown_event',          elem => this.Visit_DropdownEvent(elem) );
 
+        this.SetVisitor( 'get_textarea_value',      elem => this.Visit_GetTextareaValue(elem) ); 
+        this.SetVisitor( 'get_textfield_value',     elem => this.Visit_GetTextfieldValue(elem) ); 
+        this.SetVisitor( 'get_slider_value',        elem => this.Visit_GetSliderValue(elem) );    
+
         this.SetVisitor( 'change',                  elem => this.Visit_Change(elem) );
         this.SetVisitor( 'disable',                 elem => this.Visit_Disable(elem) );
         this.SetVisitor( 'text',                    elem => this.Visit_Text(elem) );
@@ -524,6 +529,7 @@ export class MyJavascriptVisitor extends AstVisitor {
         this.SetVisitor( 'max',                     elem => this.Visit_Max(elem) );
         this.SetVisitor( 'on_press',                elem => this.Visit_OnPress(elem) );
         this.SetVisitor( 'on_select',               elem => this.Visit_OnSelect(elem) );
+        this.SetVisitor( 'get_value',               elem => this.Visit_GetValue(elem) );
         
     }
 
@@ -1915,9 +1921,29 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_DropdownEvent(elem) {
         let code = this.PopChildrenFromStack(elem, ['on_select','name','option','stmts']);
 
-        this.stack.push(`add_dropdown_event("${code.name}","${code.option}",function(){
+        this.stack.push(`add_dropdown_event("${code.name}","${code.option}",function cmds(){
         ${code.stmts}
     });`)
+    }
+
+    Visit_GetElementValue(elem)             {this.stack.push(``);}
+
+    Visit_GetTextareaValue(elem){
+        let code = this.PopChildrenFromStack(elem, ['get_value', 'name']);
+
+        this.stack.push(`get_value("${code.name}")`);
+    }
+
+    Visit_GetTextfieldValue(elem){
+        let code = this.PopChildrenFromStack(elem, ['get_value', 'name']);
+
+        this.stack.push(`get_value("${code.name}")`);
+    } 
+
+    Visit_GetSliderValue(elem){
+        let code = this.PopChildrenFromStack(elem, ['get_value', 'name']);
+
+        this.stack.push(`get_value("${code.name}")`);
     }
 
     //widget terminals
@@ -1935,5 +1961,6 @@ element.removeEventListener('keypress',${code.listener},false);`);
     Visit_Max(elem)                         {this.stack.push(``);}
     Visit_OnPress(elem)                     {this.stack.push(``);}
     Visit_OnSelect(elem)                    {this.stack.push(``);}
+    Visit_GetValue(elem)                    {this.stack.push(``);}
 }
 

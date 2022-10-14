@@ -246,6 +246,20 @@ function add_checkbox_event(name,stmts){
 }
 
 function add_dropdown_event(name,option,stmts){
-    let op = $('#'+name +':selected').text();
-    console.log(op)
+    const dropdown = document.getElementById(name);
+    dropdown.addEventListener('change', function(event) { 
+        if(event.target.value == option) {
+            stmts();
+        }
+    }) 
+}
+
+function get_value(name){
+    const element = document.getElementById(name);
+    element.addEventListener('input', function(event){
+        return event.target.value;
+    })
+    // if (document.getElementById(name)) {
+    //     return document.getElementById(name).value;
+    // }
 }

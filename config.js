@@ -2747,7 +2747,7 @@ export let config = {
                 "list_of": [
                     {
                         "type": "non_terminal",
-                        "name": "expr",
+                        "name": "stmt",
                         "alias": "arg"
                     }
                 ]
@@ -3222,6 +3222,11 @@ export let config = {
                         "type": "non_terminal",
                         "name": "add_event_handler",
                         "tooltip": "Add event handler on a created element in the window"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "get_element_value",
+                        "tooltip": "Get the value of a textarea, textfield or slider, to use it later"
                     }
                 ]
             },
@@ -4519,6 +4524,71 @@ export let config = {
                         "type": "non_terminal",
                         "name": "stmts",
                         "tooltip": "Add an event handler when selecting a specific dropdown option"
+                    }
+                ]
+            },
+            {
+                "name": "get_element_value",
+                "any_of": [
+                    {
+                        "type": "non_terminal",
+                        "name": "get_textarea_value",
+                        "tooltip": "Get the value of the textarea to use it"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "get_textfield_value",
+                        "tooltip": "Get the value of the textfield to use it"
+                    },
+                    {
+                        "type": "non_terminal",
+                        "name": "get_slider_value",
+                        "tooltip": "Get the value of the slider to use it"
+                    }
+                ]
+            },
+            {
+                "name": "get_textarea_value",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "get_value"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "textarea_name",
+                        "tooltip": "Get the value of the textarea to use it"
+                    }
+                ]
+            },
+            {
+                "name": "get_textfield_value",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "get_value"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "textfield_name",
+                        "tooltip": "Get the value of the textfield to use it"
+                    }
+                ]
+            },
+            {
+                "name": "get_slider_value",
+                "all_of": [
+                    {
+                        "type": "terminal",
+                        "name": "get_value"
+                    },
+                    {
+                        "type": "terminal",
+                        "name": "IDENT",
+                        "alias": "slider_name",
+                        "tooltip": "Get the value of the slider to use it"
                     }
                 ]
             }
@@ -57971,6 +58041,441 @@ export let config = {
                             }
                         }
                     }
+                },
+                {
+                    "symbol": {
+                        "symbol": {
+                            "name": "dropdown_event",
+                            "isTerminal": false
+                        },
+                        "tooltip": "Add an event handler when selecting a specific dropdown option"
+                    },
+                    "elems": [
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "on_select",
+                                    "isTerminal": true
+                                }
+                            },
+                            "type": "SimpleBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "alias": "dropdown_name"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "IDENT",
+                                    "isTerminal": true
+                                },
+                                "alias": "dropdown_option"
+                            },
+                            "type": "InputBlock"
+                        },
+                        {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "stmts",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Add an event handler when selecting a specific dropdown option"
+                            },
+                            "elems": [
+                                {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "stmt",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "if_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something if a condition is true"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "if_else_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something if a condition is true, else do something else"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "while_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something while a condition is true"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "for_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "repeat_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Repeat the stmts, certain times"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "expr",
+                                                "isTerminal": false
+                                            },
+                                            "alias": "expr_stmt",
+                                            "tooltip": "A single expression as a statement"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "turtle_functions",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Build-in functions to move the turtle in the virtual canvas"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "widgets",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "ternary_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "break_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Exit from the current loop"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "continue_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Continue to the next iteration of the current loop"
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "return_stmt",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Return an expression as the result of the current function"
+                                        }
+                                    ],
+                                    "type": "SelectionBlock"
+                                }
+                            ],
+                            "repetitiveElem": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "repeat_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Repeat the stmts, certain times"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "turtle_functions",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Build-in functions to move the turtle in the virtual canvas"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "widgets",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "ternary_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "break_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Exit from the current loop"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "continue_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Continue to the next iteration of the current loop"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "return_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Return an expression as the result of the current function"
+                                    }
+                                ],
+                                "type": "SelectionBlock"
+                            },
+                            "type": "RepetitionGroup"
+                        }
+                    ],
+                    "type": "Group",
+                    "generatedBy": {
+                        "symbol": {
+                            "symbol": {
+                                "name": "add_event_handler",
+                                "isTerminal": false
+                            },
+                            "tooltip": "Add event handler on a created element in the window"
+                        },
+                        "alternateSymbols": [
+                            {
+                                "symbol": {
+                                    "name": "button_event",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Add an event handler when pressing a button"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "checkbox_event",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Add an event handler when selecting a checkbox"
+                            },
+                            {
+                                "symbol": {
+                                    "name": "dropdown_event",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Add an event handler when selecting a specific dropdown option"
+                            }
+                        ],
+                        "selectedSymbol": 2,
+                        "type": "SelectionBlock",
+                        "generatedBy": {
+                            "symbol": {
+                                "symbol": {
+                                    "name": "widgets",
+                                    "isTerminal": false
+                                },
+                                "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                            },
+                            "alternateSymbols": [
+                                {
+                                    "symbol": {
+                                        "name": "create_element",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Add a new element at the widgets window"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "change_attribute",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Change an attribute of a created element"
+                                },
+                                {
+                                    "symbol": {
+                                        "name": "add_event_handler",
+                                        "isTerminal": false
+                                    },
+                                    "tooltip": "Add event handler on a created element in the window"
+                                }
+                            ],
+                            "selectedSymbol": 2,
+                            "type": "SelectionBlock",
+                            "generatedBy": {
+                                "symbol": {
+                                    "symbol": {
+                                        "name": "stmt",
+                                        "isTerminal": false
+                                    }
+                                },
+                                "alternateSymbols": [
+                                    {
+                                        "symbol": {
+                                            "name": "if_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "if_else_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something if a condition is true, else do something else"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "while_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "for_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Do something while a condition is true. Commonly used with a known number of iterations."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "repeat_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Repeat the stmts, certain times"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "expr",
+                                            "isTerminal": false
+                                        },
+                                        "alias": "expr_stmt",
+                                        "tooltip": "A single expression as a statement"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "turtle_functions",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Build-in functions to move the turtle in the virtual canvas"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "widgets",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Create,change and add event handlers to ui elements such as buttons, textfields etc"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "ternary_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "A statement with ternary operator has a condition, an expression to execute if the condition is truthy,and the expression to execute if the condition is falsy."
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "break_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Exit from the current loop"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "continue_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Continue to the next iteration of the current loop"
+                                    },
+                                    {
+                                        "symbol": {
+                                            "name": "return_stmt",
+                                            "isTerminal": false
+                                        },
+                                        "tooltip": "Return an expression as the result of the current function"
+                                    }
+                                ],
+                                "selectedSymbol": 7,
+                                "type": "SelectionBlock",
+                                "generatedBy": {
+                                    "symbol": {
+                                        "symbol": {
+                                            "name": "def",
+                                            "isTerminal": false
+                                        }
+                                    },
+                                    "alternateSymbols": [
+                                        {
+                                            "symbol": {
+                                                "name": "stmt",
+                                                "isTerminal": false
+                                            }
+                                        },
+                                        {
+                                            "symbol": {
+                                                "name": "func_definition",
+                                                "isTerminal": false
+                                            },
+                                            "tooltip": "Define reusable code as a function"
+                                        }
+                                    ],
+                                    "selectedSymbol": 0,
+                                    "type": "SelectionBlock"
+                                }
+                            }
+                        }
+                    }
                 }
             ]
         },
@@ -67314,6 +67819,42 @@ config.colorfulTheme = {
                     "BorderRadius": ""
                 }
             },
+            "get_textarea_value": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "get_textfield_value": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "get_slider_value": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
         }
     },
     "Code Workspace": {
@@ -70551,6 +71092,42 @@ config.darkColorfulTheme = {
                 }
             },
             "dropdown_event": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "get_textarea_value": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "get_textfield_value": {
+                "Group Block": {
+                    "BackgroundColor": "#995BA5",
+                    "PaddingLeft": "",
+                    "PaddingRight": "",
+                    "PaddingTop": "",
+                    "PaddingBottom": "",
+                    "BorderWidth": "",
+                    "BorderColor": "#7A4884",
+                    "BorderRadius": ""
+                }
+            },
+            "get_slider_value": {
                 "Group Block": {
                     "BackgroundColor": "#995BA5",
                     "PaddingLeft": "",
