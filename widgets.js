@@ -257,7 +257,9 @@ function add_dropdown_event(name,option,stmts){
 function get_value(name){
     const element = document.getElementById(name);
     element.addEventListener('input', function(event){
-        return event.target.value;
+        console.log(event.target.value)
+        let x = event.target.value;
+        return x;
     })
     // if (document.getElementById(name)) {
     //     return document.getElementById(name).value;

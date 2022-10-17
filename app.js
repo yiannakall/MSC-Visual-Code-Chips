@@ -172,6 +172,7 @@ $(document).ready(function () {
     }
 
     function output(color,...args) {
+        console.log(args)
         var mycolor; 
         if(flagColor == 1){
             mycolor = OutputColor;
