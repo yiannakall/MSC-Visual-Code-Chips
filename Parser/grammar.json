@@ -3221,11 +3221,6 @@
                     "type": "non_terminal",
                     "name": "add_event_handler",
                     "tooltip": "Add event handler on a created element in the window"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "get_element_value",
-                    "tooltip": "Get the value of a textarea, textfield or slider, to use it later"
                 }
             ]
         },
@@ -4523,71 +4518,6 @@
                     "type": "non_terminal",
                     "name": "stmts",
                     "tooltip": "Add an event handler when selecting a specific dropdown option"
-                }
-            ]
-        },
-        {
-            "name": "get_element_value",
-            "any_of": [
-                {
-                    "type": "non_terminal",
-                    "name": "get_textarea_value",
-                    "tooltip": "Get the value of the textarea to use it"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "get_textfield_value",
-                    "tooltip": "Get the value of the textfield to use it"
-                },
-                {
-                    "type": "non_terminal",
-                    "name": "get_slider_value",
-                    "tooltip": "Get the value of the slider to use it"
-                }
-            ]
-        },
-        {
-            "name": "get_textarea_value",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "get_value"
-                },
-                {
-                    "type": "terminal",
-                    "name": "IDENT",
-                    "alias": "textarea_name",
-                    "tooltip": "Get the value of the textarea to use it"
-                }
-            ]
-        },
-        {
-            "name": "get_textfield_value",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "get_value"
-                },
-                {
-                    "type": "terminal",
-                    "name": "IDENT",
-                    "alias": "textfield_name",
-                    "tooltip": "Get the value of the textfield to use it"
-                }
-            ]
-        },
-        {
-            "name": "get_slider_value",
-            "all_of": [
-                {
-                    "type": "terminal",
-                    "name": "get_value"
-                },
-                {
-                    "type": "terminal",
-                    "name": "IDENT",
-                    "alias": "slider_name",
-                    "tooltip": "Get the value of the slider to use it"
                 }
             ]
         }

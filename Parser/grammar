@@ -30,7 +30,7 @@ non_terminal {
     forward_turtle backward_turtle turn_right turn_left goto_position define_angle define_widthline define_turtleshape change_color write_msg random_int set_redraw set_wrap set_delay
     shapes color rgb_color output_color
     repeat_stmt
-    widgets create_element change_attribute add_event_handler get_element_value
+    widgets create_element change_attribute add_event_handler
     new_window new_button new_textarea new_textfield new_checkbox new_dropdown new_slider options
     change_window change_button change_textfield change_textarea change_checkbox change_dropdown change_slider
     window_width window_height window_color
@@ -41,7 +41,6 @@ non_terminal {
     dropdown_position dropdown_multiple dropdown_add_option
     slider_position slider_label slider_min slider_max
     button_event checkbox_event dropdown_event
-    get_textarea_value  get_textfield_value get_slider_value    
 }
 
 terminal {
@@ -73,7 +72,7 @@ terminal {
     black red blue green yellow cyan magenta
     on window button textarea textfield checkbox dropdown slider
     change disable text label background new_width new_height checked multiple new_option min max
-    on_press on_select get_value
+    on_press on_select
 }  
 
 define program {
@@ -742,7 +741,6 @@ define widgets {
         create_element                                                          : "Add a new element at the widgets window"
         change_attribute                                                        : "Change an attribute of a created element"
         add_event_handler                                                       : "Add event handler on a created element in the window"
-        get_element_value                                                       : "Get the value of a textarea, textfield or slider, to use it later"
     }
 }
 
@@ -993,24 +991,4 @@ define checkbox_event {
 
 define dropdown_event {
     on_select IDENT("dropdown_name") IDENT("dropdown_option") stmts             : "Add an event handler when selecting a specific dropdown option"
-}
-
-define get_element_value {
-    any_of {
-        get_textarea_value                                                      : "Get the value of the textarea to use it"
-        get_textfield_value                                                     : "Get the value of the textfield to use it"
-        get_slider_value                                                        : "Get the value of the slider to use it"
-    }
-}
-
-define get_textarea_value {
-    get_value IDENT("textarea_name")                                            : "Get the value of the textarea to use it"
-}
-
-define get_textfield_value {
-    get_value IDENT("textfield_name")                                           : "Get the value of the textfield to use it"
-}
-
-define get_slider_value {
-    get_value IDENT("slider_name")                                              : "Get the value of the slider to use it"
 }

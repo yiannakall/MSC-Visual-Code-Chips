@@ -160,12 +160,18 @@ function new_slider(parent,name,x,y,text){
     slider.type = "range"; 
     slider.id = name;
 
+    const value = document.createElement("label");
+    slider.addEventListener('input', function(event){
+        value.innerHTML = event.target.value;
+    })
+
     const container = document.createElement("div");
     container.style.position = 'absolute';
     container.style.left = x +"%";
     container.style.top = y + "%";
     container.appendChild(label);
     container.appendChild(slider);
+    container.appendChild(value);
     container.id = "Slider" + name;
     container.onmousedown = (e) => e.stopPropagation();
     
@@ -252,16 +258,4 @@ function add_dropdown_event(name,option,stmts){
             stmts();
         }
     }) 
-}
-
-function get_value(name){
-    const element = document.getElementById(name);
-    element.addEventListener('input', function(event){
-        console.log(event.target.value)
-        let x = event.target.value;
-        return x;
-    })
-    // if (document.getElementById(name)) {
-    //     return document.getElementById(name).value;
-    // }
 }
